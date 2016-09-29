@@ -1,0 +1,13 @@
+{
+    "name": "mip-ad",
+    "version": "1.0.1",
+    "contributors": [
+        {
+            "name": "pearlwang1106",
+            "email": "pearlwang1106@xxx.com"
+        } 
+    ],
+    "dependencies": {
+        "mipmain": ">=1.1.0"
+    }
+}

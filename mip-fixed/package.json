@@ -1,0 +1,14 @@
+{
+    "name": "mip-fixed",
+    "version": "0.1",
+    "author": "",
+    "contributors": [
+        {
+            "name": "pearlwang1106",
+            "email": "pearlwang1106@xxx.com"
+        } 
+    ],
+    "dependencies": {
+        "mipmain": ">=1.1.0"
+    }
+}

@@ -1,18 +1,16 @@
 # mip-fixed
 
-mip-fixed 用来支持 mip 中的悬浮元素整体使用方案
-
-描述|页面悬浮元素统一解决方案
+描述|支持 mip 中的悬浮元素整体使用方案
 ----|----
 可用性|稳定
 支持布局|不使用布局
 所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-fixed.js
 
-## 使用
+## 示例
 
-在MIP HTML中，示例如下：
+### 顶部悬浮
 
-### 顶部悬浮（宽度默认100%，高度最多85像素）
+规则：宽度默认屏幕100%，高度最多85像素
 
 ```html
 <mip-fixed type="top">
@@ -20,7 +18,9 @@ mip-fixed 用来支持 mip 中的悬浮元素整体使用方案
 </mip-fixed>
 ```
 
-### 底部悬浮（宽度默认100%，高度最多85像素）
+### 底部悬浮
+
+规则：宽度默认屏幕100%，高度最多85像素
 
 ```html
 <mip-fixed type="bottom">
@@ -28,7 +28,9 @@ mip-fixed 用来支持 mip 中的悬浮元素整体使用方案
 </mip-fixed>
 ```
 
-### 左边悬浮（宽度不超过10%，高度不超过25%，属性 bottom 或 top 必须有一个）
+### 左边悬浮
+
+规则：宽度不超过屏幕10%，高度不超过屏幕25%，属性 bottom 或 top 必须有一个
 
 ```html
 <mip-fixed type="left" bottom="50px">
@@ -36,7 +38,9 @@ mip-fixed 用来支持 mip 中的悬浮元素整体使用方案
 </mip-fixed>
 ```
 
-### 底部悬浮（宽度不超过10%，高度不超过25%，属性 bottom 或 top 必须有一个）
+### 底部悬浮
+
+规则：宽度不超过屏幕10%，高度不超过屏幕25%，属性 bottom 或 top 必须有一个
 
 ```html
 <mip-fixed type="right" top="50px">
@@ -44,36 +48,7 @@ mip-fixed 用来支持 mip 中的悬浮元素整体使用方案
 </mip-fixed>
 ```
 
-
-## 属性
-
-- **悬浮类型（type)**
-
-    - 是否必填：是
-
-    - 取值：top/bottom/right/left
-
-
-- **距离屏幕顶部距离（top)**
-
-    - 是否必填: 否
-
-    - 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
-
-
-- **距离屏幕底部距离（bottom)**
-
-    - 是否必填: 否
-
-    - 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
-
-## fixed 的类型说明
-
-- type为top、bottom 类别不需要添加属性：top/bottom；
-
-- type为left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
-
-## 关闭悬浮元素方案
+### 关闭悬浮元素的方法
 
 1、给 mip-fixed 标签添加一个自定义的 id：customid
 
@@ -88,7 +63,42 @@ mip-fixed 用来支持 mip 中的悬浮元素整体使用方案
 
 ```
 
-## fixed 元素个数限制
+
+## 属性
+
+### type
+    
+    - 说明：悬浮类型
+
+    - 是否必填：是
+
+    - 取值：top/bottom/right/left
+
+
+### top
+
+    - 说明：距离屏幕顶部距离
+
+    - 是否必填: 否
+
+    - 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
+
+### top
+
+    - 说明：距离屏幕底部距离
+
+    - 是否必填: 否
+
+    - 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
+
+### fixed 的类型说明
+
+- type为top、bottom 类别不需要添加属性：top/bottom；
+
+- type为left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
+
+
+## fixed 元素个数限制说明
 
     top <= 1
 

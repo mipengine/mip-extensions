@@ -68,28 +68,28 @@
 
 ### type
     
-    - 说明：悬浮类型
+- 说明：悬浮类型
 
-    - 是否必填：是
+- 是否必填：是
 
-    - 取值：top/bottom/right/left
+- 取值：top/bottom/right/left
 
-
-### top
-
-    - 说明：距离屏幕顶部距离
-
-    - 是否必填: 否
-
-    - 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
 
 ### top
 
-    - 说明：距离屏幕底部距离
+- 说明：距离屏幕顶部距离
 
-    - 是否必填: 否
+- 是否必填: 否
 
-    - 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
+- 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
+
+### top
+
+- 说明：距离屏幕底部距离
+
+- 是否必填: 否
+
+- 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
 
 ### fixed 的类型说明
 
@@ -100,9 +100,9 @@
 
 ## fixed 元素个数限制说明
 
-    top <= 1
+- top <= 1
 
-    bottom <= 1
+- bottom <= 1
 
-    left + right <= 1
+- left + right <= 1
 

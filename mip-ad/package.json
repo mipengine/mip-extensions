@@ -7,7 +7,7 @@
             "email": "pearlwang1106@xxx.com"
         } 
     ],
-    "dependencies": {
-        "mipmain": ">=1.1.0"
+    "engines": {
+        "mip": ">=1.1.0"
     }
 }

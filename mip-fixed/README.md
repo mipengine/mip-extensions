@@ -1,6 +1,8 @@
 # mip-fixed
 
-描述|支持 mip 中的悬浮元素整体使用方案
+支持 mip 中的悬浮元素整体使用方案
+
+描述|悬浮元素
 ----|----
 可用性|稳定
 支持布局|不使用布局
@@ -83,7 +85,7 @@
 
 - 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
 
-### top
+### bottom
 
 - 说明：距离屏幕底部距离
 
@@ -91,7 +93,7 @@
 
 - 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
 
-### fixed 的类型说明
+## fixed 的类型说明
 
 - type为top、bottom 类别不需要添加属性：top/bottom；
 

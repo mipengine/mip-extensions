@@ -18,6 +18,8 @@ define(function (require) {
 
     /**
      * Register front-back mode.
+     * @param {HTMLElement} front The front-element
+     * @param {HTMLElement} back The back-element
      * @param {number} delay Delay time
      * @param {number} duration Animation duration
      * @param {HTMLElement} element Parent element

@@ -2,9 +2,11 @@
 
 mip-sample 实现了一个简单的卡牌元素，手指滑过卡牌时可向滑动方向翻牌。
 
-可用性|稳定
+标题|内容
+----|----
+类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-fixed.js
+所需脚本|http://mipcache.bdstatic.com/static/mip-sample/1.0.1/mip-sample.js
 
 ## 示例
 

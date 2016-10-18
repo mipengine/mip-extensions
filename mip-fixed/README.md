@@ -2,9 +2,9 @@
 
 支持 mip 中的悬浮元素整体使用方案
 
-描述|悬浮元素
+标题|内容
 ----|----
-可用性|稳定
+类型|通用
 支持布局|不使用布局
 所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-fixed.js
 

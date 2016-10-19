@@ -1,7 +1,7 @@
 准备
 ==============
 
-按照 [MIP 扩展组件管理规则](./spec.md)，要进行 MIP 扩展组件开发，我们需要：
+按照 [MIP 扩展组件规范](./spec.md)，要进行 MIP 扩展组件开发，我们需要：
 
 1. Fork [MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions) 到自己的 GitHub 账号下
 2. Clone 到本地

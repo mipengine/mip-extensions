@@ -48,10 +48,3 @@ define(function (){
     return customElement;
 });
 
-require(['mip-ad'], function (mipAdComm) {
-    // 引入组件需要的css文件，选填
-    MIP.css.mipAd = __inline('./mip-ad.less');
-    //注册组件
-    MIP.registerMipElement('mip-ad', mipAdComm, MIP.css.mipAd);
-    MIP.registerMipElement('mip-embed', mipAdComm, MIP.css.mipAd);
-});

@@ -123,12 +123,3 @@ define(function() {
 });
 
 
-require(['mip-fit-text'], function (fittext) {
-    
-    // 引入组件需要的css文件，选填
-    MIP.css.fittext = __inline('./mip-fit-text.less');
-
-    //注册组件
-    MIP.registerMipElement('mip-fit-text', fittext, MIP.css.fittext);
-});
-

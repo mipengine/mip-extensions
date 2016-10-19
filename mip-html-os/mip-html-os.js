@@ -46,6 +46,3 @@ define(['require', 'customElement'], function (require) {
     return customElem;
 });
 
-require(['mip-html-os'], function (mipHtmlOs) {
-    MIP.registerMipElement('mip-html-os', mipHtmlOs);
-});

@@ -265,11 +265,3 @@ define(function() {
 
 });
 
-require(['mip-audio'], function (audio) {
-    
-    // 引入组件需要的css文件，选填
-    MIP.css.mipaudio = __inline('./mip-audio.less');
-    //注册组件
-    MIP.registerMipElement('mip-audio', audio, MIP.css.mipaudio);
-});
-

@@ -39,7 +39,3 @@ define(function(){
 
     return customElement;
 });
-require(['mip-stats-cnzz'], function (statscnzz) {
-    //注册组件
-    MIP.registerMipElement('mip-stats-cnzz', statscnzz);
-});

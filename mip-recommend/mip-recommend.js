@@ -102,9 +102,3 @@ define(function() {
     return customElement;
 
 });
-require(['mip-recommend'], function (recommend) {
-    // 引入组件需要的css文件，选填
-    MIP.css.mipRecommend = __inline('./mip-recommend.less');
-    //注册组件
-    MIP.registerMipElement('mip-recommend', recommend, MIP.css.mipRecommend);
-});

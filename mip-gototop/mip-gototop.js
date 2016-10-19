@@ -157,10 +157,3 @@ define(function() {
 
 });
 
-require(['mip-gototop'], function (gototop) {
-    // 引入组件需要的css文件，选填
-    MIP.css.gototop = __inline('./mip-gototop.less');
-    //注册组件
-    MIP.registerMipElement('mip-gototop', gototop, MIP.css.gototop);
-});
-

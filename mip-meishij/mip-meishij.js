@@ -263,6 +263,3 @@ define(function() {
     return customElem;
 });
 
-require(["mip-meishij"], function(Meishij) {
-    MIP.registerMipElement('mip-meishij', Meishij);
-});

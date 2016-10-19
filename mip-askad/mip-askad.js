@@ -229,7 +229,3 @@ define(function() {
 
 });
 
-require(['mip-askad'], function (askad) {
-    MIP.registerMipElement('mip-askad', askad);
-});
-

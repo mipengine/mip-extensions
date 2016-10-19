@@ -404,9 +404,3 @@ define(function () {
     return customElement;
 
 });
-require(['mip-vd-tabs'], function (tabs) {
-    // 引入组件需要的css文件，选填
-    MIP.css.mipVdTabs = __inline('./mip-vd-tabs.less');
-    //注册组件
-    MIP.registerMipElement('mip-vd-tabs', tabs, MIP.css.mipVdTabs);
-});

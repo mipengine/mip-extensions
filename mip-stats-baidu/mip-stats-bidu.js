@@ -40,8 +40,3 @@ define(function(){
     return customElement;
 
 });
-require(["mip-stats-baidu"], function(mipStatsBaidu) {
-    //注册组件
-    MIP.registerMipElement('mip-stats-baidu', mipStatsBaidu);
-});
-

@@ -105,7 +105,3 @@ define(function() {
 
 });
 
-require(['mip-form'], function (form) {
-    MIP.registerMipElement('mip-form', form);
-});
-

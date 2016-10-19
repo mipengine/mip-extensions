@@ -79,9 +79,3 @@ define(function (){
 
     return customElem;
 });
-require(['mip-fx-flying-carpet'], function (carpet) {
-    // 引入组件需要的css文件，选填
-    MIP.css.flyCarpet = __inline('./mip-fx-flying-carpet.less');
-    //注册组件
-    MIP.registerMipElement('mip-fx-flying-carpet', carpet, MIP.css.flyCarpet);
-});

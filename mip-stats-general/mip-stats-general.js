@@ -51,8 +51,3 @@ define(function(){
     return customElement;
 
 });
-require(["mip-stats-general"], function(stats) {
-    //注册组件
-    MIP.registerMipElement('mip-stats-general', stats);
-});
-

@@ -132,12 +132,3 @@ define(function() {
 
 });
 
-require(['mip-accordion'], function (accordion) {
-
-     // 引入组件需要的css文件，选填
-    MIP.css.mipaccordion = __inline('./mip-accordion.less');
-
-    //注册组件
-    MIP.registerMipElement('mip-accordion', accordion, MIP.css.mipaccordion);
-});
-

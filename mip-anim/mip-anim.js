@@ -68,7 +68,3 @@ define(function() {
 
 });
 
-require(['mip-anim'], function (anim) {
-    MIP.registerMipElement('mip-anim', anim);
-});
-

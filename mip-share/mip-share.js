@@ -56,9 +56,3 @@ define(function() {
 
 });
 
-require(['mip-share'], function (share) {
-    // 引入组件需要的css文件，选填
-    MIP.css.mipShare = __inline('./mip-share.less');
-    //注册组件
-    MIP.registerMipElement('mip-share', share, MIP.css.mipShare);
-});

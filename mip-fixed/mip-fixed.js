@@ -57,11 +57,3 @@ define(function (){
     return customElement;
 });
 
-require(['mip-fixed'], function (mipFixed) {
-    
-    // 引入组件需要的css文件，选填
-    MIP.css.mipFixed = __inline('./mip-fixed.less');
-    
-    //注册组件
-    MIP.registerMipElement('mip-fixed', mipFixed, MIP.css.mipFixed);
-});

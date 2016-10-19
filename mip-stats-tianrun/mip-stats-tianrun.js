@@ -55,8 +55,3 @@ define(function() {
     return customElement;
 
 });
-require(['mip-stats-tianrun'], function (tianRun) {
-    //注册组件
-    MIP.registerMipElement('mip-stats-tianrun', tianRun);
-});
-

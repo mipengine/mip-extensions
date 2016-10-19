@@ -145,10 +145,3 @@ define(function() {
 
 });
 
-require(['mip-appdl'], function (appdl) {
-    // 引入组件需要的css文件，选填
-    MIP.css.mipAppdl = __inline('./mip-appdl.less');
-    //注册组件
-    MIP.registerMipElement('mip-appdl', appdl, MIP.css.mipAppdl);
-});
-

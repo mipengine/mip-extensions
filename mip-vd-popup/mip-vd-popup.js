@@ -196,9 +196,3 @@ define(function() {
     return customElement;
 
 });
-require(['mip-vd-popup'], function (popup) {
-    // 引入组件需要的css文件，选填
-    MIP.css.mipVdPopup = __inline('./mip-vd-popup.less');
-    //注册组件
-    MIP.registerMipElement('mip-vd-popup', popup, MIP.css.mipVdPopup);
-});

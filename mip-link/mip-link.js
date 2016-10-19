@@ -85,7 +85,3 @@ define(function() {
 
 });
 
-require(['mip-link'], function (link) {
-    //注册组件
-    MIP.registerMipElement('mip-link', link);
-});

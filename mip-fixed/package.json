@@ -1,12 +1,11 @@
 {
     "name": "mip-fixed",
     "version": "1.0.1",
-    "contributors": [
-        {
-            "name": "pearlwang1106",
-            "email": "pearlwang1106@xxx.com"
-        } 
-    ],
+    "author": {
+        "name": "MIP authors",
+        "email": "mip-support@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
     "engines": {
         "mip": ">=1.1.0"
     }

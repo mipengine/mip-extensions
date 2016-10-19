@@ -1,4 +1,16 @@
-define(function (require) {
+/**
+ * 广告组件
+ * 
+ * @author wangpei07@baidu.com
+ * @version 1.1
+ * @copyright 2016 Baidu.com, Inc. All Rights Reserved
+ */
+
+__inline('mip-ad-comm')
+__inline('mip-ad-baidu')
+__inline('mip-ad-qwang')
+
+define(function (){
     var customElement = require('customElement').create();
     
     /**
@@ -17,7 +29,9 @@ define(function (require) {
         _element.isRender = true;
 
         var type = _element.getAttribute('type');
-        require(['./mip-' + type], function(mipAd) {
+        var adFile = 'extensions/ads/1.3/mip-' + type;
+
+        require([adFile], function(mipAd) {
             mipAd.render(_this, me);
         });
 
@@ -33,3 +47,4 @@ define(function (require) {
     };
     return customElement;
 });
+

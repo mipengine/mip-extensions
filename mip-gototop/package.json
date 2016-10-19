@@ -3,7 +3,7 @@
     "version": "1.0.2",
     "author": {
         "name": "MIP authors",
-        "email": "mip-support@baidu.com"
+        "email": "mip-support@baidu.com",
         "url": "https://www.mipengine.org"
     },
     "engines": {

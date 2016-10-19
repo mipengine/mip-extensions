@@ -7,6 +7,8 @@
  */
 define(function(){
     var $ = require('zepto');
+    var jsSrc = '//dup.baidustatic.com/js/dm.js';
+    var scriptId = 'MIP_DUP_JS';
     
     var render = function(_this, me) {
 
@@ -21,8 +23,12 @@ define(function(){
         if(elem) {
 
             if(isJsonScriptTag(elem)) {
-
+                jsSrc = '//cpro.baidustatic.com/cpro/ui/c.js';
+                scriptId = 'MIP_DUP_JS_EXT';
                 var obj = JSON.parse(elem.textContent.toString());
+                (window.cproArray = window.cproArray || []).push({
+                    id: cproID  
+                });
 
                 (window["cproStyleApi"]=window["cproStyleApi"] || {})[cproID] = obj;
 
@@ -30,8 +36,10 @@ define(function(){
 
         }
         
-        initJs();
-        initadbaidu($this, cproID, me);
+        var script = initJs();
+        if (!elem) {
+            initadbaidu($this, cproID, me, script);
+        }
     };
 
     /**
@@ -40,13 +48,15 @@ define(function(){
      * @return
      */
     function initJs() {
-        var MIPDUPJS = document.getElementById('MIP_DUP_JS');
+        var MIPDUPJS = document.getElementById(scriptId);
         if(MIPDUPJS) return;
 
         var script = document.createElement('script');
-        script.src = '//dup.baidustatic.com/js/dm.js';
-        script.id = "MIP_DUP_JS";
+        script.src = jsSrc;
+        script.id = scriptId;
         document.body.appendChild(script);  
+
+        return script;
 
     }
 
@@ -57,7 +67,7 @@ define(function(){
      * @param  {String} cproID  广告id
      * @return
      */
-    function initadbaidu($elemID, cproID, me) {
+    function initadbaidu($elemID, cproID, me, script) {
 
         var s = "_" + Math.random().toString(36).slice(2);
         var html = '<div style="" id="' + s + '"></div>';
@@ -70,8 +80,25 @@ define(function(){
             async: true
         });
 
+        if(script) {
+            script.onload = function() {
+                setTimeout(function() {
+                    var elem = window.getComputedStyle(document.getElementById(s), null);
+                    var pos = elem && elem.getPropertyValue('position') ? 
+                              elem.getPropertyValue('position') : '';
+
+                    if(pos == 'fixed') {
+                        $elemID.append(document.getElementById(s));
+                    }
+                }, 100);
+                
+            };
+        }
+
         me.applyFillContent(document.getElementById(s), true);
+
     }
+
 
     /**
      * [isJsonScriptTag 判断是否是定制化script标签]

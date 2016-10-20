@@ -18,7 +18,7 @@ Style Guide
 
 ### 所有样式文件 **必须(MUST)** 使用无 BOM 的 UTF-8 编码
 
-UTF-8 编码具有更广泛的适应性。[BOM](https://en.wikipedia.org/wiki/Byte_order_mark) 在使用程序或工具处理文件时可能造成不必要的干扰。
+`解释`: UTF-8 编码具有更广泛的适应性。[BOM](https://en.wikipedia.org/wiki/Byte_order_mark) 在使用程序或工具处理文件时可能造成不必要的干扰。
 
 
 

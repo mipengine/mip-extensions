@@ -17,7 +17,7 @@ Style Guide
 
 ### 所有脚本文件 **必须(MUST)** 使用无 BOM 的 UTF-8 编码
 
-UTF-8 编码具有更广泛的适应性。[BOM](https://en.wikipedia.org/wiki/Byte_order_mark) 在使用程序或工具处理文件时可能造成不必要的干扰。
+`解释`: UTF-8 编码具有更广泛的适应性。[BOM](https://en.wikipedia.org/wiki/Byte_order_mark) 在使用程序或工具处理文件时可能造成不必要的干扰。
 
 
 
@@ -26,7 +26,7 @@ UTF-8 编码具有更广泛的适应性。[BOM](https://en.wikipedia.org/wiki/By
 
 ### 一个脚本文件 **只允许(MUST)** 包含一个 AMD 模块定义的语句
 
-按照文件即模块的原则，一个脚本文件内 **只允许(MUST)** 包含一个 define 语句，**不允许(MUST NOT)** 包含其他语句。
+`解释`: 按照文件即模块的原则，一个脚本文件内 **只允许(MUST)** 包含一个 define 语句，**不允许(MUST NOT)** 包含其他语句。
 
 ```javascript
 // good
@@ -69,7 +69,7 @@ define('mip-sample', function (require) {
 
 ### 依赖 **必须(MUST)** 在 factory 内部通过 require 引用
 
-**不允许(MUST NOT)** 在声明时指定 dependencies 参数。
+`解释`: **不允许(MUST NOT)** 在声明时指定 dependencies 参数。
 
 ```javascript
 // good
@@ -88,7 +88,7 @@ define(['zepto'], function (zepto) {
 
 ### 扩展组件内部的模块依赖，*必须(MUST)** 通过 Relative ID 引用
 
-**不允许(MUST NOT)** 通过 Top-Level ID 引用。通过 Relative ID 引用内部的模块依赖，拥有更好的内聚与灵活性。
+`解释`: **不允许(MUST NOT)** 通过 Top-Level ID 引用。通过 Relative ID 引用内部的模块依赖，拥有更好的内聚与灵活性。
 
 ```javascript
 // good

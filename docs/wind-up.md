@@ -26,7 +26,7 @@ MIP 扩展组件 的版本信息保存在 `package.json` 文件中的 `version` 
 提交审核
 -----
 
-之前，我们已经根据 [准备工作](./prepare.md)，fork [MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions) 到自己的 GitHub 账号下。现在，我们要将自己的开发代码通过 **pull-request** 提交回 [MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions)。
+之前，我们已经根据 [准备工作](./prepare.md)，fork [MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions) 到自己的 GitHub 账号下。现在，我们要将自己的开发代码通过 [pull-request](https://help.github.com/articles/about-pull-requests/) 提交回 [MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions)。
 
 通常，只需要在浏览器中访问你的账号仓库 `https://github.com/YOUR-NAME/mip-extensions`，点击 **new pull request** 按钮，然后跟着提示逐步操作就可以了。
 

@@ -6,7 +6,7 @@
 开发组件脚本
 ------
 
-在开始开发组件脚本之前，我们可以查阅 [MIP 扩展组件 JavaScript 规范](./spec-javascript.md)。不符合规范的组件将无法通过 [审核](./approve.md)。
+在开始开发组件脚本之前，我们可以查阅 [MIP 扩展组件脚本开发规范](./spec-script.md)。不符合规范的组件将无法通过 [审核](./approve.md)。
 
 
 ### 模块管理方式
@@ -150,7 +150,7 @@ define(function(require) {
 });
 ```
 
-然后，通过 `require` 我们可以引用到这个模块。引用自己开发的模块时必须使用 `Relative ID`，不允许使用 `Top-Level ID`。
+然后，通过 `require` 我们可以引用到这个模块。引用时必须使用 `Relative ID`，不允许使用 `Top-Level ID`。
 
 ```javascript
 // mip-[componentname]/mip-[componentname].js
@@ -162,11 +162,33 @@ define(function(require) {
 });
 ```
 
+### 异步引用模块
+
+我们可以把部分功能封装到独立的模块，并通过 async require 去加载它们。通常需要这么做的场景有：
+
+- 组件比较大，并且初始化时不希望加载一些二次交互才会用到的功能
+- 组件在一次展示中不需要用到所有功能
+
+该方法能有效缩短大组件的初始化时间。
+
+```javascript
+// mip-[componentname]/mip-[componentname].js
+define(function(require) {
+    // bla bla ...
+    
+    require(['./action-' + actionType], function (action) {
+        // bla bla ...
+    });
+});
+```
+
+`注意`: 异步引用内部模块时依然必须使用 `Relative ID`，不允许使用 `Top-Level ID`。
+
 
 开发组件样式
 ------
 
-在开始开发组件样式之前，我们可以查阅 [MIP 扩展组件样式规范](./spec-style.md)。不符合规范的组件将无法通过 [审核](./approve.md)。
+在开始开发组件样式之前，我们可以查阅 [MIP 扩展组件样式开发规范](./spec-style.md)。不符合规范的组件将无法通过 [审核](./approve.md)。
 
 组件不一定要包含自定义样式。如果我们并不想定制样式，可以忽略本章节。
 

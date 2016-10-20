@@ -1,21 +1,25 @@
-# 通用统计
+# mip-stats-general
 
-描述|链接
+mip-stats-general 实现了传统的统计功能，在访问页面时访问一个地址。
+
+标题|内容
 ----|----
-可用性|beta
-示例|
+类型|通用
+支持布局|不使用布局
+所需脚本|https://mipcache.bdstatic.com/static/v1.0/mip-stats-general.js
 
+## 示例
 
-### 1. 使用
-
-传统统计，在访问页面时访问一个地址
-
-```
-    <mip-stats-general url="http://m.baidu.com" ></mip-stats-general>
+```html
+<mip-stats-general src="http://m.baidu.com" ></mip-stats-general>
 ```
 
-### 2. 属性
+## 属性
 
-- **src**
+### src
 
-    统计地址
+说明：统计地址  
+必选项：是   
+类型：字符串  
+取值范围：`http://.*`, `https://.*`
+

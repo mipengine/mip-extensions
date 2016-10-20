@@ -2,17 +2,15 @@
 
 mip-form 用来支持 mip 中的表单提交。
 
-描述|用来支持 mip 中的表单提交。
+标题|内容
 ----|----
-可用性|稳定
-示例|官网上线后增加示例
+类型|通用
+支持布局|responsive,fixed-height,fill,container,fixed
 所需脚本|https://mipcache.bdstatic.com/static/v0.1/mip-form.js
 
-## 1. 使用
+## 示例
 
-在MIP HTMl中，示例如下：
-
-```
+```html
 <mip-form method="post" url="www.baidu.com">
      <input type="input" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
      <div target="username">姓名不能为空</div>
@@ -26,32 +24,29 @@ mip-form 用来支持 mip 中的表单提交。
  </mip-form>
 ```
 
-组件所涉及的属性有   表单提交方法（method），表单提交url（url） validatetarget(验证提示对应tag)  validatetype(验证类型)  自定义验证(validatereg)
+## 属性
 
-- **表单提交方法（method)**
+### method
 
-    - 是否必填：是
+说明：表单提交方法  
+必选项：是
 
+### url
 
-- **表单提交url（url)**
+说明：表单提交url  
+必选项: 是
 
-    - 是否必填: 是
+### validatetarget
 
+说明:  验证提示对应tag,用于对应错误时的提示显示元素的查找  
+必选项：否
 
-- **validatetarget(验证提示对应tag)**
+### validatetype
 
-    - 是否必填：否
+说明：验证类型, 用于支持简单的验证。目前提供email、phone、idcar、custom。当为custom时则需要填写validatereg  
+必选项：否
 
-    - 说明: 用于对应错误时的提示显示元素的查找
+### validatereg
 
-- **validatetype(验证类型) **
-
-    - 是否必填：否
-
-    - 说明: 用于支持简单的验证。目前提供email、phone、idcar、custom。当为custom时则需要填写validatereg
-
-- **自定义验证(validatereg)**
-
-    - 是否必填：否
-
-    - 说明: 补充站长个性化的验证规则。如果validatetype为custom时需填写相应验证规则
+说明: 自定义验证，补充站长个性化的验证规则。如果validatetype为custom时需填写相应验证规则  
+必选项：否

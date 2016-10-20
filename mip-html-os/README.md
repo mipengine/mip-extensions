@@ -1,32 +1,25 @@
-# **mip-html-os**
+# mip-html-os
+
 mip-html-os 用来支持页面内容元素区分OS显示
-<table><thead>
-<tr>
-<th>描述</th>
-<th>提供用来支持页面内容元素区分OS显示</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>可用性</td>
-<td>完成</td>
-</tr>
-<tr>
-<td>所需脚本</td>
-<td>mip-html-os.js</td>
-</tr>
-</tbody></table>
 
-## 1.使用方法
-`<mip-html-os os="android" class="mip-html-os"><p>This Is Android</p></mip-html-os>`
+标题|内容
+----|----
+类型|通用
+支持布局|responsive,fixed-height,fill,container,fixed
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-html-os.js
 
-## 2.属性
-组件所涉及的属性有：OS（android | ios）
+## 示例
 
-<ul>
-<li>OS（os）
+```html
+<mip-html-os os="android" class="mip-html-os"><p>This Is Android</p></mip-html-os>
+```
 
-<ul>
-<li>是否必填：是</li>
-</ul></li>
-</ul>
+## 属性
+
+### os
+
+说明：选择操作系统  
+必选项：是  
+类型：字符串  
+取值范围：android, ios  
 

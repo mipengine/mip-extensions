@@ -1,25 +1,31 @@
-# 推荐
+# mip-recommend
 
-描述|链接
+mip-recommend实现了推荐功能
+
+标题|内容
 ----|----
-可用性|beta
-示例|
+类型|通用
+支持布局|responsive,fixed-height,fill,container,fixed
+所需脚本|https://mipcache.bdstatic.com/static/v1.1/mip-recommend.js
 
-### 1. 使用
+## 示例
 
 推荐相关文章
 
+```html
+<mip-recommend url="http://m.baidu.com"></mip-recommend>
 ```
-    <mip-recommend url="http://m.baidu.com"></mip-recommend>
-```
 
-### 2. 属性
+## 属性
 
-- **url**
+### url
 
-    目标网址
+说明：目标网址  
+必选项：是  
+类型：字符串  
 
-- **title**
+### title
 
-    目标页面标题
-
+说明：目标页面标题  
+必选项：否  
+默认值：`""`

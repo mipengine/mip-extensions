@@ -1,20 +1,18 @@
 # mip-accordion
 
-mip-accordion 用来支持在 mip折叠隐藏的节点
+mip-accordion 用来支持在 mip折叠隐藏的节点(可记录用户上次行为)
 
-描述|提供了一个mip中用来支持在 mip折叠隐藏的节点(可记录用户上次行为)
+标题|内容
 ----|----
-可用性|完成
-支持布局| N/S
-所需脚本|https://mipcache.bdstatic.com/static/v0.1/mip-accordion.js
+类型|通用
+支持布局|responsive,fixed-height,fill,container,fixed
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-accordion.js
 
-## 1. 使用
+## 示例
 
-在MIP HTMl中，示例如下：
+### 标题加内容形式
 
-标题加内容形式
-
-```
+```html
 <mip-accordion sessions-key="mip_1">
     <section>
         <h4>第一个</h4>
@@ -31,8 +29,9 @@ mip-accordion 用来支持在 mip折叠隐藏的节点
   </mip-accordion>
 ```
 
-标题切换形式
-```
+### 标题切换形式
+
+```html
 <mip-accordion sessions-key="mip_2">
     <section>
         <h4>
@@ -45,13 +44,11 @@ mip-accordion 用来支持在 mip折叠隐藏的节点
 ```
 
 
-## 2. 属性
+## 属性
 
-组件所涉及的属性有：组件唯一标识符(sessions-key)
+## sessions-key
 
-- ** 组件唯一标识符(sessions-key) **
-
-    - 是否必填：是
-
-    - 说明：用于区分同个页面中多个mip-accordion以还原用户上次操作
+说明：组件唯一标识符,用于区分同个页面中多个mip-accordion以还原用户上次操作  
+必选项：是  
+类型：字符串
 

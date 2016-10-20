@@ -3,7 +3,7 @@
  * @author yangjun14(yangjun14@baidu.com)
  */
 
-define(function() {
+define(function (require) {
     var URL = 'http://m.meishij.net';
     var id = $('.addfav_box').data('id');
 
@@ -246,7 +246,7 @@ define(function() {
 
     var customElem = require('customElement').create();
 
-    customElem.prototype.attachedCallback = function() {
+    customElem.prototype.build = function() {
         var $el = $(this.element);
 
         // DOM元素列表

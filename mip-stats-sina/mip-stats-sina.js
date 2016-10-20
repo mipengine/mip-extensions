@@ -5,7 +5,7 @@
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
@@ -29,10 +29,6 @@ define(function() {
             obj[key] = $(elem).attr(key) || '';
         });
     }
-
-    customElement.prototype.init = function() {
-        this.build = build;
-    };
 
     /**
      * protocol
@@ -72,15 +68,7 @@ define(function() {
         return _promise;
     }
 
-
-    function build() {
-        var _element = this.element;
-        if (_element.isRender) {
-            return;
-        }
-
-        _element.isRender = true;
-
+    customElement.prototype.build = function () {
         var elem = _element;
 
         getScriptPromise(SINA_TONGJI_ROOT + 'suda_log.min.js').then(function(){

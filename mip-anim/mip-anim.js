@@ -4,8 +4,7 @@
  * @time 2016.8.20
  */
 
-define(function() {
-
+define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
 
@@ -60,9 +59,7 @@ define(function() {
         return _promise;
     }
 
-    customElement.prototype.init = function() {
-        this.build = build;
-    };
+    customElement.prototype.build = build;
 
     return customElement;
 

@@ -1,18 +1,10 @@
-/* inline dep */
-
-__inline('./share/aio');
-__inline('./share/detect');
-__inline('./share/share');
-// __inline('./clipboard');
-__inline('./share');
-
 /**
  * @file 分享
  * @author junmer
  * @time 2016.06.21
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
@@ -23,13 +15,8 @@ define(function() {
     /**
      * build
      */
-    function build() {
+    customElement.prototype.build = function () {
         var _element = this.element;
-        if (_element.isRender) {
-            return;
-        }
-
-        _element.isRender = true;
 
         new Share({
             title: _element.getAttribute('title') || document.title,
@@ -43,15 +30,7 @@ define(function() {
         this.applyFillContent(elem);
 
     }
-
-    /**
-     * 初始化
-     *
-     */
-    customElement.prototype.init = function() {
-        this.build = build;
-    };
-
+ 
     return customElement;
 
 });

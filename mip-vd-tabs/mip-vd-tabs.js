@@ -1,16 +1,11 @@
 /**
- * inline dep
- */
-__inline('./tab');
-
-/**
  * @file tab组件
  *
  * @author zhangjignfeng
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
 
-define(function () {
+define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
@@ -31,26 +26,11 @@ define(function () {
     var TOGGLE_CLS = 'mip-vd-tabs-nav-toggle';
     var BOTTOM_CLS = 'mip-vd-tabs-nav-bottom';
     var TPL_REG = /\{\{\w}}/g;
-
-    /**
-     * 初始化
-     *
-     */
-    customElement.prototype.init = function() {
-        this.build = render;
-    };
-
-
     /**
      * 渲染
      */
-    function render() {
+    customElement.prototype.build = function () {
         var el = this.element;
-        if (el.isRender) {
-            return;
-        }
-
-        el.isRender = true;
         var type = el.getAttribute(TYPE);
         switch (type) {
             case 'episode':

@@ -6,7 +6,7 @@
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
 
-define(function (){
+define(function (require) {
 
     var $ = require('zepto');
     /**

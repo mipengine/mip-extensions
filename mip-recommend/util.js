@@ -2,7 +2,7 @@
  * fork from http://gitlab.baidu.com/MIP/mibhtml/raw/master/src/static/js/utils/util.js
  */
 
-define(function() {
+define(function (require) {
 
     /**
      * @description 极简版模版引擎

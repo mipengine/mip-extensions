@@ -5,7 +5,7 @@
  * @UC & QQ share based on https://github.com/JefferyWang/nativeShare.js
  */
 
-define(function () {
+define(function (require) {
     var $ = require('zepto');
 
     // 加载share公共css

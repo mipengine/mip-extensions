@@ -3,26 +3,14 @@
  * @author junmer
  */
 
-define(function(){
+define(function (require) {
 
-   var customElement = require('customElement').create();
-
-
-    customElement.prototype.init = function() {
-
-        this.build = render;
-
-    };
+    var customElement = require('customElement').create();
 
     function noop () {}
 
-    function render() {
+    customElement.prototype.build = function () {
         var _element = this.element;
-        if (_element.isRender) {
-            return;
-        }
-
-        _element.isRender = true;
 
         // 隐藏
         _element.style.display = 'none';

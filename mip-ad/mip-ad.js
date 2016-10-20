@@ -6,21 +6,21 @@
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
 
-__inline('mip-ad-comm')
-__inline('mip-ad-baidu')
-__inline('mip-ad-qwang')
-
-define(function (){
+define(function (require) {
     var customElement = require('customElement').create();
+
+    // Sync
+    require('./mip-ad-comm');
+    require('./mip-ad-baidu');
+    require('./mip-ad-qwang');
     
     /**
      * render
      *
      */
-    function render () {
+    function render() {
         var me = this;
         var _element = this.element;
-        var _this = _element;
 
         if (_element.isRender) {
             return;
@@ -29,22 +29,13 @@ define(function (){
         _element.isRender = true;
 
         var type = _element.getAttribute('type');
-        var adFile = 'extensions/ads/1.3/mip-' + type;
-
-        require([adFile], function(mipAd) {
-            mipAd.render(_this, me);
-        });
+        var mipAd = require('./mip-' + type);
+        mipAd.render(_element, me);
 
     }
 
+    customElement.prototype.build = render;
 
-    /**
-     * 初始化
-     *
-     */
-    customElement.prototype.init = function() {
-        this.build = render;
-    };
     return customElement;
 });
 

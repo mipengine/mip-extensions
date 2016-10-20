@@ -5,12 +5,11 @@
  * @time 2016.08.09
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
     
-    __inline('createTween.js');
-
+    require('./createTween');
     var gotopVisible = false;
     var $gototop;
     var $page;
@@ -144,14 +143,8 @@ define(function() {
         }
 
     }
-
-    /**
-     * 初始化
-     *
-     */
-    customElement.prototype.init = function() {
-        this.build = build;
-    };
+    
+    customElement.prototype.build = build;
 
     return customElement;
 

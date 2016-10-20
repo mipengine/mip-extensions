@@ -1,7 +1,3 @@
-/* inline dep */
-__inline('./tab');
-__inline('./popup');
-
 /**
  * @file tab组件
  *
@@ -9,7 +5,7 @@ __inline('./popup');
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
@@ -26,26 +22,8 @@ define(function() {
 
     var EPISODE_PAGE_SIZE = 50;
     var TPL_REG = /\{\{\w}}/g;
-
-    /**
-     * 初始化
-     *
-     */
-    customElement.prototype.init = function() {
-        this.build = render;
-    };
-
-
-    /**
-     * 渲染
-     */
-    function render() {
+    customElement.prototype.build = function () {
         var el = this.element;
-        if (el.isRender) {
-            return;
-        }
-
-        el.isRender = true;
         var $el = $(el);
         var type = el.getAttribute('type');
         var linkTpl = el.getAttribute('link-tpl');

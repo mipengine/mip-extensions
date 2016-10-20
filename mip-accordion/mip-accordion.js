@@ -4,8 +4,7 @@
  * 
  * @time 2016.08.12
  */
-
-define(function() {
+define(function (require) {
    var $ = require('zepto');
    var customElement = require('customElement').create();
    var localurl = location.href;
@@ -124,9 +123,7 @@ define(function() {
      * 初始化
      *
      */
-    customElement.prototype.init = function() {
-        this.build = build;
-    };
+    customElement.prototype.build = build;
 
     return customElement;
 

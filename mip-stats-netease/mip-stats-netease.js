@@ -5,24 +5,13 @@
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
 
-    customElement.prototype.init = function() {
-        this.build = render;
-    };
-
-
-    function render() {
+    customElement.prototype.build = function () {
         var _element = this.element;
-        if (_element.isRender) {
-            return;
-        }
-
-        _element.isRender = true;
-
         var $_element = $(_element);
         var id = _element.getAttribute('id') || '';
 

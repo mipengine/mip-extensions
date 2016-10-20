@@ -15,10 +15,9 @@
  */
 
 
-define(function () {
+define(function (require) {
     var $ = require('zepto');
 
-    // var Clipboard = require('./clipboard');
     var PMDShare = require('./share/share');
 
     /**
@@ -44,10 +43,7 @@ define(function () {
             if (me.opt && typeof me.opt.loginfo == 'object') {
                 obj = $.extend(obj, me.opt.loginfo);
             }
-
-            // 结果页日志发送接口
-            // console && console.log(obj);
-        }
+       }
     };
 
 

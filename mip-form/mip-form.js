@@ -4,16 +4,12 @@
  * @time 2016.7.28
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
 
     function build() {
         var _element = this.element;
-        if (_element.isRender) {
-            return;
-        }
-        _element.isRender = true;
 
         var vali = validateDom.call(_element);
 
@@ -97,9 +93,7 @@ define(function() {
         }
     }
 
-    customElement.prototype.init = function() {
-        this.build = build;
-    };
+    customElement.prototype.build = build;
 
     return customElement;
 

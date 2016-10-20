@@ -5,7 +5,7 @@
  * @version 1.0
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
-define(function(){
+define(function (require) {
     var $ = require('zepto');
     var jsSrc = '//dup.baidustatic.com/js/dm.js';
     var scriptId = 'MIP_DUP_JS';

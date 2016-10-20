@@ -5,7 +5,7 @@
  * @time 2016.8.25
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
     

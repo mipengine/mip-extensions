@@ -1,7 +1,3 @@
-/* inline dep */
-__inline('./util');
-__inline('./recommend');
-
 /**
  * @file 新闻推荐组件
  *
@@ -9,19 +5,11 @@ __inline('./recommend');
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
     var recommend = require('./recommend');
-
-    /**
-     * 初始化
-     *
-     */
-    customElement.prototype.init = function() {
-        this.build = render;
-    };
 
     /**
      * isHttps
@@ -74,13 +62,8 @@ define(function() {
     /**
      * 渲染
      */
-    function render() {
+    customElement.prototype.build = function () {
         var _element = this.element;
-        if (_element.isRender) {
-            return;
-        }
-
-        _element.isRender = true;
 
         var url = _element.getAttribute('src');
         var server = _element.getAttribute('server') || 'olympic';

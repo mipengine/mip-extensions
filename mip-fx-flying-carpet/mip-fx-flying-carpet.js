@@ -4,9 +4,10 @@
  * @time 2016.08.02
  */
 
-define(function (){
+define(function (require) {
     var customElem = require('customElement').create();
-    var platform = require('components/platform');
+    var util = require('util');
+    var platform = util.platform;
     //console.log(platform);
     /**
      * buildCallback

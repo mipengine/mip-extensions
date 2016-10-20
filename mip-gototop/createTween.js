@@ -1,5 +1,4 @@
-
-(function() {
+define(function (require) {
     var $ = require('zepto');
 
     var mergeTransition = function(params) {
@@ -30,5 +29,5 @@
             }
         });
     }
-})();
-
+    return Zepto;
+});

@@ -5,7 +5,7 @@
  * @time 2016.06.21
  */
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
 
@@ -133,13 +133,7 @@ define(function() {
         return isAndroid?"Android":"Ios"
     }
 
-    /**
-     * 初始化
-     *
-     */
-    customElement.prototype.init = function() {
-        this.build = build;
-    };
+    customElement.prototype.build = build;
 
     return customElement;
 

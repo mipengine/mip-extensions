@@ -1,8 +1,6 @@
-define(["require", "zepto", "customElement"], function(require) {
-    //var customElem = require('customElement');
+define(function (require) {
     var customElem = require('customElement').create();
 
-    /* 生命周期 function list，根据组件情况选用，（一般情况选用 build、inviewCallback） start */
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
         // this.element 可取到当前实例对应的 dom 元素
@@ -14,9 +12,6 @@ define(["require", "zepto", "customElement"], function(require) {
         i.append(script.join(""));
         ks(id);
     };
-
-    /* 生命周期 function list，根据组件情况选用 end */
-
 
     var ks = function(asid) {
         var g, d;

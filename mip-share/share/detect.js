@@ -4,7 +4,7 @@
  * @author yangfan16
  */
 
-define(function () {
+define(function (require) {
     var $ = require('zepto');
 
     // 获取ua并转换为小写

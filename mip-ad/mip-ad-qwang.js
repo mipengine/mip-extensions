@@ -7,7 +7,7 @@
  */
 
 
-define(function() {
+define(function (require) {
 
     function render(_this, me) {
 

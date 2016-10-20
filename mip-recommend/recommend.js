@@ -5,7 +5,7 @@
  */
 
 
-define(function() {
+define(function (require) {
     var $ = require('zepto');
 
     // 此处判断iframe用了较为tricky的逻辑，后续需要通过父页面message来确认

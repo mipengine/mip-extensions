@@ -31,7 +31,9 @@ MIP 扩展组件开发手册
 ----
 
 - [MIP 扩展组件规范](./spec.md) - MIP 扩展组件的组织方式与管理方式
-- [MIP 扩展组件 package.json 规范](./spec-package-json.md) - MIP 扩展组件 package.json 的规范
-- [MIP 扩展组件 README.md 规范](./spec-readme-md.md) - MIP 扩展组件 README.md 的规范
+- [MIP 扩展组件 package.json 规范](./spec-package-json.md)
+- [MIP 扩展组件 README.md 规范](./spec-readme-md.md)
+- [MIP 扩展组件脚本开发规范](./spec-script.md)
+- [MIP 扩展组件样式开发规范](./spec-style.md)
 
 

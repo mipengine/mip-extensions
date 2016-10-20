@@ -57,54 +57,49 @@
 2、给需要点击关闭悬浮元素的标签添加属性 on="tap:customid.close"
 
 ```html
-
 <mip-fixed type="top" id="customid">
   <div>我是顶部的fixed</div>
   <div on="tap:customid.close">我是关闭按钮</div>
 </mip-fixed>
-
 ```
-
 
 ## 属性
 
 ### type
-    
-- 说明：悬浮类型
 
-- 是否必填：是
-
-- 取值：top/bottom/right/left
-
+说明：悬浮类型  
+必选项：是  
+类型：字符串  
+取值范围：top/bottom/right/left
 
 ### top
 
-- 说明：距离屏幕顶部距离
-
-- 是否必填: 否
-
-- 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
+说明：距离屏幕顶部距离  
+必选项: 否  
+类型：字符串  
+取值范围：数值+单位，例如：50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)  
+默认值：auto
 
 ### bottom
 
-- 说明：距离屏幕底部距离
+说明：距离屏幕底部距离  
+必选项: 否  
+取值范围：数值+单位，例如：50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)  
+默认值：auto
 
-- 是否必填: 否
+## 注意事项
 
-- 取值：数值+单位 —— 50（px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt）
-
-## fixed 的类型说明
+### 悬浮类型
 
 - type为top、bottom 类别不需要添加属性：top/bottom；
 
 - type为left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
 
+### fixed 元素个数限制
 
-## fixed 元素个数限制说明
+- `top <= 1`
 
-- top <= 1
+- `bottom <= 1`
 
-- bottom <= 1
-
-- left + right <= 1
+- `left + right <= 1`
 

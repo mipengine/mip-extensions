@@ -1,28 +1,33 @@
+# mip-link
 
-## mip-link
+mip-link 实现了页面跳转功能，支持 superframe。
 
-描述|链接
+标题|内容
 ----|----
-可用性|beta
-示例|
+类型|通用
+支持布局|不使用布局
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-link.js
 
-### 1. 使用
+## 示例
 
-提供当前页面跳转功能，支持 superframe
-
+```html
+<mip-link title="目标页面标题" url="http://m.baidu.com"></mip-link>
 ```
-    <mip-link title="目标页面标题" url="http://m.baidu.com"></mip-link>
-```
 
-### 2. 属性
+## 属性
 
-- **url**
+### url
 
-    目标网址
+说明：目标网址  
+必选项：是  
+类型：字符串  
+取值范围：`https?://.*`, `mailto:.*`, `tel:.*`
 
-- **title**
+### title
 
-    目标页面标题
-    
-
+说明：目标页面标题  
+必选项：否  
+类型：字符串  
+取值范围：任何  
+默认值：`""`
 

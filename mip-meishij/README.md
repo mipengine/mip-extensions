@@ -1,23 +1,22 @@
-# 美食杰组件
+# mip-meishij
 
-该组件`mip-meishij`包括三项主要特性：
+mip-meishij实现了百分点统计,收藏和菜单添加，社会化分享。
 
-1. 百分点统计；
-2. 收藏和菜单添加；
-3. 社会化分享。
+标题|内容
+----|----
+类型|业务
+支持布局|不使用布局
+所需脚本|https://mipcache.bdstatic.com/static/v0.1/mip-meishij.js
 
+## 示例
 
-通过在HTML中添加一个`<mip-meishij>`标签来使用该插件。
-同时请添加MIP脚本，以及该插件的脚本：
+通过在HTML中添加一个`<mip-meishij>`标签来启用该插件。
 
 ```html
 <mip-meishij></mip-meishij>
-
-<script src="/path/to/mip.js">
-<script src="/path/to/mip-meishij.js">
 ```
 
-## 百分点统计
+### 百分点统计
 
 在`<mip-meishij>`下添加一个`<class="baifendian">`即可开启百分点统计，其参数通过`data`配置。例如：
 
@@ -27,11 +26,11 @@
 </mip-meishij>
 ```
 
-## 社会化分享
+### 社会化分享
 
 社会化分享包括QQ分享和微博分享，要求与原页面有一样的Class和层级。
 
-### 微博分享
+#### 微博分享
 
 通过`<span class="weibo"></span>`启用微博分享（选择符：`.sharebox .weibo`）。同样通过`data`配置参数： 
 
@@ -49,7 +48,7 @@
 </mip-meishij>
 ```
 
-### QQ分享
+#### QQ分享
 
 QQ分享和微博分享类似：
 
@@ -68,7 +67,7 @@ QQ分享和微博分享类似：
 </mip-meishij>
 ```
 
-## 收藏和菜单
+### 收藏和菜单
 
 收藏和菜单HTML和原来保持一致即可。`mip-meishij`对原JavaScript进行了封装。
 另外，ID可通过`#addfav_box`的`data-id`属性进行定义。例如：

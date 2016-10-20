@@ -1,25 +1,17 @@
 # mip-gototop
 
-mip-gototop 用来支持网页快速回顶功能。
+mip-gototop 提供了一个用来支持网页快速回顶按钮，用来支持网页快速回顶功能。
 
-描述|提供了一个用来支持网页快速回顶按钮
+标题|内容
 ----|----
-可用性|稳定
+类型|通用
+支持布局|responsive,fixed-height,fill,container,fixed
 所需脚本|https://mipcache.bdstatic.com/static/v0.1/mip-gototop.js
-示例|官网上线后增加示例
 
-
-## 1. 使用
+## 示例
 
 mip-gototop 按钮
 
+```html
+<mip-gototop></mip-gototop>
 ```
-<body>
-    <mip-gototop></mip-gototop>
-</body>
-```
-
-## 2. 属性
-
-无
-

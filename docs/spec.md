@@ -5,7 +5,7 @@ MIP 扩展组件规范
 源文件仓库
 --------
 
-MIP 扩展组件的唯一仓库是 [https://github.com/mipengine/mip-extensions](https://github.com/mipengine/mip-extensions)。master 分支下的代码永远是稳定的。根目录下，每个 `mip-` 前缀的目录为一个扩展组件。
+MIP 扩展组件的中央仓库是 [https://github.com/mipengine/mip-extensions](https://github.com/mipengine/mip-extensions)。中央仓库 master 分支下的代码永远是稳定的。根目录下，每个 `mip-` 前缀的目录为一个扩展组件。
 
 
 开发方式

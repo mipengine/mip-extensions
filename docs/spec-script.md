@@ -86,7 +86,7 @@ define(['zepto'], function (zepto) {
 ```
 
 
-### 扩展组件内部的模块依赖，*必须(MUST)** 通过 Relative ID 引用
+### 扩展组件内部的模块依赖，**必须(MUST)** 通过 Relative ID 引用
 
 `解释`: **不允许(MUST NOT)** 通过 Top-Level ID 引用。通过 Relative ID 引用内部的模块依赖，拥有更好的内聚与灵活性。
 

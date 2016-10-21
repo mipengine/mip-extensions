@@ -20,6 +20,7 @@ MIP 扩展组件规范 - package.json
 {
     "name": "mip-sample",
     "version": "1.0.0",
+    "description": "sample component",
     "engines": {
         "mip": ">=1.1.0"
     }
@@ -53,6 +54,11 @@ MIP 扩展组件规范 - package.json
 ```
 1.0.0
 ```
+
+### **可以(OPTIONAL)** 通过 description 字段，对组件进行简单描述
+
+`解释`: 此处描述应尽量言简意赅，限制在一句话内。详细描述可以在 `README.md` 进行。
+
 
 ### **可以(OPTIONAL)** 通过 engine.mip 字段，声明对 MIP 环境的依赖
 

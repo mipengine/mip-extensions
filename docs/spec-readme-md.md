@@ -79,37 +79,39 @@ README.md 文件 **必须(MUST)** 包含 **示例** 章节。**示例** 章节�
 - 一个示例的格式: 一个示例介绍的段落，跟着一段 html 的代码片段
 - 多个示例的格式: 每个示例以一个三级标题开头，然后是一个示例介绍的段落，再跟着一段 html 的代码片段
 
+`注意`: 下面的示例，如果想复制去用，请去掉代码片段结尾标识开头中的斜杠。
 
-    ## 示例
+```markdown
+## 示例
 
-    ### 单卡牌式
+### 单卡牌式
 
-    ```html
-    <mip-sample delay="100" duration="1000">
-        <div class="mip-sample-front">正面内容</div>
-        <div class="mip-sample-back">反面内容</div>
-    </mip-sample>
-    ```
+```html
+<mip-sample delay="100" duration="1000">
+    <div class="mip-sample-front">正面内容</div>
+    <div class="mip-sample-back">反面内容</div>
+</mip-sample>
+\```
 
-    ### 多卡牌式
+### 多卡牌式
 
-    可支持多张卡牌，最后一张为不可翻卡牌。
+可支持多张卡牌，最后一张为不可翻卡牌。
 
-    ```html
-    <mip-sample duration="1000">
-        <div class="mip-sample-list">第一张</div>
-        <div class="mip-sample-list">第二张</div>
-        <div class="mip-sample-list">第三张</div>
-        <div class="mip-sample-list">第四张</div>
-        <div class="mip-sample-list">第五张</div>
-        <div class="mip-sample-list">第六张</div>
-        <div class="mip-sample-list">第七张</div>
-        <div class="mip-sample-list">第八张</div>
-        <div class="mip-sample-list">第九张</div>
-        <div class="mip-sample-list mip-sample-list-last">最后一张</div>
-    </mip-sample>
-    ```
-
+```html
+<mip-sample duration="1000">
+    <div class="mip-sample-list">第一张</div>
+    <div class="mip-sample-list">第二张</div>
+    <div class="mip-sample-list">第三张</div>
+    <div class="mip-sample-list">第四张</div>
+    <div class="mip-sample-list">第五张</div>
+    <div class="mip-sample-list">第六张</div>
+    <div class="mip-sample-list">第七张</div>
+    <div class="mip-sample-list">第八张</div>
+    <div class="mip-sample-list">第九张</div>
+    <div class="mip-sample-list mip-sample-list-last">最后一张</div>
+</mip-sample>
+\```
+```
 
 `提示`: 示例章节非常重要。除了起到使用说明的作用外，调试工具将基于示例代码生成调试页面。示例信息也将被抽取生成在线的效果展示。请认真为组件编写示例。
 

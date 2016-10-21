@@ -66,7 +66,7 @@ mip-sample 实现了一个简单的卡牌元素，手指滑过卡牌时可向滑
 
 组件 **必须(MUST)** 声明脚本上线后的地址。在 README.md 中声明有助于方便使用者引用。
 
-脚本上线地址的规则是：`http[s]://mipcache.bdstatic.com/static/mip-[componentname]/latest/mip-[componentname].js`
+脚本上线地址的规则请参考 [MIP 扩展组件规范](./spec.md) 中的 **上线地址** 章节。
 
 
 示例

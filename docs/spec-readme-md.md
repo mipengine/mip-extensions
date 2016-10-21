@@ -84,18 +84,18 @@ README.md 文件 **必须(MUST)** 包含 **示例** 章节。**示例** 章节�
 
 ### 单卡牌式
 
-```html
+&#0060;``html
 <mip-sample delay="100" duration="1000">
     <div class="mip-sample-front">正面内容</div>
     <div class="mip-sample-back">反面内容</div>
 </mip-sample>
-```
+&#0060;``
 
 ### 多卡牌式
 
 可支持多张卡牌，最后一张为不可翻卡牌。
 
-```html
+&#0060;``html
 <mip-sample duration="1000">
     <div class="mip-sample-list">第一张</div>
     <div class="mip-sample-list">第二张</div>
@@ -108,7 +108,7 @@ README.md 文件 **必须(MUST)** 包含 **示例** 章节。**示例** 章节�
     <div class="mip-sample-list">第九张</div>
     <div class="mip-sample-list mip-sample-list-last">最后一张</div>
 </mip-sample>
-```
+&#0060;``
 ```
 
 `提示`: 示例章节非常重要。除了起到使用说明的作用外，调试工具将基于示例代码生成调试页面。示例信息也将被抽取生成在线的效果展示。请认真为组件编写示例。

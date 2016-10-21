@@ -13,17 +13,19 @@ MIP 扩展组件规范 - README.md
 `解释`: UTF-8 编码具有更广泛的适应性。[BOM](https://en.wikipedia.org/wiki/Byte_order_mark) 在使用程序或工具处理文件时可能造成不必要的干扰。
 
 
-一级标题
+标题与描述
 ----
+
+```markdown
+# mip-sample
+
+mip-sample 实现了一个简单的卡牌元素，手指滑过卡牌时可向滑动方向翻牌。
+```
 
 ### README.md 文件 **必须(MUST)** 以一级标题开头，一级标题 **必须(MUST)** 是组件名
 
 `解释`: 在文档最开始就应该以一级标题显著地告诉阅读者这是什么组件。一级标题和 `package.json` 中的 `name` 字段应该是一致的。
 
-
-
-描述
-----
 
 ### 一级标题后紧跟着的段落 **必须(MUST)** 是组件描述
 
@@ -35,6 +37,13 @@ MIP 扩展组件规范 - README.md
 
 紧跟着组件描述后，我们 **必须(MUST)** 以一个表格来描述组件的以下元信息：类型、布局、引用脚本。
 
+```markdown
+标题|内容
+----|----
+类型|通用
+支持布局|responsive,fixed-height,fill,container,fixed
+所需脚本|http://mipcache.bdstatic.com/static/mip-sample/1.0.1/mip-sample.js
+```
 
 ### 类型
 
@@ -75,18 +84,18 @@ README.md 文件 **必须(MUST)** 包含 **示例** 章节。**示例** 章节�
 
 ### 单卡牌式
 
-\```html
+```html
 <mip-sample delay="100" duration="1000">
     <div class="mip-sample-front">正面内容</div>
     <div class="mip-sample-back">反面内容</div>
 </mip-sample>
-\```
+```
 
 ### 多卡牌式
 
 可支持多张卡牌，最后一张为不可翻卡牌。
 
-\```html
+```html
 <mip-sample duration="1000">
     <div class="mip-sample-list">第一张</div>
     <div class="mip-sample-list">第二张</div>
@@ -99,7 +108,7 @@ README.md 文件 **必须(MUST)** 包含 **示例** 章节。**示例** 章节�
     <div class="mip-sample-list">第九张</div>
     <div class="mip-sample-list mip-sample-list-last">最后一张</div>
 </mip-sample>
-\```
+```
 ```
 
 `提示`: 示例章节非常重要。除了起到使用说明的作用外，调试工具将基于示例代码生成调试页面。示例信息也将被抽取生成在线的效果展示。请认真为组件编写示例。
@@ -145,8 +154,7 @@ README.md 文件 **必须(MUST)** 包含 **示例** 章节。**示例** 章节�
 - 说明: 文字描述，说明属性用途
 - 必填: 是或否
 - 格式: 属性格式 数字，字符串等。如属性是 10px 类型，那么格式应该是 数字+单位
-- 取值: 属性的取值范围。如果是泛数字类型，应该用数学符号表示，如 > 10 或者 > 10px；如果是
-- 限定类型的取值可用 `,` 隔开，如 left,top,right,bottom
+- 取值: 属性的取值范围。如果是泛数字类型，应该用数学符号表示，如 > 10 或者 > 10px；如果是限定类型的取值可用 `,` 隔开，如 left,top,right,bottom
 - 单位： 属性的单位。如果属性可以用多个单位，可用 `,` 隔开，如 px,em,pt,rem
 - 默认值: 如果有默认值，可在此声明
 - 使用限制: 说明属性的使用限制

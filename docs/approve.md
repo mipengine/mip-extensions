@@ -38,12 +38,8 @@ MIP 开发团队在每天 xx:xx 对所有 pull-request 进行审核：
 上线安排
 ------
 
-根据 [MIP 扩展组件规范](./spec.md)，我们将在 *每周二、周四 15:00* 对审核通过的扩展组件进行上线，上线后可以在页面中通过 script 引用。
+MIP 开发小组将对审核通过的扩展组件进行上线，上线后可以在页面中通过 `script` 引用。具体的上线时间和线上地址请参考 [MIP 扩展组件规范](./spec.md) 文档。
 
 ```html
-<!-- 根据版本引用 -->
-<script src="//mipcache.bdstatic.com/static/mip-[componentname]/[version]/mip-[componentname].js"></script>
-
-<!-- 引用最新版 -->
-<script src="//mipcache.bdstatic.com/static/mip-[componentname]/latest/mip-[componentname].js"></script>
+<script src="线上地址"></script>
 ```

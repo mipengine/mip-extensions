@@ -4,7 +4,8 @@ mip-fh-ad 用来支持m.fh21.com.cn问答详情页的直投广告显示
 
 |描述|展示页面直投广告|
 |---|---|
-|可用性|完成|
+|类型|广告|
+|支持布局|N/S|
 |所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-fh-ad.js|
 
 ## 示例

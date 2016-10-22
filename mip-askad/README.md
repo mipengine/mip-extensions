@@ -4,7 +4,7 @@
 
 描述|提供了一个广告容器用来显示39广告
 ----|----
-可用性|完成
+类型|广告
 支持布局| N/S
 所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-askad.js
 

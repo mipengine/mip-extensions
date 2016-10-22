@@ -4,7 +4,8 @@
 
 |描述|自适应字体组件|
 |---|---|
-|可用性|完成|
+|类型|通用|
+|支持布局|responsive,fixed-height,fill,container,fixed|
 |所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-fit-text.js|
 
 ## 示例

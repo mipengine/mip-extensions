@@ -4,7 +4,7 @@
 
 描述|提供了一个音频播放组件
 ----|----
-可用性|完成
+类型|通用
 支持布局| N/S
 所需脚本|https://mipcache.bdstatic.com/static/v1.1/mip-audio.js
 

@@ -45,53 +45,6 @@ define(function (require) {
             }
        }
     };
-
-
-    /**
-     * 复制链接
-     *
-     * @type {Object}
-     */
-    // var copylink = {
-    //     key: 'copylink',
-    //     icon: __inline('./img/copylink.png'),
-    //     title: '复制链接',
-    //     cb: function () {}
-    // };
-
-    /**
-     * initCopyLink
-     *
-     * @param  {HTMLElement} container container
-     * @param  {Object} opt       options
-     */
-    // function initCopyLink(container, opt) {
-
-    //     var elem = $(container).find('.c-share-btn-copylink');
-
-    //     if (!Clipboard.support || !elem.get(0)) {
-    //         return;
-    //     }
-
-    //     new Clipboard(
-    //         {
-    //             el: elem,
-    //             text: opt.url,
-    //             success: function () {
-    //                 alert('复制成功');
-    //             },
-    //             error: function () {
-    //                 alert('复制失败');
-    //             }
-    //         }
-    //     );
-    // }
-
-    /**
-     * defaultOpt
-     *
-     * @type {Object}
-     */
     var defaultOpt = {
         iconUrl: '//m.baidu.com/se/static/pmd/pmd/share/images/bdu.jpg',
         // custom: []

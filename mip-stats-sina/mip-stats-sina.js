@@ -69,7 +69,7 @@ define(function (require) {
     }
 
     customElement.prototype.build = function () {
-        var elem = _element;
+        var elem = this.element;
 
         getScriptPromise(SINA_TONGJI_ROOT + 'suda_log.min.js').then(function(){
              return getScriptPromise(SINA_TONGJI_ROOT + 'suda_map.min.js');

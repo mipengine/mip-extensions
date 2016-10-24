@@ -703,4 +703,4 @@ define(function (require) {
     };
 
     return customElem;
-}),
+});

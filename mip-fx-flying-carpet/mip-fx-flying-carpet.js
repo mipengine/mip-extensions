@@ -6,8 +6,6 @@
 
 define(function (require) {
     var customElem = require('customElement').create();
-    var util = require('util');
-    var platform = util.platform;
     //console.log(platform);
     /**
      * buildCallback

@@ -12,7 +12,31 @@
 ## 示例
 
 ```html
-<mip-share url="http://m.baidu.com" ></mip-share>
+<!-- 通用分享 -->
+<div class="mip-share-container">
+    <mip-share 
+        layout="fixed-height"
+        height="158">
+    </mip-share>
+</div>
+
+<!-- 通用分享 -->
+<div class="mip-share-container">
+    <mip-share 
+        layout="fixed"
+        width="200"
+        height="158">
+    </mip-share>
+</div>
+
+<!-- 通用分享 -->
+<div class="mip-share-container">
+    <mip-share 
+        layout="responsive"
+        width="414"
+        height="158">
+    </mip-share>
+</div>
 ```
 
 ## 属性

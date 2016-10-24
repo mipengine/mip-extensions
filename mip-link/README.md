@@ -11,7 +11,7 @@ mip-link 实现了页面跳转功能，支持 superframe。
 ## 示例
 
 ```html
-<mip-link title="目标页面标题" url="http://m.baidu.com"></mip-link>
+<mip-link href="http://m.baidu.com">链接文字</mip-link>
 ```
 
 ## 属性

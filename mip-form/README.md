@@ -11,15 +11,18 @@ mip-form 用来支持 mip 中的表单提交。
 ## 示例
 
 ```html
+<style mip-custom>
+.mip-form-target {display:none}
+</style>
 <mip-form method="post" url="www.baidu.com">
      <input type="input" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
-     <div target="username">姓名不能为空</div>
+     <div class="mip-form-target" target="username">姓名不能为空</div>
      <input type="input" name="email" validatetarget="email" validatetype="email" placeholder="邮件">
-     <div target="email">填写正确的email</div>
+     <div class="mip-form-target" target="email">填写正确的email</div>
      <input type="input" name="phone" validatetarget="phone" validatetype="phone" placeholder="电话">
-     <div target="phone">填写正确的电话格式</div>
+     <div class="mip-form-target" target="phone">填写正确的电话格式</div>
      <input type="input" name="customnumber" validatetarget="custom" validatetype="custom" validatereg=^[0-9]*$ placeholder="我是自定义验证规则数字">
-     <div target="custom">请输入正确的数字</div>
+     <div class="mip-form-target" target="custom">请输入正确的数字</div>
      <input type="submit" value="提交">
  </mip-form>
 ```

@@ -7,12 +7,6 @@
 
 define(function (require) {
     var $ = require('zepto');
-
-    // 加载share公共css
-    var $shareStyle = $('<style data-for="pmd/share/share"></style>');
-    $shareStyle.text(__inline("share.css"));
-    $('head').append($shareStyle);
-
     var defaultOpt = {
         url: window.location.href,
         title: '百度搜索有惊喜',       // 分享至外站的title,必选

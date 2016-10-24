@@ -13,5 +13,20 @@ mip-gototop 提供了一个用来支持网页快速回顶按钮，用来支持�
 mip-gototop 按钮
 
 ```html
-<mip-gototop></mip-gototop>
+<style mip-custom>
+    /* 示例css */
+    .container {
+        height: 1000px;
+    }
+    .gototop {
+        background: #000;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        bottom: 0;
+    }
+</style>
+<div class="container">
+    <mip-gototop class="gototop"></mip-gototop>
+</div>
 ```

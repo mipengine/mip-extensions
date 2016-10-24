@@ -12,6 +12,7 @@ mip-html-os 用来支持页面内容元素区分OS显示
 
 ```html
 <mip-html-os os="android" class="mip-html-os"><p>This Is Android</p></mip-html-os>
+<mip-html-os os="ios" class="mip-html-os"><p>This Is Ios</p></mip-html-os>
 ```
 
 ## 属性

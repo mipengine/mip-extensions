@@ -10,12 +10,6 @@ mip-meishij实现了百分点统计,收藏和菜单添加，社会化分享。
 
 ## 示例
 
-通过在HTML中添加一个`<mip-meishij>`标签来启用该插件。
-
-```html
-<mip-meishij></mip-meishij>
-```
-
 ### 百分点统计
 
 在`<mip-meishij>`下添加一个`<class="baifendian">`即可开启百分点统计，其参数通过`data`配置。例如：

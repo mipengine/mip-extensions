@@ -1,11 +1,11 @@
-## mip-link
+# mip-fx-flying-carpet
 
 描述|链接
 ----|----
 可用性|beta
 示例|
 
-### 1. 使用
+## 示例
 
 提供当前页面跳转功能，支持 superframe
 
@@ -15,7 +15,7 @@
     </mip-fx-flying-carpet>
 ```
 
-### 2. 属性
+## 属性
 
 - **url**
 

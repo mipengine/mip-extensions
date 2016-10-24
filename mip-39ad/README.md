@@ -13,21 +13,7 @@
 只需要一个`<mip-39ad>`标签，无须其他填充dom
 
 ```
-	<!DOCTYPE html>
-	<html mip>
-	<head>
-	    <meta charset="UTF-8">
-	    <title>39广告组件</title>
-	    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-	    <link rel="canonical" href="https://xxx" >
-	    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v1.0.1.css">
-	</head>
-	<body>
-		<mip-39ad asid="3002"></mip-39ad>
-		<script src="https://mipcache.bdstatic.com/static/mipmain-v1.1.2.js"></script>
-		<script src="../extensions/mip-39ad/0.2/mip-39ad.js"></script>
-	</body>
-	</html>
+<mip-39ad asid="3002"></mip-39ad>
 ```
 
 ## 属性

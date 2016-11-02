@@ -23,6 +23,7 @@ mip-form 用来支持 mip 中的表单提交。
      <input type="input" name="customnumber" validatetarget="custom" validatetype="custom" validatereg=^[0-9]*$ placeholder="我是自定义验证规则数字">
      <div class="mip-form-target" target="custom">请输入正确的数字</div>
      <input type="submit" value="提交">
+     <textarea></textarea>
  </mip-form>
 ```
 ### 加清空按钮

@@ -8,6 +8,7 @@ define(function (require){
     var customElement = require('customElement').create();
     var Gesture = require('components/gesture');
     var fixedElement = require('components/fixedElement');
+    var util = require('util');
     
 
     /**
@@ -17,14 +18,9 @@ define(function (require){
     function render () {
 
         var _this = this;
-        if (_this.element.isRender) {
-            return;
-        }
-
-        _this.element.isRender = true;
         _this.open = false;
 
-        setStyles(_this.element, {
+        util.css(_this.element, {
             'position': 'fixed',
             'z-index': 10001,
             'top': 0,
@@ -58,7 +54,7 @@ define(function (require){
         _this.container_ = document.createElement('div');
         _this.applyFillContent(_this.container_);
         
-        setStyles(_this.container_, {
+        util.css(_this.container_, {
             'z-index': 10001,
             'top': 0,
             'right': 0,
@@ -97,7 +93,7 @@ define(function (require){
         })
 
         _this.open = true;
-        setStyles(_this.element, {'display': 'block'});
+        util.css(_this.element, {'display': 'block'});
 
     }
 
@@ -119,25 +115,9 @@ define(function (require){
 
         _this.open = false;
 
-        setStyles(_this.element, {'display': 'none'});
-        setStyles(document.body, {'overflow': 'auto'});
+        util.css(_this.element, {'display': 'none'});
+        util.css(document.body, {'overflow': 'auto'});
 
-    }
-
-
-    /**
-     * [setStyles CSS样式设置函数]
-     * 
-     * @param {Html Node} obj html标签
-     * @param {Object} params css样式参数
-     * @return
-     */
-    function setStyles(obj, params) {
-        for(var key in params) {
-            if(params.hasOwnProperty(key)) {
-                obj.style[key] = params[key];
-            }
-        }
     }
 
 

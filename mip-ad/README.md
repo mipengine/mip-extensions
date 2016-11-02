@@ -11,6 +11,22 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 
 ## 示例
 
+### 使用别名
+
+```html
+<mip-ad layout="fixed"  type="ad-baidu" cproid="u2791376" class="mip-element mip-layout-container"></mip-ad>
+```
+
+### 网盟扩展广告
+
+```html
+<mip-ad 
+    type="baidu-wm-ext" 
+    domain="//dup.lovedword.com/" 
+    token="3a1ec097f7cbf63edb0e7f98eff238f950e6ca0b29e67fe1103c" 
+></mip-ad>
+```
+
 ### 通用广告banner样式基本使用
 
 ```html
@@ -23,17 +39,8 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 </mip-ad>
 ```
 
-### 使用别名
 
-```html
-<mip-embed
-    type="ad-comm"
-    tpl="onlyImg" 
-    href="//m.baidu.com/s?word=百度" 
-    data-size="1242 180" 
-    src="//m.baidu.com/static/search/ala/ad_1.png">
-</mip-embed>
-```
+
 
 
 ## 支持广告

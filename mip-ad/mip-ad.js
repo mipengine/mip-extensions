@@ -13,6 +13,7 @@ define(function (require) {
     require('./mip-ad-comm');
     require('./mip-ad-baidu');
     require('./mip-ad-qwang');
+    require('./mip-baidu-wm-ext');
     
     /**
      * render

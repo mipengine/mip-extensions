@@ -2,7 +2,7 @@
  * @author: Qi
  * @date: 2016-09-26
  * @file: mip-html-os.js
- */
+ */ 
 
 define(function (require) {
     var customElem = require('customElement').create();

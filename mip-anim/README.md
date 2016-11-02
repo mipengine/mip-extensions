@@ -6,7 +6,7 @@ mip-anim 用来支持在 mip中gif图的使用
 ----|----
 类型|通用
 支持布局| responsive, fixed-height, fixed, container
-所需脚本|https://mipcache.bdstatic.com/static/v0.1/mip-anim.js
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-anim.js
 
 ## 示例
 

@@ -48,4 +48,4 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 - [通用广告](mip-ad-comm.md)
 - [全网广告](mip-ad-qwang.md)
 - [网盟广告](mip-ad-baidu.md)
-- [网盟扩展广告](/3-widget/5-ad-widget/ad-baidu-wm-ext-widget.md)
+- [网盟扩展广告](mip-baidu-wm-ext.md)

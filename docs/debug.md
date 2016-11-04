@@ -49,7 +49,7 @@ $ [sudo] npm install -g mip-cli --registry=https://registry.npm.taobao.org
 
 ### 预览组件
 
-进入 [准备](./prepare.md) 阶段 clone 出来的 `mip-extensions` 目录中，使用 `mip start` 命令可以启动调试器
+进入 [准备](./prepare.md) 阶段 clone 出来的 `mip-extensions` 目录中，使用 `mip server` 命令可以启动调试器
 
 在浏览器中访问 [http://127.0.0.1:8000](http://127.0.0.1:8000)，可以查看组件列表。点击我们想要预览的组件链接，即可预览组件的效果。
 

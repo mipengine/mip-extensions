@@ -19,7 +19,7 @@ define(function (require) {
         var alert = _element.getAttribute('alert');
 
         $(_element).on('click', function () {
-            window.alert(alert);
+            window.alert(alert||"");
         });
     }
 

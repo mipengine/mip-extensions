@@ -1,12 +1,12 @@
 /**
  * 百度好看详情页下载app安装打开对应详情页接口
  */
-define('mip-hk-keep', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
-    customElem.prototype.build = function () {
+    function build() {
         var element = this.element;
 
         var type = $(element).attr('type');
@@ -24,8 +24,7 @@ define('mip-hk-keep', ['require', 'customElement', 'zepto'], function (require) 
         });
     };
 
+    customElem.prototype.build = build;
+
     return customElem;
-});
-require(['mip-hk-keep'], function (plugindemo) {
-    MIP.registerMipElement('mip-hk-keep', plugindemo);
 });

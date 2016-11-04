@@ -1,12 +1,12 @@
 /**
  * 百度好看分享
  */
-define('mip-hk-share', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
-    customElem.prototype.build = function () {
+    function build() {
         var element = this.element;
         var config = getConfig();
 
@@ -77,8 +77,7 @@ define('mip-hk-share', ['require', 'customElement', 'zepto'], function (require)
         }
     }
 
+    customElem.prototype.build = build;
+
     return customElem;
-});
-require(['mip-hk-share'], function (plugindemo) {
-    MIP.registerMipElement('mip-hk-share', plugindemo);
 });

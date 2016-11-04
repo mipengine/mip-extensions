@@ -1,7 +1,7 @@
 /**
  * 百度好看调起客户端
  */
-define('mip-hk-call', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
@@ -57,7 +57,7 @@ define('mip-hk-call', ['require', 'customElement', 'zepto'], function (require) 
     };
     var installApp = 0;
 
-    customElem.prototype.build = function () {
+    function build() {
         var element = this.element;
 
         var type = $(element).attr('type');
@@ -180,8 +180,7 @@ define('mip-hk-call', ['require', 'customElement', 'zepto'], function (require) 
         }, 'ping');
     }
 
+    customElem.prototype.build = build;
+
     return customElem;
-});
-require(['mip-hk-call'], function (plugindemo) {
-    MIP.registerMipElement('mip-hk-call', plugindemo);
 });

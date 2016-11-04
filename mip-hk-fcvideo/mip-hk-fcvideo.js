@@ -1,12 +1,12 @@
 /**
  * 百度好看凤巢视频落地页
  */
-define('mip-hk-fcvideo', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
-    customElem.prototype.build = function () {
+    function build() {
         var element = this.element;
 
         var videoObj = $('#J_d_title').find('video');
@@ -27,8 +27,7 @@ define('mip-hk-fcvideo', ['require', 'customElement', 'zepto'], function (requir
         }
     };
 
+    customElem.prototype.build = build;
+
     return customElem;
-});
-require(['mip-hk-fcvideo'], function (plugindemo) {
-    MIP.registerMipElement('mip-hk-fcvideo', plugindemo);
 });

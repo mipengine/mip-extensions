@@ -1,12 +1,12 @@
 /**
  * 百度好看显示文章详情
  */
-define('mip-hk-showarticle', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
-    customElem.prototype.build = function () {
+    function build() {
         var element = this.element;
 
         var page = $(element).attr('page');
@@ -20,8 +20,7 @@ define('mip-hk-showarticle', ['require', 'customElement', 'zepto'], function (re
         });
     };
 
+    customElem.prototype.build = build;
+
     return customElem;
-});
-require(['mip-hk-showarticle'], function (plugindemo) {
-    MIP.registerMipElement('mip-hk-showarticle', plugindemo);
 });

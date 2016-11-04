@@ -1,7 +1,7 @@
 /**
  * 百度好看信息流
  */
-define('mip-hk-feed', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
@@ -17,7 +17,7 @@ define('mip-hk-feed', ['require', 'customElement', 'zepto'], function (require) 
                             '<span class="loading-icon"></span>精选推荐中' +
                         '</div>';
 
-    customElem.prototype.build = function () {
+    function build() {
         var element = this.element;
 
         $(element).append(loadingHtml);
@@ -178,8 +178,7 @@ define('mip-hk-feed', ['require', 'customElement', 'zepto'], function (require) 
         return href;
     }
 
+    customElem.prototype.build = build;
+
     return customElem;
-});
-require(['mip-hk-feed'], function (plugindemo) {
-    MIP.registerMipElement('mip-hk-feed', plugindemo);
 });

@@ -1,6 +1,6 @@
 # mip-stats-bidu
 
-mip-stats-bidu 用来支持站长添加百度统计。推荐使用 mip-stats-baidu，此组件逐渐废弃
+mip-stats-bidu 用来支持站长添加百度统计。推荐使用 mip-stats-baidu
 
 描述|百度统计组件，用于统计页面数据
 ----|----

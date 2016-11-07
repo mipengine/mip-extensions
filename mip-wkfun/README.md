@@ -1,4 +1,4 @@
-mip-wkfun
+# mip-wkfun
 
 寻医问药3g页面dom操作组件
 
@@ -6,10 +6,11 @@ mip-wkfun
 类型	dom操作
 支持布局	N/S
 所需脚本	https://mipcache.bdstatic.com/static/v1.0/mip-wkfun.js
-示例
+
+# 示例
 
 无
 
-属性
+# 属性
 
 无

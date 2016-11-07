@@ -1,40 +1,46 @@
 ﻿# mip-hk-call
 
-mip-hk-call 百度好看调起客户端
+好看调起客户端
 
-| 描述 | 百度好看调起客户端|
+|标题|内容|
 |---|---|
-|可用性	|完成 |
-|所需脚本| mip-hk-call |
+|类型|业务|
+|支持布局|N/S|
+|所需脚本||
 
-# 使用方法
+## 示例
 
-在MIP HTML中,直接使用标签, 用于调起百度好看客户端。示例:
+在MIP HTML中,直接使用标签, 用于调起好看客户端。
+
+```html
+<mip-hk-call class="haokan-dl-link-w" type="article" urlKey="http://news.yesky.com/focus/145/106124645.shtml" apk="5" page="erji_detail_news">
+    <a target="_blank" href="###" class="J_app_call">立即下载</i></a>
+</mip-hk-call>
 ```
-    <mip-hk-call class="haokan-dl-link-w" type="article" urlKey="http://news.yesky.com/focus/145/106124645.shtml" apk="5" page="erji_detail_news">
-        <a target="_blank" href="###" class="J_app_call">立即下载</i></a>
-    </mip-hk-call>
-```
 
-# 属性
+## 属性
 
-- **type**
+### type
 
-    - 是否必填：是
+说明：客户端对应页面类型
+必选项：是
+类型：字符串
+取值范围：['article', 'topic', 'video', 'gallery', 'beauty', 'activity']
 
-    - 说明：调起客户端页面类型  ['article', 'topic', 'video', 'gallery', 'beauty', 'activity']
-- **urlKey**
+### urlKey
 
-    - 是否必填：是
+说明：客户端所需参数
+必选项：是
+类型：字符串
 
-    - 说明：客户端参数
-- **apk**
+### apk
 
-    - 是否必填：否
+说明：不同位置对应不同下载渠道
+必选项：否
+类型：数字
 
-    - 说明：统计不同位置不同统计参数
-- **page**
+### page
 
-    - 是否必填：否
-
-    - 说明：页面统计参数
+说明：不同位置对应不同统计参数
+必选项：否
+类型：字符串

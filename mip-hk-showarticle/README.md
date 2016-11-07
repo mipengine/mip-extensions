@@ -1,15 +1,17 @@
 ﻿# mip-hk-showarticle
 
-mip-hk-showarticle 显示文章更多详情
+显示文章更多详情
 
-| 描述 | 显示文章更多详情|
+|标题|内容|
 |---|---|
-|可用性	|完成 |
-|所需脚本| mip-hk-showarticle |
+|类型|业务|
+|支持布局|N/S|
+|所需脚本||
 
-# 使用方法
+## 示例
 
-在MIP HTML中,直接使用标签, 用于显示文章更多详情。示例:
+在MIP HTML中,直接使用标签, 用于显示文章更多详情。
+
 ```
     <mip-hk-showarticle page='erji_detail_news'>
         <div id="J_show_art">
@@ -17,10 +19,10 @@ mip-hk-showarticle 显示文章更多详情
         </div>
     </mip-hk-showarticle>
 ```
-# 属性
+## 属性
 
-- **page**
+### page
 
-    - 是否必填：否
-
-    - 说明：统计参数
+说明：不同位置对应不同统计参数
+必选项：否
+类型：字符串

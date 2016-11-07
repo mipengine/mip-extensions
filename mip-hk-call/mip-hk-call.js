@@ -46,7 +46,7 @@ define(function (require) {
         return brower;
     })();
     // 调起类型
-    var t = ['article', 'topic', 'video', 'gallery', 'beauty', 'activity'];
+    var callType = ['article', 'topic', 'video', 'gallery', 'beauty', 'activity'];
     var userAgent = navigator.userAgent;
     var isIos9 = function () {
         if ((userAgent.match(/iPhone/i) || userAgent.match(/iPod/i))) {
@@ -120,7 +120,7 @@ define(function (require) {
                     new Image().src = '/tj.gif?page=' + page + '&pos=' + pos + '&t=' + new Date().getTime();
                 }
 
-                var t = Date.now();
+                var nowTime = Date.now();
                 // 安卓检测到安装才调起客户端
                 if (brower.os() === 'android' && installApp === 1) {
                     window.location.href = schema;
@@ -130,21 +130,22 @@ define(function (require) {
                         || (brower.os() === 'android' && /baidubrowser/.test(userAgent))
                     ) {
                         timer = setTimeout(function () {
-                            if (Date.now() - t < 1200) {
+                            if (Date.now() - nowTime < 1200) {
                                 window.location.href = appLink;
                             }
+                            clearTimeout(timer);
                         }, 1000);
                     }
                 } else if (brower.os() === 'ios') {
                     window.location.href = schema;
                     timer = setTimeout(function () {
-                        if (Date.now() - t < 1200) {
+                        if (Date.now() - nowTime < 1200) {
                             window.location.href = appLink;
                         }
+                        clearTimeout(timer);
                     }, 1000);
                 } else {
                     window.location.href = appLink;
-
                 }
 
                 return false;
@@ -154,17 +155,18 @@ define(function (require) {
 
     function getJson(url, callback, cbName) {
         var cbName = cbName || "_Hao"+ Math.floor(1e4 * Math.random());
-        var s = document.createElement("script");
-        s.src = url +'&cb='+ cbName +'&t='+ new Date().getTime();
-        s.type = 'text/javascript';
-        s.setAttribute('charset', 'utf-8');
-        document.getElementsByTagName("head")[0].appendChild(s);
+        var scriptElm = document.createElement("script");
+        scriptElm.src = url +'&cb='+ cbName +'&t='+ new Date().getTime();
+        scriptElm.type = 'text/javascript';
+        scriptElm.setAttribute('charset', 'utf-8');
+        document.getElementsByTagName("head")[0].appendChild(scriptElm);
         window[cbName] = function (data) {
             if (typeof callback === 'function') {
                 callback(data);
             }
-            setTimeout(function () {
-                document.getElementsByTagName("head")[0].removeChild(s);
+            var _timer = setTimeout(function () {
+                document.getElementsByTagName("head")[0].removeChild(scriptElm);
+                clearTimeout(_timer);
             }, 20);
         }
     };

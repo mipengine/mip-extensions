@@ -1,17 +1,19 @@
 ﻿# mip-hk-share
 
-mip-hk-share 百度好看分享插件
+好看分享插件
 
-| 描述 | 分享QQ，微博|
+|标题|内容|
 |---|---|
-|可用性	|完成 |
-|所需脚本| mip-hk-share |
+|类型|业务|
+|支持布局|N/S|
+|所需脚本||
 
-# 使用方法
+## 示例
 
-在MIP HTML中,直接使用标签, 用于分享QQ和微博。示例如下:
-```
-    <mip-hk-share class="detail-share">
+在MIP HTML中,直接使用标签, 支持分享QQ和微博。
+
+```html
+<mip-hk-share class="detail-share">
     <div id="J_detail_share">
         <span class="detail-share-icon"></span>
         <div class="list-share-pop J_share">
@@ -21,12 +23,16 @@ mip-hk-share 百度好看分享插件
             <em class="detail-share-icon-p" id="J_share_close"></em>
         </div>
     </div>
-    </mip-hk-share>
+</mip-hk-share>
 ```
 
-# 属性
-需要在页面定义分享参数，否则用默认参数代替
+## 属性
 
+### 需要在页面定义如下参数
+
+说明：页面定义参数
+必选项：否
+取值范围：
 ```
 <script type="application/json" id="J_config">
 {

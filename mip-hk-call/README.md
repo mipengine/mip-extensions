@@ -25,7 +25,7 @@
 说明：客户端对应页面类型
 必选项：是
 类型：字符串
-取值范围：['article', 'topic', 'video', 'gallery', 'beauty', 'activity']
+取值范围：article,topic,video,gallery,beauty,activity
 
 ### urlKey
 

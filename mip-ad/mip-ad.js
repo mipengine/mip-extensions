@@ -23,12 +23,6 @@ define(function (require) {
         var me = this;
         var _element = this.element;
 
-        if (_element.isRender) {
-            return;
-        }
-
-        _element.isRender = true;
-
         var type = _element.getAttribute('type');
         var mipAd = require('./mip-' + type);
         mipAd.render(_element, me);
@@ -37,6 +31,11 @@ define(function (require) {
 
     customElement.prototype.build = render;
 
+    // Add alias
+    // TODO: another plan
+    setTimeout(function () {
+        MIP.registerMipElement('mip-embed', customElement);
+    }, 0);
     return customElement;
 });
 

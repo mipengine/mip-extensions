@@ -1,0 +1,12 @@
+{
+    "name": "mip-yiqibazitap",
+    "version": "1.0.1",
+    "author": {
+        "name": "yiqibazi",
+        "email": "375423427@qq.com",
+        "url": "http://www.yiqibazi.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

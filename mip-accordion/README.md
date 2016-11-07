@@ -24,7 +24,7 @@ mip-accordion 用来支持在 mip折叠隐藏的节点(可记录用户上次行�
     </section>
     <section>
         <h4>下拉第三个</h4>
-        <mip-img layout = "responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg"></mip-img>
+        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg"></mip-img>
     </section>
 </mip-accordion>
 ```
@@ -43,7 +43,7 @@ mip-accordion 用来支持在 mip折叠隐藏的节点(可记录用户上次行�
     </section>
     <section>
         <h4>下拉第三个</h4>
-        <mip-img layout = "responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg"></mip-img>
+        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg"></mip-img>
     </section>
 </mip-accordion>
 ```

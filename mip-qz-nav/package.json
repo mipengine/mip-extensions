@@ -1,0 +1,10 @@
+{
+    "name": "mip-qz-nav",
+    "version": "1.0.0",
+    "author": {
+        "name": "ningsong"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -2,10 +2,10 @@
 
 寻医问药3g页面广告配置组件
 
-描述	 广告配置组件
-类型	 广告
-支持布局	N/S
-所需脚本	https://mipcache.bdstatic.com/static/v1.0/mip-wkad-config.js
+<p>描述	 广告配置组件</p>
+<p>类型	 广告</p>
+<p>支持布局	N/S</p>
+<p>所需脚本	https://mipcache.bdstatic.com/static/v1.0/mip-wkad-config.js</p>
 
 # 示例
 

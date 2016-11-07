@@ -1,18 +1,33 @@
 # mip-wkad
 
-寻医问药3g页面广告组件
-<p>描述	 广告组件</p>
-<p>类型	 广告</p>
-<p>支持布局	N/S</p>
-<p>所需脚本	https://mipcache.bdstatic.com/static/v1.0/mip-wkad.js</p>
+寻医问药广告组件
 
-# 示例
+描述|提供了一个广告容器用来显示寻医广告
+----|----
+类型|广告
+支持布局| N/S
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-wkad.js
 
-<p>只需一个<mip-wkad>，无须其他填充dom</p>
-<p><mip-wkad el='mobile_hospital_bottom_float_div' ads='["keys_arr[\"mobile_hospital_bottom_float\"]","=","\"mobile_hospital_bottom_float\""]'></mip-wkad></p>
+## 示例
 
-# 属性
-el
-<p>说明：广告放置容器className 必填：是 格式：字母</p>
-ads
-<p>说明：广告配置参数 必填：是 格式：字母</p>
+只需要一个`<mip-wkad>`标签，无须其他填充dom
+
+```
+<mip-wkad el='mobile_zhuanti_400_zixun_div' ads='["var keys_arr={};","keys_arr[\"mobile_zhuanti_400_zixun\"]","=","\"mobile_zhuanti_400_zixun\""]'></mip-wkad>
+```
+
+## 属性
+
+### el
+
+说明：广告容器
+必填：是
+格式：className
+取值：不限
+
+### ads
+
+说明：广告配置参数
+必填：是
+格式：标准json格式
+取值：字符串

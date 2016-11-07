@@ -1,4 +1,4 @@
-define('mip-wkfun', ['require', 'zepto'], function (require) {
+define(function(require){
 
     var $ = require('zepto');
 	var wkFun = {
@@ -38,10 +38,12 @@ define('mip-wkfun', ['require', 'zepto'], function (require) {
 				}
 				$(this).attr('method', 'post').attr('action', 'http://m.so.xywy.com/comse.php?src='+ srcType + '&keyword=' + encodeURIComponent(textVal));
 			});
+			
 			$(".login-bar").click(function(){
 				$(this).toggleClass("lonsg");
 				$(".Extension").toggle();
 			});
+			
 			//进来的统计
 			window.Quan_X = 0;
 			window.Quan_Y = 0;
@@ -113,9 +115,4 @@ define('mip-wkfun', ['require', 'zepto'], function (require) {
 	};
    
 	return wkFun;
-});
-
-require(['mip-wkfun'], function (wkFun) {
-	wkFun.searchFun();
-    //MIP.registerMipElement('mip-bj-fun', plugindemo);
 });

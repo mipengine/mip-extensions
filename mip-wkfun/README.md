@@ -1,16 +1,28 @@
 # mip-wkfun
 
-寻医问药3g页面dom操作组件</p>
+寻医问药页面功能组件
 
-<p>描述	操作页面顶部搜索</p>
-<p>类型	dom操作</p>
-<p>支持布局	N/S</p>
-<p>所需脚本	https://mipcache.bdstatic.com/static/v1.0/mip-wkfun.js</p>
+描述|提供了一些dom操作功能
+----|----
+类型|广告
+支持布局| N/S
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-wkfun.js
 
-# 示例
+## 示例
 
-无
+只需要一个`加载一个mip-wkfun组件即可`，无须在模板里调用组件
 
-# 属性
+```
+require(['mip-wkfun'], function (wkFun) {
+	wkFun.searchFun();
+});
+```
 
-无
+## 属性
+
+### 无
+
+说明：无
+必填：无
+格式：无
+取值：无

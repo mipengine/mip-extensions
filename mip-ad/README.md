@@ -24,7 +24,9 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
     type="baidu-wm-ext" 
     domain="//dup.lovedword.com/" 
     token="3a1ec097f7cbf63edb0e7f98eff238f950e6ca0b29e67fe1103c" 
-></mip-ad>
+>
+	<div id="3a1ec097f7cbf63edb0e7f98eff238f950e6ca0b29e67fe1103c"></div>
+</mip-ad>
 ```
 
 ### 通用广告banner样式基本使用

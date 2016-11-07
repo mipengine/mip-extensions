@@ -1,1 +1,0 @@
-# mip-sidebar

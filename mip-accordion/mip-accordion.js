@@ -5,63 +5,24 @@
  * @time 2016.08.12
  */
 define(function (require) {
-   var $ = require('zepto');
    var customElement = require('customElement').create();
+   var $ = require('zepto');
    var localurl = location.href;
-
-    /**
-     * build
-     */
-    function build() {
-        var _element = this.element;
-        if (_element.isRender) {
-            return;
-        }
-
-        _element.isRender = true;
-        
-        var MIPID = $(_element).attr("sessions-key");
-        initDom.call(_element,MIPID);
-        bindEven(_element);
-    }
-
-    /**
-     * initDom
-     * 初始化元素
-     */
-    function initDom(MIPID) {
-
-        var $selection = $(this).find("section");
-
-        $selection.map(function(index, elem) {
-            var header = $(elem.children.item(0));
-            var headerid = "MIP_"+MIPID+"_content_"+index;
-            var nextdom = header.next(); 
-            
-            header.addClass('mip-accordion-header');
-            header.attr("aria-controls", headerid);
-            nextdom.addClass('mip-accordion-content');
-            nextdom.attr({"id":headerid});
-        });
-
-        userselect.call(this,MIPID);
-    }
 
     /**
      * 恢复用户上次选择
      */
-    
-    function userselect(MIPID) {
-         var _this = this;
-         var sessionsKey = "MIP-"+MIPID+"-"+localurl;
+    function userselect(id) {
+         var self = this;
+         var sessionsKey = "MIP-" + id + "-" + localurl;
          var datajson = getsession(sessionsKey);
          
-         for(var i in datajson) {
-            var expand = datajson[i];
+         for(var index in datajson) {
+            var expand = datajson[index];
             if(expand) {
-                var content = $("#"+i,_this);
-                content.attr("aria-expanded","open");
-                content.parents("section").attr("expanded","open");
+                var content = $("#" + index, self);
+                content.attr("aria-expanded", "open");
+                content.parents("section").attr("expanded", "open");
             }
          }
     }
@@ -69,21 +30,21 @@ define(function (require) {
     /**
      * 绑定事件
      */
-    function bindEven(_element) {
-        var $element = $(_element);
+    function bindEven(element) {
+        var $element = $(element);
         $element.on("click",".mip-accordion-header",function() {
-            var tarid = $(this).attr("aria-controls");
-            var $targetdom = $("#"+tarid);
+            var targetId = $(this).attr("aria-controls");
+            var $targetdom = $("#"+ targetId);
             var expanded =  $targetdom.attr("aria-expanded");
 
-            if(expanded=="open") {
+            if(expanded === "open") {
                 $targetdom.attr("aria-expanded","close");
                 $(this).parents("section").removeAttr("expanded");
-                setsession(_element,tarid,false);
-            }else {
+                setsession(element,targetId,false);
+            } else {
                 $targetdom.attr("aria-expanded","open");
                 $(this).parents("section").attr("expanded","open");
-                setsession(_element,tarid,true);
+                setsession(element,targetId,true);
             }
         });
     }
@@ -94,13 +55,14 @@ define(function (require) {
      * 存储
      */
     
-    function setsession(ele,tarid,expand) {
-        var Key = ele.getAttribute("sessions-key");
-        var sessionsKey = "MIP-"+Key+"-"+localurl;
-        var objname = tarid;
-
+    function setsession(element, obj, expand) {
+        var sessionsKey = "MIP-" 
+                        + element.getAttribute("sessions-key")
+                        + "-" 
+                        + localurl;
+        
         var objsession = getsession(sessionsKey);
-        objsession[objname] = expand;
+        objsession[obj] = expand;
         sessionStorage[sessionsKey]  = JSON.stringify(objsession);
         
     }
@@ -109,13 +71,9 @@ define(function (require) {
      * 获取sission
      */
     
-    function getsession(sessionskey) {
-        var data = sessionStorage[sessionskey];
-        if(data) {
-            return JSON.parse(data);
-        }else {
-            return {};
-        }
+    function getsession(sessionsKey) {
+        var data = sessionStorage[sessionsKey];
+        return data ? JSON.parse(data) : {};
     }
 
 
@@ -123,7 +81,54 @@ define(function (require) {
      * 初始化
      *
      */
-    customElement.prototype.build = build;
+    customElement.prototype.build = function() {
+        var self = this;
+        var element = this.element;
+
+        this.type_ = $(element).attr('type') || 'automatic';
+        this.sections_ = $(element).find("section");
+        this.id_ = $(element).attr('sessions-key');
+        this.element.setAttribute('role', 'tablist');
+        this.currentState_ = getsession.call(this);
+        this.sections_.map(function(index, section) {
+            const header = $(section.children.item(0));
+            const content = header.next(); 
+
+            header.addClass('mip-accordion-header');
+            content.addClass('mip-accordion-content');
+
+            // id 初始化
+            var id = content.attr('id');
+            if(!id) {
+                id = "MIP_" + self.id_ + "_content_" + index;
+                content.attr({"id": id});
+            }
+
+            // tab 状态[展开|收起]判断
+            if (self.currentState_[id]) {
+                section.attr('expanded', '');
+            } else if (self.currentState_[id] == false) {
+                section.removeAttribute('expanded');
+            }
+
+            // 手动控制或者自动根据用户操作控制
+            if(self.type_ === 'manual' && section.hasAttribute('expanded')) {
+                content.attr('aria-expanded','open');
+                setsession(element,$(element).attr('aria-controls'),true);
+            } 
+            else if(self.type_ === 'automatic') {
+                content.attr('aria-expanded', 
+                    section.hasAttribute('expanded').toString());
+            }
+            header.attr("aria-controls", id);
+        });
+
+        if(self.type_ === 'automatic') {
+            userselect.call(element, this.id_);
+        }
+
+        bindEven(element);
+    }
 
     return customElement;
 

@@ -4,7 +4,7 @@
  * @file: mip-html-tabs.js
  */
 
-define('mip-html-tabs', ['require', 'zepto', 'customElement'], function (require) {
+define(function (require) {
     var customElem = require('customElement').create();
     var qi = require('zepto');
 	// tabs-type 分配执行函数。

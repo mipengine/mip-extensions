@@ -1,24 +1,12 @@
 # **mip-html-tabs**
 mip-html-tabs TAB滑动、显示、隐藏、元素跳转等操作。
-<table><thead>
-<tr>
-<th>标题</th>
-<th>内容</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>类型</td>
-<td>通用</td>
-</tr>
-<tr>
-<td>支持布局</td>
-<td>responsive,fixed-height,fill,container,fixed</td>
-</tr>
-<tr>
-<td>所需脚本</td>
-<td>http://mipcache.bdstatic.com/static/mip-html-tabs/1.0.0/mip-html-tabs.js</td>
-</tr>
-</tbody></table>
+
+标题|内容
+----|----
+类型|通用
+支持布局|responsive,fixed-height,fill,container,fixed
+所需脚本|http://mipcache.bdstatic.com/static/mip-html-tabs/1.1.2/mip-html-tabs.js
+
 ## 示例
 
 ### Qi_1 当内容高度大于设置高度后展开、隐藏操作。

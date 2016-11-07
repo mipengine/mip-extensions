@@ -71,3 +71,12 @@ mip-accordion 用来支持在 mip折叠隐藏的节点(可记录用户上次行�
 必选项：是  
 类型：字符串
 
+## type 
+
+说明：类型，区分自动根据session记录展开节点，还是手动配置默认展开节点  
+必选项：是  
+类型：字符串   
+单位：无   
+取值：automatic, manual   
+默认值：automatic
+

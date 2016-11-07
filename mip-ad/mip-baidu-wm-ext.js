@@ -1,5 +1,5 @@
 /**
- * 全网推荐
+ * 广告扩展组件
  * 
  * @author wangpei07@baidu.com
  * @version 1.0
@@ -7,7 +7,7 @@
  */
 
 define(function (require) {
-
+    
     var render = function(_this, me) {
 
         var self = _this;
@@ -17,20 +17,17 @@ define(function (require) {
         if(domain && token) {
 
             var script = document.createElement('script');
-            script.src = document.location.protocol + domain + token + '.js';
+            script.src = document.location.protocol + '//' + domain + '/' + token + '.js';
             document.body.appendChild(script);
 
         } else {
             console.error('请输入正确的 domain 或者 token');
         }
     };
-    
 
     return {
-        render:render
-    };
-
+        render: render
+    }
 });
-
 
 

@@ -5,16 +5,25 @@
     height: 60px !important;
 }
 .font17{
-    color: #000; font-size: 17px;
+    color: #000; 
+    font-size: 17px;
 }
 .font22{
-    font-size: 22px;color: #ff0000 
+    font-size: 22px;
+    color: #ff0000 
 }
 .font15{
-    font-size: 15px;width: 22px; line-height: 22px; text-decoration: line-through; color: #6d6d72
+    font-size: 15px;
+    width: 22px; 
+    line-height: 22px; 
+    text-decoration: line-through; 
+    color: #6d6d72
 }
 .font15W{
-    font-size: 15px; color: #000; width: 22px; line-height: 22px;
+    font-size: 15px; 
+    color: #000;
+     width: 22px; 
+     line-height: 22px;
 }
 .paddingR15{
     padding-right:15px; 

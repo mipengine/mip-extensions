@@ -23,13 +23,6 @@
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
 }
-/* loading */
-/***************
-*
-*   <div class="loading" type="12" small black><span></span></div>
-*   ²»ÓÃ-webkit-mask-imageÊµÏÖ£¬Ö÷ÒªÊÇÒòÎªµ±Í¼Æ¬Î´ÔØÈëÊ±ÊÓ¾õÐ§¹û²»¼Ñ
-*
-***************/
 
 .loading[type] {
     display: block;

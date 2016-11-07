@@ -21,7 +21,6 @@ define('mip-yiqibazi', ['require', 'customElement', 'zepto'], function (require)
             } else {
                 $liunianyunnav.removeClass("navs-active");
                 $(this).addClass("navs-active");
-                //$liunianyuncon.removeClass("mip-show")
                 $liunianyuncon.eq(index).addClass("mip-show").siblings().removeClass("mip-show");
             }
         });

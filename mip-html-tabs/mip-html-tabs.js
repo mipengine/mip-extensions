@@ -212,7 +212,3 @@ define(function (require) {
     };
     return customElem;
 });
-
-require(['mip-html-tabs'], function (plugindemo) {
-    MIP.registerMipElement('mip-html-tabs', plugindemo);
-});

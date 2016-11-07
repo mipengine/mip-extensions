@@ -4,7 +4,7 @@
 
 描述|提供了一些dom操作功能
 ----|----
-类型|广告
+类型|dom操作组件
 支持布局| N/S
 所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-wkfun.js
 

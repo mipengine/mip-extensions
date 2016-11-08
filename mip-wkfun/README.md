@@ -10,19 +10,8 @@
 
 ## 示例
 
-只需要一个`加载一个mip-wkfun组件即可`，无须在模板里调用组件
+只需要一个`mip-wkfun标签即可`，无须其他填充dom
 
 ```
-require(['mip-wkfun'], function (wkFun) {
-	wkFun.searchFun();
-});
+<mip-wkfun></mip-wkfun>
 ```
-
-## 属性
-
-### 无
-
-说明：无
-必填：无
-格式：无
-取值：无

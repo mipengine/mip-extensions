@@ -2,7 +2,8 @@
     "name": "mip-wkad-config",
     "version": "1.0.0",
     "author": {
-        "name": "tinkbell"
+        "name": "tinkbell",
+		"email": "343836944@qq.com"
     },
     "engines": {
         "mip": ">=1.1.0"

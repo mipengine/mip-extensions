@@ -2,11 +2,11 @@
     "name": "mip-hk-keep",
     "version": "1.0.1",
     "author": {
-        "name": "MIP authors",
-        "email": "mip-support@baidu.com",
+        "name": "liujunqiu",
+        "email": "liujunqiu@baidu.com",
         "url": "https://www.mipengine.org"
     },
     "engines": {
-        "mip": ">=1.1.0"
+        "mip": ">=1.1.2"
     }
 }

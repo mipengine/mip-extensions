@@ -6,11 +6,11 @@
 |---|---|
 |类型|业务|
 |支持布局|N/S|
-|所需脚本||
+|所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-hk-call.js|
 
 ## 示例
 
-在MIP HTML中,直接使用标签, 用于调起好看客户端。
+在MIP HTML中，直接使用标签, 用于调起好看客户端。
 
 ```html
 <mip-hk-call class="haokan-dl-link-w" type="article" urlKey="http://news.yesky.com/focus/145/106124645.shtml" apk="5" page="erji_detail_news">

@@ -6,11 +6,11 @@
 |---|---|
 |类型|业务|
 |支持布局|N/S|
-|所需脚本||
+|所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-hk-feed.js|
 
 ## 示例
 
-在MIP HTML中,直接使用标签, 用于百度好看信息流。
+在MIP HTML中,直接使用标签, 用于好看信息流。
 
 ```
 <mip-hk-feed type="video"></mip-hk-feed>

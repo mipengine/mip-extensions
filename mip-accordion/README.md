@@ -46,15 +46,6 @@ mip-accordion 用来支持在 mip折叠隐藏的节点(可记录用户上次行�
         <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg"></mip-img>
     </section>
 </mip-accordion>
-<mip-accordion sessions-key="mip_2">
-    <section>
-        <h4>
-          <span class="show-more">显示更多</span>
-          <span class="show-less">收起</span>
-          </h4>
-        <p>显示显示收起收起显示显示收起收起显示显示收起收起显示显示收起收起</p>
-      </section>
-  </mip-accordion>
 ```
 
 ### 标题切换形式

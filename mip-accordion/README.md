@@ -89,3 +89,11 @@ mip-accordion 用来支持在 mip折叠隐藏的节点(可记录用户上次行�
 取值：automatic, manual   
 默认值：automatic
 
+## expanded
+
+说明：默认展开的 mip-accordion 子节点需要配置此属性，只有在 mip-accordion 的 type 属性值为 manual 时 才会生效      
+必选项：否   
+类型：字符串   
+单位：无   
+取值：无   
+默认值：无

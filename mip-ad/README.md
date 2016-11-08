@@ -11,7 +11,7 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 
 ## 示例
 
-### 使用别名
+### 基本使用
 
 ```html
 <mip-ad layout="fixed"  type="ad-baidu" cproid="u2791376" class="mip-element mip-layout-container"></mip-ad>

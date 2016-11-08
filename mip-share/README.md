@@ -11,16 +11,17 @@
 
 ## 示例
 
-```html
-<!-- 通用分享 -->
-<div class="mip-share-container">
-    <mip-share 
-        layout="fixed-height"
-        height="158">
-    </mip-share>
-</div>
+### 基本使用
 
-<!-- 通用分享 -->
+```html
+<div class="mip-share-container">
+    <mip-share></mip-share>
+</div>
+```
+
+### fixed布局
+
+```html
 <div class="mip-share-container">
     <mip-share 
         layout="fixed"
@@ -28,17 +29,11 @@
         height="158">
     </mip-share>
 </div>
+```
 
-<!-- 通用分享 -->
-<div class="mip-share-container">
-    <mip-share 
-        layout="responsive"
-        width="414"
-        height="158">
-    </mip-share>
-</div>
+### 自定义分享参数
 
-<!-- 配置分享内容 -->
+```html
 <div class="mip-share-container">
     <mip-share 
         title="分享标题" 

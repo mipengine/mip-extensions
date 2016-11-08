@@ -37,6 +37,18 @@
         height="158">
     </mip-share>
 </div>
+
+<!-- 配置分享内容 -->
+<div class="mip-share-container">
+    <mip-share 
+        title="分享标题" 
+        content="分享内容" 
+        icon="https://m.baidu.com/se/static/pmd/pmd/share/images/bdu.jpg" 
+        layout="responsive"
+        width="414"
+        height="158">
+    </mip-share>
+</div>
 ```
 
 ## 属性

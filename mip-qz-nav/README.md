@@ -5,14 +5,13 @@
 描述|网站导航组件
 ----|----
 类型|定制,业务
-支持布局| responsive,fixed-height,fill,container,fixed
+支持布局| container
 所需脚本|https://mipcache.bdstatic.com/static/latest/mip-qz-nav.js
 
-## 示例
-
-ul中自行填写需要的导航条目
+## 基本用法
 
 ```html
+<link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_common.css?v=20160101"> <!--测试用-->
 <mip-qz-nav class="nav-wrap" rawurl="/t/detail/507/161108-c579ed88.html">
 	<p class="nav-tit">选择栏目</p>
 	<nav class="nav">
@@ -43,7 +42,7 @@ ul中自行填写需要的导航条目
 	<div class="close"><i class="i-close icon"></i></div>
 	<div class="sel2"><i class="i-darrow icon"></i></div>
 </mip-qz-nav>
-
+```
 
 ## 属性
 
@@ -53,5 +52,6 @@ ul中自行填写需要的导航条目
 格式：字符
 取值：字符串
 默认值："/"
+
 
 

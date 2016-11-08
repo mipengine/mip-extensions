@@ -1,9 +1,13 @@
 {
     "name": "mip-qz-nav",
     "version": "1.0.0",
-    "author": {
-        "name": "ningsong"
-    },
+    "description": "µ¼º½×é¼þ",
+    "contributors": [
+        {
+            "name": "ningsong",
+            "email": "312358502@qq.com"
+        }
+    ],
     "engines": {
         "mip": ">=1.1.0"
     }

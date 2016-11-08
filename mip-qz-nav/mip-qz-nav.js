@@ -1,5 +1,5 @@
 /**
- * @file 前瞻网导航组件
+ * @file 导航组件
  * @author ningsong
  * @time 2016.11.08
  */

@@ -6,7 +6,7 @@
 |---|---|
 |类型|业务|
 |支持布局|N/S|
-|所需脚本||
+|所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-hk-fcvideo.js|
 
 ## 示例
 

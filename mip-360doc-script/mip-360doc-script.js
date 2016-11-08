@@ -1,4 +1,4 @@
-﻿define('mip-360doc-script', ['require', 'customElement', 'zepto'], function (require) {
+﻿define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
@@ -15,15 +15,15 @@
         if ($_picn > 1) {
             $(".pic").eq(0).show().siblings(".pic").hide();
         }
-        $("#artnewdiv").css("display","");
-        setone();       
+        $("#artnewdiv").css("display", "");
+        setone();
     };
 
     //第三方分享
     function share() {
         if ($("#sharetobaidu").css("display") == "none" || $("#sharetobaidu").css("display") == "") {
             $("#sharetobaidu").show();
-            $("#sharelayer").css("display","");
+            $("#sharelayer").css("display", "");
             $("#backgroundPopup1").css("display", "block");
             $("#headyinidtemp").hide();
             $("#urllayer").hide();
@@ -59,7 +59,7 @@
         if (artid == "")
             return;
 
-      
+
         $.ajax({
             type: 'POST',
             url: 'https://transfer.360doc.cn/ajax/Handler.ashx',
@@ -71,17 +71,17 @@
                 }
                 else {
                     $("#refnum").html('0');
-                }            
-                $("#flowernum").html("献花(" + useridref[3]+ ")");
+                }
+                $("#flowernum").html("献花(" + useridref[3] + ")");
             },
-            error: function () {}
+            error: function () { }
         })
 
     }
     //获取文章id
     function getID() {
         var url = $("#resaveid").attr('href');
-        
+
         if (url.indexOf("360doc") < 0)
             return "";
         var index = url.indexOf("artid=");
@@ -89,7 +89,7 @@
             return "";
         var index2 = url.indexOf("&", index);
         if (index2 <= 0)
-            return "";  
+            return "";
         var artid = url.substr(index + 6, index2 - index - 6);
 
         return artid;
@@ -116,12 +116,7 @@
     function wxshare() {
         $("#urllayer").show();
         $("#sharelayer").hide();
-    }   
-        
-    return customElem;
-});
+    }
 
-require(['mip-360doc-script'], function (plugin) {
-    // 注册mip-ck-script组件
-    MIP.registerMipElement('mip-360doc-script', plugin);
+    return customElem;
 });

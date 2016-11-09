@@ -10,9 +10,12 @@ define(function (require) {
      * build
      */
     function build() {
+        var element = this.element;
+
         var filter = new Filter({
-            filterWrap: document.querySelector('.filter'),
-            itemWrap: document.querySelector('.timeline-content-wrap')
+            filterWrap: element.querySelector(element.getAttribute('mip-filter-filterWrap')),
+            itemWrap: element.querySelector(element.getAttribute('mip-filter-itemWrap')),
+            enableHash: element.getAttribute('mip-filter-enableHash')
         });
 
         filter.init();
@@ -71,34 +74,46 @@ define(function (require) {
 
         opt.mobileWidth = opt.mobileWidth || 767;
         opt.emptyTip = opt.emptyTip || '没有符合的内容';
+        opt.enableHash = (opt.enableHash && opt.enableHash==="false") ? false : true;
 
         /**
         * shoot: at first time,
         * add filter color and text to default-"none"
         */
         this.init = function () {
-            var initOpt = opt.filterWrap.querySelector('[data-filtertype="all"]');
-            util.addClass(initOpt, 'active');
-            var text = initOpt.innerText.split(' ')[0];
-            opt.filterWrap.querySelector('.filter-result').innerText = '筛选：无';
+            var hash = '';
+            var filter = '';
+            if (opt.enableHash) {
+                hash = window.location.hash;
+            }
+            if(hash) {
+                filter = hash.replace('#','');
+            } else {
+                filter = 'all';
+            }
+            var filterTarget = opt.filterWrap.querySelector('[data-filtertype="' + filter + '"]')
+            this.filterSelect(filterTarget);
         };
 
         /**
         * shoot: when a filter is clicked.
         * add filter color and text to selected one.
         */
-        this.filterSelect = function (e) {
-            var oldEle = opt.filterWrap.querySelector('.active');
-            var newEle = e.target;
-            util.removeClass(oldEle, 'active');
-            util.addClass(e.target, 'active');
-            var text = newEle.innerText.replace(newEle.querySelector('.filter-num').innerText, '');
+        this.filterSelect = function (target) {
+            var oldEle = opt.filterWrap.querySelector('.active') || '';
+            var newEle = target;
+            if(oldEle) {
+                util.removeClass(oldEle, 'active')
+            }
+            util.addClass(target, 'active');
+
+            var text = newEle.textContent.replace(newEle.querySelector('.filter-num').textContent, '');
             if (text === '查看全部') {
                 text = '无';
             }
             opt.filterWrap.querySelector('.filter-result').innerText = '筛选：' + text;
             // in wise, when select, collapse filter
-            if (window.innerWidth <= opt.mobileWidth) {
+            if (window.innerWidth <= opt.mobileWidth && oldEle) {
                 _this.toggleFilter();
             }
             _this.applyFilter(newEle.dataset.filtertype);
@@ -168,6 +183,9 @@ define(function (require) {
                     opt.itemWrap.removeChild(emptyTip);
                 }
             }
+            if (opt.enableHash) {
+                window.location.hash = filter;
+            }
             window.scrollTo(0,0);
         };
 
@@ -178,7 +196,9 @@ define(function (require) {
         */
         for (var i = 0; i < opt.filterWrap.querySelectorAll('.filter-link').length; i++) {
             var ele = opt.filterWrap.querySelectorAll('.filter-link')[i];
-            ele.addEventListener('click', _this.filterSelect);
+            ele.addEventListener('click', function(e) {
+                _this.filterSelect(e.target)
+            });
         }
 
         /**

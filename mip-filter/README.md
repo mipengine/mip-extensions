@@ -10,31 +10,34 @@
 
 ## 示例
 
+筛选功能，支持从hash定位筛选项.  
+enableHash为false时，hash不起控制作用，改变筛选项，也不会改变hash
+
 ```html
-<mip-filter>
+<mip-filter mip-filter-filterWrap=".filter" mip-filter-itemWrap=".filter-item-wrap" mip-filter-enableHash="true">
     <sidebar class="filter">
         <div class="filter-result"></div>
         <ul class="filter-list">
             <li class="filter-title">
-                <div class="filter-link" data-filtertype="all">查看全部<span class="filter-num">3</span></div>
+                <div class="filter-link" data-filtertype="all">(all)查看全部<span class="filter-num">3</span></div>
             </li>
             <li class="filter-title">
-                <div class="filter-link" data-filtertype="widget">组件<span class="filter-num">2</span></div>
+                <div class="filter-link" data-filtertype="widget">(widget)组件<span class="filter-num">2</span></div>
             </li>
             <li class="filter-title">
-                <div class="filter-link" data-filtertype="layout">组件布局<span class="filter-num">1</span></div>
+                <div class="filter-link" data-filtertype="layout">(layout)组件布局<span class="filter-num">1</span></div>
             </li>
         </ul>
     </sidebar>
-    <div class="timeline-content-wrap">
-        <div class="timeline-content filter-item" data-filtertype="widget">
-            <span class="timeline-title">(widget) 组件新增</span>
+    <div class="filter-item-wrap">
+        <div class="filter-item" data-filtertype="widget">
+            <span>(widget) 组件新增</span>
         </div>
-        <div class="timeline-content filter-item" data-filtertype="layout">
-            <span class="timeline-title">(layout)广告组件 layout 升级</span> 
+        <div class="filter-item" data-filtertype="layout">
+            <span>(layout)广告组件 layout 升级</span> 
         </div>
-        <div class="timeline-content filter-item" data-filtertype="widget">
-            <span class="timeline-title">(widget)测试版发布</span>
+        <div class="filter-item" data-filtertype="widget">
+            <span>(widget)测试版发布</span>
         </div>
     </div>
 </mip-filter>
@@ -42,25 +45,24 @@
 
 ## 属性
 
-### delay
+### mip-filter-filterWrap
 
-说明：延迟翻转  
-必选项：否  
-类型：数字  
-取值范围：>0  
-单位：毫秒(ms)  
-默认值：0
+说明：筛选按钮 DOM  
+必选项：是  
+类型：字符串  
+取值：document.querySelector()可填内容，如“.box”  
 
-### duration
+### mip-filter-itemWrap
 
-说明：动画持续时间  
-必选项：否  
-类型：数字  
-取值范围：>0  
-单位：毫秒(ms)  
-默认值：400  
+说明：筛选项 DOM  
+必选项：是  
+类型：字符串  
+取值：document.querySelector()可填内容，如“.box”  
 
-## 注意事项  
+### mip-filter-enableHash
 
-1、单卡牌与多卡牌有冲突。  
-2、mip-sample-list-last 的作用是翻牌时保留最后一张，不加也不会有问题。
+说明：是否支持hash控制  
+必选项: 否, 默认为“true”  
+类型：字符串  
+取值：true/false  
+默认值：auto  

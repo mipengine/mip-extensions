@@ -137,6 +137,7 @@ define(function (require) {
     }
 
     function bindEvent($dom) {
+        var $el = $(this.element);
         var headTitle = this.element.getAttribute('head-title');
         $dom.delegate('.mip-vd-tabs-episode-item', 'click' , function(ev) {
 
@@ -157,7 +158,8 @@ define(function (require) {
                 "event": "loadiframe",
                 "data": {
                     "url": href,
-                    "title": headTitle || head
+                    "title": headTitle || head,
+                    "click": $el.data('click')
                 }
             };
 

@@ -1,7 +1,6 @@
 /**
  * @file 下载
  * @author fengchuantao
- * 
  * @time 2016.06.21
  */
 
@@ -57,13 +56,12 @@ define(function (require) {
                     textdom+
                 "</div>"+
                 "<div class='mip-appdl-downbtn '>"+
-                    "<a href="+downsrc+" >"+downtext+"</a>"+
+                    "<a href="+downsrc+" target='_blank'>"+downtext+"</a>"+
                 "</div>"+
                 "<div class='mip-appdl-closebutton'></div>"+
             "</div>"+
         "</div>";
 
-        
         if(downsrc) {
             $(this).append(str)
         }

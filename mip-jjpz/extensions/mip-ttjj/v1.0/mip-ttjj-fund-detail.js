@@ -475,18 +475,6 @@ define('mip-ttjj-fund-detail', ['require', 'customElement', 'zepto'], function (
                 var _this = $(this),
                     $flexShare = _this.siblings("#flexShare");
                 $flexShare.toggleClass("hide");
-                // if (!this.Share) {
-                //     this.Share = true;
-                //     $flexShare.on("touchend", "li", function () {
-                //         var j = $(this);
-                //         setTimeout(function () {
-                //             var type = j.data("type");
-                //             if (type) {
-                //                 funCaller.shareTo(type);
-                //             }
-                //         }, 1200);
-                //     })
-                // }
             });
             var user = null;
             $('#addFavor').on('click', function (e) {
@@ -643,47 +631,14 @@ define('mip-ttjj-fund-detail', ['require', 'customElement', 'zepto'], function (
             target.hide();
             target.find(".alert").removeClass("show");
         },
-        // shareTo: function (dest) {
-        //     var shareTitle = "天天基金网";
-        //     var url = location.href;
-        //     /*sina*/
-        //     var source = "基金详情";
-        //     var sourceUrl = "http://m.1234567.com.cn/";
-        //     var sinaAppkey = "2136217547";
-        //     var sinaRalateUid = "2627698865";
-
-        //     var title = shareTitle + "-" + source + "(m.1234567.com.cn)";
-
-        //     if (url == null || title == null || url == "" || title == "") {
-        //         funCaller.alertWindow("错误的链接地址或标题");
-        //         return;
-        //     }
-        //     var shareUrl = "";
-        //     switch (dest.toLowerCase()) {
-        //         case "sina":
-        //             shareUrl = "http://service.weibo.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=" + sinaAppkey + "&title=" + encodeURIComponent(title) + "&pic=&ralateUid=" + sinaRalateUid + "&source=" + encodeURIComponent(source) + "&sourceUrl=" + encodeURIComponent(sourceUrl);
-        //             break;
-        //         case "qq":
-        //             shareUrl = "http://v.t.qq.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=801004939&site=http://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&pic=";
-        //             break;
-        //         case "qzone":
-        //             shareUrl = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + encodeURIComponent(url) + "&appkey=801004939&site=http://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&desc=&summary=&site=http://wap.eastmoney.com";
-        //             break;
-        //     }
-
-        //     window.parent.location.href = shareUrl;
-        // },
         addFavor: function (option, callback) {
             $.hardLoad();
             $.ajax({
                 type: "GET",
                 dataType: 'jsonp',
-                // type: "POST",
                 url: "http://fundex2.eastmoney.com/FundMobileApi/FundFavor.ashx",
                 data: option,
                 success: function (resultData) {
-
-                    // var resultData = JSON.parse(resultData);
                     if (typeof resultData == 'string') resultData = JSON.parse(resultData);
 
                     var result = resultData["Datas"];

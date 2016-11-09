@@ -11,7 +11,6 @@
 ## 示例
 
 筛选功能，支持从hash定位筛选项.  
-enableHash为false时，hash不起控制作用，改变筛选项，也不会改变hash
 
 ```html
 <mip-filter mip-filter-filterWrap=".filter" mip-filter-itemWrap=".filter-item-wrap" mip-filter-enableHash="true">
@@ -62,7 +61,7 @@ enableHash为false时，hash不起控制作用，改变筛选项，也不会改�
 ### mip-filter-enableHash
 
 说明：是否支持hash控制  
-必选项: 否, 默认为“true”  
+必选项: 否,
 类型：字符串  
-取值：true/false  
-默认值：auto  
+取值：true, false  
+默认值：true

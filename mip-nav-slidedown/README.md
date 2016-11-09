@@ -11,6 +11,7 @@ mip-nav-slidedown 实现响应式的菜单，在mip官网有引用
 ## 示例
 
 按如下格式添加内容，`<a>`可以替换为`<mip-link>`
+
 ```html
 <div class="mip-nav-wrapper">
 <mip-nav-slidedown data-id="bs-navbar" class="mip-element-sidebar container" >

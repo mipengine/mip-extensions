@@ -54,17 +54,11 @@ define(function (require) {
         }
     };
     /**
-    * define a Filter, 
-    * opt = {
-        'filterWrap' : document.querySelector('.xx1'),
-        'itemWrap' : document.querySelector('.xx2'),
-        'mobileWidth' : 767,
-        'emptyTip' : '没有符合的内容'
-    * }
-    * filterWrap: mandatory. dom wrapper of filter
-    * itemWrap: mandatory. dom wrapper of item
-    * mobileWidth: maximum width to show wise layout
-    * emptyTip: shown to user if no item applys to filter
+    * define a Filter,
+    * opt.filterWrap: mandatory. dom wrapper of filter
+    * opt.itemWrap: mandatory. dom wrapper of item
+    * opt.mobileWidth: maximum width to show wise layout
+    * opt.enableHash: weather use window hash.
     */
     function Filter(opt) {
         var _this = this;

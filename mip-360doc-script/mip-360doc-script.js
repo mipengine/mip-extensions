@@ -1,39 +1,39 @@
-﻿define(function (require) {
+﻿define( function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        $("#backgroundPopup1").click(closeceng);
-        $("#docShare").click(share);
-        $("#wxShare").click(wxshare);
-        $(".guanbi").click(closeartnew);
+        $(".mip-360doc-script-backgroundgrey").click(closeceng);
+        $(".mip-360doc-script-p_header_fx").click(share);
+        $(".mip-360doc-script-bds_wx").click(wxshare);
+        $(".mip-360doc-script-guanbi").click(closeartnew);
         getRefNum();
-        $("#wxggalink").html("<span class=\"pic\"><img src=\"http://www.360doc.cn/images/a1.png?t=2016032801\" class=\"pic2\"/></span><span class=\"pic\"><img src=\"http://www.360doc.cn/images/a2.png?t=2016032801\"  class=\"pic2\"/></span>");
+        $(".mip-360doc-script-wxggalink").html("<span class=\"mip-360doc-script-pic\"><img src=\"http://www.360doc.cn/images/a1.png?t=2016032801\" class=\"pic2\"/></span><span class=\"mip-360doc-script-pic\"><img src=\"http://www.360doc.cn/images/a2.png?t=2016032801\"  class=\"pic2\"/></span>");
         var index = 1;
-        var $_picn = $(".pic").length;
+        var $_picn = $(".mip-360doc-script-pic").length;
         if ($_picn > 1) {
-            $(".pic").eq(0).show().siblings(".pic").hide();
+            $(".mip-360doc-script-pic").eq(0).show().siblings(".mip-360doc-script-pic").hide();
         }
-        $("#artnewdiv").css("display", "");
-        setone();
+        $(".mip-360doc-script-box960").css("display", "");
+        setone();       
     };
 
     //第三方分享
     function share() {
-        if ($("#sharetobaidu").css("display") == "none" || $("#sharetobaidu").css("display") == "") {
-            $("#sharetobaidu").show();
-            $("#sharelayer").css("display", "");
-            $("#backgroundPopup1").css("display", "block");
-            $("#headyinidtemp").hide();
-            $("#urllayer").hide();
+        if ($(".mip-360doc-script-headejbox").css("display") == "none" || $(".mip-360doc-script-headejbox").css("display") == "") {
+            $(".mip-360doc-script-headejbox").show();
+            $(".mip-360doc-script-share-bar").css("display", "");
+            $(".mip-360doc-script-backgroundgrey").css("display", "block");
+            $(".mip-360doc-script-xt1").hide();
+            $(".mip-360doc-script-boxtop").hide();
         }
         else {
-            $("#sharetobaidu").hide();
-            $("#sharelayer").hide();
-            $("#backgroundPopup1").hide();
-            $("#headyinidtemp").show();
-            $("#urllayer").hide();
+            $(".mip-360doc-script-headejbox").hide();
+            $(".mip-360doc-script-share-bar").hide();
+            $(".backgroundgrey").hide();
+            $(".mip-360doc-script-xt1").show();
+            $(".mip-360doc-script-boxtop").hide();
         }
     }
     //广告轮播
@@ -51,7 +51,7 @@
         }, 4000);
     }
     function show(index) {
-        $(".pic").eq(index).show().siblings(".pic").hide();
+        $(".mip-360doc-script-pic").eq(index).show().siblings(".mip-360doc-script-pic").hide();
     }
     //获取评论数
     function getRefNum() {
@@ -59,7 +59,7 @@
         if (artid == "")
             return;
 
-
+      
         $.ajax({
             type: 'POST',
             url: 'https://transfer.360doc.cn/ajax/Handler.ashx',
@@ -67,21 +67,21 @@
             success: function (data) {
                 var useridref = data.split("|");
                 if (useridref[1] != null && useridref[1] != "") {
-                    $("#refnum").html(useridref[1]);
+                    $(".mip-360doc-script-refnum").html(useridref[1]);
                 }
                 else {
-                    $("#refnum").html('0');
-                }
-                $("#flowernum").html("献花(" + useridref[3] + ")");
+                    $(".mip-360doc-script-refnum").html('0');
+                }            
+                $(".mip-360doc-script-refnum").html("献花(" + useridref[3] + ")");
             },
-            error: function () { }
+            error: function () {}
         })
 
     }
     //获取文章id
     function getID() {
-        var url = $("#resaveid").attr('href');
-
+        var url = $(".mip-360doc-script-p_header_sc").attr('href');
+        
         if (url.indexOf("360doc") < 0)
             return "";
         var index = url.indexOf("artid=");
@@ -89,7 +89,7 @@
             return "";
         var index2 = url.indexOf("&", index);
         if (index2 <= 0)
-            return "";
+            return "";  
         var artid = url.substr(index + 6, index2 - index - 6);
 
         return artid;
@@ -97,26 +97,26 @@
 
     //关闭遮罩层
     function closeartnew() {
-        $("#artnewdiv").hide();
+        $(".mip-360doc-script-box960").hide();
     }
     if (navigator.userAgent.toLowerCase().indexOf("ucbrowser") > -1) {
 
-        $("#toptoolbar").width("69%");
+        $(".mip-360doc-script-p_header_nav2").width("69%");
     }
 
     //关闭分享层
     function closeceng() {
-        $("#sharetobaidu").hide();
-        $("#backgroundPopup1").hide();
-        $("#headyinidtemp").show();
-        $("#urllayer").hide();
+        $(".mip-360doc-script-headejbox").hide();
+        $(".mip-360doc-script-backgroundgrey").hide();
+        $(".mip-360doc-script-xt1").show();
+        $(".mip-360doc-script-boxtop").hide();
     }
 
     //分享到微信地址
     function wxshare() {
-        $("#urllayer").show();
-        $("#sharelayer").hide();
-    }
-
+        $(".mip-360doc-script-boxtop").show();
+        $(".mip-360doc-script-share-bar").hide();
+    }   
+        
     return customElem;
 });

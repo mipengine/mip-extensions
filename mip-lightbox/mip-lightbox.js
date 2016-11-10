@@ -19,13 +19,13 @@ define(function (require){
 
         var _this = this;
         _this.open = false;
+        _this.id_ = this.element.id;
 
         util.css(_this.element, {
             'position': 'fixed',
             'z-index': 10001,
             'top': 0,
             'right': 0,
-            'bottom': 0,
             'left': 0,
             'transition': 'opacity 0.1s ease-in'
         });
@@ -34,7 +34,7 @@ define(function (require){
         changeParentNode.call(_this);
 
         /* 事件注册 */
-        _this.addEventAction('close', function() {close_.call(_this, event)});
+        _this.addEventAction('close', function() { close_.call(_this, event)});
         _this.addEventAction('open', function() {open_.call(_this, event)});
 
     }
@@ -53,18 +53,7 @@ define(function (require){
 
         _this.container_ = document.createElement('div');
         _this.applyFillContent(_this.container_);
-        
-        util.css(_this.container_, {
-            'z-index': 10001,
-            'top': 0,
-            'right': 0,
-            'bottom': 0,
-            'left': 0,
-            'transition': 'opacity 0.1s ease-in'
-        });
-
         _this.element.appendChild(_this.container_);
-        
 
         for(index = 0; index < nodes.length; index ++) {
             _this.container_.appendChild(nodes[index]);
@@ -94,6 +83,7 @@ define(function (require){
 
         _this.open = true;
         util.css(_this.element, {'display': 'block'});
+        openMask_.call(_this);
 
     }
 
@@ -115,9 +105,54 @@ define(function (require){
 
         _this.open = false;
 
+        closeMask_.call(_this);
         util.css(_this.element, {'display': 'none'});
         util.css(document.body, {'overflow': 'auto'});
 
+    }
+
+
+    /**
+     * [openMask_ 打开遮盖层]
+     * 
+     * @return
+     */
+    function openMask_() {
+        
+        var _this = this;
+
+        /* 不存在遮盖层时先创建 */
+        if(!_this.maskElement) {
+
+            const mask = document.createElement('div');
+            mask.id = 'MIP-LLIGTBOX-MASK';
+            mask.setAttribute('on', 'tap:' + _this.id_ + '.close');
+            mask.style.display = 'block';
+
+            /* 与mip-lightbox 同级dom */
+            _this.element.parentNode.appendChild(mask);
+            mask.addEventListener('touchmove', function(evt) {
+                evt.preventDefault();
+            }, false);
+
+            _this.maskElement = mask;
+
+        }
+
+        /* 样式设置 */
+        util.css(_this.maskElement, {'display': 'block'});
+
+    }
+
+    /**
+     * [closeMask_ 关闭遮盖层]
+     * 
+     * @return
+     */
+    function closeMask_() {
+        if(this.maskElement) {
+            util.css(this.maskElement, {'display': 'none'});
+        }
     }
 
 

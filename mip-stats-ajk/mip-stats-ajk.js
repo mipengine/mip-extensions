@@ -6,23 +6,20 @@
  */
 
 define(function (require) {
-    var $ = require('zepto');
-
     var customElement = require('customElement').create();
 
     customElement.prototype.build = function () {
         var elem = this.element;
-        var pageName = $(elem).attr('pg-name');
-        var cityAlias = $(elem).attr('city-alias');
+        var pageName = elem.getAttribute('pg-name');
+        var cityAlias = elem.getAttribute('city-alias');
 
         // init the page params
-        var APF = window.APF = {};
-        APF.info = {
-            cityAlias: cityAlias,
-            pageName: pageName
-        };
+        var APF = window.APF = window.APF || {};
+        var info = APF.info = APF.info || {};
+        pageName && (info.pageName = pageName);
+        cityAlias && (info.cityAlias = cityAlias);
 
-        var url = $(elem).attr('src');
+        var url = elem.getAttribute('src');
         var elescrit = document.createElement('script');
         elescrit.src = url;
         $('body').append(elescrit);

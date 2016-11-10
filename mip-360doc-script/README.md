@@ -6,7 +6,7 @@ mip-360doc-script 是360doc网业务逻辑组件。
 ----|----
 类型|业务,广告
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/mip-360doc-script/latest/mip-360doc-script.js
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-360doc-script.js
 
 ## 示例
 

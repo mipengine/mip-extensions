@@ -1,6 +1,6 @@
 # mip-qz-sns
 
-点赞、分享组件
+前瞻网点赞、分享组件
 
 标题|内容
 ----|----
@@ -15,10 +15,10 @@
 <link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_common.css?v=20160101"> <!--测试用-->
 <link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_art.css?v=20160101"> <!--测试用-->
 <mip-qz-sns class="art-sns sns" url="http://log.qianzhan.com/handle/favorAdd" 
-	params="{ r: '161109170215', id: '161108-e3868b91', name: '', cate: '150', type: 'news', url: '' }"
+	params='{ "r": "161109170215", "id": "161108-e3868b91", "name": "", "cate": "150", "type": "news", "url": "" }'
 	source="前瞻网" sourceurl="http://www.qianzhan.com/">
     <ul>
-        <li class="zan"><em><i class="i-up1 icon"></i></em><span>赞 126</span></li>
+        <li class="up"><em><i class="i-up1 icon"></i></em><span>赞 126</span></li>
         <li class="weibo"><em><i class="i-weibo icon"></i></em><span>微博</span></li>
         <li class="zone"><em><i class="i-zone icon"></i></em><span>QQ空间</span></li>
         <li class="weixin"><em><i class="i-weixin icon"></i></em><span>微信</span></li>
@@ -54,5 +54,5 @@
 
 ## 注意事项
 点赞时的ajax拼接规则为 {url} + ? + $.param(JSON.parse({params}))
-分享的title、description取自文档的title、description，source、sourceurl取自组件属性
+分享的title、description取自文档的title、description属性
 

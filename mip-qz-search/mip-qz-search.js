@@ -1,5 +1,5 @@
 /**
-* @file 搜索组件
+* @file 前瞻网搜索组件
 * @author ningsong
 * @time 2016.11.09
 */
@@ -20,8 +20,8 @@ define(function (require) {
         var $element = $(element);
         var action = this.element.getAttribute("action") || "";
 
-        $element.find("#search_sbt").bind("click", function () {
-            var $keys = $element.find("#s_keys");
+        $element.find(".sbt").bind("click", function () {
+            var $keys = $element.find(".txt");
             if ($keys.val().length > 0) {
                 var text = $keys.val();
                 var regx = new RegExp("[<>'\"*?]+", "ig");

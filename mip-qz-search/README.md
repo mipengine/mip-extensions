@@ -1,6 +1,6 @@
 # mip-qz-search
 
-搜索组件
+前瞻网搜索组件
 
 标题|内容
 ----|----
@@ -14,8 +14,8 @@
 ```html
 <link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_common.css?v=20160101"> <!--测试用-->
 <mip-qz-search class="search" action="http://xw.qianzhan.com/search?q={0}" >
-    <input type="text" name="s_keys" id="s_keys" class="txt" placeholder="请输入关键词" value="" >
-    <input type="button" id="search_sbt" class="sbt i-search icon" >
+    <input type="text" class="txt" placeholder="请输入关键词" value="" >
+    <input type="button" class="sbt i-search icon" >
 </mip-qz-search>
 ```
 

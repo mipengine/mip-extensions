@@ -1,5 +1,5 @@
 /**
-* @file 分享、点赞组件
+* @file 前瞻网分享、点赞组件
 * @author ningsong
 * @time 2016.11.09
 */
@@ -19,13 +19,13 @@ define(function (require) {
 
         var $element = $(element);
 
-        $element.find(".zan").bind("click", function () {
+        $element.find(".up").bind("click", function () {
             iZan(element);
         });
 
         var source = element.getAttribute("source");
         var sourceurl = element.getAttribute("sourceurl");
-        
+
         $element.find(".weibo").bind("click", function () {
             shared2(2, source, sourceurl);
         });
@@ -33,14 +33,52 @@ define(function (require) {
         $element.find(".zone").bind("click", function () {
             shared2(0, source, sourceurl);
         });
-        
+
+        var $dom = undefined;
         $element.find(".weixin").bind("click", function () {
-            
+            if ($dom == undefined) {
+                var wximg = "http://pan.baidu.com/share/qrcode?w=200&h=200&url=" + encodeURIComponent(document.URL);
+                $dom = $("<table class='boxy-wrapper fixed' style='z-index: 1338; top: 50%; left: 50%; margin-left: -175px; margin-top: -175px;'>" +
+                      "<tbody>" +
+                          "<tr>" +
+                              "<td class='boxy-top-left'></td>" +
+                              "<td class='boxy-top'></td>" +
+                              "<td class='boxy-top-right'></td>" +
+                          "</tr>" +
+                          "<tr>" +
+                              "<td class='boxy-left'></td>" +
+                              "<td class='boxy-inner'>" +
+                                  "<div class='title-bar'>" +
+                                      "<h2 style='margin-right:57px;'>微信扫一扫下面二维码</h2>" +
+                                      "<a class='close'></a>" +
+                                  "</div>" +
+                                  "<div class='boxy-content' style='display: block; width: 310px; height: 310px;'>" +
+                                      "<img alt='' src='" + wximg + "'>" +
+                                  "</div>" +
+                              "</td>" +
+                              "<td class='boxy-right'></td>" +
+                          "</tr>" +
+                          "<tr>" +
+                              "<td class='boxy-bottom-left'></td>" +
+                              "<td class='boxy-bottom'></td>" +
+                              "<td class='boxy-bottom-right'></td>" +
+                          "</tr>" +
+                      "</tbody>" +
+                      "</table>");
+                $element.append($dom);
+                $dom.find("a.close").bind("click", function () {
+                    $dom.hide();
+                });
+            } else {
+                $dom.show();
+            }
+
         });
     };
 
     function shared2(s2, source, sourceurl) {
         var title = $(document).attr("title");
+        title = title == undefined ? "" : title;
         var desc = $("meta[name='Description']").attr("content");
         desc = desc == undefined ? "" : desc;
         desc = desc.substring(0, 100);
@@ -66,10 +104,10 @@ define(function (require) {
         window.open(url, title, "height=" + height + ", width=" + width + ", top=10, left=10, toolbar=no, menubar=no, scrollbars=no,resizable=no,location=no, status=no");
         return false;
     }
-    
+
     function iZan(element) {
         var $element = $(element);
-        var num = $element.find("li.zan span");
+        var num = $element.find("li.up span");
         if (!num.attr("add")) {
             try {
                 var numVal = parseInt(num.html().replace('赞 ', '')) + 1;

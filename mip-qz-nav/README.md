@@ -1,8 +1,8 @@
 # mip-qz-nav
 
-前瞻网导航组件
+前瞻网页面导航组件
 
-描述|网站导航组件
+描述|前瞻网页面导航组件
 ----|----
 类型|定制,业务
 支持布局| container
@@ -13,7 +13,7 @@
 ### 基本用法
 ```html
 <link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_common.css?v=20160101"> <!--测试用-->
-<mip-qz-nav class="nav-wrap" rawurl="/t/detail/507/161108-c579ed88.html">
+<mip-qz-nav class="nav-wrap" rawurl="/">
 	<p class="nav-tit">选择栏目</p>
 	<nav class="nav">
 		<ul class="clf" style="width:2000px;position:relative;">

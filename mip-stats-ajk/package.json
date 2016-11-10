@@ -1,0 +1,12 @@
+{
+    "name": "mip-stats-ajk",
+    "version": "1.1.2",
+    "author": {
+        "name": "danny",
+        "email": "decailiu@anjuke.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

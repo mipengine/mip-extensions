@@ -1,4 +1,4 @@
-define('mip-ttjj-fund-detail', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     customElem.prototype.build = function () {
@@ -213,7 +213,7 @@ define('mip-ttjj-fund-detail', ['require', 'customElement', 'zepto'], function (
             var gotoJBCC = $('#gotoJBCC'), gotoJBCCcontent = $('#jbcc_scroll').find('tbody'), tbody = "", datas = data.Datas;
             $('#cjjzri').html('截止日期：<span class="numberFont">' + datas[0].ShareDate + '</span>').show();
             for (i = 0; i < datas.length; i++) {
-                tbody += '<tr><td> <a href="http://m.quote.eastmoney.com/stock/' + datas[i].ShareCode + '.shtml">' + datas[i].ShareName + '</a></td>';
+                tbody += '<tr><td> <a href="http://m.quote.eastmoney.com/stock,' + datas[i].ShareCode + '.shtml">' + datas[i].ShareName + '</a></td>';
                 tbody += '<td class="numberFont">' + datas[i].ShareProportion + '</td>';
                 tbody += '<td class="' + funCaller.isRed(datas[i].ShareGain) + ' numberFont">' + funCaller.initNumber2(datas[i].ShareGain * 100, 2) + '</td></tr>';
             }
@@ -735,7 +735,4 @@ define('mip-ttjj-fund-detail', ['require', 'customElement', 'zepto'], function (
     }
 
     return customElem;
-});
-require(['mip-ttjj-fund-detail'], function (plugindemo) {
-    MIP.registerMipElement('mip-ttjj-fund-detail', plugindemo);
 });

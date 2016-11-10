@@ -1,0 +1,13 @@
+{
+    "name": "mip-ttjj-fund-detail",
+    "version": "1.0.0",
+    "description": "sample component",
+    "author": {
+        "name": "elang126",
+        "email": "liiang2006@126.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

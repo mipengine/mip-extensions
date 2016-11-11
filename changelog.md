@@ -47,5 +47,4 @@
 [mip-hk-keep](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-keep)|[新增] 好看详情页下载app安装打开对应详情页接口
 [mip-hk-share](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-share)|[新增] 好看分享插件
 [mip-hk-showarticle](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-showarticle)|[新增] 显示文章更多详情
-[mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[新增] 寻医问药页面功能组件
 [mip-html-tabs](https://github.com/mipengine/mip-extensions/tree/master/mip-html-tabs)|[新增] TAB滑动、显示、隐藏、元素跳转等操作

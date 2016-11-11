@@ -1,4 +1,4 @@
-﻿define(function (require) {
+﻿define( function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
@@ -13,10 +13,10 @@
         var index = 1;
         var $_picn = $(".mip-360doc-script-pic").length;
         if ($_picn > 1) {
-            $(".mip-360doc-script-pic").eq(0).show().siblings(".mip-360doc-script-pic").hide();
+            $(".mip-360doc-script-pic").eq(0).css("display", "inline").siblings(".mip-360doc-script-pic").hide();
         }
         $(".mip-360doc-script-box960").css("display", "");
-        setone();
+        setone();       
     };
 
     //第三方分享
@@ -38,22 +38,22 @@
     }
     //广告轮播
     function setone() {
-        var t = setTimeout(function () {
-            show(1);
-            clearTimeout(t);
+      var t=  setTimeout(function () {
+          show(1);
+          clearTimeout(t);
             settwo();
         }, 3000);
     }
     //广告轮播
     function settwo() {
-        var t = setTimeout(function () {
+       var t =  setTimeout(function () {
             show(0);
             clearTimeout(t);
             setone();
         }, 4000);
     }
     function show(index) {
-        $(".mip-360doc-script-pic").eq(index).show().siblings(".mip-360doc-script-pic").hide();
+        $(".mip-360doc-script-pic").eq(index).css("display", "inline").siblings(".mip-360doc-script-pic").css("display", "none");
     }
     //获取评论数
     function getRefNum() {
@@ -61,7 +61,7 @@
         if (artid == "")
             return;
 
-
+      
         $.ajax({
             type: 'POST',
             url: 'https://transfer.360doc.cn/ajax/Handler.ashx',
@@ -73,17 +73,17 @@
                 }
                 else {
                     $(".mip-360doc-script-refnum").html('0');
-                }
-                $(".mip-360doc-script-refnum").html("献花(" + useridref[3] + ")");
+                }            
+                $(".mip-360doc-script-xh1").html("献花(" + useridref[3] + ")");
             },
-            error: function () { }
+            error: function () {}
         })
 
     }
     //获取文章id
     function getID() {
         var url = $(".mip-360doc-script-p_header_sc").attr('href');
-
+        
         if (url.indexOf("360doc") < 0)
             return "";
         var index = url.indexOf("artid=");
@@ -91,7 +91,7 @@
             return "";
         var index2 = url.indexOf("&", index);
         if (index2 <= 0)
-            return "";
+            return "";  
         var artid = url.substr(index + 6, index2 - index - 6);
 
         return artid;
@@ -118,7 +118,8 @@
     function wxshare() {
         $(".mip-360doc-script-boxtop").show();
         $(".mip-360doc-script-share-bar").hide();
-    }
-
+    }   
+        
     return customElem;
 });
+

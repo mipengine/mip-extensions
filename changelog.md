@@ -33,3 +33,19 @@
 [mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[新增] 寻医问药页面功能组件
 [mip-stats-ajk](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-ajk)|[新增] 安居客统计组件
 [mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[新增] 360doc网业务逻辑组件
+
+#### 2016.11.08
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级] 折叠组件：支持默认展开节点
+[mip-hk-call](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-call)|[新增] 好看调起客户端
+[mip-hk-fcvideo](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-fcvideo)|[新增] 好看详情页凤巢视频播放一段时间提示下载客户端
+[mip-hk-feed](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-feed)|[新增] 好看feed流
+[mip-hk-keep](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-keep)|[新增] 好看详情页下载app安装打开对应详情页接口
+[mip-hk-share](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-share)|[新增] 好看分享插件
+[mip-hk-showarticle](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-showarticle)|[新增] 显示文章更多详情
+[mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[新增] 寻医问药页面功能组件
+[mip-html-tabs](https://github.com/mipengine/mip-extensions/tree/master/mip-html-tabs)|[新增] TAB滑动、显示、隐藏、元素跳转等操作

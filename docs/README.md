@@ -17,7 +17,7 @@ MIP 扩展组件开发手册
 
 1. [准备](./prepare.md): 在 GitHub 上 fork MIP 扩展组件的仓库，并 clone 到本地
 2. [创建结构](./create-structure.md): 包括组件目录、package.json 和 README.md
-3. [开发](./develop.md): 编写组件的代码，以及[调试组件](./debug.md)
+3. [开发](./develop.md): 编写组件的代码，以及调试组件
 4. [完成开发](./wind-up.md): 更新组件的版本，并发起 pull-request
 5. [MIP 开发组审核](./approve.md): 审核通过将接受 pull-request 并上线，审核不通过则反馈并继续修改
 
@@ -42,3 +42,7 @@ MIP 扩展组件开发手册
 [sample](https://github.com/mipengine/mip-extensions/tree/master/mip-sample) 是 MIP 扩展组件的示例项目。当然，你可以在 [MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions) 中找到其他开发完成的扩展组件，它们都可以作为开发 MIP 扩展组件的参考。
 
 
+工具
+----
+
+我们提供了 [mip-cli](https://github.com/mipengine/mip-cli) 工具，可以帮助开发者在开发 MIP 扩展组件时进行调试。

@@ -233,5 +233,5 @@ mip-sample {
 调试组件
 ------
 
-开发过程中，我们需要依赖 `mip-cli` 工具进行组件的调试和预览。`mip-cli` 将根据 `README.md` 的示例章节生成调试页面，所以，在调试之前我们需要编写好 `README.md`。详细信息请参考 [调试组件](./debug.md)、[MIP 扩展组件 README.md 规范](./spec-readme-md.md) 文档。
+开发过程中，我们需要依赖 `mip-cli` 工具进行组件的调试和预览。`mip-cli` 将根据 `README.md` 的示例章节生成调试页面，所以，在调试之前我们需要编写好 `README.md`。详细信息请参考 [调试组件](https://github.com/mipengine/mip-cli)、[MIP 扩展组件 README.md 规范](./spec-readme-md.md) 文档。
 

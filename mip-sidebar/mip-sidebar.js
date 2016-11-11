@@ -7,8 +7,8 @@
  */
 define(function (require) {
     var customElement = require('customElement').create();
-    var Gesture = require('components/gesture');
     var util = require('util');
+    var Gesture = util.Gesture;
 
     /**
      * [toggle_ 打开或关闭 sidebar 入口]

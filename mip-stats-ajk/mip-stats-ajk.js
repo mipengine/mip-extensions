@@ -22,7 +22,7 @@ define(function (require) {
         var url = elem.getAttribute('src');
         var elescrit = document.createElement('script');
         elescrit.src = url;
-        $('body').append(elescrit);
+        document.getElementsByTagName('body')[0].appendChild(elescrit);
     };
 
     return customElement;

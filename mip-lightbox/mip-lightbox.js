@@ -6,7 +6,7 @@
 
 define(function (require){
     var customElement = require('customElement').create();
-    var fixedElement = require('components/fixedElement');
+    var fixedElement = require('fixed-element');
     var util = require('util');
     var Gesture = util.Gesture;
     

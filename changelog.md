@@ -1,6 +1,25 @@
-# 上线日志 
+# 升级日志
 
-> 2016.11.10
+#### 2016.11.11 
+
+> 核心代码上线
+
+	1. mip-img 组件增加缺省图片
+	2. mip-img 组件升级加载动画为渐入效果
+	3. a 标签跳转事件监听
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-askad](https://github.com/mipengine/mip-extensions/tree/master/mip-askad)|[升级] 加错误日志
+[mip-lightbox ](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级] 修改gesture引入方式
+[mip-stats-ajk](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-ajk)|[升级] 移除了对Zepto的依赖
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc组件业务逻辑修改
+
+#### 2016.11.10
+
+> 组件上线
 
 组件名|功能说明
 ---|---

@@ -87,8 +87,8 @@ define(function (require) {
         if(!_this.maskElement) {
 
             const mask = document.createElement('div');
-            mask.id = 'MIP-SIDEBAR-MASK';
-            mask.setAttribute('on', 'tap:sidebar.close');
+            mask.id = 'MIP-' + _this.id_.toUpperCase() + '-MASK';
+            mask.className = 'MIP-SIDEBAR-MASK';
             mask.style.display = 'block';
 
             /* 与mip-sidebar 同级dom */
@@ -100,6 +100,8 @@ define(function (require) {
             _this.maskElement = mask;
 
         }
+
+        _this.maskElement.setAttribute('on', 'tap:' + _this.id_ + '.close');
 
         /* 样式设置 */
         util.css(_this.maskElement, {'display': 'block'});
@@ -136,6 +138,7 @@ define(function (require) {
 
         var _this = this;
         _this.maskElement = false;
+        _this.id_ = _this.element.id;
         _this.side_ = _this.element.getAttribute('side');
         _this.ANIMATION_TIMEOUT = 100; 
 

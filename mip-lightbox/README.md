@@ -17,7 +17,8 @@ mip-lightbox 是由用户控制展现或关闭的一个全屏浮层组件，组�
 
 <mip-lightbox
     id="my-lightbox"
-    layout="nodisplay">
+    layout="nodisplay"
+    class="mip-hidden">
     <div class="lightbox">
         <h1>Hello, World!</h1>
         <p> this is the lightbox</p>

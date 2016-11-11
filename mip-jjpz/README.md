@@ -1,20 +1,21 @@
-# mip-ttjj-fund-detail
+# mip-jjpz
 
-mip-ttjj-fund-detail  自有业务详情页整体交互组件
+mip-jjpz  自有业务详情页整体交互组件
 
 标题|内容
 ----|----
 可用性|完成
 支持布局|responsive,fill,container
-所需脚本|mip-ttjj-funddetail.js
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-jjpz.js
 
 ## 示例
 
 ### 组件模块定义
 
-```
-<mip-ttjj-fund-detail asid="mbox">
-</mip-ttjj-fund-detail>
+```html
+<mip-jjpz asid="000001">
+
+</mip-jjpz>
 ```
 
 ## 属性

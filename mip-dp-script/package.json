@@ -1,0 +1,10 @@
+{
+    "name": "mip-dp-script",
+    "version": "1.0.0",
+    "author": {
+        "name": "hans"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

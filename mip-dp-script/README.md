@@ -1,17 +1,17 @@
 # mip-dp-script 
 
-mip-dp-script ÓÃÀ´Ö§³Öwww.lz55.cnÒµÎñ½»»¥ºÍ¹ã¸æÏÔÊ¾
+mip-dp-script ç”¨æ¥æ”¯æŒwww.lz55.cnä¸šåŠ¡äº¤äº’å’Œå¹¿å‘Šæ˜¾ç¤º
 
-|ÃèÊö|ÒµÎñ½»»¥ºÍ¹ã¸æÕ¹Ê¾|
+|æè¿°|ä¸šåŠ¡äº¤äº’å’Œå¹¿å‘Šå±•ç¤º|
 |---|---|
-|ÀàÐÍ|¹ã¸æ|
-|Ö§³Ö²¼¾Ö|N/S|
-|ËùÐè½Å±¾|https://mipcache.bdstatic.com/static/v1.2/mip-dp-script.js|
+|ç±»åž‹|å¹¿å‘Š|
+|æ”¯æŒå¸ƒå±€|N/S|
+|æ‰€éœ€è„šæœ¬|https://mipcache.bdstatic.com/static/v1.2/mip-dp-script.js|
 
-## Ê¾Àý
+## ç¤ºä¾‹
 
-### ¹Ì¶¨Î»¹ã¸æ
-ÔÚMIP HTMLÖÐ,Ö±½ÓÊ¹ÓÃ±êÇ©, ÓÃÓÚÕý³£ÏÔÊ¾¹Ì¶¨Î»¹ã¸æ¡£Ê¾ÀýÈçÏÂ:
+### å›ºå®šä½å¹¿å‘Š
+åœ¨MIP HTMLä¸­,ç›´æŽ¥ä½¿ç”¨æ ‡ç­¾, ç”¨äºŽæ­£å¸¸æ˜¾ç¤ºå›ºå®šä½å¹¿å‘Šã€‚ç¤ºä¾‹å¦‚ä¸‹:
 
 ```html
    <section class="adwraper" id="topad"></section>
@@ -22,8 +22,8 @@ mip-dp-script ÓÃÀ´Ö§³Öwww.lz55.cnÒµÎñ½»»¥ºÍ¹ã¸æÏÔÊ¾
 
 ```
 
-### ·Ç¹Ì¶¨Î»¹ã¸æ
-ÔÚMIP HTMLÖÐ,Ö±½ÓÊ¹ÓÃmip-dp-script±êÇ©¡£Ê¾ÀýÈçÏÂ:
+### éžå›ºå®šä½å¹¿å‘Š
+åœ¨MIP HTMLä¸­,ç›´æŽ¥ä½¿ç”¨mip-dp-scriptæ ‡ç­¾ã€‚ç¤ºä¾‹å¦‚ä¸‹:
 
 ```html
 	<mip-dp-script 
@@ -34,12 +34,12 @@ mip-dp-script ÓÃÀ´Ö§³Öwww.lz55.cnÒµÎñ½»»¥ºÍ¹ã¸æÏÔÊ¾
 	
 ```
 
-# ÊôÐÔ
+# å±žæ€§
 
-### ¹Ì¶¨¹ã¸æÎ»±êÇ©ÊôÐÔ
+### å›ºå®šå¹¿å‘Šä½æ ‡ç­¾å±žæ€§
 
-ËµÃ÷£ºÑùÊ½Ãû ¡±adwraper¡° ¹Ì¶¨£¬id ¡±topad¡° Îª¹ã¸æÎ»±êÇ©
-±ØÌî£º·ñ
+è¯´æ˜Žï¼šæ ·å¼å â€adwraperâ€œ å›ºå®šï¼Œid â€topadâ€œ ä¸ºå¹¿å‘Šä½æ ‡ç­¾
+å¿…å¡«ï¼šå¦
 
 ```
 <section class="adwraper" id="topad"></section>
@@ -48,11 +48,11 @@ mip-dp-script ÓÃÀ´Ö§³Öwww.lz55.cnÒµÎñ½»»¥ºÍ¹ã¸æÏÔÊ¾
 
 ### loadjs
 
-ËµÃ÷£º¼ÓÔØjs,ÐèÒª¼ÓÔØµÄ½»»¥×é¼þjs¡¢¹ã¸æjs
-±ØÌî£º·ñ
+è¯´æ˜Žï¼šåŠ è½½js,éœ€è¦åŠ è½½çš„äº¤äº’ç»„ä»¶jsã€å¹¿å‘Šjs
+å¿…å¡«ï¼šå¦
 
 ### adtag
 
-ËµÃ÷: ¹ã¸æÎ»±êÇ©ÁÐ±í,¶à¸öÓÃ,·Ö¸ôÀý:`adtag="footer,tongji,topad"`, Èç¹ûÃ»ÓÐÖ¸¶¨Ôò²»ÏÔÊ¾
-±ØÌî: ·ñ
+è¯´æ˜Ž: å¹¿å‘Šä½æ ‡ç­¾åˆ—è¡¨,å¤šä¸ªç”¨,åˆ†éš”ä¾‹:`adtag="footer,tongji,topad"`, å¦‚æžœæ²¡æœ‰æŒ‡å®šåˆ™ä¸æ˜¾ç¤º
+å¿…å¡«: å¦
     

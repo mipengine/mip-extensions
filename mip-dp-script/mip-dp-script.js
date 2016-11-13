@@ -46,14 +46,13 @@ define('extensions/mip-dp-script/0.1/mip-dp-script', ['require', 'zepto', 'custo
 	}
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        console.log('build');
-        document.writeln('build');
+        console.log('build'); 
         var $element = $(this.element);
-        var geval_pre = $element.attr('geval-pre');
-        var geval = $element.attr('geval');
-        var loadjs = $element.attr('loadjs');
-        var loadjs_end = $element.attr('loadjs-end');
-        var adtag = $element.attr('adtag');
+        var geval_pre = $element.attr('geval-pre') || $('#mip-dp-script-params').attr('geval-pre');
+        var geval = $element.attr('geval') || $('#mip-dp-script-params').attr('geval');
+        var loadjs = $element.attr('loadjs') || $('#mip-dp-script-params').attr('loadjs');
+        var loadjs_end = $element.attr('loadjs-end') || $('#mip-dp-script-params').attr('loadjs-end');
+        var adtag = $element.attr('adtag') || $('#mip-dp-script-params').attr('adtag');
 		adtag = adtag ?(adtag=='false'||adtag=='0'?false:adtag): true;	
 		
 		var scriptstr='';

@@ -1,16 +1,18 @@
 # mip-xueyou-list
 
-mip-xueyou-list 学优网列表页脚本支持
+学优网列表插件
 
-标题|内容
+描述|列表页加载更多js脚本
 ----|----
-类型|功能
-支持布局|N/S
+类型|广告
+支持布局| N/S
 所需脚本|
 
 ## 示例
 
-### 基本使用
-```html
-学优网列表页，直接引用js文件到网页即可
+只需要一个`<mip-xueyou-list>`标签
+
 ```
+<mip-xueyou-list></mip-xueyou-list>
+```
+

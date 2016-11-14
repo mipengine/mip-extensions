@@ -1,6 +1,6 @@
 ﻿# mip-down-dropload
 
-mip-down-dropload 用来支持下拉加载
+mip-down-dropload 用来支持页面下拉加载
 
 标题|内容
 ----|----
@@ -16,4 +16,5 @@ mip-down-dropload 用来支持下拉加载
     <li>22222</li>
     <li>33333</li>
     </ul>
+<a href="javascript:;">加载更多...</a>
 </mip-down-dropload>

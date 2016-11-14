@@ -11,7 +11,8 @@ mip-down-touch 页面手势滑动
 
 ```
 <mip-down-touch hsId="1">
-    <b class="hideshow-btn">点我</b>
+
+   ```
 </mip-down-touch>
 ```
 

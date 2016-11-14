@@ -5,7 +5,7 @@
 描述|前瞻网页面导航组件
 ----|----
 类型|定制,业务
-支持布局| container
+支持布局| responsive,fixed-height,fill,container,fixed
 所需脚本|https://mipcache.bdstatic.com/static/latest/mip-qz-nav.js
 
 ## 示例

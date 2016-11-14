@@ -6,7 +6,7 @@
 ----|----
 类型|定制,业务
 支持布局|container
-所需脚本|http://mipcache.bdstatic.com/static/mip-qz-search/latest/mip-qz-search.js
+所需脚本|https://mipcache.bdstatic.com/static/latest/mip-qz-search.js
 
 ## 示例
 

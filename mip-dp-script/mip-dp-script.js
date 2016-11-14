@@ -96,9 +96,7 @@ define(function (require) {
         }
 
         $.each(this, function (i, elm) {
-            var E = new Gesture(elm, {
-                preventDefault: true
-            });
+            var E = new Gesture(elm);
             E.on('swipeleft', callback);
         });
     };
@@ -108,9 +106,7 @@ define(function (require) {
         }
 
         $.each(this, function (i, elm) {
-            var E = new Gesture(elm, {
-                preventDefault: true
-            });
+            var E = new Gesture(elm);
             E.on('swiperight', callback);
         });
     };
@@ -120,9 +116,7 @@ define(function (require) {
         }
 
         $.each(this, function (i, elm) {
-            var E = new Gesture(elm, {
-                preventDefault: true
-            });
+            var E = new Gesture(elm);
             E.on('swipeup', callback);
         });
     };
@@ -132,9 +126,7 @@ define(function (require) {
         }
 
         $.each(this, function (i, elm) {
-            var E = new Gesture(elm, {
-                preventDefault: true
-            });
+            var E = new Gesture(elm);
             E.on('swipedown', callback);
         });
     };
@@ -144,9 +136,7 @@ define(function (require) {
         }
 
         $.each(this, function (i, elm) {
-            var E = new Gesture(elm, {
-                preventDefault: true
-            });
+            var E = new Gesture(elm);
             E.on('tap', callback);
         });
     };

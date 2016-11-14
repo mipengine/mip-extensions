@@ -6,109 +6,153 @@
  * @contact: lz55.cn
  * @description: #
  */
-define('extensions/mip-dp-script/0.1/mip-dp-script', ['require', 'zepto', 'customElement'], function (require) {
+define(function (require) {
     var $ = require('zepto');
-
     var customElem = require('customElement').create();
+    var util = require('util');
+    var Gesture = util.Gesture;
 
-    // 加载js文件
-    var loadJSFile = function (url, callback) {
-
-        // Adding the script tag to the head as suggested before
-        var head = document.getElementsByTagName('head')[0];
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
-		if(callback){
-			// Then bind the event to the callback function.
-			// There are several events for cross browser compatibility.
-			script.onload = callback;
-			script.onreadystatechange = function(){
-				if( this.readyState=='loaded' || this.readyState=='complete'   // 这是IE的判断语句
-				){
-					callback();
-				}
-			};
-		}
-        // Fire the loading
-        head.appendChild(script);
-    };
-	var evalGlobal=function (strScript){
-		with(window){
-			eval(strScript);
-		}
-	}
-	var evalGlobal2=function (strScript){
-        var a = document .createElement ("script" );
-        a.type= "text/javascript" ;
-        a.text= strScript ;
-        document.getElementsByTagName ("head" )[0 ].appendChild (a) ;
-	}
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        console.log('build'); 
         var $element = $(this.element);
-        var geval_pre = $element.attr('geval-pre') || $('#mip-dp-script-params').attr('geval-pre');
+        var gevalPre = $element.attr('geval-pre') || $('#mip-dp-script-params').attr('geval-pre');
         var geval = $element.attr('geval') || $('#mip-dp-script-params').attr('geval');
         var loadjs = $element.attr('loadjs') || $('#mip-dp-script-params').attr('loadjs');
-        var loadjs_end = $element.attr('loadjs-end') || $('#mip-dp-script-params').attr('loadjs-end');
+        var loadjsEnd = $element.attr('loadjs-end') || $('#mip-dp-script-params').attr('loadjs-end');
         var adtag = $element.attr('adtag') || $('#mip-dp-script-params').attr('adtag');
-		adtag = adtag ?(adtag=='false'||adtag=='0'?false:adtag): true;	
-		
-		var scriptstr='';
-		if(geval_pre){
-			scriptstr+='<script>'+geval_pre+'</script>';
-		} 
-		if(loadjs){
-			var loadjss=loadjs.split("\n");
-			$.each(loadjss,function(index,js){
-				js = $.trim(js);
-				if(js){
-					scriptstr+='<script src="'+js+'"></script>';
-				}
-			});
-		}
-		if(geval){
-			scriptstr+='<script>'+geval+'</script>';
-		} 
-		if(adtag){
-			$.each($('.adwraper'),function(index,obj){
-				var adtag = $.trim($(obj).attr('id'));
-				if(adtag){
-					scriptstr+='<div id="'+adtag+'_temp" style="display:none;"><script>showads("'+adtag+'");$("#'+adtag+'").append($("#'+adtag+'_temp").children().not("script"));</script></div>';
-				}
-			});
-			var adtags=adtag.split(',');
-			for(var index in adtags){
-				var adtag = $.trim(adtags[index]);
-				if(adtag){
-					if($("#"+adtag).length>0){
-						scriptstr+='<div id="'+adtag+'_temp" style="display:none;"><script>showads("'+adtag+'");$("#'+adtag+'").append($("#'+adtag+'_temp").children().not("script"));</script></div>';
-					}
-					else{
-						scriptstr+='<div id="'+adtag+'"><script>showads("'+adtag+'");</script></div>';
-					}
-				}
-			}
-		}
-		if(loadjs_end){
-			var loadjss=loadjs_end.split("\n");
-			for(var i=loadjss.length-1;i>=0;i--){
-				if($.trim(loadjss[i])){
-					var js = $.trim(loadjss[i]);
-					scriptstr+='<script src="'+js+'"></script>';
-				}
-			}
-		}
-		
-		if(scriptstr){
-			document.write(scriptstr);
-		}
-		
+        adtag = adtag ? (adtag === 'false' || adtag === '0' ? false : adtag) : true;
+
+        var scriptstr = '';
+        if (gevalPre) {
+            scriptstr += '<script>' + gevalPre + '</script>';
+        }
+
+        if (loadjs) {
+            var loadjss = loadjs.split('\n');
+            $.each(loadjss, function (index, js) {
+                js = $.trim(js);
+                if (js) {
+                    scriptstr += '<script src="' + js + '"></script>';
+                }
+
+            });
+        }
+
+        if (geval) {
+            scriptstr += '<script>' + geval + '</script>';
+        }
+
+        if (adtag) {
+            $.each($('.adwraper').not('loaded'), function (index, obj) {
+                var tag = $.trim($(obj).attr('id'));
+                if (tag) {
+                    scriptstr += '<div id="' + tag + '_temp" style="display:none;"><script>showads("' + tag + '");';
+                    scriptstr += '$("#' + tag + '").append($("#' + tag + '_temp").children().not("script"));';
+                    scriptstr += '</script></div>';
+                }
+
+                $(obj).addClass('loaded');
+            });
+            var adtags = adtag.split(',');
+            if (adtags.length > 0) {
+                for (var index = 0; index < adtags.length; index++) {
+                    var tag = $.trim(adtags[index]);
+                    if (tag) {
+                        if ($('#' + tag).length > 0) {
+                            scriptstr += '<div id="' + tag + '_temp" style="display:none;"><script>';
+                            scriptstr += 'showads("' + tag + '");';
+                            scriptstr += '$("#' + tag + '").append($("#' + tag + '_temp").children().not("script"));';
+                            scriptstr += '</script></div>';
+                        }
+                        else {
+                            scriptstr += '<div id="' + tag + '"><script>showads("' + tag + '");</script></div>';
+                        }
+                    }
+
+                }
+            }
+        }
+
+        if (loadjsEnd) {
+            var loadJsEnds = loadjsEnd.split('\n');
+            for (var i = loadJsEnds.length - 1; i >= 0; i--) {
+                if ($.trim(loadJsEnds[i])) {
+                    var js = $.trim(loadJsEnds[i]);
+                    scriptstr += '<script src="' + js + '"></script>';
+                }
+
+            }
+        }
+
+        if (scriptstr) {
+            document.write(scriptstr);
+        }
+
     };
+
+    $.fn.swipeLeft = function (callback) {
+        if (this.length === 0) {
+            return;
+        }
+
+        $.each(this, function (i, elm) {
+            var E = new Gesture(elm, {
+                preventDefault: true
+            });
+            E.on('swipeleft', callback);
+        });
+    };
+    $.fn.swipeRight = function (callback) {
+        if (this.length === 0) {
+            return;
+        }
+
+        $.each(this, function (i, elm) {
+            var E = new Gesture(elm, {
+                preventDefault: true
+            });
+            E.on('swiperight', callback);
+        });
+    };
+    $.fn.swipeUp = function (callback) {
+        if (this.length === 0) {
+            return;
+        }
+
+        $.each(this, function (i, elm) {
+            var E = new Gesture(elm, {
+                preventDefault: true
+            });
+            E.on('swipeup', callback);
+        });
+    };
+    $.fn.swipeDown = function (callback) {
+        if (this.length === 0) {
+            return;
+        }
+
+        $.each(this, function (i, elm) {
+            var E = new Gesture(elm, {
+                preventDefault: true
+            });
+            E.on('swipedown', callback);
+        });
+    };
+    $.fn.tap = function (callback) {
+        if (this.length === 0) {
+            return;
+        }
+
+        $.each(this, function (i, elm) {
+            var E = new Gesture(elm, {
+                preventDefault: true
+            });
+            E.on('tap', callback);
+        });
+    };
+    $('.btn-back').on('click', function () {
+        window.history.back();
+    });
+
     return customElem;
-});
-// 注册mip业务标签组件
-require(['extensions/mip-dp-script/0.1/mip-dp-script'], function (plugindemo) {
-    MIP.registerMipElement('mip-dp-script', plugindemo);
 });

@@ -8,8 +8,7 @@ define("mip-changyan", ["require", "zepto", "customElement"], function(t) {
 			conf = e.getAttribute("conf"),
 			a = i(e),
 			h = ['<script type="text/javascript">',
-			'var _hmt = _hmt || []; (function() {var hm = document.createElement("script"); hm.src = "//changyan.sohu.com/upload/changyan.js?appid='
-			+ appid + '&conf=' + conf + '";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })();',
+			'var _hmt = _hmt || []; (function() {var hm = document.createElement("script"); hm.src = "//changyan.sohu.com/upload/changyan.js?appid=' + appid + '&conf=' + conf + '";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })();',
 			"</script>"];	
 			a.append(h.join(""))
 		}

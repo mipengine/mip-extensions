@@ -90,56 +90,76 @@ define(function (require) {
 
     };
 
-    $.fn.swipeLeft = function (callback) {
-        if (this.length === 0) {
-            return;
-        }
+    if (typeof ($.fn.swipeLeft) !== 'function') {
+        $.fn.swipeLeft = function (callback) {
+            if (this.length === 0) {
+                return;
+            }
 
-        $.each(this, function (i, elm) {
-            var E = new Gesture(elm);
-            E.on('swipeleft', callback);
-        });
-    };
-    $.fn.swipeRight = function (callback) {
-        if (this.length === 0) {
-            return;
-        }
+            $.each(this, function (i, elm) {
+                var E = new Gesture(elm);
+                E.on('swipeleft', callback);
+            });
+        };
+    }
 
-        $.each(this, function (i, elm) {
-            var E = new Gesture(elm);
-            E.on('swiperight', callback);
-        });
-    };
-    $.fn.swipeUp = function (callback) {
-        if (this.length === 0) {
-            return;
-        }
+    if (typeof ($.fn.swipeRight) !== 'function') {
+        $.fn.swipeRight = function (callback) {
+            if (this.length === 0) {
+                return;
+            }
 
-        $.each(this, function (i, elm) {
-            var E = new Gesture(elm);
-            E.on('swipeup', callback);
-        });
-    };
-    $.fn.swipeDown = function (callback) {
-        if (this.length === 0) {
-            return;
-        }
+            $.each(this, function (i, elm) {
+                var E = new Gesture(elm);
+                E.on('swipeleft swiperight', function (e, n) {
+                    if (n.type === 'swiperight') {
+                        callback();
+                    }
 
-        $.each(this, function (i, elm) {
-            var E = new Gesture(elm);
-            E.on('swipedown', callback);
-        });
-    };
-    $.fn.tap = function (callback) {
-        if (this.length === 0) {
-            return;
-        }
+                });
+            });
+        };
+    }
 
-        $.each(this, function (i, elm) {
-            var E = new Gesture(elm);
-            E.on('tap', callback);
-        });
-    };
+    if (typeof ($.fn.swipeUp) !== 'function') {
+        $.fn.swipeUp = function (callback) {
+            if (this.length === 0) {
+                return;
+            }
+
+            $.each(this, function (i, elm) {
+                var E = new Gesture(elm);
+                E.on('swipeup', callback);
+            });
+        };
+    }
+
+    if (typeof ($.fn.swipeDown) !== 'function') {
+        $.fn.swipeDown = function (callback) {
+            if (this.length === 0) {
+                return;
+            }
+
+            $.each(this, function (i, elm) {
+                var E = new Gesture(elm);
+                E.on('swipedown', callback);
+            });
+        };
+    }
+
+    if (typeof ($.fn.tap) !== 'function') {
+        $.fn.tap = function (callback) {
+            if (this.length === 0) {
+                return;
+            }
+
+            $.each(this, function (i, elm) {
+                var E = new Gesture(elm);
+                E.on('tap', callback);
+            });
+        };
+    }
+
     $('.btn-back').on('click', function () {
         window.history.back();
     });

@@ -12,7 +12,6 @@
 
 ### 基本用法
 ```html
-<link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_common.css?v=20160101"> <!--测试用-->
 <mip-qz-nav class="nav-wrap" rawurl="/">
 	<p class="nav-tit">选择栏目</p>
 	<nav class="nav">

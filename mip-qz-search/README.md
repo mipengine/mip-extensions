@@ -12,7 +12,6 @@
 
 ### 基本用法
 ```html
-<link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_common.css?v=20160101"> <!--测试用-->
 <mip-qz-search class="search" action="http://xw.qianzhan.com/search?q={0}" >
     <input type="text" class="txt" placeholder="请输入关键词" value="" >
     <input type="button" class="sbt i-search icon" >

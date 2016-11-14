@@ -12,8 +12,6 @@
 
 ### 基本用法
 ```html
-<link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_common.css?v=20160101"> <!--测试用-->
-<link type="text/css" rel="Stylesheet" href="http://img1.qianzhan123.com/2016/css/xw_art.css?v=20160101"> <!--测试用-->
 <mip-qz-sns class="art-sns sns" url="http://log.qianzhan.com/handle/favorAdd" 
 	params='{ "r": "161109170215", "id": "161108-e3868b91", "name": "", "cate": "150", "type": "news", "url": "" }'
 	source="前瞻网" sourceurl="http://www.qianzhan.com/">

@@ -6,7 +6,7 @@ mip-changyan 用来支持在线评论插件 畅言。
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://github.com/smileU/MIP-expansion-component/blob/master/src/mip-changyan.js
+所需脚本https://github.com/smileU/mip-extensions/blob/master/mip-changyan/extensions/mip-changyan.js
 
 ## 示例
 

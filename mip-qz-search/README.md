@@ -5,7 +5,7 @@
 标题|内容
 ----|----
 类型|定制,业务
-支持布局|container
+支持布局|responsive,fixed-height,fill,container,fixed
 所需脚本|https://mipcache.bdstatic.com/static/latest/mip-qz-search.js
 
 ## 示例

@@ -6,7 +6,7 @@ mip-stats-bidu 用来支持站长添加百度统计。推荐使用 mip-stats-bai
 ----|----
 类型| 通用
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1.1/mip-stats-bidu.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-stats-bidu/mip-stats-bidu.js
 
 ## 示例
 

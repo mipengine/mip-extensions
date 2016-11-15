@@ -6,7 +6,7 @@ mip-lightbox 是由用户控制展现或关闭的一个全屏浮层组件，组�
 ----|----
 类型|通用
 支持布局| N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-lightbox.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-lightbox/mip-lightbox.js
 
 ## 示例
 

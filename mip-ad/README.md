@@ -6,7 +6,7 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 ----|----
 类型|通用
 支持布局|responsive
-所需脚本|https://mipcache.bdstatic.com/static/v1.4/mip-ad.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
 版本v1.0|支持别名mip-embed
 
 ## 示例

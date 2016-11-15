@@ -13,7 +13,7 @@ define(function(require) {
 		var _element = this.element;
 
 		var appid = _element.getAttribute('appid'),
-		conf = _element.getAttribute("conf"),
+		conf = _element.getAttribute("conf");
 
 		var $_element = $(_element);
 		var html = [

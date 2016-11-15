@@ -42,6 +42,9 @@ define(function (require) {
 		   case 'stat':
 			loadJs(elem, 'http://a.xywy.com/stat.js');
 		    break;
+		   case 'tongji':
+			loadJs(elem, 'http://stat.xywy.com/a.js');
+		    break;
 			default:
 			break;
 	   }

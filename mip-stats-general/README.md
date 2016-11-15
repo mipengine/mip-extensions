@@ -6,7 +6,7 @@ mip-stats-general 实现了传统的统计功能，在访问页面时访问一�
 ----|----
 类型|通用
 支持布局|不使用布局
-所需脚本|https://mipcache.bdstatic.com/static/v1.0/mip-stats-general.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-stats-general/mip-stats-general.js
 
 ## 示例
 

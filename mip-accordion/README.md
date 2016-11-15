@@ -6,7 +6,7 @@ mip-accordion 用来支持在 mip折叠隐藏的节点(可记录用户上次行�
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-accordion.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-accordion/mip-accordion.js
 
 ## 示例
 

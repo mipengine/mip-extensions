@@ -6,7 +6,7 @@ mip-stats-tianrun 用来支持站长添加天润统计。
 ----|----
 类型|通用，定制
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-stats-tianrun.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-stats-tianrun/mip-stats-tianrun.js
 
 ## 示例
 

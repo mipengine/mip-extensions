@@ -6,7 +6,7 @@ mip-appdl 用来支持在 mip 中app的下载
 ----|----
 类型| 通用
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1.1/mip-appdl.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-appdl/mip-appdl.js
 
 ## 示例
 

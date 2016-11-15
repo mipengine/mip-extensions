@@ -9,15 +9,6 @@ define(function (require) {
     var customElem = require('customElement').create();
     customElem.prototype.build = function () {
         $('.openself').attr('target', '_self');
-        var searbar = [
-            '<section id="sbar" class="searchbar">',
-            '<form method="get" action="http://mip.gkstk.com/wenku/">',
-            '<input type="text" placeholder="请输入" id="search" name="keyword" value="">',
-            '<i class="icon_search">&nbsp;</i><a class="icon_close openself" href="#top">&nbsp;</a>',
-            '</form>',
-            '</section>'
-			].join('');
-        $('header').after(searbar);
         var more = $('#more');
         var loading = $('.spinner');
         var listbox = $('#listbox');

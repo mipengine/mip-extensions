@@ -97,8 +97,8 @@ define(function (require) {
             }
 
             $.each(this, function (i, elm) {
-                var E = new Gesture(elm);
-                E.on('swipeleft', callback);
+                var gesture = new Gesture(elm);
+                gesture.on('swipeleft', callback);
             });
         };
     }
@@ -110,9 +110,9 @@ define(function (require) {
             }
 
             $.each(this, function (i, elm) {
-                var E = new Gesture(elm);
-                E.on('swipeleft swiperight', function (e, n) {
-                    if (n.type === 'swiperight') {
+                var gesture = new Gesture(elm);
+                gesture.on('swipeleft swiperight', function (event, data) {
+                    if (data.type === 'swiperight') {
                         callback();
                     }
 
@@ -128,8 +128,8 @@ define(function (require) {
             }
 
             $.each(this, function (i, elm) {
-                var E = new Gesture(elm);
-                E.on('swipeup', callback);
+                var gesture = new Gesture(elm);
+                gesture.on('swipeup', callback);
             });
         };
     }
@@ -141,8 +141,8 @@ define(function (require) {
             }
 
             $.each(this, function (i, elm) {
-                var E = new Gesture(elm);
-                E.on('swipedown', callback);
+                var gesture = new Gesture(elm);
+                gesture.on('swipedown', callback);
             });
         };
     }
@@ -154,8 +154,8 @@ define(function (require) {
             }
 
             $.each(this, function (i, elm) {
-                var E = new Gesture(elm);
-                E.on('tap', callback);
+                var gesture = new Gesture(elm);
+                gesture.on('tap', callback);
             });
         };
     }

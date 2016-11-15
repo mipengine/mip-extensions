@@ -23,7 +23,7 @@ define(function (require) {
                     var url = params.url.replace('[markplaceholder]', $(element).attr('mip-ajax-mark'));
                 }
                 $.getJSON(url, function (result) {
-                    $('#' + params.containerid).append(result.html);
+                    $('.' + params.containerclass).append(result.html);
                     if (result.length < params.length || once) {
                         $(element).remove();
                     } else {
@@ -45,7 +45,7 @@ define(function (require) {
                         var url = params.url.replace('[markplaceholder]', $(element).attr('mip-ajax-mark'));
                     }
                     $.getJSON(url, function (result) {
-                        $('#' + params.containerid).append(result.html);
+                        $('.' + params.containerclass).append(result.html);
                         if (result.length < params.length || once) {
                             $(element).remove();
                         } else {

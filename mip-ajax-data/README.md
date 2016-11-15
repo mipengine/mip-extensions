@@ -12,12 +12,12 @@ mip-ajax-data 用来触发元素ajax异步加载数据到指定容器，也可�
 
 ### 通过 mip-ajax-data标签来指定触发加载容器指定异步内容追加容器以及其他参数来异步加载内容
 ```html
-<mip-ajax-data mip-ajax-params="{'url':'http://3g.ali213.net/news/ajax/mipdemoloading?callback=?','containerid':'ajaxcontainer1','action':'click'}">
+<mip-ajax-data mip-ajax-params="{'url':'http://3g.ali213.net/news/ajax/mipdemoloading?callback=?','containerclass':'ajaxcontainer1','action':'click'}">
     <span>下载中<mip-img src="http://3g.ali213.net/images/ajax_loading.gif"></mip-img></span>
 </mip-ajax-data>
-<div id="ajaxcontainer1">1111</div>
-<div id="ajaxcontainer2">2222</div>
-<mip-ajax-data mip-ajax-params="{'url':'http://3g.ali213.net/news/ajax/mipdemoloading?type=0&id=[markplaceholder]&callback=?','containerid':'ajaxcontainer2','action':'roll','length':'6'}" mip-ajax-mark="0">
+<div class="ajaxcontainer1">1111</div>
+<div class="ajaxcontainer2">2222</div>
+<mip-ajax-data mip-ajax-params="{'url':'http://3g.ali213.net/news/ajax/mipdemoloading?type=0&id=[markplaceholder]&callback=?','containerclass':'ajaxcontainer2','action':'roll','length':'6'}" mip-ajax-mark="0">
     <span>下载中<mip-img src="http://3g.ali213.net/images/ajax_loading.gif"></mip-img></span>
 </mip-ajax-data>
 ```
@@ -29,7 +29,7 @@ mip-ajax-data 用来触发元素ajax异步加载数据到指定容器，也可�
 说明：此异步加载所需要的参数
 必选项：是
 类型：数组格式的字符串
-取值范围：需要配置异步加载的url （如果是类似于下拉形式多次加载 需要指定markplaceholder，即在网址中会变的量，比如page或者id，并且需要设置mip-ajax-mark属性，还要设置步长length，length和后端数据一致）,containerid异步内容存放的容器的id, action触发加载的动作（click，roll）
+取值范围：需要配置异步加载的url （如果是类似于下拉形式多次加载 需要指定markplaceholder，即在网址中会变的量，比如page或者id，并且需要设置mip-ajax-mark属性，还要设置步长length，length和后端数据一致）,containerclass异步内容存放的容器的class, action触发加载的动作（click，roll）
 单位：无
 默认值：无
 

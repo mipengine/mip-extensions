@@ -1,4 +1,4 @@
-define('mip-yiqibazi', ['require', 'customElement', 'zepto'], function (require) {
+define('mip-yiqibazi-tap', ['require', 'customElement', 'zepto'], function (require) {
     var $ = require('zepto');
 
     var customElem = require('customElement').create();
@@ -42,6 +42,6 @@ define('mip-yiqibazi', ['require', 'customElement', 'zepto'], function (require)
     return customElem;
 });
 
-require(['mip-yiqibazi'], function (plugindemo) {
-    MIP.registerMipElement('mip-yiqibazi', plugindemo);
+require(['mip-yiqibazi-tap'], function (plugindemo) {
+    MIP.registerMipElement('mip-yiqibazi-tap', plugindemo);
 });

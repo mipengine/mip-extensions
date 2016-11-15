@@ -55,11 +55,19 @@ MIP 开发小组在审核扩展组件时，将首先检查组件结构是否符�
 
 ### 上线地址
 
-目前所有新增组件都是1.1.2版本，对应的线上地址如下
+目前线上的文件地址不会使用小版本，即组件上线后，线上在用的组件会立即更新
 
+格式 https://mipcache.bdstatic.com/static/v[mip主版本]/[组件名]/[组件名].js
+
+示例
 ```
-http[s]://mipcache.bdstatic.com/static/v1.2/[组件名].js
+https://mipcache.bdstatic.com/static/v1/mip-sample/mip-sample.js
 ```
 
+#### 对于mip版本的说明  
 
+1、目前线上地址只会保留大版本，但是组件代码中package.json仍需保留和更新。
+
+2、对于以前使用小版本的页面，如使用https://mipcache.bdstatic.com/static/mipmain-v1.1.0.js，
+代码仍然保留。但是使用新增功能或者组件代码有升级，需要页面整体符合最新规则，具体可参见[官网](https://www.mipengine.org/doc/00-mip-101.html)
 

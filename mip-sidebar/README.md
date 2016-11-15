@@ -6,7 +6,7 @@ mip-sidebar 侧边栏组件。
 ----|----
 类型|通用
 支持布局| N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-sidebar.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-sidebar/mip-sidebar.js
 
 ## 示例
 

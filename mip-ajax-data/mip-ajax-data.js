@@ -7,55 +7,65 @@ define(function (require) {
 
     var customElement = require('customElement').create();
     var $ = require('zepto');
-    
-    
-    /**
-     * 绑定事件
+
+    /** [bindEven 绑定事件]
+     *
+     * @param {Object} element [mip-ajax-data元素]
+     * @param {Object} params [来自mip-ajax-data的属性]
+     * @param {Booleans} once [是否只执行一次]
      */
-    function bindEven(element,params,once) {
-        if (params["action"] != 'roll'){
-        	$(element).on(params["action"],"span",function(){
-        		var url = once ? params["url"] : params["url"].replace("[markplaceholder]",$(element).attr('mip-ajax-mark'));
-    			$.getJSON(url,function(result){
-                	$("#"+params["containerid"]).append(result['html']);
-                	if (result['length'] < params["length"] || once){
-                		$(element).remove();
-                	}else{
-                		$(element).attr('mip-ajax-mark',result['mip-ajax-mark']);
-                	}
+    function bindEven(element, params, once) {
+        if (params.action !== 'roll') {
+            $(element).on(params.action, 'span', function () {
+                if (once) {
+                    var url = params.url;
+                } else {
+                    var url = params.url.replace('[markplaceholder]', $(element).attr('mip-ajax-mark'));
+                }
+                $.getJSON(url, function (result) {
+                    $('#' + params.containerid).append(result.html);
+                    if (result.length < params.length || once) {
+                        $(element).remove();
+                    } else {
+                        $(element).attr('mip-ajax-mark', result['mip-ajax-mark']);
+                    }
                 });
-        	});
-        }else{
-        	var allow = true;
-        	$(window).bind("scroll",function(){
-        		if (typeof($(element).get(0)) == 'undefined') return false;
-        		if (allow && $(window).height() + window.pageYOffset >= $(element).offset().top){
-        			allow = false;
-        			var url = once ? params["url"] : params["url"].replace("[markplaceholder]",$(element).attr('mip-ajax-mark'));
-        			$.getJSON(url,function(result){
-                    	$("#"+params["containerid"]).append(result['html']);
-                    	if (result['length'] < params["length"] || once){
-                    		$(element).remove();
-                    	}else{
-                    		$(element).attr('mip-ajax-mark',result['mip-ajax-mark']);
-                    		allow = true;
-                    	}
+            });
+        } else {
+            var allow = true;
+            $(window).bind('scroll', function () {
+                if (typeof ($(element).get(0)) === 'undefined') {
+                    return false;
+                }
+                if (allow && $(window).height() + window.pageYOffset >= $(element).offset().top) {
+                    allow = false;
+                    if (once) {
+                        var url = params.url;
+                    } else {
+                        var url = params.url.replace('[markplaceholder]', $(element).attr('mip-ajax-mark'));
+                    }
+                    $.getJSON(url, function (result) {
+                        $('#' + params.containerid).append(result.html);
+                        if (result.length < params.length || once) {
+                            $(element).remove();
+                        } else {
+                            $(element).attr('mip-ajax-mark', result['mip-ajax-mark']);
+                            allow = true;
+                        }
                     });
-        		}
-        	});
+                }
+            });
         }
     }
-    
-    /**
-     * 构造元素，只会运行一次
+
+    /** [构造元素，只会运行一次]
+     *
      */
     customElement.prototype.build = function () {
-    	var self = this;
+        var self = this;
         var element = this.element;
-        
-        var params = JSON.parse($(element).attr('mip-ajax-params').replace(/'/g, "\""));
-        
-        bindEven(element,params,typeof($(element).attr('mip-ajax-mark')) == 'undefined');
+        var params = JSON.parse($(element).attr('mip-ajax-params').replace(/'/g, '"'));
+        bindEven(element, params, typeof ($(element).attr('mip-ajax-mark')) === 'undefined');
     };
 
     return customElement;

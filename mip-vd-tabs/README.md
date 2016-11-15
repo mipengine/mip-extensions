@@ -6,7 +6,7 @@ mip-vd-tabs 用来支持网页中标签页的显示。标签页内元素较多�
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-vd-tabs.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-vd-tabs/mip-vd-tabs.js
 
 ## 示例
 

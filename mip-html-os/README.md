@@ -6,7 +6,7 @@ mip-html-os 用来支持页面内容元素区分OS显示
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-html-os.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-html-os/mip-html-os.js
 
 ## 示例
 

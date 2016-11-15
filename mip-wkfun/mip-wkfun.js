@@ -3,8 +3,8 @@ define(function(require){
     var $ = require('zepto');
 	var customElem = require('customElement').create();
 	var searchFun = function(){
-		//¶¥²¿ËÑË÷
-		var itemInpDef = '°ïÄúÑ°Ò½ÎÊÒ©';
+		//é¡¶éƒ¨æœç´¢
+		var itemInpDef = 'å¸®æ‚¨å¯»åŒ»é—®è¯';
 		$('#item_so_keyword').on({
 			focus:function(){
 				if($(this).val() == itemInpDef){
@@ -31,7 +31,7 @@ define(function(require){
 		$('#item_hd_form form').on('submit', function(){
 			var textVal = $.trim($('#item_so_keyword').val()),
 				srcType = $('#item_so_keyword').attr('src_type');
-			if(textVal == '°ïÄúÑ°Ò½ÎÊÒ©') {
+			if(textVal == 'å¸®æ‚¨å¯»åŒ»é—®è¯') {
 				textVal = '';
 			}else {
 				textVal = textVal;
@@ -44,14 +44,14 @@ define(function(require){
 			$(".Extension").toggle();
 		});
 		
-		//½øÀ´µÄÍ³¼Æ
+		//è¿›æ¥çš„ç»Ÿè®¡
 		window.Quan_X = 0;
 		window.Quan_Y = 0;
 		var im=new Image; im.src="http://stat-z.xywy.com/test.png?t_c=1&tt"+Math.random();
 		function getPos(callback){
 			
-			var longitude = 0, //¾­¶È
-				latitude = 0, //Î³¶È
+			var longitude = 0, //ç»åº¦
+				latitude = 0, //çº¬åº¦
 				options;
 			
 			options = {
@@ -60,12 +60,12 @@ define(function(require){
 			};
 			
 			if(typeof callback != 'function'){
-				//alert('callback²ÎÊıĞëÎªº¯Êı');
+				//alert('callbackå‚æ•°é¡»ä¸ºå‡½æ•°');
 				return false;
 			}
 			
 			if(localStorage.longitude && localStorage.latitude){
-				callback(localStorage.longitude, localStorage.latitude); //Ö±½Ó´«Èë±¾µØ´æ´¢µÄ¾­¶ÈºÍÎ³¶È
+				callback(localStorage.longitude, localStorage.latitude); //ç›´æ¥ä¼ å…¥æœ¬åœ°å­˜å‚¨çš„ç»åº¦å’Œçº¬åº¦
 				return false;
 			}
 			
@@ -74,21 +74,21 @@ define(function(require){
 			}
 			
 			function showPosition(position){
-				localStorage.longitude = longitude = position.coords.longitude; //¾­¶È
-				localStorage.latitude = latitude = position.coords.latitude; //Î³¶È
-				callback(longitude, latitude);//´«Èë¾­Î³¶È
+				localStorage.longitude = longitude = position.coords.longitude; //ç»åº¦
+				localStorage.latitude = latitude = position.coords.latitude; //çº¬åº¦
+				callback(longitude, latitude);//ä¼ å…¥ç»çº¬åº¦
 			}
 			
 			function showError(error){
-				//¶¨Î»Ê§°ÜµÄÍ³¼Æ
+				//å®šä½å¤±è´¥çš„ç»Ÿè®¡
 				im=new Image; im.src="http://stat-z.xywy.com/test.png?t_c=3&tt"+Math.random();
 			}
 			if(navigator.userAgent.indexOf('UCBrowser') > -1){
 				return false;
 			}else{
 				getPos(function(x, y){
-					//x--¾­¶È, y--Î³¶È
-					//¶¨Î»³É¹¦µÄÍ³¼Æ
+					//x--ç»åº¦, y--çº¬åº¦
+					//å®šä½æˆåŠŸçš„ç»Ÿè®¡
 					im=new Image; im.src="http://stat-z.xywy.com/test.png?t_c=2&tt"+Math.random();
 					Quan_X=x;
 					Quan_Y=y;
@@ -98,9 +98,9 @@ define(function(require){
 	
 	};
 	
-   // build ·½·¨£¬ÔªËØ²åÈëµ½ÎÄµµÊ±Ö´ĞĞ£¬½ö»áÖ´ĞĞÒ»´Î
+   // build æ–¹æ³•ï¼Œå…ƒç´ æ’å…¥åˆ°æ–‡æ¡£æ—¶æ‰§è¡Œï¼Œä»…ä¼šæ‰§è¡Œä¸€æ¬¡
     customElem.prototype.build = function () {
-     // this.element ¿ÉÈ¡µ½µ±Ç°ÊµÀı¶ÔÓ¦µÄ dom ÔªËØ
+     // this.element å¯å–åˆ°å½“å‰å®ä¾‹å¯¹åº”çš„ dom å…ƒç´ 
        var elem = this.element;
 	   searchFun();
 	}

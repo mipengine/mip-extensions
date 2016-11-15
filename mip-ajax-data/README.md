@@ -6,7 +6,7 @@ mip-ajax-data 用来触发元素ajax异步加载数据到指定容器，也可�
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/mip-ajax-data/{版本号}/mip-ajax-data.js
+所需脚本|http://mipcache.bdstatic.com/static/mip-ajax-data/v1.2/mip-ajax-data.js
 
 ## 示例
 

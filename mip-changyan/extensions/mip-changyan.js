@@ -1,7 +1,7 @@
 /**
 * 畅言插件
 * @author smileU
-* @version 1.0
+* @version 1.0.0
 */
 define(function(require) {
 	var $ = require('zepto');

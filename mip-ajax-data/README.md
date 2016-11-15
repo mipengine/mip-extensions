@@ -16,10 +16,10 @@ mip-ajax-data 用来触发元素ajax异步加载数据到指定容器，也可�
     <span>下载中<mip-img src="http://3g.ali213.net/images/ajax_loading.gif"></mip-img></span>
 </mip-ajax-data>
 <div id="ajaxcontainer1">1111</div>
+<div id="ajaxcontainer2">2222</div>
 <mip-ajax-data mip-ajax-params="{'url':'http://3g.ali213.net/news/ajax/mipdemoloading?type=0&id=[markplaceholder]&callback=?','containerid':'ajaxcontainer2','action':'roll','length':'6'}" mip-ajax-mark="0">
     <span>下载中<mip-img src="http://3g.ali213.net/images/ajax_loading.gif"></mip-img></span>
 </mip-ajax-data>
-<div id="ajaxcontainer2">2222</div>
 ```
 
 ## 属性

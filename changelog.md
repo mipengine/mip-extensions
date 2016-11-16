@@ -1,5 +1,20 @@
 # 升级日志
 
+#### 2016.11.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 升级容错，增加图加广告
+[mip-lightbox](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级] 增加toggle功能
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 手百下打开手百搜索框
+[mip-ajax-data](https://github.com/mipengine/mip-extensions/tree/master/mip-ajax-data)|[新增] 游侠网用来触发元素ajax异步加载数据到指定容器
+[mip-yiqibazi-tap](https://github.com/mipengine/mip-extensions/tree/master/mip-yiqibazi-tap)|[新增] 点击切换组件
+[mip-xueyou-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-xueyou-ad)|[新增] 学优网广告
+[mip-xueyou-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xueyou-article)|[新增] 学优网文章阅读组件
+[mip-xueyou-list](https://github.com/mipengine/mip-extensions/tree/master/mip-xueyou-list)|[新增] 学优网list组件
+
 #### 2016.11.15 
 
 > 核心代码上线

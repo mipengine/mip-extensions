@@ -14,6 +14,7 @@ define(function (require) {
     require('./mip-ad-baidu');
     require('./mip-ad-qwang');
     require('./mip-baidu-wm-ext');
+    require('./mip-ad-imageplus');
     
     /**
      * render
@@ -24,8 +25,13 @@ define(function (require) {
         var _element = this.element;
 
         var type = _element.getAttribute('type');
-        var mipAd = require('./mip-' + type);
-        mipAd.render(_element, me);
+        try {
+            var mipAd = require('./mip-' + type);
+            mipAd.render(_element, me);
+        } catch(e) {
+
+        }
+        
 
     }
 

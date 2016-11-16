@@ -17,6 +17,17 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 <mip-ad layout="fixed"  type="ad-baidu" cproid="u2791376" class="mip-element mip-layout-container"></mip-ad>
 ```
 
+### 图加广告
+
+```html
+<mip-ad 
+    type="ad-imageplus"
+    unionId="u2816363"
+    >
+    <mip-img src="http://placeholder.qiniudn.com/100x100"></mip-img>
+</mip-ad>
+```
+
 ### 网盟扩展广告
 
 ```html
@@ -46,4 +57,5 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 - [通用广告](mip-ad-comm.md)
 - [全网广告](mip-ad-qwang.md)
 - [网盟广告](mip-ad-baidu.md)
+- [图加广告](mip-ad-imageplus.md)
 - [网盟扩展广告](mip-baidu-wm-ext.md)

@@ -1,6 +1,6 @@
 /**
- * µã»÷ÇÐ»»
- * @file click×é¼þ
+ * click switch
+ * @file click component
  * @author lin156635304@163.com
  * @version 1.0
  * @copyright 2016 yiqibazi.com, Inc. All Rights Reserved

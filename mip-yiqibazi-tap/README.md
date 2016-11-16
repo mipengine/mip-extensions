@@ -6,7 +6,7 @@
 ----|----
 类型|事件
 支持布局| N/S
-所需脚本|http://mipcache.bdstatic.com/static/mip-yiqibazi-tap/1.0.4/mip-yiqibazi-tap.js
+所需脚本|http://mipcache.bdstatic.com/static/mip-yiqibazi-tap/1.0.5/mip-yiqibazi-tap.js
 
 ## 示例
 

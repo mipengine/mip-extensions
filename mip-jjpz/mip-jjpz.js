@@ -7,9 +7,10 @@ define(function (require) {
         $(element).html(ttHtml);
         param.data.FCODE = funCaller.getQueryString('fundcode')||_id;
         param.dataPage.FCODE = funCaller.getQueryString('fundcode')||_id;
-        funCaller.init();
+        funCaller.init(element);
     };
     var ttHtml=require('./dom');
+    //var ttHtml=require('text!./dom.html');
         var param = {
             data: {
                 FCODE: '',
@@ -60,18 +61,18 @@ define(function (require) {
         };
 
     var funCaller = {
-        init: function (_id) {
+        init: function (el) {
             var _this = this;
-            _this.Ajax('FundBase.ashx', param.data, _this.FundBaseloadView);
-            _this.Ajax('FundNetDiagram.ashx', param.data, _this.FundNetDiagramloadView);
+            _this.Ajax('FundBase.ashx', param.data, _this.FundBaseloadView,el);
+            _this.Ajax('FundNetDiagram.ashx', param.data, _this.FundNetDiagramloadView,el);
 
-            _this.Ajax('FundSameCompanyList.ashx', param.data, _this.FundSameCompanyListloadView);
-            _this.Ajax('FundSameTypeList.ashx', param.dataPage, _this.FundSameTypeListloadView);
+            _this.Ajax('FundSameCompanyList.ashx', param.data, _this.FundSameCompanyListloadView,el);
+            _this.Ajax('FundSameTypeList.ashx', param.dataPage, _this.FundSameTypeListloadView,el);
 
-            _this.discussLink();
+            _this.discussLink(el);
 
         },
-        FundBaseloadView: function (data) {
+        FundBaseloadView: function (data,el) {
             var data = data.Datas;
             switch (data.FUNDTYPE) {
                 case '003':
@@ -130,19 +131,19 @@ define(function (require) {
             funCaller.bindData(data.SHORTNAME, '#Fname');
             funCaller.bindData('(' + data.FCODE + ')', '.coder', '.header1');
             funCaller.bindData(data.FTYPE, '.header2', '.ui_outer');
-            $('#baseInfo_url').find('.jjxx-h').append('<span class="ui_gray">' + data.FTYPE + '</span>');
+            $(el).find('#baseInfo_url').find('.jjxx-h').append('<span class="ui_gray">' + data.FTYPE + '</span>');
             if (RISKLEVELname !== '--') {
                 $('.ui_outer').find('.header2').append('<span class="split">|</span>' + RISKLEVELname);
-                $('#baseInfo_url').find('.jjxx-h').append('<span class="split">|</span>' + RISKLEVELname);
+                $(el).find('#baseInfo_url').find('.jjxx-h').append('<span class="split">|</span>' + RISKLEVELname);
             }
             if (data.RLEVEL_SZ !== null && data.RLEVEL_SZ !== '--' && data.RLEVEL_SZ !== '') {
                 $('.ui_outer').find('.header2').append('<span class="split">|</span>' + data.RLEVEL_SZ + '星评级');
-                $('#baseInfo_url').find('.jjxx-h').append('<span class="split">|</span>' + data.RLEVEL_SZ + '星评级');
+                $(el).find('#baseInfo_url').find('.jjxx-h').append('<span class="split">|</span>' + data.RLEVEL_SZ + '星评级');
             }
 
             if (param.fundGetType == 1) {
-                $('#Fearnings').html('最新净值（<span class="numberFont">' + data.FSRQ.slice(5, 10) + '</span>）');
-                $('#FearningsDay').html('日涨幅');
+                $(el).find('#Fearnings').html('最新净值（<span class="numberFont">' + data.FSRQ.slice(5, 10) + '</span>）');
+                $(el).find('#FearningsDay').html('日涨幅');
                 funCaller.bindData(funCaller.initNumber2(data.DWJZ, 4, true), '#FearningsN1', 0, funCaller.isRed(data.RZDF));
                 funCaller.bindData(funCaller.initNumber2(data.RZDF, 2), '#FearningsN2', 0, funCaller.isRed(data.RZDF));
                 funCaller.bindData(data.Valuation ? (JSON.parse(data.Valuation).gsz) : "--", 'span:nth-child(2)', '#Fevaluation', data.Valuation ? funCaller.isRed(JSON.parse(data.Valuation).gszzl) : "");
@@ -151,9 +152,9 @@ define(function (require) {
                 funCaller.bindData('(' + date2 + ')', 'span:nth-child(4)', '#Fevaluation');
             }
             else {
-                $('#Fearnings').html('万份收益（<span class="numberFont">' + data.FSRQ.slice(5, 10) + '</span>）');
-                $('FearningsDay').html('7日年化');
-                $('#Fevaluation').hide();
+                $(el).find('#Fearnings').html('万份收益（<span class="numberFont">' + data.FSRQ.slice(5, 10) + '</span>）');
+                $(el).find('#FearningsDay').html('7日年化');
+               $(el).find('#Fevaluation').hide();
             }
             funCaller.bindData(funCaller.initNumber2(data.SYL_JN, 2), 'span', '#Info_url div:nth-child(1) ', funCaller.isRed(data.SYL_JN));
             funCaller.bindData(funCaller.initNumber2(data.SYL_Y, 2), 'span', '#Info_url div:nth-child(2)', funCaller.isRed(data.SYL_Y));
@@ -165,24 +166,24 @@ define(function (require) {
                 dellineData = data.RATE;
             funCaller.bindData(dellineData, '.ui_black.numberFont', '#buyInfo_url');
 
-            $('#tab .tabContent').find('.img').attr('src', 'http://j4.dfcfw.com/charts/pic1/' + param.data.FCODE + '.png');
-            $('#tab .tabContent').find('img').attr('src', 'http://j4.dfcfw.com/charts/pic1/' + param.data.FCODE + '.png');
-            $('#Info_url').on('click', function () {
+            $(el).find('#tab .tabContent').find('.img').attr('src', 'http://j4.dfcfw.com/charts/pic1/' + param.data.FCODE + '.png');
+            $(el).find('#tab .tabContent').find('img').attr('src', 'http://j4.dfcfw.com/charts/pic1/' + param.data.FCODE + '.png');
+            $(el).find('#Info_url').on('click', function () {
                 window.location.href = 'http://m.1234567.com.cn/m/fund/fundjdsy/' + param.data.FCODE;
             })
             if (data.BUY)
-                $('#buyJJ').on('click', function () {
+                $(el).find('#buyJJ').on('click', function () {
                     window.location.href = 'https://tradewap.1234567.com.cn/buyfund.html#code=' + param.data.FCODE;
                 });
             else
-                $('#buyJJ').removeClass('ui-btn-orange').addClass('ui-btn-gray');
-            funCaller.domclick();
+                $(el).find('#buyJJ').removeClass('ui-btn-orange').addClass('ui-btn-gray');
+            funCaller.domclick(el);
         },
 
 
-        FundNetDiagramloadView: function (data) {
+        FundNetDiagramloadView: function (data,el) {
             var _this = this,
-                gotoLSSYL = $('#gotoLSSYL'),
+                gotoLSSYL = $(el).find('#gotoLSSYL'),
                 gotoLSSYLdiv = "",
                 datas = data.Datas;
             gotoLSSYL.find('.ui-grid-8 p').html(param.fundGetType == 1 ? '历史净值' : '历史收益率');
@@ -205,15 +206,15 @@ define(function (require) {
 
             gotoLSSYL.after(gotoLSSYLdiv);
         },
-        gotoJBCCloadView: function (data) {
+        gotoJBCCloadView: function (data,el) {
             if(data.Datas.length==0) {
-             $('#gotoJBCC').next('.fold_content').html('<span class="notips">暂无数据</span>');
+             $(el).find('#gotoJBCC').next('.fold_content').html('<span class="notips">暂无数据</span>');
              return;
             }
             var _this = this;
             param.isclick.gotoJBCC = false;
-            var gotoJBCC = $('#gotoJBCC'), gotoJBCCcontent = $('#jbcc_scroll').find('tbody'), tbody = "", datas = data.Datas;
-            $('#cjjzri').html('截止日期：<span class="numberFont">' + datas[0].ShareDate + '</span>').show();
+            var gotoJBCC = $(el).find('#gotoJBCC'), gotoJBCCcontent = $(el).find('#jbcc_scroll').find('tbody'), tbody = "", datas = data.Datas;
+            $(el).find('#cjjzri').html('截止日期：<span class="numberFont">' + datas[0].ShareDate + '</span>').show();
             for (i = 0; i < datas.length; i++) {
                 tbody += '<tr><td> <a href="http://m.quote.eastmoney.com/stock,' + datas[i].ShareCode + '.shtml">' + datas[i].ShareName + '</a></td>';
                 tbody += '<td class="numberFont">' + datas[i].ShareProportion + '</td>';
@@ -221,8 +222,8 @@ define(function (require) {
             }
             gotoJBCCcontent.html(tbody);
         },
-        FundSameCompanyListloadView: function (data) {
-            var tgsqxjj_url = $('#tgsqxjj_url'), pageContentTgsqxjj = $('.pageContentTgsqxjj'), thisul = pageContentTgsqxjj.find('.fund-list');
+        FundSameCompanyListloadView: function (data,el) {
+            var tgsqxjj_url = $(el).find('#tgsqxjj_url'), pageContentTgsqxjj = $(el).find('.pageContentTgsqxjj'), thisul = pageContentTgsqxjj.find('.fund-list');
             tgsqxjj_url.attr('data-href', param.sameCompany + '?companyid=' + data.Expansion + '#1');
             funCaller.bindData(data.TotalCount, '.numberFont', '#tgsqxjj_url');
             var datas = data.Datas;
@@ -247,8 +248,8 @@ define(function (require) {
                 window.location.href = $(this).attr('data-href');
             });
         },
-        FundSameTypeListloadView: function (data) {
-            var tljjzf_url = $('#tljjzf_url'), pageContentTljjzf = $('.pageContentTljjzf'), thisul = pageContentTljjzf.find('.fund-list');
+        FundSameTypeListloadView: function (data,el) {
+            var tljjzf_url = $(el).find('#tljjzf_url'), pageContentTljjzf = $(el).find('.pageContentTljjzf'), thisul = pageContentTljjzf.find('.fund-list');
             tljjzf_url.attr('data-href', param.sameType + '#' + param.fundtype);
             funCaller.bindData(data.TotalCount, '.numberFont', '#tljjzf_url');
             var datas = data.Datas;
@@ -273,8 +274,8 @@ define(function (require) {
                 window.location.href = $(this).attr('data-href');
             });
         },
-        gotoJJJLloadView: function (data) {
-            var _this = this, gotoJJJL_scroll = $('#gotoJJJL_scroll'), scrolltable = "", datas = data.Datas;
+        gotoJJJLloadView: function (data,el) {
+            var _this = this, gotoJJJL_scroll = $(el).find('#gotoJJJL_scroll'), scrolltable = "", datas = data.Datas;
             for (i = 0; i < datas.length; i++) {
                 var t = datas[i].LEMPDATE == "" ? '至今' : datas[i].LEMPDATE;
                 scrolltable += '<tr><td>' + datas[i].FEMPDATE + '</td>';
@@ -286,8 +287,8 @@ define(function (require) {
             gotoJJJL_scroll.find('tbody').html(scrolltable);
             param.isclick.gotoJJJL = false;
         },
-        gotoJJJLdetailloadView: function (data) {
-            var _this = this, gotoJJJL_detail = $('#gotoJJJL_detail'), detail = "", datas = data.Datas;
+        gotoJJJLdetailloadView: function (data,el) {
+            var _this = this, gotoJJJL_detail = $(el).find('#gotoJJJL_detail'), detail = "", datas = data.Datas;
             for (i = 0; i < datas.length; i++) {
                 var imgurl = datas[i].PHOTOURL == null ? 'http://j5.dfcfw.com/avatar/nopic.gif' : datas[i].PHOTOURL;
                 detail += '<div class="ui-grid-row"><div class="ui-grid-4">';
@@ -306,8 +307,8 @@ define(function (require) {
                 $(this).hasClass('down') ? $(this).removeClass('down').addClass('up').prev('p').removeClass('on') : $(this).removeClass('up').addClass('down').prev('p').addClass('on');
             });
         },
-        gotoJJGGLoadView: function (data) {
-            var _this = this, gotoJJGG = $('#gotoJJGG').next('.fold_content'), div = "", datas = data.Datas;
+        gotoJJGGLoadView: function (data,el) {
+            var _this = this, gotoJJGG = $(el).find('#gotoJJGG').next('.fold_content'), div = "", datas = data.Datas;
             div += '<div class="jjggContent">';
             for (i = 0; i < datas.length; i++) {
                 div += '<div class="ui-grid-row" data-id=' + datas[i].ID + '><p class="ui-grid-2">' + datas[i].PUBLISHDATE.slice(5, 10) + '</p>';
@@ -318,20 +319,20 @@ define(function (require) {
             gotoJJGG.html(div).show();
 
             param.isclick.gotoJJGG = false;
-            $('#jjggMore').on('click', funCaller.gotoJJGGmore);
-            $('.jjggContent').find('.ui-grid-row').on('click', function () {
+            $(el).find('#jjggMore').on('click', funCaller.gotoJJGGmore);
+            $(el).find('.jjggContent').find('.ui-grid-row').on('click', function () {
                 window.location.href = "http://m.1234567.com.cn/m/fund/FundJJGSGG/" + param.data.FCODE + "_" + $(this).attr('data-id');
             })
         },
-        gotoJJGGmore: function () {
+        gotoJJGGmore: function (el) {
             var _this = this;
             param.page.gotoJJGG++;
             param.dataPage.pageIndex = 1;
             param.dataPage.pageSize = 5 * param.page.gotoJJGG;
-            funCaller.Ajax('FundNoticeList.ashx', param.dataPage, funCaller.gotoJJGGLoadView);
+            funCaller.Ajax('FundNoticeList.ashx', param.dataPage, funCaller.gotoJJGGLoadView,el);
         },
-        gotoFHPSloadView: function (data) {
-            var gotoFHPS = $('#gotoFHPS').next('.fold_content'), div = "", datas = data.Datas, CFnumber = 0;
+        gotoFHPSloadView: function (data,el) {
+            var gotoFHPS = $(el).find('#gotoFHPS').next('.fold_content'), div = "", datas = data.Datas, CFnumber = 0;
             div += '<div class="fhpsContent">';
             div += '<p class="ui_remark">成立以来，总计分红' + data.TotalCount + '次，拆分0次</p>';
             for (i = 0; i < datas.length; i++) {
@@ -351,15 +352,15 @@ define(function (require) {
             }
 
             param.isclick.gotoFHPS = false;
-            $('#fhpsMore').on('click', function () {
+            $(el).find('#fhpsMore').on('click', function () {
                 for (q = 5 * param.page.gotoFHPS; q < datas.length && q < 5 * param.page.gotoFHPS + 5; q++) {
                     gotoFHPS.find('.ui-grid-row').eq(q).show();
                 }
                 param.page.gotoFHPS++;
-                param.page.gotoFHPS * 5 > datas.length ? $('#fhpsMore').hide() : '';
+                param.page.gotoFHPS * 5 > datas.length ? $(el).find('#fhpsMore').hide() : '';
             });
         },
-        gotoFHPSloadViewMore: function (data) {
+        gotoFHPSloadViewMore: function (data,el) {
             var div = '';
             for (i = 5; i < data.length; i++) {
                 div += '<div class="ui-grid-row">';
@@ -367,7 +368,7 @@ define(function (require) {
                 div += '<p class="ui-grid-7">每份派现金<b>' + data[i].FHFCZ + '</b>元</p>';
                 div += '</div>';
             }
-            $('#gotoFHPS').next('.fold_content').find('.fhpsContent:last-child').after(div);
+            $(el).find('#gotoFHPS').next('.fold_content').find('.fhpsContent:last-child').after(div);
         },
         discussLink: function (options) {
             $.ajax({
@@ -386,7 +387,7 @@ define(function (require) {
             });
         },
 
-        Ajax: function (url, data, callback) {
+        Ajax: function (url, data, callback,el) {
             var _this = this;
             funCaller.hardLoad();
             $.ajax({
@@ -398,7 +399,7 @@ define(function (require) {
                 success: function (resultData) {
                     if (typeof resultData == 'string') resultData = JSON.parse(resultData);
                     if (resultData["ErrCode"] == 0) {
-                        callback(resultData);
+                        callback(resultData,el);
                     }
                     else {
                         if (isEmpty(resultData["ErrMsg"])) {
@@ -419,67 +420,67 @@ define(function (require) {
 
             });
         },
-        domclick: function (options) {
-            $('#tab').find('.tab p').on('click', function () {
+        domclick: function (el) {
+            $(el).find('#tab').find('.tab p').on('click', function () {
                 $(this).addClass('active').siblings('p').removeClass('active');
                 $(this).parents('.tab').next('.tabContent').find('.img').attr('src', $(this).attr('data-imgurl') + param.data.FCODE + '.png');
                 $(this).parents('.tab').next('.tabContent').find('img').attr('src', $(this).attr('data-imgurl') + param.data.FCODE + '.png');
             });
-            $('#gotoLSSYL').on('click', function () {
+            $(el).find('#gotoLSSYL').on('click', function () {
                 var _this = this;
                 funCaller.toggleShow(_this);
             });
-            $('#buyInfo_url').on('click', function () {
+            $(el).find('#buyInfo_url').on('click', function () {
                 window.location.href = 'http://m.1234567.com.cn/m/fund/fundfl/' + param.data.FCODE;
             });
-            $('#baseInfo_url').on('click', function () {
+            $(el).find('#baseInfo_url').on('click', function () {
                 window.location.href = "http://m.1234567.com.cn/m/fund/fundjbxx/" + param.data.FCODE;
             });
-            $('#tljjzf_url').on('click', function () {
+            $(el).find('#tljjzf_url').on('click', function () {
                 window.location.href = $(this).attr('data-href');
             });
-            $('#gotoJBCC').on('click', function () {
+            $(el).find('#gotoJBCC').on('click', function () {
                 var _this = this;
                 funCaller.toggleShow(_this);
                 if (param.isclick.gotoJBCC)
-                    funCaller.Ajax('FundPositionList.ashx', param.data, funCaller.gotoJBCCloadView);
+                    funCaller.Ajax('FundPositionList.ashx', param.data, funCaller.gotoJBCCloadView,el);
             });
-            $('#gotoFHPS').on('click', function () {
+            $(el).find('#gotoFHPS').on('click', function () {
                 var _this = this;
                 funCaller.toggleShow(_this);
                 if (param.isclick.gotoFHPS) {
-                    funCaller.Ajax('FundBonusList.ashx', param.data, funCaller.gotoFHPSloadView);
+                    funCaller.Ajax('FundBonusList.ashx', param.data, funCaller.gotoFHPSloadView,el);
                 }
 
             });
-            $('#gotoJJJL').on('click', function () {
+            $(el).find('#gotoJJJL').on('click', function () {
                 var _this = this;
                 funCaller.toggleShow(_this);
                 if (param.isclick.gotoJJJL) {
-                    funCaller.Ajax('FundManagerList.ashx', param.data, funCaller.gotoJJJLloadView);
-                    funCaller.Ajax('FundMangerDetail.ashx', param.data, funCaller.gotoJJJLdetailloadView);
+                    funCaller.Ajax('FundManagerList.ashx', param.data, funCaller.gotoJJJLloadView,el);
+                    funCaller.Ajax('FundMangerDetail.ashx', param.data, funCaller.gotoJJJLdetailloadView,el);
                 }
 
             });
-            $('#gotoJJGG').on('click', function () {
+            $(el).find('#gotoJJGG').on('click', function () {
                 var _this = this;
                 funCaller.toggleShow(_this);
                 if (param.isclick.gotoJJGG) {
                     param.dataPage.pageIndex = 1;
                     param.dataPage.pageSize = 5;
-                    funCaller.Ajax('FundNoticeList.ashx', param.dataPage, funCaller.gotoJJGGLoadView);
+                    funCaller.Ajax('FundNoticeList.ashx', param.dataPage, funCaller.gotoJJGGLoadView,el);
                 }
             });
-            $('#gotopinglun').on('click', function () {
+            $(el).find('#gotopinglun').on('click', function () {
                 window.location.href = 'http://jjbmob.eastmoney.com/fundDynamicsForFundBar.html#postid=of' + param.data.FCODE;
             });
-            $('#shareInfo').on('click', function () {
+            $(el).find('#shareInfo').on('click', function () {
                 var _this = $(this),
                     $flexShare = _this.siblings("#flexShare");
                 $flexShare.toggleClass("hide");
             });
             var user = null;
-            $('#addFavor').on('click', function (e) {
+            $(el).find('#addFavor').on('click', function (e) {
                 if (!user || !user.id) {
                     window.location.href = "http://m.passport.eastmoney.com/login.m?backurl=" + encodeURIComponent(encodeURIComponent(location.href));
                     return;

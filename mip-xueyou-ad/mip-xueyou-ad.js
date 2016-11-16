@@ -2,11 +2,10 @@
 * 学优网mip改造 第三方联盟广告插件
 * @file 插入联盟广告
 * @author myoa@163.com
-* @version 1.0.2
+* @version 1.0.1
 */
 define(function (require) {
     var $ = require('zepto');
-    var UA = navigator.userAgent.toLowerCase();
     var customElement = require('customElement').create();
     customElement.prototype.createdCallback = function () {
         var el = this.element;
@@ -16,20 +15,17 @@ define(function (require) {
         var html = [];
         switch (adtype) {
             case 'alibaba':
-                if (UA.indexOf('micromessenger/') === -1) {
-                    // 微信浏览器不显示alibaba的广告，否则微信内打不开网页
-                    html.push('<a style="display:none!important" id="tanx-a-mm_10011797_2351313_' + token + '"></a>');
-                    html.push('<script type="text/javascript">');
-                    html.push('tanx_s = document.createElement("script");');
-                    html.push('tanx_s.type = "text/javascript";');
-                    html.push('tanx_s.charset = "gbk";');
-                    html.push('tanx_s.id = "tanx-s-mm_10011797_2351313_' + token + '";');
-                    html.push('tanx_s.async = true;');
-                    html.push('tanx_s.src = "http://ac429.gkstk.com/ex?i=mm_10011797_2351313_' + token + '";');
-                    html.push('tanx_h = document.getElementsByTagName("head")[0];');
-                    html.push('if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);');
-                    html.push('</script>');
-                }
+                html.push('<a style="display:none!important" id="tanx-a-mm_10011797_2351313_' + token + '"></a>');
+                html.push('<script type="text/javascript">');
+                html.push('tanx_s = document.createElement("script");');
+                html.push('tanx_s.type = "text/javascript";');
+                html.push('tanx_s.charset = "gbk";');
+                html.push('tanx_s.id = "tanx-s-mm_10011797_2351313_' + token + '";');
+                html.push('tanx_s.async = true;');
+                html.push('tanx_s.src = "http://ac429.gkstk.com/ex?i=mm_10011797_2351313_' + token + '";');
+                html.push('tanx_h = document.getElementsByTagName("head")[0];');
+                html.push('if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);');
+                html.push('</script>');
                 break;
 
             case 'google' :

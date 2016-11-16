@@ -36,15 +36,11 @@ mip-dp-script 用来支持www.lz55.cn业务交互和广告显示
 
 # 属性
 
-### 固定广告位标签属性
+### 固定广告位置
 
 说明：样式名 ”adwraper“ 固定，id ”topad1“ 为广告位标签
 必填：否
 
-```
-<section class="adwraper" id="topad1"></section>
-
-```
 
 ### loadjs
 

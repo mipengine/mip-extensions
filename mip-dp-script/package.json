@@ -2,9 +2,11 @@
     "name": "mip-dp-script",
     "version": "1.0.1",
     "author": {
-        "name": "hans"
+        "name": "hans",
+        "email": "qtshucom@163.com",
+        "url": "https://www.mipengine.org"
     },
     "engines": {
-        "mip": ">=1.1.0"
+        "mip": ">=1.1.2"
     }
 }

@@ -24,7 +24,7 @@ define(function (require) {
                 }
                 $.getJSON(url, function (result) {
                     $('.' + params.containerclass).append(result.html);
-                    if (result.length < params.length || once) {
+                    if (once || result.length < params.length) {
                         $(element).remove();
                     } else {
                         $(element).attr('mip-ajax-mark', result['mip-ajax-mark']);
@@ -46,7 +46,7 @@ define(function (require) {
                     }
                     $.getJSON(url, function (result) {
                         $('.' + params.containerclass).append(result.html);
-                        if (result.length < params.length || once) {
+                        if (once || result.length < params.length) {
                             $(element).remove();
                         } else {
                             $(element).attr('mip-ajax-mark', result['mip-ajax-mark']);

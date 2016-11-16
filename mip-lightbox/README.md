@@ -11,7 +11,7 @@ mip-lightbox 是由用户控制展现或关闭的一个全屏浮层组件，组�
 ## 示例
 
 ```html
-<button on="tap:my-lightbox.open" id="btn-open" role="button" tabindex="0">
+<button on="tap:my-lightbox.toggle" id="btn-open" role="button" tabindex="0">
     Open lightbox
 </button>
 

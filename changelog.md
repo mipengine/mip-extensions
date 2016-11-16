@@ -1,5 +1,19 @@
 # 升级日志
 
+#### 2016.11.15 
+
+> 核心代码上线
+
+	1. mip-img 修复图片横滑下，非首屏图片不展现 BUG
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[新增] 支持在线评论插件 畅言
+[mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件 
+[mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[升级] 寻医问药页面功能组件
+
 #### 2016.11.11 
 
 > 核心代码上线

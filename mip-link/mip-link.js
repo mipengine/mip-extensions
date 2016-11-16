@@ -57,7 +57,7 @@ define(function (require) {
         }
 
     }
-    
+
     /**
      * build
      *

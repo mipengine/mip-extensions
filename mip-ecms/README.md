@@ -14,7 +14,7 @@ mip-ecms 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,�
 ```html
 <mip-ecms-zan ecms-classid="1" ecms-id="1" ecms-type="5">
   <span>点赞数</span>
-</mip-html-tabs>
+</mip-ecms-zan>
 ```
 ## 属性
 

@@ -2,7 +2,7 @@
 * 学优网mip改造 javascript功能插件
 * @file 网页主要功能
 * @author myoa@163.com
-* @version 1.0.1
+* @version 1.0.2
 */
 define(function (require) {
     var $ = require('zepto');
@@ -15,7 +15,7 @@ define(function (require) {
         var btnMax = $('#btnToMax');
         var artbox = $('#artbox');
         var relHeight = artbox.height();
-        if (relHeight < 500) {
+        if (relHeight < 800) {
             maxpage();
         }
         var timeOutEvent = 0;

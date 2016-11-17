@@ -6,14 +6,14 @@ mip-ecms 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,�
 ----|----
 类型|定制
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-emcs/mip-emcs.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ecms/mip-ecms.js
 
 ## 示例
 
 ### 5 内容页点赞。
 ```html
-<mip-ecms-zan ecms-classid="1" ecms-id="1" ecms-type="5">
-  <span>点赞数</span>
+<mip-ecms-zan ecms-classid="1" ecms-id="1" ecms-type="5" class="favorite">
+  <span class="count">点赞数</span>
 </mip-ecms-zan>
 ```
 ## 属性

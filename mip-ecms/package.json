@@ -1,5 +1,6 @@
 {
     "name": "mip-emcs",
     "version": "1.0.0",
+	"author": "supai",
 	"description": "帝国cms,mip整合包",
 }

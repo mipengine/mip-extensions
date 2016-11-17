@@ -2,7 +2,7 @@
 * 学优网mip改造 javascript功能插件
 * @file 网页主要功能
 * @author myoa@163.com
-* @version 1.0.0
+* @version 1.0.1
 */
 define(function (require) {
     var $ = require('zepto');
@@ -13,6 +13,11 @@ define(function (require) {
         $('.openself').attr('target', '_self');
         // 查看更多按钮功能
         var btnMax = $('#btnToMax');
+        var artbox = $('#artbox');
+        var relHeight = artbox.height();
+        if (relHeight < 500) {
+            maxpage();
+        }
         var timeOutEvent = 0;
         btnMax.on({
             touchstart: function (e) {
@@ -36,7 +41,6 @@ define(function (require) {
         });
         function maxpage() {
             dbshow || opendubao();
-            var artbox = $('#artbox');
             artbox.removeClass('minbox');
             btnMax.parent().remove();
         }

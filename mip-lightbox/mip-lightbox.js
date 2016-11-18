@@ -36,15 +36,12 @@ define(function (require) {
 
         // 事件注册
         self.addEventAction('close', function () {
-            console.log('close event');
             close.call(self, event);
         });
         self.addEventAction('open', function () {
-            console.log('open event');
             open.call(self, event);
         });
         self.addEventAction('toggle', function () {
-            console.log('toggle event');
             toggle.call(self, event);
         });
 

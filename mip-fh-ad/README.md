@@ -12,10 +12,16 @@ mip-fh-ad 用来支持m.fh21.com.cn问答详情页的直投广告显示
 
 在MIP HTML中,直接使用标签, 用于正常显示直投的广告。示例如下:
 
-```
-   <mip-fh-ad fh-ad-pid="49"></mip-fh-ad>
-
-   - P.S.: mip-fh-ad目录没有自带属性,直接按照正常的html标签使用即可
+```html
+    <mip-ad type="ad-qwang" cpro_psid="u2355234"></mip-ad>
+    <!--<div id="adParam" data-keyword="鼻炎,过敏,结膜炎"></div>-->
+    <mip-fixed type="bottom">
+        <div style="op-0">x</div>
+        <mip-fh-ad fh-ad-pid="1" lazy="false"></mip-fh-ad>
+    </mip-fixed>
+    <div>
+        <mip-fh-ad fh-ad-pid="49"></mip-fh-ad>
+    </div>
 ```
 
 ## 属性

@@ -18,7 +18,7 @@ define(function(require) {
 		var $_element = $(_element);
 		var html = [
 		    '<script type="text/javascript">',
-			'var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "//changyan.sohu.com/upload/changyan.js?appid=' + appid + '&conf=' + conf + '";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })();',
+			'var _hmt = _hmt || []; (function() { var hm = document.createElement("script");hm.id = "changyan_mobile_js";hm.charset = "utf-8";hm.src = "//changyan.sohu.com/upload/changyan.js?appid=' + appid + '&conf=' + conf + '";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })();',
 		    '</script>'
 		];
 

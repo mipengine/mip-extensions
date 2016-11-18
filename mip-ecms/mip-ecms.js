@@ -22,7 +22,7 @@ define(function (require) {
             });
         },
         // 文章点赞
-        zan: function (event) {
+        zan: function () {
             if ($(this).hasClass('done')) {
                 return false;
             }

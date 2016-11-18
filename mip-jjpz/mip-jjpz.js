@@ -1,12 +1,11 @@
 /**
- * @file FECS test file
- * @author cgzero(cgzero@cgzero.com)
+ * @file  jjpz
+ * @author elang126(liiang2006@126.com)
  */
 
 /**
- * Say Hello
- *
- * @param {string} fecs the name to say hi
+ * @date:  2016-11-18
+ * @time: 15:35
  */
 define(function (require) {
     var $ = require('zepto');

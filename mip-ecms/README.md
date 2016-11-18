@@ -8,13 +8,25 @@ mip-ecms 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,�
 支持布局|N/S
 所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ecms/mip-ecms.js
 
-## 示例
+## 示例1
 
 ### 5 内容页点赞。
 ```html
 <mip-ecms-zan ecms-classid="1" ecms-id="1" ecms-type="5" class="favorite">
   <span class="count">点赞数</span>
 </mip-ecms-zan>
+```
+## 示例2
+
+### 评论验证码点击刷新
+```html
+ <mip-img src="验证码URL" name="KeyImg" id="KeyImg" align="bottom" alt="看不清楚,点击刷新"></mip-img>
+```
+## 示例3
+
+### 回滚页面顶部
+```html
+<div class="scroll" id="scroll"> ︿</div>
 ```
 ## 属性
 
@@ -37,3 +49,11 @@ ecms-type：5
 必选项：是 
 类型：整数  
 ecms-type：5 
+
+### 回滚顶部
+说明：class="scroll"和id="scroll"
+必选项：是
+
+### 评论验证码
+说明：id="KeyImg"根据id KeyImg进行动态刷新
+必选项：是

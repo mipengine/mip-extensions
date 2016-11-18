@@ -50,9 +50,22 @@ define(function (require) {
                 });
             return false;
         },
+        // 回滚页面顶部
+        gototop: function () {
+            $(window).scroll(function() {
+                var scrollValue = $(window).scrollTop();
+                scrollValue > 500 ? $('div[class=scroll]').fadeIn() : $('div[class=scroll]').fadeOut();
+            });
+            $('#scroll').click(function() {
+                $("html,body").animate({
+                    scrollTop: 0
+                }, 200);
+            });
+        }
         // 加载绑定
         init: function () {
             this.bindEvents();
+            this.gototop();
         }
     };
 

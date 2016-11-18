@@ -16,7 +16,7 @@
 <mip-yiqibazi-tap>
 	<div class="list-box mip-liunian" id="liunian">
         <div class="title list-title">
-            <span class="navs-active">生肖</span><span>星座</span><span>面相</span><span>痣相</span><span>解梦</span>
+            <span class="navs-active">生肖</span><span>星座d</span><span>面相</span><span>痣相</span><span>解梦</span>
         </div>
         <div class="list-con list-con-padding">
             <div class="answer-box">

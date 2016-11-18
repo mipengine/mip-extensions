@@ -7,40 +7,27 @@
  * @description: #
  */
 
-define(function (require) {
+define('mip-fh-ad', ['require', 'customElement', 'zepto'], function (require) {
+
     var $ = require('zepto');
 
     var customElem = require('customElement').create();
+    var $body = $('body');
 
     // 直投广告请求url
     var ajaxurl = 'https://partners.fh21.com.cn/partners/showcodejsonp?callback=?';
     // 页面广告参数
     var param = $('#adParam');
     var paramObj = param.data('keyword');
-    // 加载js文件
-    var loadJSFile = function (url, callback) {
 
-        // Adding the script tag to the head as suggested before
-        var head = document.getElementsByTagName('head')[0];
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
-
-        // Then bind the event to the callback function.
-        // There are several events for cross browser compatibility.
-        script.onreadystatechange = callback;
-        script.onload = callback;
-
-        // Fire the loading
-        head.appendChild(script);
-    };
     // load btm baidu ad
     var loadBdAd = function () {
-        window.cpro_psid = 'u2355234';
-        window.cpro_psdata = {
-            staticDomain: 'su.bdimg.com'
-        };
-        loadJSFile('https://su.bdimg.com/static/dspui/js/umf.js');
+        var html = ['<div class="fh-ad-1">', '<span class="btn-fh-ad-1" on="tap:fh-ad-1.close"></span>', '</div>'];
+
+        html =  html.concat(['<mip-ad type="ad-qwang" ', 'cpro_psid="u2355234"', '></mip-ad>']);
+
+        html = html.join('');
+        return html;
     };
 
     // 初始化直投广告
@@ -95,13 +82,15 @@ define(function (require) {
                                 element.html(v);
                                 break;
                         }
+
+                        $body.addClass('view-fh-ad-' + (+k));
                     }
                     // 无特定广告位id投广告
                     else {
                         switch (+k) {
                             // 广告位id为1时，加载底部漂浮的百度广告
                             case 1:
-                                loadBdAd();
+                                element.html(loadBdAd());
                                 break;
                             // 广告位id为47时，加载我要提问下方文字广告和问题详情下方网盟广告
                             case 47:
@@ -109,6 +98,8 @@ define(function (require) {
                                 $('#ask-inof-blew-ad').show();
                                 break;
                         }
+
+                        $body.addClass('view-fh-ad-' + (+k) + '-union');
                     }
                 });
             });
@@ -116,6 +107,10 @@ define(function (require) {
         else {
             $('#ad-s-1255').show();
             $('#ask-inof-blew-ad').show();
+            if (posId == 1) {
+                element.html(loadBdAd());
+            }
+            $body.addClass('view-fh-ad-union');
         }
     };
 
@@ -174,3 +169,7 @@ define(function (require) {
     return customElem;
 });
 
+require(['mip-fh-ad'], function (plugindemo) {
+    // 注册mip-fh-ad组件
+    MIP.registerMipElement('mip-fh-ad', plugindemo);
+});

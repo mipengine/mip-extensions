@@ -7,7 +7,7 @@
  * @description: #
  */
 
-define('mip-fh-ad', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
 
     var $ = require('zepto');
 
@@ -167,9 +167,4 @@ define('mip-fh-ad', ['require', 'customElement', 'zepto'], function (require) {
     };
 
     return customElem;
-});
-
-require(['mip-fh-ad'], function (plugindemo) {
-    // 注册mip-fh-ad组件
-    MIP.registerMipElement('mip-fh-ad', plugindemo);
 });

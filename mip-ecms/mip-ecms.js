@@ -8,16 +8,21 @@ define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
 
-    // 页面交互效果
     var effects = {
+        // 绑定事件
         bindEvents: function () {
+            // 文章点赞
             $('.favorite').on('click', function (event) {
                 event.preventDefault();
                 this.zan();
             });
+            // 评论验证码刷新
+            $('#KeyImg').on('click', function (event) {
+                $('#KeyImg').attr('src', '/e/ShowKey/?v=pl&' + Math.random());
+            });
         },
         // 文章点赞
-        zan: function () {
+        zan: function (event) {
             if ($(this).hasClass('done')) {
                 return false;
             }

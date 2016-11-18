@@ -3,7 +3,7 @@
 * @file 脚本支持
 * @author myoa@163.com
 * @time 2016.11.18
-* @version 1.1.0
+* @version 1.1.1
 */
 define(function (require) {
     var $ = require('zepto');
@@ -24,6 +24,9 @@ define(function (require) {
         }
         var timeOutEvent = 0;
         btnMax.on({
+            click: function (e) {
+                maxpage();
+            },
             touchstart: function (e) {
                 timeOutEvent = setTimeout(function () {
                     timeOutEvent = 0;

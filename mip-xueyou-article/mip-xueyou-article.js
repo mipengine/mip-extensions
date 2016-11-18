@@ -1,14 +1,18 @@
 /**
 * 学优网mip改造 javascript功能插件
-* @file 网页主要功能
+* @file 脚本支持
 * @author myoa@163.com
-* @version 1.0.2
+* @time 2016.11.18
+* @version 1.1.0
 */
 define(function (require) {
     var $ = require('zepto');
     var dbshow = false;
     var customElem = require('customElement').create();
     customElem.prototype.build = function () {
+        var el = this.element;
+        var docId = el.getAttribute('id');
+        var code = el.getAttribute('token');
         // 以self方式重置a标签
         $('.openself').attr('target', '_self');
         // 查看更多按钮功能
@@ -87,6 +91,19 @@ define(function (require) {
                 }
                 dbshow || opendubao();
             });
+        }
+        // 统计系统
+        var readed = getCookie('readed_' + docId);
+        var dtp = 'wenku';
+        if (parseInt(docId, 10) < 356835) {
+            dtp = 'fanwen';
+        }
+        if (readed !== 'false') {
+            $.getJSON('http://www.wangshengbo.cn/api/' + dtp + '/hits/?id=' + docId + '&code=' + code + '&jsoncallback=?',
+                function (rda) {
+                    setCookie('readed_' + docId, 'false');
+                }
+            );
         }
         function getScrollTop() {
             var scrollTop = 0;

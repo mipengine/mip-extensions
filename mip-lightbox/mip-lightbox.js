@@ -36,12 +36,15 @@ define(function (require) {
 
         // 事件注册
         self.addEventAction('close', function () {
+            console.log('close event');
             close.call(self, event);
         });
         self.addEventAction('open', function () {
+            console.log('open event');
             open.call(self, event);
         });
         self.addEventAction('toggle', function () {
+            console.log('toggle event');
             toggle.call(self, event);
         });
 
@@ -99,8 +102,7 @@ define(function (require) {
 
         self.open = true;
         util.css(self.element, {'display': 'block'});
-        // openMask.call(self);
-
+        openMask.call(self);
     }
 
 
@@ -121,7 +123,7 @@ define(function (require) {
 
         self.open = false;
 
-        // closeMask.call(self);
+        closeMask.call(self);
         util.css(self.element, {'display': 'none'});
         util.css(document.body, {'overflow': 'auto'});
 

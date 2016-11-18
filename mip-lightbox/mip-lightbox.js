@@ -99,8 +99,7 @@ define(function (require) {
 
         self.open = true;
         util.css(self.element, {'display': 'block'});
-        // openMask.call(self);
-
+        openMask.call(self);
     }
 
 
@@ -121,7 +120,7 @@ define(function (require) {
 
         self.open = false;
 
-        // closeMask.call(self);
+        closeMask.call(self);
         util.css(self.element, {'display': 'none'});
         util.css(document.body, {'overflow': 'auto'});
 

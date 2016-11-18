@@ -16,10 +16,10 @@ mip-fh-ad 用来支持m.fh21.com.cn问答详情页的直投广告显示
     <mip-ad type="ad-qwang" cpro_psid="u2355234"></mip-ad>
     <!--<div id="adParam" data-keyword="鼻炎,过敏,结膜炎"></div>-->
     <mip-fixed type="bottom">
-        <div style="opacity: 0;">x</div>
+        <div style="op-0">x</div>
         <mip-fh-ad fh-ad-pid="1" lazy="false"></mip-fh-ad>
     </mip-fixed>
-    <div style="margin-bottom: 200px;">
+    <div>
         <mip-fh-ad fh-ad-pid="49"></mip-fh-ad>
     </div>
 ```

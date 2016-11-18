@@ -11,7 +11,6 @@
 define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
-    var ttHtml = require('./dom');
 
     var param = {
         data: {
@@ -791,7 +790,6 @@ define(function (require) {
 
     customElem.prototype.build = function () {
         var element = this.element;
-        $(element).html(ttHtml);
         param.data.FCODE = funCaller.getQueryString('fundcode') || '000001';
         param.dataPage.FCODE = funCaller.getQueryString('fundcode') || '000001';
         funCaller.init();

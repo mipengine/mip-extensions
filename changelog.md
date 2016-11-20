@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2016.11.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xueyou-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-xueyou-ad)|[升级] 学优网广告bug修复
+[mip-fh-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-ad)|[升级] 飞华广告升级
+
 #### 2016.11.16
 
 > 组件上线

@@ -14,7 +14,7 @@ define(function (require) {
             function GetPosition() {
                     
                     //随机要放入广告的大位置
-                    var a = $("mip-ad-random").data("randomad"); 
+                    var a = $("mip-ad-random").data("parents"); 
                     var arry1 = $('.' + a);
                     var arry_length1 = arry1.length;
                     var rand_num = Math.ceil(Math.random() * arry_length1) - 1;

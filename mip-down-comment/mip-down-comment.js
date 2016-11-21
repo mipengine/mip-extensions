@@ -108,7 +108,7 @@ define(function (require) {
                         $('#comment .button').show();
                     }
                     if (p >= data.PageCount) {
-                        $('#view-comment .button').val('\u6ca1\u6709\u66f4\u591a\u8bc4\u8bba\u4e86\uff01').attr('disabled', true);
+                        $('#view-comment .button').text('\u6ca1\u6709\u66f4\u591a\u8bc4\u8bba\u4e86\uff01').unbind('click');
                     }
                     oli.length == 0 ? oul.html(html) : oli.last().after(html);
                 }
@@ -117,7 +117,7 @@ define(function (require) {
 
         readComment();
 
-        $('#view-comment .button').click(function () {
+        $('#view-comment .button').bind('click', function () {
             readComment();
         });
 

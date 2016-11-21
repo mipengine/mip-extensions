@@ -503,11 +503,57 @@ define(function (require) {
             $('.gotopinglun').on('click', function () {
                 window.location.href = 'http://jjbmob.eastmoney.com/fundDynamicsForFundBar.html#postid=of' + param.data.FCODE;
             });
-            $('.shareInfo').on('click', function () {
+            $('.shareInfo').on('click', function (e) {
                 var tthis = $(this);
                 var $flexShare = tthis.siblings('.flexShare');
-                $flexShare.toggleClass('hide');
+                $flexShare.toggleClass("hide")
+
+                if (!this.Share) {
+                    this.Share = true;
+                    $flexShare.on("touchend", "li", function () {
+                        var j = $(this);
+                        setTimeout(function () {
+                            var type = j.data("type");
+                            if (type) {
+                                shareTo(type)
+                            }
+                        }, 1200);
+
+                    })
+                }
+                e.stopPropagation();
+
             });
+            var shareTo = function (dest) {
+                var shareTitle = "天天基金网";
+                var url = location.href;
+                /*sina*/
+                var source = "基金详情";
+                var sourceUrl = "http://m.1234567.com.cn/";
+                var sinaAppkey = "2136217547";
+                var sinaRalateUid = "2627698865";
+
+                var title = shareTitle + "-" + source + "(m.1234567.com.cn)";
+
+                if (url == null || title == null || url == "" || title == "") {
+                    $.alertWindow("错误的链接地址或标题");
+                    return;
+                }
+                var shareUrl = "";
+                switch (dest.toLowerCase()) {
+                    case "sina":
+                        shareUrl = "http://service.weibo.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=" + sinaAppkey + "&title=" + encodeURIComponent(title) + "&pic=&ralateUid=" + sinaRalateUid + "&source=" + encodeURIComponent(source) + "&sourceUrl=" + encodeURIComponent(sourceUrl);
+                        break;
+                    case "qq":
+                        shareUrl = "http://v.t.qq.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=801004939&site=http://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&pic=";
+                        break;
+                    case "qzone":
+                        shareUrl = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + encodeURIComponent(url) + "&appkey=801004939&site=http://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&desc=&summary=&site=http://wap.eastmoney.com";
+                        break;
+                }
+
+                window.parent.location.href = shareUrl;
+            };
             var user = null;
             $('.addFavor').on('click', function (e) {
                 if (!user || !user.id) {

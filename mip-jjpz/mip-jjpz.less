@@ -1676,4 +1676,26 @@ mip-jjpz {
   footer .foot_desc p.foot_time .foot_time_s {
     font-family: "Arial";
   }
+  .flexShare {
+    position: absolute;
+    -webkit-transform: translate(50%, -100%);
+    margin-top: -6px;
+    background-color: rgba(53, 53, 53, 0.9);
+    border-radius: 5px;
+    color: #fff;
+    padding: 6px 15px;
+    font-size: 15px;
+    right: 33%;
+  }
+  .flexShare::after {
+    content: '';
+    width: 10px;
+    height: 9px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 5px auto;
+    background: url('./mip-jjpz/img/down.png') no-repeat;
+    background-size: 100% 100%;
+  }
 }

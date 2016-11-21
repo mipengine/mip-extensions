@@ -9,6 +9,9 @@ mip-ad-random 实现了一个mip广告位置随机显示。
 所需脚本|https://github.com/weiling0626/weiling666/blob/master/mip-ad-random.js
 
 ## 示例
+
+### 广告位置随机显示
+
 ```html
 <mip-ad-random  data-parent="con" ad-href="//m.baidu.com/s?word=百度" ad-width="400" ad-height="80" ad-src="http://img0.xiejing.com/static/uploads/allimg/201610/25/1477410406737904.png" ad-class="ad1" ad-title="广告标题">
     </mip-ad-random>

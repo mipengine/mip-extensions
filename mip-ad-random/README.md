@@ -54,7 +54,7 @@ mip-ad-random 实现了一个mip广告位置随机显示。
 默认值：80 
 
 ### ad-class
-说明：调整广告mip广告的样式名 
+说明：调整广告mip广告的样式名  
 必选项：否
 
 ### ad-title

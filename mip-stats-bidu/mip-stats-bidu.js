@@ -1,25 +1,31 @@
 /**
- * 百度统计插件
+ * @file 百度统计插件
+ *
+ * @author menglingjun
  * From: mip-stats-baidu
 */
 
 define(function (require) {
+
     var $ = require('zepto');
+
     var customElement = require('customElement').create();
 
     customElement.prototype.createdCallback = function () {
-        var _element = this.element;
 
-        var token = _element.getAttribute('token');
+        var elem = this.element;
 
-        var $_element = $(_element);
-        var html = [
-            '<script type="text/javascript">',
-                'var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "//hm.baidu.com/hm.js?'+token+'"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })();',
-            '</script>'
-        ];
+        var token = elem.getAttribute('token');
 
-        $_element.append(html.join(''));
+        window._hmt = window._hmt || [];
+
+        var hm = document.createElement("script");
+
+        hm.src = '//hm.baidu.com/hm.js?' + token;
+
+        $(elem).append(hm);
+
     }
+
     return customElement;
 });

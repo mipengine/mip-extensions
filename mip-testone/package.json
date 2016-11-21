@@ -1,0 +1,8 @@
+{
+    "name": "mip-testone",
+    "version": "1.0.0",
+	"description": "article advertisement",
+    "engines": {
+        "mip": ">=1.0.0"
+    }
+}

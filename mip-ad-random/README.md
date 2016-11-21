@@ -17,7 +17,7 @@ mip-ad-random 实现了一个mip广告位置随机显示。
     </mip-ad-random>
 \```
 
-提示: 参与随机位置的标签里面都加上与data-randomad中参数一致的类。
+### 参与随机位置的标签里面都加上与data-randomad中参数一致的类。
 
 ## 属性
 

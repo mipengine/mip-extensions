@@ -52,20 +52,33 @@ define(function (require) {
         },
         // 回滚页面顶部
         gototop: function () {
-            $(window).scroll(function() {
+            $(window).scroll(function () {
                 var scrollValue = $(window).scrollTop();
                 scrollValue > 500 ? $('div[class=scroll]').fadeIn() : $('div[class=scroll]').fadeOut();
             });
-            $('#scroll').click(function() {
-                $("html,body").animate({
+            $('#scroll').click(function () {
+                $('html,body').animate({
                     scrollTop: 0
                 }, 200);
             });
-        }
+        },
+        // 百度站内搜索
+        bdznsv: function () {
+            var sid = $('#bdcsMain').data('sid');
+            var bdcs = document.createElement('script');
+            bdcs.type = 'text/javascript';
+            bdcs.async = true;
+            bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=' + sid
+                + '&plate_url=' + encodeURIComponent(window.location.href)
+                + '&t=' + Math.ceil(new Date() / 3600000);
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(bdcs, s);
+        },
         // 加载绑定
         init: function () {
             this.bindEvents();
             this.gototop();
+            this.bdznsv();
         }
     };
 

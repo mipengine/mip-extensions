@@ -28,6 +28,15 @@ mip-ecms 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,�
 ```html
 <div class="scroll" id="scroll"> ︿</div>
 ```
+## 示例4
+
+### 百度站内搜索
+```html
+<mip-form class="search" method="get" url="页面url">
+    <input class="text" type="text" name="s" data-sid="百度站内搜索密匙" id="bdcsMain" placeholder=" 请输入关键词" value="">
+    <input class="butto" value="" target="_blank"type="submit">
+</mip-form>
+```
 ## 属性
 
 ### ecms-type
@@ -56,4 +65,11 @@ ecms-type：5
 
 ### 评论验证码
 说明：id="KeyImg"根据id KeyImg进行动态刷新
+必选项：是
+
+### 百度站内搜索
+说明：input中的id="bdcsMain"
+必选项：是
+
+说明: sid="密匙" 百度站内搜索密匙
 必选项：是

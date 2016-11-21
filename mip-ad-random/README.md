@@ -18,7 +18,6 @@ ad-src="http://img0.xiejing.com/static/uploads/allimg/201610/25/1477410406737904
     </mip-ad-random>
 \```
 
-提示：参与随机位置的标签里面都加上与data-randomad中参数一致的类。
 
 ## 属性
 

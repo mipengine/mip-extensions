@@ -51,7 +51,7 @@ define(function (require) {
             return false;
         },
         // 回滚页面顶部
-        gototop: function () {
+        gotoTop: function () {
             $(window).scroll(function () {
                 var scrollValue = $(window).scrollTop();
                 scrollValue > 500 ? $('div[class=scroll]').fadeIn() : $('div[class=scroll]').fadeOut();
@@ -63,7 +63,7 @@ define(function (require) {
             });
         },
         // 百度站内搜索
-        bdznsv: function () {
+        bdZnsv: function () {
             var sid = $('#bdcsMain').data('sid');
             var bdcs = document.createElement('script');
             bdcs.type = 'text/javascript';
@@ -74,11 +74,21 @@ define(function (require) {
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(bdcs, s);
         },
+        rightNews: function () {
+            var elm = $('.sitebar_list');
+            var startPos = $(elm).offset().top;
+            $.event.add(window, 'scroll', function () {
+                var p = $(window).scrollTop();
+                $(elm).css('position', ((p) > startPos) ? 'fixed' : 'static');
+                $(elm).css('top', ((p) > startPos) ? '20px' : '');
+            });
+        },
         // 加载绑定
         init: function () {
             this.bindEvents();
-            this.gototop();
-            this.bdznsv();
+            this.gotoTop();
+            this.bdZnsv();
+            this.rightNews();
         }
     };
 

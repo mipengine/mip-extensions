@@ -37,6 +37,10 @@ mip-ecms 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,�
     <input class="butto" value="" target="_blank"type="submit">
 </mip-form>
 ```
+### 悬浮24小时热文
+```html
+<div class="sitebar_list">悬浮内容</div>
+```
 ## 属性
 
 ### ecms-type
@@ -72,4 +76,8 @@ ecms-type：5
 必选项：是
 
 说明: sid="密匙" 百度站内搜索密匙
+必选项：是
+
+### 悬浮24小时热文
+说明：需要悬浮的div添加class="sitebar_list"
 必选项：是

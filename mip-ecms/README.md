@@ -37,6 +37,8 @@ mip-ecms 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,�
     <input class="butto" value="" target="_blank"type="submit">
 </mip-form>
 ```
+## 示例4
+
 ### 悬浮24小时热文
 ```html
 <div class="sitebar_list">悬浮内容</div>

@@ -13,10 +13,24 @@ mip-jx-ad 第三方聚效广告扩展组件
 用于投放聚效第三方广告的扩展组件
 ```html
 <mip-jx-ad 
-     type="ad-qwang"
-     unionId="u2816363"
-	 cpro_pswidth="309"
-	 cpro_psheight="250"
+     ayid="y74001"
+	 adtype="ad-dsf"
      >
 </mip-jx-ad>
 ```
+
+## 属性
+
+### ayid
+
+说明：扩展组件广告id  
+必填：是
+类型：字符串
+
+### adtype
+
+说明：广告类型  
+必填：是
+类型：字符串
+取值:ad-dsf
+ 

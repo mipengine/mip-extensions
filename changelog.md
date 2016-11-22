@@ -1,5 +1,16 @@
 # 升级日志
 
+#### 2016.11.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-dp-script](https://github.com/mipengine/mip-extensions/tree/master/mip-dp-script)|[新增] 支持www.lz55.cn业务交互和广告显示
+[mip-jjpz](https://github.com/mipengine/mip-extensions/tree/master/mip-jjpz)|[新增] 天天基金自有业务详情页整体交互组件
+[mip-jx-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-jx-ad)|[新增] 青年网聚效广告扩展组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 修复网盟广告，不支持fixed的bug
+
 #### 2016.11.17
 
 > 组件上线

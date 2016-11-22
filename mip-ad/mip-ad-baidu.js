@@ -49,7 +49,7 @@ define(function (require) {
      */
     function initJs() {
         var MIPDUPJS = document.getElementById(scriptId);
-        if(MIPDUPJS) return;
+        if(MIPDUPJS) return MIPDUPJS;
 
         var script = document.createElement('script');
         script.src = jsSrc;

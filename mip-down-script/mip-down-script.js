@@ -6,9 +6,9 @@ define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     var browser = {
-        versions: function () {
+        versions: (function () {
             var u = navigator.userAgent;
-            var app = navigator.appVersion;
+            // var app = navigator.appVersion;
             return {
                 ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
                 android: u.indexOf('Android') > -1, // android终端或者uc浏览器
@@ -19,18 +19,27 @@ define(function (require) {
                 UCBrowser: u.indexOf('UCBrowser') > -1, // UCBrowser
                 Safari: u.indexOf('Safari') > -1
             };
-        }(),
+        })(),
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
     };
     var down = {
         mrtit: function () {
             var otit = $('#cataName');
             var ohref = otit.attr('href');
-            var wyArr = [631, 632, 633, 634, 636, 694, 695, 696, 697, 700, 727, 728, 729, 730, 731, 732, 733, 734, 735, 797, 798, 799, 800, 801, 806];
-            var djArr = [830, 831, 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 802, 803, 804, 805, 807, 808, 809, 810, 758, 759, 760, 761, 762, 763, 764, 765, 766, 767, 768, 769, 770, 771, 673, 672, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 618, 619, 620, 621, 622, 623, 624, 625, 591, 592, 593, 594, 595, 596, 597, 598, 637, 638, 711, 712, 713, 714, 842, 465, 466, 467, 468, 469, 470, 471, 472, 473, 476, 477, 386, 387, 388, 389, 390, 391, 414, 415, 416, 417, 571, 572, 573, 574, 422, 285, 282, 284, 286, 287, 288, 535, 616, 508, 384, 299, 304, 345, 478, 479, 480, 482, 506, 298, 561, 562, 629, 557];
+            var wyArr = [631, 632, 633, 634, 636, 694, 695, 696, 697, 700, 727, 728, 729, 730, 731, 732, 733, 734,
+735, 797, 798, 799, 800, 801, 806];
+            var djArr = [830, 831, 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 813, 814, 815, 816, 817, 818,
+819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 802, 803, 804, 805, 807, 808, 809, 810, 758, 759, 760, 761, 762,
+763, 764, 765, 766, 767, 768, 769, 770, 771, 673, 672, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685,
+686, 687, 688, 689, 690, 618, 619, 620, 621, 622, 623, 624, 625, 591, 592, 593, 594, 595, 596, 597, 598, 637, 638,
+711, 712, 713, 714, 842, 465, 466, 467, 468, 469, 470, 471, 472, 473, 476, 477, 386, 387, 388, 389, 390, 391, 414,
+415, 416, 417, 571, 572, 573, 574, 422, 285, 282, 284, 286, 287, 288, 535, 616, 508, 384, 299, 304, 345, 478, 479,
+480, 482, 506, 298, 561, 562, 629, 557];
             function jcTit(arr, tit, href) {
                 for (var i = 0; i < arr.length; i++) {
-                    if (ohref.indexOf(arr[i]) > 0) otit.html(tit).attr('href', href);
+                    if (ohref.indexOf(arr[i]) > 0) {
+                        otit.html(tit).attr('href', href);
+                    }
                 }
             }
             otit.html('软件').attr('href', 'http://m.pc6.com/ruanj.html');
@@ -58,32 +67,35 @@ define(function (require) {
             });
         },
         downHref: function () {
-            var webInfoId = $('#down-href').attr('downid'),
+            var webInfoId = $('#down-href').attr('downid');
                 // webInfoCid = $('#down-href').attr('cid'),
                 // webInfoRid = $('#down-href').attr('rid'),
                 // platIPadId = $('#plat_iPad').attr('platid'),
-                platAndroidId = $('#plat_Android').attr('platid'),
-                platAndroidAddress = $('#plat_Android').attr('Address'),
-                platAndroidResSystem = $('#plat_Android').attr('ResSystem'),
-                platAndroidResName = $('#plat_Android').attr('ResName'),
-                platAndroidResVer = $('#plat_Android').attr('ResVer'),
+            var platAndroidId = $('#plat_Android').attr('platid');
+            var platAndroidAddress = $('#plat_Android').attr('Address');
+            var platAndroidResSystem = $('#plat_Android').attr('ResSystem');
+            var platAndroidResName = $('#plat_Android').attr('ResName');
+            var platAndroidResVer = $('#plat_Android').attr('ResVer');
                 // platAndroidTypeID = $('#plat_Android').attr('TypeID'),
                 // platAndroidCid = $('#plat_Android').attr('cid'),
                 // platAndroidRid = $('#plat_Android').attr('rid'),
-                platIPhoneId = $('#plat_iPhone').attr('platid'),
-                platIPhoneAddress = $('#plat_iPhone').attr('Address'),
-                platIPhoneResSystem = $('#plat_iPhone').attr('ResSystem'),
-                platIPhoneResName = $('#plat_iPhone').attr('ResName'),
-                platIPhoneResVer = $('#plat_iPhone').attr('ResVer'),
+            var platIPhoneId = $('#plat_iPhone').attr('platid');
+            var platIPhoneAddress = $('#plat_iPhone').attr('Address');
+            var platIPhoneResSystem = $('#plat_iPhone').attr('ResSystem');
+            var platIPhoneResName = $('#plat_iPhone').attr('ResName');
+            var platIPhoneResVer = $('#plat_iPhone').attr('ResVer');
                 // platIPhoneTypeID = $('#plat_iPhone').attr('TypeID'),
                 // platIPhoneCid = $('#plat_iPhone').attr('cid'),
                 // platIPhoneRid = $('#plat_iPhone').attr('rid'),
-                assid = parseInt($('#info #Associate').html(), 10);
+            var assid = parseInt($('#info #Associate').html(), 10);
                 // cataid = parseInt($('#info #catalogid').html());
             // 2014-6-6 add pc download address
-            if (assid > 0) $('#info #btns a').attr('href', '/down.asp?id=' + assid);
-            if (browser.versions.android && typeof (platAndroidAddress) != 'undefined') {
-                if (platAndroidAddress.indexOf('http:') >= 0 || platAndroidAddress.indexOf('ftp:') >= 0 || platAndroidAddress.indexOf('https:') >= 0) {
+            if (assid > 0) {
+                $('#info #btns a').attr('href', '/down.asp?id=' + assid);
+            }
+            if (browser.versions.android && typeof (platAndroidAddress) !== 'undefined') {
+                if (platAndroidAddress.indexOf('http:') >= 0 || platAndroidAddress.indexOf('ftp:') >= 0
+                    || platAndroidAddress.indexOf('https:') >= 0) {
                     $('#info #btns a').attr('href', platAndroidAddress);
                 }
                 else {
@@ -97,8 +109,9 @@ define(function (require) {
                     }
                 }
             }
-            else if (browser.versions.ios && typeof(platIPhoneAddress) != 'undefined') {
-                if (platIPhoneAddress.indexOf('http:') >= 0 || platIPhoneAddress.indexOf('ftp:') >= 0 || platIPhoneAddress.indexOf('https:') >= 0) {
+            else if (browser.versions.ios && typeof (platIPhoneAddress) !== 'undefined') {
+                if (platIPhoneAddress.indexOf('http:') >= 0 || platIPhoneAddress.indexOf('ftp:') >= 0
+                    || platIPhoneAddress.indexOf('https:') >= 0) {
                     $('#info #btns a').attr('href', platIPhoneAddress);
                 }
                 else {
@@ -122,16 +135,16 @@ define(function (require) {
                 $('#tab span').eq(1).hide();
             }
             $('#tab span').click(function () {
-                if ($(this).text() == '\u7b80\u4ecb') {
+                if ($(this).text() === '简介') {
                     $(this).addClass('cur').siblings().removeClass('cur');
                     $('.xyc,.cont,#comment,.xgwz,.similar,#tcsyy,.guess,#xgk').show();
                 }
-                else if ($(this).text() == '\u6559\u7a0b') {
+                else if ($(this).text() === '教程') {
                     $(this).addClass('cur').siblings().removeClass('cur');
                     $('.xgwz,#comment').show();
                     $('.cont,.xyc,.similar,#tcsyy,#xgk,.guess').hide();
                 }
-                else if ($(this).text() == '\u8bc4\u8bba') {
+                else if ($(this).text() === '评论') {
                     $(this).addClass('cur').siblings().removeClass('cur');
                     $('.xgwz,.cont,.xyc,.similar,#tcsyy,#xgk,.guess').hide();
                     $('#comment').show();
@@ -140,11 +153,16 @@ define(function (require) {
         },
         touchSlide: function () {
             var obj = $('.guess');
+            if (obj.length === 0) {
+                return;
+            }
             var oul = obj.find('.tags-main-ul');
             var oli = oul.find('.tags-main-box');
             var onavLi = $('#wrapert ul li');
             var ospan = '<span class="active"></span>';
-            var windowW = parseInt($(window).width() - 16);
+            var windowW = parseInt($(window).width() - 16, 10);
+            var touch = {s: [], d: ''};
+            var iNow = 0;
             oli.width(windowW);
             $('#tags-main').width(windowW);
             for (var i = 1; i < oli.length; i++) {
@@ -166,12 +184,6 @@ define(function (require) {
             });
 
 			// 滑动事件
-            var touch = {
-                's': [],
-                'd': ''
-            };
-            var iNow = 0;
-
             oul[0].addEventListener('touchstart', function (e) {
                 touch.s[0] = e.targetTouches[0].pageX;
                 touch.s[1] = e.targetTouches[0].pageY;
@@ -180,22 +192,24 @@ define(function (require) {
 
 			// 滑动过程
             oul[0].addEventListener('touchmove', function (e) {
-                if (Math.abs(e.targetTouches[0].pageX - touch.s[0]) >= Math.abs(e.targetTouches[0].pageY - touch.s[1]) && touch.d == '') {
+                if (Math.abs(e.targetTouches[0].pageX - touch.s[0]) >= Math.abs(
+                    e.targetTouches[0].pageY - touch.s[1]) && touch.d === '') {
                     touch.d = 1; // 左右
                 }
-                else if (touch.d == '') {
+                else if (touch.d === '') {
                     touch.d = 0; // 上下或者偏上下
                 }
-                if (touch.d == 1) { // 左右滚动
+                if (touch.d === 1) { // 左右滚动
                     e.preventDefault();
                     oul.css({
-                        '-webkit-transform': 'translate3d(' + -(windowW * iNow - e.targetTouches[0].pageX + touch.s[0]) + 'px, 0px, 0px)'
+                        '-webkit-transform': 'translate3d(' + -(windowW * iNow - e.targetTouches[0].pageX
+                        + touch.s[0]) + 'px, 0px, 0px)'
                     });
                 }
             }, false);
 
             oul[0].addEventListener('touchend', function (e) {
-                if (touch.d == 1) {
+                if (touch.d === 1) {
                     if ((new Date()).getTime() - touch.s[2] > 700) {
                         if (e.changedTouches[0].pageX - touch.s[0] > windowW / 3) {
                             auto('right');
@@ -221,18 +235,18 @@ define(function (require) {
 
 			// 运动函数
             function auto(dir) {
-                if (dir == 'left') {
-                    iNow >= oli.length - 1 ? iNow == oli.length - 1 : iNow++;
+                if (dir === 'left') {
+                    iNow >= oli.length - 1 ? iNow === oli.length - 1 : iNow++;
                     oul.animate({
                         '-webkit-transform': 'translate3d(' + -windowW * iNow + 'px, 0px, 0px)'
                     });
                 }
-                else if (dir == 'reset') {
+                else if (dir === 'reset') {
                     oul.animate({
                         '-webkit-transform': 'translate3d(' + -windowW * iNow + 'px, 0px, 0px)'
                     });
                 }
-                else if (dir == 'right') {
+                else if (dir === 'right') {
                     iNow <= 0 ? iNow = 0 : iNow--;
                     oul.animate({
                         '-webkit-transform': 'translate3d(' + -windowW * iNow + 'px, 0px, 0px)'
@@ -260,11 +274,11 @@ define(function (require) {
 
         },
         init: function () {
+            this.touchSlide();// 滑动切换
             this.mrtit();// 标题大分类修改
             this.xfNav();// 悬浮下载
             this.titTab();// 菜单切换
             this.downHref();// 动态下载地址
-            this.touchSlide();// 滑动切换
         }
     }; // 生命周期 function list，根据组件情况选用 end
     customElem.prototype.build = function () {

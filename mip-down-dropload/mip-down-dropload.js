@@ -16,7 +16,7 @@ define(function (require) {
         });
     };
     var currentPage = 1;
-    var allPage = '';
+    var allPage = 0;
     function dropload(element) {
         $.ajax({
             type: 'GET',
@@ -32,20 +32,20 @@ define(function (require) {
             },
             success: function (data) {
                 var html = '';
-                for (i in data.list) {
+                allPage = data.totalPage;
+                if (currentPage >= data.totalPage) {
+                    $('#moreList .button-footer').remove();
+                }
+                for (var i in data.list) {
                     html += '<li><a href="http://m.pc6.com/s/' + (data.list)[i].ID + '" class="img" target="_blank"><mip-img src="' + (data.list)[i].thumb + '" width="60" height="60"></mip-img></a><p><a href="http://m.pc6.com/s/' + (data.list)[i].ID + '" target="_blank">' + (data.list)[i].ResName + '</a><em class="lstar' + (data.list)[i].ResRank + '"></em><span>' + (data.list)[i].CatalogName + '<u>' + (data.list)[i].ResSize + '</u>' + (data.list)[i].ResVer + '</span></p><a href="http://m.pc6.com/s/' + (data.list)[i].ID + '" class="btn" target="_blank"><em class="bg"></em>\u4e0b\u8f7d</a></li>';
                 }
                 $('#moreList ul').append(html);
-                allPage = data.totalPage;
-                if (data.page == data.totalPage) {
-                    $('#moreList .button-footer').remove();
-                }
             }
         });
     }
     $(window).scroll(function (e) {
         if ($(this).scrollTop() + $(this).height() >= $(document).height()) {
-            if (currentPage == allPage) {
+            if (parseInt(currentPage, 10) === parseInt(allPage, 10)) {
                 return;
             }
             else {

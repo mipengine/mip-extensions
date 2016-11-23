@@ -1,6 +1,6 @@
 # mip-ishowx
 
-mip-ishowx 爱秀时尚网mip改造
+mip-ishowx 实现了返回顶部功能
 
 标题|内容
 ----|----
@@ -11,6 +11,6 @@ mip-ishowx 爱秀时尚网mip改造
 ## 示例
 
 ```html
-<mip-ishowx></mip-ishowx>
+<mip-ishowx>返回顶部</mip-ishowx>
 ```
 

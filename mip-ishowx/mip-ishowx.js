@@ -14,13 +14,13 @@ define(function (require) {
 		//返回顶部
         $(window).scroll(function(){
             if ($(window).scrollTop()>600){
-                $("#up").show();
+                $(".backtop").show();
             } 
             else { 
-                $("#up").hide();
+                $(".backtop").hide();
             } 
         }); 
-        $("#up").click(function(){
+        $(".backtop").click(function(){
             scrollTo(0,0);
         });
     };

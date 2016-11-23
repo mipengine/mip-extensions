@@ -68,27 +68,17 @@ define(function (require) {
         },
         downHref: function () {
             var webInfoId = $('#down-href').attr('downid');
-                // webInfoCid = $('#down-href').attr('cid'),
-                // webInfoRid = $('#down-href').attr('rid'),
-                // platIPadId = $('#plat_iPad').attr('platid'),
             var platAndroidId = $('#plat_Android').attr('platid');
             var platAndroidAddress = $('#plat_Android').attr('Address');
             var platAndroidResSystem = $('#plat_Android').attr('ResSystem');
             var platAndroidResName = $('#plat_Android').attr('ResName');
             var platAndroidResVer = $('#plat_Android').attr('ResVer');
-                // platAndroidTypeID = $('#plat_Android').attr('TypeID'),
-                // platAndroidCid = $('#plat_Android').attr('cid'),
-                // platAndroidRid = $('#plat_Android').attr('rid'),
             var platIPhoneId = $('#plat_iPhone').attr('platid');
             var platIPhoneAddress = $('#plat_iPhone').attr('Address');
             var platIPhoneResSystem = $('#plat_iPhone').attr('ResSystem');
             var platIPhoneResName = $('#plat_iPhone').attr('ResName');
             var platIPhoneResVer = $('#plat_iPhone').attr('ResVer');
-                // platIPhoneTypeID = $('#plat_iPhone').attr('TypeID'),
-                // platIPhoneCid = $('#plat_iPhone').attr('cid'),
-                // platIPhoneRid = $('#plat_iPhone').attr('rid'),
             var assid = parseInt($('#info #Associate').html(), 10);
-                // cataid = parseInt($('#info #catalogid').html());
             // 2014-6-6 add pc download address
             if (assid > 0) {
                 $('#info #btns a').attr('href', '/down.asp?id=' + assid);

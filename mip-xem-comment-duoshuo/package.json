@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "author": {
         "name": "xem",
-        "email": "mip-support@xem.com",
-        "url": "https://www.xem.org"
+        "email": "mip@hzxem.com",
+        "url": "https://www.hzxem.com"
     },
     "engines": {
         "mip": ">=1.1.0"

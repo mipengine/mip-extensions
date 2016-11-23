@@ -1,5 +1,20 @@
 # 升级日志
 
+#### 2016.11.23
+
+> 核心代码上线
+
+	1、去掉mip-share在layout中的默认宽高
+	2、修复iphone5s UC白屏问题
+	3、增加在iframe中的a标签处理逻辑，防止跳转失败
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ecms](https://github.com/mipengine/mip-extensions/tree/master/mip-ecms)|[新增] 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,评论等
+[mip-appdl](https://github.com/mipengine/mip-extensions/tree/master/mip-appdl)|[升级] 下载组件fixed定位使用mip-fixed组件支持
+
 #### 2016.11.22
 
 > 组件上线

@@ -23,18 +23,6 @@ mip-appdl 用来支持在 mip 中app的下载
 ></mip-appdl>
 ```
 
-### 无图样式
-
-```html
-<mip-appdl 
-	tpl="noneImg" 
-	texttip= "['积分能当钱花了','下载百度浏览器','下载百度浏览器']" 
-	downbtntext="立即使用" 
-	Android-downsrc="http://sqdd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk" 
-	Ios-downsrc="itms-apps://itunes.apple.com/app/id452186370" postiontye="fixed"
-></mip-appdl>
-```
-
 ### 固定位置
 
 - 使用 悬浮组件支持

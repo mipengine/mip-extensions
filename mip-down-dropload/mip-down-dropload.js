@@ -2,7 +2,7 @@
  * @file 下拉加载
  * @author Zhou
 */
-define('mip-plugindemo/mip-down-dropload', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
@@ -54,7 +54,4 @@ define('mip-plugindemo/mip-down-dropload', ['require', 'customElement', 'zepto']
         }
     });
     return customElem;
-});
-require(['mip-plugindemo/mip-down-dropload'], function (plugindemo) {
-    MIP.registerMipElement('mip-down-dropload', plugindemo);
 });

@@ -1,6 +1,16 @@
 define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
+    var ua = navigator.userAgent;
+    var device = {
+        isUC: ((function () {
+            return /UCBrowser/i.test(ua);
+        })()),
+
+        isQQ: ((function () {
+            return /MQQBrowser/i.test(ua);
+        })())
+    };
 
     // 页面交互效果
     var effects = {
@@ -33,11 +43,27 @@ define(function (require) {
         changeColor: function () {
             $('.c_ad_title p,.c_ad_title p a').css('color', $('.navigate').css('background-color'));
         },
+        // uc/qq浏览器加载反屏蔽网盟代码
+        loadUCad: function () {
+            var ucAd1 = '<mip-embed type="baidu-wm-ext" domain="a.iy.com.cn" token="pf3a1ecf91f3c3f73ddb1c3e82b8b034e058acde0a"><div id="pf3a1ecf91f3c3f73ddb1c3e82b8b034e058acde0a"></div></mip-embed>';
+            var ucAd2 = '<mip-embed type="baidu-wm-ext" domain="a.iy.com.cn" token="of3a1ecf91f3c3f438db1c3e82b8b034e058acde0a"><div id="of3a1ecf91f3c3f438db1c3e82b8b034e058acde0a"></div></mip-embed>';
+            var dom2ad = {
+                '#mip-ck-ad-bd-2-uc-1': ucAd1,
+                '#mip-ck-ad-bd-2-uc-2': ucAd2
+            };
+            
+            if (device.isUC || device.isQQ) {
+                $.each(dom2ad, function(k, v) {
+                    $(k).html(v);
+                });
+            }
+        },
         // 加载两性ad列表
         init: function () {
             this.switchBlock();
             this.changMore();
             this.changeColor();
+            this.loadUCad();
         }
     };
 
@@ -46,6 +72,5 @@ define(function (require) {
     };
 
     return customElement;
-
 });
 

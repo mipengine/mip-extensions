@@ -112,7 +112,7 @@ define(function (require) {
         else {
             $('#ad-s-1255').show();
             $('#ask-inof-blew-ad').show();
-            if (posId == 1) {
+            if (+posId === 1) {
                 element.html(loadBdAd());
             }
             $body.addClass('view-fh-ad-union');

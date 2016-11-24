@@ -74,63 +74,9 @@ mip-down-script 页面逻辑脚本集合
         
                 </ul>
             </div>
-        
-            <div class="tags-main-box">
-                <div class="tags-box">
-                    <p class="tit"><a href="http://m.pc6.com/z/card" target="_blank">手机卡牌游戏</a><a href="http://m.pc6.com/z/card" class="more" target="_blank">更多&gt;&gt;</a></p>
-                    <div class="info"><p>手机卡牌游戏主要指运行在智能手机平台的以卡牌形式发行的游戏。<span>其中卡牌RPG养成游戏为热门游戏，此类游戏一般将游戏主角以卡牌的形式展示，然后玩家通过收集、养成自己的卡牌闯过一个又一个关卡完成游戏。现在的卡牌RPG养成游戏又陆续加入了PVP等多样玩法吸引玩家</span><span>。手机卡牌游戏在对移动操作来说非常的便捷，没有复杂的动作操作已经成为玩家非常喜欢的游戏类型，本站为您整理了手机卡牌游戏大全，希望各位玩家喜欢。</span></p></div>
-                </div>
-                <ul class="tags-box-ul">
-                    
-            <li><a href="http://m.pc6.com/s/141194" target="_blank" title="炉石传说安卓手机版"><mip-img src="http://thumb.jfcdns.com/thumb/up/2014-12/2014121611271_100_100.jpg" alt="炉石传说安卓手机版"></mip-img><span>炉石传说安卓手机版</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/282574" target="_blank" title="小冰冰传奇百度版"><mip-img src="http://thumb.jfcdns.com/thumb/up/2016-9/20169291124577648647_100_100.png" alt="小冰冰传奇百度版"></mip-img><span>小冰冰传奇百度版</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/222947" target="_blank" title="皇室战争"><mip-img src="http://thumb.jfcdns.com/thumb/up/2016-2/2016217135938_100_100.png" alt="皇室战争"></mip-img><span>皇室战争</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/301452" target="_blank" title="我叫mt3点卡服"><mip-img src="http://thumb.jfcdns.com/thumb/up/2016-6/2016613103654415424_100_100.png" alt="我叫mt3点卡服"></mip-img><span>我叫mt3点卡服</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/146647" target="_blank" title="乖离性百万亚瑟王国服"><mip-img src="http://thumb.jfcdns.com/thumb/up/2016-4/2016421103457_100_100.png" alt="乖离性百万亚瑟王国服"></mip-img><span>乖离性百万亚瑟王国服</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/100975" target="_blank" title="部落冲突(COC)"><mip-img src="http://thumb.jfcdns.com/thumb/up/2014-9/201491785813_100_100.png" alt="部落冲突(COC)"></mip-img><span>部落冲突(COC)</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/268505" target="_blank" title="天域幻想手游"><mip-img src="http://thumb.jfcdns.com/thumb/up/2016-10/201610211629205426425_100_100.png" alt="天域幻想手游"></mip-img><span>天域幻想手游</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/239337" target="_blank" title="孔明没想到"><mip-img src="http://thumb.jfcdns.com/thumb/up/2016-4/201648104020_100_100.png" alt="孔明没想到"></mip-img><span>孔明没想到</span></a></li>
-        
-                </ul>
-            </div>
-        
-            <div class="tags-main-box">
-                <div class="tags-box">
-                    <p class="tit"><a href="http://m.pc6.com/z/wangyouaz" target="_blank">安卓网游专题</a><a href="http://m.pc6.com/z/wangyouaz" class="more" target="_blank">更多&gt;&gt;</a></p>
-                    <div class="info"><p>热爱网游的朋友，还找不到自己喜欢的网游吗？还只是在那玩一款网游，android的网游队伍已经很庞大了，去在线和朋友队友们战斗吧。但也要注意，网游是要消耗流量的，流量不足的情况下，建议在wifi环境下试玩。</p></div>
-                </div>
-                <ul class="tags-box-ul">
-                    
-            <li><a href="http://m.pc6.com/s/76977" target="_blank" title="神话ol"><mip-img src="http://thumb.jfcdns.com/thumb/up/2012-10/20121031131630_100_100.jpg" alt="神话ol"></mip-img><span>神话ol</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/68517" target="_blank" title="龙印Ol"><mip-img src="http://thumb.jfcdns.com/thumb/up/2013-12/2013121317516_100_100.png" alt="龙印Ol"></mip-img><span>龙印Ol</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/70066" target="_blank" title="风云天下OL"><mip-img src="http://thumb.jfcdns.com/thumb/up/2015-11/2015111918020_100_100.png" alt="风云天下OL"></mip-img><span>风云天下OL</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/80113" target="_blank" title="q将水浒ol"><mip-img src="http://thumb.jfcdns.com/thumb/up/2013-1/2013129142357_100_100.jpg" alt="q将水浒ol"></mip-img><span>q将水浒ol</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/80039" target="_blank" title="武侠ol"><mip-img src="http://thumb.jfcdns.com/thumb/up/2015-3/201536153859_100_100.png" alt="武侠ol"></mip-img><span>武侠ol</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/78938" target="_blank" title="魔与道ol"><mip-img src="http://thumb.jfcdns.com/thumb/up/2015-6/201561711238_100_100.png" alt="魔与道ol"></mip-img><span>魔与道ol</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/78252" target="_blank" title="汉风三国ol"><mip-img src="http://thumb.jfcdns.com/thumb/up/2012-9/201292717483_100_100.jpg" alt="汉风三国ol"></mip-img><span>汉风三国ol</span></a></li>
-        
-            <li><a href="http://m.pc6.com/s/77593" target="_blank" title="苍穹启示录ol"><mip-img src="http://thumb.jfcdns.com/thumb/up/2012-9/201292085737_100_100.jpg" alt="苍穹启示录ol"></mip-img><span>苍穹启示录ol</span></a></li>
-        
-                </ul>
-            </div>
-        
-    </div>
+        </div>
     </div>
     <div class="pagenum"></div>
-	
 </section>
 </mip-down-script>
 ```

@@ -11,9 +11,6 @@ mip-global-script 页面逻辑公共脚本
 
 ### 基本用法
 ```html
-<mip-global-script>
-
-```
-</mip-global-script>
+<mip-global-script></mip-global-script>
 ```
 

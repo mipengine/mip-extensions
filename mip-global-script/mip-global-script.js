@@ -7,7 +7,7 @@ define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     var global = {
-        hideList: function (a, b, c) {
+        hideList: function (obj, option, nub) {
             $(a).each(function () {
                 if ($(this).find(b).length < c) {
                     $(this).remove();

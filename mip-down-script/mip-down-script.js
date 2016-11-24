@@ -118,7 +118,7 @@ define(function (require) {
             if ($('.xgwz ul li').length > 0) {
                 $('.xgwz').show();
             }
-			else {
+            else {
                 $('.xgwz').hide();
                 $('#tab span').eq(1).hide();
             }
@@ -158,8 +158,7 @@ define(function (require) {
             }
             $('.pagenum').html(ospan);
             oul.width(oli.length * oli.width());
-
-			// 点击li
+            // 点击li
             onavLi.eq(0).addClass('active');
             onavLi.click(function () {
                 var i = $(this).index();
@@ -170,15 +169,13 @@ define(function (require) {
                     '-webkit-transform': 'translate3d(' + -windowW * i + 'px, 0px, 0px)'
                 });
             });
-
-			// 滑动事件
+            // 滑动事件
             oul[0].addEventListener('touchstart', function (e) {
                 touch.s[0] = e.targetTouches[0].pageX;
                 touch.s[1] = e.targetTouches[0].pageY;
                 touch.s[2] = (new Date()).getTime();
             }, false);
-
-			// 滑动过程
+            // 滑动过程
             oul[0].addEventListener('touchmove', function (e) {
                 if (Math.abs(e.targetTouches[0].pageX - touch.s[0]) >= Math.abs(
                     e.targetTouches[0].pageY - touch.s[1]) && touch.d === '') {
@@ -220,8 +217,7 @@ define(function (require) {
                 }
                 touch.d = '';
             }, false);
-
-			// 运动函数
+            // 运动函数
             function auto(dir) {
                 if (dir === 'left') {
                     iNow >= oli.length - 1 ? iNow === oli.length - 1 : iNow++;
@@ -244,16 +240,14 @@ define(function (require) {
                 $('.pagenum span').eq(iNow).addClass('active').siblings().removeClass('active');
                 $('.guess-nav li').eq(iNow).addClass('active').siblings().removeClass('active');
             }
-
-			// 解决横向滚动图片无法出现
+            // 解决横向滚动图片无法出现
             $('#wrapper2')[0].addEventListener('touchend', function (e) {
                 bugImg();
             }, false);
             $('#wrapper4')[0].addEventListener('touchend', function (e) {
                 bugImg();
             }, false);
-
-			// bug
+            // bug
             function bugImg() {
                 setTimeout(function () {
                     $('body').scrollTop($('body').scrollTop() + 1).scrollTop($('body').scrollTop() - 1);

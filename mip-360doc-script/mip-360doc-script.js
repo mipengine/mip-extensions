@@ -1,4 +1,4 @@
-﻿define( function (require) {
+﻿define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
@@ -7,38 +7,67 @@
         $(".mip-360doc-script-backgroundgrey").click(closeceng);
         $(".mip-360doc-script-p_header_fx").click(share);
         $(".mip-360doc-script-bds_wx").click(wxshare);
-        $(".mip-360doc-script-guanbi").click(closeartnew);
+        
         getRefNum();
-        $(".mip-360doc-script-wxggalink").html("<span class=\"mip-360doc-script-pic\"><img src=\"http://www.360doc.cn/images/a1.png?t=2016032801\" class=\"pic2\"/></span><span class=\"mip-360doc-script-pic\"><img src=\"http://www.360doc.cn/images/a2.png?t=2016032801\"  class=\"pic2\"/></span>");
+        $(".mip-360doc-script-wxggalink").html("<span class=\"mip-360doc-script-pic\"><img src=\"http://www.360doc.cn/images/zhaishou.png\" class=\"pic2\"/></span><span class=\"mip-360doc-script-pic\"><img src=\"http://www.360doc.cn/images/xiazai.png\"  class=\"pic2\"/></span>");
         var index = 1;
         var $_picn = $(".mip-360doc-script-pic").length;
         if ($_picn > 1) {
             $(".mip-360doc-script-pic").eq(0).css("display", "inline").siblings(".mip-360doc-script-pic").hide();
         }
         $(".mip-360doc-script-box960").css("display", "");
-        setone();       
+        setone();
+        //统计
+        Sendlog("mipConn");
+        //检测广告
+        setTimeout(check, 5000);
     };
-
+    function check()
+    {
+        try
+        {
+            if (document.documentElement.outerHTML.indexOf("iframeu2825450_0") < 0) {
+                Sendlog("mipads/u2825450");
+            }
+            if (document.documentElement.outerHTML.indexOf("iframeu2825719_0") < 0) {
+                Sendlog("mipads/u2825719");
+            }         
+        }
+        catch (e)
+        {}
+    }
+    function Sendlog(url) {
+        var img = new Image();
+        var key = 'broswerlog_' + Math.floor(Math.random() * 2147483648).toString(36);
+        window[key] = img;
+        img.onload = img.onerror = img.onabort = function () {
+            img.onload = img.onerror = img.onabort = null;
+            window[key] = null;
+            img = null;
+        };
+        img.src = "http://eclick.360doc.com/" + url;
+    }
+    //关闭分享层
+    function closeceng() {
+        $(".p_header_logowrap2").show();
+        $(".mip-360doc-script-headejbox").hide();
+        $(".mip-360doc-script-backgroundgrey").hide();
+        $(".mip-360doc-script-xt1").show();
+        $(".mip-360doc-script-boxtop").hide();
+    }
     //第三方分享
     function share() {
-        if ($(".mip-360doc-script-headejbox").css("display") == "none" || $(".mip-360doc-script-headejbox").css("display") == "") {
+      
             $(".mip-360doc-script-headejbox").show();
             $(".mip-360doc-script-share-bar").css("display", "");
             $(".mip-360doc-script-backgroundgrey").css("display", "block");
             $(".mip-360doc-script-xt1").hide();
             $(".mip-360doc-script-boxtop").hide();
-        }
-        else {
-            $(".mip-360doc-script-headejbox").hide();
-            $(".mip-360doc-script-share-bar").hide();
-            $(".backgroundgrey").hide();
-            $(".mip-360doc-script-xt1").show();
-            $(".mip-360doc-script-boxtop").hide();
-        }
+            $(".p_header_logowrap2").hide();       
     }
     //广告轮播
     function setone() {
-      var t=  setTimeout(function () {
+      var t=  setTimeout(function () {   
           show(1);
           clearTimeout(t);
             settwo();
@@ -48,7 +77,7 @@
     function settwo() {
        var t =  setTimeout(function () {
             show(0);
-            clearTimeout(t);
+            clearTimeout(t);   
             setone();
         }, 4000);
     }
@@ -104,15 +133,7 @@
     if (navigator.userAgent.toLowerCase().indexOf("ucbrowser") > -1) {
 
         $(".mip-360doc-script-p_header_nav2").width("69%");
-    }
-
-    //关闭分享层
-    function closeceng() {
-        $(".mip-360doc-script-headejbox").hide();
-        $(".mip-360doc-script-backgroundgrey").hide();
-        $(".mip-360doc-script-xt1").show();
-        $(".mip-360doc-script-boxtop").hide();
-    }
+    }   
 
     //分享到微信地址
     function wxshare() {
@@ -122,4 +143,3 @@
         
     return customElem;
 });
-

@@ -1,5 +1,23 @@
 # 升级日志
 
+#### 2016.11.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-youth-tb360](https://github.com/mipengine/mip-extensions/tree/master/mip-youth-tb360)|[新增] 青网移动适配页头部360广告
+[mip-youth-ttyd](https://github.com/mipengine/mip-extensions/tree/master/mip-youth-ttyd)|[新增] 青网移动适配页精彩推荐广告
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[新增] 页面逻辑公共脚本
+[mip-down-dropload](https://github.com/mipengine/mip-extensions/tree/master/mip-down-dropload)|[新增] 用来支持页面下拉加载
+[mip-down-script](https://github.com/mipengine/mip-extensions/tree/master/mip-down-script)|[新增] 页面逻辑脚本集合
+
+[mip-down-comment](https://github.com/mipengine/mip-extensions/tree/master/mip-down-comment)|[升级] 用来支持文章详情页的评论
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+[mip-ck-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-ad)|[升级] 康网的问答详情页面的直投广告组件
+[mip-ck-script](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-script)|[升级] 是康网的问答详情页面的直投广告组件
+[mip-fh-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-ad)|[升级] 用来支持m.fh21.com.cn问答详情页的直投广告显示
+
 #### 2016.11.23
 
 > 核心代码上线

@@ -52,8 +52,8 @@ define(function (require) {
                 + 'domain="a.iy.com.cn" token="qh3a1ecf92f2c3ff3adb1c3e82b8b034e058acde0a">'
                 + '<div id="qh3a1ecf92f2c3ff3adb1c3e82b8b034e058acde0a"></div></mip-embed>';
             var dom2ad = {
-                '#mip-ck-ad-bd-2-uc-1': ucAd1,
-                '#mip-ck-ad-bd-2-uc-2': ucAd2
+                '[mip-ck-ad-bd-2-uc-1]': ucAd1,
+                '[mip-ck-ad-bd-2-uc-2]': ucAd2
             };
             if (device.UC || device.QQ) {
                 $.each(dom2ad, function (k, v) {

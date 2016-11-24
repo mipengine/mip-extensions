@@ -3,11 +3,11 @@ define(function (require) {
     var customElement = require('customElement').create();
     var ua = navigator.userAgent;
     var device = {
-        isUC: ((function () {
+        UC: ((function () {
             return /UCBrowser/i.test(ua);
         })()),
 
-        isQQ: ((function () {
+        QQ: ((function () {
             return /MQQBrowser/i.test(ua);
         })())
     };
@@ -52,7 +52,7 @@ define(function (require) {
                 '#mip-ck-ad-bd-2-uc-2': ucAd2
             };
             
-            if (device.isUC || device.isQQ) {
+            if (device.UC || device.QQ) {
                 $.each(dom2ad, function(k, v) {
                     $(k).html(v);
                 });

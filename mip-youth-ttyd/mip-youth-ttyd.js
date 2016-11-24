@@ -11,6 +11,6 @@ define(function (require) {
     node.setAttribute('type', 'javascript');
     node.setAttribute('src', 'http://3g.youth.cn/images/youth.min.js');
     node.setAttribute('ignoreapd', '1');
-	document.body.appendChild(node);
+    document.body.appendChild(node);
     (window.readsByToutiao = window.readsByToutiao || []).push({id: 'toutiao_container', num: 6});
 });

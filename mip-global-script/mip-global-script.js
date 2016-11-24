@@ -17,10 +17,8 @@ define(function (require) {
         init: function () {
             this.hideList('.hidelist', 'li', 1);// 优化隐藏
         }
-    }; // 生命周期 function list，根据组件情况选用 end
+    };
     customElem.prototype.build = function () {
-        // this.element 可取到当前实例对应的 dom 元素
-        // var element = this.element;
         global.init();
     };
     return customElem;

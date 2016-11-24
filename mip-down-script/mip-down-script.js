@@ -52,11 +52,9 @@ define(function (require) {
                 var $nav = $('#btns');
                 if ($(window).scrollTop() >= headerHeight) {
                     $nav.css({'position': 'fixed', 'top': 0}).addClass('on');
-                    $('#goTop').fadeIn();
                 }
                 else {
                     $nav.css({'position': 'relative'}).removeClass('on');
-                    $('#goTop').fadeOut();
                 }
                 if (($('#wrapper').offset().top + $('#wrapper').height() - 35) <= $(window).scrollTop()) {// k标签
                     $('#xgk').addClass('fix');
@@ -79,7 +77,7 @@ define(function (require) {
             var platIPhoneResName = $('#plat_iPhone').attr('ResName');
             var platIPhoneResVer = $('#plat_iPhone').attr('ResVer');
             var assid = parseInt($('#info #Associate').html(), 10);
-            // 2014-6-6 add pc download address
+            // download address
             if (assid > 0) {
                 $('#info #btns a').attr('href', '/down.asp?id=' + assid);
             }
@@ -270,10 +268,8 @@ define(function (require) {
             this.titTab();// 菜单切换
             this.downHref();// 动态下载地址
         }
-    }; // 生命周期 function list，根据组件情况选用 end
+    };
     customElem.prototype.build = function () {
-        // this.element 可取到当前实例对应的 dom 元素
-        // var element = this.element;
         down.init();
     };
     return customElem;

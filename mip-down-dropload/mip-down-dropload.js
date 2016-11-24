@@ -3,7 +3,6 @@
  * @author Zhou
 */
 define(function (require) {
-    // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
     var currentPage = 1;
@@ -28,9 +27,7 @@ define(function (require) {
             }
         });
     }
-    // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        // this.element 可取到当前实例对应的 dom 元素
         var element = this.element;
         var params = JSON.parse($(element).attr('mip-dropload-params').replace(/'/g, '"'));
         $(element).find('.getMore').on('click', function () {

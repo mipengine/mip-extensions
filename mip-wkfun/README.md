@@ -6,7 +6,7 @@
 ----|----
 类型|dom操作组件
 支持布局| N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-wkfun.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-wkfun/mip-wkfun.js
 
 ## 示例
 

@@ -83,17 +83,18 @@ define(function(require){
 				//定位失败的统计
 				im=new Image; im.src="http://stat-z.xywy.com/test.png?t_c=3&tt"+Math.random();
 			}
-			if(navigator.userAgent.indexOf('UCBrowser') > -1){
-				return false;
-			}else{
-				getPos(function(x, y){
-					//x--经度, y--纬度
-					//定位成功的统计
-					im=new Image; im.src="http://stat-z.xywy.com/test.png?t_c=2&tt"+Math.random();
-					Quan_X=x;
-					Quan_Y=y;
-				});
-			}
+			
+		}
+		if(navigator.userAgent.indexOf('UCBrowser') > -1){
+			return false;
+		}else{
+			getPos(function(x, y){
+				//x--经度, y--纬度
+				//定位成功的统计
+				im=new Image; im.src="http://stat-z.xywy.com/test.png?t_c=2&tt"+Math.random();
+				Quan_X=x;
+				Quan_Y=y;
+			});
 		}
 	
 	};

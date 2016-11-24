@@ -11,7 +11,6 @@
 [mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[新增] 页面逻辑公共脚本
 [mip-down-dropload](https://github.com/mipengine/mip-extensions/tree/master/mip-down-dropload)|[新增] 用来支持页面下拉加载
 [mip-down-script](https://github.com/mipengine/mip-extensions/tree/master/mip-down-script)|[新增] 页面逻辑脚本集合
-
 [mip-down-comment](https://github.com/mipengine/mip-extensions/tree/master/mip-down-comment)|[升级] 用来支持文章详情页的评论
 [mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
 [mip-ck-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-ad)|[升级] 康网的问答详情页面的直投广告组件

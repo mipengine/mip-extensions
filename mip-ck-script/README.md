@@ -13,5 +13,8 @@ mip-ck-ad 是康网的问答详情页面的直投广告组件
 ### 基本使用
 
 ```html
+<div id="mip-ck-ad-bd-2-uc-1"></div>
+<div id="mip-ck-ad-bd-2-uc-2"></div>
 <mip-ck-script></mip-ck-script>
+<script async defer src="https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js"></script>
 ```

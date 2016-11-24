@@ -8,6 +8,7 @@ define(function (require) {
     var $ = require('zepto');
     var viewer = require('viewer');
     var RecommendElement = require('customElement').create();
+    var recommend;
 
     RecommendElement.prototype.createdCallback = renderElement;
 
@@ -22,9 +23,11 @@ define(function (require) {
     }
 
     function getUrlQuery(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
-        var r = window.location.search.substr(1).match(reg);  
-        if (r != null) return unescape(r[2]);  
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return r[2];
+        }
         return null;
     }
 
@@ -32,8 +35,8 @@ define(function (require) {
         var url = location.href;
 
         if (/mipcache\./g.test(url)) {
-            url = url.replace(/^http(s?)\:\/\/mipcache.bdstatic.com\/c\/(s?)/g, function($0,$1,$2) {
-               return $2 === 's' ? 'https://':'http://';
+            url = url.replace(/^http(s?)\:\/\/mipcache.bdstatic.com\/c\/(s?)/g, function ($0, $1, $2) {
+                return $2 === 's' ? 'https://' : 'http://';
             });
             url = url.replace(/\#.*$/g, '');
         }
@@ -43,46 +46,46 @@ define(function (require) {
 
     function formatTime(time) {
         var tempSeconds = 1000 * time;
-        if((new Date() - tempSeconds) < 60000) {
-            return "刚刚";
+        if ((new Date() - tempSeconds) < 60000) {
+            return '刚刚';
         }
-        var tempMinutes = Math.floor((new Date() - tempSeconds)/60000);
-        if(tempMinutes < 60) {
-            return tempMinutes + "分钟前";
+        var tempMinutes = Math.floor((new Date() - tempSeconds) / 60000);
+        if (tempMinutes < 60) {
+            return tempMinutes + '分钟前';
         }
-        var tempHours = Math.floor(tempMinutes/60);
-        if(tempHours < 24) {
-            return tempHours + "小时前";
+        var tempHours = Math.floor(tempMinutes / 60);
+        if (tempHours < 24) {
+            return tempHours + '小时前';
         }
         var tempDate = new Date(tempSeconds);
         var month = tempDate.getMonth() + 1;
-            month = month < 10 ? "0" + month : month;
-        var day = tempDate.getDate() < 10 ? "0" + tempDate.getDate() : tempDate.getDate();
-        return  month + "-" + day;
+        month = month < 10 ? ('0' + month) : month;
+        var day = tempDate.getDate() < 10 ? ('0' + tempDate.getDate()) : tempDate.getDate();
+        return  month + '-' + day;
     }
 
-    var recommend = {
+    recommend = {
         url: null,
         ajaxData: null,
         isIframe: window.parent !== window,
 
-        init: function(props) {
+        init: function (props) {
             this.$container = props.$container;
 
             this.url = props.url;
             this.ajaxData = {
-                url_key: getOriginUrl(),
-                from: getUrlQuery('from') || 'search',
-                app_from: getUrlQuery('app_from') || 'midway',
-                qid: window.B ? window.B.qid : 0,
-                is_mip: true
+                'url_key': getOriginUrl(),
+                'from': getUrlQuery('from') || 'search',
+                'app_from': getUrlQuery('app_from') || 'midway',
+                'qid': window.B ? window.B.qid : 0,
+                'is_mip': true
             };
 
             this.request();
             this.delegate();
         },
 
-        request: function() {
+        request: function () {
             var self = this;
 
             $.ajax({
@@ -90,7 +93,7 @@ define(function (require) {
                 dataType: 'jsonp',
                 jsonp: 'cb',
                 data: this.ajaxData,
-                success: function(res) {
+                success: function (res) {
                     if (res.status !== 0) {
                         self.error(res.data);
                     } else {
@@ -100,35 +103,35 @@ define(function (require) {
             });
         },
 
-        delegate: function() {
+        delegate: function () {
             var isIframe = this.isIframe;
 
-            this.$container.on('click', '.mip-recommend-href', function(e) {
+            this.$container.on('click', '.mip-recommend-href', function (e) {
                 if (isIframe) {
                     e.preventDefault();
 
                     var $ele = $(this);
                     viewer.sendMessage('loadiframe', {
-                        "url": $ele.attr('href'),
-                        "title": $ele.find(".mip-recommend-provider").text(),
-                        "click": $ele.data('click')
+                        'url': $ele.attr('href'),
+                        'title': $ele.find('.mip-recommend-provider').text(),
+                        'click': $ele.data('click')
                     });
                 }
             });
 
-            this.$container.on('click', '.mip-recommend-hot-href', function(e) {
+            this.$container.on('click', '.mip-recommend-hot-href', function (e) {
                 if (isIframe) {
                     e.preventDefault();
                     var $ele = $(this);
                     viewer.sendMessage('urljump', {
-                        "url": $ele.attr('href'),
-                        "click": $ele.data('click')
+                        'url': $ele.attr('href'),
+                        'click': $ele.data('click')
                     });
                 }
             });
         },
 
-        handleData: function(item, i, action) {
+        handleData: function (item, i, action) {
             var data = {
                 action: action,
                 order: i,
@@ -138,43 +141,44 @@ define(function (require) {
             return JSON.stringify(data);
         },
 
-        display: function(data) {
+        display: function (data) {
             var self = this;
-            var html_news = '';
-            var html_hots = '';
+            var htmlNews = '';
+            var htmlHots = '';
 
-            data.recommend.forEach(function(item, i) {
+            data.recommend.forEach(function (item, i) {
                 var dataClick = self.handleData(item, i, 'recommend');
 
-                html_news += [
+                htmlNews += [
                     '<div class="mip-recommend-item">',
-                        '<a class="mip-recommend-href" href="'+ item.url +'" data-click=\''+ dataClick +'\'>',
-                            '<div class="mip-recommend-title">'+ item.title +'</div>',
+                        '<a class="mip-recommend-href" href="' + item.url + '" data-click=\'' + dataClick + '\'>',
+                            '<div class="mip-recommend-title">' + item.title + '</div>',
                             '<div class="mip-recommend-info">',
-                                '<span>'+ formatTime(item.time) +'</span><span class="mip-recommend-provider">'+ item.provider +'</span>',
+                                '<span>' + formatTime(item.time) + '</span>',
+                                '<span class="mip-recommend-provider">' + item.provider + '</span>',
                             '</div>',
                         '</a>',
                     '</div>'
                 ].join('');
             });
 
-            data.hot_card.forEach(function(item, i) {
+            data.hot_card.forEach(function (item, i) {
                 var dataClick = self.handleData(item, i, 'hotpoint');
 
-                if (i%2 === 0) {
-                    html_hots += '<div class="mip-recommend-row">';
+                if (i % 2 === 0) {
+                    htmlHots += '<div class="mip-recommend-row">';
                 }
 
-                html_hots += [
+                htmlHots += [
                     '<div class="mip-recommend-hot-item">',
-                        '<a class="mip-recommend-hot-href" href="'+ item.url +'" data-click=\''+ dataClick +'\'>',
+                        '<a class="mip-recommend-hot-href" href="' + item.url + '" data-click=\'' + dataClick + '\'>',
                             item.query,
                         '</a>',
                     '</div>'
                 ].join('');
 
-                if (i%2 === 1) {
-                    html_hots += '</div>';
+                if (i % 2 === 1) {
+                    htmlHots += '</div>';
                 }
             });
 
@@ -182,13 +186,13 @@ define(function (require) {
                 '<div class="mip-recommend-news">',
                     '<h5>相关推荐</h3>',
                     '<div>',
-                        html_news,
+                        htmlNews,
                     '</div>',
                 '</div>',
                 '<div class="mip-recommend-hotpoints">',
                     '<h5>新闻热点</h3>',
                     '<div>',
-                        html_hots,
+                        htmlHots,
                     '</div>',
                 '</div>'
             ].join('');
@@ -196,10 +200,10 @@ define(function (require) {
             this.$container.append(html);
         },
 
-        error: function() {
+        error: function () {
 
         }
-    }
+    };
 
     return RecommendElement;
 });

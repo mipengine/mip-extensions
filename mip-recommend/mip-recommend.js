@@ -71,7 +71,7 @@ define(function (require) {
 
             this.url = props.url;
             this.ajaxData = {
-                url_key: getOriginUrl,
+                url_key: getOriginUrl(),
                 from: getUrlQuery('from') || 'search',
                 app_from: getUrlQuery('app_from') || 'midway',
                 qid: window.B ? window.B.qid : 0,

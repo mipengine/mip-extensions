@@ -7,6 +7,9 @@ define(function(require){
 		var el = document.createElement('div');
 		var script = document.createElement('script');
 		var json = JSON.parse(content);
+		if(typeof window['keys_arr'] == 'undefined'){
+			window['keys_arr'] = {};
+		}
 		el.className = className;
 		script.type = 'text/javascript';
 		script.innerHTML = json.join('');

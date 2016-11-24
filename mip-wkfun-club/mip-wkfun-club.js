@@ -90,116 +90,106 @@ define(function(require){
 			}
 			};
 			var TT = new Ajax();
-			function addF(e, d) {
-			var b = document.getElementById(e),
-			a = document.getElementById(d);
-			var c = a.style;
-			c.display = c.display == "none" ? "block": "none"
-			}
-
-
 			var zw = 0;
-			function zhuiwen(replyid, param) {
-			if (zw == 1) return;
-
-			var tinput = document.getElementById("qsbox_" + replyid);
-			var content = tinput.value.replace(/(^\s*)|(\s*$)/g, "");
-			var overlength = 0;
-			var autocut = 0;
-			var bindphone = $("#bindphone").val();
-			var url = "/ask/addition?method=taolun&fresh=" + Math.random();
-			if (content == "") {
-				alert("回复内容不能为空!");
-				tinput.focus();
-				zw = 0;
-				return
-			}
-			if (content.length < 5) {
-				alert("回复内容不能少于5个字符!");
-				tinput.focus();
-				zw = 0;
-				return
-			}
-			if (content.length > 100) {
-				alert("回复内容不能越过100个字符");
-				overlength = 1;
-				if (window.confirm("是否自动去掉多余的字符并提交？")) {
-					content = content.substr(0, 99);
-					autocut = 1
-				}
-			}
-			if (overlength == 1 && autocut == 0) {
-				tinput.focus();
-				zw = 0;
-				return
-			}
-
-
-			if(bindphone== '0') {
-				$(".tel-filter").show();
-				$(".tel-pop").show();
-
-			}
-			var params = param.split(",");
-			if(bindphone== '1'){
-				 TT.ajax({
-				type: "POST",
-				url: url,
-				data: {
-					rid: params.shift(),
-					qid: params.shift(),
-					quid: params.shift(),
-					qrid: params.shift(),
-					qtitle: params.shift(),
-					content: content
-				},
-				datatype: "json",
-				cache: false,
-				async: false,
-				success: function(result) {
-					var dataObj = eval("(" + result + ")");
-					if (dataObj.result > 0) {
-						alert(dataObj.msg);
-						window.location.reload(true);
-						window.location.href = window.location.href + "?time=" + new Date().getTime()
-						zw = 1;
-					} else {
-						zw = 0;
-						alert(dataObj.msg)
-					}
-				}
-			})
-			}
-			}
 			$('.pump').on('click', function(){
 				var rid = $(this).attr('rid');
 				var paramStr = $(this).attr('paramStr');
-				zhuiwen(rid, paramStr);
-				
+				if (zw == 1) return;
+
+				var tinput = document.getElementById("qsbox_" + rid);
+				var content = tinput.value.replace(/(^\s*)|(\s*$)/g, "");
+				var overlength = 0;
+				var autocut = 0;
+				var bindphone = $("#bindphone").val();
+				var url = "/ask/addition?method=taolun&fresh=" + Math.random();
+				if (content == "") {
+					alert("回复内容不能为空!");
+					tinput.focus();
+					zw = 0;
+					return
+				}
+				if (content.length < 5) {
+					alert("回复内容不能少于5个字符!");
+					tinput.focus();
+					zw = 0;
+					return
+				}
+				if (content.length > 100) {
+					alert("回复内容不能越过100个字符");
+					overlength = 1;
+					if (window.confirm("是否自动去掉多余的字符并提交？")) {
+						content = content.substr(0, 99);
+						autocut = 1
+					}
+				}
+				if (overlength == 1 && autocut == 0) {
+					tinput.focus();
+					zw = 0;
+					return
+				}
+
+
+				if(bindphone== '0') {
+					$(".tel-filter").show();
+					$(".tel-pop").show();
+
+				}
+				var params = paramStr.split(",");
+				if(bindphone== '1'){
+					 TT.ajax({
+					type: "POST",
+					url: url,
+					data: {
+						rid: params.shift(),
+						qid: params.shift(),
+						quid: params.shift(),
+						qrid: params.shift(),
+						qtitle: params.shift(),
+						content: content
+					},
+					datatype: "json",
+					cache: false,
+					async: false,
+					success: function(result) {
+						var dataObj = eval("(" + result + ")");
+						if (dataObj.result > 0) {
+							alert(dataObj.msg);
+							window.location.reload(true);
+							window.location.href = window.location.href + "?time=" + new Date().getTime()
+							zw = 1;
+						} else {
+							zw = 0;
+							alert(dataObj.msg)
+						}
+					}
+				})
+				}
 			});
 			$('.pumpF').on('click', function(){
 				var rid = $(this).attr('rid');
 				var dvrid = $(this).attr('dvrid');
-				addF(rid, dvrid);
-				
+				var b = document.getElementById(rid);
+				var a = document.getElementById(dvrid);
+				var c = a.style;
+				c.display = c.display == "none" ? "block": "none"
 			});
 			function caina(param) {
-			var url = "/ask/addition?method=caina&" + param;
-			TT.get(url,
-			function(result) {
-				var dataObj = eval("(" + result + ")");
-				if (dataObj.result > 0) {
-					alert(dataObj.msg);
-					window.location.reload();
-					if (window.location.href.indexOf("?") > 0) {
-						window.location.href = window.location.href + "&time1=" + new Date().getTime()
+				var url = "/ask/addition?method=caina&" + param;
+				TT.get(url,
+				function(result) {
+					var dataObj = eval("(" + result + ")");
+					if (dataObj.result > 0) {
+						alert(dataObj.msg);
+						window.location.reload();
+						if (window.location.href.indexOf("?") > 0) {
+							window.location.href = window.location.href + "&time1=" + new Date().getTime()
+						} else {
+							window.location.href = window.location.href + "?time=" + new Date().getTime()
+						}
 					} else {
-						window.location.href = window.location.href + "?time=" + new Date().getTime()
+						alert(dataObj.msg)
 					}
-				} else {
-					alert(dataObj.msg)
-				}
-			})
+				})
 			}
 			var time;
 			var cookiename = "tipsid";
@@ -470,7 +460,6 @@ define(function(require){
 					return false;
 				}
 			});
-
 
 		});
 

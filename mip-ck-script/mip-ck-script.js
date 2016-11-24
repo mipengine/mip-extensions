@@ -45,15 +45,18 @@ define(function (require) {
         },
         // uc/qq浏览器加载反屏蔽网盟代码
         loadUCad: function () {
-            var ucAd1 = '<mip-embed type="baidu-wm-ext" domain="a.iy.com.cn" token="pf3a1ecf91f3c3f73ddb1c3e82b8b034e058acde0a"><div id="pf3a1ecf91f3c3f73ddb1c3e82b8b034e058acde0a"></div></mip-embed>';
-            var ucAd2 = '<mip-embed type="baidu-wm-ext" domain="a.iy.com.cn" token="of3a1ecf91f3c3f438db1c3e82b8b034e058acde0a"><div id="of3a1ecf91f3c3f438db1c3e82b8b034e058acde0a"></div></mip-embed>';
+            var ucAd1 = '<mip-embed type="baidu-wm-ext" '
+                + 'domain="a.iy.com.cn" token="ky3a1ecf91f3c2f03cdb1c3e82b8b034e058acde0a">'
+                + '<div id="ky3a1ecf91f3c2f03cdb1c3e82b8b034e058acde0a"></div></mip-embed>';
+            var ucAd2 = '<mip-embed type="baidu-wm-ext"'
+                + 'domain="a.iy.com.cn" token="qh3a1ecf92f2c3ff3adb1c3e82b8b034e058acde0a">'
+                + '<div id="qh3a1ecf92f2c3ff3adb1c3e82b8b034e058acde0a"></div></mip-embed>';
             var dom2ad = {
                 '#mip-ck-ad-bd-2-uc-1': ucAd1,
                 '#mip-ck-ad-bd-2-uc-2': ucAd2
             };
-            
             if (device.UC || device.QQ) {
-                $.each(dom2ad, function(k, v) {
+                $.each(dom2ad, function (k, v) {
                     $(k).html(v);
                 });
             }

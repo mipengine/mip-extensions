@@ -23,7 +23,7 @@ define(function (require) {
      * @return {boolean}
      */
     function preProcess(element) {
-        var flag = element.querySelector('input[type="password"]') || element.querySelector('input[type="file"]');
+        var flag = element.querySelector('input[type="password"],input[type="file"]');
 
         if (flag) {
             console.error('禁止使用password与file输入框');
@@ -37,6 +37,7 @@ define(function (require) {
      */
     function createDom() {
         var element = this.element;
+        var $element = $(element);
         var url = element.getAttribute('url');
         var method = element.getAttribute('method');
         var form = $([
@@ -44,11 +45,11 @@ define(function (require) {
             '</form>'
         ].join(''));
 
-        form.append($(element).html());
-        $(element).html(form);
+        form.append($element.html());
+        $element.html(form);
 
         // 按钮提交
-        $(element).find('form').on('submit', function (event) {
+        $element.find('form').on('submit', function (event) {
             event.preventDefault();
             onSubmit.call(element);
         });
@@ -81,9 +82,9 @@ define(function (require) {
         var inputs = $(self).find('input[type="input"]');
 
         inputs.map(function (index, item) {
-            var type = $(item).attr('validatetype');
-            var target = $(item).attr('validatetarget');
-            var regval = $(item).attr('validatereg');
+            var type = item.getAttribute('validatetype');
+            var target = item.getAttribute('validatetarget');
+            var regval = item.getAttribute('validatereg');
             var value = item.value;
             var reg;
 

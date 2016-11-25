@@ -1,6 +1,6 @@
 /**
 * fixed nav
-* @fixed nav component
+* @file fixed nav component
 * @author 873920193@qq.com
 * @version 1.0
 * @copyright 2016 onlinedown.net, Inc. All Rights Reserved
@@ -9,7 +9,7 @@ define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
-    function fixdnav() {
+    function init() {
         $(window).scroll(function () {
             var scroH = $(this).scrollTop();
             if (scroH >= 150) {
@@ -19,10 +19,6 @@ define(function (require) {
                 $('nav.side-down').removeClass('menu_scroll');
             }
         });
-    }
-
-    function init() {
-        fixdnav();
     }
     customElem.prototype.build = function () {
         init();

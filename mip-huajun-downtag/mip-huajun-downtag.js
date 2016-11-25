@@ -8,7 +8,7 @@ define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
 
-    function downtag() {
+    function init() {
         $('em.icon').click(function () {
             if ($(this).hasClass('checkhover')) {
                 // 未勾选
@@ -26,9 +26,6 @@ define(function (require) {
                 $('.text1').show();
             }
         });
-    }
-    function init() {
-        downtag();
     }
     customElem.prototype.build = function () {
         init();

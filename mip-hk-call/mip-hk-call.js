@@ -57,7 +57,7 @@ define(function (require) {
     };
     var installApp = 0;
 
-    function build() {
+    function firstInviewCallback() {
         var element = this.element;
 
         var type = $(element).attr('type');
@@ -89,7 +89,7 @@ define(function (require) {
             } else if (parseInt(apk) > 5) {
                 androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan' + apk + '.apk';
                 var page = page;
-                var pos = apk;
+                var pos = apk + '&act=' + $(element).attr('act');
             }
         }
 
@@ -182,7 +182,7 @@ define(function (require) {
         }, 'ping');
     }
 
-    customElem.prototype.build = build;
+    customElem.prototype.firstInviewCallback = firstInviewCallback;
 
     return customElem;
 });

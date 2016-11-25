@@ -59,7 +59,11 @@ define(function (require) {
                     // 图片HTTPS地址转换
                     for (var i = 0; i < data.feed.datalist.length; i++) {
                         if (data.feed.datalist[i].data.img.length > 0) {
-                            data.feed.datalist[i].data.img[0] = httpsTrans(data.feed.datalist[i].data.img[0]);
+                            if (typeof data.feed.datalist[i].data.img[0] === 'object') {
+                                data.feed.datalist[i].data.img[0].small = httpsTrans(data.feed.datalist[i].data.img[0].small);
+                            } else {
+                                data.feed.datalist[i].data.img[0] = httpsTrans(data.feed.datalist[i].data.img[0]);
+                            }
                         }
                     }
 

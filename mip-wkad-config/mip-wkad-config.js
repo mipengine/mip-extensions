@@ -1,5 +1,11 @@
+/**
+* 寻医问药mip改造 广告配置组件
+* @file 脚本支持
+* @author jqthink@gmail.com
+* @time 2016.11.25
+* @version 1.0.0
+*/
 define(function (require) {
-
     var $ = require('zepto');
     var customElem = require('customElement').create();
 	var loadJs = function(elem, url, callback){
@@ -8,15 +14,11 @@ define(function (require) {
         script.src = url;
         $(elem).append(script);
 		if(typeof callback != 'function'){
-			
 			return false;
-			
 		}else{
 			script.onload = function(){
-			
 				callback();
 			}
-			
 		}
 	};
     // build 方法，元素插入到文档时执行，仅会执行一次
@@ -39,7 +41,6 @@ define(function (require) {
 						ggArr['ad_key'] = string.substr(1);
 						mobileAd.getAd( ggArr );
 					});
-					
 				}else{
 					loadJs(elem, 'http://a.xywy.com/mobile_v3.js', function(){
 						var ggArr = {}; 
@@ -51,9 +52,7 @@ define(function (require) {
 						ggArr['department'] = department;
 						mobileAd.getAd( ggArr );
 					});
-					
 				}
-				
 			});
 		    break;
 		   case 'stat':
@@ -76,6 +75,5 @@ define(function (require) {
 	   }
 		
 	}
-	
 	return customElem;
 });

@@ -1,6 +1,12 @@
+/**
+* 寻医问药mip改造 javascript功能组件
+* @file 脚本支持
+* @author jqthink@gmail.com
+* @time 2016.11.25
+* @version 1.0.0
+*/
 define(function(require){
-
-    var $ = require('zepto');
+	var $ = require('zepto');
 	var customElem = require('customElement').create();
 	var loadJs = function(elem, url, callback){
         var script = document.createElement('script');
@@ -8,15 +14,11 @@ define(function(require){
         script.src = url;
         $(elem).append(script);
 		if(typeof callback != 'function'){
-			
 			return false;
-			
 		}else{
 			script.onload = function(){
-			
 				callback();
 			}
-			
 		}
 	};
 	var appFun = function(url, pid, subject, subject_pid, qtagname, sta){
@@ -95,7 +97,6 @@ define(function(require){
 				var rid = $(this).attr('rid');
 				var paramStr = $(this).attr('paramStr');
 				if (zw == 1) return;
-
 				var tinput = document.getElementById("qsbox_" + rid);
 				var content = tinput.value.replace(/(^\s*)|(\s*$)/g, "");
 				var overlength = 0;
@@ -127,42 +128,39 @@ define(function(require){
 					zw = 0;
 					return
 				}
-
-
 				if(bindphone== '0') {
 					$(".tel-filter").show();
 					$(".tel-pop").show();
-
 				}
 				var params = paramStr.split(",");
 				if(bindphone== '1'){
 					 TT.ajax({
-					type: "POST",
-					url: url,
-					data: {
-						rid: params.shift(),
-						qid: params.shift(),
-						quid: params.shift(),
-						qrid: params.shift(),
-						qtitle: params.shift(),
-						content: content
-					},
-					datatype: "json",
-					cache: false,
-					async: false,
-					success: function(result) {
-						var dataObj = eval("(" + result + ")");
-						if (dataObj.result > 0) {
-							alert(dataObj.msg);
-							window.location.reload(true);
-							window.location.href = window.location.href + "?time=" + new Date().getTime()
-							zw = 1;
-						} else {
-							zw = 0;
-							alert(dataObj.msg)
+						 type: "POST",
+						 url: url,
+						 data: {
+							rid: params.shift(),
+							qid: params.shift(),
+							quid: params.shift(),
+							qrid: params.shift(),
+							qtitle: params.shift(),
+							content: content
+						},
+						datatype: "json",
+						cache: false,
+						async: false,
+						success: function(result) {
+							var dataObj = eval("(" + result + ")");
+							if (dataObj.result > 0) {
+								alert(dataObj.msg);
+								window.location.reload(true);
+								window.location.href = window.location.href + "?time=" + new Date().getTime()
+								zw = 1;
+							} else {
+								zw = 0;
+								alert(dataObj.msg)
+							}
 						}
-					}
-				})
+					})
 				}
 			});
 			$('.pumpF').on('click', function(){
@@ -171,7 +169,7 @@ define(function(require){
 				var b = document.getElementById(rid);
 				var a = document.getElementById(dvrid);
 				var c = a.style;
-				c.display = c.display == "none" ? "block": "none"
+				c.display = c.display == "none" ? "block": "none";
 			});
 			function caina(param) {
 				var url = "/ask/addition?method=caina&" + param;
@@ -195,18 +193,18 @@ define(function(require){
 			var cookiename = "tipsid";
 			var readids = new Array();
 			function setCookie(a, c) {
-			var b = 1;
-			var d = new Date();
-			d.setTime(d.getTime() + b * 24 * 60 * 60 * 1000);
-			document.cookie = a + "=" + escape(c) + ";expires=" + d.toGMTString() + ";path=/"
+				var b = 1;
+				var d = new Date();
+				d.setTime(d.getTime() + b * 24 * 60 * 60 * 1000);
+				document.cookie = a + "=" + escape(c) + ";expires=" + d.toGMTString() + ";path=/"
 			}
 			function getCookie(b) {
-			var a, c = new RegExp("(^| )" + b + "=([^;]*)(;|$)");
-			if (a = document.cookie.match(c)) {
-				return (a[2])
-			} else {
-				return null
-			}
+				var a, c = new RegExp("(^| )" + b + "=([^;]*)(;|$)");
+				if (a = document.cookie.match(c)) {
+					return (a[2])
+				} else {
+					return null
+				}
 			}
 			function ajaxFunction(a) {
 				TT.get("/question/status?id=" + a,
@@ -278,7 +276,6 @@ define(function(require){
 			$(this).attr('src', url + "/index.php?r=familyDoctor/captcha&time="+new Date().getTime());
 			$('#tuverify').val("").focus();
 		});
-		
 		//悬赏
 		$('.reward').on('click', function(){
 			document.body.addEventListener('touchstart', function () { });
@@ -291,19 +288,16 @@ define(function(require){
 			$(".rewardsure").attr("href",url);
 			$('.tel-filter').show();
 			$(".m-reward-confirm").show();
-			
 		});
 		$('.m-reward-confirm .cancel,.tel-filter').on('click', function(){
 			$('.m-reward-confirm').hide();
 			$('.tel-filter').hide();
 		});
 		//追问得到焦点时搜索框小时
-
 		$('.focusblur').focus(function() {
 			$('.item-hd-so').hide();
 			return false;
 		});
-
 		$('.focusblur').blur(function() {
 			$('.item-hd-so').show();
 			return false;
@@ -314,7 +308,6 @@ define(function(require){
 			if(tuyzm==''){
 				$('.tuyzma').show().html('请输入图形验证码');
 			}
-
 			return false;
 		});
 		$('#tuverify').focus(function() {
@@ -333,12 +326,10 @@ define(function(require){
 		}else{
 			$('html').css('overflow','hidden');
 		}
-
 		$('.cancelBtn').on('click',function(){
 			$('.tel-filter').hide();
 			$('.tel-pop').hide();
 		})
-
 		$(".tel-filter").click(function(){
 			$('.tel-filter').hide();
 			$('.tel-pop').hide();
@@ -350,33 +341,29 @@ define(function(require){
 			isSend = true,
 			regphone = /^1[34587]\d{9}$/,
 			sendcodeurl = "/ask/addition?method=bindphone&fresh=" + Math.random();
-
 		//失去焦点事件
 		$('#popTelNum').blur(function() {
-
 			var popTel = $.trim($('#popTelNum').val());
 			if (!regphone.test(popTel)) {
 				$('.telError').show();
 				return false;
 			}
 		})
-
 		$('#popTelNum').focus(function() {
 			$('.telError').hide();
 			$('.tuyzma').hide();
 			return false;
 		})
-
 		$('#popVerify').bind('input propertychange', function() {
 			$('.yzmError').hide();
 			$('.tuyzma').hide();
 			return false;
 		});
-
 		$('#popYzmBtn').on('click',function(){
 			var self = $(this),
 				popTel =$.trim($('#popTelNum').val()),
 				tuyzm =$.trim($('#tuverify').val());
+
 			if (!regphone.test(popTel)) {
 				$('.telError').show();
 				return false;
@@ -385,7 +372,6 @@ define(function(require){
 				$('.tuyzma').show().html('请输入正确的图形验证码');
 				return false;
 			}
-
 			if(!isSend){
 				alert('正在获取中...');
 				return false;
@@ -415,7 +401,6 @@ define(function(require){
 							success: function(data){
 								var data = eval("("+data+")");
 								if(data.code =='10000' ){ //验证码发送成功
-
 									countTimer = setInterval(function(){
 										if(code_count <= 1){
 											clearInterval(countTimer);
@@ -460,10 +445,7 @@ define(function(require){
 					return false;
 				}
 			});
-
 		});
-
-
 		$('#telForm').on('submit',function(){
 			var popTel = $.trim($('#popTelNum').val()),
 				popVerify = $.trim($('#popVerify').val()),
@@ -472,31 +454,24 @@ define(function(require){
 				$('.telError').show();
 				return false;
 			}
-
 			if( popTel == '' && popVerify == ''){
 				$('#popTelNum').focus();
 				$('#popVerify').focus();
-
 				$('.telError').show().html('手机号不能为空');
 				$('.yzmError').show().html('验证码不能为空');
-
 				return false;
 			}
-
 			if( popTel !== '' &&  tuVerify === ''){
 				$('#popVerify').focus();
 				$('.tuyzma').show().html('请输入图形验证码');
 				return false;
 			}
-
 			if( popTel !== '' && popVerify === ''){
 				$('#popVerify').focus();
 				$('.yzmError').show().html('请输入验证码');
 				$('.tuyzma').hide();
 				return false;
 			}
-
-
 			if( popVerify !== '' && isNaN(popVerify)){
 				$('#popVerify').focus();
 				$('.yzmError').show().html('请输入正确的验证码');
@@ -507,7 +482,6 @@ define(function(require){
 			if(popTel !== '') {
 				var submit = true;
 				var showcount = 3;
-
 				$.ajax({
 					type: "POST",
 					url: bindurl,
@@ -585,23 +559,22 @@ define(function(require){
 			var pid =  getCookie('cookie_user_3g'); //pid：当前登录用户id，qid：问题id，rid:回复id， docid 医生id,ansertime:医生首次回复时间
 			var url = "http://3g.club.xywy.com/index.php?r=QuestionEvaluate/index&ansertime="+ansertime+"&pid="+pid+"&qid="+qid+"&rid="+rid+"&docid="+docid;
 			window.location.href = url;
-			
 		});
 		function getCookie(name){
 			var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-			if(arr=document.cookie.match(reg))
+			if(arr=document.cookie.match(reg)){
 				return unescape(arr[2]);
-			else
+			}
+			else{
 			   return null;
+			}
 		}
 		function showAskToMe(){
 			var div = document.getElementsByTagName('div')
-			for(var i=0;i<div.length;i++)
-			{
+			for(var i=0;i<div.length;i++) {
 				if(div[i].innerHTML.indexOf("向他提问")>-1){
 					div[i].style.display="block";
 				}
-
 			}
 		}
 		var pid = pid;
@@ -612,12 +585,10 @@ define(function(require){
 		}
 		if(uid && uid==pid){
 			var divs = document.getElementsByTagName('div')
-			for(var i=0;i<divs.length;i++)
-			{
+			for(var i=0;i<divs.length;i++) {
 				if(divs[i].innerHTML.indexOf("cainapj")>-1 || divs[i].innerHTML.indexOf("addF")>-1){
 					divs[i].style.display="block";
 				}
-
 			}
 		}else{
 			showAskToMe();
@@ -639,7 +610,6 @@ define(function(require){
 		}
 		var imgxx = new Image;
 		imgxx.src = "http://stat-y.xywy.com/z_test_pvuv.png?random"+Math.random();
-		
 		var cityname = _RET_IP.data.area.split('|');
 		cityname = cityname[1];
 		var alwaysShow = "全国";
@@ -650,31 +620,23 @@ define(function(require){
 				if(!address){
 				   return true;
 				}
-				
 				if (subject_pid == 766) {
 					var addresses = address.split('#');
 					if (address == alwaysShow) {
-						if (cityname.indexOf('北京') >= 0)
-						{
+						if (cityname.indexOf('北京') >= 0) {
 							return false;
-						} else if (cityname.indexOf('上海') >= 0)
-						{
+						} else if (cityname.indexOf('上海') >= 0) {
 							return false;
-						} else if (cityname.indexOf('深圳') >= 0)
-						{
+						} else if (cityname.indexOf('深圳') >= 0) {
 							return false;
-						} else if (cityname.indexOf('广州') >= 0)
-						{
+						} else if (cityname.indexOf('广州') >= 0) {
 							return false;
 						}
 						return true;
-					} else if (address == alwaysShowoh)
-					{
-						if (cityname.indexOf('深圳') >= 0)
-						{
+					} else if (address == alwaysShowoh) {
+						if (cityname.indexOf('深圳') >= 0) {
 							return false;
-						} else if (cityname.indexOf('广州') >= 0)
-						{
+						} else if (cityname.indexOf('广州') >= 0) {
 							return false;
 						} 
 					}
@@ -708,10 +670,8 @@ define(function(require){
 							 node.style.display='none';
 					   }
 					}
-
 				}
 			}
-			
 			nodelist =  document.querySelectorAll('.hospital');
 			for(var i = 0,len=nodelist.length; i<len;i++) {
 				node = nodelist[i];
@@ -722,18 +682,13 @@ define(function(require){
 					}
 				}
 			}
-
-			
 		})('blueBtn','data','<-->');
-		
 		window.onload=function(){
 			setTimeout(function() {
 				window.scrollTo(0, 1)
 			}, 0);
 		};
-		
 	};
-	
    // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
      // this.element 可取到当前实例对应的 dom 元素
@@ -747,8 +702,6 @@ define(function(require){
 	   loadJs(elem, 'http://page.xywy.com/get_ip', function(){
 		   appFun(url, pid, subject, subject_pid, qtagname, sta);
 	   });
-	   
 	}
-	
 	return customElem;
 });

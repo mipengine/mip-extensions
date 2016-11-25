@@ -1,5 +1,11 @@
+/**
+* 寻医问药mip改造 广告组件
+* @file 脚本支持
+* @author jqthink@gmail.com
+* @time 2016.11.25
+* @version 1.0.0
+*/
 define(function(require){
-
     var $ = require('zepto');
     var customElem = require('customElement').create();
 	var ua = navigator.userAgent;
@@ -70,6 +76,5 @@ define(function(require){
 	   }
 	   
 	}
-	
 	return customElem;
 });

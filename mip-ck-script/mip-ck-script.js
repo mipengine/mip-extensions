@@ -55,7 +55,7 @@ define(function (require) {
                 '[mip-ck-ad-bd-2-uc-1]': ucAd1,
                 '[mip-ck-ad-bd-2-uc-2]': ucAd2
             };
-            if (device.UC || device.QQ) {
+            if (device.QQ) {
                 $.each(dom2ad, function (k, v) {
                     $(k).html(v);
                 });

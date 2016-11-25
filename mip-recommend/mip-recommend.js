@@ -184,13 +184,13 @@ define(function (require) {
 
             var html = [
                 '<div class="mip-recommend-news">',
-                    '<h5>相关推荐</h3>',
+                    '<h5>相关推荐</h5>',
                     '<div>',
                         htmlNews,
                     '</div>',
                 '</div>',
                 '<div class="mip-recommend-hotpoints">',
-                    '<h5>新闻热点</h3>',
+                    '<h5>新闻热点</h5>',
                     '<div>',
                         htmlHots,
                     '</div>',

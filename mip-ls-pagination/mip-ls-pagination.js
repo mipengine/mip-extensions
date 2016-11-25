@@ -7,6 +7,7 @@
 define(function (require) {
     var customElem = require('customElement').create();
     var currentPage = 0;
+    var zp = require('zepto');
 
     function createPagination(elem) {
         // 创建页码选择器
@@ -48,25 +49,25 @@ define(function (require) {
         lastPageElem.innerHTML = '末页';
         paginationElem.appendChild(lastPageElem);
 
-        firstPageElem.addEventListener('click', function () {
+        zp(firstPageElem).on('click', function () {
             choosePage(0, elem);
-        }, false);
-        lastPageElem.addEventListener('click', function () {
+        });
+        zp(lastPageElem).on('click', function () {
             choosePage(pages, elem);
-        }, false);
-        prevPageElem.addEventListener('click', function () {
+        });
+        zp(prevPageElem).on('click', function () {
             if (currentPage > 0) {
                 choosePage(currentPage - 1, elem);
             }
-        }, false);
-        nextPageElem.addEventListener('click', function () {
+        });
+        zp(nextPageElem).on('click', function () {
             if (currentPage < pages - 1) {
                 choosePage(currentPage + 1, elem);
             }
-        }, false);
-        chooserElem.addEventListener('change', function () {
+        });
+        zp(chooserElem).on('click', function () {
             choosePage(Number(chooserElem.value), elem);
-        }, false);
+        });
     }
 
     function init(elem) {

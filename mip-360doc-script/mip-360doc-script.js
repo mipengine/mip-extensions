@@ -3,9 +3,6 @@
     var customElem = require('customElement').create();
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        $('.mip-360doc-script-backgroundgrey').click(closeceng);
-        $('.mip-360doc-script-p_header_fx').click(share);
-        $('.mip-360doc-script-bds_wx').click(wxshare);
         getRefNum();
         $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/xiazai.png\'  class=\'pic2\'/></span>');
         var picn = $('.mip-360doc-script-pic').length;
@@ -39,24 +36,7 @@
             window[key] = null;
             img = null;
         };
-        img.src = 'http://eclick.360doc.com/' + url;
-    }
-    //  关闭分享层
-    function closeceng() {
-        $('.p_header_logowrap2').show();
-        $('.mip-360doc-script-headejbox').hide();
-        $('.mip-360doc-script-backgroundgrey').hide();
-        $('.mip-360doc-script-xt1').show();
-        $('.mip-360doc-script-boxtop').hide();
-    }
-    //  第三方分享
-    function share() {
-        $('.mip-360doc-script-headejbox').show();
-        $('.mip-360doc-script-share-bar').css('display', '');
-        $('.mip-360doc-script-backgroundgrey').css('display', 'block');
-        $('.mip-360doc-script-xt1').hide();
-        $('.mip-360doc-script-boxtop').hide();
-        $('.p_header_logowrap2').hide();
+        img.src = 'http://mipeclick.360doc.com/' + url;
     }
     //  广告轮播
     function setone() {
@@ -120,12 +100,6 @@
     }
     if (navigator.userAgent.toLowerCase().indexOf('ucbrowser') > -1) {
         $('.mip-360doc-script-p_header_nav2').width('69%');
-    }
-
-    //  分享到微信地址
-    function wxshare() {
-        $('.mip-360doc-script-boxtop').show();
-        $('.mip-360doc-script-share-bar').hide();
     }
     return customElem;
 });

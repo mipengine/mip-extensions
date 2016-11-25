@@ -10,8 +10,11 @@ define(function (require) {
     var zp = require('zepto');
 
     function createPagination(elem) {
+        var pageSize = 5;
+        if (elem.hasAttribute('data-page-size')) {
+            pageSize = Number(elem.getAttribute('data-page-size'));
+        }
         // 创建页码选择器
-        var pageSize = Number(elem.getAttribute('data-page-size'));
         var items = elem.querySelectorAll('li');
         var pages = Math.ceil(items.length / pageSize);
         var elemBox = elem.getBoundingClientRect();
@@ -71,35 +74,23 @@ define(function (require) {
     }
 
     function init(elem) {
-        var items = elem.querySelectorAll('li');
-        for (var i = 0; i < items.length; i++) {
-            items[i].style.display = 'none';
-        }
-
         choosePage(0, elem);
 
         createPagination(elem);
-
-    }
-
-    function hideAvailableItems(items) {
-        for (var i = 0; i < items.length; i++) {
-            items[i].classList.contains('available') && items[i].classList.remove('available');
-        }
     }
 
     function choosePage(index, elem) {
-        var pageSize = Number(elem.getAttribute('data-page-size'));
+        var pageSize = 5;
+        if (elem.hasAttribute('data-page-size')) {
+            pageSize = Number(elem.getAttribute('data-page-size'));
+        }
         var items = elem.querySelectorAll('li');
         var pages = Math.ceil(items.length / pageSize);
-        // 切换页码时，隐藏之前选中的项
-        hideAvailableItems(elem.querySelectorAll('li.available'));
 
-        // 显示属于当前页码的项
-        for (var i = index; i < pageSize; i++) {
-            !items[i].classList.contains('available') && items[i].classList.add('available');
-        }
         currentPage = index;
+
+        // 切换页码时，修改location.search值
+        location.search = '?p=' + index;
 
         var prevElem = elem.querySelector('.prev');
         var nextElem = elem.querySelector('.next');

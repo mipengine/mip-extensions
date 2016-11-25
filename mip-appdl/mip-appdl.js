@@ -1,8 +1,8 @@
 /**
- * @file 下载
+ * @file 下载组件
  * @author fengchuantao
- * 
  * @time 2016.06.21
+ * @modify wangpei07 2016.11.21
  */
 
 define(function (require) {
@@ -10,132 +10,104 @@ define(function (require) {
     var customElement = require('customElement').create();
 
     /**
-     * build
+     * [getHtml 拼接html]
      */
-    function build() {
-         var _element = this.element;
-        if (_element.isRender) {
-            return;
+    function getHtml() {
+        var element = this;
+        var src = element.getAttribute(getUserAgent() + '-downsrc') || '';
+        var btnText = element.getAttribute('downbtntext') || '';
+        var showText = getShowText.call(element) || '';
+        var imageAddr = element.getAttribute('src') || '';
+        var imageStr = '';
+
+        if (imageAddr) {
+            imageStr = [
+                '<div class="mip-appdl-imgbox">',
+                '    <img src=' + imageAddr + ' class="mip-appdl-downimg">',
+                '</div>'
+            ].join('');
         }
 
-        _element.isRender = true;
-        getallconfig.call(_element)
-        BindClose.call(_element)
-    }
+        var html = [
+            '<div class="mip-appdl-box' + (imageAddr ? '' : ' mip-appdl-pm10') + '">',
+            '    <div class="mip-appdl-content">' + imageStr,
+            '        <div class="mip-appdl-textbox">' + showText + '</div>',
+            '        <div class="mip-appdl-downbtn">',
+            '            <a href=' + src + ' target="_blank">' + btnText + '</a>',
+            '        </div>',
+            '        <div class="mip-appdl-closebutton"></div>',
+            '    </div>',
+            '</div>'
+        ].join('');
 
-    function getallconfig() {
-       var tpl = this.getAttribute('tpl');
+        if (src) {
+            $(element).append(html);
 
-       switch(tpl) {
-            case 'imageText':
-                renderHaveImg.call(this);
-                break;
-            case 'noneImg':
-                renderNoneImg.call(this);
-                break;
-        }
-    }
-
-
-    /**
-     * 图文存在
-     */
-    function renderHaveImg() {
-        var textdom = buildtextdom.call(this);
-        var textdom = buildtextdom.call(this);
-        var downtext = $(this).attr("downbtntext");
-        var downsrc  = $(this).attr(recognition()+"-downsrc");
-        var imgsrc = $(this).attr("src");
-        var postiontye = "'mip-appdl-box mip-appdl-"+$(this).attr("postiontye")+ "'";
-
-        var str = "<div class= "+postiontye+" >"+
-            "<div class='mip-appdl-content'>"+
-                "<div class='mip-appdl-imgbox'>"+
-                    "<img src="+imgsrc+" class='mip-appdl-downimg'>"+
-                "</div>"+
-                "<div class='mip-appdl-textbox'>"+
-                    textdom+
-                "</div>"+
-                "<div class='mip-appdl-downbtn '>"+
-                    "<a href="+downsrc+" >"+downtext+"</a>"+
-                "</div>"+
-                "<div class='mip-appdl-closebutton'></div>"+
-            "</div>"+
-        "</div>";
-
-        
-        if(downsrc) {
-            $(this).append(str)
+            // 关闭按钮点击事件
+            $(this).on('click', '.mip-appdl-closebutton', function () {
+                $(this).parents('.mip-element').remove();
+            });
         }
     }
 
     /**
-     * 单行文本
+     * [getShowText 显示文案处理]
+     *
+     * @return {string} [拼接后的html字符串]
      */
-    function renderNoneImg() {
-        var textdom = buildtextdom.call(this);
-        var downtext = $(this).attr("downbtntext");
-        var downsrc  = $(this).attr(recognition()+"-downsrc");
-        var postiontye = "'mip-appdl-box mip-appdl-pm10 mip-appdl-"+$(this).attr("postiontye")+"'";
-        var str = "<div class= "+postiontye+" >"+
-            "<div class='mip-appdl-content'>"+
-                "<div class='mip-appdl-textbox'>"+
-                    textdom+
-                "</div>"+
-                "<div class=' mip-appdl-downbtn'>"+
-                    "<a target='_blank' href="+downsrc+">"+downtext+"</a>"+
-                "</div>"+
-                "<div class='mip-appdl-closebutton'></div>"+
-            "</div>"+
-        "</div>";
+    function getShowText() {
+        var element = this;
+        var text = element.getAttribute('texttip');
+        var showText = ['<div class="mip-appdl-text">'];
+        var array = [];
+        var index = 0;
 
-        if(downsrc) {
-            $(this).append(str)
-        }
-    }
-
-    /**
-     * 组装文本行
-     */
-    function buildtextdom() {
-        var textarray = $(this).attr("texttip");
-        var tarray = [];
-        if (textarray) {
+        // 字符串转换为数组
+        if (text) {
             try {
-                tarray = new Function('return ' + textarray)();
-            } catch (e) {}
+                array = new Function('return ' + text)();
+            }
+            catch (e) {}
         }
-        var domstr = "<div class='mip-appdl-text'>";
-        var length = tarray>2 ? 2:tarray.length;
 
-        for(var i=0;i<length;i++) { //限定最大行数两行
-            domstr+="<p>"+tarray[i]+"</p>";
+        // 限定最大行数两行
+        for (index = 0; index < Math.min(2, array.length); index++) {
+            showText.push('<p>' + array[index] + '</p>');
         }
-        return domstr+"</div>";
+        showText.push('</div>');
+
+        return showText.join('');
     }
 
     /**
-     * 绑定关闭事件
+     * [getUserAgent 获取浏览器类型]
+     *
+     * @return {string} [浏览器类型字符串]
      */
-    function BindClose() {
-        $(this).on("click",".mip-appdl-closebutton",function(){
-            $(this).parents(".mip-element").remove()
-        })
+    function getUserAgent() {
+        var agent = navigator.userAgent;
+        var regIOS = /(iPhone|iPad|iPod|iOS)/i;
+        var regAdr = /(Android)/i;
+
+        return regIOS.test(agent) ? 'Ios' : regAdr.test(agent) ? 'Android' : '';
     }
 
     /**
-     * 客户端判断
+     * [build 组件build函数]
      */
-    function recognition(){
-        var u = navigator.userAgent;
-        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-        return isAndroid?"Android":"Ios"
-    }
+    customElement.prototype.build = function () {
+        var element = this.element;
+        var tpl = element.getAttribute('tpl') || 'imageText';
 
-    customElement.prototype.build = build;
+        // 展示模板渲染
+        if (tpl === 'imageText') {
+            getHtml.call(element);
+        }
+        else {
+            getHtml.call(element);
+        }
+    };
 
     return customElement;
 
 });
-

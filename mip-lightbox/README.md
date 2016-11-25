@@ -6,19 +6,20 @@ mip-lightbox 是由用户控制展现或关闭的一个全屏浮层组件，组�
 ----|----
 类型|通用
 支持布局| N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-lightbox.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-lightbox/mip-lightbox.js
 
 ## 示例
 
 ```html
-<button on="tap:my-lightbox.open" id="btn-open" role="button" tabindex="0">
+<button on="tap:my-lightbox.toggle" id="btn-open" role="button" tabindex="0">
     Open lightbox
 </button>
 
 <mip-lightbox
     id="my-lightbox"
-    layout="nodisplay">
-    <div class="lightbox" on="tap:my-lightbox.close">
+    layout="nodisplay"
+    class="mip-hidden">
+    <div class="lightbox">
         <h1>Hello, World!</h1>
         <p> this is the lightbox</p>
     </div>

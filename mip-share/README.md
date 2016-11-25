@@ -6,21 +6,22 @@
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1.1/mip-share.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-share/mip-share.js
 
 
 ## 示例
 
-```html
-<!-- 通用分享 -->
-<div class="mip-share-container">
-    <mip-share 
-        layout="fixed-height"
-        height="158">
-    </mip-share>
-</div>
+### 基本使用
 
-<!-- 通用分享 -->
+```html
+<div class="mip-share-container">
+    <mip-share></mip-share>
+</div>
+```
+
+### fixed布局
+
+```html
 <div class="mip-share-container">
     <mip-share 
         layout="fixed"
@@ -28,10 +29,16 @@
         height="158">
     </mip-share>
 </div>
+```
 
-<!-- 通用分享 -->
+### 自定义分享参数
+
+```html
 <div class="mip-share-container">
     <mip-share 
+        title="分享标题" 
+        content="分享内容" 
+        icon="https://m.baidu.com/se/static/pmd/pmd/share/images/bdu.jpg" 
         layout="responsive"
         width="414"
         height="158">
@@ -44,9 +51,10 @@
 ### url
 
 说明：分享出去的网址  
-必选项：是  
+必选项：否  
 类型：字符串  
-取值范围：URL
+取值范围：URL    
+默认值：当前页面的url
 
 ### title
 

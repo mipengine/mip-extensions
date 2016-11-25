@@ -73,6 +73,7 @@ define(function (require) {
                 var firstChild = document.head.firstChild;
                 document.head.insertBefore(script,firstChild);
 
+
                 script.onload = function() {
                     if(calbacklen == 1) {
                         mipLoadedJs = true;
@@ -82,7 +83,17 @@ define(function (require) {
                     }
                     calbacklen  = calbacklen - 1;
                     if (calbacklen === 0) {
-                        callback();
+                        setTimeout(function () {
+                            if (_RET_IP && _RET_IP.status === 0 && _RET_IP.message
+                                && _RET_IP.message[0] && _RET_IP.message[0].ip && _RET_IP.message[0].id) {
+                                callback();
+                            } else {
+                                var image = new Image();
+                                var logurl = '//m.120ask.com/jhg.php?from=baidu&time=' + new Date().getTime() 
+                                            + '&msg=' + encodeURIComponent(location.href); 
+                                image.src = logurl;
+                            }
+                        }, 20);
                     }
                 }
             }

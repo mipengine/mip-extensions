@@ -6,7 +6,7 @@ mip-sample 实现了一个简单的卡牌元素，手指滑过卡牌时可向滑
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/mip-sample/1.0.1/mip-sample.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-sample/mip-sample.js
 
 ## 示例
 
@@ -35,6 +35,33 @@ mip-sample 实现了一个简单的卡牌元素，手指滑过卡牌时可向滑
     <div class="mip-sample-list">第九张</div>
     <div class="mip-sample-list mip-sample-list-last">最后一张</div>
 </mip-sample>
+```
+
+### mip-img
+
+可支持多张卡牌，最后一张为不可翻卡牌。
+
+```html
+<mip-img width="350" height="263"
+    class="mip-img" 
+    popup 
+    alt="baidu mip img" 
+    src="http://ztd00.photos.bdimg.com/ztd/w%3D350%3Bq%3D70/sign=e3bb1c4b97ef76c6d0d2fd2ead2d8cc7/f703738da9773912b57d4b0bff198618367ae205.jpg">
+</mip-img>
+<p class="mip-img-subtitle">带图片标题的类型</p>
+<mip-img  layout="responsive" width="350" height="263"
+    class="mip-img" 
+    popup 
+    alt="baidu mip img" 
+    src="http://ztd00.photos.bdimg.com/ztd/w%3D350%3Bq%3D70/sign=e3bb1c4b97ef76c6d0d2fd2ead2d8cc7/f703738da9773912b57d4b0bff198618367ae205.jpg">
+</mip-img>
+<p class="mip-img-subtitle">带图片标题的类型</p>
+<mip-img layout="responsive" width="350" height="263"
+    class="mip-img" 
+    popup 
+    alt="baidu mip img" 
+    src="http://ztd00.photos.bdimg.com/ztd/w%3D350%3Bq%3D70/sign=e3bb1c4b97ef76c6d0d2fd2ead2d8cc7/f703738da9773912b57d4b0bff198618367ae205.jpg">
+</mip-img>
 ```
 
 ## 属性

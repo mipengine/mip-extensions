@@ -89,6 +89,20 @@ define(function (require) {
                if(len !== 0) { //验证未全部通过
                  event.preventDefault();
                }
+
+               if (window.parent !== window) {
+
+                    var elem = $(this);
+                    var message = {
+                        'event': 'mibm-jumplink',
+                        'data': {
+                            'method': 'post'
+                        }
+                    };
+
+                    window.parent.postMessage(message, '*');
+                } else {
+                }
             })
         }
     }

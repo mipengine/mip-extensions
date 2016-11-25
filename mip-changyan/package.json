@@ -1,0 +1,8 @@
+{
+    "name": "mip-changyan",
+    "version": "1.0.0",
+    "description": "sample component",
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

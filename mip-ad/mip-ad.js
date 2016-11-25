@@ -14,6 +14,7 @@ define(function (require) {
     require('./mip-ad-baidu');
     require('./mip-ad-qwang');
     require('./mip-baidu-wm-ext');
+    require('./mip-ad-imageplus');
     
     /**
      * render
@@ -23,20 +24,24 @@ define(function (require) {
         var me = this;
         var _element = this.element;
 
-        if (_element.isRender) {
-            return;
-        }
-
-        _element.isRender = true;
-
         var type = _element.getAttribute('type');
-        var mipAd = require('./mip-' + type);
-        mipAd.render(_element, me);
+        try {
+            var mipAd = require('./mip-' + type);
+            mipAd.render(_element, me);
+        } catch(e) {
+
+        }
+        
 
     }
 
     customElement.prototype.build = render;
 
+    // Add alias
+    // TODO: another plan
+    setTimeout(function () {
+        MIP.registerMipElement('mip-embed', customElement);
+    }, 0);
     return customElement;
 });
 

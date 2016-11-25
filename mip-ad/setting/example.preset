@@ -1,0 +1,16 @@
+<style mip-custom>
+	body {
+		padding: 0 22px;
+		background-color: #fff;
+	}
+	h3 {
+		padding: 0;
+	}
+	p {
+		text-align: left;
+		line-height: 26px;
+	}
+	mip-img {
+		margin: 10px auto;
+	}
+</style

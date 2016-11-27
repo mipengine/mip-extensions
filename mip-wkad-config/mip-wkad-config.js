@@ -56,7 +56,7 @@ define(function (require) {
 			});
 		    break;
 		   case 'stat':
-			loadJs(elem, 'https://a.xywy.com/stat.js');
+			loadJs(elem, 'https://a.xywy.com/mip/stat.js');
 		    break;
 		   case 'tongji': 
 			loadJs(elem, 'https://stat.xywy.com/a.js');

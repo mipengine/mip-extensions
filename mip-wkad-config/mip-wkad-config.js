@@ -30,9 +30,9 @@ define(function (require) {
 	   var department = $(elem).attr('department');
 	   switch(attr){
 		   case 'take_ip':
-			loadJs(elem, 'http://ip.display.xywy.com/take_ip', function(){
+			loadJs(elem, 'https://ipdisplay.xywy.com/take_ip', function(){
 				if(typeof channel == 'undefined'){
-					loadJs(elem, 'http://a.xywy.com/display/display_load.js', function(){
+					loadJs(elem, 'https://a.xywy.com/display/display_load.js', function(){
 						var ggArr = {}; 
 						var string = '';
 						$.each( keys_arr, function(index, value) { 
@@ -42,7 +42,7 @@ define(function (require) {
 						mobileAd.getAd( ggArr );
 					});
 				}else{
-					loadJs(elem, 'http://a.xywy.com/mobile_v3.js', function(){
+					loadJs(elem, 'https://a.xywy.com/mobile_v3.js', function(){
 						var ggArr = {}; 
 						var string = '';
 						$.each( keys_arr, function(index, value) { 
@@ -56,19 +56,19 @@ define(function (require) {
 			});
 		    break;
 		   case 'stat':
-			loadJs(elem, 'http://a.xywy.com/stat.js');
+			loadJs(elem, 'https://a.xywy.com/mip/stat.js');
 		    break;
 		   case 'tongji': 
-			loadJs(elem, 'http://stat.xywy.com/a.js');
+			loadJs(elem, 'https://stat.xywy.com/a.js');
 		    break;
 		   case 'odm': 
-			loadJs(elem, 'http://stat.xywy.com/odm.js');
+			loadJs(elem, 'https://stat.xywy.com/odm.js');
 		    break;
 		   case 'visit': 
-			loadJs(elem, 'http://stat.xywy.com/visit.js');
+			loadJs(elem, 'https://stat.xywy.com/visit.js');
 		    break;
 		   case 'get_ip': 
-			loadJs(elem, 'http://page.xywy.com/get_ip');
+			loadJs(elem, 'https://page.xywy.com/get_ip');
 		    break;
 			default:
 			break;

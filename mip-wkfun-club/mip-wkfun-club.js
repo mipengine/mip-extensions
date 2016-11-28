@@ -604,12 +604,12 @@ define(function(require){
 		});
 		
 		if([287, 332].indexOf(subject_pid) > -1){
-			new Image().src="http://stat-z.xywy.com/e.png?pagevisit=pvwap_3g_wenkang_free_ask&time=" + new Date().getTime()+"time";
+			new Image().src="https://stat-z.xywy.com/e.png?pagevisit=pvwap_3g_wenkang_free_ask&time=" + new Date().getTime()+"time";
 		}else{
-			new Image().src="http://stat-z.xywy.com/e.png?pagevisit=pvwap_3g_wenkang_article_button&time="+new Date().getTime();
+			new Image().src="https://stat-z.xywy.com/e.png?pagevisit=pvwap_3g_wenkang_article_button&time="+new Date().getTime();
 		}
 		var imgxx = new Image;
-		imgxx.src = "http://stat-y.xywy.com/z_test_pvuv.png?random"+Math.random();
+		imgxx.src = "https://stat-y.xywy.com/z_test_pvuv.png?random"+Math.random();
 		var cityname = _RET_IP.data.area.split('|');
 		cityname = cityname[1];
 		var alwaysShow = "全国";
@@ -699,7 +699,7 @@ define(function(require){
 	   var subject_pid = $(elem).attr('subject_pid');
 	   var qtagname = $(elem).attr('qtagname');
 	   var sta = $(elem).attr('sta');
-	   loadJs(elem, 'http://page.xywy.com/get_ip', function(){
+	   loadJs(elem, 'https://page.xywy.com/get_ip', function(){
 		   appFun(url, pid, subject, subject_pid, qtagname, sta);
 	   });
 	}

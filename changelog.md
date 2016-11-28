@@ -7,7 +7,7 @@
 组件名|功能说明
 ---|---
 [mip-huajun-downtag](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-downtag)|[新增] 点击切换组件
-[mip-huajun-fixnav](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-fixnav)|[新增] 固定nav组件
+[mip-huajun-fixdnav](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-fixdnav)|[新增] 固定nav组件
 [mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 表单组件，监听回车事
 [mip-lightbox](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级] 弹层组件 修复 Firefox 浏览器下点击事件无效的bug
 

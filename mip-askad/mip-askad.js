@@ -63,7 +63,7 @@ define(function (require) {
         }else {
             mipLoadingJs  = true;
             var timestamp = ( new Date()).valueOf();
-            var allurl = ["//ip.120ask.com/lt?js=m.120ask.com&r="+timestamp,"//scws.120ask.com/scws?t=js&content="+content,"//m.120ask.com/pub/js/x_m_none_jquery.js"];
+            var allurl = ["//ip.120ask.com/lt?js=m.120ask.com&r="+timestamp,"//scws.120ask.com/scws?t=js&content="+content+"&r="+timestamp,"//m.120ask.com/pub/js/x_m_none_jquery.js?r="+timestamp];
             var calbacklen = 3;
 
             for(var i = 0; i< allurl.length; i++) {

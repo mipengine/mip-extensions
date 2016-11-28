@@ -1,25 +1,5 @@
 <style mip-custom>
-form {
-	position: relative;
-}
-input {
-
-    padding: 6px 10% 6px 3%;
-    margin: 10px auto;
-    display: block;
-    width: 87%;
-}
-form div {
-    display: none; 
-    color: #ec1f5c;
-    font-size: 12px;
-    text-align: left;
-    padding: 0 10% 0 3%;
-}
-form input[type='submit'] {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    color: #333;
-    background-color: #d8d7d7;
+body {
+    padding: 10px;
 }
 </style>

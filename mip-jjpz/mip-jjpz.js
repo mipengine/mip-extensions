@@ -4,8 +4,8 @@
  */
 
 /**
- * @date:  2016-11-18
- * @time: 15:35
+ * @date:  2016-11-28
+ * @time: 15:10
  */
 define(function (require) {
     var $ = require('zepto');
@@ -27,7 +27,7 @@ define(function (require) {
             pageIndex: 1,
             pageSize: 3
         },
-        apiurl: 'http://fundmobapitest.eastmoney.com/FundMApi/',
+        apiurl: 'https://fundmobapitest.eastmoney.com/FundMApi/',
         funurl: 'http://m.1234567.com.cn/m/fund/funddetail/',
         funBuyUrl: 'https://tradewap.1234567.com.cn/buyfund.html',
         sameCompany: 'http://m.1234567.com.cn/m/fund/jjjz.shtml',
@@ -60,11 +60,86 @@ define(function (require) {
     var timeoutFun = function () {
     };
 
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + expiredays);
+        document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+    }　　 //setCookie('username','Darren',30)
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                c_end = document.cookie.indexOf(";", c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return unescape(document.cookie.substring(c_start, c_end))
+            }
+        }
+        return ""
+    }
+
+    var user;
+    $(function () {
+
+        var member = {
+            getuser: function (cVal) {
+
+                if (cVal && cVal != null && cVal != "") {
+                    cVal = decodeURIComponent(cVal);
+                    var cVals = cVal.split(";");
+                    user = {
+                        id: cVals[0],
+                        name: cVals[1],
+                        nick: cVals[2],
+                        photo: "https://mp.dfcfw.com/" + cVals[0] + "/48/0"
+                    };
+                    return user;
+                } else {
+                    user = null;
+                    return null;
+                }
+            }
+        }
+        var daohang = {
+            getMyMember: function (succ) { //获取我的登陆信息
+                funCaller._getScript("http://fundwap.eastmoney.com/EastmoneyLoginState.aspx?cn=pi", function () {
+                    if (pi) {
+                        return succ(member.getuser(pi));
+                    } else {
+                        return succ("");
+                    }
+                });
+            },
+            getMyAcct: function (succ) { //获取我的交易账号信息
+                var acctName = getCookie("EM.TTfund.userNameKey");
+                if (acctName == "" || acctName == null || acctName == 'undefined') {
+                    return succ("");
+                }
+                return succ(unescape(acctName));
+            }
+        }
+
+        daohang.getMyMember(function (member) {
+            if (member != "" && member != null && member != {}) {
+                $(".daohang-passport-login").html(member.nick);
+                $(".daohang-passport-order").html("管理").attr({ "href": "https://mpassport.eastmoney.com/" });
+            }
+        });
+        daohang.getMyAcct(function (member) {
+            if (member == "" || member == null || member == {}) {
+                $(".daohangloginout").show();
+                $(".daohangloginin").hide();
+                return;
+            }
+            $(".daohangname").html(member + " ,您好");
+            $(".daohangloginout").hide();
+            $(".daohangloginin").show();
+        });
+    });
     var funCaller = {
         init: function () {
             var tthis = this;
             tthis.tAjax('FundBase.ashx', param.data, tthis.FundBaseloadView);
-            tthis.tAjax('FundNetDiagram.ashx', param.data, tthis.FundNetDiagramloadView);
             tthis.tAjax('FundSameCompanyList.ashx', param.data, tthis.FundSameCompanyListloadView);
             tthis.tAjax('FundSameTypeList.ashx', param.dataPage, tthis.FundSameTypeListloadView);
             tthis.discussLink();
@@ -140,7 +215,6 @@ define(function (require) {
                 $('.ui_outer').find('.header2').append('<span class="split">|</span>' + data.RLEVEL_SZ + '星评级');
                 $('.baseInfo_url').find('.jjxx-h').append('<span class="split">|</span>' + data.RLEVEL_SZ + '星评级');
             }
-
             if (param.fundGetType === 1) {
                 $('.Fearnings').html('最新净值（<span class="numberFont">' + data.FSRQ.slice(5, 10) + '</span>）');
                 $('.FearningsDay').html('日涨幅');
@@ -148,18 +222,33 @@ define(function (require) {
                 funCaller.bindData(funCaller.initNumber2(data.RZDF, 2), '.FearningsN2', 0, funCaller.isRed(data.RZDF));
                 funCaller.bindData(data.Valuation ? (JSON.parse(data.Valuation).gsz) : '--', 'span:nth-child(2)', '.Fevaluation', data.Valuation ? funCaller.isRed(JSON.parse(data.Valuation).gszzl) : '');
                 funCaller.bindData(data.Valuation ? (funCaller.initNumber2(JSON.parse(data.Valuation).gszzl, 2)) : '--', 'span:nth-child(3)', '.Fevaluation', data.Valuation ? funCaller.isRed(JSON.parse(data.Valuation).gszzl) : '');
+                $('.tab').html('<p class="active" data-imgurl="http://j4.dfcfw.com/charts/pic1/">净值估值</p><p data-imgurl="http://j3.dfcfw.com/images/JJJZ5/">单位净值</p><p data-imgurl="http://j3.dfcfw.com/images/syl4/">累计收益</p>');
+                $('.tabContent').html('<img src="http://j4.dfcfw.com/charts/pic1/' + param.data.FCODE + '.png">');
                 date2 = data.Valuation ? JSON.parse(data.Valuation).gztime.substring(5, 16) : '';
                 funCaller.bindData('(' + date2 + ')', 'span:nth-child(4)', '.Fevaluation');
+                funCaller.bindData(funCaller.initNumber2(data.SYL_JN, 2), 'span', '.Info_url div:nth-child(1) ', funCaller.isRed(data.SYL_JN));
+                funCaller.bindData(funCaller.initNumber2(data.SYL_Y, 2), 'span', '.Info_url div:nth-child(2)', funCaller.isRed(data.SYL_Y));
+                funCaller.bindData(funCaller.initNumber2(data.SYL_6Y, 2), 'span', '.Info_url div:nth-child(3) ', funCaller.isRed(data.SYL_6Y));
+                funCaller.bindData(funCaller.initNumber2(data.SYL_1N, 2), 'span', '.Info_url div:nth-child(4) ', funCaller.isRed(data.SYL_1N));
             }
             else {
                 $('.Fearnings').html('万份收益（<span class="numberFont">' + data.FSRQ.slice(5, 10) + '</span>）');
+                funCaller.bindData(funCaller.initNumber2(data.DWJZ, 4, true), '.FearningsN1', 0, funCaller.isRed(data.SYI));
+                funCaller.bindData(funCaller.initNumber2(data.SYI, 4), '.FearningsN2', 0, funCaller.isRed(data.SYI));
                 $('.FearningsDay').html('7日年化');
+                $('.tab').addClass('tabtwo').html('<p class="active" data-imgurl="http://j3.dfcfw.com/images/JJJZ5/">万元收益</p><p data-imgurl="http://j3.dfcfw.com/images/JJJZ6/" class="">7日年化</p>');
+                $('.tabContent').html('<img src="http://j3.dfcfw.com/images/JJJZ5/' + param.data.FCODE + '.png">');
                 $('.Fevaluation').hide();
+                $('.Info_url div:nth-child(1) font').html('14日年化：');
+                $('.Info_url div:nth-child(2) font').html('28日年化：');
+                $('.Info_url div:nth-child(3) font').html('今年来：');
+                $('.Info_url div:nth-child(4) font').html('近1年：');
+                funCaller.bindData(funCaller.initNumber2(data.FTYI, 2), 'span', '.Info_url div:nth-child(1) ', funCaller.isRed(data.FTYI));
+                funCaller.bindData(funCaller.initNumber2(data.TEYI, 2), 'span', '.Info_url div:nth-child(2)', funCaller.isRed(data.TEYI));
+                funCaller.bindData(funCaller.initNumber2(data.SYL_JN, 2), 'span', '.Info_url div:nth-child(3) ', funCaller.isRed(data.SYL_JN));
+                funCaller.bindData(funCaller.initNumber2(data.SYL_1N, 2), 'span', '.Info_url div:nth-child(4) ', funCaller.isRed(data.SYL_1N));
             }
-            funCaller.bindData(funCaller.initNumber2(data.SYL_JN, 2), 'span', '.Info_url div:nth-child(1) ', funCaller.isRed(data.SYL_JN));
-            funCaller.bindData(funCaller.initNumber2(data.SYL_Y, 2), 'span', '.Info_url div:nth-child(2)', funCaller.isRed(data.SYL_Y));
-            funCaller.bindData(funCaller.initNumber2(data.SYL_6Y, 2), 'span', '.Info_url div:nth-child(3) ', funCaller.isRed(data.SYL_6Y));
-            funCaller.bindData(funCaller.initNumber2(data.SYL_1N, 2), 'span', '.Info_url div:nth-child(4) ', funCaller.isRed(data.SYL_1N));
+
             if (data.SOURCERATE !== '' && data.SOURCERATE !== null) {
                 dellineData = '<span class="ui_delLine">' + data.SOURCERATE + ' </span> ' + data.RATE;
             }
@@ -167,9 +256,6 @@ define(function (require) {
                 dellineData = data.RATE;
             }
             funCaller.bindData(dellineData, '.ui_black.numberFont', '.buyInfo_url');
-
-            $('.tabp .tabContent').find('.img').attr('src', 'http://j4.dfcfw.com/charts/pic1/' + param.data.FCODE + '.png');
-            $('.tabp .tabContent').find('img').attr('src', 'http://j4.dfcfw.com/charts/pic1/' + param.data.FCODE + '.png');
             $('.Info_url').on('click', function () {
                 window.location.href = 'http://m.1234567.com.cn/m/fund/fundjdsy/' + param.data.FCODE;
             });
@@ -182,6 +268,8 @@ define(function (require) {
                 $('.buyJJ').removeClass('ui-btn-orange').addClass('ui-btn-gray');
             }
             funCaller.domclick();
+
+            funCaller.tAjax('FundNetDiagram.ashx', param.data, funCaller.FundNetDiagramloadView);
         },
 
         FundNetDiagramloadView: function (data) {
@@ -195,7 +283,7 @@ define(function (require) {
 
                 gotoLSSYLdiv += '<tr><td class="numberFont">' + datas[i].FSRQ + '</td>';
                 gotoLSSYLdiv += '<td class="numberFont">' + funCaller.initNumber2(datas[i].DWJZ, 4, true) + '</td>';
-                gotoLSSYLdiv += '<td class="numberFont">' + funCaller.initNumber2(datas[i].LJJZ, 4, true) + '</td>';
+                gotoLSSYLdiv += '<td class="numberFont">' + funCaller.initNumber2(datas[i].LJJZ, 4) + '</td>';
                 param.fundGetType === 1 ? gotoLSSYLdiv += '<td class="' + funCaller.isRed(datas[i].JZZZL) + ' numberFont">' + funCaller.initNumber2(datas[i].JZZZL, 2) + '</td>' : '';
                 gotoLSSYLdiv += '</tr>';
             }
@@ -242,7 +330,7 @@ define(function (require) {
                 tthisli.children('a').attr('href', param.funurl + '?fundcode=' + datas[i].FCODE);
                 var tthistbl = tthisli.find('.fund-tbl');
                 tthistbl.find('.fund-title a').attr('href', param.funurl + '?fundcode=' + datas[i].FCODE).html(datas[i].SHORTNAME);
-                tthistbl.find('.fund_minsg span').html(datas[i].MINSG);
+                tthistbl.find('.fund_minsg span').html(funCaller.NumberM(datas[i].MINSG));
                 tthistbl.find('.profit').html(funCaller.initNumber2(datas[i].SYL, 2));
                 tthistbl.find('.profit').next('.profit-title').html(datas[i].SYLMARK);
                 tthistbl.find('.fund-fl.font15').html(datas[i].SOURCERATE);
@@ -270,7 +358,7 @@ define(function (require) {
                 tthisli.children('a').attr('href', param.funurl + '?fundcode=' + datas[i].FCODE);
                 var tthistbl = tthisli.find('.fund-tbl');
                 tthistbl.find('.fund-title a').attr('href', param.funurl + '?fundcode=' + datas[i].FCODE).html(datas[i].SHORTNAME);
-                tthistbl.find('.fund_minsg span').html(datas[i].MINSG);
+                tthistbl.find('.fund_minsg span').html(funCaller.NumberM(datas[i].MINSG));
                 tthistbl.find('.profit').html(funCaller.initNumber2(datas[i].SYL, 2));
                 tthistbl.find('.profit').next('.profit-title').html(datas[i].SYLMARK);
                 tthistbl.find('.fund-fl.font15').html(datas[i].SOURCERATE);
@@ -449,7 +537,6 @@ define(function (require) {
         domclick: function () {
             $('.tabp').find('.tab p').on('click', function () {
                 $(this).addClass('active').siblings('p').removeClass('active');
-                $(this).parents('.tab').next('.tabContent').find('.img').attr('src', $(this).attr('data-imgurl') + param.data.FCODE + '.png');
                 $(this).parents('.tab').next('.tabContent').find('img').attr('src', $(this).attr('data-imgurl') + param.data.FCODE + '.png');
             });
             $('.gotoLSSYL').on('click', function () {
@@ -529,14 +616,14 @@ define(function (require) {
                 var url = location.href;
                 /*sina*/
                 var source = "基金详情";
-                var sourceUrl = "http://m.1234567.com.cn/";
+                var sourceUrl = "https://m.1234567.com.cn/";
                 var sinaAppkey = "2136217547";
                 var sinaRalateUid = "2627698865";
 
                 var title = shareTitle + "-" + source + "(m.1234567.com.cn)";
 
                 if (url == null || title == null || url == "" || title == "") {
-                    $.alertWindow("错误的链接地址或标题");
+                    funCaller.alertWindow("错误的链接地址或标题");
                     return;
                 }
                 var shareUrl = "";
@@ -545,23 +632,21 @@ define(function (require) {
                         shareUrl = "http://service.weibo.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=" + sinaAppkey + "&title=" + encodeURIComponent(title) + "&pic=&ralateUid=" + sinaRalateUid + "&source=" + encodeURIComponent(source) + "&sourceUrl=" + encodeURIComponent(sourceUrl);
                         break;
                     case "qq":
-                        shareUrl = "http://v.t.qq.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=801004939&site=http://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&pic=";
+                        shareUrl = "http://v.t.qq.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=801004939&site=https://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&pic=";
                         break;
                     case "qzone":
-                        shareUrl = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + encodeURIComponent(url) + "&appkey=801004939&site=http://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&desc=&summary=&site=http://wap.eastmoney.com";
+                        shareUrl = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + encodeURIComponent(url) + "&appkey=801004939&site=https://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&desc=&summary=&site=https://wap.eastmoney.com";
                         break;
                 }
 
                 window.parent.location.href = shareUrl;
             };
-            var user = null;
             $('.addFavor').on('click', function (e) {
                 if (!user || !user.id) {
                     window.location.href = 'http://m.passport.eastmoney.com/login.m?backurl=' + encodeURIComponent(encodeURIComponent(location.href));
                     return;
                 }
-
-                var favorHtml = $(e.currentTarget).html();
+                var favorHtml = $(e.target).html();
                 var option = {
                     FundType: 85,
                     Operation: 'a',
@@ -578,11 +663,11 @@ define(function (require) {
                 else {
                     option.Operation = 'd';
                 }
-                this.addFavor(option, function (data) {
+                funCaller.addFavor(option, function (data) {
                     if (data.ErrCode === 0) {
 
                         if (favorHtml === '加自选') {
-                            $(e.currentTarget).html('删自选');
+                            $(e.target).html('删自选');
 
                             funCaller.alertWindow('添加成功', function () {
                                 location.href = href;
@@ -590,7 +675,7 @@ define(function (require) {
                             });
                         }
                         else {
-                            $(e.currentTarget).html('加自选');
+                            $(e.target).html('加自选');
                             funCaller.alertWindow('<span>删除成功</span>', function () {
                                 location.href = href;
                             });
@@ -625,6 +710,9 @@ define(function (require) {
             n = parseFloat(n).toFixed(m) + b;
 
             return n;
+        },
+        NumberM: function (n) {
+            return Number(n) > 10000 ? Math.round(Number(n) / 10000) + '万' : n;
         },
         fomateDate: function (d) {
             if (d < 365) {
@@ -682,13 +770,13 @@ define(function (require) {
                 '</div>' +
                 '</div>';
 
-            $('body').append(alertMaskhtml);
+            $('mip-jjpz').append(alertMaskhtml);
 
         },
         alertWindow: function (txt, callback, option) {
             var tthis = this;
             var target = $('._alertMaskerUI_');
-            if (target.is(':visible')) {
+            if (target.css("display") == "block") {
                 return false;
             }
 
@@ -699,6 +787,7 @@ define(function (require) {
             };
 
             var btnTxt = option ? '确定' : option;
+            target = $('._alertMaskerUI_');
             target.find('.btn').html(btnTxt);
 
             target.show();
@@ -716,7 +805,7 @@ define(function (require) {
             };
 
             var btn = target.find('.button[for=yes]');
-            btn.off('tap').on('tap', tempTapFun);
+            btn.off('click').on('click', tempTapFun);
         },
         closeAlertWindow: function () {
             var target = $('._alertMaskerUI_');
@@ -724,11 +813,11 @@ define(function (require) {
             target.find('.alert').removeClass('show');
         },
         addFavor: function (option, callback) {
-            $.hardLoad();
+            funCaller.hardLoad();
             $.ajax({
                 type: 'GET',
                 dataType: 'jsonp',
-                url: 'http://fundex2.eastmoney.com/FundMobileApi/FundFavor.ashx',
+                url: 'https://fundex2.eastmoney.com/FundMobileApi/FundFavor.ashx',
                 data: option,
                 success: function (resultData) {
                     if (typeof resultData === 'string') {
@@ -738,7 +827,7 @@ define(function (require) {
                         callback(resultData);
                     }
                     else {
-                        if ($.isEmpty(resultData.ErrMsg)) {
+                        if (funCaller.isEmpty(resultData.ErrMsg)) {
                             resultData.ErrMsg = '网络不给力，请稍后重试';
                         }
                         else if (resultData.ErrMsg === '服务异常' || resultData.ErrMsg === '系统繁忙!') {
@@ -829,13 +918,41 @@ define(function (require) {
             }
 
             dom.html(data);
+        },
+        _getScript: function (url, callback) {
+            var head = document.getElementsByTagName('head')[0],
+                js = document.createElement('script');
+
+            js.setAttribute('type', 'text/javascript');
+            js.setAttribute('src', url);
+
+            head.appendChild(js);
+
+            //执行回调
+            var callbackFn = function () {
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            };
+
+            if (document.all) { //IE
+                js.onreadystatechange = function () {
+                    if (js.readyState == 'loaded' || js.readyState == 'complete') {
+                        callbackFn();
+                    }
+                }
+            } else {
+                js.onload = function () {
+                    callbackFn();
+                }
+            }
         }
     };
 
     customElem.prototype.build = function () {
         var element = this.element;
-        param.data.FCODE = funCaller.getQueryString('fundcode') || '000001';
-        param.dataPage.FCODE = funCaller.getQueryString('fundcode') || '000001';
+        param.data.FCODE = funCaller.getQueryString('fundcode') || '000009';
+        param.dataPage.FCODE = funCaller.getQueryString('fundcode') || '000009';
         funCaller.init();
     };
 

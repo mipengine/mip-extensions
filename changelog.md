@@ -10,7 +10,7 @@
 [mip-huajun-fixdnav](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-fixdnav)|[新增] 固定nav组件
 [mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 表单组件，监听回车事
 [mip-lightbox](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级] 弹层组件 修复 Firefox 浏览器下点击事件无效的bug
-[mip-wkfun-club](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-club)|[新增] 寻医问药页面功能组件 http 转换 https
+[mip-wkfun-club](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-club)|[升级] 寻医问药页面功能组件 http 转换 https
 [mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件  http 转换 https
 [mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[升级] 寻医问药页面功能组件 http 转换 https
 

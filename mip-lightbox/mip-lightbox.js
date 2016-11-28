@@ -35,13 +35,13 @@ define(function (require) {
         changeParentNode.call(self);
 
         // 事件注册
-        self.addEventAction('close', function () {
+        self.addEventAction('close', function (event) {
             close.call(self, event);
         });
-        self.addEventAction('open', function () {
+        self.addEventAction('open', function (event) {
             open.call(self, event);
         });
-        self.addEventAction('toggle', function () {
+        self.addEventAction('toggle', function (event) {
             toggle.call(self, event);
         });
 

@@ -5,7 +5,7 @@
 * @version 1.0.0
 */
 define(function (require) {
-//	var $ = require('zepto');
+	var $ = require('zepto');
 	var customElement = require('customElement').create();
 	customElement.prototype.createdCallback = function () {
 		var ele = this.element;

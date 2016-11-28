@@ -42,7 +42,6 @@ define(function (require) {
             open.call(self, event);
         });
         self.addEventAction('toggle', function (event) {
-            console.log('toggle');
             toggle.call(self, event);
         });
 

@@ -6,6 +6,7 @@
 
 组件名|功能说明
 ---|---
+[mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[新增] 百度资讯垂类新闻和热点推荐组件
 [mip-huajun-downtag](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-downtag)|[新增] 点击切换组件
 [mip-huajun-fixdnav](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-fixdnav)|[新增] 固定nav组件
 [mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 表单组件，监听回车事
@@ -13,6 +14,8 @@
 [mip-wkfun-club](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-club)|[升级] 寻医问药页面功能组件 http 转换 https
 [mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件  http 转换 https
 [mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[升级] 寻医问药页面功能组件 http 转换 https
+[mip-jjpz](https://github.com/mipengine/mip-extensions/tree/master/mip-jjpz)|[升级] 自有业务详情页整体交互组件 线上bug修复
+[mip-askad](https://github.com/mipengine/mip-extensions/tree/master/mip-askad)|[升级] 120askad广告组件升级
 
 #### 2016.11.26
 

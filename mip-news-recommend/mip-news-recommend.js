@@ -146,7 +146,7 @@ define(function (require) {
             var htmlNews = '';
             var htmlHots = '';
 
-            data.recommend.forEach(function (item, i) {
+            $.each(data.recommend, function (i, item) {
                 var dataClick = self.handleData(item, i, 'recommend');
 
                 htmlNews += [
@@ -162,7 +162,7 @@ define(function (require) {
                 ].join('');
             });
 
-            data.hot_card.forEach(function (item, i) {
+            $.each(data.hot_card, function (i, item) {
                 var dataClick = self.handleData(item, i, 'hotpoint');
 
                 if (i % 2 === 0) {

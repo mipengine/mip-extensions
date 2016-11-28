@@ -2,7 +2,7 @@
 
 点击切换组件
 
-描述|点击切换事件
+标题|内容
 ----|----
 类型|事件
 支持布局| responsive,fixed-height,fill,container,fixed

@@ -1,5 +1,38 @@
 # 升级日志
 
+#### 2016.11.28
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-huajun-downtag](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-downtag)|[新增] 点击切换组件
+[mip-huajun-fixnav](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-fixnav)|[新增] 固定nav组件
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 表单组件，监听回车事
+[mip-lightbox](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级] 弹层组件 修复 Firefox 浏览器下点击事件无效的bug
+
+#### 2016.11.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkfun-club](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-club)|[新增] 寻医问药页面功能组件，提供了一些dom操作功能
+[mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件 
+[mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[升级] 寻医问药页面功能组件
+
+#### 2016.11.25
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xem-comment-duoshuo](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-comment-duoshuo)|[新增] 多说评论框通用代码稳定版组件
+[mip-ls-pagination](https://github.com/mipengine/mip-extensions/tree/master/mip-ls-pagination)|[新增] 招聘信息列表的分页功能
+[mip-ck-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-ad)|[升级] 康网的问答详情页面的直投广告组件:去掉UC下反屏蔽广告的判断
+[mip-ck-script](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-script)|[升级] 康网的问答详情页面的直投广告组件:去掉UC下反屏蔽广告的判断
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
 #### 2016.11.24
 
 > 组件上线

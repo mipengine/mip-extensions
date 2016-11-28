@@ -2,7 +2,7 @@
 
 固定nav组件
 
-描述|注册点击事件
+标题|内容
 ----|----
 类型|事件
 支持布局| responsive,fixed-height,fill,container,fixed

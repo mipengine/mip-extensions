@@ -127,11 +127,6 @@ define(function (require) {
         }
         function opendubao() {
             return true;
-            /// mip 禁止度宝广告加载 暂时取消
-            // 异步方式加载度宝
-            // getScript('http://cpro.baidustatic.com/cpro/ui/cm.js', function () {
-            //    BAIDU_CLB_fillSlotAsync('u2651315', 'dubao');
-            // });
         }
         function getScript(url, callback) {
             var script = document.createElement('script');

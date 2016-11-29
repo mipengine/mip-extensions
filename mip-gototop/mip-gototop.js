@@ -6,9 +6,9 @@
  */
 
 define(function (require) {
-    var $ = require('zepto');
     var customElement = require('customElement').create();
     var util = require('util');
+    var viewport = require('viewport');
     const YOFFSET = 200;
 
     /**
@@ -35,44 +35,13 @@ define(function (require) {
         var element = self.element;
         var threshold = element.getAttribute('threshold') || YOFFSET;
 
-        // iframe 下的 gototop 策略
-        if (window.parent !== window) {
+        viewport.on('scroll', function () {
+            showGoTop(element, viewport.getScrollTop(), threshold);
+        });
 
-            var firstChild = document.getElementsByTagName('body')[0].firstElementChild;
-            element.addEventListener('touchend', function () {
-                firstChild.scrollIntoView();
-            }, false);
-
-            // ios 监听不到window滚动，安卓监听不到body的滚动，OMG!!!
-            if (util.platform.isIos()) {
-                $(document.body).scroll(function (event) {
-                    showGoTop(element, -1 * firstChild.getBoundingClientRect().top, threshold);
-                });
-            }
-            else {
-                $(window).scroll(function () {
-                    showGoTop(element, -1 * firstChild.getBoundingClientRect().top, threshold);
-                });
-            }
-        }
-
-        // 非 iframe 下的策略
-        else {
-
-            // 页面刷新的情况
-            showGoTop(element, window.pageYOffset, threshold);
-
-            // 监听window滚动
-            $(window).scroll(function (event) {
-                showGoTop(element, window.pageYOffset, threshold);
-            });
-
-            // gototop 点击事件
-            element.addEventListener('click', function () {
-                window.scrollTo(0, 0);
-            }, false);
-        }
-
+        element.addEventListener('touchend', function () {
+            viewport.setScrollTop(0);
+        }, false);
     };
 
     return customElement;

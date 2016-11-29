@@ -1,6 +1,6 @@
 # mip-ad-random
 
-mip-ad-random 实现了一个mip广告位置随机显示。
+mip-ad-random 是携景财富网的mip广告位置随机显示。
 
 标题|mip广告位置随机显示
 ----|----

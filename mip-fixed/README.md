@@ -59,6 +59,15 @@
 </mip-fixed>
 ```
 
+### 支持 mip-gototop
+
+
+```html
+<mip-fixed type="gototop" bottom="90px" right="45px">
+    <mip-gototop></mip-gototop>
+</mip-fixed>
+```
+
 ### 关闭悬浮元素的方法
 
 1、给 mip-fixed 标签添加一个自定义的 id：customid
@@ -96,13 +105,22 @@
 取值范围：数值+单位，例如：50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)  
 默认值：auto
 
+### right
+
+说明：距离屏幕右侧距离  
+必选项: 否  
+取值范围：数值+单位，例如：50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)  
+默认值：auto
+
 ## 注意事项
 
 ### 悬浮类型
 
-- type为top、bottom 类别不需要添加属性：top/bottom；
+- type为 top、bottom 类别不需要添加属性：top/bottom/right；
 
-- type为left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
+- type为 left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
+
+- type为 gototop 类别可以添加一个 bottom 和 right属性, 并与默认值对比取较大者。
 
 ### fixed 元素个数限制
 
@@ -111,4 +129,6 @@
 - `bottom <= 1`
 
 - `left + right <= 1`
+
+- `gototop <= 1`
 

@@ -1,12 +1,12 @@
 {
     "name": "mip-gototop",
-    "version": "1.0.2",
+    "version": "1.0.0",
     "author": {
-        "name": "MIP authors",
-        "email": "mip-support@baidu.com",
+        "name": "wangpei07",
+        "email": "wangpei07@baidu.com",
         "url": "https://www.mipengine.org"
     },
     "engines": {
-        "mip": ">=1.1.0"
+        "mip": ">=1.0.5"
     }
 }

@@ -14,7 +14,21 @@ define(function (require, options) {
         $.get(options.url, {page: page}, function (data) {
             if (data.status === 200) {
                 $.each(data.content, function (key, val) {
-                    htmlStr += '<dl class="cl"><a href="http://m.onlinedown.net/soft/' + val.id + '.htm"><dt class=""><mip-img src="http://src.onlinedown.net' + val.logo + '"><mip-img></dt><dd><ul class="cl"><li><h2>' + val.title + '</h2></li><li><span>' + val.filesize + 'M</span><span class="pipe">/</span><span>' + val.language + '</span><span class="pipe">/</span><span>' + val.lastdotime + '</span></li><mip-img class="mip-xxstar" src="http://m.onlinedown.net/Public/img/xx-' + val.star + '.png"></mip-img></li></ul></dd><i class="icon-xiazai"></i></a></dl>';
+                    htmlStr += '<dl class="cl">';
+                    htmlStr += '<a href="http://m.onlinedown.net/soft/' + val.id + '.htm">';
+                    htmlStr += '<dt class=""><mip-img src="http://src.onlinedown.net' + val.logo + '"><mip-img></dt>';
+                    htmlStr += '<dd>';
+                    htmlStr += '<ul class="cl">';
+                    htmlStr += '<li><h2>' + val.title + '</h2></li>';
+                    htmlStr += '<li><span>' + val.filesize + 'M</span>';
+                    htmlStr += '<span class="pipe">/</span><span>' + val.language + '</span>';
+                    htmlStr += '<span class="pipe">/</span><span>' + val.lastdotime + '</span></li>';
+                    htmlStr += '<li><mip-img class="mip-xxstar" src="http://m.onlinedown.net/Public/img/xx-' + val.star + '.png"></mip-img></li>';
+                    htmlStr += '</ul>';
+                    htmlStr += '</dd>';
+                    htmlStr += '<i class="icon-xiazai"></i>';
+                    htmlStr += '</a>';
+                    htmlStr += '</dl>';
                 });
                 bd.append(htmlStr);
                 page = page + 1;
@@ -26,7 +40,7 @@ define(function (require, options) {
     }
     customElem.prototype.build = function () {
         var element = this.element;
-        options.url = $(element).attr('url');
+        options.url = $(element).getAttribute('url');
         $('.laypage_next').click(function () {
             more(element, options);
         });

@@ -1,12 +1,12 @@
 # mip-huajun-loadmore
 
-点击加载
+点击加载更多组件
 
-描述|用来支持页面点击加载
-----|----
-类型|事件
-支持布局| responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-huajun-loadmore/mip-huajun-loadmore.js
+|标题|内容|
+|----|----|
+|类型|事件|
+|支持布局|N/S|
+|所需脚本|https://mipcache.bdstatic.com/static/v1/mip-huajun-loadmore/mip-huajun-loadmore.js|
 
 ## 示例
 

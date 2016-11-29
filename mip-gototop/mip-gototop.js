@@ -2,7 +2,7 @@
  * @file 回顶gototop
  *
  * @author wangpei07
- * @date 2016-08-09
+ * @date 2016-11-29
  */
 
 define(function (require) {
@@ -40,7 +40,6 @@ define(function (require) {
 
             var firstChild = document.getElementsByTagName('body')[0].firstElementChild;
             element.addEventListener('touchend', function () {
-                // alert('touchend');
                 firstChild.scrollIntoView();
             }, false);
 

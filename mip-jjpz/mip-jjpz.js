@@ -484,7 +484,7 @@ define(function (require) {
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
-                url: 'https://fundmobapitest.eastmoney.com/gubaapi/v3/Read/Article/Post/Articlelist.ashx',
+                url: 'https://jijinbaapi.eastmoney.com/gubaapi/v3/Read/Article/Post/Articlelist.ashx',
                 data: optionjjba,
                 success: function (resultData) {
                     $('.discussLink').attr('href', 'http://jjbmob.eastmoney.com/fundDynamicsForFundBar.html#postid=of' + param.data.FCODE);
@@ -643,7 +643,7 @@ define(function (require) {
             };
             $('.addFavor').on('click', function (e) {
                 if (!user || !user.id) {
-                    window.location.href = 'http://m.passport.eastmoney.com/login.m?backurl=' + encodeURIComponent(encodeURIComponent(location.href));
+                    window.location.href = 'https://m.passport.eastmoney.com/login.m?backurl=' + encodeURIComponent(encodeURIComponent(location.href));
                     return;
                 }
                 var favorHtml = $(e.target).html();

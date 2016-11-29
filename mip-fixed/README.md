@@ -110,7 +110,7 @@
 
 ### 悬浮类型
 
-- type为 top、bottom 类别不需要添加属性：top/bottom/right；
+- type为 top、bottom 类别不需要添加属性：top/bottom；
 
 - type为 left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
 

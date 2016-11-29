@@ -1,4 +1,8 @@
-﻿define(function (require) {
+﻿/**
+ * @file 360doc 自定义逻辑组件
+ * @author www.360doc.com技术部
+ */
+define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     // build 方法，元素插入到文档时执行，仅会执行一次
@@ -16,7 +20,10 @@
         //  统计
         sendlog('mipConn');
         //  检测广告
-        setTimeout(check, 10000);
+        var t = setTimeout(function () {
+            check();
+            clearTimeout(t);
+        }, 10000);
     };
     function check() {
         try {

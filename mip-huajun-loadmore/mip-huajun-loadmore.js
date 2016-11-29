@@ -4,10 +4,11 @@
  * @version 1.0
  * @copyright 2016 onlinedown.net, Inc. All Rights Reserved
  */
-define(function (require, options) {
+define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     var page = 2;
+    var options = {};
     function more(element, options) {
         var bd = $(element).find('.bd');
         var htmlStr = '';

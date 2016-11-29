@@ -1,5 +1,25 @@
 # 升级日志
 
+#### 2016.11.29
+
+> 核心代码上线
+
+    1、修复IOS9 Safari后退白屏BUG
+    2、修复华为P8在iframe下fixed元素错位BUG
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-askad](https://github.com/mipengine/mip-extensions/tree/master/mip-askad)|[升级] 120askad广告组件升级
+[mip-hk-call](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-call)|[升级] 好看组件添加统计参数
+[mip-hk-feed](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-feed)|[升级] 好看组件添加统计参数
+[mip-youth-ttyd](https://github.com/mipengine/mip-extensions/tree/master/mip-youth-ttyd)|[升级] 青网移动适配页精彩推荐广告 广告位修改
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+[mip-xueyou-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xueyou-article)|[升级] 学优网文章阅读组件 取消度宝广告
+[mip-down-script](https://github.com/mipengine/mip-extensions/tree/master/mip-down-script)|[升级] 页面逻辑脚本集合 增加热门推荐
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+
 #### 2016.11.28
 
 > 组件上线

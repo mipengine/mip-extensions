@@ -12,55 +12,75 @@
 
 
 ```
-<mip-huajun-loadmore url="{$Think.config.HOME_HOST_ADDRESS}/new/">
+<mip-huajun-loadmore url="{$Think.config.HOME_HOST_ADDRESS}/search/" scon="{$scon}" sid="{$sid}">
         <section id="list-soft__list">
 
             <div class="bd">
-                <volist name="new_arr" id="na" offset="0" length="10">
+                <foreach name="sarr" item="sear_con">
                     <dl class="cl">
-                        <a target="_blank" href="{$Think.config.HOME_HOST_ADDRESS}/soft/{$na.id}.htm">
+                        <a target="_blank" href="{$Think.config.HOME_HOST_ADDRESS}/soft/{$sear_con.id}.htm">
                             <dt class="">
-                                <mip-img src="{$Think.config.PUBLIC_HOST_ADDRESS}{$na.logo}"></mip-img>
+                                <mip-img src="{$Think.config.PUBLIC_HOST_ADDRESS}{$sear_con.logo}"></mip-img>
                             </dt>
                             <dd>
                                 <ul class="cl">
                                     <li>
-                                        <h2>{$na.title}</h2>
+                                        <h2>{$sear_con.title}{$sear_con.version}</h2>
                                     </li>
                                     <li>
-                                        <span>{$na.filesize}M</span>
+                                        <span>{$sear_con.filesize}M</span>
                                         <span class="pipe">/</span>
-                                        <span>{$na.language}</span>
+                                        <span>{$sear_con.language}</span>
                                         <span class="pipe">/</span>
-                                        <span>{$na.lastdotime}</span>
+                                        <span>{$sear_con.lastdotime}</span>
                                     </li>
                                     <li>
-                                        <mip-img class="mip-xxstar" src="{$Think.config.HOME_HOST_ADDRESS}__PUBLIC__/img/xx-{$na.star}.png"></mip-img>
+                                        <mip-img class="mip-xxstar" src="{$Think.config.HOME_HOST_ADDRESS}__PUBLIC__/img/xx-{$sear_con.star}.png"></mip-img>
                                     </li>
                                 </ul>
                             </dd>
                             <i class="icon-xiazai"></i>
                         </a>
                     </dl>
-                </volist>
+                </foreach>
             </div>
-
         </section>
-        <div id="pages">
-            <div name="laypage1.3" class="laypage_main laypageskin_flow" id="laypage_0">
-                <span class="laypage_next" data-page="2">查看更多</span>
+            <div id="pages">
+                <div name="laypage1.3" class="laypage_main laypageskin_flow" id="laypage_0">
+                    <span class="laypage_next" data-page="2">查看更多</span>
+                </div>
             </div>
-        </div>
         </mip-huajun-loadmore>
 ```
 ## 属性
 
 ### url
 
-说明：ajax请求参数
+说明：ajax请求地址
 必选项：是
 类型：字符串
 取值范围：请求url
 单位：无
 默认值：无
+
+### scon
+
+说明：软件内容
+必选项：否
+类型：字符串
+取值范围：无
+单位：无
+默认值：无
+
+### sid
+说明：该类id
+必选项：否
+类型：字符串
+取值范围：无
+单位：无
+默认值：无
+
+
+
+
 

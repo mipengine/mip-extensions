@@ -11,7 +11,7 @@ define(function (require, options) {
     function more(element, options) {
         var bd = $(element).find('.bd');
         var htmlStr = '';
-        $.get(options.url, {page: page}, function (data) {
+        $.get(options.url, {page: page, scon: options.scon, sid: options.sid}, function (data) {
             if (window.parseInt(data.status) === 200) {
                 $.each(data.content, function (key, val) {
                     htmlStr += '<dl class="cl">';
@@ -41,6 +41,8 @@ define(function (require, options) {
     customElem.prototype.build = function () {
         var element = this.element;
         options.url = element.getAttribute('url');
+        options.scon = element.getAttribute('scon');
+        options.sid = element.getAttribute('sid');
         $('.laypage_next').click(function () {
             more(element, options);
         });

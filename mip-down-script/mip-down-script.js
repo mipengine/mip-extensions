@@ -26,13 +26,11 @@ define(function (require) {
         webInfoId: $('#down-href').attr('downid'),
         webInfoCid: $('#down-href').attr('cid'),
         webInfoRid: $('#down-href').attr('rid'),
-        // platIPadId = $('#plat_iPad').attr('platid'),
         platAndroidId: $('#plat_Android').attr('platid'),
         platAndroidAddress: $('#plat_Android').attr('Address'),
         platAndroidResSystem: $('#plat_Android').attr('ResSystem'),
         platAndroidResName: $('#plat_Android').attr('ResName'),
         platAndroidResVer: $('#plat_Android').attr('ResVer'),
-        // platAndroidTypeID = $('#plat_Android').attr('TypeID'),
         platAndroidCid: $('#plat_Android').attr('cid'),
         platAndroidRid: $('#plat_Android').attr('rid'),
         platIPhoneId: $('#plat_iPhone').attr('platid'),
@@ -40,11 +38,9 @@ define(function (require) {
         platIPhoneResSystem: $('#plat_iPhone').attr('ResSystem'),
         platIPhoneResName: $('#plat_iPhone').attr('ResName'),
         platIPhoneResVer: $('#plat_iPhone').attr('ResVer'),
-        // platIPhoneTypeID = $('#plat_iPhone').attr('TypeID'),
         platIPhoneCid: $('#plat_iPhone').attr('cid'),
         platIPhoneRid: $('#plat_iPhone').attr('rid'),
         assid: parseInt($('#info #Associate').html(), 10),
-        // cataid = parseInt($('#info #catalogid').html());
         mrtit: function () {
             var otit = $('#cataName');
             var ohref = otit.attr('href');
@@ -349,10 +345,8 @@ define(function (require) {
             this.downHref();// 动态下载地址
             this.hotRec(); // 热门推荐
         }
-    }; // 生命周期 function list，根据组件情况选用 end
+    };
     customElem.prototype.build = function () {
-        // this.element 可取到当前实例对应的 dom 元素
-        // var element = this.element;
         down.init();
     };
     return customElem;

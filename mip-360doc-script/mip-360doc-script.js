@@ -3,18 +3,20 @@
     var customElem = require('customElement').create();
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        getRefNum();
-        $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/xiazai.png\'  class=\'pic2\'/></span>');
-        var picn = $('.mip-360doc-script-pic').length;
-        if (picn > 1) {
-            $('.mip-360doc-script-pic').eq(0).css('display', 'inline').siblings('.mip-360doc-script-pic').hide();
+        if ($('.mip-360doc-script-wxggalink') !== null) {
+            $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/xiazai.png\'  class=\'pic2\'/></span>');
+            var picn = $('.mip-360doc-script-pic').length;
+            if (picn > 1) {
+                $('.mip-360doc-script-pic').eq(0).css('display', 'inline').siblings('.mip-360doc-script-pic').hide();
+            }
+            $('.mip-360doc-script-box960').css('display', '');
+            setone();
         }
-        $('.mip-360doc-script-box960').css('display', '');
-        setone();
+        getRefNum();// 鲜花
         //  统计
         sendlog('mipConn');
         //  检测广告
-        setTimeout(check, 5000);
+        setTimeout(check, 10000);
     };
     function check() {
         try {
@@ -83,23 +85,8 @@
     }
     //  获取文章id
     function getID() {
-        var url = $('.mip-360doc-script-p_header_sc').attr('href');
-        if (url.indexOf('360doc') < 0) {
-            return '';
-        }
-        var index = url.indexOf('artid=');
-        if (index <= 0) {
-            return '';
-        }
-        var index2 = url.indexOf('&', index);
-        if (index2 <= 0) {
-            return '';
-        }
-        var artid = url.substr(index + 6, index2 - index - 6);
+        var artid = $('.mip-360doc-script-saveid').html();
         return artid;
-    }
-    if (navigator.userAgent.toLowerCase().indexOf('ucbrowser') > -1) {
-        $('.mip-360doc-script-p_header_nav2').width('69%');
     }
     return customElem;
 });

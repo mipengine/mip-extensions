@@ -1,7 +1,6 @@
 /**
- * @file FECS test file
- * @author cgzero(cgzero@cgzero.com)
- * 随机广告插件
+ * @file 随机广告插件
+ * @author weiling(741999251@qq.com)
  * @version 1.0.0
  */
 define(function (require) {

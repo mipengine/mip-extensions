@@ -7,6 +7,8 @@ define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
+    var util = require('util');
+    var platform = util.platform;
 
     var androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan1015351w.apk';
     var iosLink = 'https://itunes.apple.com/cn/app/id1092031003?mt=8';
@@ -26,14 +28,11 @@ define(function (require) {
 
         var brower = {
             os: function () {
-                if (isAndroid.test(userAgent)) {
-                    return 'android';
-                }
-                else if (isiPhone.test(userAgent)) {
+                if (platform.isIos()) {
                     return 'ios';
                 }
 
-                return '';
+                return 'android';
             },
             osv: function () {
                 if (isAndroid.test(userAgent)) {

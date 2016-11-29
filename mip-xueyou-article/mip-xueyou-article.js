@@ -3,7 +3,7 @@
 * @file 脚本支持
 * @author myoa@163.com
 * @time 2016.11.18
-* @version 1.1.2
+* @version 1.1.3
 */
 define(function (require) {
     var $ = require('zepto');

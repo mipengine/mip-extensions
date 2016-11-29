@@ -125,7 +125,7 @@ define(function (require) {
             if ($('.xgwz ul li').length > 0) {
                 $('.xgwz').show();
             }
-			else {
+            else {
                 $('.xgwz').hide();
                 $('#tab span').eq(1).hide();
             }
@@ -254,8 +254,7 @@ define(function (require) {
             $('#wrapper4')[0].addEventListener('touchend', function (e) {
                 bugImg();
             }, false);
-
-			// bug
+            // bug
             function bugImg() {
                 setTimeout(function () {
                     $('body').scrollTop($('body').scrollTop() + 1).scrollTop($('body').scrollTop() - 1);

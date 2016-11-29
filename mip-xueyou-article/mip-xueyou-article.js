@@ -3,7 +3,7 @@
 * @file 脚本支持
 * @author myoa@163.com
 * @time 2016.11.18
-* @version 1.1.1
+* @version 1.1.3
 */
 define(function (require) {
     var $ = require('zepto');
@@ -126,10 +126,7 @@ define(function (require) {
             document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString();
         }
         function opendubao() {
-            // 异步方式加载度宝
-            getScript('http://cpro.baidustatic.com/cpro/ui/cm.js', function () {
-                BAIDU_CLB_fillSlotAsync('u2651315', 'dubao');
-            });
+            return true;
         }
         function getScript(url, callback) {
             var script = document.createElement('script');

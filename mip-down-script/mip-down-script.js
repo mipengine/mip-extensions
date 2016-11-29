@@ -70,11 +70,9 @@ define(function (require) {
                 var $nav = $('#btns');
                 if ($(window).scrollTop() >= headerHeight) {
                     $nav.css({'position': 'fixed', 'top': 0}).addClass('on');
-                    $('#goTop').fadeIn();
                 }
                 else {
                     $nav.css({'position': 'relative'}).removeClass('on');
-                    $('#goTop').fadeOut();
                 }
                 if (($('#wrapper').offset().top + $('#wrapper').height() - 35) <= $(window).scrollTop()) {// k标签
                     $('#xgk').addClass('fix');

@@ -61,9 +61,8 @@
 
 ### 支持 mip-gototop
 
-
 ```html
-<mip-fixed type="gototop" bottom="90px" right="45px">
+<mip-fixed type="gototop">
     <mip-gototop></mip-gototop>
 </mip-fixed>
 ```

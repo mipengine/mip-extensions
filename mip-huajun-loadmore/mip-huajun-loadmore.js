@@ -12,11 +12,11 @@ define(function (require, options) {
         var bd = $(element).find('.bd');
         var htmlStr = '';
         $.get(options.url, {page: page}, function (data) {
-            if (data.status === 200) {
+            if (window.parseInt(data.status) === 200) {
                 $.each(data.content, function (key, val) {
                     htmlStr += '<dl class="cl">';
                     htmlStr += '<a href="http://m.onlinedown.net/soft/' + val.id + '.htm">';
-                    htmlStr += '<dt class=""><mip-img src="http://src.onlinedown.net' + val.logo + '"><mip-img></dt>';
+                    htmlStr += '<dt class=""><mip-img src="http://src.onlinedown.net' + val.logo + '"></mip-img></dt>';
                     htmlStr += '<dd>';
                     htmlStr += '<ul class="cl">';
                     htmlStr += '<li><h2>' + val.title + '</h2></li>';
@@ -33,14 +33,14 @@ define(function (require, options) {
                 bd.append(htmlStr);
                 page = page + 1;
             }
-            else if (data.status === 201) {
+            else if (window.parseInt(data.status) === 201) {
                 $('.laypage_next').text('已经没有了');
             }
         });
     }
     customElem.prototype.build = function () {
         var element = this.element;
-        options.url = $(element).getAttribute('url');
+        options.url = element.getAttribute('url');
         $('.laypage_next').click(function () {
             more(element, options);
         });

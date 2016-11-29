@@ -28,7 +28,8 @@ define(function (require) {
                     var adWidth = t.getAttribute('ad-width');//广告所占宽度
                     var adHeight = t.getAttribute('ad-height');//广告所占高度                   
                     //判断：若大位置没有子元素，就在其里面添加广告，若大位置有子元素，在随机子元素的后面添加广告
-                    var advet='<mip-ad layou="reponsive" width="' +adWidth+ '" height="'+adHeight+'" type="ad-com" tpl="oneImg" class="'+adClass+'" href="'+adHref+'" data-size="1242 180" src="'+adSrc+'" data-title="'+adTitle+'"></mip-ad>';
+                    var advet='<mip-ad layou="reponsive" width="' +adWidth+ '" height="'+adHeight+'" type="ad-com" tpl="oneImg" 
+                    class="'+adClass+'" href="'+adHref+'" data-size="1242 180" src="'+adSrc+'" data-title="'+adTitle+'"></mip-ad>';
                     if (arry_length2 == 0) {
                         $(rank).append(advet);
                     } else {

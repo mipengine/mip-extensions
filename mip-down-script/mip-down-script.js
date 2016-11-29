@@ -23,6 +23,28 @@ define(function (require) {
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
     };
     var down = {
+        webInfoId: $('#down-href').attr('downid'),
+        webInfoCid: $('#down-href').attr('cid'),
+        webInfoRid: $('#down-href').attr('rid'),
+        // platIPadId = $('#plat_iPad').attr('platid'),
+        platAndroidId: $('#plat_Android').attr('platid'),
+        platAndroidAddress: $('#plat_Android').attr('Address'),
+        platAndroidResSystem: $('#plat_Android').attr('ResSystem'),
+        platAndroidResName: $('#plat_Android').attr('ResName'),
+        platAndroidResVer: $('#plat_Android').attr('ResVer'),
+        // platAndroidTypeID = $('#plat_Android').attr('TypeID'),
+        platAndroidCid: $('#plat_Android').attr('cid'),
+        platAndroidRid: $('#plat_Android').attr('rid'),
+        platIPhoneId: $('#plat_iPhone').attr('platid'),
+        platIPhoneAddress: $('#plat_iPhone').attr('Address'),
+        platIPhoneResSystem: $('#plat_iPhone').attr('ResSystem'),
+        platIPhoneResName: $('#plat_iPhone').attr('ResName'),
+        platIPhoneResVer: $('#plat_iPhone').attr('ResVer'),
+        // platIPhoneTypeID = $('#plat_iPhone').attr('TypeID'),
+        platIPhoneCid: $('#plat_iPhone').attr('cid'),
+        platIPhoneRid: $('#plat_iPhone').attr('rid'),
+        assid: parseInt($('#info #Associate').html(), 10),
+        // cataid = parseInt($('#info #catalogid').html());
         mrtit: function () {
             var otit = $('#cataName');
             var ohref = otit.attr('href');
@@ -52,9 +74,11 @@ define(function (require) {
                 var $nav = $('#btns');
                 if ($(window).scrollTop() >= headerHeight) {
                     $nav.css({'position': 'fixed', 'top': 0}).addClass('on');
+                    $('#goTop').fadeIn();
                 }
                 else {
                     $nav.css({'position': 'relative'}).removeClass('on');
+                    $('#goTop').fadeOut();
                 }
                 if (($('#wrapper').offset().top + $('#wrapper').height() - 35) <= $(window).scrollTop()) {// k标签
                     $('#xgk').addClass('fix');
@@ -65,51 +89,38 @@ define(function (require) {
             });
         },
         downHref: function () {
-            var webInfoId = $('#down-href').attr('downid');
-            var platAndroidId = $('#plat_Android').attr('platid');
-            var platAndroidAddress = $('#plat_Android').attr('Address');
-            var platAndroidResSystem = $('#plat_Android').attr('ResSystem');
-            var platAndroidResName = $('#plat_Android').attr('ResName');
-            var platAndroidResVer = $('#plat_Android').attr('ResVer');
-            var platIPhoneId = $('#plat_iPhone').attr('platid');
-            var platIPhoneAddress = $('#plat_iPhone').attr('Address');
-            var platIPhoneResSystem = $('#plat_iPhone').attr('ResSystem');
-            var platIPhoneResName = $('#plat_iPhone').attr('ResName');
-            var platIPhoneResVer = $('#plat_iPhone').attr('ResVer');
-            var assid = parseInt($('#info #Associate').html(), 10);
-            // download address
-            if (assid > 0) {
-                $('#info #btns a').attr('href', '/down.asp?id=' + assid);
+            if (this.assid > 0) {
+                $('#info #btns a').attr('href', '/down.asp?id=' + this.assid);
             }
-            if (browser.versions.android && typeof (platAndroidAddress) !== 'undefined') {
-                if (platAndroidAddress.indexOf('http:') >= 0 || platAndroidAddress.indexOf('ftp:') >= 0
-                    || platAndroidAddress.indexOf('https:') >= 0) {
-                    $('#info #btns a').attr('href', platAndroidAddress);
+            if (browser.versions.android && typeof (this.platAndroidAddress) !== 'undefined') {
+                if (this.platAndroidAddress.indexOf('http:') >= 0 || this.platAndroidAddress.indexOf('ftp:') >= 0
+                    || this.platAndroidAddress.indexOf('https:') >= 0) {
+                    $('#info #btns a').attr('href', this.platAndroidAddress);
                 }
                 else {
-                    $('#info #btns a').attr('href', 'http://download.pc6.com/down/' + platAndroidId);
+                    $('#info #btns a').attr('href', 'http://download.pc6.com/down/' + this.platAndroidId + '/');
                 }
-                $('#ResSystem').html(platAndroidResSystem);
+                $('#ResSystem').html(this.platAndroidResSystem);
                 // 排除不修改标题的应用
-                if (',110974,110451,121665,115094,55819,49251,62433,140386,'.indexOf(',' + webInfoId + ',') < 0) {
+                if (',110974,110451,121665,115094,55819,49251,62433,140386,'.indexOf(',' + this.webInfoId + ',') < 0) {
                     if ($('body.dnb').length < 1) {
-                        $('#info .name').html('<h1>' + platAndroidResName + '</h1>' + platAndroidResVer);
+                        $('#info .name').html('<h1>' + this.platAndroidResName + '</h1>' + this.platAndroidResVer);
                     }
                 }
             }
-            else if (browser.versions.ios && typeof (platIPhoneAddress) !== 'undefined') {
-                if (platIPhoneAddress.indexOf('http:') >= 0 || platIPhoneAddress.indexOf('ftp:') >= 0
-                    || platIPhoneAddress.indexOf('https:') >= 0) {
-                    $('#info #btns a').attr('href', platIPhoneAddress);
+            else if (browser.versions.ios && typeof (this.platIPhoneAddress) !== 'undefined') {
+                if (this.platIPhoneAddress.indexOf('http:') >= 0 || this.platIPhoneAddress.indexOf('ftp:') >= 0
+                    || this.platIPhoneAddress.indexOf('https:') >= 0) {
+                    $('#info #btns a').attr('href', this.platIPhoneAddress);
                 }
                 else {
-                    $('#info #btns a').attr('href', 'http://download.pc6.com/down/' + platIPhoneId);
+                    $('#info #btns a').attr('href', 'http://download.pc6.com/down/' + this.platIPhoneId + '/');
                 }
-                $('#ResSystem').html(platIPhoneResSystem);
+                $('#ResSystem').html(this.platIPhoneResSystem);
                 // 排除不修改标题的应用
-                if (',110974,110451,121665,115094,55819,49251,62433,140386,'.indexOf(',' + webInfoId + ',') < 0) {
+                if (',110974,110451,121665,115094,55819,49251,62433,140386,'.indexOf(',' + this.webInfoId + ',') < 0) {
                     if ($('body.dnb').length < 1) {
-                        $('#info .name').html('<h1>' + platIPhoneResName + '</h1>' + platIPhoneResVer);
+                        $('#info .name').html('<h1>' + this.platIPhoneResName + '</h1>' + this.platIPhoneResVer);
                     }
                 }
             }
@@ -118,7 +129,7 @@ define(function (require) {
             if ($('.xgwz ul li').length > 0) {
                 $('.xgwz').show();
             }
-            else {
+			else {
                 $('.xgwz').hide();
                 $('#tab span').eq(1).hide();
             }
@@ -247,7 +258,8 @@ define(function (require) {
             $('#wrapper4')[0].addEventListener('touchend', function (e) {
                 bugImg();
             }, false);
-            // bug
+
+			// bug
             function bugImg() {
                 setTimeout(function () {
                     $('body').scrollTop($('body').scrollTop() + 1).scrollTop($('body').scrollTop() - 1);
@@ -255,15 +267,92 @@ define(function (require) {
             }
 
         },
+        hotRec: function () {
+            var keys = []; // K关键词
+            var curPlatform = 2; // 平台类型
+            var pid = 0;   // 关联平台资源ID
+            var rCid = 0; // 关联资源的分类ID
+            var rRid = 0; // 关联资源的根分类ID
+            var that = this;
+            // 平台类型
+            if (browser.versions.android) {
+                curPlatform = 0;
+                if (typeof this.platAndroidAddress !== 'undefined') {
+                    rCid = this.platAndroidCid;
+                    rRid = this.platAndroidRid;
+                    pid = this.platAndroidId;
+                }
+            }
+            else if (browser.versions.ios) {
+                curPlatform = 1;
+                if (typeof this.platIPhoneAddress !== 'undefined') {
+                    rCid = this.platIPhoneCid;
+                    rRid = this.platIPhoneRid;
+                    pid = this.platAndroidId;
+                }
+            }
+
+            // 只处理android和iphone
+            if (curPlatform !== 2) {
+                // K关键字获取
+                $('#xgk a').each(function () {
+                    keys.push($(this).text());
+                });
+                keys.length === 0 ? keys = '' : keys = keys.join(',');
+
+                $.ajax({
+                    method: 'get',
+                    data: {
+                        keys: keys,
+                        id: that.webInfoId,
+                        platform: curPlatform,
+                        pid: pid,
+                        cid: (typeof (that.webInfoCid) !== 'undefined') ? that.webInfoCid : 0,
+                        rid: (typeof (that.webInfoRid) !== 'undefined') ? that.webInfoRid : 0,
+                        rcid: rCid,
+                        rrid: rRid
+                    },
+                    url: '/ajax.asp?action=998',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (typeof data.list === 'undefined') {
+                            return;
+                        }
+                        var list = data.list;
+                        var lisHttml = '';
+                        if (curPlatform === 0) {
+                            for (var i = 0; i < list.length; ++i) {
+                                lisHttml += '<li><a href="/down.asp?id=' + list[i].ID + '"><img src="'
+                                + list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
+                                + (i + 1) + '\',\'' + list[i].ResName + '\'])">'
+                                + list[i].ResName + '</a></li>';
+                            }
+                        }
+                        else if (curPlatform === 1) {
+                            for (var i = 0; i < list.length; ++i) {
+                                lisHttml += '<li><a href="/s/' + list[i].ID + '"><img src="'
+                                + list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
+                                + (i + 1) + '\',\'' + list[i].ResName + '\'])">' + list[i].ResName + '</a></li>';
+                            }
+                        }
+                        $('.tjyxph #thelist3').append(lisHttml);
+                    },
+                    error: function () {}
+                });
+            }
+        },
         init: function () {
             this.touchSlide();// 滑动切换
             this.mrtit();// 标题大分类修改
             this.xfNav();// 悬浮下载
             this.titTab();// 菜单切换
             this.downHref();// 动态下载地址
+            this.hotRec(); // 热门推荐
         }
-    };
+    }; // 生命周期 function list，根据组件情况选用 end
     customElem.prototype.build = function () {
+        // this.element 可取到当前实例对应的 dom 元素
+        // var element = this.element;
         down.init();
     };
     return customElem;

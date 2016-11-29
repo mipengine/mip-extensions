@@ -28,11 +28,11 @@ define(function (require) {
             "autoPlay": ""
         });
 
-        $element[0].appendChild(span_adTime);
         $element[0].appendChild(video);
 
         //如果有广告 则播放广告
         if (adSrc) {
+            $element[0].appendChild(span_adTime);
             video.src = adSrc;
 
             //当开始播放 或者点击播放的时候 进行广告倒计时
@@ -56,6 +56,7 @@ define(function (require) {
             };
         } else {//否则直接播放内容
             video.src = targetSrc;
+            video.setAttribute("controls", "");
         }
 
         // $element.html('<div class="videoyytf" id="videoyytf">' +

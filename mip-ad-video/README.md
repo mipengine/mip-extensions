@@ -9,9 +9,17 @@ mip-ad-video 实现了一个简单的广告+视频的播放器
 
 ## 示例
 
-### 使用方式
+### 带广告的播放
 ```html
 <mip-ad-video ad-src="http://img.vodjk.com/templates/vodjk/images/ad-shipin/ad-pc-qfk.mp4"
+    ad-time="5"
+    target-src="http://dianbo.vodjk.com:80/vod/xinma/jbl/wgk/2016/04/20/499DBA6FFCD74fc195C4C59859BDA08C.mp4">
+</mip-ad-video>
+``` 
+
+### 不带广告的播放
+```html
+<mip-ad-video ad-src=""
     ad-time="5"
     target-src="http://dianbo.vodjk.com:80/vod/xinma/jbl/wgk/2016/04/20/499DBA6FFCD74fc195C4C59859BDA08C.mp4">
 </mip-ad-video>

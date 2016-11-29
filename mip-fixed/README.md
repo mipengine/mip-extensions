@@ -105,12 +105,6 @@
 取值范围：数值+单位，例如：50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)  
 默认值：auto
 
-### right
-
-说明：距离屏幕右侧距离  
-必选项: 否  
-取值范围：数值+单位，例如：50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)  
-默认值：auto
 
 ## 注意事项
 
@@ -120,7 +114,7 @@
 
 - type为 left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
 
-- type为 gototop 类别可以添加一个 bottom 和 right属性, 并与默认值对比取较大者。
+- type为 gototop 类别不需要任何属性。
 
 ### fixed 元素个数限制
 

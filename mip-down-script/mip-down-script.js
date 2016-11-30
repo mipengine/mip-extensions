@@ -246,12 +246,16 @@ define(function (require) {
                 $('.guess-nav li').eq(iNow).addClass('active').siblings().removeClass('active');
             }
             // 解决横向滚动图片无法出现
-            $('#wrapper2')[0].addEventListener('touchend', function (e) {
-                bugImg();
-            }, false);
-            $('#wrapper4')[0].addEventListener('touchend', function (e) {
-                bugImg();
-            }, false);
+            if ($('#wrapper2').length > 0) {
+                $('#wrapper2')[0].addEventListener('touchend', function (e) {
+                    bugImg();
+                }, false);
+            }
+            if ($('#wrapper4').length > 0) {
+                $('#wrapper4')[0].addEventListener('touchend', function (e) {
+                    bugImg();
+                }, false);
+			}
             // bug
             function bugImg() {
                 setTimeout(function () {

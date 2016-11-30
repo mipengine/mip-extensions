@@ -24,6 +24,36 @@ define(function (require) {
             check();
             clearTimeout(t);
         }, 10000);
+        if ($('.mip-360doc-script-plg2') !== null) {
+            $('.mip-360doc-script-plg2').on('click', function (event) {
+                sendlog('Componentclick?id=1');
+            });
+        }
+        if ($('.mip-360doc-script-p_header_sc') !== null) {
+            $('.mip-360doc-script-p_header_sc').on('click', function (event) {
+                sendlog('Componentclick?id=2');
+            });
+        }
+        if ($('.mip-360doc-scropt-plzs') !== null) {
+            $('.mip-360doc-scropt-plzs').on('click', function (event) {
+                sendlog('Componentclick?id=4');
+            });
+        }
+        if ($('.mip-360doc-script-gz1') !== null) {
+            $('.mip-360doc-script-gz1').on('click', function (event) {
+                sendlog('Componentclick?id=5');
+            });
+        }
+        if ($('.mip-360doc-script-xh1') !== null) {
+            $('.mip-360doc-script-xh1').on('click', function (event) {
+                sendlog('Componentclick?id=6');
+            });
+        }
+        if ($('.mip-360doc-script-reflectionurl') !== null) {
+            $('.mip-360doc-script-reflectionurl').on('click', function (event) {
+                sendlog('Componentclick?id=7');
+            });
+        }
     };
     function check() {
         try {

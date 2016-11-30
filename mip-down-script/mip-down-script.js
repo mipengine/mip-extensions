@@ -335,12 +335,12 @@ define(function (require) {
             }
         },
         init: function () {
-            this.touchSlide();// 滑动切换
             this.mrtit();// 标题大分类修改
             this.xfNav();// 悬浮下载
             this.titTab();// 菜单切换
             this.downHref();// 动态下载地址
             this.hotRec(); // 热门推荐
+            this.touchSlide();// 滑动切换
         }
     };
     customElem.prototype.build = function () {

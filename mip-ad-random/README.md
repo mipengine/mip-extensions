@@ -17,7 +17,7 @@ mip-ad-random 用来支持携景财富网的mip广告位置随机显示。
 </mip-ad-random>
 ```
 
-提示: 参与随机位置的标签里面都加上与data-randomad中参数一致的类。
+提示: 参与随机位置的标签里面都加上与data-parents中参数一致的类。
 
 
 ## 属性

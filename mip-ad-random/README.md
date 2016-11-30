@@ -2,7 +2,7 @@
 
 mip-ad-random 是携景财富网的mip广告位置随机显示。
 
-标题|mip广告位置随机显示
+标题|提供了一个随机位置让广告展示
 ----|----
 类型|广告
 支持布局|responsive,fixed-height,fill,container,fixed

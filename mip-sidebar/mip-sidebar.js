@@ -137,6 +137,10 @@ define(function (require) {
     function build() {
 
         var _this = this;
+        var top = window.parent !== window ? '44px' : 0;
+        util.css(_this.element, {
+            'top': top
+        });
         _this.maskElement = false;
         _this.id_ = _this.element.id;
         _this.side_ = _this.element.getAttribute('side');

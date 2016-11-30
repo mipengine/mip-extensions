@@ -47,6 +47,7 @@
         width: 81px;
         height: 41px;
         background-size: 100% auto;
+        position: absolute;
         &:hover,
         &:active {
             color: rgba(255, 255, 255, 0.85);
@@ -65,7 +66,8 @@
         height: 44px;
         #bs-navbar {
             height: 0;
-            transition: height 0.3s;            
+            transition: height 0.3s;
+            margin-top: 44px;
             width: 100%;
             left: 0;
             overflow-y: scroll;
@@ -102,7 +104,6 @@
         }
         .navbar-static-top .navbar-brand {
             left: 50%;
-            position: relative;
             margin-left: -30px;
         }
         .navbar-static-top a {

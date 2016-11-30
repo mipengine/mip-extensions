@@ -20,16 +20,10 @@ define(function(require) {
         var $this = $(me),
             id = $this.data('id'),
             navClass = $this.data('nav-class'),
-            brandimg = $this.data('brandimg') || '',
-            brandclass = $this.data('brandclass') || '',
+            showBrand = $this.data('showbrand') == 0 ? false : true,
+            brandHref = $this.data('brandhref') || '/';
             $ulNav = $this.find('#' + id),
-            $container = $('<div></div>'),
-            brandHtml = '';
-
-        if (brandimg && brandclass) {
-            brandHtml = '<img src="' + brandimg + '" class="' + brandclass + '">';
-        }
-
+            $container = $('<div></div>');
         var $btnWrap = '<div class="navbar-header">' +
             '<button class="navbar-toggle collapsed" type="button" data-target="#' + id + '" aria-controls="' + id + '" aria-expanded="false">' +
             '<span class="sr-only">导航</span>' +
@@ -37,7 +31,7 @@ define(function(require) {
             '<span class="icon-bar"></span>' +
             '<span class="icon-bar"></span>' +
             '</button>' +
-            '<a href="/" class="navbar-brand">' + brandHtml + '</a>' +
+            (showBrand ? '<a href='+ brandHref + ' class="navbar-brand"></a>' : '') +
             '</div>';
         $container.append($btnWrap).append($ulNav).appendTo($this);
         $('.mip-nav-wrapper').addClass('show');

@@ -255,7 +255,7 @@ define(function (require) {
                 $('#wrapper4')[0].addEventListener('touchend', function (e) {
                     bugImg();
                 }, false);
-			}
+            }
             // bug
             function bugImg() {
                 setTimeout(function () {

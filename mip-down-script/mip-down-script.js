@@ -84,7 +84,7 @@ define(function (require) {
         },
         downHref: function () {
             if (this.assid > 0) {
-                $('#info #btns a').attr('href', '/down.asp?id=' + this.assid);
+                $('#info #btns a').attr('href', 'http://m.pc6.com/down.asp?id=' + this.assid);
             }
             if (browser.versions.android && typeof (this.platAndroidAddress) !== 'undefined') {
                 if (this.platAndroidAddress.indexOf('http:') >= 0 || this.platAndroidAddress.indexOf('ftp:') >= 0
@@ -319,7 +319,7 @@ define(function (require) {
                         var lisHttml = '';
                         if (curPlatform === 0) {
                             for (var i = 0; i < list.length; ++i) {
-                                lisHttml += '<li><a href="/down.asp?id=' + list[i].ID + '"><img src="'
+                                lisHttml += '<li><a href="http://m.pc6.com/down.asp?id=' + list[i].ID + '"><img src="'
                                 + list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
                                 + (i + 1) + '\',\'' + list[i].ResName + '\'])">'
                                 + list[i].ResName + '</a></li>';
@@ -327,7 +327,7 @@ define(function (require) {
                         }
                         else if (curPlatform === 1) {
                             for (var i = 0; i < list.length; ++i) {
-                                lisHttml += '<li><a href="/s/' + list[i].ID + '"><img src="'
+                                lisHttml += '<li><a href="http://m.pc6.com/mipd/' + list[i].ID + '.html" target="_blank"><img src="'
                                 + list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
                                 + (i + 1) + '\',\'' + list[i].ResName + '\'])">' + list[i].ResName + '</a></li>';
                             }

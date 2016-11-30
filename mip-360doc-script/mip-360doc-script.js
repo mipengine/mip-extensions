@@ -16,6 +16,14 @@ define(function (require) {
             $('.mip-360doc-script-box960').css('display', '');
             setone();
         }
+        getRefNum();// 鲜花
+        //  统计
+        sendlog('mipConn');
+        //  检测广告
+        var t = setTimeout(function () {
+            check();
+            clearTimeout(t);
+        }, 10000);
         if ($('.mip-360doc-script-plg2') !== null) {
             $('.mip-360doc-script-plg2').on('click', function (event) {
                 sendlog('Componentclick?id=1');
@@ -46,14 +54,6 @@ define(function (require) {
                 sendlog('Componentclick?id=7');
             });
         }
-        getRefNum();// 鲜花
-        //  统计
-        sendlog('mipConn');
-        //  检测广告
-        var t = setTimeout(function () {
-            check();
-            clearTimeout(t);
-        }, 10000);
     };
     function check() {
         try {

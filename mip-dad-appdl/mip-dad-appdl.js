@@ -13,9 +13,10 @@ define(function (require) {
     customElement.prototype.build = function () {
 		// this.element 可取到当前实例对应的 dom 元素
         var element = this.element;
-        var ad = $(element).attr('ad');
-        var aid = $(element).attr('aid');
-        var addr = $(element).attr('addr');
+        var $element = $(element);
+        var ad = $element.attr('ad');
+        var aid = $element.attr('aid');
+        var addr = $element.attr('addr');
         var ppDN = 'http://ucan.25pp.com/PPAssistant_PM_4008.apk';
         var text1 = '\u4f7f\u7528\u76ae\u76ae\u52a9\u624b';
         var text2 = '\u76ae\u76ae\u52a9\u624b\u662f\u5168\u9762\u3001\u4e13\u4e1a\u7684'
@@ -35,31 +36,31 @@ define(function (require) {
 		else {
             innerHTML = '<s ur="' + addr + '" aid="' + aid + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</s>';
         }
-        $(element).html(innerHTML);
+        $element.html(innerHTML);
         var flag = 1;
-        $(element).on('click', 'i', function () {
+        $element.on('click', 'i', function () {
             if (flag === 1) {
-                $(element).addClass('no');
-                $(element).find('s').text('\u666e\u901a\u4e0b\u8f7d');
-                $(element).find('p').attr('style', 'display:none');
-                $(element).find('u').attr('style', 'display:block');
+                $element.addClass('no');
+                $element.find('s').text('\u666e\u901a\u4e0b\u8f7d');
+                $element.find('p').attr('style', 'display:none');
+                $element.find('u').attr('style', 'display:block');
                 flag = 0;
             }
 			else {
-                $(element).removeClass('no');
-                $(element).find('s').text('\u9ad8\u901f\u4e0b\u8f7d');
-                $(element).find('p').attr('style', 'display:block');
-                $(element).find('u').attr('style', 'display:none');
+                $element.removeClass('no');
+                $element.find('s').text('\u9ad8\u901f\u4e0b\u8f7d');
+                $element.find('p').attr('style', 'display:block');
+                $element.find('u').attr('style', 'display:none');
                 flag = 1;
             }
         });
-        $(element).on('click', 's', function () {
-            if ($(element).hasClass('no') || $(element).find('s').hasClass('pt')) {
-                if ($(element).attr('ur') == null) {
-                    location.href = 'http://www.mobile-dad.com/tourl.php?apkid=' + $(element).attr('aid');
+        $element.on('click', 's', function () {
+            if ($element.hasClass('no') || $element.find('s').hasClass('pt')) {
+                if ($element.attr('ur') == null) {
+                    location.href = 'http://www.mobile-dad.com/tourl.php?apkid=' + $element.attr('aid');
                 }
 				else {
-                    window.open($(element).attr('ur'), '_self', '');
+                    window.open($element.attr('ur'), '_self', '');
                 }
             }
 			else {

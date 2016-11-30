@@ -84,7 +84,7 @@ define(function (require) {
         },
         downHref: function () {
             if (this.assid > 0) {
-                $('#info #btns a').attr('href', '/down.asp?id=' + this.assid);
+                $('#info #btns a').attr('href', 'http://m.pc6.com/down.asp?id=' + this.assid);
             }
             if (browser.versions.android && typeof (this.platAndroidAddress) !== 'undefined') {
                 if (this.platAndroidAddress.indexOf('http:') >= 0 || this.platAndroidAddress.indexOf('ftp:') >= 0
@@ -246,12 +246,16 @@ define(function (require) {
                 $('.guess-nav li').eq(iNow).addClass('active').siblings().removeClass('active');
             }
             // 解决横向滚动图片无法出现
-            $('#wrapper2')[0].addEventListener('touchend', function (e) {
-                bugImg();
-            }, false);
-            $('#wrapper4')[0].addEventListener('touchend', function (e) {
-                bugImg();
-            }, false);
+            if ($('#wrapper2').length > 0) {
+                $('#wrapper2')[0].addEventListener('touchend', function (e) {
+                    bugImg();
+                }, false);
+            }
+            if ($('#wrapper4').length > 0) {
+                $('#wrapper4')[0].addEventListener('touchend', function (e) {
+                    bugImg();
+                }, false);
+            }
             // bug
             function bugImg() {
                 setTimeout(function () {
@@ -315,7 +319,7 @@ define(function (require) {
                         var lisHttml = '';
                         if (curPlatform === 0) {
                             for (var i = 0; i < list.length; ++i) {
-                                lisHttml += '<li><a href="/down.asp?id=' + list[i].ID + '"><img src="'
+                                lisHttml += '<li><a href="http://m.pc6.com/down.asp?id=' + list[i].ID + '"><img src="'
                                 + list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
                                 + (i + 1) + '\',\'' + list[i].ResName + '\'])">'
                                 + list[i].ResName + '</a></li>';
@@ -323,7 +327,7 @@ define(function (require) {
                         }
                         else if (curPlatform === 1) {
                             for (var i = 0; i < list.length; ++i) {
-                                lisHttml += '<li><a href="/s/' + list[i].ID + '"><img src="'
+                                lisHttml += '<li><a href="http://m.pc6.com/mipd/' + list[i].ID + '.html" target="_blank"><img src="'
                                 + list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
                                 + (i + 1) + '\',\'' + list[i].ResName + '\'])">' + list[i].ResName + '</a></li>';
                             }
@@ -335,12 +339,12 @@ define(function (require) {
             }
         },
         init: function () {
-            this.touchSlide();// 滑动切换
             this.mrtit();// 标题大分类修改
             this.xfNav();// 悬浮下载
             this.titTab();// 菜单切换
             this.downHref();// 动态下载地址
             this.hotRec(); // 热门推荐
+            this.touchSlide();// 滑动切换
         }
     };
     customElem.prototype.build = function () {

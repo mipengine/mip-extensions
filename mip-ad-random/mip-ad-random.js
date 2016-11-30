@@ -14,11 +14,11 @@ define(function (require) {
         }
     }
     function getadress() {
-        var a = $('mip-ad-random').data('parents');
-        var arry1 = $('.' + a);
-        var arrylength1 = arry1.length;
+        var allLocation = $('mip-ad-random').data('parents');
+        var bigLocation = $('.' + allLocation);
+        var arrylength1 = bigLocation.length;
         var randnum = Math.ceil(Math.random() * arrylength1) - 1;
-        var rank = arry1[randnum];
+        var rank = bigLocation[randnum];
         var rchildren = $(rank).children();
         var arrylength2 = rchildren.length;
         var randnum2 = Math.ceil(Math.random() * arrylength2) - 1;

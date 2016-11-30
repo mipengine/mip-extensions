@@ -8,10 +8,7 @@ define(function (require) {
     var customElement = require('customElement').create();
     var t = this.element;
     function e() {
-        if (!t.isRender) {
-            t.isRender = !0;
-            getadress();
-        }
+        getadress();
     }
     function getadress() {
         var allLocation = $('mip-ad-random').data('parents');

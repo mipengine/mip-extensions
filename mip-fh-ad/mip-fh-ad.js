@@ -30,6 +30,8 @@ define(function (require) {
         return html;
     };
 
+    var hasFhAd = false;
+    var $mipFhAdBdHide = $('[mip-fh-ad-bd-hide]');
     // 初始化直投广告
     var init = function (opt) {
         opt = opt || {};
@@ -53,6 +55,7 @@ define(function (require) {
                 $.each(adObj, function (k, v) {
                     // 有特定广告位id的直投广告
                     if ($.trim(v)) {
+                        hasFhAd = true;
                         // 根据广告id，判断广告的显示位置
                         switch (+k) {
                             // 底部悬浮广告
@@ -102,15 +105,18 @@ define(function (require) {
                         $body.addClass('view-fh-ad-' + (+k) + '-union');
                     }
                 });
+
+                !hasFhAd && ($mipFhAdBdHide.show().removeClass('dn'));
             });
         }
         else {
             $('#ad-s-1255').show();
             $('#ask-inof-blew-ad').show();
-            if (posId == 1) {
+            if (+posId === 1) {
                 element.html(loadBdAd());
             }
             $body.addClass('view-fh-ad-union');
+            $mipFhAdBdHide.show().removeClass('dn');
         }
     };
 

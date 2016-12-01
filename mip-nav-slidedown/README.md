@@ -18,16 +18,16 @@ mip-nav-slidedown 实现响应式的菜单，在mip官网有引用
     <nav id="bs-navbar" class="navbar-collapse collapse navbar navbar-static-top">
         <ul class="nav navbar-nav navbar-right">
             <li class="index-body">
-                <a target="_blank" href="//www.mipengine.org/"></i>首页</a>
+                <a target="_blank" href="//www.mipengine.org/">首页</a>
             </li>
             <li class="doc-body">
-                <a target="_blank" href="//www.mipengine.org/doc/00-mip-101.html"></i>教程</a>
+                <a target="_blank" href="//www.mipengine.org/doc/00-mip-101.html">教程</a>
             </li>
             <li class="timeline-body">
-                <a target="_blank" href="//www.mipengine.org/timeline.html"></i>动态</a>
+                <a target="_blank" href="//www.mipengine.org/timeline.html">动态</a>
             </li>
             <li class="">
-                <a target="_blank" href="http://www.cnblogs.com/mipengine/" target="_blank"></i>博客</a>
+                <a target="_blank" href="http://www.cnblogs.com/mipengine/" target="_blank">博客</a>
             </li>
             <li class="navbar-wise-close">
                 <span id="navbar-wise-close-btn"></span>

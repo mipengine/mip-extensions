@@ -10,16 +10,36 @@ mip-appdl 用来支持在 mip 中app的下载
 
 ## 示例
 
-```
+### 有图样式
+
+```html
 <mip-appdl 
 	tpl="imageText" 
 	src="http://ms0.meituan.net/touch/css/i/logo.png" 
-	texttip= "['积分能当钱花了','下载百度浏览器']" 
+	texttip= "['积分能当钱花了','下载百度浏览器','下载百度浏览器']" 
 	downbtntext="立即使用" 
 	Android-downsrc="http://sqdd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk" 
 	Ios-downsrc="itms-apps://itunes.apple.com/app/id452186370" postiontye="fixed"
 ></mip-appdl>
 ```
+
+### 固定位置
+
+- 使用 悬浮组件支持
+
+```html
+<mip-fixed type="bottom">
+	<mip-appdl 
+		tpl="imageText" 
+		src="http://ms0.meituan.net/touch/css/i/logo.png" 
+		texttip= "['积分能当钱花了','下载百度浏览器','下载百度浏览器']" 
+		downbtntext="立即使用" 
+		Android-downsrc="http://sqdd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk" 
+		Ios-downsrc="itms-apps://itunes.apple.com/app/id452186370" postiontye="fixed"
+	></mip-appdl>
+</mip-fixed>
+```
+
 
 ## 属性
 
@@ -58,11 +78,3 @@ mip-appdl 用来支持在 mip 中app的下载
 格式：字符串
 取值：url 类型
 使用限制：必须填写appstore下载路径(itms-apps://itunes.apple.com/app/id452186370)或者下载页路径，如果对应系统没有下载链接则自动不显示
-
-### postiontye
-
-说明：位置
-必填：是
-格式：字符串
-取值：有两种位置static(在文档中的正常位置), fixed(固定在底部)
-   

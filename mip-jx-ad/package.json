@@ -1,0 +1,10 @@
+{
+    "name": "mip-jx-ad",
+    "version": "1.0.0",
+	"description": "article advertisement",
+	"author": "jixiangling",
+	"email": "1334935207@qq.com",
+    "engines": {
+        "mip": ">=1.0.0"
+    }
+}

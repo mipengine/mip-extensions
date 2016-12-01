@@ -1,5 +1,93 @@
 # 升级日志
 
+#### 2016.11.28
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-huajun-downtag](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-downtag)|[新增] 点击切换组件
+[mip-huajun-fixdnav](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-fixdnav)|[新增] 固定nav组件
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 表单组件，监听回车事
+[mip-lightbox](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级] 弹层组件 修复 Firefox 浏览器下点击事件无效的bug
+[mip-wkfun-club](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-club)|[升级] 寻医问药页面功能组件 http 转换 https
+[mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件  http 转换 https
+[mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[升级] 寻医问药页面功能组件 http 转换 https
+
+#### 2016.11.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkfun-club](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-club)|[新增] 寻医问药页面功能组件，提供了一些dom操作功能
+[mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件 
+[mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[升级] 寻医问药页面功能组件
+
+#### 2016.11.25
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xem-comment-duoshuo](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-comment-duoshuo)|[新增] 多说评论框通用代码稳定版组件
+[mip-ls-pagination](https://github.com/mipengine/mip-extensions/tree/master/mip-ls-pagination)|[新增] 招聘信息列表的分页功能
+[mip-ck-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-ad)|[升级] 康网的问答详情页面的直投广告组件:去掉UC下反屏蔽广告的判断
+[mip-ck-script](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-script)|[升级] 康网的问答详情页面的直投广告组件:去掉UC下反屏蔽广告的判断
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
+#### 2016.11.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-youth-tb360](https://github.com/mipengine/mip-extensions/tree/master/mip-youth-tb360)|[新增] 青网移动适配页头部360广告
+[mip-youth-ttyd](https://github.com/mipengine/mip-extensions/tree/master/mip-youth-ttyd)|[新增] 青网移动适配页精彩推荐广告
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[新增] 页面逻辑公共脚本
+[mip-down-dropload](https://github.com/mipengine/mip-extensions/tree/master/mip-down-dropload)|[新增] 用来支持页面下拉加载
+[mip-down-script](https://github.com/mipengine/mip-extensions/tree/master/mip-down-script)|[新增] 页面逻辑脚本集合
+[mip-down-comment](https://github.com/mipengine/mip-extensions/tree/master/mip-down-comment)|[升级] 用来支持文章详情页的评论
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+[mip-ck-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-ad)|[升级] 康网的问答详情页面的直投广告组件
+[mip-ck-script](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-script)|[升级] 是康网的问答详情页面的直投广告组件
+[mip-fh-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-ad)|[升级] 用来支持m.fh21.com.cn问答详情页的直投广告显示
+
+#### 2016.11.23
+
+> 核心代码上线
+
+	1、去掉mip-share在layout中的默认宽高
+	2、修复iphone5s UC白屏问题
+	3、增加在iframe中的a标签处理逻辑，防止跳转失败
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ecms](https://github.com/mipengine/mip-extensions/tree/master/mip-ecms)|[新增] 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,评论等
+[mip-appdl](https://github.com/mipengine/mip-extensions/tree/master/mip-appdl)|[升级] 下载组件fixed定位使用mip-fixed组件支持
+
+#### 2016.11.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-dp-script](https://github.com/mipengine/mip-extensions/tree/master/mip-dp-script)|[新增] 支持www.lz55.cn业务交互和广告显示
+[mip-jjpz](https://github.com/mipengine/mip-extensions/tree/master/mip-jjpz)|[新增] 天天基金自有业务详情页整体交互组件
+[mip-jx-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-jx-ad)|[新增] 青年网聚效广告扩展组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 修复网盟广告，不支持fixed的bug
+
+#### 2016.11.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xueyou-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-xueyou-ad)|[升级] 学优网广告bug修复
+[mip-fh-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-ad)|[升级] 飞华广告升级
+
 #### 2016.11.16
 
 > 组件上线

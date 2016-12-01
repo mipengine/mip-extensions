@@ -15,26 +15,26 @@ define(function (require) {
 		if (width < 960) { 
 			window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
 		} else { 
-			var loadJs = function (d, a) {
-				var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement;
-				var b = document.createElement('script');
-				b.setAttribute('type', 'text/javascript');
-				b.setAttribute('charset', 'UTF-8');
-				b.setAttribute('src', d);
-			 if (typeof a === 'function') {
+			var loadJs = function (srcStr, fn) {
+				var htmlTag = document.getElementsByTagName('head')[0] || document.head || document.documentElement;
+				var scriptTag = document.createElement('script');
+				scriptTag.setAttribute('type', 'text/javascript');
+				scriptTag.setAttribute('charset', 'UTF-8');
+				scriptTag.setAttribute('src', srcStr);
+				if (typeof fn === 'function') {
 					if (window.attachEvent) {
-						b.onreadystatechange = function () {
-							var e = b.readyState;
+						scriptTag.onreadystatechange = function () {
+							var e = scriptTag.readyState;
 							if(e === 'loaded'||e === 'complete') {
-								b.onreadystatechange = null;
-								a();
+								scriptTag.onreadystatechange = null;
+								fn();
 							}
 						};
 					} else {
-						b.onload = a;
+						scriptTag.onload = fn;
 					}
 				};
-				c.appendChild(b);
+				htmlTag.appendChild(scriptTag);
 			};
 			loadJs('http://changyan.sohu.com/upload/changyan.js', function () {
 				window.changyan.api.config({
@@ -46,4 +46,3 @@ define(function (require) {
 	};
 	return customElement;
 });
-

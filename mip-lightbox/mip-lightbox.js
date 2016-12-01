@@ -21,11 +21,10 @@ define(function (require) {
         var self = this;
         self.open = false;
         self.id = this.element.id;
-        var top = window.parent !== window ? '44px' : 0;
         util.css(self.element, {
             'position': 'fixed',
             'z-index': 10001,
-            'top': top,
+            'top': 0,
             'right': 0,
             'left': 0,
             'transition': 'opacity 0.1s ease-in'

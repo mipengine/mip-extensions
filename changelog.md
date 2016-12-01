@@ -1,5 +1,29 @@
 # 升级日志
 
+#### 2016.12.01
+
+> 核心代码上线
+
+    1、修复fixed元素在iframe中展现错位BUG
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-share](https://github.com/mipengine/mip-extensions/tree/master/mip-share)|[升级] 分线组件 暂时屏蔽ios qq浏览器
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件 bug fix
+
+#### 2016.11.30
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-huajun-loadmore](https://github.com/mipengine/mip-extensions/tree/master/mip-huajun-loadmore)|[新增] 点击加载更多组件
+[mip-dad-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-dad-appdownload)|[新增] 皮皮高速下载
+[mip-dp-script](https://github.com/mipengine/mip-extensions/tree/master/mip-dp-script)|[升级] 支持www.lz55.cn业务交互和广告显示 bug fix
+[mip-down-script](https://github.com/mipengine/mip-extensions/tree/master/mip-down-script)|[升级] 页面逻辑脚本集合 bug fix
+
 #### 2016.11.29
 
 > 核心代码上线
@@ -11,6 +35,7 @@
 
 组件名|功能说明
 ---|---
+[mip-gototop](https://github.com/mipengine/mip-extensions/tree/master/mip-gototop)|[升级] 快速回顶
 [mip-askad](https://github.com/mipengine/mip-extensions/tree/master/mip-askad)|[升级] 120askad广告组件升级
 [mip-hk-call](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-call)|[升级] 好看组件添加统计参数
 [mip-hk-feed](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-feed)|[升级] 好看组件添加统计参数

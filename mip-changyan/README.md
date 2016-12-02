@@ -13,7 +13,7 @@ mip-changyan 用来支持在线评论插件 畅言,适应手机端和pc端
 MIP提供支持畅言的扩展组件，代码示例：
 
 ```
-	<mip-changyan appid="cysjB6Scw" conf="prod_5ca6838c335b62e95ab4306b79f503f5">
+	<mip-changyan appid="cysjB6Scw" conf="prod_5ca6838c335b62e95ab4306b79f503f5" critical-width="960">
 			<div id="SOHUCS"></div>
 	</mip-changyan>
 ```

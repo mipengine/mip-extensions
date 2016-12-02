@@ -1,6 +1,6 @@
 /**
  * @file: mip-lightbox.js
- * 
+ *
  * @author: wangpei07@baidu.com
  * @date: 2016-11-02
  */
@@ -27,6 +27,7 @@ define(function (require) {
             'top': 0,
             'right': 0,
             'left': 0,
+            'bottom': 0,
             'transition': 'opacity 0.1s ease-in'
         });
 
@@ -97,7 +98,7 @@ define(function (require) {
         });
 
         self.open = true;
-        util.css(self.element, {'display': 'block'});
+        util.css(self.element, {display: 'block'});
         openMask.call(self);
     }
 
@@ -120,8 +121,8 @@ define(function (require) {
         self.open = false;
 
         closeMask.call(self);
-        util.css(self.element, {'display': 'none'});
-        util.css(document.body, {'overflow': 'auto'});
+        util.css(self.element, {display: 'none'});
+        util.css(document.body, {overflow: 'auto'});
 
     }
 
@@ -163,7 +164,7 @@ define(function (require) {
         }
 
         // 样式设置
-        util.css(self.maskElement, {'display': 'block'});
+        util.css(self.maskElement, {display: 'block'});
 
     }
 
@@ -173,7 +174,7 @@ define(function (require) {
      */
     function closeMask() {
         if (this.maskElement) {
-            util.css(this.maskElement, {'display': 'none'});
+            util.css(this.maskElement, {display: 'none'});
         }
     }
 

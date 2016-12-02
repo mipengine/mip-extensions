@@ -48,3 +48,4 @@ define(function (require) {
     };
     return customElement;
 });
+

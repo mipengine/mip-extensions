@@ -1,3 +1,9 @@
+/**
+ * @author: lixkoo
+ * @date: 2016-12-02
+ * @file: mip-yxdownpb.js
+ */
+
 define(function(require) {
     var customElem = require('customElement').create();
     function pbpge(){
@@ -13,7 +19,7 @@ define(function(require) {
                     var dtitle = document.title.toLowerCase();
                     for (var i = 0; i < arr.length; i++) {
                         if (dtitle.indexOf(arr[i].toLowerCase()) >= 0) {
-                            location = '/404';
+                            location = 'http://m.yxdown.com/404';
                             break;
                         }
                     }

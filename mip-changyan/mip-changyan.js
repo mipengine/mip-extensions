@@ -33,7 +33,7 @@ define(function (require) {
                             }
                         };
                     }
-					else {
+                    else {
                         scriptTag.onload = fn;
                     }
                 }

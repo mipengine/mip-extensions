@@ -19,7 +19,7 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        if (platform.isIos() && platform.isQQ()) {
+        if (window.parent !== window && platform.isIos() && platform.isQQ()) {
             element.remove();
             return;
         }

@@ -18,7 +18,7 @@ define(function (require) {
         }
         getRefNum();// 鲜花
         //  统计
-        sendlog('mipConn');
+        sendlog('mipConn?aid=' + getID());
         //  检测广告
         var t = setTimeout(function () {
             check();

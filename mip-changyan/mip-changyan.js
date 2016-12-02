@@ -10,8 +10,9 @@ define(function (require) {
         var ele = this.element;
         var appid = ele.getAttribute('appid');
         var conf = ele.getAttribute('conf');
+        var criWidth = ele.getAttribute('critical-width');
         var width = window.innerWidth || document.documentElement.clientWidth;
-        if (width < 960) {
+        if (width < criWidth) {
             window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
         }
         else {

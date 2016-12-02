@@ -1,4 +1,5 @@
 /**
+ * @file
 * 畅言插件
 * @author smileU
 * @version 1.0.0
@@ -10,8 +11,9 @@ define(function (require) {
         var appid = ele.getAttribute('appid');
         var conf = ele.getAttribute('conf');
         var criWidth = ele.getAttribute('critical-width');
-        var width = window.innerWidth || document.documentElement.clientWidth;
-        if (criWidth != null && criWidth< criWidth) {
+        var viewport = require('viewport');
+        var width = viewport.getWidth();
+        if (criWidth != null && width < criWidth) {
             window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
         }
         else {
@@ -31,7 +33,7 @@ define(function (require) {
                             }
                         };
                     }
-		    else {
+					else {
                         scriptTag.onload = fn;
                     }
                 }

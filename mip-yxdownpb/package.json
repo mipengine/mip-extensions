@@ -1,0 +1,12 @@
+{
+	"name": "mip-yxdownpb",
+	"version": "1.0.0",
+	"author": {
+		"name": "lix",
+        "email": "2880623731@qq.com",
+        "url": "http://m.yxdown.com"
+	},
+	"engines": {
+		"mip": ">=1.1.0"
+	}
+}

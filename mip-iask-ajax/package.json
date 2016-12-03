@@ -1,0 +1,12 @@
+{
+    "name": "mip-iask-ajax",
+    "version": "1.0.0",
+    "author": {
+        "name": "hejieye",
+        "email": jieye.he@iask.com,
+        "url": "http://iask.sina.com.cn"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

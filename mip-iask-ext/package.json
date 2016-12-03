@@ -1,0 +1,12 @@
+{
+    "name": "mip-iask-ext",
+    "version": "1.0.0",
+    "author": {
+        "name": "hejieye",
+        "email": "jieye.he@pingcl.com",
+        "url": "http://iask.sina.com.cn"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

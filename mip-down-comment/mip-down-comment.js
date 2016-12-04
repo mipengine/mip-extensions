@@ -91,7 +91,7 @@ define(function (require) {
             p = Math.floor(oli.length / 5 + 1);
             $.ajax({
                 type: 'get',
-                url: '/sajax.asp',
+                url: 'https://apis.pc6.com/sajax.asp',
                 data: 'action=0&id=' + oid + '&page=' + p + '&CommentTpye=0',
                 success: function (data) {
                     var html = '';

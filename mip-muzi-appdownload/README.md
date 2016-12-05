@@ -11,20 +11,10 @@ mip-muzi-appdownload app下载组件!
 
 ### app下载组件! 主要功能是下载，还有一些附加功能和一些无法预测的功能
 ```html
-<mip-muzi-appdownload src="http://m.muzisoft.com/m.js"></mip-dad-appdownload>
+<mip-muzi-appdownload src="http://m.muzisoft.com/m.js"></mip-muzi-appdownload>
 ```
 
 ## 属性
-
-### {属性名}
-
-说明：{说明}
-必选项：{是|否}
-类型：{类型}
-取值范围：{取值范围}
-单位：{单位}
-默认值：{默认值}
-
 
 ### src
 
@@ -33,6 +23,3 @@ mip-muzi-appdownload app下载组件!
 类型：字符串 
 单位：无   
 默认值：无   
-
-## 注意事项
-暂无

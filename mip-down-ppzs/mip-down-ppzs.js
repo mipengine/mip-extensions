@@ -22,32 +22,10 @@ define(function (require) {
         })(),
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
     };
-    var Cookie = {
-        get: function (name) {
-            var value = '';
-            var matchs;
-            if (matchs = document.cookie.match('(?:^| )' + name + '(?:(?:=([^;]*))|;|$)')) {
-                value = matchs[1] ? unescape(matchs[1]) : '';
-                return value;
-            }
-        },
-        set: function (name, value, expire, domain) {
-            expire = expire || (30 * 24 * 3600 * 1000);
-            var date = new Date();
-            var cookie = '';
-            date.setTime(date.getTime() + expire);
-            cookie = name + '=' + escape(value) + ';expires=' + date.toGMTString() + ';path=/;';
-            domain && (cookie += 'domain=' + domain + ';');
-            document.cookie = cookie;
-        },
-        del: function (name, domain) {
-            Cookie.set(name, '', -1, domain);
-        }
-    };
     function ppzsAd() {
         var curappPpid = 0;
         var webInfoPpid = $('#down-href').attr('platid');
-        if (browser.versions.android && Cookie.get('ppzs') !== 'Yes') {
+        if (browser.versions.android && localStorage.getItem('ppzs') !== 'Yes') {
             var oflag = true;
             var pphref = '';
             if (webInfoPpid > 0) {
@@ -85,7 +63,7 @@ define(function (require) {
 
                 if ($(this).prop('href').indexOf('channel=PM_') >= 0) {
                     e.preventDefault();
-                    Cookie.set('ppzs', 'Yes');
+                    localStorage.setItem('ppzs', 'Yes');
                     $(this).html('高速下载中...');
                     ppcheck.checkPP(function (r) {
                         if (r === true && curappPpid > 0) {

@@ -21,13 +21,13 @@ define(function (require) {
         var self = this;
         self.open = false;
         self.id = this.element.id;
+        // bottom 不能为0，不然会覆盖遮盖曾，导致无法关闭lightbox
         util.css(self.element, {
             'position': 'fixed',
             'z-index': 10001,
             'top': 0,
             'right': 0,
             'left': 0,
-            'bottom': 0,
             'transition': 'opacity 0.1s ease-in'
         });
 

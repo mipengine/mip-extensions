@@ -9,9 +9,9 @@ define(function (require) {
     var customElem = require('customElement').create();
 
     /**
-     * prerenderAllowed
+     * build
      */
-    customElem.prototype.prerenderAllowed = function () {
+    customElem.prototype.build = function () {
         // this.element 可取到当前实例对应的 dom 元素
         var $element = $(this.element);
         var adSrc = $element.attr('ad-src');

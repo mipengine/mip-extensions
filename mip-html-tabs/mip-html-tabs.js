@@ -7,6 +7,8 @@
 define(function (require) {
     var customElem = require('customElement').create();
     var qi = require('zepto');
+    var port = require('viewport');
+
 	// tabs-type 分配执行函数。
     function sethtmltabs(OrThis, OrType) {
         switch (OrType) {
@@ -150,11 +152,6 @@ define(function (require) {
             callNav(Thisnum);
             callTab(Thisnum);
         });
-        qi(OrKey).on('click', function () {
-            var Thisnum = qi(this).index();
-            callNav(Thisnum);
-            callTab(Thisnum);
-        });
     }
 	// tabs-type=5 点击元素滚动事件。
     function scrollclick(OrThis) {
@@ -171,8 +168,8 @@ define(function (require) {
         var IsTop = OrTop ? OrTop : 0;
         if (IsTop > 0) {
             qi(OrKey).hide();
-            qi(window).scroll(function () {
-                if (qi(window).scrollTop() > IsTop) {
+            port.on('scroll', function () {
+                if (port.getScrollTop() > IsTop) {
                     qi(OrKey).show();
                 }
                 else {
@@ -188,13 +185,13 @@ define(function (require) {
                         Toint = 0;
                         break;
                     case 'bottom':
-                        Toint = qi('body').height();
+                        Toint = port.getScrollHeight();
                         break;
                     default :
                         Toint = qi(OrTo).offset().top;
                 }
                 Toint = Toint + IsOf * 1;
-                scrollTo(0, Toint);
+                port.setScrollTop(Toint);
             }
             if (IsOn !== '') {
                 qi(IsOn).eq(IsEq).click();

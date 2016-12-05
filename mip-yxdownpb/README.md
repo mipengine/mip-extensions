@@ -1,6 +1,5 @@
-# mip-yxdownpb
-
-mip-yxdownpb 用来屏蔽问题页面
+# mip-yxdown-shielding-page
+mip-shielding-page 用来屏蔽问题页面
 
 标题|内容
 ----|----
@@ -11,7 +10,7 @@ mip-yxdownpb 用来屏蔽问题页面
 ## 示例
 
 ```
-<mip-yxdownpb></mip-yxdownpb>
+<mip-shielding-page></mip-shielding-page>
 ```
 
 # 属性

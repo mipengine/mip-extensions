@@ -1,7 +1,7 @@
 /**
  * @author: lixkoo
  * @date: 2016-12-02
- * @file: mip-yxdownpb.js
+ * @file: mip-yxdown-shielding-page.js
  */
 
 define(function (require) {

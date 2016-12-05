@@ -14,11 +14,25 @@ mip-muzi-appdownload app下载组件!
 <mip-muzi-appdownload src="http://m.muzisoft.com/m.js"></mip-muzi-appdownload>
 ```
 
+### 引用自定义js中的function
+
+- 自定义function, script 标签中的参数必须带双引号，也就是说 script 标签中的数据必须是 json 格式的
+- json 格式中的key 为自定义函数名，value为自定义函数参数
+```html
+<mip-muzi-appdownload>
+    <script type="application/json">
+    {
+        "ad": "999"
+    }
+    </script>
+</mip-muzi-appdownload>
+```
+
 ## 属性
 
 ### src
 
-说明：自定义的js效果
+说明：自定义的js文件
 必选项：否   
 类型：字符串 
 单位：无   

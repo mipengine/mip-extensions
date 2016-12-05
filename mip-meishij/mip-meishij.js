@@ -21,31 +21,6 @@ define(function (require) {
     }
 
     /*
-     * 百分点统计
-     */
-    function initBaifendian($el) {
-        var config = {
-            clientId: $el.data('client-id'),
-            path: $el.data('path'),
-        };
-        var prefix = 'https:' == document.location.protocol ?
-            'https://ssl-static1' : 'http://static1';
-
-        window["_BFD"] = window["_BFD"] || {};
-        _BFD.BFD_USER = {
-            "user_id": "",
-            "user_cookie": ""
-        };
-        _BFD.client_id = config.clientId;
-        _BFD.script = document.createElement("script");
-        _BFD.script.type = "text/javascript";
-        _BFD.script.async = true;
-        _BFD.script.charset = "utf-8";
-        _BFD.script.src = prefix + '.baifendian.com' + config.path;
-        document.getElementsByTagName("head")[0].appendChild(_BFD.script);
-    }
-
-    /*
      * 微博分享点击处理函数
      */
     function initWeiboShare($el) {
@@ -251,10 +226,8 @@ define(function (require) {
 
         // DOM元素列表
         var $share = $el.find('.share_box');
-        var $baifendian = $el.find('.baifendian');
 
         // 初始化各模块
-        initBaifendian($baifendian);
         initShare($share);
         initFavorite();
         initMenu();

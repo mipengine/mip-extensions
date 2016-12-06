@@ -13,9 +13,9 @@ define("mip-iask-report",['require', 'customElement', 'zepto'],function(require)
 		var questionId = $(elem).attr('questionId');
 		var type = $(elem).attr('type');
 		var typeId = $(elem).attr('typeId');
-		$("#report_id").val(questionId);
-		$("#report_type").val(type);
-		$("#report_typeId").val(typeId);
+		$("#report_id").text(questionId);
+		$("#report_type").text(type);
+		$("#report_typeId").text(typeId);
 	};
 	// build 方法，元素插入到文档时执行，仅会执行一次
 	customElem.prototype.build = function () {

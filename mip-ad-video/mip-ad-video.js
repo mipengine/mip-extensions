@@ -9,6 +9,7 @@ define(function (require) {
     var platform = util.platform;
 
     var customElem = require('customElement').create();
+
     /**
      * build
      */
@@ -18,7 +19,7 @@ define(function (require) {
         var adSrc = $element.attr('ad-src');
         var targetSrc = $element.attr('target-src');
         var adTime = $element.attr('ad-time');
-        var poster = $element.attr("poster");
+        var poster = $element.attr('poster');
 
         //  初始化播放器
         var video = document.createElement('video');
@@ -30,12 +31,12 @@ define(function (require) {
         $(video).attr({
             'playsinline': '',
             'webkit-playsinline': '',
-            'controls':'',
-            "poster": poster
+            'controls': '',
+            'poster': poster
         });
 
         //  如果是IOS则设置为自动播放
-        if(platform.isIos()){
+        if (platform.isIos()) {
             $(video).attr({
                 'autoPlay': ''
             });
@@ -59,7 +60,7 @@ define(function (require) {
                     if (adTime <= 0) {
                         spanAdTime.style.display = 'none';
                         clearInterval(timeId);
-                        video.setAttribute("src", targetSrc);
+                        video.setAttribute('src', targetSrc);
                         video.autoplay = true;
                         // video.reload();
                     }

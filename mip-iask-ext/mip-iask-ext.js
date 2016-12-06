@@ -61,7 +61,6 @@ define('mip-iask-ext', ['require', 'customElement', 'zepto'], function (require)
 		// 选择举报项
         reportChange:function() {
         	$("#reportList li").on('click',function(){
-    			event.preventDefault();
     			var fake = $(this).find('span').attr('class');
     			if(fake=='fakeChecked') {
     				$(this).find('span').removeClass();
@@ -72,17 +71,20 @@ define('mip-iask-ext', ['require', 'customElement', 'zepto'], function (require)
     			}
     		});
         },
+        clearReport :function() {
+        	$("#report-div").hide();
+    		$("#report_id").text('');
+    		$("#report_type").text('');
+    		$("#report_typeId").text('');
+    		$("#reportList li").each(function(){
+    			$(this).find('span').removeClass();
+    			$(this).find('span').addClass('fakeCheck');
+    		});
+        },
         // 取消举报
         cannelReport:function() {
         	$("#cannelReport").on('click',function(){
-        		$("#report-div").hide();
-        		$("#report_id").val('');
-        		$("#report_type").val('');
-        		$("#report_typeId").val('');
-        		$("#reportList li").each(function(){
-        			$(this).find('span').removeClass();
-        			$(this).find('span').addClass('fakeCheck');
-        		});
+        		effects.clearReport();
     		});
         },
         // 举报
@@ -106,23 +108,24 @@ define('mip-iask-ext', ['require', 'customElement', 'zepto'], function (require)
 	    					thisHref=window.location.href;
 	    					window.location.href="http://m.iask.sina.com.cn/login?source=" + thisHref;
 	    					return;
+	    				} else {
+	    					var questionId = $("#report_id").text();
+	    					var type = $("#report_type").text();
+	    					var typeId = $("#report_typeId").text();
+	    					console.log("questionId:"+questionId);
+	    					$.post("http://m.iask.sina.com.cn/question/reportnew", {"reportList":reportList,"questionId":questionId,"type":type,"typeId":typeId},function(data){
+	    						var res = eval("("+data+")");
+	    						alert(res.desc);
+	    					});
+	    					effects.clearReport();
 	    				}
-	    			});
-	    			var questionId = $("#report_id").val();
-	    			var type = $("#report_type").val();
-	    			var typeId = $("#report_typeId").val();
-	    			cannelReport();
-	    			$.post("http://m.iask.sina.com.cn/question/reportnew", {"reportList":reportList,"questionId":questionId,"type":type,"typeId":typeId},function(data){
-	    				var res = eval("("+data+")");
-	    				alert(res.desc);
 	    			});
 	    		}
         	});
         },
-		// 关闭底部广告
         closeBottomAd:function() {
         	$(".foot-plan-close").click(function(){
-        		$("#mip_ad_footer_div").remove();
+        		$("#mip_as_footer_div").remove();
         	});
         },
         init: function () {

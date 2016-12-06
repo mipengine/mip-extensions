@@ -9,24 +9,25 @@ define("mip-iask-business",['require', 'customElement', 'zepto'],function(requir
 	
 	var $ = require('zepto');
 	var customElem = require('customElement').create();
-	var remote_ip_info = {"ret":"1","desc":"","start":"-1","isp":"","province":"广东","type":"电信","district":"","end":"-1","city":"深圳","country":"中国"};
-	var province =  remote_ip_info.province;
-	var city=remote_ip_info.city;
 	// 商业广告
-	var ipLoad = function () {
-		alert("ipload");
-		var url = "http://ipip.iask.cn/iplookup/search?format=json";
-		$.get(url,function(data){
-			console.log(data);
-		});
-		 
+	var ipLoad = function (callback) {
+		var url = "http://ipip.iask.cn/iplookup/search?format=json&callback=?";
+		try{
+			$.getJSON(url,function (data) {
+				province = data.province;
+				city = data.city;
+				callback(data);
+			});
+		}catch (e) { }
 	};
 	// 判断区域投放广告
 	var hideDiv = function(area,div) {
 		try{
-			if(area.indexOf(province) == -1){
-				$(div).remove();
-			}
+			ipLoad(function(data){
+				if(area.indexOf(data.province) == -1){
+					$(div).remove();
+				}
+			});
 		}catch (e) { }
 	};
 	// 隐藏len小于等于0的DIV
@@ -43,16 +44,16 @@ define("mip-iask-business",['require', 'customElement', 'zepto'],function(requir
 	};
 	// 移除百度广告
 	var removeBaiduAd = function() {
-		$("#mip_ad_haoping_div").remove();
-		$("#mip_ad_qita_div").remove();
-		$("#mip_ad_lswt_div").remove();
-		$("#mip_ad_xgzs_div").remove();
-		$("#mip_ad_jrjd").remove();
+		$("#mip_as_haoping_div").remove();
+		$("#mip_as_qita_div").remove();
+		$("#mip_as_lswt_div").remove();
+		$("#mip_as_xgzs_div").remove();
+		$("#mip_as_jrjd").remove();
 		$("#mip_dl_jrjd").remove();
-		$("#mip_ad_tbtj").remove();
+		$("#mip_as_tbtj").remove();
 		$("#mip_dl_tbtj").remove();
-		$("#mip_ad_djgz").remove();
-		$("#mip_ad_footer_div").remove();
+		$("#mip_as_djgz").remove();
+		$("#mip_as_footer_div").remove();
 	};
 	
 	var loadAd = function(sources,openId,div) {
@@ -94,7 +95,7 @@ define("mip-iask-business",['require', 'customElement', 'zepto'],function(requir
 	        		$(div).remove();
 	        	});
 				if(isHuasheng) {
-					$("#mip_ad_other_qiye_div").append(html1);
+					$("#mip_as_other_qiye_div").append(html1);
 				}
 			}
 		});
@@ -132,8 +133,7 @@ define("mip-iask-business",['require', 'customElement', 'zepto'],function(requir
 		var len = $(elem).attr('len');
 		var type = $(elem).attr('type');
 		var sources = $(elem).attr('sources');
-		var openCorporationId = $(elem).attr('openId'); 
-//		ipLoad(); // IP 加载
+		var openCorporationId = $(elem).attr('openId');
 		if(len) {
 			lenHide(len,div,type);
 		}
@@ -146,7 +146,6 @@ define("mip-iask-business",['require', 'customElement', 'zepto'],function(requir
 		if(sources == 'COOPERATE_HUASHENG' || sources == 'COOPERATE_HUASHENG_QA' || sources == 'COOPERATE_XINYUHENG') {
 			loadAd(sources,openCorporationId,div);
 		}
-		
 	};
 	
 	return customElem;

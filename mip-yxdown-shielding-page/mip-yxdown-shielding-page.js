@@ -6,7 +6,6 @@
 
 define(function (require) {
     var customElem = require('customElement').create();
-    // bild 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
         var host = location.host.toLowerCase();
         if (/\/zhibo\/\d+\.html/.test(location.href)) {

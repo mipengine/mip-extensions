@@ -5,7 +5,7 @@ mip-yxdown-shielding-page 用来屏蔽问题页面
 ----|----
 类型|业务
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-down-hideshow/mip-yxdownpb.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-yxdown-shielding-page/mip-yxdown-shielding-page.js
 
 ## 示例
 

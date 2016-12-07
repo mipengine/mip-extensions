@@ -37,7 +37,7 @@ define(function (require) {
         jq(document).ready(function () {
             getreview();
         });
-        jq('#nextreview').on('click', function () {
+        jq('.nextreview').on('click', function () {
             getreview();
         });
     };

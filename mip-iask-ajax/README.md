@@ -13,7 +13,7 @@
 
 ```html
 <span class="btn-goods-02" id="id">1</span>
-<mip-iask-ajax url="http://m.iask.sina.com.cn/answer/praised" data="{'answerId' : 'id'}" isLogin="true" click="id" callback="var txt = $('#id');txt.text(parseInt(txt.text())+1);" >
+<mip-iask-ajax url="http://m.iask.sina.com.cn/answer/praised" data="{'answerId' : 'id'}" isLogin="true" click="id" type="1" div="div" >
 </mip-iask-ajax>
 ```
 
@@ -37,8 +37,13 @@
 必选项：是
 类型：true false
 
-### callback
+### type
 
 说明：根据业务设置
 必选项：否
+类型：1 点赞 
+
+### div
+说明：div的位置
+必选项：是
 类型：字符串

@@ -44,6 +44,10 @@ define(function (require) {
         return url;
     }
 
+    function getCdnUrl(url) {
+        return '//mib.bdstatic.com/doc/detail/' + encodeURIComponent(url) + '/0/';
+    }
+
     function formatTime(time) {
         var tempSeconds = 1000 * time;
         if ((new Date() - tempSeconds) < 60000) {
@@ -148,7 +152,7 @@ define(function (require) {
 
             $.each(data.recommend, function (i, item) {
                 var dataClick = self.handleData(item, i, 'recommend');
-                var href = isIframe ? 'javascript:void(0);' : item.url;
+                var href = isIframe ? 'javascript:void(0);' : getCdnUrl(item.url);
 
                 htmlNews += [
                     '<div class="mip-news-recommend-item">',

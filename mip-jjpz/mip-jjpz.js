@@ -60,82 +60,8 @@ define(function (require) {
     var timeoutFun = function () {
     };
 
-    function setCookie(c_name, value, expiredays) {
-        var exdate = new Date();
-        exdate.setDate(exdate.getDate() + expiredays);
-        document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
-    }　　 //setCookie('username','Darren',30)
-    function getCookie(c_name) {
-        if (document.cookie.length > 0) {
-            c_start = document.cookie.indexOf(c_name + "=")
-            if (c_start != -1) {
-                c_start = c_start + c_name.length + 1
-                c_end = document.cookie.indexOf(";", c_start)
-                if (c_end == -1) c_end = document.cookie.length
-                return unescape(document.cookie.substring(c_start, c_end))
-            }
-        }
-        return ""
-    }
-
-    var user;
-    $(function () {
-
-        var member = {
-            getuser: function (cVal) {
-
-                if (cVal && cVal != null && cVal != "") {
-                    cVal = decodeURIComponent(cVal);
-                    var cVals = cVal.split(";");
-                    user = {
-                        id: cVals[0],
-                        name: cVals[1],
-                        nick: cVals[2],
-                        photo: "https://mp.dfcfw.com/" + cVals[0] + "/48/0"
-                    };
-                    return user;
-                } else {
-                    user = null;
-                    return null;
-                }
-            }
-        }
-        var daohang = {
-            getMyMember: function (succ) { //获取我的登陆信息
-                funCaller._getScript("http://fundwap.eastmoney.com/EastmoneyLoginState.aspx?cn=pi", function () {
-                    if (pi) {
-                        return succ(member.getuser(pi));
-                    } else {
-                        return succ("");
-                    }
-                });
-            },
-            getMyAcct: function (succ) { //获取我的交易账号信息
-                var acctName = getCookie("EM.TTfund.userNameKey");
-                if (acctName == "" || acctName == null || acctName == 'undefined') {
-                    return succ("");
-                }
-                return succ(unescape(acctName));
-            }
-        }
-
-        daohang.getMyMember(function (member) {
-            if (member != "" && member != null && member != {}) {
-                $(".daohang-passport-login").html(member.nick);
-                $(".daohang-passport-order").html("管理").attr({ "href": "https://mpassport.eastmoney.com/" });
-            }
-        });
-        daohang.getMyAcct(function (member) {
-            if (member == "" || member == null || member == {}) {
-                $(".daohangloginout").show();
-                $(".daohangloginin").hide();
-                return;
-            }
-            $(".daohangname").html(member + " ,您好");
-            $(".daohangloginout").hide();
-            $(".daohangloginin").show();
-        });
-    });
+   
+    
     var funCaller = {
         init: function () {
             var tthis = this;
@@ -222,8 +148,8 @@ define(function (require) {
                 funCaller.bindData(funCaller.initNumber2(data.RZDF, 2), '.FearningsN2', 0, funCaller.isRed(data.RZDF));
                 funCaller.bindData(data.Valuation ? (JSON.parse(data.Valuation).gsz) : '--', 'span:nth-child(2)', '.Fevaluation', data.Valuation ? funCaller.isRed(JSON.parse(data.Valuation).gszzl) : '');
                 funCaller.bindData(data.Valuation ? (funCaller.initNumber2(JSON.parse(data.Valuation).gszzl, 2)) : '--', 'span:nth-child(3)', '.Fevaluation', data.Valuation ? funCaller.isRed(JSON.parse(data.Valuation).gszzl) : '');
-                $('.tab').html('<p class="active" data-imgurl="http://j4.dfcfw.com/charts/pic1/">净值估值</p><p data-imgurl="http://j3.dfcfw.com/images/JJJZ5/">单位净值</p><p data-imgurl="http://j3.dfcfw.com/images/syl4/">累计收益</p>');
-                $('.tabContent').html('<img src="http://j4.dfcfw.com/charts/pic1/' + param.data.FCODE + '.png">');
+                $('.tab').html('<p class="active" data-imgurl="https://j4img.1234567.com.cn/charts/pic1/">净值估值</p><p data-imgurl="http://j3.dfcfw.com/images/JJJZ5/">单位净值</p><p data-imgurl="http://j3.dfcfw.com/images/syl4/">累计收益</p>');
+                $('.tabContent').html('<img src="https://j4img.1234567.com.cn/charts/pic1/' + param.data.FCODE + '.png">');
                 date2 = data.Valuation ? JSON.parse(data.Valuation).gztime.substring(5, 16) : '';
                 funCaller.bindData('(' + date2 + ')', 'span:nth-child(4)', '.Fevaluation');
                 funCaller.bindData(funCaller.initNumber2(data.SYL_JN, 2), 'span', '.Info_url div:nth-child(1) ', funCaller.isRed(data.SYL_JN));
@@ -642,52 +568,7 @@ define(function (require) {
                 window.parent.location.href = shareUrl;
             };
             $('.addFavor').on('click', function (e) {
-                if (!user || !user.id) {
-                    window.location.href = 'https://m.passport.eastmoney.com/login.m?backurl=' + encodeURIComponent(encodeURIComponent(location.href));
-                    return;
-                }
-                var favorHtml = $(e.target).html();
-                var option = {
-                    FundType: 85,
-                    Operation: 'a',
-                    Uid: user.id,
-                    deviceid: '',
-                    plat: 'wap',
-                    product: 'EFund',
-                    version: '',
-                    Fcodes: param.data.FCODE
-                };
-                if (favorHtml === '加自选') {
-                    option.Operation = 'a';
-                }
-                else {
-                    option.Operation = 'd';
-                }
-                funCaller.addFavor(option, function (data) {
-                    if (data.ErrCode === 0) {
-
-                        if (favorHtml === '加自选') {
-                            $(e.target).html('删自选');
-
-                            funCaller.alertWindow('添加成功', function () {
-                                location.href = href;
-                            }, '关闭', function () {
-                            });
-                        }
-                        else {
-                            $(e.target).html('加自选');
-                            funCaller.alertWindow('<span>删除成功</span>', function () {
-                                location.href = href;
-                            });
-                        }
-                    }
-                    else {
-                        funCaller.alertWindow('添加失败，请稍后重试！', function () {
-                            location.href = href;
-                        });
-                    }
-
-                });
+              window.location.href = 'http://m.1234567.com.cn/m/fund/funddetail/?fundcode=' + param.data.FCODE;       
             });
         },
         toggleShow: function (options) {

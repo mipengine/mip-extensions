@@ -57,11 +57,7 @@ define(function (require) {
         postid: 10,
         sorttype: 0
     };
-    var timeoutFun = function () {
-    };
-
-   
-    
+    var timeoutFun = function () {};
     var funCaller = {
         init: function () {
             var tthis = this;
@@ -256,7 +252,7 @@ define(function (require) {
                 tthisli.children('a').attr('href', param.funurl + '?fundcode=' + datas[i].FCODE);
                 var tthistbl = tthisli.find('.fund-tbl');
                 tthistbl.find('.fund-title a').attr('href', param.funurl + '?fundcode=' + datas[i].FCODE).html(datas[i].SHORTNAME);
-                tthistbl.find('.fund_minsg span').html(funCaller.NumberM(datas[i].MINSG));
+                tthistbl.find('.fund_minsg span').html(funCaller.numberM(datas[i].MINSG));
                 tthistbl.find('.profit').html(funCaller.initNumber2(datas[i].SYL, 2));
                 tthistbl.find('.profit').next('.profit-title').html(datas[i].SYLMARK);
                 tthistbl.find('.fund-fl.font15').html(datas[i].SOURCERATE);
@@ -284,7 +280,7 @@ define(function (require) {
                 tthisli.children('a').attr('href', param.funurl + '?fundcode=' + datas[i].FCODE);
                 var tthistbl = tthisli.find('.fund-tbl');
                 tthistbl.find('.fund-title a').attr('href', param.funurl + '?fundcode=' + datas[i].FCODE).html(datas[i].SHORTNAME);
-                tthistbl.find('.fund_minsg span').html(funCaller.NumberM(datas[i].MINSG));
+                tthistbl.find('.fund_minsg span').html(funCaller.numberM(datas[i].MINSG));
                 tthistbl.find('.profit').html(funCaller.initNumber2(datas[i].SYL, 2));
                 tthistbl.find('.profit').next('.profit-title').html(datas[i].SYLMARK);
                 tthistbl.find('.fund-fl.font15').html(datas[i].SOURCERATE);
@@ -418,8 +414,7 @@ define(function (require) {
 
                 },
                 error: function (error) {
-                    // alert('网络不给力，请稍后重试');
-                    funCaller.alertWindow('网络不给力，请稍后重试', callback);
+                    funCaller.alertWindow('网络不给力，请稍后重试');
                 }
             });
         },
@@ -519,49 +514,48 @@ define(function (require) {
             $('.shareInfo').on('click', function (e) {
                 var tthis = $(this);
                 var $flexShare = tthis.siblings('.flexShare');
-                $flexShare.toggleClass("hide")
+                $flexShare.toggleClass('hide');
 
                 if (!this.Share) {
                     this.Share = true;
-                    $flexShare.on("touchend", "li", function () {
+                    $flexShare.on('touchend', 'li', function () {
                         var j = $(this);
                         setTimeout(function () {
-                            var type = j.data("type");
+                            var type = j.data('type');
                             if (type) {
-                                shareTo(type)
+                                shareTo(type);
                             }
                         }, 1200);
 
-                    })
+                    });
                 }
                 e.stopPropagation();
 
             });
             var shareTo = function (dest) {
-                var shareTitle = "天天基金网";
+                var shareTitle = '天天基金网';
                 var url = location.href;
-                /*sina*/
-                var source = "基金详情";
-                var sourceUrl = "https://m.1234567.com.cn/";
-                var sinaAppkey = "2136217547";
-                var sinaRalateUid = "2627698865";
+                var source = '基金详情';
+                var sourceUrl = 'https://m.1234567.com.cn/';
+                var sinaAppkey = '2136217547';
+                var sinaRalateUid = '2627698865';
 
-                var title = shareTitle + "-" + source + "(m.1234567.com.cn)";
+                var title = shareTitle + '-' + source + '(m.1234567.com.cn)';
 
-                if (url == null || title == null || url == "" || title == "") {
-                    funCaller.alertWindow("错误的链接地址或标题");
+                if (url === null || title === null || url === '' || title === '') {
+                    funCaller.alertWindow('错误的链接地址或标题');
                     return;
                 }
-                var shareUrl = "";
+                var shareUrl = '';
                 switch (dest.toLowerCase()) {
-                    case "sina":
-                        shareUrl = "http://service.weibo.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=" + sinaAppkey + "&title=" + encodeURIComponent(title) + "&pic=&ralateUid=" + sinaRalateUid + "&source=" + encodeURIComponent(source) + "&sourceUrl=" + encodeURIComponent(sourceUrl);
+                    case 'sina':
+                        shareUrl = 'http://service.weibo.com/share/share.php?url=' + encodeURIComponent(url) + '&appkey=' + sinaAppkey + '&title=' + encodeURIComponent(title) + '&pic=&ralateUid=' + sinaRalateUid + '&source=' + encodeURIComponent(source) + '&sourceUrl=' + encodeURIComponent(sourceUrl);
                         break;
-                    case "qq":
-                        shareUrl = "http://v.t.qq.com/share/share.php?url=" + encodeURIComponent(url) + "&appkey=801004939&site=https://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&pic=";
+                    case 'qq':
+                        shareUrl = 'http://v.t.qq.com/share/share.php?url=' + encodeURIComponent(url) + '&appkey=801004939&site=https://wap.eastmoney.com&title=' + encodeURIComponent(title) + '&pic=';
                         break;
-                    case "qzone":
-                        shareUrl = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + encodeURIComponent(url) + "&appkey=801004939&site=https://wap.eastmoney.com&title=" + encodeURIComponent(title) + "&desc=&summary=&site=https://wap.eastmoney.com";
+                    case 'qzone':
+                        shareUrl = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(url) + '&appkey=801004939&site=https://wap.eastmoney.com&title=' + encodeURIComponent(title) + '&desc=&summary=&site=https://wap.eastmoney.com';
                         break;
                 }
 
@@ -592,7 +586,7 @@ define(function (require) {
 
             return n;
         },
-        NumberM: function (n) {
+        numberM: function (n) {
             return Number(n) > 10000 ? Math.round(Number(n) / 10000) + '万' : n;
         },
         fomateDate: function (d) {
@@ -616,7 +610,6 @@ define(function (require) {
                 if (parseFloat(str) === 0) {
                     return 'ui_black';
                 }
-
                 return 'ui_red';
             }
             else if (parseFloat(str) < 0) {
@@ -636,20 +629,7 @@ define(function (require) {
                 alertMaskerUI.remove();
             }
 
-            var alertMaskhtml = '<div class="alertMasker _alertMaskerUI_">' +
-                '<div>' +
-                '<div class="alert">' +
-                '<div class="inner">' +
-
-                /*'<h2>温馨提示</h2>'+*/
-                '<p></p>' +
-                '<footer>' +
-                '<a href="javascript:void(null)" class="button" for="yes" >确定</a>' +
-                '</footer>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>';
+            var alertMaskhtml = '<div class="alertMasker _alertMaskerUI_"> <div> <div class="alert"><div class="inner"><p></p><footer><a href="javascript:void(null)" class="button" for="yes" >确定</a></footer></div></div></div></div>';
 
             $('mip-jjpz').append(alertMaskhtml);
 
@@ -657,7 +637,7 @@ define(function (require) {
         alertWindow: function (txt, callback, option) {
             var tthis = this;
             var target = $('._alertMaskerUI_');
-            if (target.css("display") == "block") {
+            if (target.css('display') === 'block') {
                 return false;
             }
 
@@ -799,34 +779,6 @@ define(function (require) {
             }
 
             dom.html(data);
-        },
-        _getScript: function (url, callback) {
-            var head = document.getElementsByTagName('head')[0],
-                js = document.createElement('script');
-
-            js.setAttribute('type', 'text/javascript');
-            js.setAttribute('src', url);
-
-            head.appendChild(js);
-
-            //执行回调
-            var callbackFn = function () {
-                if (typeof callback === 'function') {
-                    callback();
-                }
-            };
-
-            if (document.all) { //IE
-                js.onreadystatechange = function () {
-                    if (js.readyState == 'loaded' || js.readyState == 'complete') {
-                        callbackFn();
-                    }
-                }
-            } else {
-                js.onload = function () {
-                    callbackFn();
-                }
-            }
         }
     };
 

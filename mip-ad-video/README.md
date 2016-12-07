@@ -13,6 +13,7 @@ mip-ad-video 实现了一个简单的广告+视频的播放器
 ```html
 <mip-ad-video ad-src="http://img.vodjk.com/templates/vodjk/images/ad-shipin/ad-pc-qfk.mp4"
     ad-time="5"
+    poster="http://upload.vodjk.com/2016/1122/thumb_170_115_1479798053355.jpg"
     target-src="http://dianbo.vodjk.com:80/vod/xinma/jbl/wgk/2016/04/20/499DBA6FFCD74fc195C4C59859BDA08C.mp4">
 </mip-ad-video>
 ``` 
@@ -21,16 +22,21 @@ mip-ad-video 实现了一个简单的广告+视频的播放器
 
 ### ad-src
 说明：广告视频的url地址  
-必选项：否  
+必选项：是
 类型：string  
 
 ### ad-time
 说明：广告视频的播放时长  
-必选项：否  
+必选项：是   
 类型：int
 
 ### target-src
 说明：视频的url地址    
+必选项：是  
+类型：string
+
+### poster
+说明：视频的封面图片    
 必选项：是  
 类型：string
 

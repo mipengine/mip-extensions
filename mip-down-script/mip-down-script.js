@@ -309,7 +309,7 @@ define(function (require) {
                         rcid: rCid,
                         rrid: rRid
                     },
-                    url: '/ajax.asp?action=998',
+                    url: 'https://apis.pc6.com/ajax.asp?action=998',
                     dataType: 'json',
                     success: function (data) {
                         if (typeof data.list === 'undefined') {

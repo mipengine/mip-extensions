@@ -8,7 +8,6 @@ define(function (require) {
     var browser = {
         versions: (function () {
             var u = navigator.userAgent;
-            // var app = navigator.appVersion;
             return {
                 ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
                 android: u.indexOf('Android') > -1, // android终端或者uc浏览器

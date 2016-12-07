@@ -27,7 +27,7 @@ define(function (require) {
             pageIndex: 1,
             pageSize: 3
         },
-        apiurl: 'https://fundmobapitest.eastmoney.com/FundMApi/',
+        apiurl: 'https://fundmobapi.eastmoney.com/FundMApi/',
         funurl: 'http://m.1234567.com.cn/m/fund/funddetail/',
         funBuyUrl: 'https://tradewap.1234567.com.cn/buyfund.html',
         sameCompany: 'http://m.1234567.com.cn/m/fund/jjjz.shtml',

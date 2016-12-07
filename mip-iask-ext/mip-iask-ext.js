@@ -2,7 +2,7 @@
 * @file 脚本支持
 * @author  lihui
 * @time  20161207
-* @version 1.0.0
+* @version 1.0.1
 */
 define('mip-iask-ext', ['require', 'customElement', 'zepto'], function (require) {
     var $ = require('zepto');

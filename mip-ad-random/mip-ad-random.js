@@ -27,7 +27,7 @@ define(function (require) {
         var adWidth = t.getAttribute('ad-width');
         var adHeight = t.getAttribute('ad-height');
         var advet = '<mip-ad layou="reponsive" width="' + adWidth + '" height="' + adHeight + '" '
-        + 'type="ad-com" tpl="oneImg" class="' + adClass + '" href="' + adhref + '" '
+        + 'type="ad-comm" tpl="oneImg" class="' + adClass + '" href="' + adhref + '" '
         + 'data-size="1242 180" src="' + adsrc + '" data-title="' + adTitle + '"></mip-ad>';
         if (arrylength2 === 0) {
             $(rank).append(advet);

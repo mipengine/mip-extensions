@@ -1,11 +1,13 @@
 {
-    "name": "mip-xueyou-list",
-    "version": "1.0.1",
-    "author": {
-        "name": "myoa",
-        "email": "myoa@163.com",
-        "url": "http://www.gkstk.com/"
-    },
+    "name": "mip-iask-report",
+    "version": "1.0.2",
+    "description": "问题回答举报",
+    "contributors": [
+        {
+            "name": "hejieye",
+            "email": "jieye.he@iask.com"
+        }
+    ],
     "engines": {
         "mip": ">=1.1.0"
     }

@@ -351,7 +351,12 @@ define(function (require) {
             var detail = '';
             var datas = data.Datas;
             for (var i = 0; i < datas.length; i++) {
-                var imgurl = datas[i].PHOTOURL == null ? 'http://j5.dfcfw.com/avatar/nopic.gif' : datas[i].PHOTOURL;
+                var imgurl;
+                if (datas[i].PHOTOURL == null) {
+                    imgurl = 'http://j5.dfcfw.com/avatar/nopic.gif';
+                }else{
+                    imgurl = 'https://fundmobapi.eastmoney.com/FundMApi/HttpToHttps.ashx?TYPE=pic&URL=' + atas[i].PHOTOURL;
+                }
                 detail += '<div class="ui-grid-row"><div class="ui-grid-4">';
                 detail += '<img width="80" src="' + imgurl + '">';
                 detail += '</div><div class="ui-grid-6 jjjlInfo">';

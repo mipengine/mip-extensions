@@ -24,7 +24,8 @@ define(function (require) {
     function ppzsAd() {
         var curappPpid = 0;
         var webInfoPpid = $('#down-href').attr('platid');
-        if (browser.versions.android && localStorage.getItem('ppzs') !== 'Yes') {
+        if (browser.versions.android && localStorage.getItem('ppzs') !== 'Yes'
+        && $('#plat_Android').attr('TypeID') !== '58') {
             var oflag = true;
             var pphref = '';
             if (webInfoPpid > 0) {

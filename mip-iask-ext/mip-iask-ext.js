@@ -23,7 +23,8 @@ define(function (require) {
                     $(nodes).hide();
 
                     $(nodes).slice(index, index + 1).show();
-                } catch (e) {}
+                }
+                catch (e) {}
             });
         },
         // 换一换
@@ -45,7 +46,8 @@ define(function (require) {
                     $(childNodes).hide();
                     $(childNodes).slice(pagecount, endcount).show();
                     $(this).attr('pagecount', endcount);
-                } catch (e) {}
+                }
+                catch (e) {}
             });
         },
         // 展开 or 收起
@@ -58,49 +60,52 @@ define(function (require) {
                     if (txt.text() === '[展开]') {
                         txt.text('[收起]');
                         txt.prev().show();
-                    } else {
+                    }
+                    else {
                         txt.text('[展开]');
                         txt.prev().hide();
                     }
-                } catch (e) {}
+                }
+                catch (e) {}
             });
         },
         // 选择举报项
         reportChange: function () {
-            $('#reportList li').on('click',
+            $('.reportList li').on('click',
             function () {
                 var fake = $(this).find('span').attr('class');
                 if (fake === 'fakeChecked') {
                     $(this).find('span').removeClass();
                     $(this).find('span').addClass('fakeCheck');
-                } else {
+                }
+                else {
                     $(this).find('span').removeClass();
                     $(this).find('span').addClass('fakeChecked');
                 }
             });
         },
         clearReport: function () {
-            $('#report-div').hide();
-            $('#report_id').text('');
-            $('#report_type').text('');
-            $('#report_typeId').text('');
-            $('#reportList li').each(function () {
+            $('.report-body').hide();
+            $('.report_id').text('');
+            $('.report_type').text('');
+            $('.report_typeId').text('');
+            $('.reportList li').each(function () {
                 $(this).find('span').removeClass();
                 $(this).find('span').addClass('fakeCheck');
             });
         },
         // 取消举报
         cannelReport: function () {
-            $('#cannelReport').on('click',
+            $('.cannelReport').on('click',
             function () {
                 effects.clearReport();
             });
         },
         // 举报
         okReport: function () {
-            $('#okReport').click(function () {
+            $('.okReport').click(function () {
                 var reportList = '';
-                $('#reportList li').each(function () {
+                $('.reportList li').each(function () {
                     var fake = $(this).find('span').attr('class');
                     if (fake === 'fakeChecked') {
                         reportList += $(this).text().trim() + '-';
@@ -108,7 +113,8 @@ define(function (require) {
                 });
                 if (reportList === '') {
                     alert('请选择举报原因！');
-                } else {
+                }
+                else {
                     var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?m=' + Math.random();
                     $.get(checkLoginUrl,
                     function (e) {
@@ -116,11 +122,11 @@ define(function (require) {
                             // 跳转到登录页面
                             var thisHref = window.location.href;
                             window.location.href = 'http://m.iask.sina.com.cn/login?source=' + thisHref;
-                            return;
-                        } else {
-                            var questionId = $('#report_id').text();
-                            var type = $('#report_type').text();
-                            var typeId = $('#report_typeId').text();
+                        }
+                        else {
+                            var questionId = $('.report_id').text();
+                            var type = $('.report_type').text();
+                            var typeId = $('.report_typeId').text();
                             $.post('http://m.iask.sina.com.cn/question/reportnew', {
                                 'reportList': reportList,
                                 'questionId': questionId,
@@ -163,7 +169,8 @@ define(function (require) {
                     console.log(content);
                     window.location.href = 'http://m.iask.sina.com.cn/ask?content=' + content;
                 });
-            } catch (e) {}
+            }
+            catch (e) {}
         },
         // 设置cookie
         setCookie: function (name, value) {
@@ -201,10 +208,11 @@ define(function (require) {
         checkLogin: function () {
             try {
                 this.addLoginCookie();
-            } catch (e) {
+            }
+            catch (e) {
                 console.log(e);
             }
-            var indexLogin = $('#index_login');
+            var indexLogin = $('.index_login');
             var thisHref = window.location.href;
             var nickName = null;
             var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?m=' + Math.random();
@@ -212,7 +220,8 @@ define(function (require) {
             function (e) {
                 if (e === null || e === 'null') {
                     indexLogin.attr('href', 'http://m.iask.sina.com.cn/login?source=' + thisHref);
-                } else {
+                }
+                else {
                     var user = $.parseJSON(e);
                     nickName = user.nickname;
                     if (nickName.length > 4) {
@@ -258,5 +267,7 @@ define(function (require) {
         // this.element 可取到当前实例对应的 dom 元素
         effects.init();
     };
+
     return customElem;
 });
+

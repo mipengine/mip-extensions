@@ -1,22 +1,21 @@
-﻿# mip-iask-business
+# mip-iask-business
 
-爱问广告插件
+mip-iask-business 爱问商业广告组件
 
-|---|---|
-|类型|广告|
-|支持布局|N/S|
-|所需脚本|https://mipcache.bdstatic.com/static/v1/mip-iask-business/mip-iask-business.js|
+标题|内容
+----|----
+类型|业务
+支持布局|N,S|
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-iask-business/mip-iask-business.js
 
 ## 示例
 
-在MIP HTML中，直接使用标签。
-
+### 基本用法
 ```html
-1 <mip-iask-business sources="${CommercialSource}" area="${qtlist.deliveryArea}"  div=".qt_list_${fn:replace(qtlist.deliveryArea,',', '')}"></mip-iask-business>
-2 <mip-iask-business sources="${q.questionSourceType}" openId="${q.openCorporationId}" div="#mip_ad_footer_div"></mip-iask-business>
-3 <mip-iask-business sources="${CommercialSource}"  len="#remcommend-info-${fn:replace(answerUI.deliveryArea,',', '')}" div="user-info-${fn:replace(answerUI.deliveryArea,',', '')}" type="show"></mip-iask-business>
+<mip-iask-business sources="${CommercialSource}" area="${qtlist.deliveryArea}"  div=".qt_list_${fn:replace(qtlist.deliveryArea,',', '')}"></mip-iask-business>
+<mip-iask-business sources="${q.questionSourceType}" openId="${q.openCorporationId}" div="#mip_ad_footer_div"></mip-iask-business>
+<mip-iask-business sources="${CommercialSource}"  len="#remcommend-info-${fn:replace(answerUI.deliveryArea,',', '')}" div="user-info-${fn:replace(answerUI.deliveryArea,',', '')}" type="show"></mip-iask-business>
 ```
-
 ## 属性
 
 ### sources

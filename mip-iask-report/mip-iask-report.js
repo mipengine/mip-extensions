@@ -2,9 +2,9 @@
 * @file 脚本支持
 * @author hejieye
 * @time  2016-12-07
-* @version 1.0.1
+* @version 1.0.2
 */
-define('mip-iask-report', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     var openReportDiv = function (elem) {
@@ -28,10 +28,4 @@ define('mip-iask-report', ['require', 'customElement', 'zepto'], function (requi
         });
     };
     return customElem;
-});
-
-require(['mip-iask-report'],
-function (plugindemo) {
-    // 注册mip-iask-report 组件
-    MIP.registerMipElement('mip-iask-report', plugindemo);
 });

@@ -1,33 +1,34 @@
 # mip-iask-report
 
-爱问详细页举报插件
+mip-iask-report 打开举报div
 
-描述|问题详细页当中用于举报问题回答js脚本
+标题|内容
 ----|----
-类型|业务
-支持布局| N/S
-所需脚本| https://mipcache.bdstatic.com/static/v1/mip-iask-ext/mip-iask-ext.js
-		  https://mipcache.bdstatic.com/static/v1/mip-iask-report/mip-iask-report.js
+类型|通用
+支持布局|N,S|
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-iask-report/mip-iask-report.js
 
 ## 示例
 
+### 基本用法
+```html
 <span class="report-link" id="answer_${a.id }">举报</span>
 <mip-iask-report questionId="${q.id }" type="answer" typeId="${a.id }"></mip-iask-report>
 
-
 ## 属性
 
-### questionId 
+### questionId
 
 说明：问题ID
 必选项：是
 类型：字符串
+## 注意事项
 
 ### type
 
 说明：举报的类型
 必选项：是
-类型：question  answer 
+类型：question answer 
 
 ### typeId
 

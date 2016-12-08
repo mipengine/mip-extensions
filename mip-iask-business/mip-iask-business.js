@@ -46,16 +46,16 @@ define(function (require) {
     };
     // 移除百度广告
     var removeBaiduAd = function () {
-        $('#mip_as_haoping_div').remove();
-        $('#mip_as_qita_div').remove();
-        $('#mip_as_lswt_div').remove();
-        $('#mip_as_xgzs_div').remove();
-        $('#mip_as_jrjd').remove();
-        $('#mip_dl_jrjd').remove();
-        $('#mip_as_tbtj').remove();
-        $('#mip_dl_tbtj').remove();
-        $('#mip_as_djgz').remove();
-        $('#mip_as_footer_div"').remove();
+        $('.mip_as_haoping_div').remove();
+        $('.mip_as_qita_div').remove();
+        $('.mip_as_lswt_div').remove();
+        $('.mip_as_xgzs_div').remove();
+        $('.mip_as_jrjd').remove();
+        $('.mip_dl_jrjd').remove();
+        $('.mip_as_tbtj').remove();
+        $('.mip_dl_tbtj').remove();
+        $('.mip_as_djgz').remove();
+        $('.mip_as_footer_div"').remove();
     };
     var loadAd = function (sources, openId, div) {
         var type = '';
@@ -99,19 +99,21 @@ define(function (require) {
                     $(div).remove();
                 });
                 if (isHuasheng) {
-                    $('#mip_as_other_qiye_div').append(html1);
+                    $('.mip_as_other_qiye_div').append(html1);
                 }
             }
         });
     };
-    // 悬浮广告
+    // 动态添加 mip-fixed悬浮广告
     var putMXfAd = function (picLink, picLocal) {
         var htmls = '';
-        htmls += '<div class=\'foot-plan\' >';
-        htmls += '<span class=\'foot-plan-close\'>关闭</span> <span class=\'icon-bai\'></span>';
+        htmls += '<mip-fixed type=\'bottom\' id=\'customid\' top=\'60px\'>';
+        htmls += '<div class=\'mip-adbd\'>';
+        htmls += '<div on=\'tap:customid.close\' class=\'mip-adbd-close\'><span>关闭</span></div>';
         htmls += '<a href=' + picLink + ' target=\'_blank\'>';
         htmls += '<mip-img class=\'mip-img\' src=' + picLocal + '></mip-img>';
-        htmls += '</a></div>';
+        htmls += '</a>';
+        htmls += '</div></mip-fixed>';
         return htmls;
     };
     var putQiyeInfo = function (companyName, drName, website, pic) {

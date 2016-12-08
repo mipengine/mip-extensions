@@ -166,46 +166,8 @@ define(function (require) {
             }
             catch (e) {}
         },
-        // 设置cookie
-        setCookie: function (name, value) {
-            var Days = 30; // 此 cookie 将被保存 30 天
-            var exp = new Date(); // new Date("December 31, 9998");
-            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-            document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString();
-        },
-        // 获取cookie
-        getCookie: function (cookiename) {
-            var result = null;
-            var mycookie = document.cookie;
-            var start2 = mycookie.indexOf(cookiename + '=');
-            if (start2 > -1) {
-                var start = mycookie.indexOf('=', start2) + 1;
-                var end = mycookie.indexOf(';', start);
-                if (end === -1) {
-                    end = mycookie.length;
-                }
-                result = unescape(mycookie.substring(start, end));
-            }
-            return result;
-        },
-        addLoginCookie: function () {
-            var key = 'iask_cookie';
-            var now = new Date();
-            var st = this.getCookie(key);
-            if (st != null) {
-                return;
-            }
-            this.setCookie(key, now.getTime() + '' + Math.random());
-            return;
-        },
         // 验证登录信息
         checkLogin: function () {
-            try {
-                this.addLoginCookie();
-            }
-            catch (e) {
-                console.log(e);
-            }
             var indexLogin = $('.index_login');
             var thisHref = window.location.href;
             var nickName = null;

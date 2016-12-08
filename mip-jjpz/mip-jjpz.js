@@ -665,7 +665,7 @@ define(function (require) {
             }
         },
         isEmpty: function (value, allowEmptyString) {
-            return (value === null) || (value === undefined) || (!allowEmptyString ? value === '' : false) || (this.isArray(value) && value.length === 0) || (value === '(null)');
+            return (value === null) || (value === undefined) || (!allowEmptyString ? value === '' : false);
         },
         initAlertMask: function () {
 

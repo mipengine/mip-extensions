@@ -354,8 +354,9 @@ define(function (require) {
                 var imgurl;
                 if (datas[i].PHOTOURL == null) {
                     imgurl = 'http://j5.dfcfw.com/avatar/nopic.gif';
-                }else{
-                    imgurl = 'https://fundmobapi.eastmoney.com/FundMApi/HttpToHttps.ashx?TYPE=pic&URL=' + atas[i].PHOTOURL;
+                }
+                else {
+                    imgurl = 'https://fundmobapi.eastmoney.com/FundMApi/HttpToHttps.ashx?TYPE=pic&URL=' + datas[i].PHOTOURL;
                 }
                 detail += '<div class="ui-grid-row"><div class="ui-grid-4">';
                 detail += '<img width="80" src="' + imgurl + '">';

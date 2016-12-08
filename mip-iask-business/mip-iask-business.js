@@ -107,7 +107,7 @@ define(function (require) {
     // 动态添加 mip-fixed悬浮广告
     var putMXfAd = function (picLink, picLocal) {
         var htmls = '';
-        htmls += '<mip-fixed type=\'bottom\' id=\'customid\' top=\'60px\'>';
+        htmls += '<mip-fixed id=\'customid\'>';
         htmls += '<div class=\'mip-adbd\'>';
         htmls += '<div on=\'tap:customid.close\' class=\'mip-adbd-close\'><span>关闭</span></div>';
         htmls += '<a href=' + picLink + ' target=\'_blank\'>';

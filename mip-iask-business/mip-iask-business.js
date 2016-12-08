@@ -2,9 +2,9 @@
 * @file 脚本支持
 * @author hejieye
 * @time  2016-12-07
-* @version 1.0.1
+* @version 1.0.2
 */
-define('mip-iask-business', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
 
     var $ = require('zepto');
     var customElem = require('customElement').create();
@@ -16,7 +16,8 @@ define('mip-iask-business', ['require', 'customElement', 'zepto'], function (req
             function (data) {
                 callback(data);
             });
-        } catch (e) {}
+        }
+        catch (e) {}
     };
     // 判断区域投放广告
     var hideDiv = function (area, div) {
@@ -26,7 +27,8 @@ define('mip-iask-business', ['require', 'customElement', 'zepto'], function (req
                     $(div).remove();
                 }
             });
-        } catch (e) {}
+        }
+        catch (e) {}
     };
     // 隐藏len小于等于0的DIV
     var lenHide = function (len, div, type) {
@@ -34,11 +36,13 @@ define('mip-iask-business', ['require', 'customElement', 'zepto'], function (req
             if ($(len).length <= 0) {
                 if (type === 'show') {
                     $(div).show();
-                } else {
+                }
+                else {
                     $(div).hide();
                 }
             }
-        } catch (e) {}
+        }
+        catch (e) {}
     };
     // 移除百度广告
     var removeBaiduAd = function () {
@@ -53,14 +57,15 @@ define('mip-iask-business', ['require', 'customElement', 'zepto'], function (req
         $('#mip_as_djgz').remove();
         $('#mip_as_footer_div"').remove();
     };
-
     var loadAd = function (sources, openId, div) {
         var type = '';
         if (sources === 'COOPERATE_HUASHENG') {
             type = 'HS';
-        } else if (sources === 'COOPERATE_HUASHENG_QA') {
+        }
+        else if (sources === 'COOPERATE_HUASHENG_QA') {
             type = 'HSQA';
-        } else if (sources === 'COOPERATE_XINYUHENG') {
+        }
+        else if (sources === 'COOPERATE_XINYUHENG') {
             type = 'XYH';
         }
         if (type === '') {
@@ -79,7 +84,8 @@ define('mip-iask-business', ['require', 'customElement', 'zepto'], function (req
                 if (type === 'XYH') {
                     isHuasheng = false;
                     htmls = putMXfAd(json.pics[1].picLink, json.pics[1].picLocal);
-                } else {
+                }
+                else {
                     var pic = json.pics[3] || '';
                     htmls = putMXfAd(pic.picLink, pic.picLocal);
                     var companyName = json.companyName || '';
@@ -150,8 +156,3 @@ define('mip-iask-business', ['require', 'customElement', 'zepto'], function (req
     return customElem;
 });
 
-require(['mip-iask-business'],
-function (plugindemo) {
-    // 注册mip-iask-business 组件
-    MIP.registerMipElement('mip-iask-business', plugindemo);
-});

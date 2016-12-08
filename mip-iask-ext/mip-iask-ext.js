@@ -1,10 +1,10 @@
 /**
 * @file 脚本支持
-* @author  lihui
+* @author  hejieye
 * @time  20161207
-* @version 1.0.1
+* @version 1.0.2
 */
-define('mip-iask-ext', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     // 页面交互效果
@@ -258,12 +258,5 @@ define('mip-iask-ext', ['require', 'customElement', 'zepto'], function (require)
         // this.element 可取到当前实例对应的 dom 元素
         effects.init();
     };
-
     return customElem;
-});
-
-require(['mip-iask-ext'],
-function (plugindemo) {
-    // 注册mip-iask-ext组件
-    MIP.registerMipElement('mip-iask-ext', plugindemo);
 });

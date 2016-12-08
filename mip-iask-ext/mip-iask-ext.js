@@ -143,12 +143,6 @@ define(function (require) {
                 }
             });
         },
-        // 关闭底部广告
-        closeBottomAd: function () {
-            $('.foot-plan-close').click(function () {
-                $('#mip_as_footer_div').remove();
-            });
-        },
         // 问题搜索
         btnSearch: function () {
             $('.btn-search').click(function () {
@@ -254,7 +248,6 @@ define(function (require) {
             this.reportChange();
             this.cannelReport();
             this.okReport();
-            this.closeBottomAd();
             this.btnSearch();
             this.btnSend();
             this.checkLogin();

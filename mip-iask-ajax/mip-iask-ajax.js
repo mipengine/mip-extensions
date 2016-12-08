@@ -2,9 +2,9 @@
 * @file 脚本支持
 * @author  hejieye
 * @time  2016-12-07
-* @version 1.0.1
+* @version 1.0.2
 */
-define('mip-iask-ajax', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
 
     var $ = require('zepto');
     var customElem = require('customElement').create();
@@ -20,11 +20,13 @@ define('mip-iask-ajax', ['require', 'customElement', 'zepto'], function (require
                     var thisHref = window.location.href;
                     window.location.href = 'http://m.iask.sina.com.cn/login?source=' + thisHref;
                     return;
-                } else {
+                }
+                else {
                     ajaxPost(url, json, div, type);
                 }
             });
-        } else {
+        }
+        else {
             ajaxPost(url, json, div, type);
         }
 
@@ -39,7 +41,8 @@ define('mip-iask-ajax', ['require', 'customElement', 'zepto'], function (require
                     var txt = $(div);
                     txt.text(parseInt(txt.text(), 0) + 1);
                 }
-            } else {
+            }
+            else {
                 // 失败
             }
         });
@@ -62,10 +65,4 @@ define('mip-iask-ajax', ['require', 'customElement', 'zepto'], function (require
     };
 
     return customElem;
-});
-
-require(['mip-iask-ajax'],
-function (plugindemo) {
-    // 注册mip-iask-ajax 组件
-    MIP.registerMipElement('mip-iask-ajax', plugindemo);
 });

@@ -19,7 +19,6 @@ define(function (require) {
                     // 跳转到登录页面
                     var thisHref = window.location.href;
                     window.location.href = 'http://m.iask.sina.com.cn/login?source=' + thisHref;
-                    return;
                 }
                 else {
                     ajaxPost(url, json, div, type);
@@ -58,7 +57,7 @@ define(function (require) {
         var click = $(elem).attr('click');
         var type = $(elem).attr('type');
         var div = $(elem).attr('div');
-        $('#' + click).on('click', function () {
+        $(click).on('click', function () {
             checkLogin(url, params, isLogin, div, type);
         });
 
@@ -66,3 +65,4 @@ define(function (require) {
 
     return customElem;
 });
+

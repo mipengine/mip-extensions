@@ -9,16 +9,12 @@
 
 define(function (require) {
     var customElem = require('customElement').create();
-    var wechat = require('./sex-wechat-copy');
     var extra = require('./sex-extra');
     var setImgAd = require('./sex-set-img-ad');
 
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        // 微信公众号的复制
-        wechat.copy('#yunying_block .targetCopy');
-
-        // 导航返回判断
+        // 随机关注人数
         extra.follow();
 
         // 导航返回判断

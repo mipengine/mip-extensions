@@ -37,7 +37,7 @@ define(function (require) {
     };
 
     module.nav = function () {
-        var $navigate01 = $('#navigate01');
+        var $navigate01 = $('.navigate01-nav');
         var $btnMenu = $('.ico-navigate-menu');
         var $btnUp = $('.ico-collapse-up');
 
@@ -55,7 +55,7 @@ define(function (require) {
     };
 
     module.follow = function () {
-        var ele = $('#follow-num');
+        var ele = $('.follow-num');
 
         var num = Math.floor(10000 + Math.random() * (100000 - 10000));
         ele.text(num);

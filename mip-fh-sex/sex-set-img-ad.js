@@ -29,7 +29,7 @@ define(function (require) {
 
     module.set = function () {
 
-        var $img = $('#FhwapContent mip-img[src^="http://sex."]');
+        var $img = $('.FhwapContent mip-img[src^="http://sex."]');
 
         if (!$img.length) {
             return;

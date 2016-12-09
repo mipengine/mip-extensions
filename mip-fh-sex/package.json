@@ -2,7 +2,8 @@
     "name": "mip-fh-sex",
     "version": "1.0.0",
     "author": {
-        "name": "laoono@163.com"
+        "name": "laoono",
+        "email": "laoono@163.com"
     },
     "engines": {
         "mip": ">=1.1.0"

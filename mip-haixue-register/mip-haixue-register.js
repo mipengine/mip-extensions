@@ -44,11 +44,7 @@ define(function (require) {
                     + '?' + formValue
                     + '&categoryId=' + '9' + '&childCategoryId='
                     + '100051' + '&webFrom=' + webFrom);
-                setTimeout(
-                    function () {
-                        $('.m-pop ').show(200);
-                    }, 800);
-
+                $('.m-popEnd').show(200);
             }
             else {
                 alert('手机号格式不正确！');

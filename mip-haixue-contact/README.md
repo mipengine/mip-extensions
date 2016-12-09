@@ -18,9 +18,5 @@ mip-haixue-contact 用来支持嗨学网咨询功能
 </mip-haixue-contact>
 ```
 
-## 属性
-
-### 无
-
 
 

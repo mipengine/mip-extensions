@@ -17,8 +17,5 @@ mip-haixue-register 用来支持嗨学网手机注册功能
 </mip-haixue-register>
 ```
 
-## 属性
-
-### 无
 
 

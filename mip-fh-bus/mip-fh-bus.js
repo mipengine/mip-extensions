@@ -9,8 +9,8 @@
 
 define(function (require) {
     var customElem = require('customElement').create();
-    var extra = require('./sex-extra');
-    var setImgAd = require('./sex-set-img-ad');
+    var extra = require('./bus-extra');
+    var setImgAd = require('./bus-set-img-ad');
 
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {

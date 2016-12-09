@@ -1,12 +1,12 @@
 /**
- * @author: lixkoo
- * @date: 2016-12-02
- * @file: mip-yxdown-shielding-page.js
+ * @file mip-yxdown-shielding-page 组件
+ * @author lixkoo
  */
 
 define(function (require) {
-    var customElem = require('customElement').create();
-    customElem.prototype.build = function () {
+
+    var customElement = require('customElement').create();
+    customElement.prototype.build = function () {
         window.showkey = function (alist, blist) {
             window.skeyA = alist;
             window.skeyB = blist;
@@ -47,5 +47,6 @@ define(function (require) {
             }
         };
     };
-    return customElem;
+
+    return customElement;
 });

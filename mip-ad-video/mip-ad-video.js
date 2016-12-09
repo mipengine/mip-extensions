@@ -31,6 +31,9 @@ define(function (require) {
             'poster': poster
         });
 
+        //  初始化video的尺寸大小
+        $(video).css('height', window.innerWidth / 16 * 9 + 'px');
+
         //  如果是IOS则设置为自动播放
         if (platform.isIos()) {
             video.autoplay = true;

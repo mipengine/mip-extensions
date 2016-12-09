@@ -1,11 +1,13 @@
 {
     "name": "mip-yxdown-shielding-page",
     "version": "1.0.0",
-    "author": {
-        "name": "lixkoo",
-        "url": "https://www.mipengine.org",
-        "email":"2880623731@qq.com"
-    },
+    "description": "用来屏蔽一些问题页面",
+    "contributors": [
+        {
+            "name": "lixkoo",
+            "email": "lixkoo@outlook.com"
+        }
+    ],
     "engines": {
         "mip": ">=1.1.0"
     }

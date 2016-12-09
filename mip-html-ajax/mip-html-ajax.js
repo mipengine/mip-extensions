@@ -107,17 +107,20 @@ define(function (require) {
                         qAlert(jsondb.msg);
                     }
 					else {
+                        var dataTmp = typeof (data.tmp) !== 'undefined' ? 1 : 0;
+                        var dataNta = dataTmp === 1 ? qi(data.tmp.nta).html() : htmlDecode(data.nta);
+                        var dataNtr = dataTmp === 1 ? qi(data.tmp.ntr).html() : htmlDecode(data.ntr);
                         var isretext = obj.find(data.res.upval).val();
                         obj.find('[empty=true]').val('');
                         if (jsondb.msg !== '') {
                             qAlert(jsondb.msg);
                         }
                         if (isretext === '0') {
-                            var newData = tempview(data.nta, jsondb);
+                            var newData = tempView(dataNta, jsondb);
                             obj.find(data.obj.list).append(newData);
                         }
                         else {
-                            var addData = tempview(data.ntr, jsondb);
+                            var addData = tempView(dataNtr, jsondb);
                             var addElem = obj.find(data.obj.list).find('#Q' + isretext);
                             addElem.find(data.obj.listre).append(addData);
                             viewPort.setScrollTop(addElem.offset().top);
@@ -159,13 +162,16 @@ define(function (require) {
                     else {
                         if (typeof (jsondb[data.obj.arr]) !== 'undefined') {
                             if (jsondb[data.obj.arr].length > 0) {
+                                var dataTmp = typeof (data.tmp) !== 'undefined' ? 1 : 0;
+                                var dataHta = dataTmp === 1 ? qi(data.tmp.hta).html() : htmlDecode(data.hta);
+                                var dataHtr = dataTmp === 1 ? qi(data.tmp.htr).html() : htmlDecode(data.htr);
                                 var dataList = '';
                                 for (var i = 0; i < jsondb[data.obj.arr].length; i++) {
-                                    var thisdata = tempview(data.hta, jsondb[data.obj.arr][i]);
+                                    var thisdata = tempView(dataHta, jsondb[data.obj.arr][i]);
                                     if (thisdata.indexOf('$ReData$') > 0 && data.obj.rearr !== '') {
                                         var redata = '';
                                         for (var ir = 0; ir < jsondb[data.obj.arr][i][data.obj.rearr].length; ir++) {
-                                            redata += tempview(data.htr, jsondb[data.obj.arr][i][data.obj.rearr][ir]);
+                                            redata += tempView(dataHtr, jsondb[data.obj.arr][i][data.obj.rearr][ir]);
                                         }
                                         thisdata = thisdata.replace('$ReData$', redata);
                                     }
@@ -295,8 +301,20 @@ define(function (require) {
         });
     }
 
-    // 替换模板标签
-    function tempview(str, arr) {
+	// 自定义解码
+    function htmlDecode(str) {
+        var strTemp = str;
+        strTemp = strTemp.replace(/\[\[/g, '<');
+        strTemp = strTemp.replace(/\]\]/g, '>');
+        strTemp = strTemp.replace(/\|\|/g, '/');
+        strTemp = strTemp.replace(/\:\:/g, '"');
+        strTemp = strTemp.replace(/\;\;/g, '\'');
+        strTemp = strTemp.replace(/\+\+/g, ' ');
+        return strTemp;
+    }
+
+    // 替换标签
+    function tempView(str, arr) {
         str = str.replace(/{thisid}/gi, theID);
         var sArr = str.match(/{\w+}/gi);
         if (sArr) {

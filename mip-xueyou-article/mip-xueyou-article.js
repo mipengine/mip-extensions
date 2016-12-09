@@ -55,11 +55,13 @@ define(function (require) {
         var admbottomInit = getCookie('admbottom');
         var admtop = $('#mip-adm-top');
         var admbottom = $('#mip-adm-bottom');
+        admtop.addClass('piaoc');
+        admbottom.addClass('piaoc');
         if (admtopInit === 'close') {
             // 头部广告单元以嵌入方式加载
             admnum--;
             admtop.removeClass('hide');
-            admtop.removeClass('fix');
+            admtop.removeClass('piaoc');
             dbshow || opendubao();
         }
         else {
@@ -68,16 +70,16 @@ define(function (require) {
                 var gt = getScrollTop();
                 if (gt > 100) {
                     admtop.removeClass('hide');
-                    admtop.addClass('fix');
+                    admtop.addClass('piaoc');
                 }
                 if (gt < -50) {
-                    admtop.removeClass('fix');
+                    admtop.removeClass('piaoc');
                 }
             });
         }
         if (admbottomInit === 'close') {
             admnum--;
-            admbottom.removeClass('fix');
+            admbottom.removeClass('piaoc');
         }
         if (admnum > 0) {
             var admbtn = $('.btnclose');
@@ -88,7 +90,7 @@ define(function (require) {
                 }
                 else {
                     setCookie('admbottom', 'close');
-                    admbottom.removeClass('fix');
+                    admbottom.removeClass('piaoc');
                 }
                 dbshow || opendubao();
             });

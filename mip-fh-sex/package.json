@@ -1,0 +1,10 @@
+{
+    "name": "mip-fh-sex",
+    "version": "1.0.0",
+    "author": {
+        "name": "laoono"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

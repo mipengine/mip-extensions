@@ -3,7 +3,7 @@
 * @file 脚本支持
 * @author myoa@163.com
 * @time 2016.11.18
-* @version 1.1.3
+* @version 1.1.4
 */
 define(function (require) {
     var $ = require('zepto');
@@ -13,8 +13,6 @@ define(function (require) {
         var el = this.element;
         var docId = el.getAttribute('id');
         var code = el.getAttribute('token');
-        // 以self方式重置a标签
-        $('.openself').attr('target', '_self');
         // 查看更多按钮功能
         var btnMax = $('#btnToMax');
         var artbox = $('#artbox');
@@ -102,11 +100,9 @@ define(function (require) {
             dtp = 'fanwen';
         }
         if (readed !== 'false') {
-            $.getJSON('http://www.wangshengbo.cn/api/' + dtp + '/hits/?id=' + docId + '&code=' + code + '&jsoncallback=?',
-                function (rda) {
-                    setCookie('readed_' + docId, 'false');
-                }
-            );
+            $.get('/tongji/' + dtp + '/' + docId + '/', function(rda){
+                setCookie('readed_' + docId, 'false');
+            })
         }
         function getScrollTop() {
             var scrollTop = 0;

@@ -1,0 +1,12 @@
+{
+    "name": "mip-down-ppzs",
+    "version": "1.0.0",
+    "author": {
+        "name": "Zhou",
+        "email": "zhouhappy01@gmail.com",
+        "url": "https://www.pc6.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

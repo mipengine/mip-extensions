@@ -1,5 +1,66 @@
 # 升级日志
 
+#### 2016.12.08
+
+> 核心代码上线
+
+    1、图片轮播组件升级支持指示器，上下翻页按钮功能
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ad-random](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-random)|[新增] 广告位随机
+[mip-yxdown-shielding-page](https://github.com/mipengine/mip-extensions/tree/master/mip-yxdown-shielding-page)|[新增] 屏蔽问题页面
+[mip-down-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-down-ppzs)|[升级] 皮皮助手
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[新增] iask—ajax请求
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[新增] 爱问商业广告组件
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[新增] 爱问详细页插件
+[mip-iask-report](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-report)|[新增] 爱问举报组件
+
+#### 2016.12.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-html-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-html-ajax)|[新增] 评论提交加载
+[mip-down-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-down-ppzs)|[新增] 皮皮助手
+[mip-xem-review](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-review)|[新增] 自用获取随机评论组件
+[mip-meishij.js](https://github.com/mipengine/mip-extensions/tree/master/mip-meishij)|[升级] 实现了百分点统计,收藏和菜单添加，社会化分享
+[mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[升级] 百度资讯垂类新闻和热点推荐组件 bug fix
+
+#### 2016.12.06
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-muzi-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-muzi-appdownload)|[新增] 木子app下载
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 可播放广告的视频组件
+[mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[升级] 百度资讯垂类新闻和热点推荐组件 bug fix
+
+#### 2016.12.05
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 可播放广告的视频组件
+[mip-down-comment](https://github.com/mipengine/mip-extensions/tree/master/mip-down-comment)|[升级] 用来支持文章详情页的评论
+[mip-html-tabs](https://github.com/mipengine/mip-extensions/tree/master/mip-html-tabs)|[新增] TAB滑动、显示、隐藏、元素跳转等操作
+
+#### 2016.12.02
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[新增] 可播放广告的视频组件
+[mip-nav-slidedown ](https://github.com/mipengine/mip-extensions/tree/master/mip-nav-slidedown )|[升级] 支持logo可配置
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件 bug fix
+
 #### 2016.12.01
 
 > 核心代码上线

@@ -3,13 +3,8 @@
  * @author qishunli(qishunli@baidu.com)
  * @time 16-12-08
  */
-
 define(function (require) {
-
-    /**
-     * 同步加载js脚本
-     * @param {string} url js文件的相对路径或绝对路径
-     */
+    var NTKF;
     function loadJs(url) {
         var myHead = document.getElementsByTagName('head').item(0);
         var myScript = document.createElement('script');
@@ -28,9 +23,9 @@ define(function (require) {
     customElement.prototype.build = function () {
         // TODO
         var me = this;
-        var _element = me.element;
+        var element = me.element;
         var NTKF_PARAM = {siteid: 'kf_9778', settingid: 'kf_9778_1477472166958', uid: '', uname: ''};
-        (function (window, undefined) {
+        (function (window) {
             var headElement;
             var node;
             var scripturl;
@@ -86,7 +81,7 @@ define(function (require) {
                         if (typeof element[methodName] === 'function') {
                             element[methodName] = null;
                         }
-                    } catch(e) {
+                    } catch (e) {
                         tmpDebug('clear element function');
                     }
                 }
@@ -94,7 +89,7 @@ define(function (require) {
                     try {
                         element.parentNode.removeChild(element);
                         removeComplete = true;
-                    } catch(e) {
+                    } catch (e) {
 
                     }
                 }
@@ -106,7 +101,7 @@ define(function (require) {
                         try {
                             tElement.parentNode.removeChild(tElement);
                             removeComplete = true;
-                        } catch(e1) {
+                        } catch (e1) {
 
                         }
                     }
@@ -123,6 +118,7 @@ define(function (require) {
         }
 
         function getData() {
+            NTKF = window.NTKF || {};
             var k;
             var l;
             var h;
@@ -130,12 +126,12 @@ define(function (require) {
             var m;
             var i;
             m = window.location.href;
-            var n = getCookie('H_U_C');
+            var n = null;
             if (n) {
                 k = n.split(',')[0];
             }
-            l = getCookie('webFrom');
-            h = getCookie('cookieId');
+            l = 'YJ_bjh';
+            h = 'C7522C73-FC40-0001-A872-14C016BD5770';
             i = NTKF ? NTKF.global.pcid : '';
             j = '';
             if (k) {
@@ -160,51 +156,7 @@ define(function (require) {
                 NTKF.im_updatePageInfo({uid: '', erpparam: j});
             }
         }
-        function asciiToString(b) {
-            return String.fromCharCode(b);
-        }
-        function urlDecode(g) {
-            var i = '';
-            for (var f = 0; f < g.length; f++) {
-                var j = g.charAt(f);
-                if (j === '+') {
-                    i += ' ';
-                }
-                else {
-                    if (j === '%') {
-                        var h = g.substring(f + 1, f + 3);
-                        if (parseInt('0x' + h) > 127) {
-                            i += decodeURI('%' + h.toString() + g.substring(f + 3, f + 9).toString());
-                            f += 8;
-                        }
-                        else {
-                            i += asciiToString(parseInt('0x' + h));
-                            f += 2;
-                        }
-                    }
-                    else {
-                        i += j;
-                    }
-                }
-            }
-            return i;
-        }
-        function getCookie(b) {
-            var d = document.cookie;
-            var a = d.indexOf(b + '=');
-            if (a === -1) {
-                return null;
-            }
-            a += b.length + 1;
-            var c = d.indexOf(';', a);
-            if (c === -1) {
-                return urlDecode(d.substring(a));
-            }
-            else {
-                return urlDecode(d.substring(a, c));
-            }
-        }
-        $(_element).on('click', '.mip-contact', function () {
+        $(element).on('click', '.mip-contact', function () {
             xiaoNengChat('kf_9778_1477472166958');
         });
 

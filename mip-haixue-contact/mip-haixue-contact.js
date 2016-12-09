@@ -1,25 +1,27 @@
 /**
- * @file mip-contact 组件
+ * @file mip-haixue-contact 用来支持嗨学网咨询功能
  * @author qishunli(qishunli@baidu.com)
  * @time 16-12-08
  */
 
-/**
- * 同步加载js脚本
- * @param {string} url js文件的相对路径或绝对路径
- */
-var NTKF;
-function loadJs(url) {
-    var myHead = document.getElementsByTagName('head').item(0);
-    var myScript = document.createElement('script');
-    myScript.type = 'text/javascript';
-    myScript.src = url;
-    myHead.appendChild(myScript);
-}
-loadJs('http://dl.ntalker.com/js/xn6/ntkfstat.js?siteid=kf_9778');
-
 define(function (require) {
+
+    /**
+     * 同步加载js脚本
+     * @param {string} url js文件的相对路径或绝对路径
+     */
+    function loadJs(url) {
+        var myHead = document.getElementsByTagName('head').item(0);
+        var myScript = document.createElement('script');
+        myScript.type = 'text/javascript';
+        myScript.src = url;
+        myHead.appendChild(myScript);
+    }
+
+    loadJs('https://dl.ntalker.com/js/xn6/ntkfstat.js?siteid=kf_9778');
+
     var customElement = require('customElement').create();
+
     /**
      * 构造元素，只会运行一次
      */

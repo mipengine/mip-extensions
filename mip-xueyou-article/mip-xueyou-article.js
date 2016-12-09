@@ -102,9 +102,11 @@ define(function (require) {
             dtp = 'fanwen';
         }
         if (readed !== 'false') {
-            $.get('/tongji/' + dtp + '/' + docId + '/', function(rda){
-                setCookie('readed_' + docId, 'false');
-            })
+            $.get('/tongji/' + dtp + '/' + docId + '/',
+                function (rda) {
+                    setCookie('readed_' + docId, 'false');
+                }
+            );
         }
         function getScrollTop() {
             var scrollTop = 0;

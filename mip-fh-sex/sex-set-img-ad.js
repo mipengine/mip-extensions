@@ -42,8 +42,9 @@ define(function (require) {
         };
 
         this.loadScript('http://1.feihua.com/au3a1ecf91ffc8f038db4c3e8da4f73ffa54acde0b36.js',function(){
-            setTimeout(function () {
+            var timer = setTimeout(function () {
                 document.write = docw;
+                clearTimeout(timer);
             }, 100);
         });
     };

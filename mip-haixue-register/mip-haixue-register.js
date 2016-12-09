@@ -1,5 +1,5 @@
 /**
- * @file mip-register 组件
+ * @file  mip-haixue-register 组件
  * @author qishunli(qishunli@baidu.com)
  * @time 16-12-08
  */

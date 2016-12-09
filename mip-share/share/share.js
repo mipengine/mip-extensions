@@ -4,7 +4,6 @@
  * @author yangfan16
  * @UC & QQ share based on https://github.com/JefferyWang/nativeShare.js
  */
-
 define(function (require) {
     var $ = require('zepto');
     var defaultOpt = {
@@ -23,7 +22,6 @@ define(function (require) {
     var isUC = (Browser.n == 'uc' && (typeof(ucweb) != 'undefined' || typeof(ucbrowser) != 'undefined')) ? 1 : 0;
     var isQQ = (Browser.n == 'qq' && Browser.v && Browser.v > '5.4') ? 1 : 0;
     var isWechat = (Browser.n == 'wechat') ? 1 : 0;
-
     var share_promise = new Promise(function(resolve, reject) {
         if (isQQ) {
             // zepto $.ajax在qq浏览器上无法加载这个api url,永远返回fail,jquery以及直接请求均可以,原因不明,采用原生方法实现异步加载
@@ -49,19 +47,19 @@ define(function (require) {
             cfg.linkUrl = encodeURIComponent(cfg.url);
         }
         // 以这种方式require是为了避免过早加载aio组件
-        require(['./aio'], function() {
-            if (Box.os.android) {
-                Box.android.invokeApp('Bdbox_android_utils', 'callShare', [JSON.stringify(cfg), window.successFnName || 'console.log', window.errorFnName || 'console.log']);
-            } else {
-                Box.ios.invokeApp('callShare', {
-                    options: encodeURIComponent(JSON.stringify(cfg)),
-                    errorcallback: 'onFail',
-                    successcallback: 'onSuccess'
-                });
-            }
-        });
+        require('./aio');
+        if (Box.os.android) {
+            Box.android.invokeApp('Bdbox_android_utils', 'callShare', [JSON.stringify(cfg), window.successFnName || 'console.log', window.errorFnName || 'console.log']);
+        } else {
+            Box.ios.invokeApp('callShare', {
+                options: encodeURIComponent(JSON.stringify(cfg)),
+                errorcallback: 'onFail',
+                successcallback: 'onSuccess'
+            });
+        }
 
     };
+
 
     // UC分享接口
     var ucShare = function (to_app, opt) {
@@ -101,6 +99,11 @@ define(function (require) {
 
     // QQ浏览器分享接口
     var qqShare = function (to_app, opt) {
+        var viewer = require('viewer');
+        var util = require('util');
+        var platform = util.platform;
+        var key = to_app;
+
         var qqAppList = {
             sinaweibo: ['kSinaWeibo', 'SinaWeibo', 11, '新浪微博'],
             wxfriend: ['kWeixin', 'WechatFriends', 1, '微信好友'],
@@ -120,6 +123,10 @@ define(function (require) {
             cus_txt: "请输入此时此刻想要分享的内容"
         };
         ah = to_app == '' ? '' : ah;
+        
+        if(viewer.isIframed && platform.isIos() && platform.isQQ()) {
+            viewer.sendMessage('mip-share', {key: key, opt: ah});
+        }
 
         // qq share api加载完毕后执行
         share_promise.then(function () {

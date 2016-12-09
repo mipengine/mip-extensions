@@ -60,6 +60,7 @@ define(function (require) {
 
     };
 
+
     // UC分享接口
     var ucShare = function (to_app, opt) {
         var ucAppList = {
@@ -98,6 +99,11 @@ define(function (require) {
 
     // QQ浏览器分享接口
     var qqShare = function (to_app, opt) {
+        var viewer = require('viewer');
+        var util = require('util');
+        var platform = util.platform;
+        var key = to_app;
+
         var qqAppList = {
             sinaweibo: ['kSinaWeibo', 'SinaWeibo', 11, '新浪微博'],
             wxfriend: ['kWeixin', 'WechatFriends', 1, '微信好友'],
@@ -117,6 +123,10 @@ define(function (require) {
             cus_txt: "请输入此时此刻想要分享的内容"
         };
         ah = to_app == '' ? '' : ah;
+        
+        if(viewer.isIframed && platform.isIos() && platform.isQQ()) {
+            viewer.sendMessage('mip-share', {key: key, opt: ah});
+        }
 
         // qq share api加载完毕后执行
         share_promise.then(function () {

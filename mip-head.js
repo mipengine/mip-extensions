@@ -1,3 +1,12 @@
+
+/**
+ * 微友巴巴mip改造 javascript功能插件
+ * @file 导航条单击展开更多分类
+ * @date 2016.12.12
+ * @author dinglei (375234944@qq.com)
+ * @version 1.0.1
+ */
+
 define(function (require) {
 
 var $ = require('zepto');

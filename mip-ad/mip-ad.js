@@ -28,10 +28,8 @@ define(function (require) {
         try {
             var mipAd = require('./mip-' + type);
             mipAd.render(_element, me);
-        } catch(e) {
+        } catch (e) {}
 
-        }
-        
 
     }
 

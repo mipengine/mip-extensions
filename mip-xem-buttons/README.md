@@ -13,6 +13,6 @@ mip-xem-buttons 自用buttons组件。
 ### 基本使用
 ```html
 <mip-xem-buttons>
-	<button type="button" class="btn btn-primary" data-loading-text="正在加载...">按钮</button>
+	<button type="button" class="btn btn-primary" data-loading-text="正在加载...">按钮</button>
 </mip-xem-buttons>
 ```

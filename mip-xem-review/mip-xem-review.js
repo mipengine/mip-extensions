@@ -9,16 +9,15 @@ define(function (require) {
     var jq = require('jquery');
     var customElement = require('customElement').create();
     customElement.prototype.build = function () {
+        var elem = this.element;
+        var yid = elem.getAttribute('yid');
+        var formhash = elem.getAttribute('formhash');
+        var url = elem.getAttribute('url');
+        var jqelem = jq(elem);
         function getreview() {
-            var elem = this.element;
-            var yid = elem.getAttribute('yid');
-            var listofreadcid = elem.getAttribute('listofreadcid');
-            var formhash = elem.getAttribute('formhash');
-            var url = elem.getAttribute('url');
-            var jqelem = jq(elem);
             jq.post(url, {
                 yid: yid,
-                listofreadcid: listofreadcid,
+                listofreadcid: elem.getAttribute('listofreadcid'),
                 formhash: formhash,
                 reviewsubmit: true
             },
@@ -26,7 +25,7 @@ define(function (require) {
                 if (data) {
                     jqelem.html(function () {
                         var thiscid = ',' + data.tid;
-                        var readcid = listofreadcid;
+                        var readcid = elem.getAttribute('listofreadcid');
                         jqelem.data('listofreadcid', readcid + thiscid);
                         return data.message;
                     });

@@ -35,7 +35,7 @@ define(function (require) {
             }
 
             // push to event loop to allow forms to submit
-            setTimeout($.proxy(function () {
+            var t = setTimeout($.proxy(function () {
                 $el[val](data[state] == null ? this.options[state] : data[state]);
 
                 if (state === 'loadingText') {
@@ -47,6 +47,7 @@ define(function (require) {
                     $el.removeClass(d).removeAttr(d);
                 }
             }, this), 0);
+            clearTimeout(t);
         };
 
         Button.prototype.toggle = function () {

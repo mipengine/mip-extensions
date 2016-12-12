@@ -9,10 +9,10 @@ define(function (require) {
     var isShowStar = false;
     var customElem = require('customElement').create();
     customElem.prototype.build = function () {
-        var starBox = $('#xz_select');
-        var starbg = $('#bg_black');
+        var starBox = $('.xz_select');
+        var starbg = $('.bg_black');
         // 控制弹层开启
-        $(document).on('click', '#chos_btn', function (event) {
+        $(document).on('click', '.chos_btn', function (event) {
             event = event || window.event;
             event.stopPropagation();
             if (isShowStar) {
@@ -27,7 +27,7 @@ define(function (require) {
             }
         });
         // 关闭弹框
-        $(document).on('click', '#bg_black', function (e) {
+        $(document).on('click', '.bg_black', function (e) {
             starBox.hide();
             starbg.hide();
         });

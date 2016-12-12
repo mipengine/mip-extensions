@@ -1,6 +1,6 @@
 # 类型: ad-ssp 内容联盟广告
 
-通用广告
+内容联盟广告 [ssp媒体服务首页](http://ssp.baidu.com/home)
 
 ## 支持布局
 
@@ -14,8 +14,8 @@
 ```html
 <mip-ad
     type="ad-ssp"
-    data-site-id="268848748"
-    data-block-id="1136"
+    data-site-id="xxxxxxxxtodo"
+    data-block-id="xxxx"
     >
 </mip-ad>
 ```
@@ -27,8 +27,8 @@
 <mip-fixed type="top" >
     <mip-ad
         type="ad-ssp"
-        data-site-id="268848748"
-        data-block-id="1141"
+        data-site-id="xxxxxxxxtodo"
+        data-block-id="xxxx"
         layout="fixed-height"
         height="75px"
         >

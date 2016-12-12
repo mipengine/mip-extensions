@@ -28,18 +28,19 @@ define(function (require) {
             'playsinline': '',
             'webkit-playsinline': '',
             'controls': '',
-            'poster': poster
+            'poster': poster,
+            "preload": "no"
         });
 
         //  初始化video的尺寸大小
         $(video).css('height', window.innerWidth / 16 * 9 + 'px');
 
-        //  如果是IOS则设置为自动播放
-        if (platform.isIos()) {
-            video.autoplay = true;
-        }
-
         $element[0].appendChild(video);
+
+        //  当播放开始的时候设置为自动播放
+        video.onplay = function () {
+            video.autoplay = true;
+        };
 
         //  如果有广告并且非IOS上的QQ浏览器 则播放广告
         if (adSrc && !(platform.isIos() && platform.isQQ())) {
@@ -47,9 +48,11 @@ define(function (require) {
 
             //  广告播放完毕
             video.onended = function () {
-                video.src =  targetSrc;
+                video.src = targetSrc;
                 video.autoplay = true;
-                video.load();
+                video.setAttribute("autoplay", "autoplay");
+
+                // video.load();
                 video.play();
             };
         } else {  //  否则直接播放内容

@@ -8,7 +8,7 @@ define(function (require) {
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
         if ($('.mip-360doc-script-wxggalink') !== null) {
-            $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/xiazai.png\'  class=\'pic2\'/></span>');
+            $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'https://transfer.360doc.cn/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'https://transfer.360doc.cn/images/xiazai.png\'  class=\'pic2\'/></span>');
             var picn = $('.mip-360doc-script-pic').length;
             if (picn > 1) {
                 $('.mip-360doc-script-pic').eq(0).css('display', 'inline').siblings('.mip-360doc-script-pic').hide();
@@ -18,7 +18,7 @@ define(function (require) {
         }
         getRefNum();// 鲜花
         //  统计
-        sendlog('mipConn?aid=' + getID());
+        record();
         //  检测广告
         var t = setTimeout(function () {
             check();
@@ -66,6 +66,13 @@ define(function (require) {
         }
         catch (e) { }
     }
+    function record() {
+        try {
+            var domain = document.domain;
+            sendlog('mipConn?domain=_' + encodeURI(domain) + '_&aid=' + getID());
+        }
+        catch (e) { }
+    }
     function sendlog(url) {
         var img = new Image();
         var key = 'broswerlog_' + Math.floor(Math.random() * 2147483648).toString(36);
@@ -75,7 +82,7 @@ define(function (require) {
             window[key] = null;
             img = null;
         };
-        img.src = 'http://mipeclick.360doc.com/' + url;
+        img.src = 'https://mipeclick.360doc.com/' + url;
     }
     //  广告轮播
     function setone() {

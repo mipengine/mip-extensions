@@ -34,15 +34,15 @@ define(function (require) {
         $.post(url, params,
         function (data) {
             var res = $.parseJSON(data);
-            if (res.succ === 'Y' && res.jsonData !== '0') {
-                // 成功
-                if (type === '1') {
+            if (type === '1') {
+                if (res.succ === 'Y' && res.jsonData === '1') {
+                    // 成功
                     var txt = $(div);
                     txt.text(parseInt(txt.text(), 0) + 1);
                 }
-            }
-            else {
+                else {
                 // 失败
+                }
             }
         });
     };

@@ -22,17 +22,19 @@ define(function () {
 
     module.browser = (function (me) {
         var name;
-        if (me.UC) {
-            name = 'UC';
-        }
-        else if (me.QQ) {
-            name = 'QQ';
-        }
-        else if (me.Safari) {
-            name = 'Safari';
-        }
-        else {
-            name = '';
+        switch (true) {
+            case me.UC:
+                name = 'UC';
+                break;
+            case me.QQ:
+                name = 'QQ';
+                break;
+            case me.Safari:
+                name = 'Safari';
+                break;
+            default:
+                name = '';
+                break;
         }
 
         return name;

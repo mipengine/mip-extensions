@@ -102,6 +102,7 @@ define(function (require) {
         });
 
         // iframe 嵌套处理
+        // TODO 增加https
         if (window.parent !== window) {
             var message = {
                 'event': 'mibm-jumplink',
@@ -130,7 +131,7 @@ define(function (require) {
         }
 
         if (addClearBtn) {
-            const INPUTS = element.querySelectorAll('input[type=input]');
+            var INPUTS = element.querySelectorAll('input[type=input]');
             var index = 0;
             var height = element.querySelector('input[type=input]').offsetHeight;
             var cross = document.createElement('div');

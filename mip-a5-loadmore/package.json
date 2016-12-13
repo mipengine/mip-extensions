@@ -1,0 +1,7 @@
+{
+    "name": "mip-a5-loadmore",
+    "version": "1.0.0",
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

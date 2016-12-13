@@ -46,6 +46,22 @@
 	<a href="#" class="hide  open" >宠物</a>
 	<a href="#" class="ico_men"><span class="icon_open"></span><span class="icon_close"></span></a>
 </div>
+<div class="container">
+<div class="newslist">
+<ul id="thelist">
 
+ <li><a href="http://toutiao.weiyoubaba.com/a/cwrz2.shtml" title="利用期市规避风险理念深入油脂企业">
+<div class="news_photo">
+<img src="http://img.weiyoubaba.com/daohang/art/art_slt/2016/1213/slt_12-13-573bdd8123-b5db-44df-bff4-b8b8cbe714d9.jpeg" alt="利用期市规避风险理念深入油脂企业" /></div>
+<div class="news_text">
+<h3>
+利用期市规避风险理念深入油脂企业</h3>
+<div class="news_info">
+<span class="new_date">1分钟前</span>
+</div>
+</div>
+</a></li>
+</ul>
+</div>
 ```
 

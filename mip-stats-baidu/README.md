@@ -23,8 +23,9 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 百度统计插件触发示例:
 ```
 <div name="palymusic" data-stats="{type:'load',data:['_trackEvent', '百度','统计','自动触发']}">
-    自动触发
+    我是自动触发,data-stats值建议encodeURI转码)
 </div>
+ 
 ```
 
 ## 属性
@@ -32,19 +33,46 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 ### token
 
 说明：token
+
 必填：是
+
 格式：字符串
 
 
 ### tagname
 
 说明：统计事件追踪(_trackPageview,_trackEvent)的对应dom元素name属性。
+
 必填：否
+
 格式：字符串数组
 
 
 ### setconfig
 
 说明：用于对整个页面统计的操作.如(_setAutoPageview,_setCustomVar)
+
 必填：否
+
 格式：字符串
+
+
+## 触发示例属性 data-stats
+
+### type
+
+说明：对应的触发事件(load加载触发/click点击触发)
+
+必填：是
+
+格式：字符串数组
+
+
+### data
+
+说明：用于事件追踪数据传递参考([百度统计api](http://tongji.baidu.com/open/api/))
+
+必填：是
+
+格式：字符串
+

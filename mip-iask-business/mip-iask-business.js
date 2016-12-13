@@ -55,7 +55,7 @@ define(function (require) {
         $('.mip_as_tbtj').remove();
         $('.mip_dl_tbtj').remove();
         $('.mip_as_djgz').remove();
-        $('.mip_as_bottm_div"').remove();
+        $('.mip_as_bottm_div').remove();
     };
     var loadAd = function (sources, openId, div) {
         var type = '';

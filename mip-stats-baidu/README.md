@@ -20,7 +20,7 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 
 ```
 
-百度统计插件触发示例:
+百度统计事件追踪示例:
 ```
 <div name="palymusic" data-stats="{type:'load',data:['_trackEvent', '百度','统计','自动触发']}">
     我是自动触发,data-stats值建议encodeURI转码)

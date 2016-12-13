@@ -19,6 +19,9 @@ function Open()
         $(".icon_open").hide();
         $(".icon_close").show();
         $(".icon_close").css("display","block");
+		
+	var p_top = $(".nav").height() + $(".w98").height()+1;
+        $(".container").css("padding-top", p_top + "px");
     });
 
 }
@@ -29,6 +32,9 @@ function Close()
         $(".open").addClass("hide");
         $(".icon_open").show();
         $(".icon_close").hide();
+	   
+	var p_top = $(".nav").height() + $(".w98").height()+1;
+        $(".container").css("padding-top", p_top + "px");
     });
 }
 

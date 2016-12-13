@@ -1,4 +1,4 @@
-# mip-stats-baidu
+# mip-stats-bidui
 
 mip-stats-baidu 用来支持站长添加百度统计。
 
@@ -12,8 +12,19 @@ mip-stats-baidu 用来支持站长添加百度统计。
 
 MIP提供百度统计的插件，便于分析页面数据，需要提前到百度统计这边创建站点，会自动生成js代码使用提取工具提取token，并使用MIP提供的插件，代码示例：
 
+
+百度统计插件引入示例:
+
 ```
-    <mip-stats-baidu token="02890d4a309827eb62bc3335b2b28f7f"></mip-stats-baidu>
+<mip-stats-bidu token="02890d4a309827eb62bc3335b2b28f7f" tagname="['palymusic']" setconfig="['_setAutoPageview', true]"></mip-stats-bidu>
+
+```
+
+百度统计插件触发示例:
+```
+<div name="palymusic" data-stats="{type:'load',data:['_trackEvent', '百度','统计','自动触发']}">
+    自动触发
+</div>
 ```
 
 ## 属性
@@ -22,4 +33,18 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 
 说明：token
 必填：是
+格式：字符串
+
+
+### tagname
+
+说明：统计事件追踪(_trackPageview,_trackEvent)的对应dom元素name属性。
+必填：否
+格式：字符串数组
+
+
+### setconfig
+
+说明：用于对整个页面统计的操作.如(_setAutoPageview,_setCustomVar)
+必填：否
 格式：字符串

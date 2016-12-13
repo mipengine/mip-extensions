@@ -1,4 +1,4 @@
-# mip-stats-bidui
+# mip-stats-baidu
 
 mip-stats-baidu 用来支持站长添加百度统计。
 

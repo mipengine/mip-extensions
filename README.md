@@ -13,6 +13,15 @@
 ## 单击展开更多
 
 ```
+<div class="w98">
+		<div class="top">
+			<div class="logo">
+				<a href="http://toutiao.weiyoubaba.com/" title="微友巴巴头条网"><img src="../images/LOGO.png" alt="微友巴巴头条网"/></a>
+			</div>
+			<a href="http://www.weiyoubaba.com/sitemap/" title="网站地图"  class="menu"></a>
+			<a href="http://so.weiyoubaba.com/cse/search?q=&s=11859279704970442182&nsid=0" class="serch" title="新闻搜索"></a>
+		</div>
+	</div>
 <div class="nav">
 	<a href="#">最新</a>
 	<a href="#">热点</a>

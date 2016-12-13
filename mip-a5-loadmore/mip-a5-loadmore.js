@@ -5,10 +5,10 @@
  */
 
 define(function (require) {
-    var $ = require('jquery');
+    var $ = require('zepto');
     var customElem = require('customElement').create();
     var defaults = {
-        url: '/',
+        url: '#',
         page: 2,
         btn: '.loadBtn',
         moreList: '.moreList',
@@ -19,7 +19,7 @@ define(function (require) {
             error: '<i></i>网络错误'
         },
         scrollPage: -1,
-        pageParam: '?page'
+        pageParam: 'page'
     };
     var options = {};
     var loadBtn = '';
@@ -31,48 +31,73 @@ define(function (require) {
         loadBtn.html(options.status.loading);
         var morelist = $(element).find(options.moreList);
         $.ajax({
-            "url": options.url+options.pageParam+'='+page,
-            "method": "GET",
-            "success": function (data) {
+            url: options.url,
+            method: 'GET',
+            data: options.pageParam + '=' + page,
+            success: function (data) {
                 var newData = $(data).find(options.moreList).children();
-                if (newData.length > 0){
+                if (newData.length > 0) {
                     morelist.append(newData);
                     loadBtn.html(options.status.init);
-                    page = page + 1;
+                    page++;
                     isLoading = false;
-                } else {
+                }
+                else {
                     loadBtn.html(options.status.ending);
                     isLoading = false;
                 }
             },
-            "error": function (error) {
+            error: function (error) {
                 loadBtn.html(options.status.error);
                 isLoading = false;
             }
         });
     }
-    
+
+    function isJsonScriptTag(element) {
+        return element.tagName === 'SCRIPT'
+                && element.getAttribute('type')
+                && element.getAttribute('type').toUpperCase() === 'APPLICATION/JSON';
+    }
+
     customElem.prototype.build = function () {
         var element = this.element;
-        var _options = $.parseJSON($(element).attr('options').replace(/'/g, '"'));
-        options = $.extend(defaults, _options);
+        var scriptEle = element.querySelector('script') || null;
+        if (scriptEle !== null) {
+            if (isJsonScriptTag(scriptEle)) {
+                var optStr = scriptEle.textContent.toString();
+                try {
+                    options = JSON.parse(optStr);
+                }
+                catch (e) {
+                    console.error('error options', optStr);
+                    return false;
+                }
+            }
+            else {
+                console.error('error options');
+                return false;
+            }
+        }
+
+        options = $.extend(defaults, options);
         page = options.page;
         loadBtn = $(options.btn);
         loadBtn.html(options.status.init);
         loadBtn.click(function () {
-            if(isLoading){
+            if (isLoading) {
                 return false;
             }
             getMore(element);
         });
 
-        var scrollPage = parseInt(options.scrollPage);
-        if(scrollPage >=0){
+        var scrollPage = parseInt(options.scrollPage, 0);
+        if (scrollPage >= 0) {
             var winHeight = $(window).height();
             $(window).on('scroll', function () {
                 var scrollTop = $(this).scrollTop();
                 var diff = $(document).height() - winHeight - scrollTop - 50;
-                if(diff<0 && isLoading == false && (scrollPage == 0 || page < (options.page+scrollPage))){
+                if (diff < 0 && isLoading === false && (scrollPage === 0 || page < (options.page + scrollPage))) {
                     getMore(element);
                 }
             });

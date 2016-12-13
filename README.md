@@ -13,6 +13,7 @@
 ## 单击展开更多
 
 ```
+<header>
 <div class="w98">
 		<div class="top">
 			<div class="logo">
@@ -22,6 +23,7 @@
 			<a href="http://so.weiyoubaba.com/cse/search?q=&s=11859279704970442182&nsid=0" class="serch" title="新闻搜索"></a>
 		</div>
 	</div>
+</header>
 <div class="nav">
 	<a href="#">最新</a>
 	<a href="#">热点</a>

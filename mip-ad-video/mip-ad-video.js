@@ -29,7 +29,7 @@ define(function (require) {
             'webkit-playsinline': '',
             'controls': '',
             'poster': poster,
-            "preload": "no"
+            'preload': 'no'
         });
 
         //  初始化video的尺寸大小
@@ -50,7 +50,7 @@ define(function (require) {
             video.onended = function () {
                 video.src = targetSrc;
                 video.autoplay = true;
-                video.setAttribute("autoplay", "autoplay");
+                video.setAttribute('autoplay', 'autoplay');
 
                 // video.load();
                 video.play();

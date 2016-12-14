@@ -8,6 +8,7 @@ define(function (require) {
     var customElem = require('customElement').create();
     var device = require('./ck-browser');
     var browser = device.browser;
+    var $ = require('zepto');
     var $body = $('body');
 
     function setHtmlBrowser(elem, browsersType) {

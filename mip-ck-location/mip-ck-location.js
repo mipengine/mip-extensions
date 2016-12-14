@@ -7,6 +7,7 @@
 define(function (require) {
     var customElem = require('customElement').create();
     var getLocation = require('./ck-location').get;
+    var $ = require('zepto');
     var $body = $('body');
 
     function setHtmlLocation(elem, locationsType) {

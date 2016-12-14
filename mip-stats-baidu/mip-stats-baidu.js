@@ -36,7 +36,7 @@ define(function (require) {
 
     };
 
-    // 绑定事件
+    // 获取数据
     function bindEvent(elem) {
         var tagName = elem.getAttribute('tagname');
         if (!tagName) {

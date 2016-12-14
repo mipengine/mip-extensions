@@ -52,7 +52,7 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 setconfig值必须encodeURIComponent处理,如[_setAutoPageview, true]需转化为%5B_setAutoPageview%2C%20false%5D字符串传递
 
 
-## 事件追踪属性: data-stats-obj
+## 事件追踪属性: data-stats-baidu-obj
 
 ### type
 
@@ -73,5 +73,5 @@ setconfig值必须encodeURIComponent处理,如[_setAutoPageview, true]需转化�
 
 ### 备注
 
-data-stats-obj值必须encodeURIComponent处理,如{"type":"click","data":"[_trackPageview, /virtual/login]"};需转化为%7B%22type%22:%22click%22,%22data%22:%22%5B_trackPageview,%20/virtual/login%5D%22%7D
+data-stats-baidu-obj值必须encodeURIComponent处理,如{"type":"click","data":"[_trackPageview, /virtual/login]"};需转化为%7B%22type%22:%22click%22,%22data%22:%22%5B_trackPageview,%20/virtual/login%5D%22%7D
 

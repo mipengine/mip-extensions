@@ -63,14 +63,6 @@ setconfig值必须encodeURIComponent处理,如['_setAutoPageview', true];需转�
 格式：字符串数组
 
 
-### pattern
-
-说明：使用统计组件名称
-
-必填：是
-
-格式：字符串数组如pattern:['baidu']
-
 ### data
 
 说明：用于事件追踪数据传递参考([百度统计api](http://tongji.baidu.com/open/api/))

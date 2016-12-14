@@ -20,7 +20,7 @@
 </mip-ad>
 ```
 
-### fixed 布局
+### 组件 layout="fixed" 布局
 
 ```html
 <mip-ad 
@@ -32,6 +32,22 @@
 	cpro_pswidth="auto" 
 	cpro_psheight="230">
 </mip-ad>
+```
+
+
+### 悬浮广告 position="fixed” 布局
+
+如果在广告配置时选择了`单行文字悬浮`、`双行文字悬浮`、`图文悬浮`，则应该将`<mip-ad>`嵌入在`<mip-fixed>`中使用，[mip-fixed使用文档](https://www.mipengine.org/doc/3-widget/3-customize-widget/fixed-widget.html)。
+
+```html
+<mip-fixed>
+	<mip-ad 
+		type="ad-qwang" 
+		cpro_psid="u2619809" 
+		cpro_pstype="suspend"
+		>
+	</mip-ad>
+</mip-fixed>
 ```
 
 ## 属性

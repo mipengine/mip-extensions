@@ -11,7 +11,7 @@ mip-muzi-appdownload app下载组件!
 
 ### app下载组件! 主要功能是下载，还有一些附加功能和一些无法预测的功能
 ```html
-<mip-muzi-appdownload src="http://m.muzisoft.com/m.js"></mip-muzi-appdownload>
+<mip-muzi-appdownload loadjs="http://m.muzisoft.com/m.js"></mip-muzi-appdownload>
 ```
 
 ### 引用自定义js中的function
@@ -30,7 +30,7 @@ mip-muzi-appdownload app下载组件!
 
 ## 属性
 
-### src
+### loadjs
 
 说明：自定义的js文件
 必选项：否   

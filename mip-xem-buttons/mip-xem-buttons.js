@@ -35,12 +35,13 @@ define(function (require) {
             }
 
             // push to event loop to allow forms to submit
-            setTimeout($.proxy(function () {
+            var t = setTimeout($.proxy(function () {
                 $el[val](data[state] == null ? this.options[state] : data[state]);
 
                 if (state === 'loadingText') {
                     this.isLoading = true;
                     $el.addClass(d).attr(d, d);
+                    clearTimeout(t);
                 }
                 else if (this.isLoading) {
                     this.isLoading = false;

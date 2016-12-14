@@ -8,6 +8,7 @@ define(function (require) {
     var customElem = require('customElement').create();
     var device = require('./ck-browser');
     var browser = device.browser;
+    var $body = $('body');
 
     function setHtmlBrowser(elem, browsersType) {
         var len = browsersType.length;
@@ -41,6 +42,7 @@ define(function (require) {
         if (flag) {
             // 真 显示元素
             elem.style.display = 'block';
+            $body.addClass('view-mip-ck-browser-' + browser);
         }
         else {
             // 假 移除元素

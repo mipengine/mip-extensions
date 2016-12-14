@@ -48,6 +48,10 @@ define(function (require) {
                 return;
             }
 
+            if(!statusData.data) {
+                return;
+            }
+
             var eventtype = statusData.type;
             var data = buildArry(statusData.data);
 

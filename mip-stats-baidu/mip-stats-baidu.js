@@ -51,6 +51,11 @@ define(function (require) {
             }
 
             var eventtype = statusData.type;
+                
+            if(!statusData.data) {
+                return;
+            }
+
             var data = buildArry(statusData.data);
 
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {

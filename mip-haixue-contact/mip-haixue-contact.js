@@ -28,9 +28,9 @@ define(function (require) {
         var kfid = element.getAttribute('kfid');
         kfid = kfid ? kfid : 'kf_9778_1481685802962';
         var NTKF_PARAM = {
-            siteid: (siteid || 'kf_9778'), 
-            settingid: kfid, 
-            uid: '', 
+            siteid: (siteid || 'kf_9778'),
+            settingid: kfid,
+            uid: '',
             uname: ''
         };
         (function (window) {

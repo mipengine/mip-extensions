@@ -13,7 +13,8 @@ define(function (require) {
     customElement.prototype.createdCallback = function () {
         var elem = this.element;
         var token = elem.getAttribute('token');
-        var setCustom = elem.getAttribute('setconfig');
+        var setCustom = changeData(decodeURI(elem.getAttribute('setconfig')));
+
         // 是否指定自定义变量
         if (token) {
             window._hmt = window._hmt || [];
@@ -30,37 +31,36 @@ define(function (require) {
             hm.src = '//hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
             hm.onload = function () {
-                bindEvent(elem);
+                bindEle();
             };
         }
 
     };
 
-    // 获取数据
-    function bindEvent(elem) {
-        var tagName = elem.getAttribute('tagname');
-        if (!tagName) {
-            return;
-        }
-
-        var dataJson = changeData(tagName);
-        dataJson.map(function (ele, i) {
-            bindEle(ele);
-        });
-    }
 
     // 绑定事件
-    function bindEle(tagName) {
-        var tagBox = $('[name=' + tagName + ']');
-        tagBox.map(function (i, ele) {
-            var statusData = decodeURI(ele.getAttribute('data-stats'));
+    function bindEle() {
+        // 获取所有需要触发的dom
+        var tagBox = document.querySelectorAll('*[data-stats-obj]');
+
+        for (var index = 0; index < tagBox.length; index++) {
+            var statusData = decodeURI(tagBox[index].getAttribute('data-stats-obj'));
             if (!statusData) {
                 return;
             }
 
             var dataJson = changeData(statusData);
+
             var eventtype = dataJson.type;
             var data = dataJson.data;
+            var pattern = dataJson.pattern;
+
+
+            // 如果不是baidu
+            if (pattern.indexOf('baidu') < 0) {
+                return;
+            }
+
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
                 // 事件限制到click,mouseup,load(直接触发)
                 return;
@@ -70,11 +70,11 @@ define(function (require) {
                 _hmt.push(data);
             }
             else {
-                ele.addEventListener(eventtype, function () {
+                tagBox[index].addEventListener(eventtype, function () {
                     _hmt.push(data);
                 }, false);
             }
-        });
+        }
     }
 
     // 数据换转

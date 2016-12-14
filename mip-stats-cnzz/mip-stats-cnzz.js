@@ -31,30 +31,18 @@ define(function (require) {
                 '</script>'
             ];
             $element.append(html.join(''));
-            loadData(element, token);
+            bindEle();
         }
 
     };
 
-    // 获取数据
-    function loadData(element, token) {
-        var tagName = element.getAttribute('tagname');
-        var dataJson;
-        if (!tagName) {
-            return;
-        }
-
-        dataJson = changeData(tagName);
-        dataJson.map(function (ele, i) {
-            bindEle(ele);
-        });
-    }
 
     // 绑定事件
-    function bindEle(tagName) {
-        var tagBox = $('[name=' + tagName + ']');
-        tagBox.map(function (i, ele) {
-            var statusData = decodeURI(ele.getAttribute('data-stats'));
+    function bindEle() {
+        var tagBox = document.querySelectorAll('*[data-stats-obj]');
+
+        for (var index = 0; index < tagBox.length; index++) {
+            var statusData = decodeURI(tagBox[index].getAttribute('data-stats-obj'));
             if (!statusData) {
                 return;
             }
@@ -62,6 +50,13 @@ define(function (require) {
             var dataJson = changeData(statusData);
             var eventtype = dataJson.type;
             var data = dataJson.data;
+            var pattern = dataJson.pattern;
+
+            // 如果不是cnzz
+            if (pattern.indexOf('cnzz') < 0) {
+                return;
+            }
+
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
                 // 事件限制到click,mouseup,load(直接触发)
                 return;
@@ -71,11 +66,11 @@ define(function (require) {
                 _czc.push(data);
             }
             else {
-                ele.addEventListener(eventtype, function () {
+                tagBox[index].addEventListener(eventtype, function () {
                     _czc.push(data);
                 }, false);
             }
-        });
+        }
     }
 
     // 数据换转

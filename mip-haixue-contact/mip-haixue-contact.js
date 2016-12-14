@@ -24,7 +24,15 @@ define(function (require) {
         // TODO
         var me = this;
         var element = me.element;
-        var NTKF_PARAM = {siteid: 'kf_9778', settingid: 'kf_9778_1477472166958', uid: '', uname: ''};
+        var siteid = element.getAttribute('siteid');
+        var kfid = element.getAttribute('kfid');
+        kfid = kfid ? kfid : 'kf_9778_1481685802962';
+        var NTKF_PARAM = {
+            siteid: (siteid || 'kf_9778'), 
+            settingid: kfid, 
+            uid: '', 
+            uname: ''
+        };
         (function (window) {
             var headElement;
             var node;
@@ -157,7 +165,7 @@ define(function (require) {
             }
         }
         $(element).on('click', '.mip-contact', function () {
-            xiaoNengChat('kf_9778_1477472166958');
+            xiaoNengChat(kfid);
         });
 
     };

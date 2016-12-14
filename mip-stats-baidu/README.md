@@ -22,8 +22,8 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 
 百度统计事件追踪示例:
 ```
-<div name="palymusic" data-stats-obj="%7Btype:'click',pattern:%5B'baidu','cnzz'%5D,%20data:%5B'_trackPageview',%20'/virtual/login'%5D%7D">
-    我是自动触发,data-stats值建议encodeURI转码)
+<div data-stats-obj="%7Btype:'click',pattern:%5B'baidu','cnzz'%5D,%20data:%5B'_trackPageview',%20'/virtual/login'%5D%7D">
+    我是自动触发
 </div>
  
 ```

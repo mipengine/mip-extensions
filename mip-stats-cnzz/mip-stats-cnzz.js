@@ -43,7 +43,7 @@ define(function (require) {
         var tagBox = document.querySelectorAll('*[data-stats-cnzz-obj]');
 
         for (var index = 0; index < tagBox.length; index++) {
-            var statusData = decodeURIComponent(tagBox[index].getAttribute('data-stats-cnzz-obj'));
+            var statusData = JSON.parse(decodeURIComponent(tagBox[index].getAttribute('data-stats-cnzz-obj')));
             if (!statusData) {
                 return;
             }
@@ -69,15 +69,16 @@ define(function (require) {
 
     // 数据换转
     function buildArry(arrayStr) {
-        var strArr = arrayStr.slice(1,arrayStr.length-1).split(",");
+        var strArr = arrayStr.slice(1, arrayStr.length - 1).split(',');
         var newArray = [];
 
-        for(var index = 0; index<strArr.length; index++) {
-            var item = strArr[index].replace(/(^\s*)|(\s*$)/g, "");
-            if(item=='false'||item=='true') {
-                item = Boolean(item)
+        for (var index = 0; index < strArr.length; index++) {
+            var item = strArr[index].replace(/(^\s*)|(\s*$)/g, '');
+            if (item === 'false' || item === 'true') {
+                item = Boolean(item);
             }
-            newArray.push(item)
+
+            newArray.push(item);
         }
         return newArray;
     }

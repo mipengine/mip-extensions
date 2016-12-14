@@ -13,7 +13,7 @@ define(function (require) {
     customElement.prototype.createdCallback = function () {
         var elem = this.element;
         var token = elem.getAttribute('token');
-        var setCustom = changeData(decodeURIComponent(elem.getAttribute('setconfig')));
+        var setCustom = buildArry(decodeURIComponent(elem.getAttribute('setconfig')));
 
         // 是否指定自定义变量
         if (token) {
@@ -24,7 +24,7 @@ define(function (require) {
             ]);
             if (setCustom) {
                 // 如果存在自定义变量
-                _hmt.push(changeData(setCustom));
+                _hmt.push(setCustom);
             }
 
             var hm = document.createElement('script');
@@ -44,15 +44,14 @@ define(function (require) {
         var tagBox = document.querySelectorAll('*[data-stats-baidu-obj]');
 
         for (var index = 0; index < tagBox.length; index++) {
-            var statusData = decodeURIComponent(tagBox[index].getAttribute('data-stats-baidu-obj'));
+            var statusData = JSON.parse(decodeURIComponent(tagBox[index].getAttribute('data-stats-baidu-obj')));
+
             if (!statusData) {
                 return;
             }
 
-            var dataJson = changeData(statusData);
-
-            var eventtype = dataJson.type;
-            var data = dataJson.data;
+            var eventtype = statusData.type;
+            var data = buildArry(statusData.data);
 
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
                 // 事件限制到click,mouseup,load(直接触发)
@@ -71,15 +70,19 @@ define(function (require) {
     }
 
     // 数据换转
-    function changeData(obj) {
-        var dataJson;
-        try {
-            dataJson = new Function('return ' + obj)();
+    function buildArry(arrayStr) {
+        var strArr = arrayStr.slice(1, arrayStr.length - 1).split(',');
+        var newArray = [];
+
+        for (var index = 0; index < strArr.length; index++) {
+            var item = strArr[index].replace(/(^\s*)|(\s*$)/g, '');
+            if (item === 'false' || item === 'true') {
+                item = Boolean(item);
+            }
+
+            newArray.push(item);
         }
-        catch (e) {
-            dataJson = [];
-        }
-        return dataJson;
+        return newArray;
     }
 
     return customElement;

@@ -14,7 +14,7 @@ define(function (require) {
         var element = this.element;
         var $element = $(element);
         var token = element.getAttribute('token');
-        var setCustom = changeData(decodeURIComponent(element.getAttribute('setconfig')));
+        var setCustom = buildArry(decodeURIComponent(element.getAttribute('setconfig')));
 
         if (token) {
             window._czc = window._czc || [];
@@ -48,9 +48,8 @@ define(function (require) {
                 return;
             }
 
-            var dataJson = changeData(statusData);
-            var eventtype = dataJson.type;
-            var data = dataJson.data;
+            var eventtype = statusData.type;
+            var data = buildArry(statusData.data);
 
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
                 // 事件限制到click,mouseup,load(直接触发)
@@ -69,15 +68,18 @@ define(function (require) {
     }
 
     // 数据换转
-    function changeData(obj) {
-        var dataJson;
-        try {
-            dataJson = new Function('return ' + obj)();
+    function buildArry(arrayStr) {
+        var strArr = arrayStr.slice(1,arrayStr.length-1).split(",");
+        var newArray = [];
+
+        for(var index = 0; index<strArr.length; index++) {
+            var item = strArr[index].replace(/(^\s*)|(\s*$)/g, "");
+            if(item=='false'||item=='true') {
+                item = Boolean(item)
+            }
+            newArray.push(item)
         }
-        catch (e) {
-            dataJson = [];
-        }
-        return dataJson;
+        return newArray;
     }
 
     return customElement;

@@ -23,7 +23,7 @@ define(function (require) {
                 token
             ]);
             if (setCustom) {
-                _czc.push(changeData(setCustom));
+                _czc.push(setCustom);
             }
 
             var html = [

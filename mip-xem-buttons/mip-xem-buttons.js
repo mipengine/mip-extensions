@@ -41,12 +41,12 @@ define(function (require) {
                 if (state === 'loadingText') {
                     this.isLoading = true;
                     $el.addClass(d).attr(d, d);
-                    clearTimeout(t);
                 }
                 else if (this.isLoading) {
                     this.isLoading = false;
                     $el.removeClass(d).removeAttr(d);
                 }
+                clearTimeout(t);
             }, this), 0);
         };
 

@@ -7,6 +7,8 @@
 define(function (require) {
     var customElem = require('customElement').create();
     var getLocation = require('./ck-location').get;
+    var $ = require('zepto');
+    var $body = $('body');
 
     function setHtmlLocation(elem, locationsType) {
         getLocation(function (data) {
@@ -43,6 +45,7 @@ define(function (require) {
             if (flag) {
                 // 真 显示元素
                 elem.style.display = 'block';
+                $body.addClass('view-mip-ck-location-' + data);
             }
             else {
                 // 假 移除元素

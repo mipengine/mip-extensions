@@ -12,20 +12,25 @@ mip-ck-location 根据不同地区展示不同的内容
 
 
 ```html
-<script src="../mip-ck-browser/1.0.0/mip-ck-browser.js"></script>
 <style mip-custom>
-    .mip-ck-location {display: none;}
+    .mip-ck-location, mip-ck-browser {display: none;}
     .mip-ck-location p {text-align: center;}
 </style>
 
 <mip-ck-location location="1" class="mip-ck-location">
+    <p>this is content at beijing area</p>
+</mip-ck-location>
+
+<mip-ck-location location="1" class="mip-ck-location">
     <mip-ck-browser browser="UC">
-        <p>this is content at beijing area</p>
+        <p>this is content at beijing area in uc browser</p>
     </mip-ck-browser>
 </mip-ck-location>
+
 <mip-ck-location location="1" converse class="mip-ck-location">
     <p>this is content not at beijing area</p>
 </mip-ck-location>
+<script defer src="/local-extension-loader?name=mip-ck-browser"></script>
 ```
 
 ## 属性

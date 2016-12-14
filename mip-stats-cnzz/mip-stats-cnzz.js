@@ -14,7 +14,8 @@ define(function (require) {
         var element = this.element;
         var $element = $(element);
         var token = element.getAttribute('token');
-        var setCustom = element.getAttribute('setconfig');
+        var setCustom = changeData(decodeURIComponent(element.getAttribute('setconfig')));
+
         if (token) {
             window._czc = window._czc || [];
             _czc.push([
@@ -39,10 +40,10 @@ define(function (require) {
 
     // 绑定事件
     function bindEle() {
-        var tagBox = document.querySelectorAll('*[data-stats-obj]');
+        var tagBox = document.querySelectorAll('*[data-stats-cnzz-obj]');
 
         for (var index = 0; index < tagBox.length; index++) {
-            var statusData = decodeURI(tagBox[index].getAttribute('data-stats-obj'));
+            var statusData = decodeURIComponent(tagBox[index].getAttribute('data-stats-cnzz-obj'));
             if (!statusData) {
                 return;
             }
@@ -50,12 +51,6 @@ define(function (require) {
             var dataJson = changeData(statusData);
             var eventtype = dataJson.type;
             var data = dataJson.data;
-            var pattern = dataJson.pattern;
-
-            // 如果不是cnzz
-            if (pattern.indexOf('cnzz') < 0) {
-                return;
-            }
 
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
                 // 事件限制到click,mouseup,load(直接触发)

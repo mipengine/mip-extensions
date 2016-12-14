@@ -13,7 +13,7 @@ define(function (require) {
     customElement.prototype.createdCallback = function () {
         var elem = this.element;
         var token = elem.getAttribute('token');
-        var setCustom = changeData(decodeURI(elem.getAttribute('setconfig')));
+        var setCustom = changeData(decodeURIComponent(elem.getAttribute('setconfig')));
 
         // 是否指定自定义变量
         if (token) {
@@ -41,10 +41,10 @@ define(function (require) {
     // 绑定事件
     function bindEle() {
         // 获取所有需要触发的dom
-        var tagBox = document.querySelectorAll('*[data-stats-obj]');
+        var tagBox = document.querySelectorAll('*[data-stats-baidu-obj]');
 
         for (var index = 0; index < tagBox.length; index++) {
-            var statusData = decodeURI(tagBox[index].getAttribute('data-stats-obj'));
+            var statusData = decodeURIComponent(tagBox[index].getAttribute('data-stats-baidu-obj'));
             if (!statusData) {
                 return;
             }
@@ -53,13 +53,6 @@ define(function (require) {
 
             var eventtype = dataJson.type;
             var data = dataJson.data;
-            var pattern = dataJson.pattern;
-
-
-            // 如果不是baidu
-            if (pattern.indexOf('baidu') < 0) {
-                return;
-            }
 
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
                 // 事件限制到click,mouseup,load(直接触发)

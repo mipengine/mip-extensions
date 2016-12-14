@@ -16,13 +16,13 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 百度统计插件引入示例:
 
 ```
-<mip-stats-bidu token="02890d4a309827eb62bc3335b2b28f7f" setconfig="%5B'_setAutoPageview',%20true%5D"></mip-stats-bidu>
+<mip-stats-bidu token="02890d4a309827eb62bc3335b2b28f7f" setconfig="%255B'_setAutoPageview'%2C%2520true%255D"></mip-stats-bidu>
 
 ```
 
 百度统计事件追踪示例:
 ```
-<div data-stats-obj="%7Btype:'click',pattern:%5B'baidu','cnzz'%5D,%20data:%5B'_trackPageview',%20'/virtual/login'%5D%7D">
+<div data-stats-baidu-obj="%7Btype%3A'click'%2Cdata%3A%5B'_trackPageview'%2C%20'%2Fvirtual%2Flogin'%5D%7D">
     我是自动触发
 </div>
  
@@ -49,7 +49,7 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 
 ### 备注
 
-setconfig值必须encodeURI处理,如['_setAutoPageview', true];需转化为%255B'_setAutoPageview',%2520true%255D字符串传递
+setconfig值必须encodeURIComponent处理,如['_setAutoPageview', true];需转化为%255B'_setAutoPageview',%2520true%255D字符串传递
 
 
 ## 事件追踪属性: data-stats-obj
@@ -81,5 +81,5 @@ setconfig值必须encodeURI处理,如['_setAutoPageview', true];需转化为%255
 
 ### 备注
 
-data-stats-obj值必须encodeURI处理,如{type:'click',pattern:['baidu','cnzz'], data:['_trackPageview', '/virtual/login']};需转化为%7Btype:'click',pattern:%5B'baidu','cnzz'%5D,%20data:%5B'_trackPageview',%20'/virtual/login'%5D%7D字符串传递
+data-stats-obj值必须encodeURIComponent处理,如{type:'click',data:['_trackPageview', '/virtual/login']};需转化为%7Btype%3A'click'%2Cdata%3A%5B'_trackPageview'%2C%20'%2Fvirtual%2Flogin'%5D%7D字符串传递
 

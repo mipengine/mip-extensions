@@ -25,7 +25,8 @@ define(function (require) {
             var callNode = document.createElement('script');
             var callHtml = [
                 'try {' + Qicall + '}',
-                'catch (e) {console.error("Mip-Html-Script:","' + Qicall + ' Fatal Error");}'
+                'catch (e) {console.error("Mip-Html-Script:","' + Qisrc + ' > ' + Qicall,
+                ' > "+e.name+": "+e.message+"");}'
                 ];
             callNode.type = 'text/javascript';
             callNode.innerHTML = callHtml.join('');

@@ -1,5 +1,5 @@
 /**
- * 百度好看显示文章详情
+ * @file 百度好看显示文章详情
  * @author  liujunqiu
  * @time 2016.12.15
  */
@@ -25,11 +25,11 @@ define(function (require) {
         var type = $(element).attr('type');
         if (type === 'fengchao') {
             var winHeight = $(window).height();
-            $('#J_article_wrap').css({
-                height: winHeight * 0.62 - $('#J_d_title').outerHeight() - 88
+            $('.J_article_wrap').css({
+                height: winHeight * 0.62 - $('.J_detail_title').outerHeight() - 88
             });
         }
-    };
+    }
 
     customElem.prototype.build = build;
 

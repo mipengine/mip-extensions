@@ -14,7 +14,7 @@ define(function (require) {
         var element = this.element;
         var $element = $(element);
         var token = element.getAttribute('token');
-        var setCustom = buildArry(decodeURIComponent(element.getAttribute('setconfig')));
+        var setConfig = element.getAttribute('setconfig');
 
         if (token) {
             window._czc = window._czc || [];
@@ -22,7 +22,13 @@ define(function (require) {
                 '_setAccount',
                 token
             ]);
-            if (setCustom) {
+
+
+            /**
+            * 检测setconfig是否存在
+            */
+            if (setConfig) {
+                var setCustom = buildArry(decodeURIComponent(setConfig));
                 _czc.push(setCustom);
             }
 
@@ -43,16 +49,22 @@ define(function (require) {
         var tagBox = document.querySelectorAll('*[data-stats-cnzz-obj]');
 
         for (var index = 0; index < tagBox.length; index++) {
-            var statusData = JSON.parse(decodeURIComponent(tagBox[index].getAttribute('data-stats-cnzz-obj')));
+            var statusData = tagBox[index].getAttribute('data-stats-cnzz-obj');
+
+            /**
+            * 检测statusData是否存在
+            */
             if (!statusData) {
                 return;
             }
 
-            if(!statusData.data) {
+            statusData = JSON.parse(decodeURIComponent(statusData));
+
+            var eventtype = statusData.type;
+            if (!statusData.data) {
                 return;
             }
 
-            var eventtype = statusData.type;
             var data = buildArry(statusData.data);
 
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
@@ -73,11 +85,15 @@ define(function (require) {
 
     // 数据换转
     function buildArry(arrayStr) {
+        if (!arrayStr) {
+            return;
+        }
+
         var strArr = arrayStr.slice(1, arrayStr.length - 1).split(',');
         var newArray = [];
 
         for (var index = 0; index < strArr.length; index++) {
-            var item = strArr[index].replace(/(^\s*)|(\s*$)/g, '');
+            var item = strArr[index].replace(/(^\s*)|(\s*$)/g, '').replace(/\'/g, '');
             if (item === 'false' || item === 'true') {
                 item = Boolean(item);
             }

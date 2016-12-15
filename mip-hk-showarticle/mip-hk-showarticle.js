@@ -26,7 +26,7 @@ define(function (require) {
         if (type === 'fengchao') {
             var winHeight = $(window).height();
             $('#J_article_wrap').css({
-                height: winHeight * 0.62
+                height: winHeight * 0.62 - $('#J_d_title').outerHeight() - 88
             });
         }
     };

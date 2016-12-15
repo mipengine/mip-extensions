@@ -1,5 +1,18 @@
 # 升级日志
 
+#### 2016.12.15
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-haixue-contact](https://github.com/mipengine/mip-extensions/tree/master/mip-haixue-contact)|[升级] 支持嗨学网咨询功能
+[mip-xem-buttons](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-buttons)|[升级] 自用buttons组件
+[mip-ck-browser](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-browser)|[升级] 根据不同浏览器展示不同的内容
+[mip-ck-location](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-location)|[升级] 根据不同地区展示不同的内容
+[mip-hk-showarticle](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-showarticle)|[升级] 显示文章更多详情
+[mip-down-script](https://github.com/mipengine/mip-extensions/tree/master/mip-down-script)|[升级] 页面逻辑脚本集合
+
 #### 2016.12.14
 
 > 核心代码上线

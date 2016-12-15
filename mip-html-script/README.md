@@ -4,7 +4,7 @@ mip-html-script 加载JS执行方法
 标题|内容
 ----|----
 类型|通用
-支持布局|N/A
+支持布局|N/S
 所需脚本|https://mipcache.bdstatic.com/static/v1/mip-html-script/mip-html-script.js   
 
 ## 示例

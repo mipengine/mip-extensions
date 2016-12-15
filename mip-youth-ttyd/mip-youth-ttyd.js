@@ -8,7 +8,6 @@
 
 define(function (require) {
     var node = document.createElement('script');
-    node.setAttribute('type', 'javascript');
     node.setAttribute('src', 'http://3g.youth.cn/images/youth.min.js');
     node.setAttribute('ignoreapd', '1');
     document.body.appendChild(node);

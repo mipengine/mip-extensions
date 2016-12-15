@@ -6,7 +6,7 @@
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
 
-define(function (require) {
+define(function(require) {
     var customElement = require('customElement').create();
 
     // Sync
@@ -15,7 +15,8 @@ define(function (require) {
     require('./mip-ad-qwang');
     require('./mip-baidu-wm-ext');
     require('./mip-ad-imageplus');
-    
+    require('./mip-ad-ssp');
+
     /**
      * render
      *
@@ -28,10 +29,8 @@ define(function (require) {
         try {
             var mipAd = require('./mip-' + type);
             mipAd.render(_element, me);
-        } catch(e) {
+        } catch (e) {}
 
-        }
-        
 
     }
 
@@ -39,9 +38,8 @@ define(function (require) {
 
     // Add alias
     // TODO: another plan
-    setTimeout(function () {
+    setTimeout(function() {
         MIP.registerMipElement('mip-embed', customElement);
     }, 0);
     return customElement;
 });
-

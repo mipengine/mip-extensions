@@ -12,6 +12,25 @@ define(function (require) {
     var util = require('util');
     var Gesture = util.Gesture;
 
+    // 动态加载JS脚本
+    window.includeJS = function (sId, source) {
+        if (source != null && !document.getElementById(sId)) {
+            var myHead = document.getElementsByTagName('HEAD').item(0);
+            var myScript = document.createElement('script');
+            myScript.language = 'javascript';
+            myScript.type = 'text/javascript';
+            myScript.id = sId;
+            try {
+                myScript.appendChild(document.createTextNode(source));
+            }
+            catch (ex) {
+                myScript.text = source;
+            }
+            myHead.appendChild(myScript);
+        }
+
+    };
+
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
         var $element = $(this.element);
@@ -24,7 +43,9 @@ define(function (require) {
 
         var scriptstr = '';
         if (gevalPre) {
-            scriptstr += '<script>' + gevalPre + '</script>';
+
+            window.mipDpGevalPre = gevalPre;
+            scriptstr += '<script>includeJS("mip-dp-gevalpre",mipDpGevalPre)</script>';
         }
 
         if (loadjs) {
@@ -39,7 +60,9 @@ define(function (require) {
         }
 
         if (geval) {
-            scriptstr += '<script>' + geval + '</script>';
+
+            window.mipDpGeval = geval;
+            scriptstr += '<script>includeJS("mip-dp-geval",mipDpGeval)</script>';
         }
 
         if (adtag) {

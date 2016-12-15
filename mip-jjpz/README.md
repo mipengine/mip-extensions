@@ -46,16 +46,16 @@ mip-jjpz  自有业务详情页整体交互组件
 <div class="ui_outer padding-r10">
   <div class="Info_url ui_inner ui-grid-row ui_h2 ui_inner_m15 paddingRight1 ui_arr iconfont  border-topnone">
    <div class="ui-grid-5">
-    <p class="ui_m ui_gray">今年来：<span class="numberFont"></span></p>
+    <p class="ui_m ui_gray"><font>今年来：</font><span class="numberFont"></span></p>
   </div>
   <div class="ui-grid-5">
-    <p class="ui_m ui_gray">近1月：<span class="numberFont"></span></p>
+    <p class="ui_m ui_gray"><font>近1月：</font><span class="numberFont"></span></p>
   </div>
   <div class="ui-grid-5">
-    <p class="ui_m ui_gray">近6月：<span class="numberFont"></span></p>
+    <p class="ui_m ui_gray"><font>近6月：</font><span class="numberFont"></span></p>
   </div>
   <div class="ui-grid-5">
-    <p class="ui_m ui_gray">近1年：<span class="numberFont"></span></p>
+    <p class="ui_m ui_gray"><font>近1年：</font><span class="numberFont"></span></p>
   </div>
 </div>
 </div>
@@ -73,12 +73,8 @@ mip-jjpz  自有业务详情页整体交互组件
 </div>
 <div class="ui_outer  ui_blank tabp" data-map="gzt">
   <div class="tab ui-clear">
-   <p class="active" data-imgurl="http://j4.dfcfw.com/charts/pic1/">净值估值</p>
-   <p data-imgurl="http://j3.dfcfw.com/images/JJJZ5/">单位净值</p>
-   <p data-imgurl="http://j3.dfcfw.com/images/syl4/">累计收益</p>
  </div>
  <div class="tabContent  loading">
-   <mip-img src="http://j4.dfcfw.com/charts/pic1/161032.png" class="img"></mip-img>
  </div>
 </div>
 <div class="tuiguang_xz height60">
@@ -209,7 +205,7 @@ mip-jjpz  自有业务详情页整体交互组件
          <span class="profit-title">购买手续费</span>
        </div></td>
        <td></td>
-       <td class="right col_2 align-bottom"><a class="fund-buy" href="https://tradewap.1234567.com.cn/buyfund.html#code=000001" target="_blank">购买</a></td>
+       <td class="right col_2 align-bottom"><a class="fund-buy" href="https://tradewap.1234567.com.cn/buyfund.html" target="_blank">购买</a></td>
      </tr>
    </tbody>
  </table></a></li>
@@ -247,7 +243,7 @@ mip-jjpz  自有业务详情页整体交互组件
          <span class="profit-title">购买手续费</span>
        </div></td>
        <td></td>
-       <td class="right col_2 align-bottom"><a class="fund-buy" href="https://tradewap.1234567.com.cn/buyfund.html#code=000523" target="_blank">购买</a></td>
+       <td class="right col_2 align-bottom"><a class="fund-buy" href="https://tradewap.1234567.com.cn/buyfund.html" target="_blank">购买</a></td>
      </tr>
    </tbody>
  </table></a></li>

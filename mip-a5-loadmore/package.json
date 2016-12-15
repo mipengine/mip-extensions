@@ -1,0 +1,12 @@
+{
+    "name": "mip-a5-loadmore",
+    "version": "1.0.0",
+    "description": "A5创业网mip站列表加载更多功能，也适应于相似业务需求",
+    "author": {
+        "name": "cuikangyi",
+        "email": "392083349@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

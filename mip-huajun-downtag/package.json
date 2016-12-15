@@ -1,0 +1,12 @@
+{
+    "name": "mip-huajun-downtag",
+    "version": "1.0.0",
+    "author": {
+        "name": "huajun",
+        "email": "87390193@qq.com",
+        "url": "http://www.onlinedown.net"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

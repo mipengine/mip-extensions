@@ -1,8 +1,0 @@
-{
-    "name": "mip-showtanceng",
-    "version": "1.0.0",
-    "description": "show showtanceng",
-    "engines": {
-        "mip": ">=1.1.0"
-    }
-}

@@ -329,7 +329,8 @@ define(function (require) {
                             for (var i = 0; i < list.length; ++i) {
                                 lisHttml += '<li><a href="http://m.pc6.com/mipd/' + list[i].ID + '.html" target="_blank"><mip-img src="'
                                 + list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
-                                + (i + 1) + '\',\'' + list[i].ResName + '\'])"></mip-img>' + list[i].ResName + '</a></li>';
+                                + (i + 1) + '\',\'' + list[i].ResName + '\'])"></mip-img>'
+                                + list[i].ResName + '</a></li>';
                             }
                         }
                         $('.tjyxph #thelist3').append(lisHttml);

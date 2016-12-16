@@ -14,9 +14,9 @@ define(function (require) {
         var formhash = elem.getAttribute('formhash');
         var url = elem.getAttribute('url');
         var $elem = $(elem);
-		var $btn = $('.nextreview');
+        var $btn = $('.nextreview');
         function getreview() {
-			$btn.button('loading');
+            $btn.button('loading');
             $.post(url, {
                 yid: yid,
                 listofreadcid: elem.getAttribute('listofreadcid'),
@@ -29,7 +29,7 @@ define(function (require) {
                         var thiscid = ',' + data.tid;
                         var readcid = elem.getAttribute('listofreadcid');
                         $elem.data('listofreadcid', readcid + thiscid);
-						$btn.button('reset');
+                        $btn.button('reset');
                         return data.message;
                     });
                 }

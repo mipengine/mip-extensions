@@ -38,8 +38,8 @@ define(function (require) {
             url = url.replace(/^http(s?)\:\/\/mipcache.bdstatic.com\/c\/(s?)/g, function ($0, $1, $2) {
                 return $2 === 's' ? 'https://' : 'http://';
             });
-            url = url.replace(/\#.*$/g, '');
         }
+        url = url.replace(/\#.*$/g, '');
 
         return url;
     }

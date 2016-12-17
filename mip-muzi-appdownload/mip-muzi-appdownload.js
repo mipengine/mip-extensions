@@ -21,9 +21,9 @@ define(function (require) {
     var customElement = require('customElement').create();
     customElement.prototype.build = function () {
         var element = this.element;
-        var src = element.getAttribute('src') || null;
-        if (src) {
-            document.write('<script type="text/javascript" src="' + src + '"></script>');
+        var loadjs = element.getAttribute('loadjs') || null;
+        if (loadjs) {
+            document.write('<script type="text/javascript" src="' + loadjs + '"></script>');
         }
 
         var script = element.querySelector('script') || null;

@@ -1,5 +1,65 @@
 # 升级日志
 
+#### 2016.12.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-hk-showarticle](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-showarticle)|[升级] 显示文章更多详情
+[mip-xem-review](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-review)|[升级] 自用获取随机评论组件
+
+#### 2016.12.15
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-haixue-contact](https://github.com/mipengine/mip-extensions/tree/master/mip-haixue-contact)|[升级] 支持嗨学网咨询功能
+[mip-xem-buttons](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-buttons)|[升级] 自用buttons组件
+[mip-ck-browser](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-browser)|[升级] 根据不同浏览器展示不同的内容
+[mip-ck-location](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-location)|[升级] 根据不同地区展示不同的内容
+[mip-hk-showarticle](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-showarticle)|[升级] 显示文章更多详情
+[mip-down-script](https://github.com/mipengine/mip-extensions/tree/master/mip-down-script)|[升级] 页面逻辑脚本集合
+
+#### 2016.12.14
+
+> 核心代码上线
+
+    1、图片轮播组件BUG修复
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-news-iframe-interface](https://github.com/mipengine/mip-extensions/tree/master/mip-news-iframe-interface)|[新增] 资讯下iframe双向通信接口
+[mip-muzi-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-muzi-appdownload)|[升级] 木子app下载
+[mip-share](https://github.com/mipengine/mip-extensions/tree/master/mip-share)|[升级] 分享组件 修复微信分享图片过大
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+[mip-down-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-down-ppzs)|[升级] 皮皮助手
+[mip-ck-browser](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-browser)|[升级] 根据不同浏览器展示不同的内容
+[mip-ck-location](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-location)|[升级] 根据不同地区展示不同的内容
+
+#### 2016.12.13
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[新增] 星座屋mip改造插件
+[mip-ck-browser](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-browser)|[新增] 根据不同浏览器展示不同的内容
+[mip-ck-location](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-location)|[新增] 根据不同地区展示不同的内容
+[mip-xem-buttons](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-buttons)|[新增] 自用buttons组件
+[mip-xem-dropdowns](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-dropdowns)|[新增] 自用dropdowns组件
+[mip-a5-loadmore](https://github.com/mipengine/mip-extensions/tree/master/mip-a5-loadmore)|[新增] a5创业网逻辑组件
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 可播放广告的视频组件
+[mip-html-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-html-ajax)|[升级] 评论提交加载
+[mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[升级] 百度资讯垂类新闻和热点推荐组件
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件 
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
+[mip-jjpz](https://github.com/mipengine/mip-extensions/tree/master/mip-jjpz)|[升级] 自有业务详情页整体交互组件
+
 #### 2016.12.09
 
 > 组件上线

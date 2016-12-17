@@ -15,8 +15,8 @@ mip-html-ajax 评论提交加载
   <script type="application/json">
   {
 		"id":"123",
-        "add":{"type":"get","tip":"1","url":"/ajax_comment/?s=1"},
-        "get":{"type":"get","tip":"0","url":"/ajax_comment/?s=2"},
+        "add":{"tip":"1","url":"/ajax_comment/?s=1"},
+        "get":{"tip":"0","url":"/ajax_comment/?s=2"},
 		"val":{"user":"#userName","text":"#cmtMsg"},
 		"obj":{"list":".pllist ul","listre":"#relist","more":"#loadmore","morestr":"","arr":"items","rearr":"res"},
 		"set":{"txt":"#cmtMsg","btn":"#subCmt","btnstr":""},

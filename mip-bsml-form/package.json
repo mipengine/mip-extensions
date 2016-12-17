@@ -1,0 +1,12 @@
+{
+    "name": "mip-bsml-form",
+    "version": "1.0.0",
+    "author": {
+        "name": "BSML authors",
+        "email": "shop-c-rd@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

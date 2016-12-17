@@ -7,7 +7,6 @@
 define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
-    var util = require('util');
 
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,

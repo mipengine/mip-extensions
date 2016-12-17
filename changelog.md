@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2016.12.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-hk-showarticle](https://github.com/mipengine/mip-extensions/tree/master/mip-hk-showarticle)|[升级] 显示文章更多详情
+[mip-xem-review](https://github.com/mipengine/mip-extensions/tree/master/mip-xem-review)|[升级] 自用获取随机评论组件
+
 #### 2016.12.15
 
 > 组件上线

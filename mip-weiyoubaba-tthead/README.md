@@ -45,7 +45,7 @@
 	<a href="#" class="hide open" >游戏</a>
 	<a href="#" class="hide open" >星座</a>
 	<a href="#" class="hide  open" >宠物</a>
-	<a href="#" class="ico_men"><span class="icon_open"></span><span class="icon_close"></span></a>
+	<a href="#" class="ico_men"><span class="icon_open">点击显示更多分类</span><span class="icon_close">点击隐藏</span></a>
 </div>
 
 <div class="container">

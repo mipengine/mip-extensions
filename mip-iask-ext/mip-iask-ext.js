@@ -114,7 +114,7 @@ define(function (require) {
                     alert('请选择举报原因！');
                 }
                 else {
-                    var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mib=' + Math.random();
+                    var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
                     $.get(checkLoginUrl,
                     function (e) {
                         if (e == null || e === 'null') {
@@ -170,7 +170,7 @@ define(function (require) {
             var indexLogin = $('.index_login');
             var thisHref = window.location.href;
             var nickName = null;
-            var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?m=' + Math.random();
+            var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {

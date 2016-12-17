@@ -14,8 +14,8 @@
 
 ```
 <mip-weiyoubaba-tthead>
-</header>
-<div class="w98">
+<header>
+   <div class="w98">
 		<div class="top">
 			<div class="logo">
 				<a href="#" title="微友巴巴头条网"><img src="/images/LOGO.png" alt="微友巴巴头条网"/></a>
@@ -23,7 +23,7 @@
 			<a href="http://www.weiyoubaba.com/sitemap/" title="网站地图"  class="menu"></a>
 			<a href="http://so.weiyoubaba.com/cse/search?q=&s=11859279704970442182&nsid=0" class="serch" title="新闻搜索"></a>
 		</div>
-	</div>
+   </div>
 </header>
 <div class="nav">
 	<a href="#">最新</a>
@@ -49,20 +49,19 @@
 </div>
 
 <div class="container">
-<div class="newslist">
-<ul id="thelist">
-
- <li><a href="http://toutiao.weiyoubaba.com/a/cwrz2.shtml" title="利用期市规避风险理念深入油脂企业">
-<div class="news_photo">
-<img src="http://img.weiyoubaba.com/daohang/art/art_slt/2016/1213/slt_12-13-573bdd8123-b5db-44df-bff4-b8b8cbe714d9.jpeg" alt="利用期市规避风险理念深入油脂企业" /></div>
-<div class="news_text">
-<h3>
-利用期市规避风险理念深入油脂企业</h3>
-<div class="news_info">
-<span class="new_date">1分钟前</span>
-</div>
-</div>
-</a></li>
+ <div class="newslist">
+  <ul id="thelist">
+   <li><a href="http://toutiao.weiyoubaba.com/a/cwrz2.shtml" title="利用期市规避风险理念深入油脂企业">
+    <div class="news_photo">
+     <img src="http://img.weiyoubaba.com/daohang/art/art_slt/2016/1213/slt_12-13-573bdd8123-b5db-44df-bff4-  b8b8cbe714d9.jpeg" alt="利用期市规避风险理念深入油脂企业" /></div>
+   <div class="news_text">
+    <h3>
+     利用期市规避风险理念深入油脂企业</h3>
+   <div class="news_info">
+   <span class="new_date">1分钟前</span>
+   </div>
+  </div>
+ </a></li>
 </ul>
 </div>
 </mip-weiyoubaba-tthead>

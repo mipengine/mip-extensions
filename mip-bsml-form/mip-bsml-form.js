@@ -7,6 +7,7 @@
 define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
+    var util = require('util');
 
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
@@ -22,8 +23,9 @@ define(function (require) {
         var $element = $(element);
         var url = element.getAttribute('url');
         var method = element.getAttribute('method');
+        var type = element.getAttribute('type');
         var form = $([
-            '<form action=' + url + ' method=' + method + ' target="_blank">',
+            '<form action=' + url + ' method=' + method + ' type=' + type + ' target="_blank">',
             '</form>'
         ].join(''));
 
@@ -58,6 +60,38 @@ define(function (require) {
     customElement.prototype.build = function () {
         var element = this.element;
         createDom.call(this);
+        var parm = {};
+        parm.compname = $(element).find('form').attr('type');
+        var url = $(element).find('form').attr('action');
+        $(element).on('click', '.bsml-form-list-submit', function () {
+            var jsonval = $(element).find('form').serializeArray();
+            for (var i = 0; i < jsonval.length; i++) {
+                if (!jsonval[i].value) {
+                    return;
+                }
+            }
+            parm.pageid = $(this).attr('data-pageid');
+            parm.merchantid = $(this).attr('data-ucid');
+            parm.jsonval = jsonval;
+            $.ajax({
+                url: url,
+                data: parm,
+                cache: false,
+                dataType: 'jsonp',
+                jsonpCallback: 'callback',
+                success: function (data) {
+                    if (data.status === 0) {
+                        $(element).find('.bsml-form-tips').html('提交成功！').show();
+                    } else {
+                        $(element).find('.bsml-form-tips').html(data.statusInfo).show();
+                    }
+                    var timer = setTimeout(function () {
+                        $(element).find('.bsml-form-tips').hide();
+                        clearTimeout(timer);
+                    }, 1000);
+                }
+            });
+        });
     };
 
     return customElement;

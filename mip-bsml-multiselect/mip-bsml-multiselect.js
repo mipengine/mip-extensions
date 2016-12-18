@@ -125,7 +125,8 @@ define(function (require) {
                     if (this.options.filter) {
                         this.$drop.append(
                             '<div class="ms-search">'
-                            + '<input type="text" autocomplete="off" autocorrect="off" autocapitilize="off" spellcheck="false">'
+                            + '<input type="text" autocomplete="off" autocorrect="off"'
+                            + ' autocapitilize="off" spellcheck="false">'
                             + '</div>'
                         );
                     }
@@ -267,7 +268,8 @@ define(function (require) {
                     }).off('keyup').on('keyup', function (e) {
                         // enter or space
                         // Avoid selecting/deselecting if no choices made
-                        if (that.options.filterAcceptOnEnter && (e.which === 13 || e.which === 32) && that.$searchInput.val()) {
+                        if (that.options.filterAcceptOnEnter && (e.which === 13 || e.which === 32)
+                            && that.$searchInput.val()) {
                             that.$selectAll.click();
                             that.close();
                             that.focus();
@@ -403,7 +405,8 @@ define(function (require) {
 
                     if (sl === 0) {
                         $span.addClass('placeholder').html(this.options.placeholder);
-                    } else if (this.options.allSelected && sl === this.$selectItems.length + this.$disableItems.length) {
+                    } else if (this.options.allSelected && sl === this.$selectItems.length
+                        + this.$disableItems.length) {
                         $span.removeClass('placeholder').html(this.options.allSelected);
                     } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
                         $span.removeClass('placeholder').text(selects.slice(0, this.options.minimumCountSelected)
@@ -468,13 +471,15 @@ define(function (require) {
                         values.push($(this).val());
                     });
 
+
                     if (type === 'text' && this.$selectGroups.length) {
                         texts = [];
                         this.$selectGroups.each(function () {
                             var html = [];
                             var text = $.trim($(this).parent().text());
                             var group = $(this).parent().data('group');
-                            var $children = that.$drop.find(sprintf('[%s][data-group="%s"]', that.selectItemName, group));
+                            var $children = that.$drop.find(sprintf('[%s][data-group="%s"]',
+                                that.selectItemName, group));
                             var $selected = $children.filter(':checked');
 
                             if (!$selected.length) {
@@ -706,7 +711,7 @@ define(function (require) {
 
 
 
-        $(function() {
+        $(function () {
             $('select.multi-select').multipleSelect({
                 selectAll: false,
                 width: '100%'

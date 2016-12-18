@@ -16,38 +16,6 @@ define(function (require) {
     };
 
     /**
-     * [createDom 创建 form 节点]
-     */
-    function createDom() {
-        var element = this.element;
-        var $element = $(element);
-        var url = element.getAttribute('url');
-        var method = element.getAttribute('method');
-        var type = element.getAttribute('type');
-        var form = $([
-            '<form action=' + url + ' method=' + method + ' type=' + type + ' target="_blank">',
-            '</form>'
-        ].join(''));
-
-        form.append($element.html());
-        $element.html(form);
-
-        // 按钮提交
-        $element.find('form').on('submit', function (event) {
-            event.preventDefault();
-            onSubmit.call(element);
-            return false;
-        });
-
-        // 回车提交
-        element.addEventListener('keydown', function (event) {
-            if (event.keyCode === 13) {
-                onSubmit.call(this);
-            }
-        }, false);
-    }
-
-    /**
      * [onSubmit 点击提交按钮事件处理函数]
      */
     function onSubmit() {
@@ -59,10 +27,29 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        createDom.call(this);
+        $element = $(element).find('.bsml-singleselect-container');
+        var options = $element.attr('options');
+        if (options) {
+            var name = $element.attr('name');
+            try {
+                options = JSON.parse(options);
+                var str = '<select name="' + name + '" class="bsml-singleselect">';
+                options.map(function (option) {
+                    str += '<option value="' + option.value + '"';
+                    if (option.selected) {
+                        str += ' selected="selected"';
+                    }
+                    str += '>' + option.text + '</option>';
+                });
+                str += '</select>';
+                $element.html(str);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
         var parm = {};
-        parm.compname = $(element).find('form').attr('type');
-        var url = $(element).find('form').attr('action');
+        parm.compname = $(element).parent('mip-bsml-widget').attr('type');
         $(element).on('click', '.bsml-form-list-submit', function () {
             var jsonval = $(element).find('form').serializeArray();
             for (var i = 0; i < jsonval.length; i++) {
@@ -73,6 +60,7 @@ define(function (require) {
             parm.pageid = $(this).attr('data-pageid');
             parm.merchantid = $(this).attr('data-ucid');
             parm.jsonval = jsonval;
+            var url = $(element).find('form').attr('action');
             $.ajax({
                 url: url,
                 data: parm,

@@ -709,10 +709,30 @@ define(function (require) {
             };
         })($);
 
+        $element = $(this.element);
+        var options = $element.attr('options');
+        var name = $element.attr('name');
+        if (options) {
+            try {
+                options = JSON.parse(options);
+                var str = '<select name="' + name + '" class="bsml-multiselect">';
+                options.map(function (option) {
+                    str += '<option value="' + option.value + '"';
+                    if (option.selected) {
+                        str += ' selected="selected"';
+                    }
+                    str += '>' + option.text + '</option>';
+                });
+                str += '</select>';
+                $element.html(str);
+            } catch (e) {
+                console.log(e);
+            }
+        }
 
 
         $(function () {
-            $('select.multi-select').multipleSelect({
+            $('select.bsml-multiselect').multipleSelect({
                 selectAll: false,
                 width: '100%'
             });

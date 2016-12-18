@@ -1,6 +1,6 @@
 # mip-bsml-multiselect
 
-mip-bsml-multiselect 组件说明
+mip-bsml-multiselect bsml多选下拉组件
 
 标题|内容
 ----|----

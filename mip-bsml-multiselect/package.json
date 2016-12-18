@@ -1,11 +1,11 @@
 {
     "name": "mip-bsml-multiselect",
     "version": "1.0.0",
-    "description": "组件介绍",
+    "description": "bsml多选下拉组件",
     "contributors": [
         {
-            "name": "",
-            "email": ""
+            "name": "yangzongjun",
+            "email": "yangzongjun@baidu.com"
         }
     ],
     "engines": {

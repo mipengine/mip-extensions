@@ -19,7 +19,7 @@ define(function (require) {
             var callNode = document.createElement('script');
             var callHtml = [
                 'try {Qinit("' + Qicall + '");}',
-                'catch (e) {console.error("Mip-Html-Call:"," > ',
+                'catch (e) {console.error("Mip-WangXia-Call:"," > ',
                 ' > "+e.name+": "+e.message+"");}'
                 ];
             callNode.type = 'text/javascript';

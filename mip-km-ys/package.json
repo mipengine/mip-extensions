@@ -1,0 +1,11 @@
+{
+    "name": "mip-km-ys",
+    "version": "1.0.0",
+    "author": {
+        "name": "km-iconfont",
+        "email": "ued@km.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

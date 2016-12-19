@@ -1,7 +1,7 @@
 /**
  * @author: Qi
  * @date: 2016-12-15
- * @file: mip-html-call.js
+ * @file: mip-wangxia-call.js
  */
 
 define(function (require) {

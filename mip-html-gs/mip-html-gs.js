@@ -7,6 +7,8 @@
 define(function (require) {
     var customElem = require('customElement').create();
     var qi = require('zepto');
+    var util = require('util');
+    var platform = util.platform;
 
 	// 获取操作系统
     function getOs() {
@@ -15,7 +17,7 @@ define(function (require) {
         if (osUA.indexOf('android') > -1) {
             isOs = 1;
         }
-        else if (osUA.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/i)) {
+        else if (platform.isIos()) {
             isOs = 2;
         }
         return isOs;
@@ -33,11 +35,11 @@ define(function (require) {
             data: data,
             dataType: 'jsonp',
             error: function () {
-                console.log('Mip-Html-Gs', 'Ajax Err');
+                console.error('Mip-Html-Gs', 'Ajax Err');
             },
             success: function (jsondb) {
                 if (jsondb.state.code !== 2000000) {
-                    console.log('Mip-Html-Gs', jsondb.state.msg);
+                    console.error('Mip-Html-Gs', jsondb.state.msg);
                     return false;
                 }
                 if (typeof (jsondb.data) === 'undefined') {
@@ -57,8 +59,8 @@ define(function (require) {
                     '</div></div>'
 				];
                 qi('.topdown a').hide();
-                qi('#appBox').append(downHtml.join(''));
-                qi('#appBox').on('click', '.mip-html-gs .gs-btn', function () {
+                qi('.appBox').append(downHtml.join(''));
+                qi('.appBox').on('click', '.mip-html-gs .gs-btn', function () {
                     if (qi('.mip-html-gs').hasClass('gs-down')) {
                         qi('.topdown a').hide();
                         qi('.mip-html-gs').removeClass('gs-down');
@@ -77,7 +79,7 @@ define(function (require) {
                         qi('.mip-html-gs .gs-tip span').hide().eq(1).show();
                     }
                 });
-                qi('#appBox').on('click', '.mip-html-gs .gsurl', function () {
+                qi('.appBox').on('click', '.mip-html-gs .gsurl', function () {
                     var theObj = qi(this);
                     qi('.mip-html-gs .gs-btn').click();
                     if (jsondb.info.tjurl !== '') {
@@ -105,14 +107,14 @@ define(function (require) {
         var elemUrl = theElem.attr('Qi-url') || '';
         var elemArr = theElem.attr('Qi-arr') || '';
         if (elemUrl === '' && elemArr === '') {
-            console.log('Mip-Html-Gs', 'Config Err');
+            console.error('Mip-Html-Gs', 'Config Err');
             return false;
         }
         try {
             var data = JSON.parse(elemArr);
         }
         catch (e) {
-            console.log('Mip-Html-Gs', 'Array Err');
+            console.error('Mip-Html-Gs', 'Array Err');
             return false;
         }
         getJsonData(elemUrl, data, theElem);

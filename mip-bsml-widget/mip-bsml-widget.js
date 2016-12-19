@@ -12,6 +12,8 @@ define(function (require) {
 
     /**
      * 日志打点
+     *
+     * @param {string} data 打点数据
      */
     function addLog(data) {
         if (!data) {
@@ -24,26 +26,27 @@ define(function (require) {
             data = JSON.parse(data);
             var pageinfo = $('#pageinfo');
             var log = {
-                action_id: data.action_id ? data.action_id : 'site_comp_click',
-                action_name: data.action_name ? data.action_name : '普通组件点击',
-                guid: pageinfo.attr('guid'),
-                site_id: pageinfo.attr('siteid'),
-                channel_id: pageinfo.attr('channel'),
-                time_stamp: Math.round(new Date().getTime()/1000),
-                page_name: pageinfo.attr('pagename'),
-                page_type: pageinfo.attr('pagetype'),
-                refer: document.referrer,
-                url: location.href,
-                cuid: '',
-                extra:{}
-            }
+                'action_id': data.action_id ? data.action_id : 'site_comp_click',
+                'action_name': data.action_name ? data.action_name : '普通组件点击',
+                'guid': pageinfo.attr('guid'),
+                'site_id': pageinfo.attr('siteid'),
+                'channel_id': pageinfo.attr('channel'),
+                'time_stamp': Math.round(new Date().getTime() / 1000),
+                'page_name': pageinfo.attr('pagename'),
+                'page_type': pageinfo.attr('pagetype'),
+                'refer': document.referrer,
+                'url': location.href,
+                'cuid': '',
+                'extra': {}
+            };
+
             if (log.action_id === 'site_bar_click') {
                 log.extra.type = data.type;
             } else if (log.action_id === 'site_comp_click') {
                 log.extra = {
-                    comp_name: $(element).attr('name'),
-                    comp_type: $(element).attr('type')
-                }
+                    'comp_name': $(element).attr('name'),
+                    'comp_type': $(element).attr('type')
+                };
             }
             log.extra = JSON.stringify(log.extra);
             var src = host + '?' + $.param(log);
@@ -60,7 +63,7 @@ define(function (require) {
     customElement.prototype.build = function () {
         var element = this.element;
         var me = this;
-        $(element).on('click', '[data-click]', function() {
+        $(element).on('click', '[data-click]', function () {
             addLog.call(me, $(this).attr('data-click'));
         });
     };

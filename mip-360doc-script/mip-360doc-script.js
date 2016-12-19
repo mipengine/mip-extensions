@@ -54,6 +54,11 @@ define(function (require) {
                 sendlog('Componentclick?id=7');
             });
         }
+        if ($('.mip-360doc-script-p_footer_sc') !== null) {
+            $('.mip-360doc-script-p_footer_sc').on('click', function (event) {
+                sendlog('Componentclick?id=8');
+            });
+        }
     };
     function check() {
         try {

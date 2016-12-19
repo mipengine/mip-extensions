@@ -1,0 +1,12 @@
+{
+    "name": "mip-template",
+    "version": "1.0.0",
+    "description": "前端模板，异步加载数据渲染",
+    "author": {
+        "name": "fengzihao",
+        "email": "fengzh_0376@163.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

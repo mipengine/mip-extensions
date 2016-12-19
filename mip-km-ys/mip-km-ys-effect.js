@@ -82,9 +82,9 @@ define(function(require){
       obj.addClass("popWin_transition");
     },
     ys_hidePopWin:function(obj){                //关闭弹窗
-      obj.removeClass("popWinMask_transition");
+      obj.removeClass("popWin_transition");
       setTimeout(function(){
-        obj.parent().removeClass("popWin_transition");
+        obj.parent().removeClass("popWinMask_transition");
       },100)
     },
     ys_more_arrow:function(){                     //展开箭头更多

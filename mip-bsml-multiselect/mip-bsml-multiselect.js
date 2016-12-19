@@ -15,6 +15,9 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         // TODO
+        var me = this;
+        var element = this.element;
+
 
         /**
          * @file plugin
@@ -70,10 +73,10 @@ define(function (require) {
 
                 // add placeholder to choice button
                 this.$choice = $(sprintf(
-                        '<button type="button" class="ms-choice">'
-                        +    '<span class="placeholder">%s</span>'
-                        +    '<div></div>'
-                        + '</button>',
+                    '<button type="button" class="ms-choice">'
+                    +    '<span class="placeholder">%s</span>'
+                    +    '<div></div>'
+                    + '</button>',
                     this.options.placeholder));
 
                 // default position is bottom
@@ -213,7 +216,7 @@ define(function (require) {
                             '<li class="group">',
                             sprintf('<label class="optgroup %s" data-group="%s">', disabled ? 'disabled' : '', group),
                             this.options.hideOptgroupCheckboxes || this.options.single ? ''
-                            : sprintf('<input type="checkbox" %s %s>',
+                                : sprintf('<input type="checkbox" %s %s>',
                                 this.selectGroupName, disabled ? 'disabled="disabled"' : ''),
                             label,
                             '</label>',
@@ -230,9 +233,9 @@ define(function (require) {
                 events: function () {
                     var that = this;
                     var toggleOpen = function (e) {
-                            e.preventDefault();
-                            that[that.options.isOpen ? 'close' : 'open']();
-                        };
+                        e.preventDefault();
+                        that[that.options.isOpen ? 'close' : 'open']();
+                    };
 
                     if (this.$label) {
                         this.$label.off('click').on('click', function (e) {
@@ -410,7 +413,7 @@ define(function (require) {
                         $span.removeClass('placeholder').html(this.options.allSelected);
                     } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
                         $span.removeClass('placeholder').text(selects.slice(0, this.options.minimumCountSelected)
-                            .join(this.options.delimiter) + '...');
+                                .join(this.options.delimiter) + '...');
                     } else if (this.options.countSelected && sl > this.options.minimumCountSelected) {
                         $span.removeClass('placeholder').html(this.options.countSelected
                             .replace('#', selects.length)
@@ -603,20 +606,20 @@ define(function (require) {
                 var args = arguments;
                 var value;
                 var allowedMethods = [
-                        'getSelects', 'setSelects',
-                        'enable', 'disable',
-                        'open', 'close',
-                        'checkAll', 'uncheckAll',
-                        'focus', 'blur',
-                        'refresh', 'close'
-                    ];
+                    'getSelects', 'setSelects',
+                    'enable', 'disable',
+                    'open', 'close',
+                    'checkAll', 'uncheckAll',
+                    'focus', 'blur',
+                    'refresh', 'close'
+                ];
 
                 this.each(function () {
                     var $this = $(this);
                     var data = $this.data('multipleSelect');
                     var options = $.extend({}, $.fn.multipleSelect.defaults,
-                            $this.data(''),
-                            typeof option === 'object' && option);
+                        $this.data(''),
+                        typeof option === 'object' && option);
 
                     if (!data) {
                         data = new MultipleSelect($this, options);
@@ -709,7 +712,7 @@ define(function (require) {
             };
         })($);
 
-        $element = $(this.element);
+        var $element = $(this.element);
         var options = $element.attr('options');
         var name = $element.attr('name');
         if (options) {
@@ -730,14 +733,17 @@ define(function (require) {
             }
         }
 
-
         $(function () {
+            var configHeight = 120;
             $('select.bsml-multiselect').multipleSelect({
                 selectAll: false,
-                width: '100%'
+                width: '100%',
+                position: ($(document).height() - 38
+                - $(element).find(('select.bsml-multiselect')).offset().top
+                > configHeight) ? 'bottom' : 'top',
+                maxHeight: configHeight
             });
         });
-
 
     };
 

@@ -653,7 +653,7 @@ define(function (require) {
                 filter: false,
                 width: undefined,
                 dropWidth: undefined,
-                maxHeight: 250,
+                maxHeight: 120,
                 container: null,
                 position: 'bottom',
                 keepOpen: false,

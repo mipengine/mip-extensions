@@ -54,6 +54,11 @@ define(function (require) {
             var jsonval = $(element).find('form').serializeArray();
             for (var i = 0; i < jsonval.length; i++) {
                 if (!jsonval[i].value) {
+                    $(element).find('.bsml-form-tips').html('所有内容必须填写！').show();
+                    var timer = setTimeout(function () {
+                        $(element).find('.bsml-form-tips').hide();
+                        clearTimeout(timer);
+                    }, 1000);
                     return;
                 }
             }

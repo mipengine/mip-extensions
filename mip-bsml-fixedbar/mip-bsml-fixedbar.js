@@ -16,7 +16,7 @@ define(function (require) {
         var element = me.element;
 
         $(element).on('click', '.mip-bsml-fixed-bar-box-appointment', function () {
-            $(element).find('.bsml-form-lay').show();
+            $(element).find('.bsml-form-lay').fadeIn('fast');
             $(element).find('.bsml-form').animate({bottom: '0'}, 'fast');
         });
 

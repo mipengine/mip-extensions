@@ -86,15 +86,21 @@ ul, li {
 }
 .bsml-form-tips {
     display: none;
-    height: 200px;
-    line-height: 200px;
+    position: absolute;
+    width: 120px;
+    height: rem(60);
+    line-height: rem(60);
     text-align: center;
-    font-size: 18px;
-    color: #333;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    font-size: rem(12);
+    color: #fff;
+    bottom: 30%;
+    left: 50%;
+    margin-left: -80px;
     z-index: 999;
-    width: 100%;
-    background: #fff;
+    border-radius: 5px;
+    background: rgba(0,0,0,.3);
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

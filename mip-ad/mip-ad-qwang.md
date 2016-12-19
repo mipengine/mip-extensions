@@ -1,6 +1,7 @@
 # 类型: ad-qwang 全网推荐
 
-全网推荐
+全网推荐  
+如果广告配置了悬浮，需要使用添加 cpro_pstype="suspend" 参数。
 
 ## 支持布局
 
@@ -40,7 +41,7 @@
 如果在广告配置时选择了`单行文字悬浮`、`双行文字悬浮`、`图文悬浮`，则应该将`<mip-ad>`嵌入在`<mip-fixed>`中使用，[mip-fixed使用文档](https://www.mipengine.org/doc/3-widget/3-customize-widget/fixed-widget.html)。
 
 ```html
-<mip-fixed>
+<mip-fixed type="bottom">
 	<mip-ad 
 		type="ad-qwang" 
 		cpro_psid="u2619809" 
@@ -80,3 +81,10 @@
 必选项：否  
 类型：数字  
 默认值：230
+
+### cpro_pstype
+说明：全网推荐广告配置中的悬浮类型  
+必选项：否  
+类型：字符串  
+默认值：embed
+取值：embed/suspend

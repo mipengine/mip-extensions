@@ -56,6 +56,7 @@ define(function (require) {
         }
 
         document.body.appendChild(adScript);
+        // node.appendChild(adScript);
         adScript.onload = function () {
             mipEle.applyFillContent(node, true);
         };

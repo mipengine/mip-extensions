@@ -28,7 +28,7 @@ mip-form 用来支持 mip 中的表单提交。
 ### 加清空按钮
 
 ```html
-<mip-form method="post" url="xxx" clear="true">
+<mip-form method="post" url="xxx" clear>
     <input type="input" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
     <div target="username">姓名不能为空</div>
     <input type="input" name="email" validatetarget="email" validatetype="email" placeholder="邮件">

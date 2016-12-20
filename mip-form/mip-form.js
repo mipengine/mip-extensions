@@ -54,9 +54,11 @@ define(function (require) {
             onSubmit.call(element);
         });
 
-        // 回车提交
+        // XXX 部分浏览器回车不触发submit,
         element.addEventListener('keydown', function (event) {
             if (event.keyCode === 13) {
+                // XXX 为了使余下浏览器不多次触发submit, 使用prevent
+                event.preventDefault();
                 onSubmit.call(this);
             }
         }, false);
@@ -78,8 +80,12 @@ define(function (require) {
      */
     function onSubmit() {
         var self = this;
-        var flag = false;
+        var preventSubmit = false;
         var inputs = $(self).find('input[type="input"]');
+        var isGet = self.getAttribute('method') === 'get';
+        var getUrl = self.getAttribute('url');
+        var isHttp = getUrl.match('http://');
+        var valueJson = '';
 
         inputs.map(function (index, item) {
             var type = item.getAttribute('validatetype');
@@ -88,6 +94,7 @@ define(function (require) {
             var value = item.value;
             var reg;
 
+            valueJson += '&' + item.name + '=' + item.value;
             if (type) {
                 if (regval) {
                     reg = value === '' ? false : (new RegExp(regval)).test(value);
@@ -95,24 +102,33 @@ define(function (require) {
                 else {
                     reg = verification(type, value);
                 }
-
                 util.css($(self).find('div[target="' + target + '"]'), {display: (!reg ? 'block' : 'none')});
-                flag = !reg ? true : flag;
+                preventSubmit = !reg ? true : preventSubmit;
             }
         });
+        valueJson = valueJson.substring(1);
 
-        // iframe 嵌套处理
+        if(preventSubmit) {
+            return;
+        }
+
+        // 在iframe下使用mibm-jumplink，跳转显示手百框
         if (window.parent !== window) {
+            var messageUrl = '';
+            // http-GET请求交给外层跳转
+            if (isHttp && isGet) {
+                messageUrl = getUrl + '?' + valueJson;
+            }
             var message = {
                 'event': 'mibm-jumplink',
                 'data': {
-                    'method': 'post'
+                    'url' : messageUrl
                 }
             };
             window.parent.postMessage(message, '*');
         }
-
-        if (!flag) {
+        //https请求 post请求不做处理
+        if (!messageUrl){
             self.getElementsByTagName('form')[0].submit();
         }
     }
@@ -122,7 +138,7 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        var addClearBtn = element.getAttribute('clear');
+        var addClearBtn = element.hasAttribute('clear');
         this.cross = null;
 
         if (preProcess(element)) {
@@ -130,7 +146,7 @@ define(function (require) {
         }
 
         if (addClearBtn) {
-            const INPUTS = element.querySelectorAll('input[type=input]');
+            var INPUTS = element.querySelectorAll('input[type=input]');
             var index = 0;
             var height = element.querySelector('input[type=input]').offsetHeight;
             var cross = document.createElement('div');

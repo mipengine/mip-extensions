@@ -12,7 +12,7 @@ mustache模板引擎
 
 ```html
 <!-- 模板引擎类型的组件统一使用 `<template>` 标签 -->
-<template type="mustache">
+<template type="mip-mustache">
 code
 </template>
 ```

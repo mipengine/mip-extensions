@@ -408,10 +408,12 @@ define(function (require) {
 
                     if (sl === 0) {
                         $span.addClass('placeholder').html(this.options.placeholder);
-                    } else if (this.options.allSelected && sl === this.$selectItems.length
-                        + this.$disableItems.length) {
-                        $span.removeClass('placeholder').html(this.options.allSelected);
-                    } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
+                    }
+                    //else if (this.options.allSelected && sl === this.$selectItems.length
+                    //    + this.$disableItems.length) {
+                    //     $span.removeClass('placeholder').html(this.options.allSelected);
+                    //}
+                    else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
                         $span.removeClass('placeholder').text(selects.slice(0, this.options.minimumCountSelected)
                                 .join(this.options.delimiter) + '...');
                     } else if (this.options.countSelected && sl > this.options.minimumCountSelected) {

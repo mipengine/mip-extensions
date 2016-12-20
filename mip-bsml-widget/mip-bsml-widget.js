@@ -33,6 +33,21 @@ define(function (require) {
     }
 
     /**
+     * 获取cuid
+     *
+     * @return {string}
+     */
+    function getCuid() {
+        if (window.bsmlCuid) {
+            return window.bsmlCuid;
+        }
+
+        // @todo 暂时没有好办法获取cuid 下期实现
+        window.bsmlCuid = '';
+        return window.bsmlCuid;
+    }
+
+    /**
      * 日志打点
      *
      * @param {string} data 打点数据
@@ -58,7 +73,7 @@ define(function (require) {
                 'page_type': pageinfo.attr('pagetype'),
                 'refer': document.referrer,
                 'url': location.href,
-                'cuid': '',
+                'cuid': getCuid(),
                 'extra': {}
             };
 

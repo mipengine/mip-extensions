@@ -7,7 +7,6 @@
 define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
-    var util = require('util');
 
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
@@ -27,7 +26,7 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        $element = $(element).find('.bsml-singleselect-container');
+        var $element = $(element).find('.bsml-singleselect-container');
         var options = $element.attr('options');
         if (options) {
             var name = $element.attr('name');

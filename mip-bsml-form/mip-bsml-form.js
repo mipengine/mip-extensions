@@ -49,7 +49,7 @@ define(function (require) {
         }
 
         var parm = {};
-        parm.compname = $(element).parent('mip-bsml-widget').attr('type');
+        parm.compname = $(element).parents('mip-bsml-widget').attr('type');
         $(element).on('click', '.bsml-form-list-submit', function () {
             var jsonval = $(element).find('form').serializeArray();
             for (var i = 0; i < jsonval.length; i++) {

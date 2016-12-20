@@ -1,75 +1,90 @@
 /**
- * @file ppÖúÊÖÏÂÔØ
- * @author Zhou
+ * @file tagsé€‚é…
+ * @author Zhang
  */
 define(function (require) {
     var $ = require('zepto');
     var tags = require('tags').create();
-	var browser = {  versions: function () {
-		var u = navigator.userAgent, app = navigator.appVersion;
-		return {//ÒÆ¶¯ÖÕ¶Ëä¯ÀÀÆ÷°æ±¾ÐÅÏ¢
-				trident: u.indexOf('Trident') > -1, //IEÄÚºË
-				presto: u.indexOf('Presto') > -1, //operaÄÚºË
-				webKit: u.indexOf('AppleWebKit') > -1, //Æ»¹û¡¢¹È¸èÄÚºË
-				gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //»ðºüÄÚºË
-				mobile: !!u.match(/AppleWebKit.*Mobile/i) || !!u.match(/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/), //ÊÇ·ñÎªÒÆ¶¯ÖÕ¶Ë
-				ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //iosÖÕ¶Ë
-				android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //androidÖÕ¶Ë»òÕßucä¯ÀÀÆ÷
-				iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //ÊÇ·ñÎªiPhone»òÕßQQHDä¯ÀÀÆ÷
-				iPad: u.indexOf('iPad') > -1, //ÊÇ·ñiPad
-				webApp: u.indexOf('Safari') == -1, //ÊÇ·ñwebÓ¦¸Ã³ÌÐò£¬Ã»ÓÐÍ·²¿Óëµ×²¿
-				UCBrowser: u.indexOf('UCBrowser') > -1, //UCBrowser
-				MQQBrowser: u.indexOf('MQQBrowser') > -1, //ÊÇ·ñMQQBrowser
-				Safari: u.indexOf('Safari') > -1,
-				ios9: u.indexOf('iPhone OS 9') > -1
-			};
-		} (),
-		language: (navigator.browserLanguage || navigator.language).toLowerCase()
-	}
-	
-	var _pageinfo = { id: $("#f-information").attr("data-id"), path:$("#f-information").attr("data-path"),categroyId:$("#f-information").attr("data-categroyId"),rootId:$("#f-information").attr("data-rootid"),commendid:$("#f-information").attr("data-commendid"),system:$("#f-information").attr("data-system"),ppaddress:$("#f-information").attr("data-ppaddress"),ismoney:$("#f-information").attr("data-ismoney")};
-	function tagsChoose(){
-		if($(".g-tags-box").length>0){
-			if (browser.versions.ios){//Èç¹ûÊÇÆ»¹ûÉè±¸
-				if($(".g-tags-box .m-tags-ios li").length>0){//ÅÐ¶ÏÊÇ·ñÓÐÊý¾Ý
-				addTags($(".g-tags-box .m-tags-ios").html(),$(".g-tags-box .m-tags-ios li").first().attr("data-system"),$(".g-tags-box .m-tags-ios li").first().attr("data-id"),$(".g-tags-box .m-tags-ios li a p").first().text(),"iOS");
-				}
-				
-			}else{
-				addTags($(".g-tags-box .m-tags-android").html(),$(".g-tags-box .m-tags-android li").first().attr("data-system"),$(".g-tags-box .m-tags-android li").first().attr("data-id"),$(".g-tags-box .m-tags-android li a p").first().text(),"Android");	
-			}	
-		}else{
-			$(".g-tags-box").remove();		
-		}	
-	}
-	function addTags(tagsHtml,firstSystem,firstId,firstName,systemName){ //Ïà¹Ø°æ±¾
-		tagsHtml = '<div class="g-tags-box"><ul>'+tagsHtml+'</ul></div>';
-		$(".g-tags-box").remove();		
-		$("#m-down-msg").after(tagsHtml);
-		$(".g-tags-box").show();
-		if(_pageinfo.system.indexOf(systemName) == -1){
-			$("#m-down-msg .info .pic ul li b").each(function(){
-				var systemText = $(this).text();	
-				if(systemText.indexOf("ÏµÍ³£º") != -1){
-					$(this).text("ÏµÍ³£º"+firstSystem);
-				}
-			})
-			$("#m-down-msg h1").text(firstName);
-			$("#downAddress ul li a").attr("href","/down.asp?id="+firstId).attr("data-add","add");	
-		}
-		
-		if($(".g-tags-box ul li").length <= 0){
-			$(".g-tags-box").hide();
-		}
-		$(".g-tags-box ul li a p").each(function(){
-			var liText = $(this).text();
-			re = /(¹Ù·½×îÐÂ°æ|¹ÙÍø×îÐÂ°æ|¹Ù·½ÕýÊ½°æ|¹Ù·½°²×¿°æ|¹Ù·½°æ|ÈÕ·þ°æ|¾ÅÓÎ°æ|×îÐÂ°æ|360°æ|°Ù¶È°æ|uc°æ|¾ÅÓÎ°æ|°²·å°æ|²Ý»¨°æ|ÒæÍæ°æ|ÆÆ½â°æ|ÐÞ¸Ä°æ|ÎÞÏÞ½ð±Ò°æ|ÖÐÎÄ°æ)/;
-			liText = liText.replace(re, "<font color=\"red\">$1</font>");
-			$(this).html(liText);	
-		})
-	}
-	
-	tags.prototype.build = function () {
+    var borwserFunc = function () {
+        var u = navigator.userAgent;
+        var mobileWebkit = !!u.match(/AppleWebKit.*Mobile/i);
+        var mobilePhone = !!u.match(/Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/);
+        var mobilePhone2 = !!u.match(/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod/);
+        return {
+            trident: u.indexOf('Trident') > -1,
+            presto: u.indexOf('Presto') > -1,
+            webKit: u.indexOf('AppleWebKit') > -1,
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') === -1,
+            mobile: mobileWebkit || mobilePhone || mobilePhone2,
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1,
+            iPad: u.indexOf('iPad') > -1,
+            webApp: u.indexOf('Safari') === -1,
+            UCBrowser: u.indexOf('UCBrowser') > -1,
+            MQQBrowser: u.indexOf('MQQBrowser') > -1,
+            Safari: u.indexOf('Safari') > -1,
+            ios9: u.indexOf('iPhone OS 9') > -1
+        };
+    };
+    var browser = {
+        versions: borwserFunc(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    };
+    var pageInfo = {
+        id: $('#f-information').attr('data-id'),
+        path: $('#f-information').attr('data-path'),
+        categroyId: $('#f-information').attr('data-categroyId'),
+        rootId: $('#f-information').attr('data-rootid'),
+        commendid: $('#f-information').attr('data-commendid'),
+        system: $('#f-information').attr('data-system'),
+        ppaddress: $('#f-information').attr('data-ppaddress'),
+        ismoney: $('#f-information').attr('data-ismoney')};
+    function tagsChoose() {
+        if ($('.g-tags-box').length > 0) {
+            if (browser.versions.ios) {
+                if ($('.g-tags-box .m-tags-ios li').length > 0) {
+                    addTags($('.g-tags-box .m-tags-ios').html(),
+                    $('.g-tags-box .m-tags-ios li').first().attr('data-system'),
+                    $('.g-tags-box .m-tags-ios li').first().attr('data-id'),
+                    $('.g-tags-box .m-tags-ios li a p').first().text(), 'iOS');
+                }
+            } else {
+                addTags($('.g-tags-box .m-tags-android').html(),
+                $('.g-tags-box .m-tags-android li').first().attr('data-system'),
+                $('.g-tags-box .m-tags-android li').first().attr('data-id'),
+                $('.g-tags-box .m-tags-android li a p').first().text(), 'Android');
+            }
+        } else {
+            $('.g-tags-box').remove();
+        }
+    }
+    function addTags(tagsHtml, firstSystem, firstId, firstName, systemName) {
+        tagsHtml = '<div class=\'g-tags-box\'><ul>' + tagsHtml + '</ul></div>';
+        $('.g-tags-box').remove();
+        $('#m-down-msg').after(tagsHtml);
+        $('.g-tags-box').show();
+        if (pageInfo.system.indexOf(systemName) === -1) {
+            $('#m-down-msg .info .pic ul li b').each(function () {
+                var systemText = $(this).text();
+                if (systemText.indexOf('ç³»ç»Ÿï¼š') !== -1) {
+                    $(this).text('ç³»ç»Ÿï¼š' + firstSystem);
+                }
+            });
+            $('#m-down-msg h1').text(firstName);
+            $('#downAddress ul li a').attr('href', '/down.asp?id=' + firstId).attr('data-add', 'add');
+        }
+        if ($('.g-tags-box ul li').length <= 0) {
+            $('.g-tags-box').hide();
+        }
+        $('.g-tags-box ul li a p').each(function () {
+            var liText = $(this).text();
+            var re = /(å®˜æ–¹æœ€æ–°ç‰ˆ|å®˜ç½‘æœ€æ–°ç‰ˆ|å®˜æ–¹æ­£å¼ç‰ˆ|å®˜æ–¹å®‰å“ç‰ˆ|å®˜æ–¹ç‰ˆ|æ—¥æœç‰ˆ|ä¹æ¸¸ç‰ˆ|æœ€æ–°ç‰ˆ|360ç‰ˆ|ç™¾åº¦ç‰ˆ|ucç‰ˆ|ä¹æ¸¸ç‰ˆ|å®‰å³°ç‰ˆ|è‰èŠ±ç‰ˆ|ç›ŠçŽ©ç‰ˆ|ç ´è§£ç‰ˆ|ä¿®æ”¹ç‰ˆ|æ— é™é‡‘å¸ç‰ˆ|ä¸­æ–‡ç‰ˆ)/;
+            liText = liText.replace(re, '<font color=\'red\'>$1</font>');
+            $(this).html(liText);
+        });
+    }
+    tags.prototype.build = function () {
         tagsChoose();
     };
     return tags;

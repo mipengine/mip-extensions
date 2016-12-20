@@ -30,6 +30,14 @@ mip-muzi-appdownload app下载组件!
 
 ## 属性
 
+### initjs
+
+说明：自定义初始化变量
+必选项：否   
+类型：字符串 
+单位：无   
+默认值：无   
+
 ### loadjs
 
 说明：自定义的js文件

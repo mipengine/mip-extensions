@@ -1,7 +1,7 @@
 /**
  * @author: Qi
  * @date: 2016-12-19
- * @file: mip-html-gs.js
+ * @file: mip-wangxia-down.js
  */
 
 define(function (require) {
@@ -35,11 +35,11 @@ define(function (require) {
             data: data,
             dataType: 'jsonp',
             error: function () {
-                console.error('Mip-Html-Gs', 'Ajax Err');
+                console.error('Mip-WangXia-Down', 'Ajax Err');
             },
             success: function (jsondb) {
                 if (jsondb.state.code !== 2000000) {
-                    console.warn('Mip-Html-Gs', jsondb.state.msg);
+                    console.warn('Mip-WangXia-Down', jsondb.state.msg);
                     return false;
                 }
                 if (typeof (jsondb.data) === 'undefined') {
@@ -47,7 +47,7 @@ define(function (require) {
                 }
                 var ptDownUrl = qi('.topdown a').attr('href');
                 var downHtml = [
-                    '<div class="mip-html-gs"><div class="gs-top"><div class="gs-btn">',
+                    '<div class="mip-wangxia-down"><div class="gs-top"><div class="gs-btn">',
                     '<em class="gs-ck"></em>' + jsondb.info.downname + '<i></i></div>',
                     '<a href="' + jsondb.data.downloadUrl + '" class="gs-ds gsurl">',
                     jsondb.info.namea + '</a>',
@@ -60,28 +60,28 @@ define(function (require) {
 				];
                 qi('.topdown a').hide();
                 qi('.appBox').append(downHtml.join(''));
-                qi('.appBox').on('click', '.mip-html-gs .gs-btn', function () {
-                    if (qi('.mip-html-gs').hasClass('gs-down')) {
+                qi('.appBox').on('click', '.mip-wangxia-down .gs-btn', function () {
+                    if (qi('.mip-wangxia-down').hasClass('gs-down')) {
                         qi('.topdown a').hide();
-                        qi('.mip-html-gs').removeClass('gs-down');
-                        qi('.mip-html-gs .gs-ds').hide().eq(0).show();
-                        qi('.mip-html-gs .gs-tip span').hide().eq(0).show();
+                        qi('.mip-wangxia-down').removeClass('gs-down');
+                        qi('.mip-wangxia-down .gs-ds').hide().eq(0).show();
+                        qi('.mip-wangxia-down .gs-tip span').hide().eq(0).show();
                     }
 					else {
-                        qi('.mip-html-gs').addClass('gs-down');
+                        qi('.mip-wangxia-down').addClass('gs-down');
                         if (qi('.topdown a').length > 1) {
                             qi('.topdown a').show();
-                            qi('.mip-html-gs .gs-ds').hide();
+                            qi('.mip-wangxia-down .gs-ds').hide();
                         }
                         else {
-                            qi('.mip-html-gs .gs-ds').hide().eq(1).show();
+                            qi('.mip-wangxia-down .gs-ds').hide().eq(1).show();
                         }
-                        qi('.mip-html-gs .gs-tip span').hide().eq(1).show();
+                        qi('.mip-wangxia-down .gs-tip span').hide().eq(1).show();
                     }
                 });
-                qi('.appBox').on('click', '.mip-html-gs .gsurl', function () {
+                qi('.appBox').on('click', '.mip-wangxia-down .gsurl', function () {
                     var theObj = qi(this);
-                    qi('.mip-html-gs .gs-btn').click();
+                    qi('.mip-wangxia-down .gs-btn').click();
                     if (jsondb.info.tjurl !== '') {
                         var tjSrc = typeof (jsondb.info.tjsrc) === 'undefined' ? 'MIPGSDOWN' : jsondb.info.tjsrc;
                         qi.ajax({
@@ -107,14 +107,14 @@ define(function (require) {
         var elemUrl = theElem.attr('Qi-url') || '';
         var elemArr = theElem.attr('Qi-arr') || '';
         if (elemUrl === '' && elemArr === '') {
-            console.error('Mip-Html-Gs', 'Config Err');
+            console.error('Mip-WangXia-Down', 'Config Err');
             return false;
         }
         try {
             var data = JSON.parse(elemArr);
         }
         catch (e) {
-            console.error('Mip-Html-Gs', 'Array Err');
+            console.error('Mip-WangXia-Down', 'Array Err');
             return false;
         }
         getJsonData(elemUrl, data, theElem);

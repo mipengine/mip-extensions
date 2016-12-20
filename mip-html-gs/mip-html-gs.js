@@ -39,7 +39,7 @@ define(function (require) {
             },
             success: function (jsondb) {
                 if (jsondb.state.code !== 2000000) {
-                    console.error('Mip-Html-Gs', jsondb.state.msg);
+                    console.warn('Mip-Html-Gs', jsondb.state.msg);
                     return false;
                 }
                 if (typeof (jsondb.data) === 'undefined') {

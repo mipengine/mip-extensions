@@ -1,8 +1,0 @@
-{
-    "name": "mip-tags",
-    "version": "1.0.0",
-    "description": "show tags",
-    "engines": {
-        "mip": ">=1.1.0"
-    }
-}

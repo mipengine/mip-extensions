@@ -1,16 +1,16 @@
-# mip-tags
-mip-tags 用来支持下载详情页显示tags内容
+# mip-cr173-tags
+mip-cr173-tags 用来支持下载详情页显示tags内容
 
 标题|内容
 ----|----
 类型|业务
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-showtanceng/mip-tags.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-showtanceng/mip-cr173-tags.js
 
 ## 示例
 
 ```
-<mip-tags>
+<mip-cr173-tags>
 <div class="g-tags-box">
 	<strong>其它版本</strong>    
     <ul class="m-tags-android">   
@@ -32,7 +32,7 @@ mip-tags 用来支持下载详情页显示tags内容
     	<li data-system="苹果iOS" data-id="353983"><a href="/x/353983"><i></i><p>权力与荣耀手游ios版v1.0iPhone版</p><b>下载</b></a></li>
     </ul>
 </div>
-</mip-tags>
+</mip-cr173-tags>
 ```
 
 # 属性

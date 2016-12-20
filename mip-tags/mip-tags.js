@@ -32,14 +32,14 @@ define(function (require) {
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
     };
     var pageInfo = {
-        id: $('#f-information').attr('data-id'),
-        path: $('#f-information').attr('data-path'),
-        categroyId: $('#f-information').attr('data-categroyId'),
-        rootId: $('#f-information').attr('data-rootid'),
-        commendid: $('#f-information').attr('data-commendid'),
-        system: $('#f-information').attr('data-system'),
-        ppaddress: $('#f-information').attr('data-ppaddress'),
-        ismoney: $('#f-information').attr('data-ismoney')};
+        id: $('.f-information').attr('data-id'),
+        path: $('.f-information').attr('data-path'),
+        categroyId: $('.f-information').attr('data-categroyId'),
+        rootId: $('.f-information').attr('data-rootid'),
+        commendid: $('.f-information').attr('data-commendid'),
+        system: $('.f-information').attr('data-system'),
+        ppaddress: $('.f-information').attr('data-ppaddress'),
+        ismoney: $('.f-information').attr('data-ismoney')};
     function tagsChoose() {
         if ($('.g-tags-box').length > 0) {
             if (browser.versions.ios) {
@@ -62,17 +62,17 @@ define(function (require) {
     function addTags(tagsHtml, firstSystem, firstId, firstName, systemName) {
         tagsHtml = '<div class=\'g-tags-box\'><ul>' + tagsHtml + '</ul></div>';
         $('.g-tags-box').remove();
-        $('#m-down-msg').after(tagsHtml);
+        $('.m-down-msg').after(tagsHtml);
         $('.g-tags-box').show();
         if (pageInfo.system.indexOf(systemName) === -1) {
-            $('#m-down-msg .info .pic ul li b').each(function () {
+            $('.m-down-msg .info .pic ul li b').each(function () {
                 var systemText = $(this).text();
                 if (systemText.indexOf('系统：') !== -1) {
                     $(this).text('系统：' + firstSystem);
                 }
             });
-            $('#m-down-msg h1').text(firstName);
-            $('#downAddress ul li a').attr('href', '/down.asp?id=' + firstId).attr('data-add', 'add');
+            $('.m-down-msg h1').text(firstName);
+            $('.m-down-ul li a').attr('href', '/down.asp?id=' + firstId).attr('data-add', 'add');
         }
         if ($('.g-tags-box ul li').length <= 0) {
             $('.g-tags-box').hide();

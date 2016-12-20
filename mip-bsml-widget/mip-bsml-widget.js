@@ -11,6 +11,28 @@ define(function (require) {
     var host = 'https://jianzhan.baidu.com/v.gif';
 
     /**
+     * 获取channel_id
+     *
+     * @return {string}
+     */
+    function getChannel() {
+        if (window.bsmlChannel) {
+            return window.bsmlChannel;
+        }
+
+        window.bsmlChannel = '';
+        var qs = location.search.replace('?', '').split('&');
+        $.each(qs, function (i, q) {
+            var param = q.split('=');
+            if (param[0] === 'channel_id') {
+                window.bsmlChannel = param[1];
+                return false;
+            }
+        });
+        return window.bsmlChannel;
+    }
+
+    /**
      * 日志打点
      *
      * @param {string} data 打点数据
@@ -30,7 +52,7 @@ define(function (require) {
                 'action_name': data.action_name ? data.action_name : '普通组件点击',
                 'guid': pageinfo.attr('guid'),
                 'site_id': pageinfo.attr('siteid'),
-                'channel_id': pageinfo.attr('channel'),
+                'channel_id': getChannel(),
                 'time_stamp': Math.round(new Date().getTime() / 1000),
                 'page_name': pageinfo.attr('pagename'),
                 'page_type': pageinfo.attr('pagetype'),
@@ -66,6 +88,12 @@ define(function (require) {
         $(element).on('click', '[data-click]', function () {
             addLog.call(me, $(this).attr('data-click'));
         });
+        // 首次打点
+        if (!window.bsmlLog) {
+            window.bsmlLog = 1;
+            var log = '{"action_id":"site_page_show","action_name":"页面渲染"}';
+            addLog.call(me, log);
+        }
     };
 
     return customElement;

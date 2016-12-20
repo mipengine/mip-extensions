@@ -613,7 +613,7 @@ define(function (require) {
                 window.parent.location.href = shareUrl;
             };
             $('.addFavor').on('click', function (e) {
-                window.location.href = 'hhtp://m.1234567.com.cn/m/fund/funddetail/?fundcode=' + param.data.FCODE;
+                window.location.href = 'http://m.1234567.com.cn/m/fund/funddetail/?fundcode=' + param.data.FCODE;
             });
         },
         toggleShow: function (options) {

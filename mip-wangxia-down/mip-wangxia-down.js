@@ -23,6 +23,18 @@ define(function (require) {
         return isOs;
     }
 
+	// 自定义解码
+    function htmlDecode(str) {
+        var strTemp = str;
+        strTemp = strTemp.replace(/\[\[/g, '<');
+        strTemp = strTemp.replace(/\]\]/g, '>');
+        strTemp = strTemp.replace(/\|\|/g, '/');
+        strTemp = strTemp.replace(/\:\:/g, '"');
+        strTemp = strTemp.replace(/\;\;/g, '\'');
+        strTemp = strTemp.replace(/\+\+/g, ' ');
+        return strTemp;
+    }
+
 	// 获取数据
     function getJsonData(url, data, obj) {
         data.os = getOs();
@@ -46,7 +58,9 @@ define(function (require) {
                     return false;
                 }
                 var ptDownUrl = qi('.topdown a').attr('href');
+                var addText = typeof (jsondb.add) === 'undefined' ? '' : htmlDecode(jsondb.add);
                 var downHtml = [
+                    addText,
                     '<div class="mip-wangxia-down"><div class="gs-top"><div class="gs-btn">',
                     '<em class="gs-ck"></em>' + jsondb.info.downname + '<i></i></div>',
                     '<a href="' + jsondb.data.downloadUrl + '" class="gs-ds gsurl">',
@@ -115,6 +129,9 @@ define(function (require) {
         }
         catch (e) {
             console.error('Mip-WangXia-Down', 'Array Err');
+            return false;
+        }
+        if (qi('.topdown a').length < 1) {
             return false;
         }
         getJsonData(elemUrl, data, theElem);

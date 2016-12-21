@@ -385,7 +385,10 @@ define(function (require) {
         if (putCity === '不限') {
             return true;
         }
-        return putCity.indexOf(city) !== -1 ? true : false;
+        if (putCity.indexOf(city) !== -1) {
+            return true;
+        }
+        return false;
     };
     var checkProvince = function (province, putProvince, nprovince) {
         if (nprovince.indexOf(province) !== -1 && nprovince !== '不限') {
@@ -394,7 +397,10 @@ define(function (require) {
         if (putProvince === '不限') {
             return true;
         }
-        return putProvince.indexOf(province) !== -1 ? true : false;
+        if (putProvince.indexOf(province) !== -1) {
+            return true;
+        }
+        return false;
     };
 
     var checkTag = function (tag, putTag, mainTags, putMainTags) {

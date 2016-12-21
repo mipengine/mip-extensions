@@ -4,7 +4,7 @@
  */
 define(function (require) {
     var $ = require('zepto');
-    var tags = require('tags').create();
+    var customElem = require('customElement').create();
     var borwserFunc = function () {
         var u = navigator.userAgent;
         var mobileWebkit = !!u.match(/AppleWebKit.*Mobile/i);
@@ -84,8 +84,8 @@ define(function (require) {
             $(this).html(liText);
         });
     }
-    tags.prototype.build = function () {
+    customElem.prototype.build = function () {
         tagsChoose();
     };
-    return tags;
+    return customElem;
 });

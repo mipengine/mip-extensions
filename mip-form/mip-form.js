@@ -106,18 +106,24 @@ define(function (require) {
                 preventSubmit = !reg ? true : preventSubmit;
             }
         });
-        valueJson = valueJson.substring(1);
 
         if(preventSubmit) {
             return;
         }
 
-        // 在iframe下使用mibm-jumplink，跳转显示手百框
+        // 在iframe下使用mibm-jumplink，跳转显示手百框。 http-GET请求交给外层跳转
         if (window.parent !== window) {
             var messageUrl = '';
-            // http-GET请求交给外层跳转
             if (isHttp && isGet) {
-                messageUrl = getUrl + '?' + valueJson;
+                if(getUrl.match('\\?')) {
+                    // eg. getUrl == 'http://www.mipengine.org?we=123'
+                    messageUrl = getUrl + valueJson;
+                }
+                else {
+                    // eg. getUrl == 'http://www.mipengine.org'
+                    valueJson = valueJson.substring(1);
+                    messageUrl = getUrl + '?' + valueJson;
+                }
             }
             var message = {
                 'event': 'mibm-jumplink',

@@ -1,5 +1,5 @@
 /**
- * @file mip-bsml-widget 组件
+ * @file mip-bsml-widget bsml通用组件，包括打点等功能
  * @author
  */
 

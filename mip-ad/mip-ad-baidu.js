@@ -9,6 +9,7 @@ define(function (require) {
     var $ = require('zepto');
     var jsSrc = '//dup.baidustatic.com/js/dm.js';
     var scriptId = 'MIP_DUP_JS';
+    var firstload = false;
     
     var render = function(_this, me) {
 
@@ -81,18 +82,19 @@ define(function (require) {
         });
 
         if(script) {
-            script.onload = function() {
-                setTimeout(function() {
-                    var elem = window.getComputedStyle(document.getElementById(s), null);
-                    var pos = elem && elem.getPropertyValue('position') ? 
-                              elem.getPropertyValue('position') : '';
+            var fixedElement = require('fixed-element');
+            var layer = fixedElement.getFixedLayer();
+            var child = document.getElementById(s);
 
-                    if(pos == 'fixed') {
-                        $elemID.append(document.getElementById(s));
-                    }
-                }, 100);
-                
-            };
+            child.addEventListener("DOMSubtreeModified", function(e) {
+                var elem = window.getComputedStyle(child, null);
+                var pos = elem && elem.getPropertyValue('position') ? 
+                          elem.getPropertyValue('position') : '';
+                if(pos == 'fixed') {
+                    $elemID.append(document.getElementById(s));
+                    $(layer).append($elemID);
+                }
+            },false);
         }
 
         me.applyFillContent(document.getElementById(s), true);

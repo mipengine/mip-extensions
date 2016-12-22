@@ -1,0 +1,14 @@
+{
+    "name": "mip-sina-carousel",
+    "version": "1.0.0",
+    "description": "sina轮播组件",
+    "contributors": [
+        {
+            "name": "fengzihao",
+            "email": "fengzh_0376@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

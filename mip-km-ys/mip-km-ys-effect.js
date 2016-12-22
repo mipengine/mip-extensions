@@ -6,16 +6,14 @@
 define(function (require) {
     return {
         ysSetTabPlugin: function (className) {      //  tab切换
-            $('.' + className).each(function () {
-                var pluginTabArr = $(this).find('.' + className + '-tab');
-                var pluginConArr = $(this).find('.' + className + '-con');
-                pluginTabArr.on('mousedown', function () {
-                    pluginConArr.css('display', 'none');
-                    pluginTabArr.removeClass('cur');
-                    pluginConArr.eq(pluginTabArr.index($(this))).css('display', 'block');
-                    $(this).addClass('cur');
-                });
-            });
+            $("." + className + "-tab").live("tap",function(){
+                var pluginTabArr = $(this).parent().find("." + className + "-tab");
+                var pluginConArr = $(this).parents("." + className).find("." + className + "-con");
+                pluginConArr.css('display', 'none');
+                pluginTabArr.removeClass('cur');
+                pluginConArr.eq(pluginTabArr.index($(this))).css('display', 'block');
+                $(this).addClass('cur');
+            })
         },
         ysGototop: function (options) {             // 回顶按钮
             var defaults = {
@@ -61,7 +59,7 @@ define(function (require) {
         ysInitPopWin: function () {                  //  初始化弹窗
             var popWinMaskObj;
             var popWinName;
-            $('.show_popWin').on('mousedown', function () {
+            $('.show_popWin').live('mousedown', function () {
                 popWinName = $(this).attr('popWinName');
                 if (popWinMaskObj === undefined) {
                     popWinMaskObj = $('.popWinMask');
@@ -88,7 +86,7 @@ define(function (require) {
             }, 100);
         },
         ysMoreArrow: function () {                     //    展开箭头更多
-            $('.g_more_arrow_all').on('mousedown', function () {
+            $('.g_more_arrow_all').live('touchend', function () {
                 if ($(this).hasClass('g_more')) {
                     $(this).removeClass('g_more');
                 }
@@ -98,7 +96,7 @@ define(function (require) {
                 return false;
             });
 
-            $('.g_more_arrow_btn .g_more_arrow').on('mousedown', function () {
+            $('.g_more_arrow_btn .g_more_arrow').live('mousedown', function () {
                 if ($(this).parent().hasClass('g_more')) {
                     $(this).parent().removeClass('g_more');
                 }
@@ -108,17 +106,17 @@ define(function (require) {
             });
         },
         ysSetMoreData: function () {                    //  更多数据展开
-            $('.show-more-btn').on('mousedown', function () {
+            $('.show-more-btn').live('mousedown', function () {
                 $(this).siblings('.more-data').find('.hide').addClass('show').removeClass('hide');
                 $(this).addClass('hide').removeClass('show').siblings('.hide').addClass('show').removeClass('hide');
             });
-            $('.hide-more-btn').on('mousedown', function () {
+            $('.hide-more-btn').live('mousedown', function () {
                 $(this).siblings('.more-data').find('.show').addClass('hide').removeClass('show');
                 $(this).addClass('hide').removeClass('show').siblings('.hide').addClass('show').removeClass('hide');
             });
         },
         ysAnchorLink: function (btnObj, targetObj) {        //   设置锚点
-            btnObj.on('mousedown', function () {
+            btnObj.live('mousedown', function () {
                 var mTopNum = Math.ceil(targetObj.css('marginTop'));
                 $('body').scrollTop(targetObj.position().top - $('header').height() + mTopNum  + 1);
             });

@@ -9,7 +9,6 @@ define(function (require) {
     var $ = require('zepto');
     var jsSrc = '//dup.baidustatic.com/js/dm.js';
     var scriptId = 'MIP_DUP_JS';
-    var firstload = false;
     
     var render = function(_this, me) {
 

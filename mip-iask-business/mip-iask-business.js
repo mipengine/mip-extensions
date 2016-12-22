@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author hejieye
-* @time  2016-12-16
-* @version 1.1.0
+* @time  2016-12-20
+* @version 1.2.0
 */
 define(function (require) {
 
@@ -110,6 +110,19 @@ define(function (require) {
                 }
             }
         });
+    };
+    // 南方网通底部悬浮广告
+    var southnetwork = function (sources, openId, div) {
+        var url = 'http://imgv2.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
+        try {
+            $.getJSON(url,
+            function (data) {
+                var htmls = this.putMXfAd(data.m[0].link, data.m[0].pic);
+                $(div).empty();
+                $(div).append(htmls);
+            });
+        }
+        catch (e) {}
     };
     // 动态添加 mip-fixed悬浮广告
     var putMXfAd = function (picLink, picLocal) {
@@ -372,7 +385,10 @@ define(function (require) {
         if (putCity === '不限') {
             return true;
         }
-        return putCity.indexOf(city) !== -1 ? true : false;
+        if (putCity.indexOf(city) !== -1) {
+            return true;
+        }
+        return false;
     };
     var checkProvince = function (province, putProvince, nprovince) {
         if (nprovince.indexOf(province) !== -1 && nprovince !== '不限') {
@@ -381,7 +397,10 @@ define(function (require) {
         if (putProvince === '不限') {
             return true;
         }
-        return putProvince.indexOf(province) !== -1 ? true : false;
+        if (putProvince.indexOf(province) !== -1) {
+            return true;
+        }
+        return false;
     };
 
     var checkTag = function (tag, putTag, mainTags, putMainTags) {
@@ -448,6 +467,10 @@ define(function (require) {
         if (sources === 'COOPERATE_HUASHENG' || sources === 'COOPERATE_HUASHENG_QA'
         || sources === 'COOPERATE_XINYUHENG') {
             loadAd(sources, openCorporationId, div);
+        }
+        else if (sources === 'COOPERATE_SOUTHNETWORK') {
+            // 南方网通
+            southnetwork(sources, openCorporationId, div);
         }
         if (tags) {
             loadURLJS(tags, params);

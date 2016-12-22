@@ -1,0 +1,14 @@
+{
+    "name": "mip-bsml-widget",
+    "version": "1.0.0",
+    "description": "bsml通用组件，包括打点等功能",
+    "contributors": [
+        {
+            "name": "jiangsongfang",
+            "email": "jiangsongfang@baidu.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -28,12 +28,20 @@ define(function (require) {
         arg['otherparamkey'] = _element.getAttribute("otherparamkey") || "0";
         arg['otherparamvalue'] = _element.getAttribute("otherparamvalue") || "";
         arg['callbackconfig'] = _element.getAttribute("cboptions") || [] ;
+        arg['callbacknboptions'] = _element.getAttribute("nboptions") || [] ;
 
         //回调配置序列化
         var callbackdata = [];
         if (arg['callbackconfig']) {
             try {
                 callbackdata = new Function('return ' + arg['callbackconfig'])()
+            } catch (e) {}
+        }
+        //回调配置序列化
+        var callbacknb = [];
+        if (arg['callbacknboptions']) {
+            try {
+                callbacknb = new Function('return ' + arg['callbacknboptions'])()
             } catch (e) {}
         }
 
@@ -47,7 +55,7 @@ define(function (require) {
             var content = $title.html() +" "+ $dse.html().slice(0,30);
         }
         innerJs(content,function(){
-            getadDate(type, arg, callbackdata, _this);
+            getadDate(type, arg, callbackdata, _this, callbacknb);
 
         })
     }
@@ -104,7 +112,7 @@ define(function (require) {
     /**
      * 执行ask网站js获取广告数据
      */
-    function getadDate(type, arg, callbackdata, layout) {
+    function getadDate(type, arg, callbackdata, layout, callbacknb) {
         //重写YWBD原型方法以实现标签替换
         YWBD.prototype.YWBD_WRITE =  function(backdata,OBJ,EXCEPTION,NONE) {
             var code = backdata.code;
@@ -116,6 +124,11 @@ define(function (require) {
                 renderCallback(EXCEPTION)
             }
         }
+        YWBD.prototype.YWBD_NONE = function(NONE) {
+            if (NONE&&NONE.length != 0){
+                renderCallback(NONE);
+            }
+        },
 
         //以下为广告投放原始代码
         newYWBD = new YWBD();
@@ -133,7 +146,7 @@ define(function (require) {
 
         newYWBD.YWBD_SET_AREA_PARAMS();
         newYWBD.YWBD_SET_LOG();
-        newYWBD.YWBD_AD_AJAX($(layout),callbackdata);
+        newYWBD.YWBD_AD_AJAX($(layout),callbackdata,callbacknb);
     }
 
 

@@ -29,7 +29,7 @@ define(function (require) {
     // 加载底部悬浮广告
     var loadAdBtm = function () {
         var dom = '';
-        if (device.QQ || device.UC) {
+        if (device.QQ) {
             dom = '<mip-embed type="baidu-wm-ext" '
                 + 'domain="a.iy.com.cn" token="xn3a1ecf91f3c3f63bdb1c3e82b8b034e058acde0a">'
                 + '<div id="xn3a1ecf91f3c3f63bdb1c3e82b8b034e058acde0a"></div></mip-embed>';

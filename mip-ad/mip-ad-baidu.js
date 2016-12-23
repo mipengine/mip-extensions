@@ -82,18 +82,19 @@ define(function (require) {
 
         if(script) {
             var fixedElement = require('fixed-element');
-            var layer = fixedElement.getFixedLayer();
+            var layer = fixedElement._fixedLayer;
             var child = document.getElementById(s);
-
-            child.addEventListener("DOMSubtreeModified", function(e) {
-                var elem = window.getComputedStyle(child, null);
-                var pos = elem && elem.getPropertyValue('position') ? 
-                          elem.getPropertyValue('position') : '';
-                if(pos == 'fixed') {
-                    $elemID.append(document.getElementById(s));
-                    $(layer).append($elemID);
-                }
-            },false);
+            if(layer) {
+              child.addEventListener("DOMSubtreeModified", function(e) {
+                  var elem = window.getComputedStyle(child, null);
+                  var pos = elem && elem.getPropertyValue('position') ? 
+                            elem.getPropertyValue('position') : '';
+                  if(pos == 'fixed') {
+                      $elemID.append(document.getElementById(s));
+                      $(layer).append($elemID);
+                  }
+              },false);
+            }
         }
 
         me.applyFillContent(document.getElementById(s), true);

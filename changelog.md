@@ -1,5 +1,46 @@
 # 升级日志
 
+#### 2016.12.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-muzi-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-muzi-appdownload)|[升级] 木子app下载
+[mip-askad](https://github.com/mipengine/mip-extensions/tree/master/mip-askad)|[升级][BUG] 120askad广告组件升级
+[mip-down-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-down-ppzs)|[升级] 皮皮助手
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
+
+#### 2016.12.21
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-bsml-carousel](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-carousel)|[新增] bsml轮播组件
+[mip-bsml-fixedbar](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-fixedbar)|[新增] bsml底部转换工具组件
+[mip-bsml-form](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-form)|[新增] bsml表单组件
+[mip-bsml-multiselect](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-multiselect)|[新增] bsml多选下拉组件
+[mip-bsml-sliding](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-sliding)|[新增] bsml图片滑屏组件
+[mip-bsml-widget](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-widget)|[新增] bsml通用组件，包括打点等功能
+[mip-wangxia-down](https://github.com/mipengine/mip-extensions/tree/master/mip-wangxia-down)|[升级] 下载站定制高速下载组件
+[mip-cr173-tags](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-tags)|[升级] 西西软件园适配下载地址组件
+
+#### 2016.12.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wangxia-call](https://github.com/mipengine/mip-extensions/tree/master/mip-wangxia-call)|[新增] 自由业务
+[mip-wangxia-down](https://github.com/mipengine/mip-extensions/tree/master/mip-wangxia-down)|[新增] 下载站定制高速下载组件
+[mip-cr173-tags](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-tags)|[新增] 西西软件园适配下载地址组件
+[mip-html-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-html-ajax)|[升级] 评论提交加载
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件 
+[mip-jjpz](https://github.com/mipengine/mip-extensions/tree/master/mip-jjpz)|[升级] 自有业务详情页整体交互组件
+
 #### 2016.12.16
 
 > 组件上线

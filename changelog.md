@@ -1,5 +1,21 @@
 # 升级日志
 
+#### 2016.12.23
+
+> 核心代码上线
+
+    1、修复页面滑动时悬浮广告闪烁的BUG
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-down-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-down-ppzs)|[升级] 皮皮助手
+[mip-ck-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ck-ad)|[升级] 康网的问答详情页面的直投广告组件:去掉UC下反屏蔽广告的判断
+[mip-bsml-fixedbar](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-fixedbar)|[升级] bsml底部转换工具组件
+[mip-bsml-form](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-form)|[升级] bsml表单组件
+[mip-bsml-multiselect](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-multiselect)|[升级] bsml多选下拉组件
+
 #### 2016.12.22
 
 > 组件上线

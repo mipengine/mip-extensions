@@ -41,7 +41,7 @@ define(function (require) {
 						ggArr['ad_key'] = string.substr(1);
 						mobileAd.getAd( ggArr );
 					});
-				}else{
+				}else if(channel == 'club'){
 					loadJs(elem, 'https://a.xywy.com/mobile_v3.js', function(){
 						var ggArr = {}; 
 						var string = '';
@@ -50,6 +50,16 @@ define(function (require) {
 						});
 						ggArr['ad_key'] = string.substr(1);
 						ggArr['department'] = department;
+						mobileAd.getAd( ggArr );
+					});
+				}else if(channel == 'yao'){
+					loadJs(elem, 'https://a.xywy.com/keyword/keyword_v1.js', function(){
+						var ggArr = {}; 
+						var string = '';
+						$.each( keys_arr, function(index, value) { 
+						  string = string +'|'+ value; 
+						});
+						ggArr['ad_key'] = string.substr(1);
 						mobileAd.getAd( ggArr );
 					});
 				}

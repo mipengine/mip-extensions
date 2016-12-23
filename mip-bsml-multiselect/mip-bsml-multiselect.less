@@ -43,11 +43,13 @@
     top: 0;
     left: 0;
     right: 20px;
+    color: #999;
+    font-size: 16px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
-    padding-left: 8px;
+    padding-left: 17px;
 }
 
 .ms-choice > span.placeholder {
@@ -247,6 +249,10 @@ select.multi-select {
     position: absolute;
     top: 50%;
     right: 0;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
 .ms-parent .ms-drop ul li.selected label:before {
@@ -261,5 +267,9 @@ select.multi-select {
     position: absolute;
     top: 45%;
     right: 6px;
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+    -moz-transform: translate(-50%, -50%) rotate(-45deg);
+    -ms-transform: translate(-50%, -50%) rotate(-45deg);
+    -o-transform: translate(-50%, -50%) rotate(-45deg);
     transform: translate(-50%, -50%) rotate(-45deg);
 }

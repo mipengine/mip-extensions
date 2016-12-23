@@ -14,18 +14,19 @@ define(function (require) {
     customElement.prototype.build = function () {
         var me = this;
         var element = me.element;
+        var wHeight = $(window).height();
 
         $(element).on('click', '.mip-bsml-fixed-bar-box-appointment', function () {
-            $(element).find('.bsml-form-lay').fadeIn('fast');
+            $(element).find('.bsml-form-lay').fadeIn('fast').css({'height': wHeight});
             $(element).find('.bsml-form').animate({bottom: '0'}, 'fast');
+            $('body').css({'overflow': 'hidden'});
         });
 
         $(element).on('click', '.bsml-form-close', function () {
             $(element).find('.bsml-form-lay').hide();
             $(element).find('.bsml-form').animate({bottom: '-800px'}, 'fast');
+            $('body').css({'overflow': 'auto'});
         });
-
-
     };
 
     return customElement;

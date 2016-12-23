@@ -1,12 +1,12 @@
 # mip-bsml-fixedbar
 
-mip-bsml-fixed-ar bsml底部转换工具组件
+mip-bsml-fixedbar bsml底部转换工具组件
 
 标题|内容
 ----|----
 类型|通用
 支持布局|fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-bsml-fixed-bar/mip-bsml-fixedbar.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-bsml-fixedbar/mip-bsml-fixedbar.js
 
 ## 示例
 

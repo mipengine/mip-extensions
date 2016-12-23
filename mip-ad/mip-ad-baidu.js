@@ -84,17 +84,17 @@ define(function (require) {
             var fixedElement = require('fixed-element');
             var layer = fixedElement._fixedLayer;
             var child = document.getElementById(s);
-            if(layer) {
-              child.addEventListener("DOMSubtreeModified", function(e) {
-                  var elem = window.getComputedStyle(child, null);
-                  var pos = elem && elem.getPropertyValue('position') ? 
-                            elem.getPropertyValue('position') : '';
-                  if(pos == 'fixed') {
-                      $elemID.append(document.getElementById(s));
+            child.addEventListener("DOMSubtreeModified", function(e) {
+                var elem = window.getComputedStyle(child, null);
+                var pos = elem && elem.getPropertyValue('position') ? 
+                          elem.getPropertyValue('position') : '';
+                if(pos == 'fixed') {
+                    $elemID.append(document.getElementById(s));
+                    if(layer) {
                       $(layer).append($elemID);
-                  }
-              },false);
-            }
+                    }
+                }
+            },false);
         }
 
         me.applyFillContent(document.getElementById(s), true);

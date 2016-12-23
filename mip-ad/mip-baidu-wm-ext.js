@@ -24,16 +24,14 @@ define(function (require) {
             var layer = fixedElement._fixedLayer;
             var child = document.getElementById(token);
             
-            if(layer) {
-                child.addEventListener("DOMSubtreeModified", function(e) {
-                    var elem = window.getComputedStyle(child, null);
-                    var pos = elem && elem.getPropertyValue('position') ? 
-                              elem.getPropertyValue('position') : '';
-                    if(pos == 'fixed') {
-                        $(layer).append(_this);
-                    }
-                },false);
-            }
+            child.addEventListener("DOMSubtreeModified", function(e) {
+                var elem = window.getComputedStyle(child, null);
+                var pos = elem && elem.getPropertyValue('position') ? 
+                          elem.getPropertyValue('position') : '';
+                if(pos == 'fixed' && layer) {
+                    $(layer).append(_this);
+                }
+            },false);
 
         } else {
             console.error('请输入正确的 domain 或者 token');

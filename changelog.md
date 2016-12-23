@@ -15,6 +15,7 @@
 [mip-bsml-fixedbar](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-fixedbar)|[升级] bsml底部转换工具组件
 [mip-bsml-form](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-form)|[升级] bsml表单组件
 [mip-bsml-multiselect](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-multiselect)|[升级] bsml多选下拉组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级][BUG] 广告组件升级
 
 #### 2016.12.22
 

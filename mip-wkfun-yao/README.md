@@ -10,7 +10,7 @@
 
 ## 示例
 
-只需要一个`mip-wkfun标签即可`，无须其他填充dom
+只需要一个`mip-wkfun-yao标签即可`，无须其他填充dom
 
 ```
 <mip-wkfun-yao></mip-wkfun-yao>

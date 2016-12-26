@@ -72,7 +72,7 @@ define(function (require) {
                 }
             });
             $('.m-down-msg h1').text(firstName);
-            $('.m-down-ul li a').attr('href', '/down.asp?id=' + firstId).attr('data-add', 'add');
+            $('.m-down-ul li a').attr('href', 'http://m.cr173.com/down.asp?id=' + firstId).attr('data-add', 'add');
         }
         if ($('.g-tags-box ul li').length <= 0) {
             $('.g-tags-box').hide();

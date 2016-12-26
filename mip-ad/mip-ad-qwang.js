@@ -61,8 +61,7 @@ define(function (require) {
             return;
         }
 
-        document.body.appendChild(adScript);
-        // node.appendChild(adScript);
+        node.appendChild(adScript);
         adScript.onload = function () {
             mipEle.applyFillContent(node, true);
         };

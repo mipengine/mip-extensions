@@ -81,7 +81,7 @@ define(function (require) {
     function onSubmit() {
         var self = this;
         var preventSubmit = false;
-        var inputs = $(self).find('input[type="input"]');
+        var inputs = $(self).find('input[type="text"],input[type="input"]');
         var isGet = self.getAttribute('method') === 'get';
         var getUrl = self.getAttribute('url');
         var isHttp = getUrl.match('http://');
@@ -107,7 +107,7 @@ define(function (require) {
             }
         });
 
-        if(preventSubmit) {
+        if (preventSubmit) {
             return;
         }
 
@@ -115,7 +115,7 @@ define(function (require) {
         if (window.parent !== window) {
             var messageUrl = '';
             if (isHttp && isGet) {
-                if(getUrl.match('\\?')) {
+                if (getUrl.match('\\?')) {
                     // eg. getUrl == 'http://www.mipengine.org?we=123'
                     messageUrl = getUrl + valueJson;
                 }
@@ -126,15 +126,15 @@ define(function (require) {
                 }
             }
             var message = {
-                'event': 'mibm-jumplink',
-                'data': {
-                    'url' : messageUrl
+                event: 'mibm-jumplink',
+                data: {
+                    url: messageUrl
                 }
             };
             window.parent.postMessage(message, '*');
         }
-        //https请求 post请求不做处理
-        if (!messageUrl){
+        // https请求 post请求不做处理
+        if (!messageUrl) {
             self.getElementsByTagName('form')[0].submit();
         }
     }
@@ -152,15 +152,18 @@ define(function (require) {
         }
 
         if (addClearBtn) {
-            var INPUTS = element.querySelectorAll('input[type=input]');
+            var textInput = element.querySelectorAll('input[type=text],input[type=input]');
+            if (!!textInput.length) {
+                return;
+            }
             var index = 0;
-            var height = element.querySelector('input[type=input]').offsetHeight;
+            var height = textInput.offsetHeight;
             var cross = document.createElement('div');
             cross.id = 'mip-form-cross';
             this.cross = cross;
 
-            for (index = 0; index < INPUTS.length; index++) {
-                INPUTS[index].onfocus = function () {
+            for (index = 0; index < textInput.length; index++) {
+                textInput[index].onfocus = function () {
                     var self = this;
                     cross.setAttribute('name', self.getAttribute('name'));
                     util.css(cross, {top: self.offsetTop + (height - 16) / 2 + 'px'});

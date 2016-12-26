@@ -20,11 +20,17 @@ define(function (require) {
         var cpropsheight = domEle.getAttribute('cpro_psheight') || '230';
         var cpropstype = domEle.getAttribute('cpro_pstype') || 'embed';
 
-        var scriptHtml = [
-            'var cpro_psid ="' + cpropsid + '";',
-            'var cpro_pswidth ="' + cpropswidth + '";',
-            'var cpro_psheight="' + cpropsheight + '";'
-        ].join('');
+        var scriptHtml = '';
+        if (cpropstype === 'embed') {
+            scriptHtml = [
+                'var cpro_psid ="' + cpropsid + '";',
+                'var cpro_pswidth ="' + cpropswidth + '";',
+                'var cpro_psheight="' + cpropsheight + '";'
+            ].join('');
+        }
+        else {
+            scriptHtml = 'var cpro_psid ="' + cpropsid + '";';
+        }
 
         var scriptNode = document.createElement('script');
         scriptNode.innerHTML = scriptHtml;
@@ -45,10 +51,10 @@ define(function (require) {
     function initJs(node, mipEle, type) {
         var adScript;
         if (type === 'embed') {
-            adScript = addScriptOnce('MIP_ADQW_EMBED', '//su.bdimg.com/static/dspui/js/um.js');
+            adScript = addScriptOnce('MIP_ADQW_EMBED', '//su.bdimg.com/static/dspui/js/um_mip.js');
         }
         else if (type === 'suspend') {
-            adScript = addScriptOnce('MIP_ADQW_SUSP', '//su.bdimg.com/static/dspui/js/umf.js');
+            adScript = addScriptOnce('MIP_ADQW_SUSP', '//su.bdimg.com/static/dspui/js/umf_mip.js');
         }
 
         if (!adScript) {

@@ -13,7 +13,7 @@
 在MIP HTML中,直接使用标签, 用于显示文章更多详情。
 
 ```
-    <mip-hk-showarticle page='erji_detail_news'>
+    <mip-hk-showarticle page="erji_detail_news" type="fengchao">
         <div id="J_show_art">
             <span>展开全文</span>
         </div>
@@ -24,5 +24,11 @@
 ### page
 
 说明：不同位置对应不同统计参数
+必选项：否
+类型：字符串
+
+### type
+
+说明：不同渠道显示文章长度不同
 必选项：否
 类型：字符串

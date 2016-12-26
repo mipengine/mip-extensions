@@ -81,18 +81,20 @@ define(function (require) {
         });
 
         if(script) {
-            script.onload = function() {
-                setTimeout(function() {
-                    var elem = window.getComputedStyle(document.getElementById(s), null);
-                    var pos = elem && elem.getPropertyValue('position') ? 
-                              elem.getPropertyValue('position') : '';
-
-                    if(pos == 'fixed') {
-                        $elemID.append(document.getElementById(s));
+            var fixedElement = require('fixed-element');
+            var layer = fixedElement._fixedLayer;
+            var child = document.getElementById(s);
+            child.addEventListener("DOMSubtreeModified", function(e) {
+                var elem = window.getComputedStyle(child, null);
+                var pos = elem && elem.getPropertyValue('position') ? 
+                          elem.getPropertyValue('position') : '';
+                if(pos == 'fixed') {
+                    $elemID.append(document.getElementById(s));
+                    if(layer) {
+                      $(layer).append($elemID);
                     }
-                }, 100);
-                
-            };
+                }
+            },false);
         }
 
         me.applyFillContent(document.getElementById(s), true);

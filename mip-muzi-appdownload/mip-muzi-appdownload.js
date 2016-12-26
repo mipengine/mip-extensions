@@ -21,9 +21,13 @@ define(function (require) {
     var customElement = require('customElement').create();
     customElement.prototype.build = function () {
         var element = this.element;
-        var src = element.getAttribute('src') || null;
-        if (src) {
-            document.write('<script type="text/javascript" src="' + src + '"></script>');
+        var loadjs = element.getAttribute('loadjs') || null;
+        if (loadjs) {
+            document.write('<script type="text/javascript" src="' + loadjs + '"></script>');
+        }
+        var initjs = element.getAttribute('initjs') || null;
+        if (initjs) {
+            document.write('<script type="text/javascript">' + initjs + '</script>');
         }
 
         var script = element.querySelector('script') || null;
@@ -31,7 +35,9 @@ define(function (require) {
             var obj = JSON.parse(script.textContent.toString());
             var funstr = '';
             for (var key in obj) {
-                funstr += key + '(' + obj[key] + ');';
+                if (obj.hasOwnProperty(key)) {
+                    funstr += key + '(' + obj[key] + ');';
+                }
             }
             document.write('<script type="text/javascript">' + funstr + '</script>');
         }

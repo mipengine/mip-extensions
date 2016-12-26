@@ -1,0 +1,12 @@
+{
+    "name": "mip-cr173-tags",
+    "version": "1.0.0",
+    "description": "show tags",
+    "author": {
+        "name": "Zhang",
+        "url": "https://www.cr173.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

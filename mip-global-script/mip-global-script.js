@@ -152,11 +152,11 @@ define(function (require) {
                         case 'zhangjia':
                             hmToken = '4c9e959e0cc9c237f200201b7b15225b';
                             break;
-                        case 'cmhui':
-                            hmToken = 'e030db1cc2182c742a808e228101993b';
-                            break;
                         case 'xiaohj':
                             hmToken = '6fff36c3948951a56c7ec18985edbcbd';
+                            break;
+                        case 'zhouji':
+                            hmToken = '43ab97d937a039600a71324f201367c9';
                             break;
                     }
                     if (hmToken !== '') {

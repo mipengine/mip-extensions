@@ -8,8 +8,6 @@ define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
-    var util = require('util');
-    var platform = util.platform;
 
     var Share = require('./share');
 
@@ -19,10 +17,6 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        if (window.parent !== window && platform.isIos() && platform.isQQ()) {
-            element.remove();
-            return;
-        }
 
         new Share({
             title: element.getAttribute('title') || document.title,

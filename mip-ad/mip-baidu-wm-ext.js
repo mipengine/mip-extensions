@@ -29,7 +29,12 @@ define(function (require) {
                 var pos = elem && elem.getPropertyValue('position') ? 
                           elem.getPropertyValue('position') : '';
                 if(pos == 'fixed' && layer) {
-                    $(layer).append(_this);
+                    var idx = document.querySelectorAll('mip-fixed').length;
+                    var data = {
+                        element: child.parentElement,
+                        id: 'Fixed'+ idx
+                    };
+                    fixedElement.moveToFixedLayer(data, parseInt(idx));
                 }
             },false);
 

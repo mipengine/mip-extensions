@@ -91,7 +91,12 @@ define(function (require) {
                 if(pos == 'fixed') {
                     $elemID.append(document.getElementById(s));
                     if(layer) {
-                      $(layer).append($elemID);
+                      var idx = document.querySelectorAll('mip-fixed').length;
+                      var data = {
+                        element: child.parentElement,
+                        id: 'Fixed'+ idx
+                      };
+                      fixedElement.moveToFixedLayer(data, parseInt(idx));
                     }
                 }
             },false);

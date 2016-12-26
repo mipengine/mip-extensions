@@ -45,7 +45,7 @@ define(function (require) {
                         loadJs(elem, 'https://a.xywy.com/mobile_v3.js', function () {
                             var ggArr = {};
                             var string = '';
-                            $.each(keys_arr, function(index, value) {
+                            $.each(keys_arr, function (index, value) {
                                 string = string + '|' + value;
                             });
                             ggArr['ad_key'] = string.substr(1);
@@ -54,10 +54,10 @@ define(function (require) {
                         });
                     }
                     else if (channel === 'medince') {
-                        loadJs(elem, 'https://a.xywy.com/keyword/keyword_v1.js', function() {
+                        loadJs(elem, 'https://a.xywy.com/keyword/keyword_v1.js', function () {
                             var ggArr = {};
                             var string = '';
-                            $.each(keys_arr, function(index, value) {
+                            $.each(keys_arr, function (index, value) {
                                 string = string + '|' + value;
                             });
                             ggArr['ad_key'] = string.substr(1);

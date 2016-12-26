@@ -88,6 +88,9 @@ define(function (require) {
                 var elem = window.getComputedStyle(child, null);
                 var pos = elem && elem.getPropertyValue('position') ? 
                           elem.getPropertyValue('position') : '';
+                if(layer && layer.querySelector('#'+s)){
+                  return;
+                }
                 if(pos == 'fixed') {
                     $elemID.append(document.getElementById(s));
                     if(layer) {

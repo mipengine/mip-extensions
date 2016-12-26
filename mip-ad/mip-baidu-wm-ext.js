@@ -28,6 +28,9 @@ define(function (require) {
                 var elem = window.getComputedStyle(child, null);
                 var pos = elem && elem.getPropertyValue('position') ? 
                           elem.getPropertyValue('position') : '';
+                if(layer && layer.querySelector('#'+s)){
+                  return;
+                }
                 if(pos == 'fixed' && layer) {
                     var idx = document.querySelectorAll('mip-fixed').length;
                     var data = {

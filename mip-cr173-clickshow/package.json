@@ -1,8 +1,0 @@
-{
-    "name": "mip-cr173-clickshow",
-    "version": "1.0.0",
-    "description": "click show",
-    "engines": {
-        "mip": ">=1.1.0"
-    }
-}

@@ -1,5 +1,15 @@
 # 升级日志
 
+#### 2016.12.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-tags](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-tags)|[升级] 西西软件园适配下载地址组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告组件升级，支持搜索推荐的悬浮投放
+
+
 #### 2016.12.23
 
 > 核心代码上线

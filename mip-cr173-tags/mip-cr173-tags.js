@@ -48,12 +48,18 @@ define(function (require) {
                     $('.g-tags-box .m-tags-ios li').first().attr('data-system'),
                     $('.g-tags-box .m-tags-ios li').first().attr('data-id'),
                     $('.g-tags-box .m-tags-ios li a p').first().text(), 'iOS');
+                } else {
+                    $('.g-tags-box').remove();
                 }
             } else {
-                addTags($('.g-tags-box .m-tags-android').html(),
-                $('.g-tags-box .m-tags-android li').first().attr('data-system'),
-                $('.g-tags-box .m-tags-android li').first().attr('data-id'),
-                $('.g-tags-box .m-tags-android li a p').first().text(), 'Android');
+                if ($('.g-tags-box .m-tags-android li').length > 0) {
+                    addTags($('.g-tags-box .m-tags-android').html(),
+					$('.g-tags-box .m-tags-android li').first().attr('data-system'),
+					$('.g-tags-box .m-tags-android li').first().attr('data-id'),
+                    $('.g-tags-box .m-tags-android li a p').first().text(), 'Android');
+                } else {
+                    $('.g-tags-box').remove();
+                }
             }
         } else {
             $('.g-tags-box').remove();

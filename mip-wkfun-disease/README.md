@@ -2,9 +2,9 @@
 
 寻医问药疾病频道页面功能组件
 
-描述|提供了一些dom操作功能
+标题|内容
 ----|----
-类型|dom操作组件
+类型|业务
 支持布局| N/S
 所需脚本|https://mipcache.bdstatic.com/static/v1/mip-wkfun-disease/mip-wkfun-disease.js
 

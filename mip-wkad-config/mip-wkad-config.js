@@ -53,7 +53,7 @@ define(function (require) {
                             mobileAd.getAd(ggArr);
                         });
                     }
-                    else if (channel === 'medince') {
+                    else if (channel === 'medicine') {
                         loadJs(elem, 'https://a.xywy.com/keyword/keyword_v1.js', function () {
                             var ggArr = {};
                             var string = '';

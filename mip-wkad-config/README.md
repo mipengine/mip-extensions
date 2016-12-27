@@ -2,9 +2,9 @@
 
 寻医问药广告配置组件
 
-描述|提供了一个广告配置用来显示寻医广告
+标题|内容
 ----|----
-类型|广告
+类型|通用
 支持布局| N/S
 所需脚本|https://mipcache.bdstatic.com/static/v1/mip-wkad-config/mip-wkad-config.js
 

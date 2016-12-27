@@ -39,7 +39,7 @@ define(function (require) {
         }
         else {
             html += '<span class=\"ub ub-f1 ub-pc uinn numBtn umar-l umar-r\" data-void=\"1\" ';
-            html += 'data-page=\"' + page + '\">下一页</span>';
+            html += 'data-page=\"' + (page + 1) + '\">下一页</span>';
         }
         return html;
     }

@@ -1,0 +1,8 @@
+{
+    "name": "mip-cr173-conut",
+    "version": "1.0.0",
+    "description": "uesr count",
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -106,7 +106,7 @@ define(function (require) {
         }
         return html;
     }
-    customElem.prototype.build = function () {
+    customElem.prototype.firstInviewCallback = function () {
         htmlpage();
     };
     return customElem;

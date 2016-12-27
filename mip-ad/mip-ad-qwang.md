@@ -1,7 +1,7 @@
 # 类型: ad-qwang 全网推荐
 
 全网推荐  
-如果广告配置了悬浮，需要添加 cpro_pstype="suspend" 参数。
+如果广告配置了悬浮，需要使用添加 cpro_pstype="suspend" 参数。
 
 ## 支持布局
 

@@ -1,19 +1,19 @@
-# mip-yiaiddd-page
+# mip-3727-pagination
 
 图片模拟分页
 
-描述|注册分页事件
+描述|图片模拟分页
 ----|----
-类型|事件
+类型|定制
 支持布局| N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-yiaiddd-page/mip-yiaiddd-page.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-3727-pagination/mip-3727-pagination.js
 
 ## 示例
 
 ### 模拟分页
 
 ```
-<mip-yiaiddd-page>
+<mip-3727-pagination>
 	    <div class="list_content mip_hide mip_show">
         <p class="ub-fh umar-t">
             <mip-img src="http://img.3727.cc/Images/Picture/qinghaifengjingtupian/qinghaiheihedaxiagudeqiurifengjingtupian/1/heihedaxiagu-001.jpg"
@@ -61,7 +61,7 @@
         </p>
     </div>
     <!-- 翻页按钮 end -->
-</mip-yiaiddd-page>
+</mip-3727-pagination>
 ```
 
 

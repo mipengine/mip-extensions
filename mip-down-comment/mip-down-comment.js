@@ -53,7 +53,7 @@ define(function (require) {
         function writeComment() {
             oli = oul.find('li');
             $.ajax({
-                url: ajaxUrl,
+                url: ajaxUrl + 'ajax.asp',
                 data: {
                     content: $('.w-text textarea').val(),
                     SoftID: oid,
@@ -91,7 +91,7 @@ define(function (require) {
             p = Math.floor(oli.length / 5 + 1);
             $.ajax({
                 type: 'get',
-                url: ajaxUrl,
+                url: ajaxUrl + 'sajax.asp',
                 data: 'action=0&id=' + oid + '&page=' + p + '&CommentTpye=0',
                 success: function (data) {
                     var html = '';

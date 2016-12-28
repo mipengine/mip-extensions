@@ -42,11 +42,11 @@ define(function (require) {
         }
 		else {
             if (addr == null) {
-                window.location.href = 'http://www.mobile-dad.com/tourl.php?apkid=' + $element.attr('aid');
-                innerHTML = '<a href="' + addr + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
+                innerHTML = '<a href="http://www.mobile-dad.com/tourl.php?apkid=' + aid + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
             }
 			else {
-                innerHTML = '<a href="http://www.mobile-dad.com/tourl.php?apkid=' + aid + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
+                innerHTML = '<a href="' + addr + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
+
             }
         }
         $element.html(innerHTML);

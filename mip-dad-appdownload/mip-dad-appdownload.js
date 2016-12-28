@@ -57,14 +57,14 @@ define(function (require) {
         $element.on('click', 's', function () {
             if ($element.hasClass('no') || $element.find('s').hasClass('pt')) {
                 if ($element.attr('ur') == null) {
-                    location.href = 'http://www.mobile-dad.com/tourl.php?apkid=' + $element.attr('aid');
+                    window.location.href = 'http://www.mobile-dad.com/tourl.php?apkid=' + $element.attr('aid');
                 }
 				else {
                     window.open($element.attr('ur'), '_self', '');
                 }
             }
 			else {
-                location.href = ppDN;
+                window.location.href = ppDN;
             }
         });
     };

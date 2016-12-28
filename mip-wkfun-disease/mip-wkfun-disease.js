@@ -59,7 +59,7 @@ define(function (require) {
                 }
             }
         });
-        var hostN = window.location.hostname;
+        var hostN = '3g.jib.xywy.com';
         function subStr(n, str) {
             return str.length > n ? str.slice(0, n) + '...' : str;
         }

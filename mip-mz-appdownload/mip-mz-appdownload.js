@@ -1,11 +1,27 @@
 /**
- * @file mip-dad-appdownload 手机爸爸的app下载切换效果
+ * @file mip-mz-appdownload 木子的app下载切换效果
  * @author pifire
  */
 
 define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
+	var browser = {
+        versions: (function () {
+            var u = navigator.userAgent;
+            return {
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
+                android: u.indexOf('Android') > -1, // android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, // 是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, // 是否iPad
+                ios9: u.indexOf('iPhone OS 9') > -1,
+                MQQBrowser: u.indexOf('MQQBrowser') > -1, // 是否MQQBrowser
+                UCBrowser: u.indexOf('UCBrowser') > -1, // UCBrowser
+                Safari: u.indexOf('Safari') > -1
+            };
+        })(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    };
 
     /**
      * 构造元素，只会运行一次
@@ -14,6 +30,48 @@ define(function (require) {
 		// this.element 可取到当前实例对应的 dom 元素
         var element = this.element;
         var $element = $(element);
+		$.ajax({
+			method: 'get',
+			data: {
+				keys: keys,
+				id: that.webInfoId,
+				platform: curPlatform,
+				pid: pid,
+				cid: (typeof (that.webInfoCid) !== 'undefined') ? that.webInfoCid : 0,
+				rid: (typeof (that.webInfoRid) !== 'undefined') ? that.webInfoRid : 0,
+				rcid: rCid,
+				rrid: rRid
+			},
+			url: 'https://apis.pc6.com/ajax.asp?action=998',
+			dataType: 'json',
+			success: function (data) {
+				if (typeof data.list === 'undefined') {
+					return;
+				}
+				var list = data.list;
+				var lisHttml = '';
+				if (curPlatform === 0) {
+					for (var i = 0; i < list.length; ++i) {
+						lisHttml += '<li><a href="http://m.pc6.com/down.asp?id=' + list[i].ID + '"><mip-img src="'
+						+ list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
+						+ (i + 1) + '\',\'' + list[i].ResName + '\'])"></mip-img>'
+						+ list[i].ResName + '</a></li>';
+					}
+				}
+				else if (curPlatform === 1) {
+					for (var i = 0; i < list.length; ++i) {
+						lisHttml += '<li><a href="http://m.pc6.com/mipd/' + list[i].ID + '.html" target="_blank"><mip-img src="'
+						+ list[i].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian'
+						+ (i + 1) + '\',\'' + list[i].ResName + '\'])"></mip-img>'
+						+ list[i].ResName + '</a></li>';
+					}
+				}
+				$('.tjyxph #thelist3').append(lisHttml);
+			},
+			error: function () {}
+		});
+		
+		
         var ad = $element.attr('ad');
         var aid = $element.attr('aid');
         var addr = $element.attr('addr');
@@ -42,11 +100,11 @@ define(function (require) {
         }
 		else {
             if (addr == null) {
-                innerHTML = '<a href="http://www.mobile-dad.com/tourl.php?apkid=' + aid + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
+                window.location.href = 'http://www.mobile-dad.com/tourl.php?apkid=' + $element.attr('aid');
+                innerHTML = '<a href="' + addr + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
             }
 			else {
-                innerHTML = '<a href="' + addr + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
-
+                innerHTML = '<a href="http://www.mobile-dad.com/tourl.php?apkid=' + aid + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
             }
         }
         $element.html(innerHTML);

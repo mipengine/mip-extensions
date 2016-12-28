@@ -10,7 +10,7 @@ define(function (require) {
     /**
      * 构造元素，只会运行一次
      */
-    customElement.prototype.build = function () {
+    customElement.prototype.firstInviewCallback = function () {
 		// this.element 可取到当前实例对应的 dom 元素
         var element = this.element;
         var $element = $(element);

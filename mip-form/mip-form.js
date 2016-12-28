@@ -153,7 +153,7 @@ define(function (require) {
 
         if (addClearBtn) {
             var textInput = element.querySelectorAll('input[type=text],input[type=input]');
-            if (!!textInput.length) {
+            if (!textInput.length) {
                 return;
             }
             var index = 0;

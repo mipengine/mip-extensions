@@ -1,5 +1,20 @@
 # 升级日志
 
+#### 2016.12.28
+
+> 核心代码上线
+
+    1、增加了platform功能，支持系统／浏览器／浏览器内核／手机系统判断等
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-3727-pagination](https://github.com/mipengine/mip-extensions/tree/master/mip-3727-pagination)|[新增] 3727图片模拟分页
+[mip-dad-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-dad-appdownload)|[升级][BUG] 皮皮高速下载
+[mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[升级] 西西软件园编辑人员统计组件
+[mip-wkfun-diseasse](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-diseasse)|[升级] 寻医问药疾病频道
+
 #### 2016.12.27
 
 > 组件上线

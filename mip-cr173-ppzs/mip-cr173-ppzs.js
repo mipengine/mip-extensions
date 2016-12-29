@@ -281,7 +281,7 @@ define(function (require) {
                 $.getScript('http://ca.6071.com/?id=cr1731002333_utf8', function () {});
             }
             function iossoftAdd() {
-                $.getScript('http://ca.6071.com/?id=cr17310023331', function () {});
+                $.getScript('http://ca.6071.com/?id=cr17310023331_utf8', function () {});
             }
         },
         init: function () {

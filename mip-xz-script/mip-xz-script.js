@@ -24,28 +24,28 @@ define(function (require) {
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
     };
     var down = {
-        webInfoId: $('#down-href').attr('downid'),
-        webInfoCid: $('#down-href').attr('cid'),
-        webInfoRid: $('#down-href').attr('rid'),
-        platAndroidId: $('#plat_Android').attr('platid'),
-        platAndroidAddress: $('#plat_Android').attr('Address'),
-        platAndroidResSystem: $('#plat_Android').attr('ResSystem'),
-        platAndroidResName: $('#plat_Android').attr('ResName'),
-        platAndroidResVer: $('#plat_Android').attr('ResVer'),
-        platAndroidCid: $('#plat_Android').attr('cid'),
-        platAndroidRid: $('#plat_Android').attr('rid'),
-        platIPhoneId: $('#plat_iPhone').attr('platid'),
-        platIPhoneAddress: $('#plat_iPhone').attr('Address'),
-        platIPhoneResSystem: $('#plat_iPhone').attr('ResSystem'),
-        platIPhoneResName: $('#plat_iPhone').attr('ResName'),
-        platIPhoneResVer: $('#plat_iPhone').attr('ResVer'),
-        platIPhoneCid: $('#plat_iPhone').attr('cid'),
-        platIPhoneRid: $('#plat_iPhone').attr('rid'),
-        assid: parseInt($('#info #Associate').html(), 10),
+        webInfoId: $('.down-href').attr('downid'),
+        webInfoCid: $('.down-href').attr('cid'),
+        webInfoRid: $('.down-href').attr('rid'),
+        platAndroidId: $('.plat_Android').attr('platid'),
+        platAndroidAddress: $('.plat_Android').attr('Address'),
+        platAndroidResSystem: $('.plat_Android').attr('ResSystem'),
+        platAndroidResName: $('.plat_Android').attr('ResName'),
+        platAndroidResVer: $('.plat_Android').attr('ResVer'),
+        platAndroidCid: $('.plat_Android').attr('cid'),
+        platAndroidRid: $('.plat_Android').attr('rid'),
+        platIPhoneId: $('.plat_iPhone').attr('platid'),
+        platIPhoneAddress: $('.plat_iPhone').attr('Address'),
+        platIPhoneResSystem: $('.plat_iPhone').attr('ResSystem'),
+        platIPhoneResName: $('.plat_iPhone').attr('ResName'),
+        platIPhoneResVer: $('.plat_iPhone').attr('ResVer'),
+        platIPhoneCid: $('.plat_iPhone').attr('cid'),
+        platIPhoneRid: $('.plat_iPhone').attr('rid'),
+        assid: parseInt($('.info .Associate').html(), 10),
         scrollNav: function () {
-            var h = $('#tabNav').offset().top; // 浮动距顶
+            var h = $('.tabNav').offset().top; // 浮动距顶
             viewport.on('scroll', function () {
-                viewport.getScrollTop() >= h ? $('#tabNav').addClass('fix') : $('#tabNav').removeClass('fix');
+                viewport.getScrollTop() >= h ? $('.tabNav').addClass('fix') : $('.tabNav').removeClass('fix');
             });
         },
         downHref: function () {
@@ -72,23 +72,23 @@ define(function (require) {
 
         },
         titTab: function () {
-            $('#tabNav span').on('click', function () {
+            $('.tabNav span').on('click', function () {
                 if ($('.fix').length > 0) {
-                    $('#tabNav.fix').removeClass('fix');
-                    viewport.setScrollTop($('#tabNav').offset().top);
+                    $('.tabNav.fix').removeClass('fix');
+                    viewport.setScrollTop($('.tabNav').offset().top);
                 }
 
                 $(this).addClass('active').siblings().removeClass('active');
                 if ($(this).text() === '详情') {
-                    $('#game-focus,#tagsk,.intro-main,.tcsyy,.xgxz,.xg-news,.tags-wrap,#comment').show();
+                    $('.game-focus,.tagsk,.intro-main,.tcsyy,.xgxz,.xg-news,.tags-wrap,.comment').show();
                 }
                 else if ($(this).text() === '评论') {
-                    $('#comment').show();
-                    $('#game-focus,#tagsk,.intro-main,.tcsyy,.xgxz,.xg-news,.tags-wrap').hide();
+                    $('.comment').show();
+                    $('.game-focus,.tagsk,.intro-main,.tcsyy,.xgxz,.xg-news,.tags-wrap').hide();
                 }
                 else if ($(this).text() === '相关') {
-                    $('#game-focus,#tagsk,.intro-main').hide();
-                    $('.tcsyy,.xgxz,.xg-news,.tags-wrap,#comment').show();
+                    $('.game-focus,.tagsk,.intro-main').hide();
+                    $('.tcsyy,.xgxz,.xg-news,.tags-wrap,.comment').show();
                 }
 
             });
@@ -101,13 +101,13 @@ define(function (require) {
 
             var oul = obj.find('.tags-main-ul');
             var oli = oul.find('.tags-main-box');
-            var onavLi = $('#wrapert ul li');
+            var onavLi = $('.tags-tab ul li');
             var ospan = '<span class="active"></span>';
             var windowW = parseInt($(window).width() - 16, 10);
             var touch = {s: [], d: ''};
             var iNow = 0;
             oli.width(windowW);
-            $('#tags-main').width(windowW);
+            $('.tags-main').width(windowW);
             for (var i = 1; i < oli.length; i++) {
                 ospan += '<span></span>';
             }
@@ -195,7 +195,7 @@ define(function (require) {
                 }
 
                 $('.pagenum span').eq(iNow).addClass('active').siblings().removeClass('active');
-                $('#wrapert li').eq(iNow).addClass('active').siblings().removeClass('active');
+                $('.tags-tab ul li').eq(iNow).addClass('active').siblings().removeClass('active');
             }
         },
         init: function () {

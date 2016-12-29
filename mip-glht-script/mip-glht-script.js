@@ -16,8 +16,8 @@ define(function (require) {
             });
         },
         tongJi: function (element) {
-            var webDatetime = $('#down-href').attr('dateTime');
-            var webUsername = $('#down-href').attr('username');
+            var webDatetime = $('.down-href').attr('dateTime');
+            var webUsername = $('.down-href').attr('username');
             if (typeof webDatetime !== 'undefined') {
                 var hmToken = '';
                 if (webUsername !== '') {

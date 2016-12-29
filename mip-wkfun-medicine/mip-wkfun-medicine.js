@@ -412,15 +412,17 @@ define(function (require) {
             con += '<div class="cost-list"><ul>';
             $.each(standard, function (i, t) {
                 if (i >= 5) {
-                    con += '<li top-price="' + t.top_price + ' class="none"><a class="dis-box" href="' + t.href + '>'
-                    + '<p class="box-flex-1 cost-name">' + t.store_name + '</p><p class="pr10">'
-                    + '<b class="cost-num"><em>￥</em>' + t.shop_price
-                    + '</b><span class="cost-icon"><b></b></span></p></a></li>';
+                    con += '<li top-price="' + t.top_price + ' class="none">\
+                    <a class="dis-box" href="' + t.href + '>\
+                    <p class="box-flex-1 cost-name">' + t.store_name + '</p><p class="pr10">\
+                    <b class="cost-num"><em>￥</em>' + t.shop_price + '</b>\
+                    <span class="cost-icon"><b></b></span></p></a></li>';
                 } else {
-                    con += '<li top-price="' + t.top_price + '><a class="dis-box" href="' + t.href + '">'
-                    + '<p class="box-flex-1 cost-name">' + t.store_name + '</p><p class="pr10">'
-                    + '<b class="cost-num"><em>￥</em>' + t.shop_price + '</b><span class="cost-icon"><b></b></span></p>'
-                    + '</a></li>';
+                    con += '<li top-price="' + t.top_price + '>\
+                    <a class="dis-box" href="' + t.href + '">\
+                    <p class="box-flex-1 cost-name">' + t.store_name + '</p><p class="pr10">\
+                    <b class="cost-num"><em>￥</em>' + t.shop_price + '</b><span class="cost-icon"><b></b></span></p>\
+                    </a></li>';
                 }
             });
             con += '</ul>';
@@ -545,16 +547,17 @@ define(function (require) {
                 var con = '<div class="cost-list"><ul>';
                 $.each(data.list, function (i, t) {
                     if (i >= 5) {
-                        con += '<li class="none"><a class="dis-box" href="' + t.href + '">'
-                       + '<p class="box-flex-1 cost-name">' + t.store_name + '</p><p class="pr10">'
-                       +  '<b class="cost-num"><em>￥</em>' + t.shop_price + '</b>'
-                       + '<span class="cost-icon"><b></b></span></p></a></li>';
+                        con += '<li class="none">\
+                        <a class="dis-box" href="' + t.href + '">\
+                        <p class="box-flex-1 cost-name">' + t.store_name + '</p><p class="pr10">\
+                        <b class="cost-num"><em>￥</em>' + t.shop_price + '</b>\
+                        <span class="cost-icon"><b></b></span></p></a></li>';
                     }
                     else {
-                        con += '<li><a class="dis-box" href="' + t.href + '">'
-                         + '<p class="box-flex-1 cost-name">' + t.store_name + '</p><p class="pr10">'
-                         + '<b class="cost-num"><em>￥</em>' + t.shop_price + '</b>'
-                         + '<span class="cost-icon"><b></b></span></p></a></li>';
+                        con += '<li><a class="dis-box" href="' + t.href + '">\
+                         <p class="box-flex-1 cost-name">' + t.store_name + '</p><p class="pr10">\
+                         <b class="cost-num"><em>￥</em>' + t.shop_price + '</b>\
+                         <span class="cost-icon"><b></b></span></p></a></li>';
                     }
                 });
                 con += '</ul>';

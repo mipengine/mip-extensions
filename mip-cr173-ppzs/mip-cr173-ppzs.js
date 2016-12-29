@@ -278,14 +278,10 @@ define(function (require) {
                 }
             }
             function addhighLab() {
-                if (isShowPicAds !== -1) {
-                    $.getScript('http://ca.6071.com/?id=cr1731002333_utf8', function () {});
-                }
+                $.getScript('http://ca.6071.com/?id=cr1731002333_utf8', function () {});
             }
             function iossoftAdd() {
-                if (isShowPicAds !== -1) {
-                    $.getScript('http://ca.6071.com/?id=cr17310023331', function () {});
-                }
+                $.getScript('http://ca.6071.com/?id=cr17310023331', function () {});
             }
         },
         init: function () {

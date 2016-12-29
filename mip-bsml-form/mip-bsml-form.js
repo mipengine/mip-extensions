@@ -27,7 +27,7 @@ define(function (require) {
     customElement.prototype.build = function () {
         var element = this.element;
         var $selects = $(element).find('.bsml-singleselect-container');
-        $selects.each(function(i, sel) {
+        $selects.each(function (i, sel) {
             var $sel = $(sel);
             var options = $sel.attr('options');
             if (options) {

@@ -3,7 +3,7 @@
  *
  * @author menglingjun
  * From: mip-stats-baidu
-*/
+ */
 
 define(function (require) {
     var $ = require('zepto');
@@ -26,8 +26,8 @@ define(function (require) {
             ]);
 
             /**
-            * 检测setconfig是否存在
-            */
+             * 检测setconfig是否存在
+             */
             if (setConfig) {
                 var setCustom = buildArry(decodeURIComponent(setConfig));
                 _hmt.push(setCustom);
@@ -44,22 +44,18 @@ define(function (require) {
     };
 
 
-    /*
-    * 绑定事件追踪
-    */
+    // 绑定事件追踪
     function bindEle() {
 
-        /*
-        * 获取所有需要触发的dom
-        */
+        // 获取所有需要触发的dom
         var tagBox = document.querySelectorAll('*[data-stats-baidu-obj]');
 
         for (var index = 0; index < tagBox.length; index++) {
             var statusData = tagBox[index].getAttribute('data-stats-baidu-obj');
 
             /**
-            * 检测statusData是否存在
-            */
+             * 检测statusData是否存在
+             */
             if (!statusData) {
                 return;
             }
@@ -69,8 +65,8 @@ define(function (require) {
             var eventtype = statusData.type;
 
             /**
-                * 检测传递数据是否存在
-                */
+             * 检测传递数据是否存在
+             */
             if (!statusData.data) {
                 return;
             }
@@ -81,6 +77,12 @@ define(function (require) {
                 // 事件限制到click,mouseup,load(直接触发)
                 return;
             }
+
+            if ($(tagBox[index]).hasClass('mip-stats-eventload')) {
+                return;
+            }
+
+            $(tagBox[index]).addClass('mip-stats-eventload');
 
             if (eventtype === 'load') {
                 _hmt.push(data);

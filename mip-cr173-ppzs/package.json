@@ -1,0 +1,8 @@
+{
+    "name": "mip-cr173-ppzs",
+    "version": "1.0.0",
+    "description": "show ppzs and show content",
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "mip-yxdown-floatad",
+    "version": "1.0.0",
+    "description": "用于投放第三方广告",
+    "contributors": [
+        {
+            "name": "lixkoo",
+            "email": "lixkoo@outlook.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

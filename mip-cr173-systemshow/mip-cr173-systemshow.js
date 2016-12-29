@@ -31,16 +31,6 @@ define(function (require) {
         versions: borwserFunc(),
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
     };
-    var pageInfo = {
-        id: $('.f-information').attr('data-id'),
-        path: $('.f-information').attr('data-path'),
-        categroyId: Math.ceil($('.f-information').attr('data-categroyId')),
-        rootId: $('.f-information').attr('data-rootid'),
-        commendid: $('.f-information').attr('data-commendid'),
-        system: $('.f-information').attr('data-system'),
-        ppaddress: $('.f-information').attr('data-ppaddress'),
-        ismoney: $('.f-information').attr('data-ismoney')
-    };
     var keyword = {
         introductionShow: function () {
             $('#g-look-desc,.g-cont-scroll,#g-black-bg,#g-desc-bg').click(function () {

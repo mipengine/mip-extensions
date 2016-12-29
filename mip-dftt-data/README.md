@@ -9,15 +9,9 @@ mip-dftt-data 加载东方头条数据到指定容器，也可以上拉刷新、
 所需脚本|https://mipcache.bdstatic.com/static/v1/mip-dftt-data/mip-dftt-data.js
 
 ## 示例
-
-### 通过 mip-dftt-data标签来触发加载data-type属性指定的新闻类别中的新闻到页面中.
 ```html
 <header>
         <mip-fixed type="top">
-            <section class="top-title">
-                <a href="javascript:;" class="refresh" id="J_refresh"><span></span></a>
-                <a href="search.html" class="search"></a>
-            </section>
             <mip-vd-tabs allow-scroll>
                 <section id="J_top_menu" class="top-menu-list">
                     <li data-type="toutiao">
@@ -92,5 +86,6 @@ mip-dftt-data 加载东方头条数据到指定容器，也可以上拉刷新、
 默认值：无    
 
 ## 注意事项
-该组件依赖js库[web-storage-cache.min.js](https://github.com/WQTeam/web-storage-cache),[js.cookie.js](https://github.com/js-cookie/js-cookie)及自定义js库global.js,gg.js
+数据仅为测试数据，使用需谨慎。
+页面中必须有"<div id="J_content" class="news-list"><div id="J_news_list" class="news-list-wrap"></div></div>"，它是加载内容的容器。
 

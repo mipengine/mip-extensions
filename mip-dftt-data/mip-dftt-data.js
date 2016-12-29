@@ -1,57 +1,34 @@
-/**
- * @file mip-dftt-titTab 组件
- * @author Jobs Fan
- */
-
-define(function(require) {
-
+define(function(require){
     var customElement = require('customElement').create();
-    var $ = require('zepto'),
-            $topMenu = ("#J_top_menu"),
-            type = "click",
-            newsType = "toutiao";
+    var $ = require('zepto');
+    var Cookies=require("./lib/js.cookie");
+    var WebStorageCache=require("./lib/web-storage-cache.min");
+    var GLOBAL=require("./lib/global1");
+    GLOBAL=require("./lib/gg1");
     var channelsUrl = 'https://mini.eastday.com/toutiaoh5/data/channels.json',  // 新闻频道类别 
         /* ------------------------------------------------------------ */
         refreshUrl = 'http://123.59.62.164/toutiao_h5/RefreshJP',        // 刷新数据(测试)
         pullDownUrl = 'http://123.59.62.164/toutiao_h5/pulldown',        // 下拉加载(测试)
         pullUpUrl = 'http://123.59.62.164/toutiao_h5/NextJP',            // 上拉加载(测试)
-        // refreshUrl = 'https://toutiao.eastday.com/toutiao_h5/RefreshJP',        // 刷新数据
-        // pullDownUrl = 'https://toutiao.eastday.com/toutiao_h5/pulldown',        // 下拉加载
-        // pullUpUrl = 'https://toutiao.eastday.com/toutiao_h5/NextJP',            // 上拉加载
-        /* ------------------------------------------------------------ */
-        vrefreshUrl = 'http://123.59.62.164/toutiao_h5/videopool',       // 视频刷新接口(测试)
-        vpullDownUrl = 'http://123.59.62.164/toutiao_h5/videopool',      // 视频下拉接口(测试)
-        vpullUpUrl = 'http://123.59.62.164/toutiao_h5/videopool',        // 视频上拉接口(测试)
-        // vrefreshUrl = 'https://toutiao.eastday.com/toutiao_h5/videopool',       // 视频刷新接口(测试)
-        // vpullDownUrl = 'https://toutiao.eastday.com/toutiao_h5/videopool',      // 视频下拉接口(测试)
-        // vpullUpUrl = 'https://toutiao.eastday.com/toutiao_h5/videopool',        // 视频上拉接口(测试)
-        /* ------------------------------------------------------------ */
-        prefreshUrl = 'http://123.59.62.164/toutiao_h5/picnewspool',     // 图片频道刷新接口(测试)
-        ppullDownUrl = 'http://123.59.62.164/toutiao_h5/picnewspool',        // 图片频道下拉接口(测试)
-        ppullUpUrl = 'http://123.59.62.164/toutiao_h5/picnewspool',      // 图片频道上拉接口(测试)
-        // prefreshUrl = 'https://toutiao.eastday.com/toutiao_h5/picnewspool',     // 图片频道刷新接口(测试)
-        // ppullDownUrl = 'https://toutiao.eastday.com/toutiao_h5/picnewspool',        // 图片频道下拉接口(测试)
-        // ppullUpUrl = 'https://toutiao.eastday.com/toutiao_h5/picnewspool',      // 图片频道上拉接口(测试)
+        
         /* ------------------------------------------------------------ */
         positionUrl = 'https://position.dftoutiao.com/position/get',            // 获取用户位置
-        // uidUrl = 'https://toutiao.eastday.com/getwapdata/getuid',            // 获取uid
         moodUrl = 'https://toutiao.eastday.com/pjson/zan',                  // 美女点赞（点踩）
         /* ------------------------------------------------------------ */
         logUrl = 'http://123.59.60.170/getwapdata/data',             // 日志（操作统计）(测试)
-        // logUrl = 'https://toutiao.eastday.com/getwapdata/data',         // 日志（操作统计）
         onlineUrl = 'http://123.59.60.170/online/online',            // 在线统计(测试)
-        // onlineUrl = 'https://ot.dftoutiao.com/online/online',           // 在线统计(统计stats = statistics)
         showAdLogUrl = 'http://123.59.60.170/getwapdata/advshow',    // 推广信息show统计接口(测试)
-        // showAdLogUrl = 'https://toutiao.eastday.com/getwapdata/advshow',    // 推广信息show统计接口
         clickAdLogUrl = 'http://106.75.73.203/getwapdata/partner',       // 推广信息show统计接口(测试)
-        // clickAdLogUrl = 'https://toutiao.eastday.com/getwapdata/partner',       // 推广信息click统计接口
         /* ------------------------------------------------------------ */
         $bannerDiv = '',
         // bannerUrl = 'http://123.59.62.164/partner/banner',
         bannerUrl = 'https://softwords.dftoutiao.com/partner/banner',
-        dspUrl = 'http://123.59.62.164/partner/list',    // dsp广告接口（测试）
+        dspUrl = 'http://123.59.62.164/partner/list';   // dsp广告接口（测试）
         // dspUrl = 'http://106.75.73.203/partner/list',    // dsp广告接口
         // dspUrl = 'https://softwords.dftoutiao.com/partner/list',    // dsp广告接口
+    var $topMenu = ("#J_top_menu"),
+        type = "click",
+        newsType = "toutiao",
         $body = $('body'),
         newsTypeArr_all = [],
         newsTypeArr_special = [],
@@ -147,19 +124,14 @@ define(function(require) {
         });
         
     }
-    customElement.prototype.firstInviewCallback = function() {
-        // console.log("firstInviewCallback", this.element);
-    };
+
     /** [构造元素，只会运行一次]
      *
      */
     customElement.prototype.build = function() {
         var self = this;
         var element = this.element;
-        // var params = JSON.parse($(element).attr('mip-ajax-params').replace(/'/g, '"'));
-        // bindEven(element, params, typeof($(element).attr('mip-ajax-mark')) === 'undefined');
         var params=$(element).data("type");
-        console.log("params", params)
         bindEven(element, params,true);
     };
     /**
@@ -577,7 +549,6 @@ define(function(require) {
                     recommendtype: 'null',          // 推荐新闻类别url上追加的recommendtype
                     ispush: 'null'                  // 是不是推送新闻url上追加的ispush
                 };
-            console.log("obj",obj)
             // 发送操作信息
             $.ajax({
                 url: logUrl,
@@ -887,7 +858,6 @@ define(function(require) {
                     pgnum: scope.pgNum,
                     os: scope.osType
                 };
-            console.log("obj",obj)
             $.ajax({
                 url: pullUpUrl,
                 data: {
@@ -1651,7 +1621,6 @@ define(function(require) {
                     '</li>';
                 }
             }
-            console.log("tabsHtml",tabsHtml)
             $newsTabsWrap.html(tabsHtml);
             // 缓存我的频道
             if(!!wsCache.get('CUSTOM_CHANNELS_161207')) {
@@ -2703,4 +2672,5 @@ define(function(require) {
     var en = new EastNews();
     en.init();
     return customElement;
-});
+    
+})

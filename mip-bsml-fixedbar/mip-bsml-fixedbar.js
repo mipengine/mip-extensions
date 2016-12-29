@@ -19,13 +19,16 @@ define(function (require) {
         $(element).on('click', '.mip-bsml-fixed-bar-box-appointment', function () {
             $(element).find('.bsml-form-lay').fadeIn('fast').css({'height': wHeight});
             $(element).find('.bsml-form').animate({bottom: '0'}, 'fast');
-            $('body').css({'overflow': 'hidden'});
+            $(document).on('scroll touchmove', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
         });
 
         $(element).on('click', '.bsml-form-close', function () {
             $(element).find('.bsml-form-lay').hide();
             $(element).find('.bsml-form').animate({bottom: '-800px'}, 'fast');
-            $('body').css({'overflow': 'auto'});
+            $(document).off('scroll touchmove');
         });
     };
 

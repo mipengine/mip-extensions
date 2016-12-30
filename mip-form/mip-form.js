@@ -165,8 +165,10 @@ define(function (require) {
             for (index = 0; index < textInput.length; index++) {
                 textInput[index].onfocus = function () {
                     var self = this;
+                    console.log(cross)
                     cross.setAttribute('name', self.getAttribute('name'));
                     util.css(cross, {top: self.offsetTop + (height - 16) / 2 + 'px'});
+                    console.log(self.offsetTop + (height - 16) / 2 );
                     self.parentNode.appendChild(cross);
                     if (self.value !== '') {
                         util.css(cross, {display: 'block'});

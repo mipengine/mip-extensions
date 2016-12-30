@@ -49,18 +49,6 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
     cpro_pswidth="auto" 
     cpro_psheight="230">
 </mip-ad>
-<mip-ad 
-    type="ad-qwang" 
-    cpro_psid="u2619809" 
-    cpro_pswidth="auto" 
-    cpro_psheight="230">
-</mip-ad>
-<mip-ad 
-    type="ad-qwang" 
-    cpro_psid="u2619809" 
-    cpro_pswidth="auto" 
-    cpro_psheight="230">
-</mip-ad>
 ```
 
 ### 通用广告banner样式基本使用

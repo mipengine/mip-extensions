@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author  hejieye
-* @time  20161216
-* @version 1.1.0
+* @time  20161230
+* @version 1.2.0
 */
 define(function (require) {
     var $ = require('zepto');
@@ -49,7 +49,7 @@ define(function (require) {
                 catch (e) {}
             });
         },
-        // 展开 or 收起
+         // 展开 or 收起
         openOrStop: function () {
             $('.os-click').on('click',
             function (event) {
@@ -142,7 +142,7 @@ define(function (require) {
                 }
             });
         },
-        // 问题搜索
+         // 问题搜索
         btnSearch: function () {
             $('.btn-search').click(function () {
                 var content = $('.search-input').val();
@@ -226,6 +226,22 @@ define(function (require) {
                 });
             }, 100);
         },
+        accordion: function () {
+            $('.iask-show-more').click(function () {
+                $(this).parent().siblings('.iask-accordion').each(function () {
+                    $(this).show();
+                });
+                $(this).hide();
+                $(this).siblings('.iask-show-less').show();
+            });
+            $('.iask-show-less').click(function () {
+                $(this).parent().siblings('.iask-accordion').each(function () {
+                    $(this).hide();
+                });
+                $(this).hide();
+                $(this).siblings('.iask-show-more').show();
+            });
+        },
         init: function () {
             this.switchBlock();
             this.changeMore();
@@ -249,4 +265,3 @@ define(function (require) {
 
     return customElem;
 });
-

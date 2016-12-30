@@ -5,23 +5,9 @@
 
 define(function (require) {
     var $ = require('zepto');
+    var util = require('util');
+    var platform = util.platform;
     var customElement = require('customElement').create();
-    var browser = {
-        versions: (function () {
-            var u = navigator.userAgent;
-            return {
-                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
-                android: u.indexOf('Android') > -1, // android终端或者uc浏览器
-                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, // 是否为iPhone或者QQHD浏览器
-                iPad: u.indexOf('iPad') > -1, // 是否iPad
-                ios9: u.indexOf('iPhone OS 9') > -1,
-                MQQBrowser: u.indexOf('MQQBrowser') > -1, // 是否MQQBrowser
-                UCBrowser: u.indexOf('UCBrowser') > -1, // UCBrowser
-                Safari: u.indexOf('Safari') > -1
-            };
-        })(),
-        language: (navigator.browserLanguage || navigator.language).toLowerCase()
-    };
 
     /**
      * 构造元素，只会运行一次
@@ -44,7 +30,7 @@ define(function (require) {
 		+ '\u8bae\u9009\u62e9\u8c4c\u8c46\u835a\u5b89\u88c5\u9ad8\u901f\u4e0b\u8f7d\uff01';
         var innerHTML = '';
         var trueurl;
-        if (browser.versions.ios) {
+        if (platform.isIos()) {
             innerHTML = '<a href="http://h5channel.51pgzs.com/index.php?qid=waitui045" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
         }
 		else {

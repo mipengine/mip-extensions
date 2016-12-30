@@ -104,7 +104,7 @@ define(function (require) {
         var addr = $element.attr('addr');
         $.ajax({
             method: 'get',
-            url: 'http://madmin.muzisoft.com/mipappdown.json',
+            url: 'https://m.muzisoft.com/mipappdown.json',
             dataType: 'json',
             success: function (data) {
                 var innerHTML = initAD(ad, aid, addr, data);

@@ -75,10 +75,11 @@ define(function (require) {
      * @return {obj} false/scriptElement
      */
     function addScriptOnce(scriptId, scriptSrc) {
-        var jsdom = document.getElementById(scriptId);
-        if (jsdom) {
-            return false;
-        }
+        // 短期方案，修复网盟广告加载顺序问题
+        // var jsdom = document.getElementById(scriptId);
+        // if (jsdom) {
+        //     return false;
+        // }
 
         var script = document.createElement('script');
         script.src = scriptSrc;

@@ -1,0 +1,14 @@
+{
+    "name": "mip-dftt-simple",
+    "version": "1.0.0",
+    "description": "加载东方头条数据到指定容器，也可以上拉加载,下拉刷新",
+    "contributors": [
+        {
+            "name": "Deng shaoyong",
+            "email": "16111853860@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

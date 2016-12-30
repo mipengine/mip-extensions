@@ -6,6 +6,22 @@
 define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
+    var browser = {
+        versions: (function () {
+            var u = navigator.userAgent;
+            return {
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
+                android: u.indexOf('Android') > -1, // android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, // 是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, // 是否iPad
+                ios9: u.indexOf('iPhone OS 9') > -1,
+                MQQBrowser: u.indexOf('MQQBrowser') > -1, // 是否MQQBrowser
+                UCBrowser: u.indexOf('UCBrowser') > -1, // UCBrowser
+                Safari: u.indexOf('Safari') > -1
+            };
+        })(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    };
 
     /**
      * 构造元素，只会运行一次
@@ -28,25 +44,30 @@ define(function (require) {
 		+ '\u8bae\u9009\u62e9\u8c4c\u8c46\u835a\u5b89\u88c5\u9ad8\u901f\u4e0b\u8f7d\uff01';
         var innerHTML = '';
         var trueurl;
-        if (ad > 0) {
-            innerHTML = '<i>' + text1 + '</i>'
-				+ '<a href="' + wdjDN + '">\u9ad8\u901f\u4e0b\u8f7d</a>'
-				+ '<p >' + text2 + '</p>'
-				+ '<u style="display: none;">' + text3 + '</u>';
-            if (addr == null) {
-                trueurl = 'http://www.mobile-dad.com/tourl.php?apkid=' + $element.attr('aid');
-            }
-			else {
-                trueurl = 'http://www.mobile-dad.com/tourl.php?apkid=' + aid;
-            }
+        if (browser.versions.ios) {
+            innerHTML = '<a href="http://h5channel.51pgzs.com/index.php?qid=waitui045" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
         }
 		else {
-            if (addr == null) {
-                innerHTML = '<a href="http://www.mobile-dad.com/tourl.php?apkid=' + aid + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
+            if (ad > 0) {
+                innerHTML = '<i>' + text1 + '</i>'
+					+ '<a href="' + wdjDN + '">\u9ad8\u901f\u4e0b\u8f7d</a>'
+					+ '<p >' + text2 + '</p>'
+					+ '<u style="display: none;">' + text3 + '</u>';
+                if (addr.length === 0) {
+                    trueurl = 'http://www.mobile-dad.com/tourl.php?apkid=' + $element.attr('aid');
+                }
+				else {
+                    trueurl = addr;
+                }
             }
-			else {
-                innerHTML = '<a href="' + addr + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
+            else {
+                if (addr.length === 0) {
+                    innerHTML = '<a href="http://www.mobile-dad.com/tourl.php?apkid=' + aid + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
+                }
+				else {
+                    innerHTML = '<a href="' + addr + '" class="pt">\u7acb\u5373\u4e0b\u8f7d</a>';
 
+                }
             }
         }
         $element.html(innerHTML);

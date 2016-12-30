@@ -13,25 +13,25 @@ mip-adsense 用来添加谷歌广告
 MIP提供谷歌广告的扩展组件，代码示例：
 
 ```
-	<mip-adsense data-ad-client="ca-pub-4188721439221378" data-ad-slot="7961173011" data-ad-format="auto">
+	<mip-adsense ad-client="ca-pub-4188721439221378" ad-slot="7961173011" ad-format="auto">
 	</mip-adsense>
 ```
 
 ## 属性
 
-### data-ad-client
+### ad-client
 
 说明：用户
 必选项：是
 类型：字符串
 
-### data-ad-slot
+### ad-slot
 
 说明：位置
 必选项：是
 类型：字符串
 
-### data-ad-format
+### ad-format
 
 说明：格式
 必选项：是

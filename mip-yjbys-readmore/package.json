@@ -1,0 +1,14 @@
+{
+    "name": "mip-yjbys-readmore",
+    "version": "1.0.0",
+    "description": "自用查看更多文章内容",
+    "contributors": [
+        {
+            "name": "yjbys",
+            "email": "jfdsies@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

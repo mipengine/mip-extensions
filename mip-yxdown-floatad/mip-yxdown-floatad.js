@@ -15,7 +15,7 @@ define(function (require) {
     customElement.prototype.build = function () {
         var node = document.createElement('script');
         node.type = 'text/javascript';
-        node.src = 'http://static.yxdown.com/m/gg/float_tl.js';
+        node.src = 'https://t.yiwan.com/static/yxdown/m_gg_float_tl.js';
         node.async = 'true';
         var tanxh = document.getElementsByTagName('head')[0];
         if (tanxh) {

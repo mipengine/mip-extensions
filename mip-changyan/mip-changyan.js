@@ -14,7 +14,7 @@ define(function (require) {
         var viewport = require('viewport');
         var width = viewport.getWidth();
         if (criWidth != null && width < criWidth) {
-            var html = '<script src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>';
+            var html = '<script id="changyan_mobile_js" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>';
             window.document.write(html);
         }
         else {

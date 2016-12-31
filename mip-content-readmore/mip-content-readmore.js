@@ -1,5 +1,5 @@
 /**
-* @file 自用查看更多
+* @file 查看更多文本内容
 * @author jfdsies@gmail.com
 * @version 1.0.0
 * @copyright 2016 yjbys.com, Inc. All Rights Reserved

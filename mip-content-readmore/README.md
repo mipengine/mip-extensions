@@ -1,6 +1,6 @@
 # mip-content-readmore
 
-mip-content-readmore 自用查看更多文章内容
+mip-content-readmore 查看更多文本内容
 
 标题|内容
 ----|----

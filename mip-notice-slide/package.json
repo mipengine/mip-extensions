@@ -1,0 +1,12 @@
+{
+    "name": "mip-notice-slide",
+    "version": "1.0.0",
+    "author": {
+        "name": "seinm",
+        "email": "195510690@qq.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.2"
+    }
+}

@@ -1,5 +1,46 @@
 # 升级日志
 
+#### 2016.12.28
+
+> 核心代码上线
+
+    1、增加了platform功能，支持系统／浏览器／浏览器内核／手机系统判断等
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-3727-pagination](https://github.com/mipengine/mip-extensions/tree/master/mip-3727-pagination)|[新增] 3727图片模拟分页
+[mip-dad-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-dad-appdownload)|[升级][BUG] 皮皮高速下载
+[mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[升级] 西西软件园编辑人员统计组件
+[mip-wkfun-diseasse](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-diseasse)|[升级] 寻医问药疾病频道
+
+#### 2016.12.27
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[新增] 西西软件园编辑人员统计组件
+[mip-wkfun-medicine](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-medicine)|[新增] 寻医问药药品频道
+[mip-wkfun-diseasse](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-diseasse)|[新增] 寻医问药疾病频道
+[mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件 
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告组件升级，支持搜索推荐的悬浮投放
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-yiqibazi-tap](https://github.com/mipengine/mip-extensions/tree/master/mip-yiqibazi-tap)|[升级] 点击切换组件
+[mip-down-comment](https://github.com/mipengine/mip-extensions/tree/master/mip-down-comment)|[升级] 用来支持文章详情页的评论
+
+
+#### 2016.12.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-tags](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-tags)|[升级] 西西软件园适配下载地址组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告组件升级，支持反屏蔽的悬浮投放
+
+
 #### 2016.12.23
 
 > 核心代码上线

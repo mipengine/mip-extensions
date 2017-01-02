@@ -26,26 +26,29 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        var $element = $(element).find('.bsml-singleselect-container');
-        var options = $element.attr('options');
-        if (options) {
-            var name = $element.attr('name');
-            try {
-                options = JSON.parse(options);
-                var str = '<select name="' + name + '" class="bsml-singleselect">';
-                options.map(function (option) {
-                    str += '<option value="' + option.value + '"';
-                    if (option.selected) {
-                        str += ' selected="selected"';
-                    }
-                    str += '>' + option.text + '</option>';
-                });
-                str += '</select>';
-                $element.html(str);
-            } catch (e) {
-                console.log(e);
+        var $selects = $(element).find('.bsml-singleselect-container');
+        $selects.each(function (i, sel) {
+            var $sel = $(sel);
+            var options = $sel.attr('options');
+            if (options) {
+                var name = $sel.attr('name');
+                try {
+                    options = JSON.parse(options);
+                    var str = '<select name="' + name + '" class="bsml-singleselect">';
+                    options.map(function (option) {
+                        str += '<option value="' + option.value + '"';
+                        if (option.selected) {
+                            str += ' selected="selected"';
+                        }
+                        str += '>' + option.text + '</option>';
+                    });
+                    str += '</select>';
+                    $sel.html(str);
+                } catch (e) {
+                    console.log(e);
+                }
             }
-        }
+        });
 
         var parm = {};
         parm.compname = $(element).parents('mip-bsml-widget').attr('type');

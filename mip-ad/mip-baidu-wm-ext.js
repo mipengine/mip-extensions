@@ -28,8 +28,16 @@ define(function (require) {
                 var elem = window.getComputedStyle(child, null);
                 var pos = elem && elem.getPropertyValue('position') ? 
                           elem.getPropertyValue('position') : '';
+                if(layer && layer.querySelector('#'+token)){
+                  return;
+                }
                 if(pos == 'fixed' && layer) {
-                    $(layer).append(_this);
+                    var idx = document.querySelectorAll('mip-fixed').length;
+                    var data = {
+                        element: child.parentElement,
+                        id: 'Fixed'+ idx
+                    };
+                    fixedElement.moveToFixedLayer(data, parseInt(idx));
                 }
             },false);
 

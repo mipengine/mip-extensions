@@ -24,9 +24,7 @@ define(function (require) {
             ]);
 
 
-            /**
-            * 检测setconfig是否存在
-            */
+            // 检测setconfig是否存在
             if (setConfig) {
                 var setCustom = buildArry(decodeURIComponent(setConfig));
                 _czc.push(setCustom);
@@ -51,9 +49,7 @@ define(function (require) {
         for (var index = 0; index < tagBox.length; index++) {
             var statusData = tagBox[index].getAttribute('data-stats-cnzz-obj');
 
-            /**
-            * 检测statusData是否存在
-            */
+            // 检测statusData是否存在
             if (!statusData) {
                 return;
             }
@@ -71,6 +67,12 @@ define(function (require) {
                 // 事件限制到click,mouseup,load(直接触发)
                 return;
             }
+
+            if ($(tagBox[index]).hasClass('mip-stats-eventload')) {
+                return;
+            }
+
+            $(tagBox[index]).addClass('mip-stats-eventload');
 
             if (eventtype === 'load') {
                 _czc.push(data);

@@ -6,6 +6,7 @@
 define(function (require) {
     var $ = require('zepto');
     var util = require('util');
+    var fetchJsonp = require('fetch-jsonp');
     var platform = util.platform;
     var customElement = require('customElement').create();
     function initAD(type, obj) {
@@ -27,14 +28,17 @@ define(function (require) {
         var element = this.element;
         var $element = $(element);
         var type = $element.attr('type');
-        var myRequest = new Request('https://m.muzisoft.com/mipaddonapp.json');
-        fetch(myRequest).then(function (response) {
-            return response.json().then(function (json) {
-                var innerHTML = initAD(type, json);
-                var obj = ($('.vother').length > 0) ? $('.vother') : $('.info');
-                obj.after(innerHTML);
-            });
-        });
+        function callback(json) {
+            var innerHTML = initAD(type, json);
+            var obj = ($('.vother').length > 0) ? $('.vother') : $('.info');
+            obj.after(innerHTML);
+        }
+        fetchJsonp('http://m.muzisoft.com/ajax/mipaddonapp.php', {
+            timeout: 3000,
+            jsonpCallback: 'ck'
+        }).then(function (response) {
+            return response.json();
+        }).then(callback);
     };
     return customElement;
 });

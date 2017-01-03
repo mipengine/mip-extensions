@@ -23,7 +23,7 @@ define(function (require) {
     /**
      *  createdCallback
      */
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.createdCallback = function () {
         var element = this.element;
         var $element = $(element);
         var type = $element.attr('type');

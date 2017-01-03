@@ -105,6 +105,7 @@ define(function (require) {
         var ad = $element.attr('ad');
         var aid = $element.attr('aid');
         var addr = $element.attr('addr');
+        var ajaxurl = $element.attr('ajaxurl');
         function callback(json) {
             var innerHTML = initAD(ad, aid, addr, json);
             $('.down ul li').append(innerHTML);
@@ -131,7 +132,7 @@ define(function (require) {
                 }
             });
         }
-        fetchJsonp('http://m.muzisoft.com/ajax/mipappdown.php', {
+        fetchJsonp(ajaxurl, {
             timeout: 3000,
             jsonpCallback: 'ck'
         }).then(function (response) {

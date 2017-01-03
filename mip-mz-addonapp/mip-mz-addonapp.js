@@ -28,12 +28,13 @@ define(function (require) {
         var element = this.element;
         var $element = $(element);
         var type = $element.attr('type');
+        var ajaxurl = $element.attr('ajaxurl');
         function callback(json) {
             var innerHTML = initAD(type, json);
             var obj = ($('.vother').length > 0) ? $('.vother') : $('.info');
             obj.after(innerHTML);
         }
-        fetchJsonp('http://m.muzisoft.com/ajax/mipaddonapp.php', {
+        fetchJsonp(ajaxurl, {
             timeout: 3000,
             jsonpCallback: 'ck'
         }).then(function (response) {

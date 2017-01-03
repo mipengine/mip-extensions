@@ -78,21 +78,13 @@ define(function (require) {
                 }
             });
             $('.m-down-msg h1').text(firstName);
+            var urlArray = ['cr173.com', 'qqtn.com', 'fxxz.com', '5577.com', 'uzzf.com', 'skycn.com', '962.net'];
             var windowUrl = window.location.href;
-            if (windowUrl.indexOf('cr173.com') !== -1) {
-                $('.m-down-ul li a').attr('href', 'http://m.cr173.com/down.asp?id=' + firstId).attr('data-add', 'add');
-            } else if (windowUrl.indexOf('qqtn.com') !== -1) {
-                $('.m-down-ul li a').attr('href', 'http://m.qqtn.com/down.asp?id=' + firstId).attr('data-add', 'add');
-            } else if (windowUrl.indexOf('fxxz.com') !== -1) {
-                $('.m-down-ul li a').attr('href', 'http://m.fxxz.com/down.asp?id=' + firstId).attr('data-add', 'add');
-            } else if (windowUrl.indexOf('5577.com') !== -1) {
-                $('.m-down-ul li a').attr('href', 'http://m.5577.com/down.asp?id=' + firstId).attr('data-add', 'add');
-            } else if (windowUrl.indexOf('uzzf.com') !== -1) {
-                $('.m-down-ul li a').attr('href', 'http://m.uzzf.com/down.asp?id=' + firstId).attr('data-add', 'add');
-            } else if (windowUrl.indexOf('skycn.com') !== -1) {
-                $('.m-down-ul li a').attr('href', 'http://m.skycn.com/down.asp?id=' + firstId).attr('data-add', 'add');
-            } else if (windowUrl.indexOf('962.net') !== -1) {
-                $('.m-down-ul li a').attr('href', 'http://m.962.net/down.asp?id=' + firstId).attr('data-add', 'add');
+            var i = 0;
+            for (i = 0; i < urlArray.length; i++) {
+                if (windowUrl.indexOf(urlArray[i]) !== -1) {
+                    $('.m-down-ul li a').attr('href', 'http://m.' + urlArray[i] + '/down.asp?id=' + firstId).attr('data-add', 'add');
+                }
             }
         }
         if ($('.g-tags-box ul li').length <= 0) {

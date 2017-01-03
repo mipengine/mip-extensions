@@ -27,7 +27,7 @@ define(function (require) {
         insTag.setAttribute('style', 'display:block');
         htmlCon.appendChild(insTag);
         var scriptTag2 = document.createElement('script');
-        scriptTag2.innerHTML('(adsbygoogle=window.adsbygoogle||[]).push({});');
+        scriptTag2.innerHTML = '(adsbygoogle=window.adsbygoogle||[]).push({});';
         htmlCon.appendChild(scriptTag2);
     };
     return customElement;

@@ -1,0 +1,14 @@
+{
+	"name": "mip-diyiyou-sumwidth",
+	"version": "1.0.0",
+	"description": "点击图片，放大展示",
+
+	"author": {
+		"name": "a313008430",
+		"email": "313008430@qq.com"
+	},
+
+	"engines": {
+		"mip": ">=1.1.0"
+	}
+}

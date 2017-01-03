@@ -110,7 +110,7 @@ define(function (require) {
             this.tongJi(element); // 编辑统计
         }
     };
-    customElem.prototype.build = function () {
+    customElem.prototype.createdCallback = function () {
         var element = this.element;
         global.init(element);
     };

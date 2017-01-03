@@ -5,20 +5,9 @@
 define(function (require) {
     var $ = require('zepto');
     var viewport = require('viewport');
+    var util = require('util');
+    var platform = util.platform;
     var customElem = require('customElement').create();
-    var browser = {
-        versions: (function () {
-            var u = navigator.userAgent;
-            // var app = navigator.appVersion;
-            return {
-                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
-                android: u.indexOf('Android') > -1, // android终端或者uc浏览器
-                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, // 是否为iPhone或者QQHD浏览器
-                iPad: u.indexOf('iPad') > -1 // 是否iPad
-            };
-        })(),
-        language: (navigator.browserLanguage || navigator.language).toLowerCase()
-    };
     var down = {
         webInfoId: $('.down-href').attr('downid'),
         webInfoCid: $('.down-href').attr('cid'),
@@ -45,7 +34,7 @@ define(function (require) {
             });
         },
         downHref: function () {
-            if (browser.versions.android && typeof (this.platAndroidAddress) !== 'undefined') {
+            if (platform.isAndroid() && typeof (this.platAndroidAddress) !== 'undefined') {
                 if (this.platAndroidAddress.indexOf('http:') >= 0 || this.platAndroidAddress.indexOf('ftp:') >= 0
                     || this.platAndroidAddress.indexOf('https:') >= 0) {
                     $('.game-detail-main .bxz').attr('href', this.platAndroidAddress);
@@ -55,7 +44,7 @@ define(function (require) {
                 }
                 $('.game-detail-main h1').html(this.platAndroidResName);
             }
-            else if (browser.versions.ios && typeof (this.platIPhoneAddress) !== 'undefined') {
+            else if (platform.isIos() && typeof (this.platIPhoneAddress) !== 'undefined') {
                 if (this.platIPhoneAddress.indexOf('http:') >= 0 || this.platIPhoneAddress.indexOf('ftp:') >= 0
                     || this.platIPhoneAddress.indexOf('https:') >= 0) {
                     $('.game-detail-main .bxz').attr('href', this.platIPhoneAddress);
@@ -201,7 +190,7 @@ define(function (require) {
             this.touchSlide(); // 滑动切换
         }
     };
-    customElem.prototype.build = function () {
+    customElem.prototype.createdCallback = function () {
         down.init();
     };
     return customElem;

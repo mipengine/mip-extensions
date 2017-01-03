@@ -70,11 +70,11 @@ define(function (require) {
                 + '<li><a href="http://tj.tt1386.com/832364445/4610004"><img class="ico" src="http://m.cr173.com/skin/new2016/images/xhjkg-ad.png"><h3 class="name">新黄金矿工</h3></a></li>'
                 + '<li><a href="http://tj.tt1386.com/121183088/7860004"><img class="ico" src="http://pic1.cr173.com/cr173/mb/up/2016-8/14714220365419767_100_100.png"><h3 class="name">水果忍者天天闯关</h3></a></li>'
                 + '<li><a href="http://tj.tt1386.com/257364547/6840004"><img class="ico" src="http://m.cr173.com/skin/new2016/images/ssdzz-ad.png"><h3 class="name">蛇蛇大作战</h3></a></li>';
-            var appendIosHtml = '<li><a href="http://tj.tt1386.com/249235356/7320005"><img class="ico" src="/img/iosad1.png"><h3 class="name">我的世界</h3></a></li>'
-                + '<li><a href="http://tj.tt1386.com/262029296/0080005"><img class="ico" src="/img/iosad2.png"><h3 class="name">去吧皮卡丘</h3></a></li>'
-                + '<li><a href="http://tj.tt1386.com/315045178/8880005"><img class="ico" src="/img/iosad3.png"><h3 class="name">口袋妖怪复刻</h3></a></li>'
-                + '<li><a href="http://tj.tt1386.com/142006155/3580005"><img class="ico" src="/img/iosad4.png"><h3 class="name">小冰冰传奇</h3></a></li>'
-                + '<li><a href="http://tj.tt1386.com/262006271/8420005"><img class="ico" src="/img/iosad5.png"><h3 class="name">全民枪战</h3></a></li>';
+            var appendIosHtml = '<li><a href="http://tj.tt1386.com/249235356/7320005"><img class="ico" src="http://m.cr173.com/img/iosad1.png"><h3 class="name">我的世界</h3></a></li>'
+                + '<li><a href="http://tj.tt1386.com/262029296/0080005"><img class="ico" src="http://m.cr173.com/img/iosad2.png"><h3 class="name">去吧皮卡丘</h3></a></li>'
+                + '<li><a href="http://tj.tt1386.com/315045178/8880005"><img class="ico" src="http://m.cr173.com/img/iosad3.png"><h3 class="name">口袋妖怪复刻</h3></a></li>'
+                + '<li><a href="http://tj.tt1386.com/142006155/3580005"><img class="ico" src="http://m.cr173.com/img/iosad4.png"><h3 class="name">小冰冰传奇</h3></a></li>'
+                + '<li><a href="http://tj.tt1386.com/262006271/8420005"><img class="ico" src="http://m.cr173.com/img/iosad5.png"><h3 class="name">全民枪战</h3></a></li>';
             if (!browser.versions.ios) {
                 $('.m-down-msg').after('<ul class="group" id="down_d1_1">' + appendAndroidHtml + '</ul>');
             }

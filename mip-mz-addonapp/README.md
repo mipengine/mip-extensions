@@ -16,17 +16,14 @@ mip-mz-addonapp 推荐app下载!
 
 ## 属性
 
-### comm
+### type
 
-说明：推荐app类型  
+说明：app类型  
 必选项：是   
 类型：字符串
 取值范围：comm,full 
 单位：无   
 默认值：无
-
-## 注意事项
-暂无
 
 
 

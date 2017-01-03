@@ -15,11 +15,11 @@ define(function (require) {
             if (inarray(obj.vnpids, softid)) {
                 return '<a href="' + obj.ios[1].url + '" class="gsdbtn">' + obj.ios[0].btnvalue + '</a>';
             }
-            return '<a href="' + checkurl(aid, addr) + '" class="gsdbtn" id="confirmios">'
+            return '<a href="' + checkurl(aid, addr) + '" class="gsdbtn confirmios">'
             + obj.ios[0].btnvalue + '</a>';
         }
         if (ad > 0) {
-            $('#down').css('height', '90px');
+            $('.down').css('height', '90px');
             var presenti = 0;
             for (var i = 0; i < obj.android.length; ++i) {
                 if (!getCookie(obj.android[i].id)) {
@@ -27,11 +27,11 @@ define(function (require) {
                     break;
                 }
             }
-            return '<input type="checkbox" id="ckb" checked="checked">'
+            return '<input type="checkbox" id="ckb" class="ckb" checked="checked">'
 			+ '<span>' + obj.android[presenti].name + '</span>'
             + '<a href="' + obj.android[presenti].url + '" id="gsdbtn" presentid="'
             + obj.android[presenti].id + '" class="gsdbtn">' + obj.android[presenti].btnvalue + '</a>'
-            + '<p id="yybtext">' + obj.android[presenti].info + '</p>';
+            + '<p id="yybtext" class="yybtext">' + obj.android[presenti].info + '</p>';
         }
         return '<a href="' + checkurl(aid, addr) + '" class="gsdbtn">' + obj.android[0].ubtnvalue + '</a>';
     }
@@ -41,9 +41,9 @@ define(function (require) {
     }
 	// 点击按钮切换下载
     function changeDown(aid, addr, androidAD) {
-        var chk = $('#ckb');
-        var yybtext = $('#yybtext');
-        var gsdbtn = $('#gsdbtn');
+        var chk = document.getElementById('ckb');
+        var yybtext = $('.yybtext');
+        var gsdbtn = document.getElementById('gsdbtn');
         var presenti = 0;
         for (var i = 0; i < androidAD.length; ++i) {
             if (!getCookie(androidAD[i].id)) {
@@ -51,17 +51,19 @@ define(function (require) {
                 break;
             }
         }
-        if (chk.is(':checked')) {
+        if (chk.checked) {
             yybtext.css('color', 'black');
-            gsdbtn.attr('href', androidAD[presenti].url);
-            gsdbtn.text(androidAD[presenti].btnvalue);
-            yybtext.html(androidAD[presenti].info);
+            document.querySelector('#down span').innerText = androidAD[presenti].name;
+            gsdbtn.setAttribute('href', androidAD[presenti].url);
+            gsdbtn.innerText = androidAD[presenti].btnvalue;
+            yybtext.innerText = androidAD[presenti].info;
         }
         else {
             yybtext.css('color', 'red');
-            gsdbtn.attr('href', checkurl(aid, addr));
-            gsdbtn.text(androidAD[presenti].ubtnvalue);
-            yybtext.html(androidAD[presenti].uinfo);
+            document.querySelector('#down span').innerText = androidAD[presenti].name;
+            gsdbtn.setAttribute('href', checkurl(aid, addr));
+            gsdbtn.innerText = androidAD[presenti].ubtnvalue;
+            yybtext.innerText = androidAD[presenti].uinfo;
         }
     }
 	// 设置cookie
@@ -94,7 +96,7 @@ define(function (require) {
     }
 
     /**
-     * 构造元素，只会运行一次
+     *  createdCallback
      */
     customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
@@ -102,37 +104,35 @@ define(function (require) {
         var ad = $element.attr('ad');
         var aid = $element.attr('aid');
         var addr = $element.attr('addr');
-        $.ajax({
-            method: 'get',
-            url: 'https://m.muzisoft.com/mipappdown.json',
-            dataType: 'json',
-            success: function (data) {
-                var innerHTML = initAD(ad, aid, addr, data);
-                $('#down ul li').append(innerHTML);
-                $('#ckb').click(function () {
-                    changeDown(aid, addr, data.android);
-                });
-				// 安卓点击了高速按钮，写cookie
-                $('#gsdbtn').click(function () {
-                    for (var i = 0; i < data.android.length; ++i) {
-                        var j = (i === data.android.length - 1) ? 0 : i + 1;
-                        if ($('#gsdbtn').attr('presentid') === data.android[i].id) {
-                            setCookie(data.android[j].id, '', 1);
-                        }
-						else {
-                            setCookie(data.android[j].id, 1, 1);
-                        }
+        function callback(json) {
+            var innerHTML = initAD(ad, aid, addr, json);
+            $('.down ul li').append(innerHTML);
+            $('.ckb').click(function () {
+                changeDown(aid, addr, json.android);
+            });
+			// 安卓点击了高速按钮，写cookie
+            $('.gsdbtn').click(function () {
+                for (var i = 0; i < json.android.length; ++i) {
+                    var j = (i === json.android.length - 1) ? 0 : i + 1;
+                    if ($('.gsdbtn').attr('presentid') === json.android[i].id) {
+                        setCookie(json.android[j].id, '', 1);
                     }
-                });
-				// 苹果点击了下载
-                $('#confirmios').click(function () {
-                    if (confirm(data.ios[0].name)) {
-                        window.location.href = data.ios[0].url;
-                        return false;
+					else {
+                        setCookie(json.android[j].id, 1, 1);
                     }
-                });
-            },
-            error: function () {}
+                }
+            });
+			// 苹果点击了下载
+            $('.confirmios').click(function () {
+                if (confirm(json.ios[0].name)) {
+                    window.location.href = json.ios[0].url;
+                    return false;
+                }
+            });
+        }
+        var myRequest = new Request('https://m.muzisoft.com/mipappdown.json');
+        fetch(myRequest).then(function (response) {
+            return response.json().then(callback);
         });
     };
     return customElement;

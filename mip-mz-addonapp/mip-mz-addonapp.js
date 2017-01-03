@@ -21,22 +21,19 @@ define(function (require) {
     }
 
     /**
-     * 构造元素，只会运行一次
+     *  createdCallback
      */
     customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
         var $element = $(element);
         var type = $element.attr('type');
-        $.ajax({
-            method: 'get',
-            url: 'https://m.muzisoft.com/mipaddonapp.json',
-            dataType: 'json',
-            success: function (data) {
-                var innerHTML = initAD(type, data);
-                var obj = ($('#vother').length > 0) ? $('#vother') : $('#info');
+        var myRequest = new Request('https://m.muzisoft.com/mipaddonapp.json');
+        fetch(myRequest).then(function (response) {
+            return response.json().then(function (json) {
+                var innerHTML = initAD(type, json);
+                var obj = ($('.vother').length > 0) ? $('.vother') : $('.info');
                 obj.after(innerHTML);
-            },
-            error: function () {}
+            });
         });
     };
     return customElement;

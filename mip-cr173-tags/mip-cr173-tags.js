@@ -78,7 +78,14 @@ define(function (require) {
                 }
             });
             $('.m-down-msg h1').text(firstName);
-            $('.m-down-ul li a').attr('href', 'http://m.cr173.com/down.asp?id=' + firstId).attr('data-add', 'add');
+            var urlArray = ['cr173.com', 'qqtn.com', 'fxxz.com', '5577.com', 'uzzf.com', 'skycn.com', '962.net'];
+            var windowUrl = window.location.href;
+            var i = 0;
+            for (i = 0; i < urlArray.length; i++) {
+                if (windowUrl.indexOf(urlArray[i]) !== -1) {
+                    $('.m-down-ul li a').attr('href', 'http://m.' + urlArray[i] + '/down.asp?id=' + firstId).attr('data-add', 'add');
+                }
+            }
         }
         if ($('.g-tags-box ul li').length <= 0) {
             $('.g-tags-box').hide();

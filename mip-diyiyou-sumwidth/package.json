@@ -1,7 +1,7 @@
 {
 	"name": "mip-diyiyou-sumwidth",
 	"version": "1.0.0",
-	"description": "点击图片，放大展示",
+	"description": "根据mip-img个数和宽度计算父级宽度",
 
 	"author": {
 		"name": "a313008430",

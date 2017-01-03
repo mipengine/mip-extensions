@@ -31,6 +31,26 @@ mip-content-readmore 查看更多文本内容
     <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略2333字)</p>
 </div>
 <mip-content-readmore element=".content" maxlen="666" buttitle="查看更多"></mip-content-readmore>
+<span>==========================================</span>
+<div class="content2">
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+    <p>bla bla bla ... bla bla bla ... bla bla bla ... (此略6666字)</p>
+</div>
+<mip-content-readmore element=".content2" maxlen="666" buttitle="查看更多"></mip-content-readmore>
 ```
 
 ## 属性

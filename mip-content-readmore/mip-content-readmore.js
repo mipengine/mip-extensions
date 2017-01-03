@@ -67,10 +67,11 @@ define(function (require) {
         if(content != undefined && conlen > len){
             me.innerHTML = '<div class="mip-content-readmore"><em><code class="mip-readmore-fx"></code></em><span>'+buttitle+'</span></div>';
             element.innerHTML = content.substring(0, len) + " ......";
-            $('.mip-content-readmore')[0].onclick = function(){
+            var readmoreele = $('.mip-content-readmore');
+            readmoreele[readmoreele.length-1].addEventListener('click', function(){
                 element.innerHTML = content;
                 me.innerHTML = '';
-            };
+            }, false);
         }
     };
 

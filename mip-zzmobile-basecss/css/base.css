@@ -1,0 +1,1194 @@
+@charset "UTF-8";
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+[hidden],
+template {
+  display: none;
+}
+
+a {
+  background: transparent;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+dfn {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  border: 0;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+figure {
+  margin: 1em 40px;
+}
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+pre {
+  overflow: auto;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input {
+  line-height: normal;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+optgroup {
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/**
+ * layout.css contains all the base styles, including typography\color\utilities.
+ * In future developing,all the base style of tags or classes should be called from this file to 
+ * keep the style of our site unified.
+ * DO NOT override styles in this code if not nessesary.
+ * Modification of this file should be approved by all FE members. 
+ */
+/**
+ * Browser Supporting
+ */
+/**
+ * Base typography
+ */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+fieldset, img {
+  border: 0;
+}
+
+html {
+  font-size: 14px !important;
+  background-color: #f7f7f7;
+}
+
+@media only screen and (max-device-width: 375px) {
+  html {
+    font-size: 14px !important;
+  }
+}
+
+@media only screen and (max-device-width: 320px) {
+  html {
+    font-size: 13px !important;
+  }
+}
+
+body {
+  font: normal 1rem \5b8b\4f53;
+  color: #666;
+}
+
+body .small, body table th small, table th body small, body
+table td small,
+table td body small {
+  font-size: 0.86rem;
+}
+
+h1 {
+  font: normal 1.24rem "microsoft yahei", "微软雅黑", STHeiti, Tahoma, Arial, Helvetica;
+}
+
+h2 {
+  font: bold 1.19rem "microsoft yahei", "微软雅黑", STHeiti, Tahoma, Arial, Helvetica;
+}
+
+h3 {
+  font: bold 1.14rem "microsoft yahei", "微软雅黑", STHeiti, Tahoma, Arial, Helvetica;
+}
+
+h4 {
+  font: bold 1.07rem \5b8b\4f53;
+}
+
+h5 {
+  font: bold 1rem \5b8b\4f53;
+}
+
+h1 {
+  color: #333;
+}
+
+h1 small {
+  font-size: 1rem;
+  font-family: \5b8b\4f53;
+  color: #999;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #1a89ed;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+}
+
+/**
+ * Utilities
+ */
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.left {
+  display: inline;
+  float: left;
+}
+
+.right {
+  display: inline;
+  float: right;
+}
+
+.hide {
+  display: none;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.wordwrap {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+pre.wordwrap {
+  white-space: pre-wrap;
+}
+
+.emphasis {
+  color: #f35b5b;
+}
+
+.info {
+  color: #1a89ed;
+}
+
+.yahei {
+  font-family: "microsoft yahei", "微软雅黑", STHeiti, Tahoma, Arial, Helvetica;
+}
+
+.songti {
+  font-family: \5b8b\4f53;
+}
+
+.arial {
+  font-family: Arial, "宋体";
+}
+
+.mod-tools-subtitle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0 5px;
+  font-size: 1rem;
+  line-height: 3rem;
+  border-left: 5px solid #1a89ed;
+}
+
+.mod-intro img {
+  border: 1px solid #f0f0f0;
+  max-width: 760px;
+}
+
+.layout-main {
+  width: 100%;
+  min-height: 568px;
+  background-color: #f7f7f7;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid #f0f0f0;
+}
+
+table th {
+  padding: 0.93rem 0;
+  font-weight: normal;
+  color: #333;
+  background-color: #fbfbfb;
+}
+
+table td {
+  padding-top: 0.93rem;
+  padding-bottom: 1.14rem;
+}
+
+table th small,
+table td small {
+  color: #999;
+}
+
+.btn-large-blue {
+  width: 200px;
+  height: 45px;
+  line-height: 45px !important;
+  font: 1.14rem "microsoft yahei", "微软雅黑", STHeiti, Tahoma, Arial, Helvetica;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  border: none;
+  background-color: #1a89ed;
+  -webkit-box-shadow: 0 -4px #2797fb inset;
+  -moz-box-shadow: 0 -4px #2797fb inset;
+  box-shadow: 0 -4px #2797fb inset;
+}
+
+.btn-large-blue:hover {
+  text-decoration: none;
+  background-color: #56abf8;
+}
+
+.btn-large-red {
+  width: 200px;
+  height: 45px;
+  line-height: 45px !important;
+  font: 1.14rem "microsoft yahei", "微软雅黑", STHeiti, Tahoma, Arial, Helvetica;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  border: none;
+  background-color: #f35b5b;
+  -webkit-box-shadow: 0 -4px #dd4e4e inset;
+  -moz-box-shadow: 0 -4px #dd4e4e inset;
+  box-shadow: 0 -4px #dd4e4e inset;
+}
+
+.btn-large-red:hover {
+  text-decoration: none;
+  background-color: #fa6c6c;
+}
+
+.btn-large-wht {
+  width: 200px;
+  height: 45px;
+  line-height: 45px !important;
+  font: 1.14rem "microsoft yahei", "微软雅黑", STHeiti, Tahoma, Arial, Helvetica;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #666;
+  border: 1px solid #efefef;
+  background-color: #fff;
+  -webkit-box-shadow: 0 -4px #f7f7f7 inset;
+  -moz-box-shadow: 0 -4px #f7f7f7 inset;
+  box-shadow: 0 -4px #f7f7f7 inset;
+}
+
+.btn-large-wht:hover {
+  text-decoration: none;
+  color: #1a89ed;
+}
+
+.btn-large-lose {
+  width: 200px;
+  height: 45px;
+  line-height: 45px !important;
+  font: 1.14rem "microsoft yahei", "微软雅黑", STHeiti, Tahoma, Arial, Helvetica;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #999;
+  border: 1px solid #d8d8d8;
+  background-color: #f7f7f7;
+}
+
+.btn-big-blue {
+  width: 155px;
+  height: 35px;
+  line-height: 35px !important;
+  font: 1rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  border: none;
+  background-color: #1a89ed;
+  -webkit-box-shadow: 0 -4px #2797fb inset;
+  -moz-box-shadow: 0 -4px #2797fb inset;
+  box-shadow: 0 -4px #2797fb inset;
+}
+
+.btn-big-blue:hover {
+  text-decoration: none;
+  background-color: #56abf8;
+}
+
+.btn-big-red {
+  width: 155px;
+  height: 35px;
+  line-height: 35px !important;
+  font: 1rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  border: none;
+  background-color: #f35b5b;
+  -webkit-box-shadow: 0 -4px #dd4e4e inset;
+  -moz-box-shadow: 0 -4px #dd4e4e inset;
+  box-shadow: 0 -4px #dd4e4e inset;
+}
+
+.btn-big-red:hover {
+  text-decoration: none;
+  background-color: #fa6c6c;
+}
+
+.btn-big-wht {
+  width: 155px;
+  height: 35px;
+  line-height: 35px !important;
+  font: 1rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #666;
+  border: 1px solid #efefef;
+  background-color: #fff;
+  -webkit-box-shadow: 0 -4px #f7f7f7 inset;
+  -moz-box-shadow: 0 -4px #f7f7f7 inset;
+  box-shadow: 0 -4px #f7f7f7 inset;
+}
+
+.btn-big-wht:hover {
+  text-decoration: none;
+  color: #1a89ed;
+}
+
+.btn-big-lose {
+  width: 155px;
+  height: 35px;
+  line-height: 35px !important;
+  font: 1rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #999;
+  border: 1px solid #d8d8d8;
+  background-color: #f7f7f7;
+}
+
+.btn-mid-blue {
+  width: 85px;
+  height: 30px;
+  line-height: 30px !important;
+  font: 0.86rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  border: none;
+  background-color: #1a89ed;
+}
+
+.btn-mid-blue:hover {
+  text-decoration: none;
+  background-color: #56abf8;
+}
+
+.btn-mid-red {
+  width: 85px;
+  height: 30px;
+  line-height: 30px !important;
+  font: 0.86rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  border: none;
+  background-color: #f35b5b;
+}
+
+.btn-mid-red:hover {
+  text-decoration: none;
+  background-color: #fa6c6c;
+}
+
+.btn-mid-wht {
+  width: 85px;
+  height: 30px;
+  line-height: 30px !important;
+  font: 0.86rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #666;
+  border: 1px solid #efefef;
+  background-color: #fff;
+}
+
+.btn-mid-wht:hover {
+  text-decoration: none;
+  color: #1a89ed;
+}
+
+.btn-mid-lose {
+  width: 85px;
+  height: 30px;
+  line-height: 30px !important;
+  font: 0.86rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #999;
+  border: 1px solid #d8d8d8;
+  background-color: #f7f7f7;
+}
+
+.btn-small-blue {
+  width: 65px;
+  height: 30px;
+  line-height: 30px !important;
+  font: 0.86rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  border: none;
+  background-color: #1a89ed;
+}
+
+.btn-small-blue:hover {
+  text-decoration: none;
+  background-color: #56abf8;
+}
+
+.btn-small-red {
+  width: 65px;
+  height: 30px;
+  line-height: 30px !important;
+  font: 0.86rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  border: none;
+  background-color: #f35b5b;
+}
+
+.btn-small-red:hover {
+  text-decoration: none;
+  background-color: #fa6c6c;
+}
+
+.btn-small-wht {
+  width: 65px;
+  height: 30px;
+  line-height: 30px !important;
+  font: 0.86rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #666;
+  border: 1px solid #efefef;
+  background-color: #fff;
+}
+
+.btn-small-wht:hover {
+  text-decoration: none;
+  color: #1a89ed;
+}
+
+.btn-small-lose {
+  width: 65px;
+  height: 30px;
+  line-height: 30px !important;
+  font: 0.86rem \5b8b\4f53;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  color: #999;
+  border: 1px solid #d8d8d8;
+  background-color: #f7f7f7;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*!
+ *  Font Awesome 4.4.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("/static/zzmobile/fonts/fontawesome-webfont.eot?v=4.4.0");
+  src: url("/static/zzmobile/fonts/fontawesome-webfont.eot?#iefix&v=4.4.0") format("embedded-opentype"), url("/static/zzmobile/fonts/fontawesome-webfont.woff2?v=4.4.0") format("woff2"), url("/static/zzmobile/fonts/fontawesome-webfont.woff?v=4.4.0") format("woff"), url("/static/zzmobile/fonts/fontawesome-webfont.ttf?v=4.4.0") format("truetype"), url("/static/zzmobile/fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* makes the font 33% larger relative to the icon container */
+.fa-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-fw {
+  width: 1.28571em;
+  text-align: center;
+}
+
+.fa-ul {
+  padding-left: 0;
+  margin-left: 2.14286em;
+  list-style-type: none;
+}
+
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  position: absolute;
+  left: -2.14286em;
+  width: 2.14286em;
+  top: 0.14286em;
+  text-align: center;
+}
+
+.fa-li.fa-lg {
+  left: -1.85714em;
+}
+
+.fa-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eee;
+  border-radius: .1em;
+}
+
+.fa-pull-left {
+  float: left;
+}
+
+.fa-pull-right {
+  float: right;
+}
+
+.fa.fa-pull-left {
+  margin-right: .3em;
+}
+
+.fa.fa-pull-right {
+  margin-left: .3em;
+}
+
+/* Deprecated as of 4.4.0 */
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.fa.pull-left {
+  margin-right: .3em;
+}
+
+.fa.pull-right {
+  margin-left: .3em;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
+
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+.fa-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270,
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical {
+  filter: none;
+}
+
+.fa-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle;
+}
+
+.fa-stack-1x, .fa-stack-2x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.fa-stack-1x {
+  line-height: inherit;
+}
+
+.fa-stack-2x {
+  font-size: 2em;
+}
+
+.fa-inverse {
+  color: #fff;
+}
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+.fa-search:before {
+  content: "\f002";
+}
+
+.fa-remove:before,
+.fa-close:before,
+.fa-times:before {
+  content: "\f00d";
+}
+
+.fa-home:before {
+  content: "\f015";
+}
+
+.fa-refresh:before {
+  content: "\f021";
+}
+
+.fa-chevron-left:before {
+  content: "\f053";
+}
+
+.fa-chevron-right:before {
+  content: "\f054";
+}
+
+.fa-chevron-up:before {
+  content: "\f077";
+}
+
+.fa-chevron-down:before {
+  content: "\f078";
+}
+
+.fa-sign-out:before {
+  content: "\f08b";
+}
+
+.fa-sign-in:before {
+  content: "\f090";
+}
+
+.fa-navicon:before,
+.fa-bars:before {
+  content: "\f0c9";
+}
+
+.fa-sort-up:before,
+.fa-sort-asc:before {
+  content: "\f0de";
+}
+
+.fa-angle-right:before {
+  content: "\f105";
+}
+
+.fa-angle-down:before {
+  content: "\f107";
+}
+
+.fa-spinner:before {
+  content: "\f110";
+}
+
+.zzm-domain-select {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 20;
+  background-color: #fff;
+  border: solid 1px #f0f0f0;
+  color: #999;
+  font-family: Arial, "宋体";
+  font-size: 1.07rem;
+}
+
+.zzm-domain-select .select-domain {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 91%;
+  padding: 0.5rem 0  0.5rem 9px;
+  outline: none;
+  border: none;
+}
+
+.zzm-domain-select .dropdown-icon {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  font-size: 1.14rem;
+  color: #d8d8d8;
+}
+
+.zzm-domain-select .no-site, .zzm-domain-select .suggestions {
+  display: none;
+  position: absolute;
+  top: 2.2rem;
+  left: -1px;
+  z-index: 800;
+  width: 100%;
+  line-height: 2.143rem;
+  border: solid 1px #f0f0f0;
+  background-color: #fff;
+}
+
+.zzm-domain-select .no-site p, .zzm-domain-select .suggestions p {
+  padding-left: 9px;
+}
+
+.zzm-domain-select .suggestions {
+  max-height: 12.86rem;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+}
+
+.zzm-domain-select .suggestions .suggest_item {
+  padding-left: 9px;
+  color: #8c8c8c;
+  word-break: break-all;
+}
+
+.zzm-domain-select .suggestions .selected {
+  background-color: #f5f5f5;
+}
+
+.zzm-card-wrap {
+  margin: 0 1.6% 9px 1.6%;
+  padding: 0 3.38%;
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+}
+
+.zzm-card-wrap h1 {
+  line-height: 3rem;
+  padding-bottom: 3.33px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #000;
+  margin-bottom: 0.9rem;
+}
+
+.zzm-card-wrap h1 a {
+  float: right;
+  color: #999;
+  font-size: 0.93rem;
+}
+
+.zzm-tools-wrapper {
+  margin: 9px 1.6%;
+  padding: 1.5rem 3.6%;
+  background-color: #fff;
+}
+
+.zzm-tools-table {
+  width: 100%;
+  border: 1px solid #f0f0f0;
+  margin: 0.9rem 0;
+}
+
+.zzm-chart-wrap {
+  margin: 0.9rem 0;
+}
+
+.zzm-chart-loading {
+  line-height: 16rem;
+  text-align: center;
+}
+
+.zzm-chart-loading .fa:before {
+  font-size: 20px;
+}
+
+.zzm-chart-legend {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.83rem;
+  font-weight: normal;
+}
+
+.zzm-chart-legend span {
+  margin-left: 5px;
+}
+
+.zzm-chart-legend span:nth-child(1) i {
+  background-color: #3388ff;
+}
+
+.zzm-chart-legend span:nth-child(2) i {
+  background-color: #ff6600;
+}
+
+.zzm-chart-legend span:nth-child(3) i {
+  background-color: #53c951;
+}
+
+.zzm-chart-legend i {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.zzm-bg-table tr:nth-child(2n) td {
+  background-color: #f7f7f7;
+}
+
+.red-circle {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+  background-color: #f00000;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 0.89rem;
+  color: #fff;
+}
+
+.zzm-btn {
+  width: 100%;
+  font-size: 1.14rem;
+  padding: 0.7rem;
+  display: inline-block;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+  text-decoration: none;
+}
+
+.zzm-btn-white {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #3388ff;
+  color: #3388ff;
+}

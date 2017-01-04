@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author  hejieye
-* @time  20161207
-* @version 1.0.2
+* @time  20161230
+* @version 1.2.0
 */
 define(function (require) {
     var $ = require('zepto');
@@ -42,7 +42,6 @@ define(function (require) {
                         pagecount = 0;
                     }
                     var endcount = Number(pagecount) + pagesize;
-
                     $(childNodes).hide();
                     $(childNodes).slice(pagecount, endcount).show();
                     $(this).attr('pagecount', endcount);
@@ -50,7 +49,7 @@ define(function (require) {
                 catch (e) {}
             });
         },
-        // 展开 or 收起
+         // 展开 or 收起
         openOrStop: function () {
             $('.os-click').on('click',
             function (event) {
@@ -115,7 +114,7 @@ define(function (require) {
                     alert('请选择举报原因！');
                 }
                 else {
-                    var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?m=' + Math.random();
+                    var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
                     $.get(checkLoginUrl,
                     function (e) {
                         if (e == null || e === 'null') {
@@ -143,7 +142,7 @@ define(function (require) {
                 }
             });
         },
-        // 问题搜索
+         // 问题搜索
         btnSearch: function () {
             $('.btn-search').click(function () {
                 var content = $('.search-input').val();
@@ -171,7 +170,7 @@ define(function (require) {
             var indexLogin = $('.index_login');
             var thisHref = window.location.href;
             var nickName = null;
-            var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?m=' + Math.random();
+            var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {
@@ -203,6 +202,46 @@ define(function (require) {
                 event.stopPropagation();
             });
         },
+        sendPost: function (url, positionId, advertId, status, contentId, connId) {
+            url = url + '?positionId=' + positionId + '&advertId='
+            + advertId + '&contentId=' + contentId + '&connId=' + connId;
+            if (status !== null) {
+                url += '&status=1';
+            }
+            $('body').append('<mip-img src=\'' + url + '\' class=\'mask\' >');
+        },
+        // 数据上报
+        checkData: function () {
+            $('mip-ad,mip-embed').each(function () {
+                effects.sendPost('http://dd.iask.cn/ddd/adAudit', '144', '241', null, '195', 'm_q_detail_attention_1');
+            });
+            setInterval(function () {
+                // 判断是否加载出来
+                $('mip-ad,mip-embed').each(function () {
+                    var loadFlag = $(this).attr('loadFlag');
+                    if ($(this).html().indexOf('iframe') > 0 && loadFlag === undefined) {
+                        $(this).attr('loadFlag', true);
+                        effects.sendPost('http://dd.iask.cn/ddd/adStatus', '144', '241', 1, '195', 'm_q_detail_attention_1');
+                    }
+                });
+            }, 100);
+        },
+        accordion: function () {
+            $('.iask-show-more').click(function () {
+                $(this).parent().siblings('.iask-accordion').each(function () {
+                    $(this).show();
+                });
+                $(this).hide();
+                $(this).siblings('.iask-show-less').show();
+            });
+            $('.iask-show-less').click(function () {
+                $(this).parent().siblings('.iask-accordion').each(function () {
+                    $(this).hide();
+                });
+                $(this).hide();
+                $(this).siblings('.iask-show-more').show();
+            });
+        },
         init: function () {
             this.switchBlock();
             this.changeMore();
@@ -214,6 +253,8 @@ define(function (require) {
             this.btnSend();
             this.checkLogin();
             this.userInfoHide();
+            this.checkData();
+            this.accordion();
         }
     };
 
@@ -225,4 +266,3 @@ define(function (require) {
 
     return customElem;
 });
-

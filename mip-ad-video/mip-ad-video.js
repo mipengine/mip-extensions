@@ -18,57 +18,45 @@ define(function (require) {
         var $element = $(this.element);
         var adSrc = $element.attr('ad-src');
         var targetSrc = $element.attr('target-src');
-        var adTime = $element.attr('ad-time');
         var poster = $element.attr('poster');
 
         //  初始化播放器
         var video = document.createElement('video');
-        //  广告剩余时间提醒
-        var spanAdTime = document.createElement('span');
-        spanAdTime.innerHTML = adTime + '';
 
         //  初始化video的属性
         $(video).attr({
             'playsinline': '',
             'webkit-playsinline': '',
             'controls': '',
-            'poster': poster
+            'poster': poster,
+            'preload': 'no'
         });
 
-        //  如果是IOS则设置为自动播放
-        if (platform.isIos()) {
-            $(video).attr({
-                'autoPlay': ''
-            });
-        }
+        //  初始化video的尺寸大小
+        $(video).css('height', window.innerWidth / 16 * 9 + 'px');
 
         $element[0].appendChild(video);
 
+        //  当播放开始的时候设置为自动播放
+        video.onplay = function () {
+            video.autoplay = true;
+        };
+
         //  如果有广告并且非IOS上的QQ浏览器 则播放广告
         if (adSrc && !(platform.isIos() && platform.isQQ())) {
-            $element[0].appendChild(spanAdTime);
             video.src = adSrc;
 
-            //  当开始播放 或者点击播放的时候 进行广告倒计时
-            video.onplay = video.onclick = function () {
-                video.onplay = video.onclick = null;
-                var timeId = setInterval(function () {
-                    adTime--;
-                    //  刷新显示的广告秒
-                    spanAdTime.innerHTML = adTime;
-                    //  广告播放完毕
-                    if (adTime <= 0) {
-                        spanAdTime.style.display = 'none';
-                        clearInterval(timeId);
-                        video.setAttribute('src', targetSrc);
-                        video.autoplay = true;
-                        // video.reload();
-                    }
-                }, 1000);
+            //  广告播放完毕
+            video.onended = function () {
+                video.src = targetSrc;
+                video.autoplay = true;
+                video.setAttribute('autoplay', 'autoplay');
+
+                // video.load();
+                video.play();
             };
         } else {  //  否则直接播放内容
             video.src = targetSrc;
-            video.setAttribute('controls', '');
         }
     };
 

@@ -26,7 +26,7 @@ define(function (require) {
         dom.appendChild(sspDiv);
 
         var sspScript = document.createElement('script');
-        sspScript.innerText = '(function(){var c="http://cpu-web-press_0-0-0-1.jpaas-nj00.baidu.com";'
+        sspScript.innerText = '(function(){var c="//cpu.baidu.com";'
             + 'var a=function(){var e=document.createElement("script");e.id="cpu-block-entry";'
             + 'e.src=c+"/js/cb.js";document.head.appendChild(e)};'
             + 'var b=function(g){var h={msg:g.toString()||"no err msg",line:g.lineno||-1};'

@@ -1,0 +1,14 @@
+{
+    "name": "mip-mz-addonapp",
+    "version": "1.0.0",
+    "description": "推荐app下载",
+    "contributors": [
+        {
+            "name": "pifire",
+            "email": "104460712@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

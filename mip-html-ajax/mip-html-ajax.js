@@ -80,12 +80,13 @@ define(function (require) {
         var getUrl = data.add.url;
         var theBtn = obj.find(data.set.btn);
         if (getUrl !== '') {
+            var getCall = typeof (data.add.call) !== 'undefined' ? data.add.call : '';
             getUrl = getUrl.replace('{sid}', data.id);
-            var getType = ishttp(getUrl) ? 'jsonp' : 'json';
             qi.ajax({
                 url: getUrl,
-                type: data.add.type,
-                dataType: getType,
+                type: 'get',
+                dataType: 'jsonp',
+                jsonpCallback: getCall,
                 data: valArr,
                 beforeSend: function () {
                     theBtn.attr('disabled', 'disabled');
@@ -107,17 +108,20 @@ define(function (require) {
                         qAlert(jsondb.msg);
                     }
 					else {
+                        var dataTmp = typeof (data.tmp) !== 'undefined' ? 1 : 0;
+                        var dataNta = dataTmp === 1 ? qi(data.tmp.nta).html() : htmlDecode(data.nta);
+                        var dataNtr = dataTmp === 1 ? qi(data.tmp.ntr).html() : htmlDecode(data.ntr);
                         var isretext = obj.find(data.res.upval).val();
                         obj.find('[empty=true]').val('');
                         if (jsondb.msg !== '') {
                             qAlert(jsondb.msg);
                         }
                         if (isretext === '0') {
-                            var newData = tempview(data.nta, jsondb);
+                            var newData = tempView(dataNta, jsondb);
                             obj.find(data.obj.list).append(newData);
                         }
                         else {
-                            var addData = tempview(data.ntr, jsondb);
+                            var addData = tempView(dataNtr, jsondb);
                             var addElem = obj.find(data.obj.list).find('#Q' + isretext);
                             addElem.find(data.obj.listre).append(addData);
                             viewPort.setScrollTop(addElem.offset().top);
@@ -136,12 +140,13 @@ define(function (require) {
     function getJsonData(data, obj, page) {
         var getUrl = data.get.url;
         if (getUrl !== '') {
+            var getCall = typeof (data.get.call) !== 'undefined' ? data.get.call : '';
             getUrl = getUrl.replace('{id}', data.id).replace('{page}', page);
-            var getType = ishttp(getUrl) ? 'jsonp' : 'json';
             qi.ajax({
                 url: getUrl,
-                type: data.get.type,
-                dataType: getType,
+                type: 'get',
+                dataType: 'jsonp',
+                jsonpCallback: getCall,
                 error: function () {
                     if (data.get.tip === '1') {
                         qAlert(errMsg.g101);
@@ -158,14 +163,32 @@ define(function (require) {
                     }
                     else {
                         if (typeof (jsondb[data.obj.arr]) !== 'undefined') {
-                            if (jsondb[data.obj.arr].length > 0) {
+                            var arrData = jsondb[data.obj.arr];
+                            var arrLength = arrData.length;
+                            if (arrLength > 0) {
+                                var dataTmp = typeof (data.tmp) !== 'undefined' ? 1 : 0;
+                                var dataHta = dataTmp === 1 ? qi(data.tmp.hta).html() : htmlDecode(data.hta);
+                                var dataHtr = dataTmp === 1 ? qi(data.tmp.htr).html() : htmlDecode(data.htr);
                                 var dataList = '';
-                                for (var i = 0; i < jsondb[data.obj.arr].length; i++) {
-                                    var thisdata = tempview(data.hta, jsondb[data.obj.arr][i]);
+                                if (typeof (data.obj.arrs) !== 'undefined') {
+                                    arrData = randomArray(arrData);
+                                }
+                                if (!isNaN(data.obj.arrn)) {
+                                    arrLength = data.obj.arrn >= arrLength ? arrLength : data.obj.arrn;
+                                }
+                                for (var i = 0; i < arrLength; i++) {
+                                    var thisdata = tempView(dataHta, arrData[i]);
                                     if (thisdata.indexOf('$ReData$') > 0 && data.obj.rearr !== '') {
                                         var redata = '';
-                                        for (var ir = 0; ir < jsondb[data.obj.arr][i][data.obj.rearr].length; ir++) {
-                                            redata += tempview(data.htr, jsondb[data.obj.arr][i][data.obj.rearr][ir]);
+                                        var rearrLen = arrData[i][data.obj.rearr].length;
+                                        if (typeof (data.obj.rearrs) !== 'undefined') {
+                                            arrData[i][data.obj.rearr] = randomArray(arrData[i][data.obj.rearr]);
+                                        }
+                                        if (!isNaN(data.obj.rearrn)) {
+                                            rearrLen = data.obj.rearrn >= rearrLen ? rearrLen : data.obj.rearrn;
+                                        }
+                                        for (var ir = 0; ir < rearrLen; ir++) {
+                                            redata += tempView(dataHtr, arrData[i][data.obj.rearr][ir]);
                                         }
                                         thisdata = thisdata.replace('$ReData$', redata);
                                     }
@@ -230,18 +253,19 @@ define(function (require) {
         });
         object.addEventAction('Qmore', function (event, str) {
             var theMore = obj.find(data.obj.more);
-            theMore.attr('more-txt', theMore.html()).html(data.obj.morestr);
+            theMore.attr('more-txt', theMore.html()).html(htmlDecode(data.obj.morestr));
             getJsonData(data, obj, str);
         });
         object.addEventAction('Qdig', function (event, str) {
             var getUrl = data.dig.url;
             if (getUrl !== '') {
+                var getCall = typeof (data.dig.call) !== 'undefined' ? data.dig.call : '';
                 getUrl = getUrl.replace('{sid}', str);
-                var getType = ishttp(getUrl) ? 'jsonp' : 'json';
                 qi.ajax({
                     url: getUrl,
-                    type: data.dig.type,
-                    dataType: getType,
+                    type: 'get',
+                    dataType: 'jsonp',
+                    jsonpCallback: getCall,
                     error: function () {
                         if (data.dig.tip === '1') {
                             qAlert(errMsg.g102);
@@ -249,16 +273,20 @@ define(function (require) {
                     },
                     success: function (jsondb) {
                         if (jsondb.success === 'err') {
-                            qAlert(jsondb.msg);
+                            if (data.dig.tip === '1') {
+                                qAlert(jsondb.msg);
+                            }
                         }
 						else {
-                            qi(event.target).prepend('<i class="Qdig">+1</i>');
-                            qi(event.target).find('.Qdig').fadeOut(800, function () {
-                                qi(this).remove();
-                            });
-                            qi(event.target).find('em').text(jsondb.dig);
-                            qi(event.target).removeAttr('on');
+                            if (data.dig.tip === '1') {
+                                qi(event.target).prepend('<i class="Qdig">+1</i>');
+                                qi(event.target).find('.Qdig').fadeOut(800, function () {
+                                    qi(this).remove();
+                                });
+                                qi(event.target).find('em').text(jsondb.dig);
+                            }
                         }
+                        qi(event.target).removeAttr('on');
                     }
                 });
             }
@@ -266,12 +294,13 @@ define(function (require) {
         object.addEventAction('Qbad', function (event, str) {
             var getUrl = data.bad.url;
             if (getUrl !== '') {
+                var getCall = typeof (data.bad.call) !== 'undefined' ? data.bad.call : '';
                 getUrl = getUrl.replace('{sid}', str);
-                var getType = ishttp(getUrl) ? 'jsonp' : 'json';
                 qi.ajax({
                     url: getUrl,
-                    type: data.bad.type,
-                    dataType: getType,
+                    type: 'get',
+                    dataType: 'jsonp',
+                    jsonpCallback: getCall,
                     error: function () {
                         if (data.bad.tip === '1') {
                             qAlert(errMsg.g103);
@@ -279,24 +308,40 @@ define(function (require) {
                     },
                     success: function (jsondb) {
                         if (jsondb.success === 'err') {
-                            qAlert(jsondb.msg);
+                            if (data.bad.tip === '1') {
+                                qAlert(jsondb.msg);
+                            }
                         }
 						else {
-                            qi(event.target).prepend('<i class="Qbad">+1</i>');
-                            qi(event.target).find('.Qbad').fadeOut(800, function () {
-                                qi(this).remove();
-                            });
-                            qi(event.target).find('em').text(jsondb.bad);
-                            qi(event.target).removeAttr('on');
+                            if (data.bad.tip === '1') {
+                                qi(event.target).prepend('<i class="Qbad">+1</i>');
+                                qi(event.target).find('.Qbad').fadeOut(800, function () {
+                                    qi(this).remove();
+                                });
+                                qi(event.target).find('em').text(jsondb.bad);
+                            }
                         }
+                        qi(event.target).removeAttr('on');
                     }
                 });
             }
         });
     }
 
-    // 替换模板标签
-    function tempview(str, arr) {
+	// 自定义解码
+    function htmlDecode(str) {
+        var strTemp = str;
+        strTemp = strTemp.replace(/\[\[/g, '<');
+        strTemp = strTemp.replace(/\]\]/g, '>');
+        strTemp = strTemp.replace(/\|\|/g, '/');
+        strTemp = strTemp.replace(/\:\:/g, '"');
+        strTemp = strTemp.replace(/\;\;/g, '\'');
+        strTemp = strTemp.replace(/\+\+/g, ' ');
+        return strTemp;
+    }
+
+    // 替换标签
+    function tempView(str, arr) {
         str = str.replace(/{thisid}/gi, theID);
         var sArr = str.match(/{\w+}/gi);
         if (sArr) {
@@ -306,6 +351,27 @@ define(function (require) {
             }
         }
         return str;
+    }
+
+    function randomArray(arr) {
+        var setArray = [];
+        for (var index in arr) {
+            if (arr.hasOwnProperty(index)) {
+                setArray.push(arr[index]);
+            }
+        }
+        var getArray = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (setArray.length > 0) {
+                var arrIndex = Math.floor(Math.random() * setArray.length);
+                getArray[i] = setArray[arrIndex];
+                setArray.splice(arrIndex, 1);
+            }
+            else {
+                break;
+            }
+        }
+        return getArray;
     }
 
     // 弹出提示层
@@ -321,19 +387,6 @@ define(function (require) {
             });
             clearTimeout(msgOut);
         }, ms);
-    }
-
-    // 验证是否http开头
-    function ishttp(str) {
-        var orReg = false;
-        var isreg = /^(http|https):\/\//i;
-        if (isreg.exec(str)) {
-            orReg = true;
-        }
-		else {
-            orReg = false;
-        }
-        return orReg;
     }
 
     // build 方法，元素插入到文档时执行，仅会执行一次

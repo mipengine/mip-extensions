@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author  hejieye
-* @time  2016-12-07
-* @version 1.0.2
+* @time  2016-12-13
+* @version 1.0.3
 */
 define(function (require) {
 
@@ -34,15 +34,11 @@ define(function (require) {
         $.post(url, params,
         function (data) {
             var res = $.parseJSON(data);
-            if (res.succ === 'Y' && res.jsonData !== '0') {
-                // 成功
-                if (type === '1') {
+            if (type === '1') {
+                if (res.succ === 'Y' && res.jsonData === '1') {
                     var txt = $(div);
                     txt.text(parseInt(txt.text(), 0) + 1);
                 }
-            }
-            else {
-                // 失败
             }
         });
     };

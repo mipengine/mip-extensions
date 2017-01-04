@@ -62,7 +62,6 @@ define(function (require) {
             $('.newBox a').click(function (e) {
 
                 if ($(this).prop('href').indexOf('channel=PM_') >= 0) {
-                    e.preventDefault();
                     localStorage.setItem('ppzs', 'Yes');
                     $(this).html('高速下载中...');
                     ppcheck.checkPP(function (r) {
@@ -75,6 +74,7 @@ define(function (require) {
                             window.location.href = pphref;
                         }
                     });
+                    return false;
                 }
             });
         }

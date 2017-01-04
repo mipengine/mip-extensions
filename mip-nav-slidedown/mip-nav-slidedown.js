@@ -23,7 +23,7 @@ define(function (require) {
         var $this = $(me);
         var id = $this.data('id');
         var showBrand = $this.data('showbrand') !== '0';
-        var brandHref = $this.data('brandhref') || '/';
+        var brandHref = $this.data('brandhref') || '#';
         var $ulNav = $this.find('#' + id);
         var $container = $('<div></div>');
         var $btnWrap = '<div class="navbar-header">'

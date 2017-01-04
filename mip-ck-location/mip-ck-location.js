@@ -17,7 +17,12 @@ define(function (require) {
             var i = 0;
             var locationType = '';
             var converse = elem.getAttribute('converse');
+            var locationClass = locationsType.join('-');
+            var converseClass = '';
 
+            if (converse !== null) {
+                converseClass = '-' + 'converse';
+            }
 
             for (i; i < len; i++) {
                 locationType = +(locationsType[i]);
@@ -45,7 +50,7 @@ define(function (require) {
             if (flag) {
                 // 真 显示元素
                 elem.style.display = 'block';
-                $body.addClass('view-mip-ck-location-' + data);
+                $body.addClass('v-mip-ck-location-' + locationClass + converseClass);
             }
             else {
                 // 假 移除元素

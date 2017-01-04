@@ -20,6 +20,27 @@ define(function (require) {
             script.src = document.location.protocol + '//' + domain + '/' + token + '.js';
             document.body.appendChild(script);
 
+            var fixedElement = require('fixed-element');
+            var layer = fixedElement._fixedLayer;
+            var child = document.getElementById(token);
+            
+            child.addEventListener("DOMSubtreeModified", function(e) {
+                var elem = window.getComputedStyle(child, null);
+                var pos = elem && elem.getPropertyValue('position') ? 
+                          elem.getPropertyValue('position') : '';
+                if(layer && layer.querySelector('#'+token)){
+                  return;
+                }
+                if(pos == 'fixed' && layer) {
+                    var idx = document.querySelectorAll('mip-fixed').length;
+                    var data = {
+                        element: child.parentElement,
+                        id: 'Fixed'+ idx
+                    };
+                    fixedElement.moveToFixedLayer(data, parseInt(idx));
+                }
+            },false);
+
         } else {
             console.error('请输入正确的 domain 或者 token');
         }
@@ -29,5 +50,3 @@ define(function (require) {
         render: render
     }
 });
-
-

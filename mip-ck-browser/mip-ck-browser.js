@@ -16,6 +16,12 @@ define(function (require) {
         var i = 0;
         var browserType = '';
         var converse = elem.getAttribute('converse');
+        var browserClass = browsersType.join('-');
+        var converseClass = '';
+
+        if (converse !== null) {
+            converseClass = '-' + 'converse';
+        }
 
         for (i; i < len; i++) {
             browserType = browsersType[i].toLocaleUpperCase();
@@ -43,7 +49,7 @@ define(function (require) {
         if (flag) {
             // 真 显示元素
             elem.style.display = 'block';
-            $body.addClass('view-mip-ck-browser-' + browser);
+            $body.addClass('v-mip-ck-browser-' + browserClass + converseClass);
         }
         else {
             // 假 移除元素

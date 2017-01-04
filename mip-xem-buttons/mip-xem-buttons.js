@@ -46,8 +46,8 @@ define(function (require) {
                     this.isLoading = false;
                     $el.removeClass(d).removeAttr(d);
                 }
+                clearTimeout(t);
             }, this), 0);
-            clearTimeout(t);
         };
 
         Button.prototype.toggle = function () {

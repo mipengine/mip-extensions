@@ -25,13 +25,19 @@ define(function (require) {
         if (loadjs) {
             document.write('<script type="text/javascript" src="' + loadjs + '"></script>');
         }
+        var initjs = element.getAttribute('initjs') || null;
+        if (initjs) {
+            document.write('<script type="text/javascript">' + initjs + '</script>');
+        }
 
         var script = element.querySelector('script') || null;
         if (script && isJsonScriptTag(script)) {
             var obj = JSON.parse(script.textContent.toString());
             var funstr = '';
             for (var key in obj) {
-                funstr += key + '(' + obj[key] + ');';
+                if (obj.hasOwnProperty(key)) {
+                    funstr += key + '(' + obj[key] + ');';
+                }
             }
             document.write('<script type="text/javascript">' + funstr + '</script>');
         }

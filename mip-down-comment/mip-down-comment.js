@@ -21,6 +21,7 @@ define(function (require) {
 
 
     function comment(o) {
+        var ajaxUrl = $(o).find('mip-form').attr('url');
         var oul = $('#comment-list');
         var oid = $('#app-id').val();
         var oli = oul.find('li');
@@ -52,6 +53,7 @@ define(function (require) {
         function writeComment() {
             oli = oul.find('li');
             $.ajax({
+                url: ajaxUrl + 'ajax.asp',
                 data: {
                     content: $('.w-text textarea').val(),
                     SoftID: oid,
@@ -89,7 +91,7 @@ define(function (require) {
             p = Math.floor(oli.length / 5 + 1);
             $.ajax({
                 type: 'get',
-                url: 'https://apis.pc6.com/sajax.asp',
+                url: ajaxUrl + 'sajax.asp',
                 data: 'action=0&id=' + oid + '&page=' + p + '&CommentTpye=0',
                 success: function (data) {
                     var html = '';

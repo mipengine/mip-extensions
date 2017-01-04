@@ -1,0 +1,12 @@
+{
+    "name": "mip-3727-pagination",
+    "version": "1.1.0",
+    "author": {
+        "name": "3727",
+        "email": "wztgzn@126.com",
+        "url": "http://aa.3727.cc/"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

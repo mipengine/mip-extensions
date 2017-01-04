@@ -31,10 +31,10 @@ define(function (require) {
             if (webInfoPpid > 0) {
                 curappPpid = webInfoPpid;
                 pphref = 'http://server.m.pp.cn/download/apk/new?appId=' + curappPpid
-                + '&ch=default&ch_src=pm_pc6&channel=PM_3745';
+                + '&ch=default&ch_src=pm_pc6&channel=PM_5118';
             }
             else {
-                pphref = 'https://server-m.pp.cn/download/apk/new?channel=PM_3745&ch=default&ch_src=pm_pc6&bs=1&durl='
+                pphref = 'https://server-m.pp.cn/download/apk/new?channel=PM_5118&ch=default&ch_src=pm_pc6&bs=1&durl='
                 + encodeURI($('#info #btns a').attr('href'));
             }
             $('#info #btns').after('<div class="newBox"><div class="topBox"><div class="btn-checkbox">'

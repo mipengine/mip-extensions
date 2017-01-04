@@ -14,6 +14,12 @@ mip-muzi-appdownload app下载组件!
 <mip-muzi-appdownload loadjs="http://m.muzisoft.com/m.js"></mip-muzi-appdownload>
 ```
 
+
+### 自定义初始化变量
+```html
+<mip-muzi-appdownload initjs="var DNS='https://m.muzisoft.com'"></mip-muzi-appdownload>
+```
+
 ### 引用自定义js中的function
 
 - 自定义function, script 标签中的参数必须带双引号，也就是说 script 标签中的数据必须是 json 格式的
@@ -29,6 +35,14 @@ mip-muzi-appdownload app下载组件!
 ```
 
 ## 属性
+
+### initjs
+
+说明：自定义初始化变量
+必选项：否   
+类型：字符串 
+单位：无   
+默认值：无   
 
 ### loadjs
 

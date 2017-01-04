@@ -1,0 +1,12 @@
+{
+    "name": "mip-adsense",
+    "version": "1.0.0",
+    "description": "sample component",
+    "author": {
+        "name": "smileU",
+        "email": "1484249625@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

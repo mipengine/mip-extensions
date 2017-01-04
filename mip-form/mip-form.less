@@ -1,14 +1,18 @@
 #mip-form-cross {
     position: absolute;
-    top: 0;
-    right: 2%;
     display: block;
-    padding: 0;
+    padding: 4px;
     width: 16px;
     height: 16px;
+    right: 0;
     background: url(//m.baidu.com/static/search/clear.png) no-repeat center;
+    background-color: red;
     z-index: 100;
     background-size: 100% 100%;
+    /*background-origin: content-box;*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4);
+    tap-highlight-color: rgba(0, 0, 0, 0.4);
+    outline: 1px solid;
 }
 form {
     position: relative;
@@ -18,7 +22,10 @@ input {
     padding: 6px 10% 6px 3%;
     margin: 10px auto;
     display: block;
-    width: 87%;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    font-size:16px;
 }
 form div {
     display: none; 

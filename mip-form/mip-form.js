@@ -156,19 +156,16 @@ define(function (require) {
             if (!textInput.length) {
                 return;
             }
-            var index = 0;
-            var height = textInput.offsetHeight;
             var cross = document.createElement('div');
             cross.id = 'mip-form-cross';
             this.cross = cross;
 
-            for (index = 0; index < textInput.length; index++) {
+            for (var index = 0; index < textInput.length; index++) {
+                var height = textInput[index].offsetHeight;
                 textInput[index].onfocus = function () {
                     var self = this;
-                    console.log(cross)
                     cross.setAttribute('name', self.getAttribute('name'));
-                    util.css(cross, {top: self.offsetTop + (height - 16) / 2 + 'px'});
-                    console.log(self.offsetTop + (height - 16) / 2 );
+                    util.css(cross, {top: self.offsetTop + (height - 16) / 2  - 4 + 'px'});
                     self.parentNode.appendChild(cross);
                     if (self.value !== '') {
                         util.css(cross, {display: 'block'});
@@ -182,11 +179,16 @@ define(function (require) {
                 };
             }
 
-            cross.addEventListener('click', function () {
-                var name = this.getAttribute('name');
+            cross.addEventListener('touchstart', clear);
+            cross.addEventListener('click', clear);
+
+            function clear(e) {
+                var name = e.target.getAttribute('name');
                 cross.parentNode.querySelector('input[name="' + name + '"]').value = '';
                 util.css(cross, {display: 'none'});
-            });
+                e.preventDefault();
+                e.stopPropagation();
+            }
         }
     };
 

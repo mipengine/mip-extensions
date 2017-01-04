@@ -740,7 +740,7 @@ define(function (require) {
             $('select.bsml-multiselect').multipleSelect({
                 selectAll: false,
                 width: '100%',
-                position: ($(document).height() - 38
+                position: ($(document).height() - 50 - 38
                 - $(element).find(('select.bsml-multiselect')).offset().top
                 > configHeight) ? 'bottom' : 'top',
                 maxHeight: configHeight

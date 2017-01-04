@@ -5,30 +5,20 @@
 define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
-    var borwserFunc = function () {
-        var u = navigator.userAgent;
-        var mobileWebkit = !!u.match(/AppleWebKit.*Mobile/i);
-        var mobilePhone = !!u.match(/Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/);
-        var mobilePhone2 = !!u.match(/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod/);
-        return {
-            trident: u.indexOf('Trident') > -1,
-            presto: u.indexOf('Presto') > -1,
-            webKit: u.indexOf('AppleWebKit') > -1,
-            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') === -1,
-            mobile: mobileWebkit || mobilePhone || mobilePhone2,
-            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
-            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
-            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1,
-            iPad: u.indexOf('iPad') > -1,
-            webApp: u.indexOf('Safari') === -1,
-            UCBrowser: u.indexOf('UCBrowser') > -1,
-            MQQBrowser: u.indexOf('MQQBrowser') > -1,
-            Safari: u.indexOf('Safari') > -1,
-            ios9: u.indexOf('iPhone OS 9') > -1
-        };
-    };
     var browser = {
-        versions: borwserFunc(),
+        versions: (function () {
+            var u = navigator.userAgent;
+            return {
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
+                android: u.indexOf('Android') > -1, // android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, // 是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, // 是否iPad
+                ios9: u.indexOf('iPhone OS 9') > -1,
+                MQQBrowser: u.indexOf('MQQBrowser') > -1, // 是否MQQBrowser
+                UCBrowser: u.indexOf('UCBrowser') > -1, // UCBrowser
+                Safari: u.indexOf('Safari') > -1
+            };
+        })(),
         language: (navigator.browserLanguage || navigator.language).toLowerCase()
     };
     var pageInfo = {
@@ -37,7 +27,7 @@ define(function (require) {
         categroyId: $('.f-information').attr('data-categroyId'),
         rootId: $('.f-information').attr('data-rootid'),
         commendid: $('.f-information').attr('data-commendid'),
-        system: $('.f-information').attr('data-system'),
+        system: $('.f-information').attr('data-system').toUpperCase(),
         ppaddress: $('.f-information').attr('data-ppaddress'),
         ismoney: $('.f-information').attr('data-ismoney')};
     function tagsChoose() {
@@ -47,7 +37,7 @@ define(function (require) {
                     addTags($('.g-tags-box .m-tags-ios').html(),
                     $('.g-tags-box .m-tags-ios li').first().attr('data-system'),
                     $('.g-tags-box .m-tags-ios li').first().attr('data-id'),
-                    $('.g-tags-box .m-tags-ios li a p').first().text(), 'iOS');
+                    $('.g-tags-box .m-tags-ios li a p').first().text(), 'IOS');
                 } else {
                     $('.g-tags-box').remove();
                 }
@@ -56,7 +46,7 @@ define(function (require) {
                     addTags($('.g-tags-box .m-tags-android').html(),
 					$('.g-tags-box .m-tags-android li').first().attr('data-system'),
 					$('.g-tags-box .m-tags-android li').first().attr('data-id'),
-                    $('.g-tags-box .m-tags-android li a p').first().text(), 'Android');
+                    $('.g-tags-box .m-tags-android li a p').first().text(), 'ANDROID');
                 } else {
                     $('.g-tags-box').remove();
                 }
@@ -78,7 +68,15 @@ define(function (require) {
                 }
             });
             $('.m-down-msg h1').text(firstName);
-            $('.m-down-ul li a').attr('href', 'http://m.cr173.com/down.asp?id=' + firstId).attr('data-add', 'add');
+            var urlArray = ['cr173.com', 'qqtn.com', 'fxxz.com', '5577.com', 'uzzf.com', 'skycn.com', '962.net'];
+            var windowUrl = window.location.href;
+            var i = 0;
+            for (i = 0; i < urlArray.length; i++) {
+                if (windowUrl.indexOf(urlArray[i]) !== -1) {
+
+                    $('.m-down-ul li a').attr('href', 'http://m.' + urlArray[i] + '/down.asp?id=' + firstId).attr('data-add', 'add');
+                }
+            }
         }
         if ($('.g-tags-box ul li').length <= 0) {
             $('.g-tags-box').hide();

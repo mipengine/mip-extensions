@@ -1,12 +1,66 @@
 # 升级日志
 
+#### 2017.01.03
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-mz-addonapp](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-addonapp)|[新增] 木子推荐app下载
+[mip-mz-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-appdownload)|[新增] 木子 app下载
+[mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[新增] google 广告组件
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-cr173-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-ppzs)|[升级] 西西软件园皮皮助手下载
+[mip-cr173-tags](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-tags)|[升级] 西西软件园适配下载地址组件
+
+#### 2016.12.30
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-yxdown-floatad](https://github.com/mipengine/mip-extensions/tree/master/mip-yxdown-floatad)|[新增] 第三方广告投放插件
+[mip-weiyoubaba-tthead](https://github.com/mipengine/mip-extensions/tree/master/mip-weiyoubaba-tthead)|[新增] 微友巴巴头条
+[mip-wkfun-medicine](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-medicine)|[升级] 寻医问药药品频道
+[mip-dad-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-dad-appdownload)|[升级] 皮皮高速下载
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告
+[mip-bsml-fixedbar](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-fixedbar)|[升级] bsml底部转换工具组件
+
+#### 2016.12.29
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-ppzs)|[新增] 西西软件园皮皮助手下载
+[mip-down-script](https://github.com/mipengine/mip-extensions/tree/master/mip-down-script)|[升级][BUG] 页面逻辑脚本集合
+[mip-dad-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-dad-appdownload)|[升级][BUG] 皮皮高速下载
+[mip-nav-slidedown ](https://github.com/mipengine/mip-extensions/tree/master/mip-nav-slidedown )|[升级][BUG] 支持logo可配置
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 百度统计组件支持事件追踪
+[mip-bsml-form](https://github.com/mipengine/mip-extensions/tree/master/mip-bsml-form)|[升级] bsml表单组件
+
+#### 2016.12.28
+
+> 核心代码上线
+
+    1、增加了platform功能，支持系统／浏览器／浏览器内核／手机系统判断等
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-3727-pagination](https://github.com/mipengine/mip-extensions/tree/master/mip-3727-pagination)|[新增] 3727图片模拟分页
+[mip-dad-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-dad-appdownload)|[升级][BUG] 皮皮高速下载
+[mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[升级] 西西软件园编辑人员统计组件
+[mip-wkfun-diseasse](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-diseasse)|[升级] 寻医问药疾病频道
+
 #### 2016.12.27
 
 > 组件上线
 
 组件名|功能说明
 ---|---
-
 [mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[新增] 西西软件园编辑人员统计组件
 [mip-wkfun-medicine](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-medicine)|[新增] 寻医问药药品频道
 [mip-wkfun-diseasse](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun-diseasse)|[新增] 寻医问药疾病频道

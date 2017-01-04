@@ -16,7 +16,7 @@ define(function (require) {
     function renderTemplate(data) {
         var self = this;
         if (data && data.items && data.items instanceof Array) {
-            templates.renderTemplateArray(
+            templates.render(
                 self.element, data.items
             ).then(render.bind(self));
         }
@@ -74,6 +74,20 @@ define(function (require) {
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
+            data = {
+                items: [
+                    {
+                        key: '姓名',
+                        value: '钟汉良'
+                    }, {
+                        key: '性别',
+                        value: '男'
+                    }, {
+                        key: '职业',
+                        value: '演员'
+                    }
+                ]
+            };
             renderTemplate.call(self, data);
         });
     };

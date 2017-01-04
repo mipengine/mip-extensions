@@ -11,10 +11,18 @@ mip-mz-addonapp 推荐app下载!
 
 ### 推荐app下载!
 ```html
-<mip-mz-addonapp type="comm"></mip-mz-addonapp>
+<mip-mz-addonapp ajaxurl="http://m.muzisoft.com/" type="comm"></mip-mz-addonapp>
 ```
 
 ## 属性
+
+### ajaxurl
+
+说明：jsonp配置文件地址 
+必选项：是   
+类型：url字符串
+单位：无   
+默认值：无   
 
 ### type
 

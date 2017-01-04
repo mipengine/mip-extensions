@@ -6,6 +6,7 @@
 define(function (require) {
     var $ = require('zepto');
     var util = require('util');
+    var fetchJsonp = require('fetch-jsonp');
     var platform = util.platform;
     var customElement = require('customElement').create();
     var localhref = 'http://m.muzisoft.com/mz/';
@@ -104,6 +105,7 @@ define(function (require) {
         var ad = $element.attr('ad');
         var aid = $element.attr('aid');
         var addr = $element.attr('addr');
+        var ajaxurl = $element.attr('ajaxurl');
         function callback(json) {
             var innerHTML = initAD(ad, aid, addr, json);
             $('.down ul li').append(innerHTML);
@@ -130,10 +132,12 @@ define(function (require) {
                 }
             });
         }
-        var myRequest = new Request('https://m.muzisoft.com/mipappdown.json');
-        fetch(myRequest).then(function (response) {
-            return response.json().then(callback);
-        });
+        fetchJsonp(ajaxurl, {
+            timeout: 3000,
+            jsonpCallback: 'ck'
+        }).then(function (response) {
+            return response.json();
+        }).then(callback);
     };
     return customElement;
 });

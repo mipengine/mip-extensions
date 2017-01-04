@@ -11,10 +11,17 @@ mip-mz-appdownload app下载组件，在高速下载和直接下载之间切换!
 
 ### app下载组件，在高速下载和直接下载之间切换!
 ```html
-<mip-mz-appdownload ad="1" aid="143301addcd" addr=""></mip-mz-appdownload>
+<mip-mz-appdownload ajaxurl="http://m.muzisoft.com/" ad="1" aid="143301addcd" addr=""></mip-mz-appdownload>
 ```
 
 ## 属性
+### ajaxurl
+
+说明：jsonp配置文件地址 
+必选项：是   
+类型：url字符串
+单位：无   
+默认值：无   
 
 ### ad
 

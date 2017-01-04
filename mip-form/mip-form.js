@@ -87,6 +87,7 @@ define(function (require) {
         var isHttp = getUrl.match('http://');
         var valueJson = '';
 
+        // 校验输入内容是否合法
         inputs.map(function (index, item) {
             var type = item.getAttribute('validatetype');
             var target = item.getAttribute('validatetarget');
@@ -124,17 +125,20 @@ define(function (require) {
                     valueJson = valueJson.substring(1);
                     messageUrl = getUrl + '?' + valueJson;
                 }
+                var message = {
+                    event: 'mibm-jumplink',
+                    data: {
+                        url: messageUrl
+                    }
+                };
+                window.parent.postMessage(message, '*');
             }
-            var message = {
-                event: 'mibm-jumplink',
-                data: {
-                    url: messageUrl
-                }
-            };
-            window.parent.postMessage(message, '*');
-        }
-        // https请求 post请求不做处理
-        if (!messageUrl) {
+            else {
+                // https请求 或 post请求不做处理
+                self.getElementsByTagName('form')[0].submit();
+            }
+        } else {
+            // 非iframe下不做处理
             self.getElementsByTagName('form')[0].submit();
         }
     }

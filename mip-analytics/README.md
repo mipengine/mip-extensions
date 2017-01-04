@@ -6,7 +6,7 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 ----|----
 类型|通用
 支持事件|click,touchend,disp,scroll,timer
-所需脚本|http://mipcache.bdstatic.com/static/mip-analytics/{版本号}/mip-analytics.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-analytics/mip-analytics.js
 
 ## 示例
 
@@ -74,74 +74,74 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 
 ## 配置参数
 
-### {hosts}
+### hosts
 
-说明：{指定用到的log server 地址, 用以后面配置复用}
-必选项：{是}
-类型：{键值对}
-取值范围：{https}
+说明：指定用到的log server 地址, 用以后面配置复用
+必选项：是
+类型：键值对
+取值范围：https
 
-### {setting}
+### setting
 
-说明：{配置日志发送}
-必选项：{是}
-类型：{键值对}
-
-___
-
-#### {setting.click}
-
-说明：{配置点击事件}
-必选项：{否}
-类型：{键值对}
-
-##### {setting.click.selector}
-
-说明：{指定触发点击的选择器}
-必选项：{是}
-类型：{css选择器}
-
-##### {setting.click.host}
-
-说明：{指定日志发送的log server}
-必选项：{是}
-类型：{hosts参数中的key}
-
-##### {setting.click.data}
-
-说明：{指定日志的querystring}
-必选项：{否}
-类型：{键值对}
+说明：配置日志发送
+必选项：是
+类型：键值对
 
 ___
 
-#### {setting.touchstart}
+#### setting.click
 
-说明：{完全同click}
+说明：配置点击事件
+必选项：否
+类型：键值对
+
+##### setting.click.selector
+
+说明：指定触发点击的选择器
+必选项：是
+类型：css选择器
+
+##### setting.click.host
+
+说明：指定日志发送的log server
+必选项：是
+类型：hosts参数中的key
+
+##### setting.click.data
+
+说明：指定日志的querystring, 二级对象会被序列化为字符串
+必选项：否
+类型：键值对
 
 ___
 
-#### {setting.timer}
+#### setting.touchstart
 
-说明：{定时发送日志设置}
-必选项：{否}
-类型：{键值对}
+说明：完全同click
 
-#### {setting.timer.host}
+___
 
-说明：{同click.host}
+#### setting.timer
 
-#### {setting.timer.data}
+说明：定时发送日志设置
+必选项：否
+类型：键值对
 
-说明：{同click.data}
+#### setting.timer.host
 
-#### {setting.timer.option.interval}
+说明：同click.host
 
-说明：{指定定时器间隔}
-必选项：{否}
-类型：{数字}
-单位：{ms}
-默认值：{4000ms}
+#### setting.timer.data
+
+说明：同click.data
+
+#### setting.timer.option.interval
+
+说明：指定定时器间隔
+必选项：否
+类型：数字
+单位：ms
+默认值：4000ms
 
 ## 注意事项
 

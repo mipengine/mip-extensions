@@ -1,0 +1,13 @@
+{
+    "name": "mip-em-hq",
+    "version": "1.0.1",
+	"description": "eastmoneyquotestock",
+	"author": {
+		"name": "lihaibin",
+		"email": "314772196@qq.com",
+		"url": "http://www.eastmoney.com"
+	},
+    "engines": {
+        "mip": ">=1.0.1"
+    }
+}

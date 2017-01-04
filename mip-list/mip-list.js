@@ -30,9 +30,13 @@ define(function (require) {
      *
      * @param  {Array} elements [dom节点对象数组]
      */
-    function render(elements) {
+    function render(htmls) {
         var self = this;
-        elements.map(function (element) {
+        htmls.map(function (html) {
+            var node = document.createElement("div");
+　　         node.innerHTML = html;
+            var element = node.childNodes[1];
+            
             if (!element.hasAttribute('role')) {
                 element.setAttribute('role', 'listitem');
             }

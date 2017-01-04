@@ -1,5 +1,21 @@
 # 升级日志
 
+#### 2017.01.04
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)|[新增] 文字截断，查看更多组件
+[mip-nine-business](https://github.com/mipengine/mip-extensions/tree/master/mip-nine-business)|[新增] 页面公共业务逻辑
+[mip-nine-download](https://github.com/mipengine/mip-extensions/tree/master/mip-nine-business)|[新增] 页面下载业务
+[mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级] google 广告组件
+[mip-cr173-tags](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-tags)|[升级] 西西软件园适配下载地址组件
+[mip-mz-addonapp](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-addonapp)|[升级] 木子推荐app下载
+[mip-mz-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-appdownload)|[升级] 木子 app下载
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+
 #### 2017.01.03
 
 > 组件上线

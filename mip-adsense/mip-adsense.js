@@ -15,7 +15,7 @@ define(function (require) {
         var scriptTag1 = document.createElement('script');
         scriptTag1.setAttribute('type', 'text/javascript');
         scriptTag1.setAttribute('charset', 'UTF-8');
-        scriptTag1.setAttribute('async');
+        scriptTag1.setAttribute('async', 'true');
         scriptTag1.setAttribute('src', 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
         htmlCon.appendChild(scriptTag1);
         var insTag = document.createElement('ins');

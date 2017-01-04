@@ -5,13 +5,13 @@ mip-fengxi-sdk 凤悉服务SDK插件
 标题|内容
 ----|----
 类型|通用
+支持布局|N/S
 所需脚本|http://mipcache.bdstatic.com/static/v1/mip-fengxi-sdk/mip-fengxi-sdk.js
 
 ## 示例
 
 ### 基本用法
 ```html
-<div>点点</div>
 <mip-fengxi-sdk production="xxx" cert="xxx"></mip-fengxi-sdk>
 ```
 

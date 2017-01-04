@@ -254,6 +254,7 @@ define(function (require) {
             this.checkLogin();
             this.userInfoHide();
             this.checkData();
+            this.accordion();
         }
     };
 

@@ -6,7 +6,7 @@ mip-content-readmore 查看更多文本内容
 ----|----
 类型|通用
 支持布局| N/S
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-content-readmore.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-content-readmore/mip-content-readmore.js
 
 ## 示例
 
@@ -69,7 +69,7 @@ mip-content-readmore 查看更多文本内容
 类型：正整数
 默认值：666
 
-### maxlen
+### buttitle
 
 说明：按钮名称
 必选项：否  

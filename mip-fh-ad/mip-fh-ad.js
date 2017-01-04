@@ -24,7 +24,10 @@ define(function (require) {
     var loadBdAd = function () {
         var html = ['<div class="fh-ad-1">', '<span class="btn-fh-ad-1" on="tap:fh-ad-1.close"></span>', '</div>'];
 
-        html =  html.concat(['<mip-ad type="ad-qwang" ', 'cpro_psid="u2355234"', '></mip-ad>']);
+        html = html.concat(['<mip-ad type="baidu-wm-ext" ',
+            ,'domain="1.feihua.com" token="dy3a1ecf96f3cef331db4c3e8da4f73ffa54acde0b36"'
+            ,'>'
+            ,'<div id="dy3a1ecf96f3cef331db4c3e8da4f73ffa54acde0b36"></div>', '</mip-ad>']);
 
         html = html.join('');
         return html;

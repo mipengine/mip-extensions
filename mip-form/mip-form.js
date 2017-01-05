@@ -113,32 +113,26 @@ define(function (require) {
         }
 
         // 在iframe下使用mibm-jumplink，跳转显示手百框。 http-GET请求交给外层跳转
-        if (window.parent !== window) {
+        if (window.parent !== window && isHttp && isGet) {
             var messageUrl = '';
-            if (isHttp && isGet) {
-                if (getUrl.match('\\?')) {
-                    // eg. getUrl == 'http://www.mipengine.org?we=123'
-                    messageUrl = getUrl + valueJson;
-                }
-                else {
-                    // eg. getUrl == 'http://www.mipengine.org'
-                    valueJson = valueJson.substring(1);
-                    messageUrl = getUrl + '?' + valueJson;
-                }
-                var message = {
-                    event: 'mibm-jumplink',
-                    data: {
-                        url: messageUrl
-                    }
-                };
-                window.parent.postMessage(message, '*');
+            if (getUrl.match('\\?')) {
+                // eg. getUrl == 'http://www.mipengine.org?we=123'
+                messageUrl = getUrl + valueJson;
             }
             else {
-                // https请求 或 post请求不做处理
-                self.getElementsByTagName('form')[0].submit();
+                // eg. getUrl == 'http://www.mipengine.org'
+                valueJson = valueJson.substring(1);
+                messageUrl = getUrl + '?' + valueJson;
             }
+            var message = {
+                event: 'mibm-jumplink',
+                data: {
+                    url: messageUrl
+                }
+            };
+            window.parent.postMessage(message, '*');
         } else {
-            // 非iframe下不做处理
+            // https请求 或 post请求 或 非iframe下不做处理
             self.getElementsByTagName('form')[0].submit();
         }
     }
@@ -169,7 +163,7 @@ define(function (require) {
                 textInput[index].onfocus = function () {
                     var self = this;
                     cross.setAttribute('name', self.getAttribute('name'));
-                    util.css(cross, {top: self.offsetTop + (height - 16) / 2  - 4 + 'px'});
+                    util.css(cross, {top: self.offsetTop + (height - 16) / 2  - 8 + 'px'});
                     self.parentNode.appendChild(cross);
                     if (self.value !== '') {
                         util.css(cross, {display: 'block'});
@@ -181,6 +175,10 @@ define(function (require) {
                         };
                     }
                 };
+                // 点击提交时，如果报错信息展示，则隐藏清空按钮
+                textInput[index].onblur = function () {
+                     util.css(cross, {display: 'none'});
+                }
             }
 
             cross.addEventListener('touchstart', clear);

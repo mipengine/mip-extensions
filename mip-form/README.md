@@ -13,8 +13,10 @@ mip-form 用来支持 mip 中的表单提交。
 ### 基本使用
 
 ```html
-<div>http跳转 - 无clear</div>
+<script src="http://10.95.27.44:8025/target/target-script-min.js#anonymous"></script>
+<div>http跳转 - 无clear</div><input type="input" name="username" validatetarget="username" style="background: yellow;"validatetype="must" placeholder="姓名">
 <mip-form method="get" url="http://www.mipengine.org?we=123">
+
     <input type="input" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
     <div target="username">姓名不能为空</div>
     <input type="input" name="age" validatetarget="age" validatetype="must" placeholder="年龄">

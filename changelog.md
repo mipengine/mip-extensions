@@ -1,5 +1,19 @@
 # 升级日志
 
+#### 2017.01.05
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fengxi-sdk](https://github.com/mipengine/mip-extensions/tree/master/mip-fengxi-sdk)|[新增] 凤悉sdk插件
+[mip-cr173-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-ppzs)|[升级] 西西软件园皮皮助手下载
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 表单组件 http跳转
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)|[升级] 文字截断，查看更多组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告
+[mip-fh-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-ad)|[升级] 用来支持m.fh21.com.cn问答详情页的直投广告显示
+
+
 #### 2017.01.04
 
 > 组件上线

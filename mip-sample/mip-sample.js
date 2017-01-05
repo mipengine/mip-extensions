@@ -45,18 +45,12 @@ define(function (require) {
             var value = direction ? '180deg' : '-180deg';
             css(back, 'transform', method + '(' + (direction ? '-180deg' : '180deg' + ')'));
             naboo.p(
-                naboo.animate(front, {
+                naboo.css(front, {
                     transform: method + '(' + value + ')'
-                }, {
-                    duration: duration,
-                    delay: delay
-                }),
-                naboo.animate(back, {
+                }, duration, delay),
+                naboo.css(back, {
                     transform: ''
-                }, {
-                    duration: duration,
-                    delay: delay
-                })
+                }, duration, delay)
             ).start(function () {
                 var tmp = front;
                 front = back;
@@ -95,13 +89,10 @@ define(function (require) {
             if (element.classList.contains('mip-sample-list-last')) {
                 return;
             }
-            naboo.animate(element, {
+            naboo.css(element, {
                 transform: 'translate(' + x + 'px,' + y + 'px)',
                 opacity: 0
-            }, {
-                duration: duration,
-                delay: delay
-            }).start(function () {
+            }, duration, delay).start(function () {
                 css(element, 'display', 'none');
                 element = null;
             });

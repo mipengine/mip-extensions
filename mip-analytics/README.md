@@ -13,8 +13,8 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 ### 基本用法
 
 ```html
-<div class="test" style="height:200px; background-color:blue;"></div>
-<div class="test2" style="height:200px; background-color:yellow;"></div>
+<div class="test fds aaa fd32" style="height:200px; background-color:blue;"></div>
+<div class="test2 hahaha" style="height:200px; background-color:yellow;"></div>
 
 
 <mip-analytics>
@@ -22,7 +22,7 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 {
     "hosts" : {
 		"mylogserver" : "https://m.baidu.com/log?",
-		"mylogserver2" : "https://m.baidu.com/test?event=click&"
+		"mylogserver2" : "https://m.baidu.com${name}/test?event=click&"
 	},
 
     "setting" : {
@@ -31,7 +31,7 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
             {
 				"selector" : ".test",
                 "host" : "mylogserver",
-                "data" : {
+                "queryString" : {
 					"name" : "alan",
 					"list": {
 						"age":"123"
@@ -42,12 +42,12 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
             {
 				"selector" : ".test2",
                 "host" : "mylogserver",
-                "data" : {
+				"queryString" : {},
+                "vars" : {
 					"name" : "alan",
 					"list": {
 						"age":"123fdafdsfadfafdfdfda"
 					}
-				
 				}
             }
         ],
@@ -56,8 +56,14 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
         "timer" : [
 			{
 				"host" : "mylogserver2",
-				"data" : {
+				"queryString" : {
 					"timer" : "timer"
+				},
+                "vars" : {
+					"name" : "alan",
+					"list": {
+						"age":"123fdafdsfadfafdfdfda"
+					}
 				},
 				"option" : {
 					"interval" : 2000
@@ -103,13 +109,19 @@ ___
 
 ##### setting.click.host
 
-说明：指定日志发送的log server
+说明：指定日志发送的log server,可以使用插值变量占位，${varName}, 在vars中指定真实值
 必选项：是
 类型：hosts参数中的key
 
-##### setting.click.data
+##### setting.click.queryString
 
-说明：指定日志的querystring, 二级对象会被序列化为字符串
+说明：指定host的querystring,一级属性序列化为&链接的参数， 二级属性会被序列化为json字符串。 
+必选项：否
+类型：键值对
+
+##### setting.click.vars
+
+说明：指定host的插值变量的真实值，替换格式为${varName}
 必选项：否
 类型：键值对
 
@@ -150,4 +162,6 @@ ___
 * 统计框架会默认传入一级参数t, 为发送日志的时间
 
 * host地址需要是https的
+
+* vars和queryString 是为了方便使用方重复利用变量并且保证灵活性，最好是vars用于host部分，queryString用于参数部分，或者只选择其一。重叠使用时需要注意图们之间是否有交叉。框架会先替换vars再拼接queryStirng
 

@@ -1,8 +1,7 @@
 /**
  * @file mip-analytics 组件
- * @author lijialong01@baidu.com
+ * @author 306880673@qq.com
  */
-
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
@@ -24,14 +23,15 @@ define(function (require) {
 
         // 全局代理事件
         for (var prop in cfg.setting) {
-	    if (cfg.setting.hasOwnProperty(prop)) {
-		// 替换host变量
-		var events = cfg.setting[prop];
-		events.forEach(function (el, index) {
-		    el.host = cfg.hosts[el.host];
-		});
-		triggers[prop].call(this, events);
-	    }
+            if (cfg.setting.hasOwnProperty(prop)) {
+                // 替换host变量
+                var events = cfg.setting[prop];
+                events.forEach(function (el, index) {
+                    el.host = cfg.hosts[el.host];
+                });
+                triggers[prop] && triggers[prop].call(this, events);
+            }
+
         }
     };
 
@@ -43,8 +43,8 @@ define(function (require) {
 
         /**
          * 数据序列化处理
-         * @param {object} obj
-         * @returns {string}
+         * @param {Object} obj 必须是对象
+         * @return {String}
          */
         serialize: function (obj) {
             if (!obj) {
@@ -55,18 +55,19 @@ define(function (require) {
             var item = '';
             if (this.isObject(obj)) {
                 for (var k in obj) {
-		    if (obj.hasOwnProperty(k)) {
-			item = obj[k];
-			if (typeof item === 'undefined') {
-			    continue;
-			}
+                    if (obj.hasOwnProperty(k)) {
+                        item = obj[k];
+                        if (typeof item === 'undefined') {
+                            continue;
+                        }
 
-			if (this.isObject(item)) {
-			    item = JSON.stringify(item);
-			}
+                        if (this.isObject(item)) {
+                            item = JSON.stringify(item);
+                        }
 
-			str += k + '=' + encodeURIComponent(item) + '&';
-		    }
+                        str += k + '=' + encodeURIComponent(item) + '&';
+                    }
+
                 }
                 str = str.substring(0, str.length - 1); // 去掉末尾的&
             }
@@ -80,11 +81,11 @@ define(function (require) {
         /**
          * 使用img的方式发送日志
          *
-         * @param url src链接
+         * @param {String} url src链接
          * @returns {undefined}
          */
         imgSendLog: function (url) {
-            var key = 'BD_MIP' + (new Date()).getTime();
+            var key = 'IMAGE' + (new Date()).getTime();
             var img = window[key] = new Image();
             img.onload = function () {
                 // 防止多次触发onload;
@@ -96,9 +97,23 @@ define(function (require) {
             img.src = url;
         },
 
+        /**
+         * 替换插值 ${var}
+         * @param {Object} cfg
+         * @returns {string}
+         */
+        hostReplace: function (cfg) {
+            cfg.vars = cfg.vars || {};
+            cfg.host = cfg.host.replace(/(\${.*})/g, function (match, $1) {
+                return cfg.vars[$1.substring(2, $1.length - 1).trim()] || $1;
+            });
+
+            return cfg.host;
+        },
+
         send: function (cfg) {
-            var queryString = this.serialize(cfg.data) + '&t=' + new Date().getTime();
-            var url = cfg.host + queryString;
+            var queryString = this.serialize(cfg.queryString) + '&t=' + new Date().getTime();
+            var url = this.hostReplace(cfg) + queryString;
             this.imgSendLog(url);
         }
     };
@@ -106,14 +121,11 @@ define(function (require) {
 
     // 点击事件handle
     var clickHandle = function (triggers, eventName) {
-        document.body.addEventListener(eventName, function (event) {
-            triggers.forEach(function (el, index) {
-                if (util.dom.matches(event.target, el.selector)) {
-                    log.send(el);
-                }
-
-            });
-        }, false);
+        triggers.forEach(function (el, index) {
+            util.event.delegate(document, el.selector, eventName, function (event) {
+                log.send(el);
+            }, false);
+        });
     };
 
     // 定时器存储

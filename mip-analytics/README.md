@@ -12,6 +12,8 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 
 ### 基本用法
 
+每种事件可以配置多个
+
 ```html
 <div class="test fds aaa fd32" style="height:200px; background-color:blue;"></div>
 <div class="test2 hahaha" style="height:200px; background-color:yellow;"></div>

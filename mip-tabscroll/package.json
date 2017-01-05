@@ -1,0 +1,12 @@
+{
+    "name": "mip-tabscroll",
+    "version": "1.0.0",
+    "author": {
+        "name": "yml",
+        "email": "2670365311@qq.com",
+        "url": "http://m.qbaobei.com/"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

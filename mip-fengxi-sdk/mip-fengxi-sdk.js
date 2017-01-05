@@ -10,9 +10,9 @@ define(function (require) {
     var customElement = require('customElement').create();
 
     /**
-     * 构造元素，只会运行一次
+     * 第一次进入可视区回调,只会执行一次，做懒加载，利于网页速度
      */
-    customElement.prototype.build = function () {
+    customElement.prototype.firstInviewCallback = function () {
         var $element = $(this.element);
         var production = $element.attr('production');
         var cert = $element.attr('cert');

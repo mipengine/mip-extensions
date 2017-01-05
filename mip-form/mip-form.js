@@ -54,9 +54,11 @@ define(function (require) {
             onSubmit.call(element);
         });
 
-        // 回车提交
+        // XXX 部分浏览器回车不触发submit,
         element.addEventListener('keydown', function (event) {
             if (event.keyCode === 13) {
+                // XXX 为了使余下浏览器不多次触发submit, 使用prevent
+                event.preventDefault();
                 onSubmit.call(this);
             }
         }, false);
@@ -78,9 +80,14 @@ define(function (require) {
      */
     function onSubmit() {
         var self = this;
-        var flag = false;
-        var inputs = $(self).find('input[type="input"]');
+        var preventSubmit = false;
+        var inputs = $(self).find('input[type="text"],input[type="input"]');
+        var isGet = self.getAttribute('method') === 'get';
+        var getUrl = self.getAttribute('url');
+        var isHttp = getUrl.match('http://');
+        var valueJson = '';
 
+        // 校验输入内容是否合法
         inputs.map(function (index, item) {
             var type = item.getAttribute('validatetype');
             var target = item.getAttribute('validatetarget');
@@ -88,6 +95,7 @@ define(function (require) {
             var value = item.value;
             var reg;
 
+            valueJson += '&' + item.name + '=' + item.value;
             if (type) {
                 if (regval) {
                     reg = value === '' ? false : (new RegExp(regval)).test(value);
@@ -95,24 +103,36 @@ define(function (require) {
                 else {
                     reg = verification(type, value);
                 }
-
                 util.css($(self).find('div[target="' + target + '"]'), {display: (!reg ? 'block' : 'none')});
-                flag = !reg ? true : flag;
+                preventSubmit = !reg ? true : preventSubmit;
             }
         });
 
-        // iframe 嵌套处理
-        if (window.parent !== window) {
+        if (preventSubmit) {
+            return;
+        }
+
+        // 在iframe下使用mibm-jumplink，跳转显示手百框。 http-GET请求交给外层跳转
+        if (window.parent !== window && isHttp && isGet) {
+            var messageUrl = '';
+            if (getUrl.match('\\?')) {
+                // eg. getUrl == 'http://www.mipengine.org?we=123'
+                messageUrl = getUrl + valueJson;
+            }
+            else {
+                // eg. getUrl == 'http://www.mipengine.org'
+                valueJson = valueJson.substring(1);
+                messageUrl = getUrl + '?' + valueJson;
+            }
             var message = {
-                'event': 'mibm-jumplink',
-                'data': {
-                    'method': 'post'
+                event: 'mibm-jumplink',
+                data: {
+                    url: messageUrl
                 }
             };
             window.parent.postMessage(message, '*');
-        }
-
-        if (!flag) {
+        } else {
+            // https请求 或 post请求 或 非iframe下不做处理
             self.getElementsByTagName('form')[0].submit();
         }
     }
@@ -122,7 +142,7 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        var addClearBtn = element.getAttribute('clear');
+        var addClearBtn = element.hasAttribute('clear');
         this.cross = null;
 
         if (preProcess(element)) {
@@ -130,18 +150,20 @@ define(function (require) {
         }
 
         if (addClearBtn) {
-            const INPUTS = element.querySelectorAll('input[type=input]');
-            var index = 0;
-            var height = element.querySelector('input[type=input]').offsetHeight;
+            var textInput = element.querySelectorAll('input[type=text],input[type=input]');
+            if (!textInput.length) {
+                return;
+            }
             var cross = document.createElement('div');
             cross.id = 'mip-form-cross';
             this.cross = cross;
 
-            for (index = 0; index < INPUTS.length; index++) {
-                INPUTS[index].onfocus = function () {
+            for (var index = 0; index < textInput.length; index++) {
+                var height = textInput[index].offsetHeight;
+                textInput[index].onfocus = function () {
                     var self = this;
                     cross.setAttribute('name', self.getAttribute('name'));
-                    util.css(cross, {top: self.offsetTop + (height - 16) / 2 + 'px'});
+                    util.css(cross, {top: self.offsetTop + (height - 16) / 2  - 8 + 'px'});
                     self.parentNode.appendChild(cross);
                     if (self.value !== '') {
                         util.css(cross, {display: 'block'});
@@ -153,13 +175,22 @@ define(function (require) {
                         };
                     }
                 };
+                // 点击提交时，如果报错信息展示，则隐藏清空按钮
+                textInput[index].onblur = function () {
+                     util.css(cross, {display: 'none'});
+                }
             }
 
-            cross.addEventListener('click', function () {
-                var name = this.getAttribute('name');
+            cross.addEventListener('touchstart', clear);
+            cross.addEventListener('click', clear);
+
+            function clear(e) {
+                var name = e.target.getAttribute('name');
                 cross.parentNode.querySelector('input[name="' + name + '"]').value = '';
                 util.css(cross, {display: 'none'});
-            });
+                e.preventDefault();
+                e.stopPropagation();
+            }
         }
     };
 

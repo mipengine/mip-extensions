@@ -21,6 +21,10 @@ define(function (require) {
             return;
         }
 
+	if (!cfg.setting || !cfg.hosts) {
+	    return;
+	}
+
         // 全局代理事件
         for (var prop in cfg.setting) {
             if (cfg.setting.hasOwnProperty(prop)) {

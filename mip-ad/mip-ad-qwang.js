@@ -18,19 +18,11 @@ define(function (require) {
         var cpropsid = domEle.getAttribute('cpro_psid');
         var cpropswidth = domEle.getAttribute('cpro_pswidth') || 'auto';
         var cpropsheight = domEle.getAttribute('cpro_psheight') || '230';
-        var cpropstype = domEle.getAttribute('cpro_pstype') || 'embed';
-
-        var scriptHtml = '';
-        if (cpropstype === 'embed') {
-            scriptHtml = [
+        var scriptHtml = [
                 'var cpro_psid ="' + cpropsid + '";',
                 'var cpro_pswidth ="' + cpropswidth + '";',
                 'var cpro_psheight="' + cpropsheight + '";'
             ].join('');
-        }
-        else {
-            scriptHtml = 'var cpro_psid ="' + cpropsid + '";';
-        }
 
         var scriptNode = document.createElement('script');
         scriptNode.innerHTML = scriptHtml;
@@ -38,7 +30,7 @@ define(function (require) {
         var node = document.createElement('div');
         node.appendChild(scriptNode);
         domEle.appendChild(node);
-        initJs(node, mipEle, cpropstype);
+        initJs(node, mipEle);
     }
 
     /**
@@ -46,16 +38,10 @@ define(function (require) {
      *
      * @param  {dom} node   盛放script的div
      * @param  {Object} mipEle mip元素
-     * @param  {string} type   embed/suspend
      */
-    function initJs(node, mipEle, type) {
+    function initJs(node, mipEle) {
         var adScript;
-        if (type === 'embed') {
-            adScript = addScriptOnce('MIP_ADQW_EMBED', '//su.bdimg.com/static/dspui/js/um_mip.js');
-        }
-        else if (type === 'suspend') {
-            adScript = addScriptOnce('MIP_ADQWS_USP', '//su.bdimg.com/static/dspui/js/umf_mip.js');
-        }
+        adScript = addScriptOnce('MIP_ADQW_EMBED', '//su.bdimg.com/static/dspui/js/um_mip.js');
 
         if (!adScript) {
             return;

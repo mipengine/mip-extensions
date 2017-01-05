@@ -21,8 +21,8 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 <script type="application/json">
 {
     "hosts" : {
-		"mylogserver" : "https://m.baidu.com/log?",
-		"mylogserver2" : "https://m.baidu.com${name}/test?event=click&"
+		"test" : "https://m.baidu.com/div1?",
+		"test2" : "https://m.baidu.com/_${div2}.gif?"
 	},
 
     "setting" : {
@@ -30,7 +30,7 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
         "click" : [
             {
 				"selector" : ".test",
-                "host" : "mylogserver",
+                "host" : "test",
                 "queryString" : {
 					"name" : "alan",
 					"list": {
@@ -41,10 +41,10 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 
             {
 				"selector" : ".test2",
-                "host" : "mylogserver",
+                "host" : "test2",
 				"queryString" : {},
                 "vars" : {
-					"name" : "alan",
+					"div2" : "divfdsf",
 					"list": {
 						"age":"123fdafdsfadfafdfdfda"
 					}
@@ -55,12 +55,12 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
         "disp" : [],
         "timer" : [
 			{
-				"host" : "mylogserver2",
+				"host" : "test2",
 				"queryString" : {
 					"timer" : "timer"
 				},
                 "vars" : {
-					"name" : "alan",
+					"div2" : "fda",
 					"list": {
 						"age":"123fdafdsfadfafdfdfda"
 					}
@@ -109,7 +109,7 @@ ___
 
 ##### setting.click.host
 
-说明：指定日志发送的log server,可以使用插值变量占位，${varName}, 在vars中指定真实值
+说明：指定日志发送的log server,可以使用插值变量占位，${varName}, 在vars中指定真实值。 插件使用图片伪装请求。host应该是一个图片地址,一般是gif。如 https://logserver.com/mylog.gif?
 必选项：是
 类型：hosts参数中的key
 

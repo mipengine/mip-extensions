@@ -30,9 +30,9 @@ define(function (require) {
         $.ajax({
             type: 'GET',
             url: ajaxs.ajaxUrl,
+            dataType: 'json',
             success: function (data) {
                 var html = '';
-                var data = JSON.parse(data.replace(/'/g, '"'));
                 ajaxs.totalPage = data.totalPage; // 总记页数
                 ajaxs.nowPage = data.page;
                 if (ajaxs.isPlat === 'android') {

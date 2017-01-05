@@ -28,15 +28,15 @@ define(function (require) {
     /**
      * [render dom渲染函数]
      *
-     * @param  {Array} elements [dom节点对象数组]
+     * @param  {Array} htmls [html对象数组]
      */
     function render(htmls) {
         var self = this;
         htmls.map(function (html) {
-            var node = document.createElement("div");
-　　         node.innerHTML = html;
+            var node = document.createElement('div');
+            node.innerHTML = html;
             var element = node.childNodes[1];
-            
+
             if (!element.hasAttribute('role')) {
                 element.setAttribute('role', 'listitem');
             }
@@ -58,6 +58,7 @@ define(function (require) {
         if (!this.container.hasAttribute('role')) {
             this.container.setAttribute('role', 'list');
         }
+
         // 同步配置数据
         if (element.hasAttribute('synchronous-data')) {
             var script = element.querySelector('script[type="application/json"]');
@@ -78,20 +79,6 @@ define(function (require) {
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
-            data = {
-                items: [
-                    {
-                        key: '姓名',
-                        value: '钟汉良'
-                    }, {
-                        key: '性别',
-                        value: '男'
-                    }, {
-                        key: '职业',
-                        value: '演员'
-                    }
-                ]
-            };
             renderTemplate.call(self, data);
         });
     };

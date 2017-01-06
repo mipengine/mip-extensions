@@ -133,7 +133,7 @@ define(function (require) {
             error: function () { }
         });
     }
-    //  不显示已被删除的文章
+    //  不显示已被删除的文章.
     function getBlockArt() {
         $.ajax({
             type: 'GET',

@@ -101,7 +101,7 @@ ___
 
 说明：配置点击事件
 必选项：否
-类型：键值对
+类型：Array
 
 ##### setting.click.selector
 
@@ -139,7 +139,7 @@ ___
 
 说明：定时发送日志设置
 必选项：否
-类型：键值对
+类型：Array
 
 #### setting.timer.host
 

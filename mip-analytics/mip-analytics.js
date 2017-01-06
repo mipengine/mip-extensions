@@ -118,7 +118,6 @@ define(function (require) {
         send: function (cfg) {
             var queryString = this.serialize(cfg.queryString) + '&t=' + new Date().getTime();
             var url = this.hostReplace(cfg) + queryString;
-	    console.log(url);
             this.imgSendLog(url);
         }
     };

@@ -1,5 +1,23 @@
 # 升级日志
 
+#### 2017.01.06
+
+> 核心代码上线
+
+    1、修复图片弹出BUG
+    2、升级视频组件，支持http视频跳转到http承接页播放
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-analytics](https://github.com/mipengine/mip-extensions/tree/master/mip-analytics)|[新增] 提供统计发送接口
+[mip-mustache](https://github.com/mipengine/mip-extensions/tree/master/mip-mustache)|[新增] 通用模板组件
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)|[升级][BUG] 文字截断，查看更多组件
+[mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[升级] 西西软件园编辑人员统计组件
+[mip-down-dropload](https://github.com/mipengine/mip-extensions/tree/master/mip-down-dropload)|[升级] 用来支持页面下拉加载
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
 #### 2017.01.05
 
 > 组件上线 

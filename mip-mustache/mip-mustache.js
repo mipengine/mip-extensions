@@ -1,3 +1,7 @@
+/**
+ * @file Mustache template
+ * @author zeloat1203@gmail.com
+ */
 define(function (require) {
     'use strict';
     // 引入html-sanitizer

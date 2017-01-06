@@ -1,5 +1,6 @@
 /**
  * @file Html Sanitizer. Code from amp.
+ * @author zeloat1203@gmail.com
  */
 define(function (require) {
     var htmlSanitizer = require('./html-sanitizer');

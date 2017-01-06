@@ -1,0 +1,13 @@
+{
+    "name": "mip-scroll-fixed",
+    "version": "1.0.0",
+
+    "author": {
+        "name": "jiangxu",
+        "email": "jiangxu03@baidu.com"
+    },
+
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -45,6 +45,8 @@ define(function (require) {
         element = element ? $(element)[0] : $('.content')[0];
 
         var content = htmlDecode(element.innerHTML);
+        // 避免特定情况下，图片重复显示的问题
+        content = content.replace(/<img .*?>/, '');
         var conlen = content.length;
         var intag = false;
         var len = 0;

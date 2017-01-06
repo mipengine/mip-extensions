@@ -5,7 +5,7 @@ mip-tabscroll 用来支详情页的选项卡切换
 标题|内容
 ----|----
 类型|业务
-支持布局|N/S
+支持布局|responsive,fixed-height,fill,container,fixed
 所需脚本|https://mipcache.bdstatic.com/static/v1/mip-tabscroll/mip-tabscroll.js
 
 ## 示例
@@ -16,28 +16,27 @@ mip-tabscroll 用来支详情页的选项卡切换
 	    <ul class="list list1">
 	        <li class="last">
 	            <div class="box">
-	                <span class="pic"><img src="image/banner.jpg" alt=""/></span>
+	                <span class="pic"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-11-26/5838e2764f599_120_120.png" alt="贝贝特卖"></mip-img></span>
 	                <div class="con">
 	                    <p><span class="name">应用名称</span></p>
 	                    <p class="detail"><span class="count">大小：16.3MB</span></p>
 	                </div>
 	            </div>
-	            <a href="javascipt:;" class="down">安装</a>
+	            <span class="down">安装</span>
 	        </li>
 	    </ul>
 
 	    <ul class="list list2">
 	        <li class="last">
 	            <div class="box">
-	                <span class="pic"><img src="image/banner.jpg" alt=""/></span>
+	                <span class="pic"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-11-26/5838e2764f599_120_120.png" alt="贝贝特卖"></mip-img></span>
 	                <div class="con">
 	                    <p><span class="name">应用名称</span></p>
 	                    <p class="detail"><span class="type">儿歌</span><span class="count">8216次下载</span></p>
 	                    <p class="state">小编一句话评语，小编一句话评语，小编一句话评</p>
 	                </div>
 	            </div>
-	            <!--<a href="javascipt:;" class="down">安装</a>-->
-	            <a href="javascipt:;" class="down sc">正在上传...</a>
+	            <span class="down sc">正在上传...</span>
 	        </li>
 	    </ul>
 	</section>
@@ -348,7 +347,6 @@ mip-tabscroll 用来支详情页的选项卡切换
 	                </div>
 	            </div>
 	        </section>
-        <!--评论盒子end-->
 			<section class="list-wrap ">
 				<p class="title"><a href="http://m.qbaobei.com/heji/ertonggushi1/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/ertonggushi1/" title="儿童故事">儿童故事</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">

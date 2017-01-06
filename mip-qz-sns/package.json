@@ -1,0 +1,14 @@
+{
+    "name": "mip-qz-sns",
+    "version": "1.0.0",
+    "description": "前瞻网分享、点赞组件",
+    "contributors": [
+        {
+            "name": "ningsong",
+            "email": "312358502@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

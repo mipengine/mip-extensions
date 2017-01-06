@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author  hejieye
-* @time  20161230
-* @version 1.2.0
+* @time  20170106
+* @version 1.3.0
 */
 define(function (require) {
     var $ = require('zepto');
@@ -242,6 +242,38 @@ define(function (require) {
                 $(this).siblings('.iask-show-more').show();
             });
         },
+        // 好万家导流
+        guideData: function () {
+            var urlf = 'http://m.iask.sina.com.cn/t/mipdf?t=fous';
+            var urlr = 'http://m.iask.sina.com.cn/t/mipdf?t=recom';
+            try {
+                $.ajax({
+                    type: 'GET',
+                    url: urlf,
+                    dataType: 'html',
+                    success: function (data) {
+                        if (!!data) {
+                            $('.load_today_focus').empty();
+                            $('.load_today_focus').append(data);
+                        }
+                    }
+                });
+                $.ajax({
+                    type: 'GET',
+                    url: urlr,
+                    dataType: 'html',
+                    success: function (data) {
+                        if (!!data) {
+                            $('.load_recom_red').empty();
+                            $('.load_recom_red').append(data);
+                        }
+                    }
+                });
+            }
+            catch (e) {
+                console.log(e);
+            }
+        },
         init: function () {
             this.switchBlock();
             this.changeMore();
@@ -255,6 +287,7 @@ define(function (require) {
             this.userInfoHide();
             this.checkData();
             this.accordion();
+            this.guideData();
         }
     };
 

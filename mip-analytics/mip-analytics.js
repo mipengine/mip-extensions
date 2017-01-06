@@ -16,14 +16,14 @@ define(function (require) {
             var cfg = this.cfg = JSON.parse(script.textContent.toString());
         }
         catch (e) {
-            console.warn('json is illegal');
-            console.warn(e);
+            console.warn('json is illegal'); // eslint-disable-line
+            console.warn(e);// eslint-disable-line
             return;
         }
 
-	if (!cfg.setting || !cfg.hosts) {
-	    return;
-	}
+        if (!cfg.setting || !cfg.hosts) {
+            return;
+        }
 
         // 全局代理事件
         for (var prop in cfg.setting) {
@@ -47,8 +47,9 @@ define(function (require) {
 
         /**
          * 数据序列化处理
+         *
          * @param {Object} obj 必须是对象
-         * @return {String}
+         * @return {string}
          */
         serialize: function (obj) {
             if (!obj) {
@@ -85,8 +86,8 @@ define(function (require) {
         /**
          * 使用img的方式发送日志
          *
-         * @param {String} url src链接
-         * @returns {undefined}
+         * @param {string} url src链接
+         * @return {undefined}
          */
         imgSendLog: function (url) {
             var key = 'IMAGE' + (new Date()).getTime();
@@ -103,8 +104,9 @@ define(function (require) {
 
         /**
          * 替换插值 ${var}
-         * @param {Object} cfg
-         * @returns {string}
+         *
+         * @param {Object} cfg 配置对象
+         * @return {string}
          */
         hostReplace: function (cfg) {
             cfg.vars = cfg.vars || {};

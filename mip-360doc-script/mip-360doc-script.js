@@ -59,6 +59,7 @@ define(function (require) {
                 sendlog('Componentclick?id=8');
             });
         }
+        getBlockArt();
     };
     function check() {
         try {
@@ -130,6 +131,20 @@ define(function (require) {
                 $('.mip-360doc-script-xh1').html('献花(' + useridref[3] + ')');
             },
             error: function () { }
+        });
+    }
+    //  不显示已被删除的文章.
+    function getBlockArt() {
+        var fetchJsonp = require('fetch-jsonp');
+        fetchJsonp('https://blockart.360doc.com/ajax/getstatusmip.ashx?aid=' + getID(), {
+            jsonpCallback: 'callback'
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            if (data.result === 1) {
+                $('.mip-360doc-script-tit').html('');
+                $('.mip-360doc-script-con').html('对不起，该文章已被删除！');
+            }
         });
     }
     //  获取文章id

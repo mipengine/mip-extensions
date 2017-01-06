@@ -11,7 +11,6 @@ define(function (require) {
     };
     Mustache.prototype.render = function (templateHTML, data) {
         var html = mustache.render(templateHTML, data);
-        console.log(sanitizer(html));
         return sanitizer(html);
     };
     return Mustache;

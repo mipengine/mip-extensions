@@ -135,18 +135,16 @@ define(function (require) {
     }
     //  不显示已被删除的文章.
     function getBlockArt() {
-        $.ajax({
-            type: 'GET',
-            url: 'https://blockart.360doc.com/ajax/getstatusmip.ashx?aid=' + getID(),
-            dataType: 'jsonp',
-            jsonpCallback: 'callback',
-            success: function (data) {
-                if (data.result === 1) {
-                    $('.mip-360doc-script-tit').html('');
-                    $('.mip-360doc-script-con').html('对不起，该文章已被删除！');
-                }
-            },
-            error: function () { }
+        var fetchJsonp = require('fetch-jsonp');
+        fetchJsonp('https://blockart.360doc.com/ajax/getstatusmip.ashx?aid=' + getID(), {
+            jsonpCallback: 'callback'
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            if (data.result === 1) {
+                $('.mip-360doc-script-tit').html('');
+                $('.mip-360doc-script-con').html('对不起，该文章已被删除！');
+            }
         });
     }
     //  获取文章id

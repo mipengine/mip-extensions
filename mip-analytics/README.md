@@ -182,3 +182,5 @@ ___
 
 * vars和queryString 是为了方便使用方重复利用变量并且保证灵活性，最好是vars用于host部分，queryString用于参数部分，或者只选择其一。重叠使用时需要注意图们之间是否有交叉。框架会先替换vars再拼接queryStirng
 
+* vars 只支持简单数据类型, 复合数据类型会返回空字符串
+

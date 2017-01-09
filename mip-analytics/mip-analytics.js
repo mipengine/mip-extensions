@@ -111,7 +111,12 @@ define(function (require) {
         hostReplace: function (cfg) {
             cfg.vars = cfg.vars || {};
             cfg.host = cfg.host.replace(/(\${.*})/g, function (match, $1) {
-                return cfg.vars[$1.substring(2, $1.length - 1).trim()] || $1;
+                var key = $1.substring(2, $1.length - 1).trim();
+                if ( typeof cfg.vars[key] == "object") {
+                    return "";
+                }else{
+                    return cfg.vars[key] || $1;
+                }
             });
 
             return cfg.host;

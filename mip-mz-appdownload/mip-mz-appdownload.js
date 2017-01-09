@@ -13,7 +13,7 @@ define(function (require) {
     function initAD(ad, aid, addr, obj) {
         if (platform.isIos()) {
             var softid = aid.substring(0, aid.length - 5);
-            if (inarray(obj.vnpids, softid)) {
+            if (obj.ios[1].url !== '' && inarray(obj.vnpids, softid)) {
                 return '<a href="' + obj.ios[1].url + '" class="gsdbtn">' + obj.ios[0].btnvalue + '</a>';
             }
             return '<a href="' + checkurl(aid, addr) + '" class="gsdbtn confirmios">'
@@ -126,9 +126,11 @@ define(function (require) {
             });
 			// 苹果点击了下载
             $('.confirmios').click(function () {
-                if (confirm(json.ios[0].name)) {
-                    window.location.href = json.ios[0].url;
-                    return false;
+                if (json.ios[0].url !== '') {
+                    if (confirm(json.ios[0].name)) {
+                        window.location.href = json.ios[0].url;
+                        return false;
+                    }
                 }
             });
         }

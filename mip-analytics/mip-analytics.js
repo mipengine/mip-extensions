@@ -17,7 +17,7 @@ define(function (require) {
         }
         catch (e) {
             console.warn('json is illegal'); // eslint-disable-line
-            console.warn(e);// eslint-disable-line
+            console.warn(e); // eslint-disable-line
             return;
         }
 
@@ -112,11 +112,12 @@ define(function (require) {
             cfg.vars = cfg.vars || {};
             cfg.host = cfg.host.replace(/(\${.*})/g, function (match, $1) {
                 var key = $1.substring(2, $1.length - 1).trim();
-                if ( typeof cfg.vars[key] == "object") {
-                    return "";
-                }else{
-                    return cfg.vars[key] || $1;
+                if (typeof cfg.vars[key] === 'object') {
+                    return '';
                 }
+
+                return cfg.vars[key] || $1;
+
             });
 
             return cfg.host;

@@ -8,7 +8,7 @@ define(function (require) {
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
         if ($('.mip-360doc-script-wxggalink') !== null) {
-            $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'https://transfer.360doc.cn/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'https://transfer.360doc.cn/images/xiazai.png\'  class=\'pic2\'/></span>');
+            $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/xiazai.png\'  class=\'pic2\'/></span>');
             var picn = $('.mip-360doc-script-pic').length;
             if (picn > 1) {
                 $('.mip-360doc-script-pic').eq(0).css('display', 'inline').siblings('.mip-360doc-script-pic').hide();
@@ -21,8 +21,16 @@ define(function (require) {
         record();
         //  检测广告
         var t = setTimeout(function () {
-            check();
+            check(1);
             clearTimeout(t);
+        }, 100);
+        var t1 = setTimeout(function () {
+            check(5);
+            clearTimeout(t1);
+        }, 5000);
+        var t2 = setTimeout(function () {
+            check(10);
+            clearTimeout(t2);
         }, 10000);
         if ($('.mip-360doc-script-plg2') !== null) {
             $('.mip-360doc-script-plg2').on('click', function (event) {
@@ -60,14 +68,23 @@ define(function (require) {
             });
         }
         getBlockArt();
+        if ($('.mip-360doc-script-keyword') !== null) {
+            parseSearchWord();
+        }
     };
-    function check() {
+    function check(time) {
         try {
             if (document.documentElement.outerHTML.indexOf('iframeu2825450_0') < 0) {
-                sendlog('mipads/u2825450');
+                sendlog('mipads/u2825450_' + time);
+            }
+            else {
+                sendlog('mipadsShow/u2825450_' + time);
             }
             if (document.documentElement.outerHTML.indexOf('iframeu2825719_0') < 0) {
-                sendlog('mipads/u2825719');
+                sendlog('mipads/u2825719_' + time);
+            }
+            else {
+                sendlog('mipadsShow/u2825719_' + time);
             }
         }
         catch (e) { }
@@ -133,7 +150,7 @@ define(function (require) {
             error: function () { }
         });
     }
-    //  不显示已被删除的文章.
+    //  不显示已被删除的文章
     function getBlockArt() {
         var fetchJsonp = require('fetch-jsonp');
         fetchJsonp('https://blockart.360doc.com/ajax/getstatusmip.ashx?aid=' + getID(), {
@@ -151,6 +168,31 @@ define(function (require) {
     function getID() {
         var artid = $('.mip-360doc-script-saveid').html();
         return artid;
+    }
+    //  获取搜索词
+    function parseSearchWord() {
+        try {
+            var url = '';
+            var keyword = '';
+            var index = -1;
+            var index2 = -1;
+            if (document.referrer) {
+                url = document.referrer;
+            }
+            if (url.length > 0 && url.indexOf('//m.baidu.com') >= 0) {
+                index = url.indexOf('word=');
+                if (index > 0) {
+                    index2 = url.indexOf('&', index);
+                }
+                if (index2 > 0) {
+                    keyword = url.substring(index + 5, index2);
+                    if (keyword.length > 0) {
+                        $('.mip-360doc-script-keyword').val(decodeURI(keyword));
+                    }
+                }
+            }
+        }
+        catch (e) { }
     }
     return customElem;
 });

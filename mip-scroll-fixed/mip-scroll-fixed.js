@@ -1,11 +1,11 @@
 /**
  * mip-scroll-fixed
- * 
- * @Author   jiangxu03
+ * @file mip-scroll-fixed
+ * @author   jiangxu03
  * @DateTime 2017-01-06T20:39:22+0800
  */
 
-define(function(require) {
+define(function (require) {
     var customElem = require('customElement').create();
     var util = require('util');
     var viewport = require('viewport');
@@ -18,29 +18,27 @@ define(function(require) {
         // direction 填写除bottom以外的值或不填写认定为默认值top
         var direction = element.getAttribute('direction');
         direction = direction || top;
-        direction = direction == "bottom" ? direction : "top";
+        direction = direction === 'bottom' ? direction : 'top';
 
         // interval 默认值为0，需填写纯数字
         var interval = element.getAttribute('interval');
         interval = interval || 0;
-        
         var oldHeight = element.offsetTop;
-        if (direction == "bottom") {
+        if (direction === 'bottom') {
             util.css(element, {
                 position: 'fixed',
                 bottom: interval + 'px'
-            });  
+            });
             var fixHeight = element.offsetTop;
         }
-        
         viewport.on('scroll', function () {
             var scrollTop = viewport.getScrollTop();
-            if (direction == 'top') {
+            if (direction === 'top') {
                 if ((element.offsetTop - interval <= scrollTop) && (scrollTop >= oldHeight - interval)) {
                     util.css(element, {
                         position: 'fixed',
                         top: interval + 'px'
-                    });   
+                    });
                 }
                 else {
                     util.css(element, {
@@ -54,7 +52,7 @@ define(function(require) {
                     util.css(element, {
                         position: 'fixed',
                         bottom: interval + 'px'
-                    }); 
+                    });
                 }
                 else {
                     util.css(element, {

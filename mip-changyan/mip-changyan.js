@@ -23,6 +23,7 @@ define(function (require) {
         else {
             scriptTag.src = 'http://changyan.sohu.com/upload/changyan.js?client_id=' + appid + '&conf=' + conf;
         }
+        customElement.appendChild(scriptTag);
     };
     return customElement;
 });

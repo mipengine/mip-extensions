@@ -20,21 +20,23 @@ define(function (require) {
             + obj.ios[0].btnvalue + '</a>';
         }
         if (ad > 0) {
-            $('.down').css('height', '90px');
-            var presenti = 0;
-            for (var i = 0; i < obj.android.length; ++i) {
-                if (!getCookie(obj.android[i].id)) {
-                    presenti = i;
-                    break;
+            if (obj.android.length > 0) {
+                $('.down').css('height', '90px');
+                var presenti = 0;
+                for (var i = 0; i < obj.android.length; ++i) {
+                    if (!localStorage.getItem(obj.android[i].id)) {
+                        presenti = i;
+                        break;
+                    }
                 }
+                return '<input type="checkbox" id="ckb" class="ckb" checked="checked">'
+				+ '<span>' + obj.android[presenti].name + '</span>'
+				+ '<a href="' + obj.android[presenti].url + '" id="gsdbtn" presentid="'
+				+ obj.android[presenti].id + '" class="gsdbtn">' + obj.android[presenti].btnvalue + '</a>'
+				+ '<p id="yybtext" class="yybtext">' + obj.android[presenti].info + '</p>';
             }
-            return '<input type="checkbox" id="ckb" class="ckb" checked="checked">'
-			+ '<span>' + obj.android[presenti].name + '</span>'
-            + '<a href="' + obj.android[presenti].url + '" id="gsdbtn" presentid="'
-            + obj.android[presenti].id + '" class="gsdbtn">' + obj.android[presenti].btnvalue + '</a>'
-            + '<p id="yybtext" class="yybtext">' + obj.android[presenti].info + '</p>';
         }
-        return '<a href="' + checkurl(aid, addr) + '" class="gsdbtn">' + obj.android[0].ubtnvalue + '</a>';
+        return '<a href="' + checkurl(aid, addr) + '" class="gsdbtn">本地下载</a>';
     }
 	// 判断url下载还是id下载
     function checkurl(aid, addr) {
@@ -47,7 +49,7 @@ define(function (require) {
         var gsdbtn = document.getElementById('gsdbtn');
         var presenti = 0;
         for (var i = 0; i < androidAD.length; ++i) {
-            if (!getCookie(androidAD[i].id)) {
+            if (!localStorage.getItem(androidAD[i].id)) {
                 presenti = i;
                 break;
             }
@@ -65,24 +67,6 @@ define(function (require) {
             gsdbtn.setAttribute('href', checkurl(aid, addr));
             gsdbtn.innerText = androidAD[presenti].ubtnvalue;
             yybtext.innerText = androidAD[presenti].uinfo;
-        }
-    }
-	// 设置cookie
-    function setCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        var expires = 'expires=' + d.toGMTString();
-        document.cookie = cname + '=' + cvalue + ';expires=' + expires;
-    }
-    // 获取cookie
-    function getCookie(cname) {
-        var name = cname + '=';
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i].trim();
-            if (c.indexOf(name) === 0) {
-                return c.substring(name.length);
-            }
         }
     }
 	// 数组中是否包含
@@ -114,13 +98,15 @@ define(function (require) {
             });
 			// 安卓点击了高速按钮，写cookie
             $('.gsdbtn').click(function () {
-                for (var i = 0; i < json.android.length; ++i) {
-                    var j = (i === json.android.length - 1) ? 0 : i + 1;
-                    if ($('.gsdbtn').attr('presentid') === json.android[i].id) {
-                        setCookie(json.android[j].id, '', 1);
-                    }
-					else {
-                        setCookie(json.android[j].id, 1, 1);
+                if (json.android.length > 0) {
+                    for (var i = 0; i < json.android.length; ++i) {
+                        var j = (i === json.android.length - 1) ? 0 : i + 1;
+                        if ($('.gsdbtn').attr('presentid') === json.android[i].id) {
+                            localStorage.removeItem(json.android[j].id);
+                        }
+                        else {
+                            localStorage.setItem(json.android[j].id, 1);
+                        }
                     }
                 }
             });

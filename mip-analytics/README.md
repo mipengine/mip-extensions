@@ -24,6 +24,7 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 {
     "hosts" : {
 		"test" : "https://m.baidu.com/div1?",
+		"disp" : "https://m.baidu.com/${disp}?",
 		"test2" : "https://m.baidu.com/_${div2}.gif?"
 	},
 
@@ -35,6 +36,7 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
                 "host" : "test",
                 "queryString" : {
 					"name" : "alan",
+					"mipstart" : "${MIPStart}",
 					"list": {
 						"age":"123"
 					}
@@ -51,8 +53,21 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
             }
         ],
 
-        "disp" : [],
-        "timer" : [
+        "disp" : [
+            {
+                "host" : "disp",
+				"queryString" : {
+					"MIPStart" : "${MIPStart}",
+					"MIPPageShow" : "${MIPPageShow}",
+					"MIPDomContentLoaded" : "${MIPDomContentLoaded}",
+					"MIPFirstScreen" : "${MIPFirstScreen}"
+				},
+                "vars" : {
+					"disp" : "displog"
+				}
+            }
+        ],
+        "timerxx" : [
 			{
 				"host" : "test2",
 				"queryString" : {
@@ -122,7 +137,13 @@ ___
 
 ##### setting.click.queryString
 
-说明：指定host的querystring,一级属性序列化为&链接的参数， 二级属性会被序列化为json字符串。 
+说明：指定host的querystring,一级属性序列化为&链接的参数， 二级对象属性会被序列化为json字符串。可以支持一些内建变量,目前支持速度信息，以下内建变量会返回时间戳。
+
+* "${MIPStart}" , 
+* "${MIPPageShow}", 
+* "${MIPDomContentLoaded}", 
+* "${MIPFirstScreen}"
+ 
 
 必选项：否
 
@@ -130,7 +151,7 @@ ___
 
 ##### setting.click.vars
 
-说明：指定host的插值变量的真实值，替换格式为${varName}
+说明：指定host的插值变量的真实值，替换格式为${varName}, 如果是内建变量可以不用指定值，会自行替换。
 
 必选项：否
 
@@ -183,4 +204,6 @@ ___
 * vars和queryString 是为了方便使用方重复利用变量并且保证灵活性，最好是vars用于host部分，queryString用于参数部分，或者只选择其一。重叠使用时需要注意图们之间是否有交叉。框架会先替换vars再拼接queryStirng
 
 * vars 只支持简单数据类型, 复合数据类型会返回空字符串
+
+* queryString 内建变量只支持一级参数替换，2级对象中有内建变量，会被直接序列化为字符串，不会替换。
 

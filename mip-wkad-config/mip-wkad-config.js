@@ -22,6 +22,15 @@ define(function (require) {
             };
         }
     };
+    var getCookie = function (name) {
+        var arr = [];
+        var reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
+        if( arr = document.cookie.match(reg) ) {
+            return arr[2];
+        }else {
+            return null;
+        }
+    };
     customElem.prototype.build = function () {
         var elem = this.element;
         var attr = $(elem).attr('aid');
@@ -72,7 +81,14 @@ define(function (require) {
                 break;
 
             case 'tongji':
-                loadJs(elem, 'https://stat.xywy.com/a.js');
+                loadJs(elem, 'https://stat.xywy.com/a.js', function(){
+                    var oIframe = document.createElement('iframe');
+                    var url = $(elem).attr('url');
+                    var clientId = getCookie('clientac');
+                    oIframe.style.display = 'none';
+                    oIframe.src = url + '?clientId=' + clientId + '&t=' + new Date().getTime();
+                    $(elem).append(oIframe);
+                });
                 break;
 
             case 'odm':

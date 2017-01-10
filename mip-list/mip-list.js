@@ -7,6 +7,7 @@ define(function (require) {
 
     var customElement = require('customElement').create();
     var templates = require('templates');
+    var fetchJsonp = require('fetch-jsonp');
 
     /**
      * [renderTemplate 获取模板]
@@ -45,9 +46,54 @@ define(function (require) {
     }
 
     /**
+     * [getFetchUrl url拼接函数]
+     *
+     * @param  {string} url    原url
+     * @param  {object} params 需要拼接的参数
+     * @return {string}        拼接后的url
+     */
+    function getFetchUrl(url, params) {
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                url += key + '=' + params[key] + '&';
+            }
+        }
+        return url.substring(0, url.length - 1);
+    }
+
+    /**
+     * [pushResult push结果函数]
+     *
+     * @param  {string} src ajax请求的url
+     */
+    function pushResult(src) {
+        var self = this;
+
+        if (self.isEnd) {
+            return;
+        }
+
+        self.button = document.querySelector('.mip-list-more');
+        self.button.innerHTML = '加载中...';
+
+        fetchJsonp(getFetchUrl(src, {pn: self.pn++}), {
+            jsonpCallback: 'callback'
+        }).then(function (res) {
+            return res.json();
+        }).then(function (data) {
+            renderTemplate.call(self, data);
+            self.button.innerHTML = '点击查看更多';
+            if (data.isEnd) {
+                self.isEnd = data.isEnd;
+                self.button.innerHTML = '已经加载完毕';
+            }
+        });
+    }
+
+    /**
      * 构造元素，只会运行一次
      */
-    customElement.prototype.createdCallback = function () {
+    customElement.prototype.firstInviewCallback = function () {
         var self = this;
         var element = this.element;
 
@@ -62,20 +108,30 @@ define(function (require) {
         // 同步配置数据
         if (element.hasAttribute('synchronous-data')) {
             var script = element.querySelector('script[type="application/json"]');
-            var data = JSON.parse(script.textContent.toString());
+            var data = script ? JSON.parse(script.textContent.toString()) : null;
             renderTemplate.call(this, data);
             return;
         }
 
         // 异步获取数据
-        var src = this.element.getAttribute('src') || '';
+        var src = element.getAttribute('src') || '';
+        var url = src;
         if (!src) {
             console.error('mip-list 的 src 属性不能为空');
         }
 
-        var fetchJsonp = require('fetch-jsonp');
-        fetchJsonp(src, {
-            jsonpCallback: 'cb'
+        // 有查看更多属性的情况
+        if (element.hasAttribute('has-more')) {
+            this.pn = element.getAttribute('pn') || 1;
+            url = getFetchUrl(url, {pn: this.pn++});
+
+            self.addEventAction('more', function () {
+                pushResult.call(self, src);
+            });
+        }
+        
+        fetchJsonp(url, {
+            jsonpCallback: 'callback'
         }).then(function (res) {
             return res.json();
         }).then(function (data) {

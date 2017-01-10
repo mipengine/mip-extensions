@@ -65,6 +65,19 @@ mip-list 列表组件，可以渲染同步数据，或者异步请求数据后�
 </mip-list>
 ```
 
+### 点击加载更多
+
+```html
+<mip-list template="mip-template-id" src="http://172.20.136.103:3000/list?" id="mip-list" has-more>
+    <template type="mip-mustache" id="mip-template-id">
+        <div>
+            <li>{{key}}: {{value}}</li>
+        </div>
+    </template>
+</mip-list>
+<div class="mip-list-more" on="tap:mip-list.more"> 点击查看更多 </div>
+```
+
 ## 属性
 
 ### src
@@ -83,8 +96,27 @@ mip-list 列表组件，可以渲染同步数据，或者异步请求数据后�
 类型：字符串    
 取值范围：无    
 单位：无    
-默认值：无    
+默认值：无 
+
+### id
+
+说明：mip-list 组件id    
+必选项：否    
+类型：字符串    
+取值范围：字符串    
+单位：无    
+默认值：无
+
+### has-more
+
+说明：是否有点击展开更多功能   
+必选项：否    
+类型：字符串    
+取值范围：无    
+单位：无    
+默认值：无 
 
 ## 注意事项
 
 - 异步请求的接口需要规范过callback 为 'cb'
+- 有has-more 属性时，mip-list标签，必须要有id属性，同时需要有点击按钮的dom节点，并且此节点有on属性，属性值为：tap:你的mip-list的id.more

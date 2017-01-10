@@ -46,22 +46,6 @@ define(function (require) {
     }
 
     /**
-     * [getFetchUrl url拼接函数]
-     *
-     * @param  {string} url    原url
-     * @param  {object} params 需要拼接的参数
-     * @return {string}        拼接后的url
-     */
-    function getFetchUrl(url, params) {
-        for (var key in params) {
-            if (params.hasOwnProperty(key)) {
-                url += key + '=' + params[key] + '&';
-            }
-        }
-        return url.substring(0, url.length - 1);
-    }
-
-    /**
      * [pushResult push结果函数]
      *
      * @param  {string} src ajax请求的url
@@ -76,7 +60,7 @@ define(function (require) {
         self.button = document.querySelector('.mip-list-more');
         self.button.innerHTML = '加载中...';
 
-        fetchJsonp(getFetchUrl(src, {pn: self.pn++}), {
+        fetchJsonp(src + '?pn=' + self.pn++, {
             jsonpCallback: 'callback'
         }).then(function (res) {
             return res.json();
@@ -97,19 +81,19 @@ define(function (require) {
         var self = this;
         var element = this.element;
 
-        this.container = document.createElement('div');
-        this.applyFillContent(this.container);
-        this.element.appendChild(this.container);
+        self.container = document.createElement('div');
+        self.applyFillContent(this.container);
+        self.element.appendChild(this.container);
 
-        if (!this.container.hasAttribute('role')) {
-            this.container.setAttribute('role', 'list');
+        if (!self.container.hasAttribute('role')) {
+            self.container.setAttribute('role', 'list');
         }
 
         // 同步配置数据
         if (element.hasAttribute('synchronous-data')) {
             var script = element.querySelector('script[type="application/json"]');
             var data = script ? JSON.parse(script.textContent.toString()) : null;
-            renderTemplate.call(this, data);
+            renderTemplate.call(self, data);
             return;
         }
 
@@ -122,14 +106,14 @@ define(function (require) {
 
         // 有查看更多属性的情况
         if (element.hasAttribute('has-more')) {
-            this.pn = element.getAttribute('pn') || 1;
-            url = getFetchUrl(url, {pn: this.pn++});
+            self.pn = element.getAttribute('pn') || 1;
+            url += '?pn=' + self.pn++;
 
             self.addEventAction('more', function () {
                 pushResult.call(self, src);
             });
         }
-        
+
         fetchJsonp(url, {
             jsonpCallback: 'callback'
         }).then(function (res) {

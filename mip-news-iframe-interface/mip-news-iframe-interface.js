@@ -89,10 +89,10 @@ define(function (require) {
             setDetailFont: function (data) {
                 var key = 'min_detail_font_size';
 
-                $('#' + key).remove();
+                $('.' + key).remove();
 
                 $(document.head).append([
-                    '<style type="text/css" id="' + key + '">',
+                    '<style type="text/css" class="' + key + '">',
                         'html { font-size:' + 100 * data.font + 'px !important; }',
                     '</style>'
                 ].join(''));

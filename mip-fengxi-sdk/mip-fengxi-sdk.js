@@ -8,6 +8,7 @@
 define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
+    var performance = require('performance');
 
     /**
      * 第一次进入可视区回调,只会执行一次，做懒加载，利于网页速度
@@ -16,9 +17,20 @@ define(function (require) {
         var $element = $(this.element);
         var production = $element.attr('production');
         var cert = $element.attr('cert');
+
+        // 记录页面加载时间
+        performance.on('update', function (timing) {
+            if (timing && timing.MIPStart && timing.MIPFirstScreen) {
+                window._agl.push(
+                    ['begin', timing.MIPStart],
+                    ['end', timing.MIPFirstScreen]
+                );
+            }
+        });
+
         // sdk配置
         window._agl = [];
-        _agl.push(
+        window._agl.push(
             ['production', production],
             ['cert', cert],
             ['start', true]

@@ -78,11 +78,18 @@ define(function (require) {
                 _czc.push(data);
             }
             else {
-                (function(data){         
-                    tagBox[index].addEventListener(eventtype, function () {
-                        _czc.push(data);
-                    }, false);
-                })(data)
+                tagBox[index].addEventListener(eventtype, function (event) {
+                    var tempData = event.target.getAttribute('data-stats-cnzz-obj');
+                    if (!tempData) {
+                        return;
+                    }
+                    var statusJson = JSON.parse(decodeURIComponent(tempData));
+                    if (!statusJson.data) {
+                        return;
+                    }
+                    var attrData = buildArry(statusJson.data);
+                    _czc.push(attrData);
+                }, false);
             }
         }
     }

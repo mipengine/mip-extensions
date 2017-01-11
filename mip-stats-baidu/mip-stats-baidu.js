@@ -88,11 +88,18 @@ define(function (require) {
                 _hmt.push(data);
             }
             else {
-                (function(data){         
-                    tagBox[index].addEventListener(eventtype, function () {
-                        _hmt.push(data);
-                    }, false);
-                })(data)
+                tagBox[index].addEventListener(eventtype, function (event) {
+                    var tempData = event.target.getAttribute('data-stats-baidu-obj');
+                    if (!tempData) {
+                        return;
+                    }
+                    var statusJson = JSON.parse(decodeURIComponent(tempData));
+                    if (!statusJson.data) {
+                        return;
+                    }
+                    var attrData = buildArry(statusJson.data);
+                    _hmt.push(attrData);
+                }, false);
             }
         }
     }

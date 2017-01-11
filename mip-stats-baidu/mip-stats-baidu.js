@@ -88,9 +88,11 @@ define(function (require) {
                 _hmt.push(data);
             }
             else {
-                tagBox[index].addEventListener(eventtype, function () {
-                    _hmt.push(data);
-                }, false);
+                (function(data){         
+                    tagBox[index].addEventListener(eventtype, function () {
+                        _hmt.push(data);
+                    }, false);
+                })(data)
             }
         }
     }

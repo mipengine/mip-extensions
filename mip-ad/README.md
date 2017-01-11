@@ -43,19 +43,13 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 ### 全网推荐广告
 
 ```html
-广告1
 <mip-ad 
     type="ad-qwang" 
     cpro_psid="u2619809" 
     cpro_pswidth="auto" 
     cpro_psheight="230">
-</mip-ad>广告2
-<mip-ad 
-    type="ad-qwang" 
-    cpro_psid="u2619809" 
-    cpro_pswidth="auto" 
-    cpro_psheight="230">
-</mip-ad>广告3
+</mip-ad>
+
 ```
 
 

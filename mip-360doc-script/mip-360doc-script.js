@@ -1,5 +1,5 @@
 ﻿/**
- * @file 360doc 自定义逻辑组件
+ * @file 360doc 自定 义逻辑组件
  * @author www.360doc.com技术部
  */
 define(function (require) {

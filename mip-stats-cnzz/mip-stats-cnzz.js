@@ -80,7 +80,7 @@ define(function (require) {
             else {
                 (function(data){         
                     tagBox[index].addEventListener(eventtype, function () {
-                        _hmt.push(data);
+                        _czc.push(data);
                     }, false);
                 })(data)
             }

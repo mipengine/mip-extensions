@@ -91,8 +91,14 @@ define(function (require) {
         this.element.setAttribute('role', 'tablist');
         this.currentState_ = getsession.call(this);
         this.sections_.map(function(index, section) {
-            const header = $(section.children.item(0));
-            const content = header.next(); 
+
+            var header = $(section).find('[accordionbtn]');
+            var content = $(section).find('[accordionbox]');
+
+            if (!header.length || !content.length) {
+                header = $(section.children.item(0));
+                content = header.next();
+            }
 
             header.addClass('mip-accordion-header');
             content.addClass('mip-accordion-content');
@@ -133,4 +139,3 @@ define(function (require) {
     return customElement;
 
 });
-

@@ -40,7 +40,7 @@
 ---|---
 [mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级] google 广告组件
 [mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
-[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)| 文字截断，查看更多组件
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)|[升级]文字截断，查看更多组件
 [mip-mz-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-appdownload)|[升级] 木子 app下载
 [mip-analytics](https://github.com/mipengine/mip-extensions/tree/master/mip-analytics)|[升级] 提供统计发送接口
 

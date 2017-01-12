@@ -1,5 +1,49 @@
 # 升级日志
 
+#### 2017.01.12
+
+> 核心代码上线
+
+    1. 轮播图支持图片popup
+    2. 轮播图【设置指示器可配】支持当前显示的图片和总图片的数量，例如右下角显示1/20
+    3. 轮播图支持滑动时的效果。 目前的是在滑动后显示下一张图片，没有拖动效果
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 百度统计组件支持事件追踪
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级] 折叠组件：支持默认展开节点
+
+#### 2017.01.10
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-analytics](https://github.com/mipengine/mip-extensions/tree/master/mip-analytics)|[升级] 提供统计发送接口
+[mip-fengxi-sdk](https://github.com/mipengine/mip-extensions/tree/master/mip-fengxi-sdk)|[升级] 凤悉sdk插件
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+[mip-news-iframe-interface](https://github.com/mipengine/mip-extensions/tree/master/mip-news-iframe-interface)|[升级] 资讯下iframe双向通信接口
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-mz-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-appdownload)|[升级] 木子 app下载
+
+#### 2017.01.09
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级] google 广告组件
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)| 文字截断，查看更多组件
+[mip-mz-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-appdownload)|[升级] 木子 app下载
+[mip-analytics](https://github.com/mipengine/mip-extensions/tree/master/mip-analytics)|[升级] 提供统计发送接口
+
 #### 2017.01.06
 
 > 核心代码上线

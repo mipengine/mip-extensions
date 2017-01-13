@@ -2,7 +2,7 @@
 * @file 脚本支持
 * @author  hejieye
 * @time  2016-12-13
-* @version 1.0.3
+* @version 1.0.4
 */
 define(function (require) {
 
@@ -18,7 +18,7 @@ define(function (require) {
                 if (e === null || e === 'null') {
                     // 跳转到登录页面
                     var thisHref = window.location.href;
-                    window.location.href = 'https://mipp.iask.cn/login?source=' + thisHref;
+                    window.location.href = 'http://m.iask.sina.com.cn/login?source=' + thisHref;
                 }
                 else {
                     ajaxPost(url, json, div, type);

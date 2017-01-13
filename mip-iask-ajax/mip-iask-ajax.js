@@ -12,7 +12,7 @@ define(function (require) {
         var json = $.parseJSON(params);
         if (isLogin) {
             // 验证是否登录
-            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?m=' + Math.random();
+            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {

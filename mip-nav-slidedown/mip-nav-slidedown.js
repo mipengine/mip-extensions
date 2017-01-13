@@ -22,7 +22,7 @@ define(function (require) {
     function render(me) {
         var $this = $(me);
         var id = $this.data('id');
-        var showBrand = $this.data('showbrand') !== '0';
+        var showBrand = $this.data('showbrand') !== 0;
         var brandHref = $this.data('brandhref') || '#';
         var $ulNav = $this.find('#' + id);
         var $container = $('<div></div>');

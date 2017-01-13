@@ -2,7 +2,7 @@
 * @file 脚本支持
 * @author  hejieye
 * @time  20170106
-* @version 1.3.0
+* @version 1.3.1
 */
 define(function (require) {
     var $ = require('zepto');
@@ -114,7 +114,7 @@ define(function (require) {
                     alert('请选择举报原因！');
                 }
                 else {
-                    var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
+                    var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
                     $.get(checkLoginUrl,
                     function (e) {
                         if (e == null || e === 'null') {
@@ -170,7 +170,7 @@ define(function (require) {
             var indexLogin = $('.index_login');
             var thisHref = window.location.href;
             var nickName = null;
-            var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
+            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {
@@ -244,8 +244,8 @@ define(function (require) {
         },
         // 好万家导流
         guideData: function () {
-            var urlf = 'http://m.iask.sina.com.cn/t/mipdf?t=fous';
-            var urlr = 'http://m.iask.sina.com.cn/t/mipdf?t=recom';
+            var urlf = 'https://mipp.iask.cn/t/mipdf?t=fous';
+            var urlr = 'https://mipp.iask.cn/t/mipdf?t=recom';
             try {
                 $.ajax({
                     type: 'GET',

@@ -1,34 +1,18 @@
 /**
- * discuz组件
- * 
+ * @file mip-discuz discuz组件
  * @author 104460712@qq.com
  * @version 1.1
  */
 
 define(function (require) {
-	var $ = require('jquery');
+    var $ = require('jquery');
     var customElement = require('customElement').create();
-	/**
-	 * [isJsonScriptTag 判断是否是定制化script标签]
-	 *
-	 * @param  {Object}  element 节点对象
-	 * @return {boolean}
-	 */
-	function isJsonScriptTag(element) {
-
-		return element.tagName === 'SCRIPT'
-				&& element.getAttribute('type')
-				&& element.getAttribute('type').toUpperCase() === 'APPLICATION/JSON';
-	}
-	
-
     customElement.prototype.build = function () {
-		
-		var element = this.element;
-		var initvar = element.getAttribute('initvar');
-		eval(initvar);
-        var script = element.querySelector('script') || null;
-        if (script && isJsonScriptTag(script)) {
+        var element = this.element;
+        var initvar = element.getAttribute('initvar');
+        eval(initvar);
+        var script = element.querySelector('script[type="application/json"]') || null;
+        if (script) {
             var obj = JSON.parse(script.textContent.toString());
             var funstr = '';
             for (var key in obj) {
@@ -36,405 +20,36 @@ define(function (require) {
                     funstr += key + '(' + obj[key] + ');';
                 }
             }
-			eval(funstr);
+            eval(funstr);
         }
-
-		
-		(function($, window, document, undefined) {
-			var dataPropertyName = "virtualMouseBindings",
-				touchTargetPropertyName = "virtualTouchID",
-				virtualEventNames = "vmouseover vmousedown vmousemove vmouseup vclick vmouseout vmousecancel".split(" "),
-				touchEventProps = "clientX clientY pageX pageY screenX screenY".split( " " ),
-				mouseHookProps = $.event.mouseHooks ? $.event.mouseHooks.props : [],
-				mouseEventProps = $.event.props.concat( mouseHookProps ),
-				activeDocHandlers = {},
-				resetTimerID = 0,
-				startX = 0,
-				startY = 0,
-				didScroll = false,
-				clickBlockList = [],
-				blockMouseTriggers = false,
-				blockTouchTriggers = false,
-				eventCaptureSupported = "addEventListener" in document,
-				$document = $(document),
-				nextTouchID = 1,
-				lastTouchID = 0, threshold;
-			$.vmouse = {
-				moveDistanceThreshold: 10,
-				clickDistanceThreshold: 10,
-				resetTimerDuration: 1500
-			};
-			function getNativeEvent(event) {
-				while( event && typeof event.originalEvent !== "undefined" ) {
-					event = event.originalEvent;
-				}
-				return event;
-			}
-			function createVirtualEvent(event, eventType) {
-				var t = event.type, oe, props, ne, prop, ct, touch, i, j, len;
-				event = $.Event(event);
-				event.type = eventType;
-				oe = event.originalEvent;
-				props = $.event.props;
-				if(t.search(/^(mouse|click)/) > -1 ) {
-					props = mouseEventProps;
-				}
-				if(oe) {
-					for(i = props.length, prop; i;) {
-						prop = props[ --i ];
-						event[ prop ] = oe[ prop ];
-					}
-				}
-				if(t.search(/mouse(down|up)|click/) > -1 && !event.which) {
-					event.which = 1;
-				}
-				if(t.search(/^touch/) !== -1) {
-					ne = getNativeEvent(oe);
-					t = ne.touches;
-					ct = ne.changedTouches;
-					touch = (t && t.length) ? t[0] : (( ct && ct.length) ? ct[0] : undefined);
-					if(touch) {
-						for(j = 0, len = touchEventProps.length; j < len; j++) {
-							prop = touchEventProps[j];
-							event[prop] = touch[prop];
-						}
-					}
-				}
-				return event;
-			}
-			function getVirtualBindingFlags(element) {
-				var flags = {},
-					b, k;
-				while(element) {
-					b = $.data(element, dataPropertyName);
-					for(k in b) {
-						if(b[k]) {
-							flags[k] = flags.hasVirtualBinding = true;
-						}
-					}
-					element = element.parentNode;
-				}
-				return flags;
-			}
-			function getClosestElementWithVirtualBinding(element, eventType) {
-				var b;
-				while(element) {
-					b = $.data( element, dataPropertyName );
-					if(b && (!eventType || b[eventType])) {
-						return element;
-					}
-					element = element.parentNode;
-				}
-				return null;
-			}
-			function enableTouchBindings() {
-				blockTouchTriggers = false;
-			}
-			function disableTouchBindings() {
-				blockTouchTriggers = true;
-			}
-			function enableMouseBindings() {
-				lastTouchID = 0;
-				clickBlockList.length = 0;
-				blockMouseTriggers = false;
-				disableTouchBindings();
-			}
-			function disableMouseBindings() {
-				enableTouchBindings();
-			}
-			function startResetTimer() {
-				clearResetTimer();
-				resetTimerID = setTimeout(function() {
-					resetTimerID = 0;
-					enableMouseBindings();
-				}, $.vmouse.resetTimerDuration);
-			}
-			function clearResetTimer() {
-				if(resetTimerID ) {
-					clearTimeout(resetTimerID);
-					resetTimerID = 0;
-				}
-			}
-			function triggerVirtualEvent(eventType, event, flags) {
-				var ve;
-				if((flags && flags[eventType]) ||
-							(!flags && getClosestElementWithVirtualBinding(event.target, eventType))) {
-					ve = createVirtualEvent(event, eventType);
-					$(event.target).trigger(ve);
-				}
-				return ve;
-			}
-			function mouseEventCallback(event) {
-				var touchID = $.data(event.target, touchTargetPropertyName);
-				if(!blockMouseTriggers && (!lastTouchID || lastTouchID !== touchID)) {
-					var ve = triggerVirtualEvent("v" + event.type, event);
-					if(ve) {
-						if(ve.isDefaultPrevented()) {
-							event.preventDefault();
-						}
-						if(ve.isPropagationStopped()) {
-							event.stopPropagation();
-						}
-						if(ve.isImmediatePropagationStopped()) {
-							event.stopImmediatePropagation();
-						}
-					}
-				}
-			}
-			function handleTouchStart(event) {
-				var touches = getNativeEvent(event).touches,
-					target, flags;
-				if(touches && touches.length === 1) {
-					target = event.target;
-					flags = getVirtualBindingFlags(target);
-					if(flags.hasVirtualBinding) {
-						lastTouchID = nextTouchID++;
-						$.data(target, touchTargetPropertyName, lastTouchID);
-						clearResetTimer();
-						disableMouseBindings();
-						didScroll = false;
-						var t = getNativeEvent(event).touches[0];
-						startX = t.pageX;
-						startY = t.pageY;
-						triggerVirtualEvent("vmouseover", event, flags);
-						triggerVirtualEvent("vmousedown", event, flags);
-					}
-				}
-			}
-			function handleScroll(event) {
-				if(blockTouchTriggers) {
-					return;
-				}
-				if(!didScroll) {
-					triggerVirtualEvent("vmousecancel", event, getVirtualBindingFlags(event.target));
-				}
-				didScroll = true;
-				startResetTimer();
-			}
-			function handleTouchMove(event) {
-				if(blockTouchTriggers) {
-					return;
-				}
-				var t = getNativeEvent(event).touches[0],
-					didCancel = didScroll,
-					moveThreshold = $.vmouse.moveDistanceThreshold,
-					flags = getVirtualBindingFlags(event.target);
-					didScroll = didScroll ||
-						(Math.abs(t.pageX - startX) > moveThreshold ||
-							Math.abs(t.pageY - startY) > moveThreshold);
-				if(didScroll && !didCancel) {
-					triggerVirtualEvent("vmousecancel", event, flags);
-				}
-				triggerVirtualEvent("vmousemove", event, flags);
-				startResetTimer();
-			}
-			function handleTouchEnd(event) {
-				if(blockTouchTriggers) {
-					return;
-				}
-				disableTouchBindings();
-				var flags = getVirtualBindingFlags(event.target), t;
-				triggerVirtualEvent("vmouseup", event, flags);
-				if(!didScroll) {
-					var ve = triggerVirtualEvent("vclick", event, flags);
-					if(ve && ve.isDefaultPrevented()) {
-						t = getNativeEvent(event).changedTouches[0];
-						clickBlockList.push({
-							touchID: lastTouchID,
-							x: t.clientX,
-							y: t.clientY
-						});
-						blockMouseTriggers = true;
-					}
-				}
-				triggerVirtualEvent("vmouseout", event, flags);
-				didScroll = false;
-				startResetTimer();
-			}
-			function hasVirtualBindings(ele) {
-				var bindings = $.data( ele, dataPropertyName ), k;
-				if(bindings) {
-					for(k in bindings) {
-						if(bindings[k]) {
-							return true;
-						}
-					}
-				}
-				return false;
-			}
-			function dummyMouseHandler() {}
-
-			function getSpecialEventObject(eventType) {
-				var realType = eventType.substr(1);
-				return {
-					setup: function(data, namespace) {
-						if(!hasVirtualBindings(this)) {
-							$.data(this, dataPropertyName, {});
-						}
-						var bindings = $.data(this, dataPropertyName);
-						bindings[eventType] = true;
-						activeDocHandlers[eventType] = (activeDocHandlers[eventType] || 0) + 1;
-						if(activeDocHandlers[eventType] === 1) {
-							$document.bind(realType, mouseEventCallback);
-						}
-						$(this).bind(realType, dummyMouseHandler);
-						if(eventCaptureSupported) {
-							activeDocHandlers["touchstart"] = (activeDocHandlers["touchstart"] || 0) + 1;
-							if(activeDocHandlers["touchstart"] === 1) {
-								$document.bind("touchstart", handleTouchStart)
-									.bind("touchend", handleTouchEnd)
-									.bind("touchmove", handleTouchMove)
-									.bind("scroll", handleScroll);
-							}
-						}
-					},
-					teardown: function(data, namespace) {
-						--activeDocHandlers[eventType];
-						if(!activeDocHandlers[eventType]) {
-							$document.unbind(realType, mouseEventCallback);
-						}
-						if(eventCaptureSupported) {
-							--activeDocHandlers["touchstart"];
-							if(!activeDocHandlers["touchstart"]) {
-								$document.unbind("touchstart", handleTouchStart)
-									.unbind("touchmove", handleTouchMove)
-									.unbind("touchend", handleTouchEnd)
-									.unbind("scroll", handleScroll);
-							}
-						}
-						var $this = $(this),
-							bindings = $.data(this, dataPropertyName);
-						if(bindings) {
-							bindings[eventType] = false;
-						}
-						$this.unbind(realType, dummyMouseHandler);
-						if(!hasVirtualBindings(this)) {
-							$this.removeData(dataPropertyName);
-						}
-					}
-				};
-			}
-			for(var i = 0; i < virtualEventNames.length; i++) {
-				$.event.special[virtualEventNames[i]] = getSpecialEventObject(virtualEventNames[i]);
-			}
-			if(eventCaptureSupported) {
-				document.addEventListener("click", function(e) {
-					var cnt = clickBlockList.length,
-						target = e.target,
-						x, y, ele, i, o, touchID;
-					if(cnt) {
-						x = e.clientX;
-						y = e.clientY;
-						threshold = $.vmouse.clickDistanceThreshold;
-						ele = target;
-						while(ele) {
-							for(i = 0; i < cnt; i++) {
-								o = clickBlockList[i];
-								touchID = 0;
-								if((ele === target && Math.abs(o.x - x) < threshold && Math.abs(o.y - y) < threshold) ||
-											$.data(ele, touchTargetPropertyName) === o.touchID) {
-									e.preventDefault();
-									e.stopPropagation();
-									return;
-								}
-							}
-							ele = ele.parentNode;
-						}
-					}
-				}, true);
-			}
-		})(jQuery, window, document);
-
-		(function($, window, undefined) {
-			function triggercustomevent(obj, eventtype, event) {
-				var origtype = event.type;
-				event.type = eventtype;
-				$.event.handle.call(obj, event);
-				event.type = origtype;
-			}
-
-			$.event.special.tap = {
-				setup : function() {
-					var thisobj = this;
-					var obj = $(thisobj);
-					obj.on('vmousedown', function(e) {
-						if(e.which && e.which !== 1) {
-							return false;
-						}
-						var origtarget = e.target;
-						var origevent = e.originalEvent;
-						var timer;
-
-						function cleartaptimer() {
-							clearTimeout(timer);
-						}
-						function cleartaphandlers() {
-							cleartaptimer();
-							obj.off('vclick', clickhandler)
-								.off('vmouseup', cleartaptimer);
-							$(document).off('vmousecancel', cleartaphandlers);
-						}
-
-						function clickhandler(e) {
-							cleartaphandlers();
-							if(origtarget === e.target) {
-								triggercustomevent(thisobj, 'tap', e);
-							}
-							return false;
-						}
-
-						obj.on('vmouseup', cleartaptimer)
-							.on('vclick', clickhandler)
-						$(document).on('touchcancel', cleartaphandlers);
-
-						timer = setTimeout(function() {
-							triggercustomevent(thisobj, 'taphold', $.Event('taphold', {target:origtarget}));
-						}, 750);
-						return false;
-					});
-				}
-			};
-			$.each(('tap').split(' '), function(index, name) {
-				$.fn[name] = function(fn) {
-					return this.on(name, fn);
-				};
-			});
-
-		})(jQuery, this);
-
-		var page = {
-			converthtml : function() {
-				var prevpage = $('div.pg .prev').prop('href');
-				var nextpage = $('div.pg .nxt').prop('href');
-				var lastpage = $('div.pg label span').text().replace(/[^\d]/g, '') || 0;
-				var curpage = $('div.pg input').val() || 1;
-
-				if(!lastpage) {
-					prevpage = $('div.pg .pgb a').prop('href');
-				}
-
-				var prevpagehref = nextpagehref = '';
-				if(prevpage == undefined) {
-					prevpagehref = '#" class="grey';
-				} else {
-					prevpagehref = prevpage;
-				}
-				if(nextpage == undefined) {
-					nextpagehref = '#" class="grey';
-				} else {
-					nextpagehref = nextpage;
-				}
-
-				var selector = '';
-				if(lastpage) {
-					selector += '<a id="select_a" style="margin:0 2px;padding:1px 0 0 0;border:0;display:inline-block;position:relative;width:100px;height:31px;line-height:27px;background:url('+STATICURL+'/image/mobile/images/pic_select.png) no-repeat;text-align:left;text-indent:20px;">';
-					//selector += '<select id="dumppage" style="position:absolute;left:0;top:0;height:27px;opacity:0;width:100px;">';
-					//for(var i=1; i<=lastpage; i++) {
-						//selector += '<option value="'+i+'" '+ (i == curpage ? 'selected' : '') +'>第'+i+'页</option>';
-					//}
-					//selector += '</select>';
+        var page = {
+            converthtml: function () {
+                var prevpage = $('div.pg .prev').prop('href');
+                var nextpage = $('div.pg .nxt').prop('href');
+                var lastpage = $('div.pg label span').text().replace(/[^\d]/g, '') || 0;
+                var curpage = $('div.pg input').val() || 1;
+                if (!lastpage) {
+                    prevpage = $('div.pg .pgb a').prop('href');
+                }
+                var prevpagehref = '';
+                var nextpagehref = '';
+                if (prevpage === undefined) {
+                    prevpagehref = '#" class="grey';
+                }
+				else {
+                    prevpagehref = prevpage;
+                }
+                if (nextpage === undefined) {
+                    nextpagehref = '#" class="grey';
+                }
+                else {
+                    nextpagehref = nextpage;
+                }
+                var selector = '';
+                if (lastpage) {
+                    selector += '<a id="select_a" style="margin:0 2px;padding:1px 0 0 0;border:0;display:inline-block;position:relative;width:100px;height:31px;line-height:27px;background:url('+STATICURL+'/image/mobile/images/pic_select.png) no-repeat;text-align:left;text-indent:20px;">';
 					selector += '<span>第'+curpage+'页</span>';
-				}
+                }
 
 				$('div.pg').removeClass('pg').addClass('page').html('<a href="'+ prevpagehref +'" target="_blank">上一页</a>'+ selector +'<a href="'+ nextpagehref +'" target="_blank">下一页</a>');
 				$('#dumppage').on('change', function() {
@@ -981,290 +596,277 @@ define(function (require) {
 
 		
 		//showmessage.htm 几秒跳转
-		function url_forward(url,sec){
+		function urlforward(url,sec){
 			setTimeout(function() {
 				window.location.href = url;
 			}, sec);
 		}
+        
+		// discuz.htm 客户端跳转
+        function getvisitclienthref() {
+            var visitclienthref = '';
+            if (ios) {
+                visitclienthref = 'https://itunes.apple.com/cn/app/zhang-shang-lun-tan/id489399408?mt=8';
+			} else if (andriod) {
+                visitclienthref = 'http://www.discuz.net/mobile.php?platform=android';
+            }
+            return visitclienthref;
+        }
 
-		//discuz.htm 客户端跳转
-		function getvisitclienthref() {
-			var visitclienthref = '';
-			if(ios) {
-				visitclienthref = 'https://itunes.apple.com/cn/app/zhang-shang-lun-tan/id489399408?mt=8';
-			} else if(andriod) {
-				visitclienthref = 'http://www.discuz.net/mobile.php?platform=android';
-			}
-			return visitclienthref;
-		}
-		//discuz.htm 客户端跳转
-		function getvisitclienthref1(visitclient){
-			var visitclienthref = getvisitclienthref();
-			if(visitclienthref) {
-				$('#visitclientid').attr('href', visitclienthref);
-			} else {
-				window.location.href = visitclient;
-			}	
-		}
-		//discuz.htm 客户端跳转
-		function getvisitclienthref2(){
-			var visitclienthref = getvisitclienthref();
-			if(visitclienthref) {
-				$('#visitclientid').attr('href', visitclienthref);
-				$('.visitclienttip').css('display', 'block');
-			}
-		}
+		// discuz.htm 客户端跳转
+        function getvisitclienthref1(visitclient) {
+            var visitclienthref = getvisitclienthref();
+            if (visitclienthref) {
+                $('#visitclientid').attr('href', visitclienthref);
+            } else {
+                window.location.href = visitclient;
+            }
+        }
 
-		//seccheck.htm 刷新验证码
-		function seccheck(sechash){
-			(function() {
-				$('.seccodeimg').on('click', function() {
-					$('#seccodeverify_'+sechash).attr('value', '');
-					var tmprandom = 'S' + Math.floor(Math.random() * 1000);
-					$('.sechash').attr('value', tmprandom);
-					$(this).attr('src', 'misc.php?mod=seccode&update={$ran}&idhash='+ tmprandom +'&mobile=2');
-				});
-			})();
-		}
+		// discuz.htm 客户端跳转
+        function getvisitclienthref2() {
+            var visitclienthref = getvisitclienthref();
+            if (visitclienthref) {
+                $('#visitclientid').attr('href', visitclienthref);
+                $('.visitclienttip').css('display', 'block');
+            }
+        }
 
-		//forumdisplay_fastpost.htm
-		function fastpostform(text,type){
-			var form = $('#fastpostform');
-			if(type!='send_reply_fast'){
-				$('#fastpostmessage').on('focus', function() {
-					if(type=='nologin'){
-						popup.open(text, 'confirm', 'member.php?mod=logging&action=login');
-					}
-					else{
-						popup.open(text, 'alert');
-					}
-					this.blur();
-				});
-			}
+		// seccheck.htm 刷新验证码
+        function seccheck(sechash) {
+            (function () {
+                $('.seccodeimg').on('click', function () {
+                    $('#seccodeverify_' + sechash).attr('value', '');
+                    var tmprandom = 'S' + Math.floor(Math.random() * 1000);
+                    $('.sechash').attr('value', tmprandom);
+                    $(this).attr('src', 'misc.php?mod=seccode&update={$ran}&idhash=' + tmprandom + '&mobile=2');
+                });
+            })();
+        }
+
+		// forumdisplay_fastpost.htm
+        function fastpostform(text, type) {
+            var form = $('#fastpostform');
+            if (type !== 'send_reply_fast') {
+                $('#fastpostmessage').on('focus', function () {
+                    if (type === 'nologin') {
+                        popup.open(text, 'confirm', 'member.php?mod=logging&action=login');
+                    }
+                    else {
+                        popup.open(text, 'alert');
+                    }
+                    this.blur();
+                });
+            }
 			else {
-				$('#fastpostmessage').on('focus', function() {
-					var obj = $(this);
-					if(obj.attr('color') == 'gray') {
-						obj.attr('value', '');
-						obj.removeClass('grey');
-						obj.attr('color', 'black');
-						$('#fastpostsubmitline').css('display', 'block');
-					}
-				})
-				.on('blur', function() {
-					var obj = $(this);
-					if(obj.attr('value') == '') {
-						obj.addClass('grey');
-						obj.attr('value', text);
-						obj.attr('color', 'gray');
-					}
-				});
-			}
-			
-			$('#fastpostsubmit').on('click', function() {
-				var msgobj = $('#fastpostmessage');
-				if(msgobj.val() == text) {
-					msgobj.attr('value', '');
-				}
-				$.ajax({
-					type:'POST',
-					url:$('#fastpostform form').attr('action') + '&handlekey=fastpost&loc=1&inajax=1',
-					data:$('#fastpostform form').serialize(),
-					dataType:'xml'
-				})
-				.success(function(s) {
-					evalscript(s.lastChild.firstChild.nodeValue);
-				})
-				.error(function() {
-					window.location.href = obj.attr('href');
-					popup.close();
-				});
-				return false;
-			});
-		
-			$('#replyid').on('click', function() {
-				$(document).scrollTop($(document).height());
-				$('#fastpostmessage')[0].focus();
-			});
-		}
+                $('#fastpostmessage').on('focus', function () {
+                    var obj = $(this);
+                    if (obj.attr('color') === 'gray') {
+                        obj.attr('value', '');
+                        obj.removeClass('grey');
+                        obj.attr('color', 'black');
+                        $('#fastpostsubmitline').css('display', 'block');
+                    }
+                })
+                .on('blur', function () {
+                    var obj = $(this);
+                    if (obj.attr('value') === '') {
+                        obj.addClass('grey');
+                        obj.attr('value', text);
+                        obj.attr('color', 'gray');
+                    }
+                });
+            }
+            $('#fastpostsubmit').on('click', function () {
+                var msgobj = $('#fastpostmessage');
+                if (msgobj.val() === text) {
+                    msgobj.attr('value', '');
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: $('#fastpostform form').attr('action') + '&handlekey=fastpost&loc=1&inajax=1',
+                    data: $('#fastpostform form').serialize(),
+                    dataType: 'xml'
+                })
+                .success(function (s) {
+                    evalscript(s.lastChild.firstChild.nodeValue);
+                })
+                .error(function () {
+                    window.location.href = obj.attr('href');
+                    popup.close();
+                });
+                return false;
+            });
+            $('#replyid').on('click', function () {
+                $(document).scrollTop($(document).height());
+                $('#fastpostmessage')[0].focus();
+            });
+        }
+        function succeedhandle_fastpost(locationhref, message, param) {
+            var pid = param['pid'];
+            var tid = param['tid'];
+            if (pid) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'forum.php?mod=viewthread&tid=' + tid + '&viewpid=' + pid + '&mobile=2',
+                    dataType: 'xml'
+                })
+                .success(function (s) {
+                    $('#post_new').append(s.lastChild.firstChild.nodeValue);
+                })
+                .error(function () {
+                    window.location.href = 'forum.php?mod=viewthread&tid=' + tid;
+                    popup.close();
+                });
+            } else {
+                if (!message) {
+                    message = '{lang postreplyneedmod}';
+                }
+                popup.open(message, 'alert');
+            }
+            $('#fastpostmessage').attr('value', '');
+            if (param['sechash']) {
+                $('.seccodeimg').click();
+            }
+        }
+        function errorhandle_fastpost(message, param) {
+            popup.open(message, 'alert');
+        }
 
-		function succeedhandle_fastpost(locationhref, message, param) {
-			var pid = param['pid'];
-			var tid = param['tid'];
-			if(pid) {
-				$.ajax({
-					type:'POST',
-					url:'forum.php?mod=viewthread&tid=' + tid + '&viewpid=' + pid + '&mobile=2',
-					dataType:'xml'
-				})
-				.success(function(s) {
-					$('#post_new').append(s.lastChild.firstChild.nodeValue);
-				})
-				.error(function() {
-					window.location.href = 'forum.php?mod=viewthread&tid=' + tid;
-					popup.close();
-				});
-			} else {
-				if(!message) {
-					message = '{lang postreplyneedmod}';
-				}
-				popup.open(message, 'alert');
-			}
-			$('#fastpostmessage').attr('value', '');
-			if(param['sechash']) {
-				$('.seccodeimg').click();
-			}
-		}
+        // viewthread.htm
+        function fastpostformsubmit(FORMHASH) {
+            $('.favbtn').on('click', function () {
+                var obj = $(this);
+                $.ajax({
+                    type: 'POST',
+                    url: obj.attr('href') + '&handlekey=favbtn&inajax=1',
+                    data: {'favoritesubmit': 'true', 'formhash': FORMHASH},
+                    dataType: 'xml',
+                })
+                .success(function (s) {
+                    popup.open(s.lastChild.firstChild.nodeValue);
+                    evalscript(s.lastChild.firstChild.nodeValue);
+                })
+                .error(function () {
+                    window.location.href = obj.attr('href');
+                    popup.close();
+                });
+                return false;
+            });
+        }
 
-		function errorhandle_fastpost(message, param) {
-			popup.open(message, 'alert');
-		}
+		// discuz.htm
+		function subforum(type) {
+            if (type === 'show') {
+                $('.sub_forum').css('display', 'block');
+            }
+			else {
+                $('.sub_forum').css('display', 'none');
+            }
+            $('.subforumshow').on('click', function () {
+                var obj = $(this);
+                var subobj = $(obj.attr('href'));
+                if (subobj.css('display') === 'none') {
+                    subobj.css('display', 'block');
+                    obj.find('img').attr('src', STATICURL + 'image/mobile/images/collapsed_yes.png');
+                }
+				else {
+                    subobj.css('display', 'none');
+                    obj.find('img').attr('src', STATICURL + 'image/mobile/images/collapsed_no.png');
+                }
+            });
+        }
 
-		//viewthread.htm
-		function fastpostformsubmit(FORMHASH){
-			$('.favbtn').on('click', function() {
-				var obj = $(this);
-				$.ajax({
-					type:'POST',
-					url:obj.attr('href') + '&handlekey=favbtn&inajax=1',
-					data:{'favoritesubmit':'true', 'formhash':FORMHASH},
-					dataType:'xml',
-				})
-				.success(function(s) {
-					popup.open(s.lastChild.firstChild.nodeValue);
-					evalscript(s.lastChild.firstChild.nodeValue);
-				})
-				.error(function() {
-					window.location.href = obj.attr('href');
-					popup.close();
-				});
-				return false;
-			});	
-		}
+		// post.htm
+        function checkpostvalue(needsubject, needmessage, newthread) {
+            if (newthread) {
+                $('#needsubject').on('keyup input', function () {
+                    var obj = $(this);
+                    if (obj.val()) {
+                        needsubject = true;
+                        if (needmessage) {
+                            $('.btn_pn').removeClass('btn_pn_grey').addClass('btn_pn_blue');
+                            $('.btn_pn').attr('disable', 'false');
+                        }
+                    }
+					else {
+                        needsubject = false;
+                        $('.btn_pn').removeClass('btn_pn_blue').addClass('btn_pn_grey');
+                        $('.btn_pn').attr('disable', 'true');
+                    }
+                });
+            }
+            $('#needmessage').on('keyup input', function () {
+                var obj = $(this);
+                if (obj.val()) {
+                    needmessage = true;
+                    if (needsubject) {
+                        $('.btn_pn').removeClass('btn_pn_grey').addClass('btn_pn_blue');
+                        $('.btn_pn').attr('disable', 'false');
+                    }
+                }
+                else {
+                    needmessage = false;
+                    $('.btn_pn').removeClass('btn_pn_blue').addClass('btn_pn_grey');
+                    $('.btn_pn').attr('disable', 'true');
+                }
+            });
+            $('#needmessage').on('scroll', function () {
+                var obj = $(this);
+                if (obj.scrollTop() > 0) {
+                    obj.attr('rows', parseInt(obj.attr('rows'), 0) + 2);
+                }
+            }).scrollTop($(document).height());
+        }
 
-		//discuz.htm
-		function sub_forum(type){
-			
-			(function() {
-				if(type=='show'){
-					$('.sub_forum').css('display', 'block');
-				}
-				else{
-					$('.sub_forum').css('display', 'none');
-				}
-				$('.subforumshow').on('click', function() {
-					var obj = $(this);
-					var subobj = $(obj.attr('href'));
-					if(subobj.css('display') == 'none') {
-						subobj.css('display', 'block');
-						obj.find('img').attr('src', STATICURL+'image/mobile/images/collapsed_yes.png');
-					} else {
-						subobj.css('display', 'none');
-						obj.find('img').attr('src', STATICURL+'image/mobile/images/collapsed_no.png');
-					}
-				});
-			 })();
-		}
-
-		//post.htm
-		function checkpostvalue(needsubject,needmessage,newthread){
-
-			(function() {
-				if(newthread){
-					$('#needsubject').on('keyup input', function() {
-						var obj = $(this);
-						if(obj.val()) {
-							needsubject = true;
-							if(needmessage == true) {
-								$('.btn_pn').removeClass('btn_pn_grey').addClass('btn_pn_blue');
-								$('.btn_pn').attr('disable', 'false');
-							}
-						} else {
-							needsubject = false;
-							$('.btn_pn').removeClass('btn_pn_blue').addClass('btn_pn_grey');
-							$('.btn_pn').attr('disable', 'true');
-						}
-					});
-				}
-				$('#needmessage').on('keyup input', function() {
-					var obj = $(this);
-					if(obj.val()) {
-						needmessage = true;
-						if(needsubject == true) {
-							$('.btn_pn').removeClass('btn_pn_grey').addClass('btn_pn_blue');
-							$('.btn_pn').attr('disable', 'false');
-						}
-					} else {
-						needmessage = false;
-						$('.btn_pn').removeClass('btn_pn_blue').addClass('btn_pn_grey');
-						$('.btn_pn').attr('disable', 'true');
-					}
-				});
-
-				$('#needmessage').on('scroll', function() {
-					var obj = $(this);
-					if(obj.scrollTop() > 0) {
-						obj.attr('rows', parseInt(obj.attr('rows'))+2);
-					}
-				}).scrollTop($(document).height());
-			 })();	
-		}
-
-		//post.htm
-		function postsubmitnewthread(geo,networkerror_text){
-			if(geo){
-				geo.getcurrentposition();
-			}
-			$('#postsubmit').on('click', function() {
-				var obj = $(this);
-				if(obj.attr('disable') == 'true') {
-					return false;
-				}
-
-				obj.attr('disable', 'true').removeClass('btn_pn_blue').addClass('btn_pn_grey');
-				popup.open('<img src="' + IMGDIR + '/imageloading.gif">');
-
-				var postlocation = '';
-				if(geo.errmsg === '' && geo.loc) {
-					postlocation = geo.longitude + '|' + geo.latitude + '|' + geo.loc;
-				}
-				
-				$.ajax({
-					type:'POST',
-					url:$('#postform form').attr('action') + '&geoloc=' + postlocation + '&handlekey=postform&inajax=1',
-					data:$('#postform form').serialize(),
-					dataType:'xml'
-				})
-				.success(function(s) {
-					popup.open(s.lastChild.firstChild.nodeValue);
-				})
-				.error(function() {
-					popup.open(networkerror_text, 'alert');
-				});
-				return false;
-			});
-
-			$(document).on('click', '.del', function() {
-				var obj = $(this);
-				$.ajax({
-					type:'GET',
-					url:SITEURL+'forum.php?mod=ajax&action=deleteattach&inajax=yes&aids[]=' + obj.attr('aid'),
-				})
-				.success(function(s) {
-					obj.parent().remove();
-				})
-				.error(function() {
-					popup.open('networkerror_text', 'alert');
-				});
-				return false;
-			});	
-		}
-		
-		$(document).on('click', '.popupclosebtn', function() {
-			popup.close();
-		});
-			
+		// post.htm
+        function postsubmitnewthread(geo, networkerror_text) {
+            if (geo) {
+                geo.getcurrentposition();
+            }
+            $('#postsubmit').on('click', function () {
+                var obj = $(this);
+                if (obj.attr('disable') === 'true') {
+                    return false;
+                }
+                obj.attr('disable', 'true').removeClass('btn_pn_blue').addClass('btn_pn_grey');
+                popup.open('<img src="' + IMGDIR + '/imageloading.gif">');
+                var postlocation = '';
+                if (geo.errmsg === '' && geo.loc) {
+                    postlocation = geo.longitude + '|' + geo.latitude + '|' + geo.loc;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: $('#postform form').attr('action') + '&geoloc=' + postlocation + '&handlekey=postform&inajax=1',
+                    data: $('#postform form').serialize(),
+                    dataType: 'xml'
+                })
+                .success(function (s) {
+                    popup.open(s.lastChild.firstChild.nodeValue);
+                })
+                .error(function () {
+                    popup.open(networkerror_text, 'alert');
+                });
+                return false;
+            });
+            $(document).on('click', '.del', function () {
+                var obj = $(this);
+                $.ajax({
+                    type: 'GET',
+                    url: SITEURL + 'forum.php?mod=ajax&action=deleteattach&inajax=yes&aids[]=' + obj.attr('aid'),
+                })
+                .success(function (s) {
+                    obj.parent().remove();
+                })
+                .error(function () {
+                    popup.open('networkerror_text', 'alert');
+                });
+                return false;
+            });	
+        }
+        $(document).on('click', '.popupclosebtn', function () {
+            popup.close();
+        });
     };
     return customElement;
 });
-

@@ -53,7 +53,7 @@
 ## logo
 
 ```html
-<input type="hidden" name="logo" data-type="image" value="//miplocal.dev/uploadfile/2015/0929/20150929043952688.jpg">
+<input type="hidden" name="logo" data-layout="responsive" data-width="640" data-height="70" value="//miplocal.dev/uploadfile/2015/0929/20150929043952688.jpg">
 ```
 ### name
 说明：头部logo显示  

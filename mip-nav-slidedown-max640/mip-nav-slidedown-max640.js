@@ -31,7 +31,11 @@ define(function (require) {
         var val = $logo.val();
         var logo;
         if (type === 'image' || !type) {
-            logo = '<mip-img layout="responsive" width="640" height="70" src="'+ val +'"></mip-img>';
+            // layout width height
+            var layout = $logo.data('layout');
+            var width = $logo.data('width');
+            var height = $logo.data('height');
+            logo = '<mip-img layout="'+ layout +'" width="'+ width +'" height="'+ height +'" src="'+ val +'"></mip-img>';
         } else {
             logo = val ? val : '';
         }

@@ -1,7 +1,7 @@
 {
-    "name": "mip-discuz",
+    "name": "mip-discuz-post",
     "version": "1.0.0",
-    "description": "discuz功能组件",
+    "description": "discuz 发布功能组件",
     "contributors": [
         {
             "name": "pifire",

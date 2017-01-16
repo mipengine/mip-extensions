@@ -18,10 +18,10 @@ define(function (require) {
         scriptTag.setAttribute('charset', 'UTF-8');
         if (width < criWidth) {
             scriptTag.id = 'changyan_mobile_js';
-            scriptTag.setAttribute('src', 'http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf);
+            scriptTag.setAttribute('src', 'https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf);
         }
         else {
-            scriptTag.src = 'http://changyan.sohu.com/upload/changyan.js?client_id=' + appid + '&conf=' + conf;
+            scriptTag.src = 'https://changyan.sohu.com/upload/changyan.js?client_id=' + appid + '&conf=' + conf;
         }
         ele.appendChild(scriptTag);
     };

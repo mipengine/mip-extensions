@@ -1,0 +1,14 @@
+{
+    "name": "mip-btn-toggle",
+    "version": "1.0.0",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "HF author",
+            "email": "annie163_xaq@yeah.net"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

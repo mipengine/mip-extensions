@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html mip>
+<head>
+    <meta charset="UTF-8">
+    <title>下载188app下载页</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no' name='viewport'>
+    <link rel="canonical" href="http://xiazai188.com/load.html">
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+    <style mip-custom>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            border: none;
+        }
+        input,
+        select,
+        textarea {
+            outline: none;
+            border: none;
+            background: none;
+        }
+        textarea {
+            resize: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+        body {
+            font-size: 14px;
+            font-family: "Microsoft YaHei", "微软雅黑";
+            background: #fff;
+            overflow-x: hidden;
+        }
+        ul,
+        ol {
+            margin-bottom: 0;
+        }
+        h3 {
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        p {
+            margin: 0;
+        }
+        .littlepic {
+            width: 80px;
+            height: 80px;
+        }
+        .height {
+            height: auto;
+        }
+        .img_size {
+            width: 65px;
+            height: 65px;
+        }
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 999;
+            overflow: hidden;
+        }
+        .header_con {
+            background: #3498db;
+            z-index: 200;
+            width: 100%;
+            height: 50px;
+            overflow: hidden;
+        }
+        .logo {
+            float: left;
+            width: 76%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo img {
+            width: 126px;
+            height: 45px;
+            margin: 0 3%;
+            display: block;
+            overflow: hidden;
+        }
+        .menu {
+            float: left;
+            width: 12%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu i {
+            background: url("images/all.png") -27px -38px no-repeat;
+            width: 28px;
+            height: 20px;
+            display: block;
+            overflow: hidden;
+            text-indent:-999px;
+        }
+        .header_con .on {
+            background: #186ba3;
+        }
+        .search {
+            width: 12%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            float: right;
+        }
+        .search i {
+            background: url("images/all.png") 0 -38px no-repeat;
+            display: block;
+            overflow: hidden;
+            width: 28px;
+            height: 28px;
+        }
+        .main_nav {
+            width: 100%;
+            background: #fff;
+            overflow: hidden;
+            position: fixed;
+            z-index: 999;
+            top: 50px;
+            left: 0px;
+        }
+        .main_nav li {
+            height: 40px;
+            line-height: 40px;
+            width: 20%;
+            float: left;
+            text-align: center;
+        }
+        .main_nav li a {
+            color: #333333;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .main_nav li a:hover {
+            color: #3498db;
+        }
+        .main_nav .active a {
+            color: #3498db;
+        }
+        .margin-top{
+            margin-top:50px;
+        }
+        .sub_nav {
+            width: 100%;
+            height: auto;
+            padding: 10px 0;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sub_nav li {
+            float: left;
+            width: 20%;
+            padding: 5px 0;
+        }
+        .sub_nav li .pic {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .sub_nav li .pic img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        .sub_nav li .pic .word {
+            font-size: 14px;
+            color: #333333;
+            padding: 5px 0;
+            text-align: center;
+            display: block;
+        }
+        .sub_nav li .pic:hover .word {
+            color: #3498db;
+        }
+        .border_link {
+            width: 100%;
+            border: solid 1px #e8e8e8;
+            overflow: hidden;
+            height: auto;
+        }
+        .border_link_w {
+            width: 100%;
+            border: solid 5px #e8e8e8;
+        }
+        .new_game {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background: #fff;
+            padding: 5px 0;
+        }
+        .new_game_title {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            padding: 0px 3% 0;
+        }
+        .new_game_title b {
+            font-size: 16px;
+            background: url("images/game.png") left center no-repeat;
+            padding-left: 30px;
+        }
+        .new_game_title .more {
+            float: right;
+            color: #999999;
+            font-size: 12px;
+        }
+        .new_game_con {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+        .new_game_con li {
+            width: 25%;
+            height: 142px;
+            float: left;
+            padding: 8px 0;
+        }
+        .con_list5 li{
+            width: 20%;
+        }
+        .new_game_con li .pic {
+                width: 65px;
+                display: block;
+                overflow: hidden;
+                margin: 0 auto;
+            }
+        .con_list5 li .pic {
+            width: 62px;
+        }
+        .new_game_con li .pic img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        .con_list5 li .pic img {
+            width: 62px;
+            height: 62px;
+        }
+        .new_game_con li .pic .word {
+            font-size: 14px;
+            color: #333333;
+            padding: 5px 0;
+            text-align: center;
+            display: block;
+        }
+        .new_game_con li .a{
+            width: 65px;
+            display: flex;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .new_game_con li .btn {
+            margin: 0 auto;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 400;
+            padding: 5px 12px;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            background: #3498db;
+            color: #fff;
+            border-radius: 4px;
+            border: 1px solid transparent;
+        }
+        .new_game_con li .pic:hover .word {
+            color: #3498db;
+        }
+        .new_game_con li .pic:hover .btn {
+            background: #085487;
+        }
+        .game_list {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background: #fff;
+            padding: 5px 0;
+        }
+        .game_list_title {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            padding: 0px 2% 0;
+        }
+        .game_list_title b {
+            font-size: 16px;
+            background: url("images/game.png") left center no-repeat;
+            padding-left: 30px;
+            background-size: 21px;
+        }
+        .game_list_title .more {
+            float: right;
+            color: #999999;
+            font-size: 12px;
+        }
+        .game_list_con {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+        .game_list_con li {
+            width: 100%;
+            padding: 10px 2%;
+            margin: 0 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        .game_list_con li .pic {
+            width: 65px;
+            height: 65px;
+            float: left;
+            display: block;
+            overflow: hidden;
+            margin: 0 auto;
+            margin-right: 10px;
+        }
+        .game_list_con li .pic img {
+            width: 65px;
+            height: 65px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        .game_list_con li .message {
+            float: left;
+            padding-top: 2px;
+            position: relative;
+        }
+        .game_list_con li .message a {
+            color: #333333;
+            font-size: 16px;
+            line-height: 16px;
+            overflow: hidden;
+            display: block;
+            white-space: nowrap;
+        }
+        .game_list_con li .message .load_t {
+            color: #999999;
+            overflow: hidden;
+            display: block;
+            font-size: 12px;
+            line-height: 24px;
+            padding: 5px 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .game_list_con li .message .star {
+            background: url("images/all.png") -90px -18px no-repeat;
+            display: block;
+            overflow: hidden;
+            height: 16px;
+        }
+        .game_list_con li .message .on {
+            background: url("images/all.png") -90px 0px no-repeat;
+        }
+        .game_list_con li .message .star_h {
+            position: absolute ;
+            left: 0;
+            top: 50px;
+            background: url("images/star.png") 0px -178px no-repeat;
+            display: block;
+            overflow: hidden;
+            height: 16px;
+            width: 100%;
+        }
+        .game_list_con li .message .star_s {
+            position: absolute ;
+            left: 0;
+            top: 50px;
+            display: block;
+            overflow: hidden;
+            height: 16px;
+            width: 100%;
+        }
+        .game_list_con li .message .star_s0 {
+            background: url("images/star.png") 0px 0px no-repeat;
+        }
+        .game_list_con li .message .star_s1 {
+            background: url("images/star.png") 0px -18px no-repeat;
+        }
+        .game_list_con li .message .star_s2 {
+            background: url("images/star.png") 0px -36px no-repeat;
+        }
+        .game_list_con li .message .star_s3 {
+            background: url("images/star.png") 0px -54px no-repeat;
+        }
+        .game_list_con li .message .star_s4 {
+            background: url("images/star.png") 0px -72px no-repeat;
+        }
+        .game_list_con li .message .star_s5 {
+            background: url("images/star.png") 0px -90px no-repeat;
+        }
+        .game_list_con li .message .star_s6 {
+            background: url("images/star.png") 0px -108px no-repeat;
+        }
+        .game_list_con li .message .star_s7 {
+            background: url("images/star.png") 0px -126px no-repeat;
+        }
+        .game_list_con li .message .star_s8 {
+            background: url("images/star.png") 0px -144px no-repeat;
+        }
+        .game_list_con li .message .star_s9 {
+            background: url("images/star.png") 0px -160px no-repeat;
+        }
+        .game_list_con li .load {
+            position: absolute;
+            right: 3%;
+            bottom: 10px;
+            padding: 7px 20px;
+            color: #fff;
+            background: #3498db;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .game_list_con li .load:hover {
+            background: #085487;
+        }
+        .back-top {
+            position: fixed;
+            bottom: 70px;
+            right: 0px;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 10px;
+            z-index: 999;
+        }
+        .back-top img {
+            width: 40px;
+            height: 40px;
+        }
+        .top_menu_wrap {
+            display: none;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            z-index: 99999;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            padding-bottom: 50px;
+        }
+        .top_menu {
+            background:#186ba3 ;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+        .top_menu_box {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            padding: 10px 0;
+        }
+        .top_menu_box .caption {
+            margin: 0 2%;
+            width: 96%;
+            height: 32px;
+            font-size: 16px;
+            line-height: 30px;
+            border-radius: 5px;
+            border: 1px solid #fff;
+        }
+        .top_menu_box .caption p {
+            width: 50%;
+            height: 100%;
+            color: #fff;
+            text-align: center;
+            display: block;
+            float: left;
+        }
+        .top_menu_box .caption .cur {
+            background: #fff;
+            color: #333333;
+        }
+        .top_menu_box .con_box {
+            overflow: hidden;
+        }
+        .top_menu_box .con_box2 {
+            padding-bottom: 30px;
+        }
+        .top_menu_box .con {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+        .top_menu_box .con .a {
+            width: 29.33333333%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 53px;
+            float: left;
+            display: block;
+            border-radius: 5px;
+            background: #fff;
+            text-align: center;
+            color: #333333;
+            font-size: 14px;
+            margin: 10px 2%;
+            line-height: 30px;
+        }
+        .top_menu_box .con .a span {
+            display: block;
+            line-height: 16px;
+            color: #999999;
+            font-size: 12px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .top_menu_box .con .a:hover {
+            background: #bce2fc;
+            color: #fff;
+        }
+        .top_menu_box .con .a:hover span {
+            color: #fff;
+        }
+        .top_menu_box .con2 {
+            display: none;
+        }
+        .search_box {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99999;
+            display: none;
+        }
+        .search_box_con {
+            background: #3498db;
+            width: 96%;
+            height: 50px;
+            overflow: hidden;
+            padding: 0 2%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .search_box_con .cz {
+            width: 100%;
+            height: 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search_box_con .search-tx {
+            line-height: 32px;
+            padding: 0 30px;
+            background: #fff;
+            color: #333333;
+            border-radius: 5px;
+            width: 85%;
+            height: 32px;
+            float: left;
+            vertical-align: middle;
+        }
+        .search_box_con .search-bt {
+            width: 20px;
+            height: 30px;
+            background-color: transparent;
+            display: block;
+            background: url("images/all.png") -55px -37px no-repeat;
+            border: none;
+            position: absolute;
+            top: 16px;
+            left: 5px;
+        }
+        .search_box_con .close-search {
+            color: #fff;
+            display: block;
+            width: 15%;
+            line-height: 32px;
+            font-size: 16px;
+            text-align: center;
+            background-color: transparent;
+            float: left;
+        }
+        .search_box_con .close-search i{
+            font-style: normal;
+        }
+        .hide_box {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .info{
+            width:100%;
+            height: auto;
+            padding: 10px 0;
+        }
+        .info .up{
+            height: auto;
+            overflow: hidden;
+            padding: 0px 2%;
+        }
+        .info .pic {
+            padding-top: 10px;
+            float: left;
+            width: 65px;
+            height: 65px;
+        }
+        .info .pic img {
+            margin-right: 7px;
+            border-radius: 8px;
+            width: 66px;
+            height: 66px;
+        }
+        .info .info_con {
+            float: left;
+            overflow: hidden;
+            padding-left: 10px ;
+        }
+        .info .info_con h3 {
+            font-size: 16px;
+            height: 32px;
+            line-height: 32px;
+            white-space: nowrap;
+        }
+        .info .info_con h3 span {
+            font-size: 12px;
+            color: #999999;
+            font-weight: normal;
+        }
+        .info .info_con p {
+            height: 32px;
+            line-height: 32px;
+            width: 100%;
+        }
+        .info .info_con p span {
+            display: inline-block;
+            width: 50%;
+            overflow: hidden;
+            float: left;
+            font-size: 12px;
+            color: #999999;
+        }
+        .info .info_con p span em {
+            color: #fd8230;
+            font-style: normal;
+        }
+        .game_load {
+            height: 45px;
+            line-height: 35px;
+            z-index: 9999;
+            width: 100%;
+            clear: both;
+            padding:5px 0;
+            background: #fff;
+        }
+
+        .game_load .title {
+            width: 96%;
+            height: 35px;
+            background: #3498db;
+            text-align: center;
+            display: block;
+            border-radius: 3px;
+            z-index: 999;
+            margin: 0 2%;
+        }
+        .game_load .title .dbtn {
+            color: #fff;
+            font-size: 16px;
+            display: block;
+            background: url("images/download.gif") 0 0px no-repeat;
+            background-size: 25px;
+            margin-left: 5%;
+        }
+        .game_load .con {
+            position: absolute;
+            top: 35px;
+            left: 0px;
+            width: 96%;
+            background: #f0f0f0;
+            margin: 0 2%;
+            overflow: hidden;
+            border-bottom: 1px solid #d7d5d5;
+            border-right: 1px solid #d7d5d5;
+            border-left: 1px solid #d7d5d5;
+            border-radius: 3px;
+            text-align: center;
+            display: none;
+        }
+        .game_load .con p {
+            width: 100%;
+            line-height: 35px;
+            border-bottom: 1px solid #d7d5d5;
+        }
+        .game_load .con p:last-child {
+            border-bottom: none;
+        }
+        .game_load .con p a {
+            color: #333333;
+            display: block;
+        }
+        .game_load .con p a:hover {
+            background: #d7d5d5;
+        }
+        .hide_load {
+            display: none;
+            background: none;
+            position: fixed;
+            top: 50px;
+            width: 96%;
+            background: #fff;
+        }
+        .hide_load .title {
+            background-color: #3dad0e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2px;
+        }
+        .hide_load .title img {
+            display: inline-block;
+            height: 25px;
+            float: left;
+        }
+        .hide_load .title a {
+            color: #fff;
+            float: left;
+            padding-left: 10px;
+            font-weight: bolder;
+            letter-spacing: 2px;
+        }
+        .hide_load a:hover .title {
+            background: #2f8f06;
+        }
+        .load_tj {
+            z-index: 1;
+            width: 100%;
+            height: auto;
+            background: #fff;
+            padding: 0 2%;
+        }
+        .load_tj h3 {
+            font-size: 16px;
+            height: 28px;
+            line-height: 28px;
+            margin: 5px 0 0 0;
+        }
+        .load_tj .load_tj_game {
+            width: 100%;
+            height: auto;
+            overflow-x: auto;overflow-y: hidden;white-space: nowrap;width:100%;
+        }
+        .load_tj .load_tj_game li {
+            overflow: hidden;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+        .load_tj .load_tj_game li .pic {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .load_tj .load_tj_game li .pic img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+            width: 65px;
+            height: 65px;
+        }
+        .load_tj .load_tj_game li .word {
+            font-size: 14px;
+            color: #333333;
+            padding: 5px 0;
+            text-align: center;
+            display: block;
+        }
+        .load_tj .load_tj_game li .pic:hover .word {
+            color: #fd731a;
+        }
+        .load_nav {
+            width: 100%;
+            height: auto;
+            font-size: 16px;
+            color: #333333;
+            font-weight: bold;
+            text-align: center;
+            line-height: 35px;
+            background: #fff;
+            overflow: hidden;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .load_nav li {font-size: 16px;}
+        .load_nav .cur {
+            color: #3498db;
+            border-bottom: 3px solid #3498db;
+        }
+        .load_nav span {
+            width: 100%;
+            display: block;
+            float: left;
+        }
+        .load_nav2 span {
+            width: 50%;
+        }
+        .load_nav3 span {
+            width: 33.33333333%;
+        }
+        .load_nav4 span {
+            width: 25%;
+        }
+        .load_detail {
+            overflow: hidden;
+        }
+        .item1 {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            float: left;
+            z-index: 0;
+            padding: 10px 0 0px 0;
+        }
+        .detail_pic{overflow-x: auto;overflow-y: hidden;white-space: nowrap;width:100%;}
+        .item1 .detail_pic li {
+            width: 160px;
+            display: inline-block;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .item1 .detail_pic li img {
+            width: 146px;
+            height: 260px;
+        }
+        .item1 .expand {
+            width: 100%;
+            background: #fff;
+            padding: 10px 2%;
+            overflow: hidden;
+        }
+        .item1 .expand li {
+            float: left;
+            padding: 3px 10px;
+            border: 1px solid #f0f0f0;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .item1 .expand li .a {
+            font-size: 12px;
+        }
+        .item1 .expand li:nth-child(1) .a {
+            color: #4996ff;
+        }
+        .item1 .expand li:nth-child(2) .a {
+            color: #ff5e33;
+        }
+        .item1 .expand li:nth-child(3) .a {
+            color: #65bb0a;
+        }
+        .item1 .expand li:nth-child(4) .a {
+            color: #4e8fb7;
+        }
+        .item1 .detail_txt {
+            overflow: hidden;
+            width: 96%;
+            background: #fff;
+            padding: 0 2% 10px;
+            clear: both;
+            position: relative;
+            line-height: 28px;
+            text-align: justify;
+            font-size: 14px;
+        }
+        .item1 .detail_txt .summary {
+            width: 100%;
+        }
+        .item1 .detail_txt .summary p {
+            line-height: 24px;
+            margin-bottom: 15px;
+            text-indent: 2em;
+        }
+        .item1 .detail_txt .intro {
+            width: 100%;
+            display: none;
+            overflow: hidden;
+        }
+        .item1 .detail_txt .intro span {
+            line-height: 24px;
+            margin-bottom: 15px;
+            text-indent: 2em;
+            display: block;
+        }
+        .item1 .detail_txt .intro i {
+           font-style: normal;
+        }
+        .item1 .detail_txt .intro_title {
+            font-size: 16px;
+            line-height: 35px;
+            color: #3498db;
+        }
+        .item1 .detail_txt .toggle {
+            padding: 5px 3% 0 0;
+            float: right;
+            margin: 0px 0 10px;
+        }
+        .item1 .detail_txt .toggle .show-more {
+            padding-right: 40px;
+            height: 16px;
+            line-height: 16px;
+            color: #999999;
+            background: url("images/all_ico.png") no-repeat;
+            background-position: 68px 3px;
+            background-size: 18px 24px;
+            display: block;
+            overflow: hidden;
+        }
+        .item1 .detail_txt .toggle .show-less {
+            background: url("images/all_ico.png") no-repeat;
+            background-position: 36px -11px;
+            background-size: 18px 24px;
+            padding-right: 40px;
+            height: 16px;
+            line-height: 16px;
+            color: #999999;
+            position: absolute;
+            bottom: 0px;
+            right: 20px;
+        }
+        .version_list {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background: #fff;
+        }
+        .version_list li {
+            width: 94%;
+            height: 60px;
+            overflow: hidden;
+            margin: 10px 3% 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .version_list li:last-child {
+            border-bottom: none;
+        }
+        .version_list li a {
+            color: #333333;
+            height: 100%;
+        }
+        .version_list li .txt {
+            float: left;
+            width: 80%;
+            line-height: 25px;
+            padding: 5px;
+            height:100%;
+        }
+        .version_list li .txt .name {
+            display: block;
+            font-size: 16px;
+        }
+        .version_list li .txt i {
+            font-style: normal;
+            font-size: 12px;
+            color: #999999;
+            display: block;
+        }
+        .haspic li .txt .name {
+            display: inline-block;
+            font-size: 16px;
+            position: absolute;
+            padding-left:10px ;
+        }
+        .haspic li .txt i {
+            font-style: normal;
+            font-size: 12px;
+            color: #999999;
+            display: inline-block;
+            position: absolute;
+            bottom: 10px;
+            padding-left:10px ;
+        }
+        .version_list li .txt:hover {
+            background: #bce2fc;
+        }
+        .version_list li .btn {
+            float: right;
+            color: #3dad0e;
+            font-size: 12px;
+            line-height: 20px;
+        }
+        .version_list li .btn em {
+            background: url("images/download.png") top center no-repeat;
+            background-size: 26px auto;
+            display: block;
+            width: 26px;
+            height: 26px;
+            padding-bottom: 5px;
+        }
+        .version_list2 img {
+            width: 50px;
+            height: 50px;
+            float: left;
+            display: block;
+        }
+        .item2 {
+            display: none;
+        }
+        .item3 {
+            display: none;
+        }
+        .item4 {
+            display: none;
+        }
+        .load_detail .information {
+            line-height: 24px;
+            margin-bottom: 15px;
+            text-indent: 2em;
+            padding: 0 2%;
+        }
+        .red {
+            color: red;
+        }
+        .blue {
+            color: #4996ff;
+        }
+        .load_detail .swiper-container {
+            width: 100%;
+            height: 270px;
+        }
+        .load_detail .swiper-slide {
+            width: 160px;
+            height: 260px;
+        }
+        .change_page {
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 12px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .change_page .jump {
+            float: left;
+            width: 150px;
+        }
+        .change_page .jump input {
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            color: #F1951A;
+            border: 1px solid #f0f0f0;
+            margin: 0 3px;
+        }
+        .change_page .jump a {
+            color: #333333;
+        }
+        .change_page .jump a:hover {
+            color: red;
+        }
+        .change_page .jump span {
+            display: inline-block;
+            padding: 0 4px;
+        }
+        .change_page .num {
+            float: left;
+        }
+        .change_page .num a {
+            padding: 2px 5px;
+            overflow: hidden;
+            background: #3498db;
+            color: #fff;
+            margin-right: 3px;
+        }
+        .change_page .num a:hover {
+            background: #085487;
+        }
+        .classify5 {
+            width: 100%;
+            margin: 0px auto 0px;
+            height: auto;
+            padding: 10px 0;
+            overflow: hidden;
+            background: #fff;
+        }
+        .classify5 ul {
+            width: 100%;
+        }
+        .classify5 li {
+            float: left;
+            width: 20%;
+            padding: 5px 0;
+        }
+        .classify5 li .pic {
+            display: block;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .classify5 li .pic img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        .classify5 li .txt {
+            width: 100%;
+        }
+        .classify5 li .word {
+            color: #333333;
+            padding: 5px;
+            text-align: center;
+            display: block;
+        }
+        .classify5 li .pic:hover .word {
+            color: #3498db;
+        }
+        .zt_content {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background: #fff;
+            padding: 10px 0;
+            font-size: 16px;
+        }
+        .zt_content .list {
+            width: 50%;
+            float: left;
+            position: relative;
+        }
+        .zt_content .list img {
+            margin: 0 auto;
+            display: block;
+        }
+        .zt_content .list span {
+            display: block;
+            text-align: center;
+            line-height: 35px;
+            color: #333333;
+        }
+        .zt_content .list .little {
+            width: 80px;
+            height: 80px;
+        }
+        .zt_content .list .big {
+            width: 95%;
+        }
+        .zt_content .list .cover {
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            background: #000;
+            color: #fff;
+            width: 95%;
+            margin-left: 5px;
+            filter: alpha(opacity=80);
+            opacity: 0.8;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .zt_content .list:hover .word,
+        .zt_content .list:hover .cover {
+            color: #fd731a;
+        }
+        .classify3 {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background: #fff;
+            padding: 15px 10px;
+        }
+        .classify3 a {
+            float: left;
+            width: 31.33333333%;
+            -webkit-box-flex: 1;
+            display: block;
+            height: 28px;
+            line-height: 28px;
+            overflow: hidden;
+            margin: 5px 1%;
+            text-align: center;
+            font-size: 13px;
+            border-radius: 50px;
+            color: #682e52;
+            border: 1px solid #682e52;
+        }
+        .classify3 a:hover {
+            background: #bce2fc;
+            color: #fff;
+            border: none;
+        }
+        .classify3 .color1 {
+            color: #65bb0a;
+            border: 1px solid #65bb0a;
+        }
+        .classify3 .color2 {
+            color: #41d39d;
+            border: 1px solid #41d39d;
+        }
+        .classify3 .color3 {
+            color: #499ae0;
+            border: 1px solid #499ae0;
+        }
+        .classify3 .color4 {
+            color: #c24650;
+            border: 1px solid #c24650;
+        }
+        .classify3 .color5 {
+            color: #f32e58;
+            border: 1px solid #f32e58;
+        }
+        .classify3 .color6 {
+            color: #f2b149;
+            border: 1px solid #f2b149;
+        }
+        .classify3 .color7 {
+            color: #9371d6;
+            border: 1px solid #9371d6;
+        }
+        .classify3 .color8 {
+            color: #009900;
+            border: 1px solid #009900;
+        }
+        .classify3 .color9 {
+            color: #eb7659;
+            border: 1px solid #eb7659;
+        }
+        .classify3 .color10 {
+            color: #d27aff;
+            border: 1px solid #d27aff;
+        }
+        .load_alert_hide {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 999999;
+            background: no-repeat scroll 0 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+        }
+        .load_alert {
+            position: fixed;
+            left: 0;
+            bottom: 20%;
+            width: 100%;
+            overflow: hidden;
+            background: #fff;
+            padding: 5px 0;
+        }
+        .load_alert_title {
+            width: 94%;
+        }
+        .load_alert_title .more{
+            color: #fff;
+            font-size: 18px; 
+            background: #3498db;
+            width: 20px;
+            height: 20px;
+            line-height: 18px;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .classify4 li {
+            width: 25%;
+        }
+        dl {
+            margin-bottom: 0px;
+        }
+        .cover_stype {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background: #fff;
+        }
+        .cover_stype dl {
+            padding: 20px 0;
+            overflow: hidden;
+        }
+        .cover_stype dl dt {
+            float: left;
+            width: 25%;
+            box-sizing: border-box;
+            border-right: 1px solid #f0f0f0;
+            display: block;
+            overflow: hidden;
+            text-align: center;
+            font-size: 16px;
+        }
+        .cover_stype dl dt a {
+            color: #8cd43f;
+        }
+        .cover_stype dl dt .pic {
+            display: block;
+            width: 65px;
+            height: 60px;
+            background: url("images/list1.png") 0 0 no-repeat;
+            margin: 0 auto;
+            background-size: 65px auto;
+        }
+        .cover_stype dl dd {
+            float: left;
+            width: 75%;
+        }
+        .cover_stype dl dd .box {
+            width: 33.33333333%;
+            float: left;
+            display: block;
+            line-height: 40px;
+            overflow: hidden;
+            text-align: center;
+            text-overflow: ellipsis ;
+            white-space: nowrap;
+            font-size: 16px;
+        }
+        .cover_stype dl dd .box a {
+            color: #333333;
+            width: 100%;
+            height: 100%;
+            display: block;
+            text-overflow: ellipsis ;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .cover_stype dl dd .box a:hover {
+            background: #fdebaf;
+        }
+        .cover_stype dl dt .green_shipin2 {
+            color: #8cd43f;
+        }
+        .cover_stype dl dt .green_shipin1 {
+            background-position: 0 0 ;
+        }
+        .cover_stype dl dt .orange_tool2 {
+            color: #f2b149;
+        }
+        .cover_stype dl dt .orange_tool1 {
+            background-position: 0px -132px;
+        }
+        .cover_stype dl dt .green_social2 {
+            color: #7bb949;
+        }
+        .cover_stype dl dt .green_social1 {
+            background-position: 0px -264px;
+        }
+        .cover_stype dl dt .pink_music2 {
+            color: #fc826a;
+        }
+        .cover_stype dl dt .pink_music1 {
+            background-position: 0px -400px;
+        }
+        .cover_stype dl dt .purple_pic2 {
+            color: #9371d6;
+        }
+        .cover_stype dl dt .purple_pic1 {
+            background-position: 0px -532px;
+        }
+        .cover_stype dl dt .green_photo2 {
+            color: #2dc397;
+        }
+        .cover_stype dl dt .green_photo1 {
+            background-position: 0px -662px;
+        }
+        .cover_stype dl dt .red_shop2 {
+            color: #eb7659;
+        }
+        .cover_stype dl dt .red_shop1 {
+            background-position: 0px -804px;
+        }
+        .cover_stype dl dt .blue_study2 {
+            color: #5b95f1;
+        }
+        .cover_stype dl dt .blue_study1 {
+            background-position: 0px -930px;
+        }
+        .cover_stype dl dt .orange_money2 {
+            color: #f2b149;
+        }
+        .cover_stype dl dt .orange_money1 {
+            background-position: 0px -1074px;
+        }
+        .cover_stype dl dt .blue_tran2 {
+            color: #5b95f1;
+        }
+        .cover_stype dl dt .blue_tran1 {
+            background-position: 0px -1204px;
+        }
+        .cover_stype dl dt .green_life2 {
+            color: #7bb949;
+        }
+        .cover_stype dl dt .green_life1 {
+            background-position: 0px -1340px;
+        }
+        .cover_stype dl dt .orange_sport2 {
+            color: #f2b149;
+        }
+        .cover_stype dl dt .orange_sport1 {
+            background-position: 0px -1475px;
+        }
+        .cover_stype dl dt .green_office2 {
+            color: #7bb949;
+        }
+        .cover_stype dl dt .green_office1 {
+            background-position: 0px -1610px;
+        }
+        .cover_stype dl dt .red_interest2 {
+            color: #e05ab1;
+        }
+        .cover_stype dl dt .red_interest1 {
+            background-position: 0px -1744px;
+        }
+        .cover_stype dl dt .green_child2 {
+            color: #1ed677;
+        }
+        .cover_stype dl dt .green_child1 {
+            background-position: 0px -1874px;
+        }
+        .cover_stype dl dt .purple_mother2 {
+            color: #9371d6;
+        }
+        .cover_stype dl dt .purple_mother1 {
+            background-position: 0px -2010px;
+        }
+        .cover_stype dl dt .green_read2 {
+            color: #7bb949;
+        }
+        .cover_stype dl dt .green_read1 {
+            background-position: 0px -2150px;
+        }
+        .cover_stype dl dt .blue_tel2 {
+            color: #5b95f1;
+        }
+        .cover_stype dl dt .blue_tel1 {
+            background-position: 0px -2280px;
+        }
+        .cover_stype dl dt .red_live2 {
+            color: #eb7659;
+        }
+        .cover_stype dl dt .red_live1 {
+            background-position: 0px -2420px;
+        }
+        .cover_stype .odd {
+            border-bottom: 10px solid #f0f0f0;
+        }
+        .cover_stype .even {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .cover_stype_wy dl dt .pic {
+            background: url("images/list3.png") -6px -24px no-repeat;
+            background-size: 65px auto;
+        }
+        .cover_stype_wy dl dt .wy_green_js2 {
+            color: #8cd43f;
+        }
+        .cover_stype_wy dl dt .wy_green_js1 {
+            background-position: -6px -24px;
+        }
+        .cover_stype_wy dl dt .wy_orange_hh2 {
+            color: #f2b149;
+        }
+        .cover_stype_wy dl dt .wy_orange_hh1 {
+            background-position: -6px -160px;
+        }
+        .cover_stype_wy dl dt .wy_green_xx2 {
+            color: #7bb949;
+        }
+        .cover_stype_wy dl dt .wy_green_xx1 {
+            background-position: -6px -300px;
+        }
+        .cover_stype_wy dl dt .wy_orange_js2 {
+            color: #f2b149;
+        }
+        .cover_stype_wy dl dt .wy_orange_js1 {
+            background-position: -6px -425px;
+        }
+        .cover_stype_wy dl dt .wy_purple_kp2 {
+            color: #9371d6;
+        }
+        .cover_stype_wy dl dt .wy_purple_kp1 {
+            background-position: -6px -565px;
+        }
+        .cover_stype_wy dl dt .wy_blue_dz2 {
+            color: #5b95f1;
+        }
+        .cover_stype_wy dl dt .wy_blue_dz1 {
+            background-position: -6px -690px;
+        }
+        .cover_stype_wy dl dt .wy_red_xx2 {
+            color: #eb7659;
+        }
+        .cover_stype_wy dl dt .wy_red_xx1 {
+            background-position: -6px -834px;
+        }
+        .cover_stype_wy dl dt .wy_blue_cl2 {
+            color: #5b95f1;
+        }
+        .cover_stype_wy dl dt .wy_blue_cl1 {
+            background-position: -6px -964px;
+        }
+        .cover_stype_wy dl dt .wy_orange_sg2 {
+            color: #f2b149;
+        }
+        .cover_stype_wy dl dt .wy_orange_sg1 {
+            background-position: -6px -1100px;
+        }
+        .cover_stype_wy dl dt .wy_green_other2 {
+            color: #7bb949;
+        }
+        .cover_stype_wy dl dt .wy_green_other1 {
+            background-position: -6px -1234px;
+        }
+        .cover_stype_dj dl dt .pic {
+            background: url("images/list2.png") 2px -10px no-repeat;
+            background-size: 65px auto;
+        }
+        .cover_stype_dj dl dt .dj_green_yz2 {
+            color: #8cd43f;
+        }
+        .cover_stype_dj dl dt .dj_green_yz1 {
+            background-position: 2px -10px;
+        }
+        .cover_stype_dj dl dt .dj_orange_js2 {
+            color: #f2b149;
+        }
+        .cover_stype_dj dl dt .dj_orange_js1 {
+            background-position: 2px -140px;
+        }
+        .cover_stype_dj dl dt .dj_green_fly2 {
+            color: #7bb949;
+        }
+        .cover_stype_dj dl dt .dj_green_fly1 {
+            background-position: 2px -280px;
+        }
+        .cover_stype_dj dl dt .dj_red_phy2 {
+            color: #fc826a;
+        }
+        .cover_stype_dj dl dt .dj_red_phy1 {
+            background-position: 2px -410px;
+        }
+        .cover_stype_dj dl dt .dj_purple_kp2 {
+            color: #9371d6;
+        }
+        .cover_stype_dj dl dt .dj_purple_kp1 {
+            background-position: 2px -550px;
+        }
+        .cover_stype_dj dl dt .dj_green_sc2 {
+            color: #2dc397;
+        }
+        .cover_stype_dj dl dt .dj_green_sc1 {
+            background-position: 2px -680px;
+        }
+        .cover_stype_dj dl dt .dj_red_ml2 {
+            color: #eb7659;
+        }
+        .cover_stype_dj dl dt .dj_red_ml1 {
+            background-position: 2px -820px;
+        }
+        .cover_stype_dj dl dt .dj_blue_dz2 {
+            color: #5b95f1;
+        }
+        .cover_stype_dj dl dt .dj_blue_dz1 {
+            background-position: 2px -944px;
+        }
+        .cover_stype_dj dl dt .dj_orange_xg2 {
+            color: #f2b149;
+        }
+        .cover_stype_dj dl dt .dj_orange_xg1 {
+            background-position: 2px -1080px;
+        }
+        .cover_stype_dj dl dt .dj_blue_cl2 {
+            color: #5b95f1;
+        }
+        .cover_stype_dj dl dt .dj_blue_cl1 {
+            background-position: 2px -1220px;
+        }
+        .cover_stype_dj dl dt .dj_green_mx2 {
+            color: #7bb949;
+        }
+        .cover_stype_dj dl dt .dj_green_mx1 {
+            background-position: 2px -1350px;
+        }
+        .cover_stype_dj dl dt .dj_orange_child2 {
+            color: #f2b149;
+        }
+        .cover_stype_dj dl dt .dj_orange_child1 {
+            background-position: 2px -1490px;
+        }
+        .cover_stype_dj dl dt .dj_green_other2 {
+            color: #7bb949;
+        }
+        .cover_stype_dj dl dt .dj_green_other1 {
+            background-position: 2px -1620px;
+        }
+        .word {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .game_list_con .item_end {
+            text-align: center;
+            width: 94%;
+            line-height: 30px;
+            border: 1px solid #ddd;
+            padding: 0 0;
+            margin: 0 3% 20px;
+            background-color: #f9f9f9;
+        }
+        .bnav {
+            line-height: 35px;
+            padding: 0 2%;
+            background: #f0f0f0;
+        }
+        .result_box {
+            width: 100%;
+            padding: 30px 0 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .result_pic {
+            float: left;
+            width: 80px;
+        }
+        .result_pic img {
+            width: 80px;
+            height: auto;
+        }
+        .result_cue {
+            float: left;
+            width: 70%;
+        }
+        .result_cue h1 {
+            font-size: 16px;
+            color: red;
+            margin-top: 0px;
+        }
+        .result_cue p {
+            line-height: 25px;
+        }
+        .gohome {
+            background-color: #3dad0e;
+            padding: 2px 10px;
+            border-radius: 5px;
+            display: block;
+            line-height: 28px;
+            color: #fff;
+            margin: 10px 0px;
+            width: 80px;
+        }
+        .result_title {
+            border-bottom: 1px solid #cfcfcf;
+            margin: 0 3% 10px;
+            width: 94%;
+            padding: 0;
+        }
+        .result_title b {
+            background: none;
+            border-left: 5px solid #3498db;
+            padding-left: 10px;
+        }
+        .b2 b {
+            background: url("images/icon.png") 0 5px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b1 b {
+            background: url("images/icon.png") 0 -32px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b3 b {
+            background: url("images/icon.png") 0 -70px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b4 b {
+            background: url("images/icon.png") 0 -110px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b5 b {
+            background: url("images/icon.png") 0 -152px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b6 b {
+            background: url("images/icon.png") 0 -198px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b7 b {
+            background: url("images/icon.png") 0 -378px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b8 b {
+            background: url("images/icon.png") 0 -290px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b9 b {
+            background: url("images/icon.png") 0 -332px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b10 b {
+            background: url("images/icon.png") 0 -245px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b11 b {
+            background: url("images/icon.png") 0 -420px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .b12 b {
+            background: url("images/icon.png") 0 -462px no-repeat;
+            height: 40px;
+            display: inline-block;
+            background-size: 28px;
+        }
+        .swiper_wrap {
+            display: none;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999999;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            padding: 30px 20px;
+        }
+        .viewport {
+            width: 8000px;
+            height: 100%;
+            top: 0;
+            position: relative;
+            left: 0;
+        }
+        .pageview {
+            float: left;
+            height: 100%;
+            margin-right: 20px;
+            position: relative;
+        }
+        .pageview img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+        }
+        .xlist {
+            width: 100%;
+        }
+        .xlist .title {
+            font-size: 16px;
+            padding: 0px 2%;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .xlist .title span {
+            border-bottom: 3px solid #bce2fc;
+            display: inline-block;
+            padding: 10px;
+            width: auto;
+        }
+        .xlist .con {
+            padding: 10px 2%;
+        }
+        .xlist .con li {
+            width: 100%;
+            line-height: 38px;
+            height: 38px;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+        .xlist .con li a {
+            color: #333333;
+            display: inline-block;
+            width: 100%;
+        }
+        .xlist .con li a:hover {
+            color: #3498db;
+        }
+        .xlist .con li a p {
+            width: 85%;
+            float: left;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .xlist .con li a span {
+            float: right;
+            color: #999999;
+        }
+        .xbox {
+            width: 100%;
+            height: auto;
+            padding: 10px 3%;
+        }
+        .xbox_cont h3 {
+            font-size: 20px;
+            width: 100%;
+            height: auto;
+            line-height: 28px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            overflow: hidden;
+        }
+        .xbox_cont .lessdata {
+            padding: 5px 0;
+            color: #999999;
+            font-size: 12px;
+        }
+        .xbox_cont .particular {
+            padding: 10px 0;
+        }
+        .xbox_cont .particular p {
+            line-height: 35px;
+            font-weight: normal;
+            text-indent: 2em;
+            width: 100%;
+            height: auto;
+        }
+        .xbox_cont .particular img {
+            width: 100%;
+            display: block;
+            margin: 5px 0;
+        }
+        @media screen and (max-width: 360px) {
+            .logo img {
+                width: 120px;
+            }
+            .sub_nav .pic {
+                width: 60px;
+            }
+            .sub_nav .pic img {
+                width: 60px;
+                height: 60px;
+            }
+            .new_game_con .pic img {
+                width: 60px;
+                height: 60px;
+            }
+            .info_con {
+                width: 75%;
+            }
+            .load_tj_game .pic {
+                width: 60px;
+            }
+            .jump input {
+                width: 25px;
+            }
+            .load_alert_con .pic {
+                width: 64px;
+            }
+            .load_alert_con .pic img {
+                width: 64px;
+                height: 64px;
+            }
+            .load_alert {
+                height: 330px !important;
+            }
+            .classify5 .pic {
+                width: 60px;
+            }
+            .classify5 .pic img {
+                width: 60px;
+                height: 60px;
+            }
+            .zt_content .list {
+                height: 130px;
+            }
+            .zt_content .big {
+                height: 130px;
+            }
+            .classify4 .pic {
+                width: 60px;
+            }
+            .classify4 .pic img {
+                width: 60px;
+                height: 60px;
+            }
+            .game_list_con .message {
+                width: 50%;
+            }
+            .game_load .title .dbtn{
+                background-position: 32%;
+            }
+        }
+        @media screen and (max-width: 479px) and (min-width: 361px) {
+            .logo img {
+                width: 126px;
+            }
+            .sub_nav .pic {
+                width: 65px;
+            }
+            .sub_nav .pic img {
+                width: 65px;
+                height: 65px;
+            }
+            .new_game_con .pic img {
+                width: 65px;
+                height: 65px;
+            }
+            .jump input {
+                width: 35px;
+            }
+            .info_con {
+                width: 75%;
+            }
+            .load_tj_game .pic {
+                width: 65px;
+            }
+
+            .load_alert_con .pic {
+                width: 72px;
+            }
+            .load_alert_con .pic img {
+                width: 72px;
+                height: 72px;
+            }
+            .load_alert {
+                height: 345px !important;
+            }
+            .classify5 .pic {
+                width: 65px;
+            }
+            .classify5 .pic img {
+                width: 65px;
+                height: 65px;
+            }
+            .zt_content .list {
+                height: 135px;
+            }
+            .zt_content .big {
+                height: 135px;
+            }
+            .classify4 .pic {
+                width: 65px;
+            }
+            .classify4 .pic img {
+                width: 65px;
+                height: 65px;
+            }
+            .game_list_con .message {
+                width: 60%;
+            }
+             .game_load .title .dbtn{
+                background-position: 32%;
+            }
+        }
+        @media screen and (min-width: 480px) {
+            .sub_nav .pic {
+                width: 65px;
+            }
+            .sub_nav .pic img {
+                width: 65px;
+                height: 65px;
+            }
+            .new_game_con .pic img {
+                width: 65px;
+                height: 65px;
+            }
+            .info_con {
+                width: 80%;
+            }
+            .load_tj_game .pic {
+                width: 65px;
+            }
+            .jump input {
+                width: 35px;
+            }
+            .load_alert_con .pic {
+                width: 80px;
+            }
+            .load_alert_con .pic img {
+                width: 80px;
+                height: 80px;
+            }
+            .load_alert {
+                height: 370px !important;
+            }
+            .classify5 .pic {
+                width: 65px;
+            }
+            .classify5 .pic img {
+                width: 65px;
+                height: 65px;
+            }
+            .zt_content .list {
+                height: 140px;
+            }
+            .zt_content .big {
+                height: 140px;
+            }
+            .classify4 .pic {
+                width: 65px;
+            }
+            .classify4 .pic img {
+                width: 65px;
+                height: 65px;
+            }
+            .game_list_con .message {
+                width: 70%;
+            }
+            .game_load .title .dbtn{
+                background-position: 40%;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <mip-btn-down>
+    <div class="header">
+        <div class="header_con">
+            <mip-btn-toggle class="menu" hsId="1"><i class="hideshowbtn">分类</i></mip-btn-toggle>
+            <div class="logo">
+                <a href="#"><img src="images/shoujilogo_188.png"></a>
+            </div>
+            <mip-btn-toggle class="search" hsId="0"><i class="hideshowbtn"></i></mip-btn-toggle>
+        </div>
+    </div>
+    <div class="search_box" >
+        <div class="search_box_con">
+            <form method="post" action="#" class="cz">
+                <input type="hidden" name="show" value="title">
+                <input type="hidden" name="tbname" value="download">
+                <input type="hidden" name="tempid" value="1">
+                <input type="text" class="search-tx" value="" name="keyboard" placeholder="请输入搜索词...">
+                <input type="submit" class="search-bt" value="">
+                <mip-btn-toggle class="close-search" hsId="2"><i class="hideshowbtn">取消</i></mip-btn-toggle>
+            </form>
+        </div>
+        <mip-btn-toggle class="hide_box" hsId="3"><i class="hideshowbtn"></i></mip-btn-toggle>
+    </div>
+    <mip-btn-tabs class="top_menu_wrap">
+        <div class="top_menu">
+            <div class="top_menu_box">
+                <div class="caption caption1">
+                    <p  class="cur">手机软件</p>
+                    <p >手软件</p>
+                </div>
+                <div class="con_box con_box1">
+                    <div class="con con1">
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                    </div>
+                    <div class="con con2">
+                        <mip-link href="#" class="a">射击游戏<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link href="#" class="a">实用工具<span>8999款软件</span></mip-link>
+                    </div>
+                </div>
+            </div>
+            <div class="top_menu_box">
+                <div class="caption caption2">
+                    <p class="cur">手机软</p>
+                    <p>软件</p>
+                </div>
+                <div class="con_box con_box2">
+                    <div class="con con1">
+                        <mip-link class="a" href="#">射击游戏<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">益智游戏<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                    </div>
+                    <div class="con con2">
+                        <mip-link class="a" href="#">射击游戏<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">辅助工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+                        <mip-link class="a" href="#">实用工具<span>8999款软件</span></mip-link>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mip-btn-tabs>
+<div class="margin_top" style="margin-top: 50px;"></div>
+<div class="bnav"><span>首页</span> > <span>软件</span> > <span>游戏排行</span> > <span>我的世界</span> </div>
+<div class="info">
+    <div class="up">
+        <div class="pic">
+            <mip-img src="images/game1.png"></mip-img>
+        </div>
+        <div class="info_con">
+            <h3>阴阳师手游 <span>v1.0.13</span></h3>
+            <p>
+                <span>大小：1000M</span>
+                <span>大小：1000M</span>
+            </p>
+            <p>
+                <span>大小：<em>1000M</em></span>
+                <span>大小：1000M</span>
+            </p>
+        </div>
+    </div>
+    <div class="game_load" id="downbtn" >
+        <div class="title" ><mip-link class="dbtn" rel="nofollow" href="#">立即下载</mip-link></div>
+    </div>
+</div>
+<div class="load_alert_hide">
+<div class="load_alert">
+    <div class="new_game">
+        <div class="new_game_title load_alert_title">
+            <b>下载该应用的用户还下载了</b>
+            <span class="more alertbtn">X</span>
+        </div>
+        <div class="new_game_con">
+            <ul class="con1">
+                <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+<div class="border_link_w" ></div>
+<div class="slide_load">
+    <div class="load_tj">
+        <h3>推荐</h3>
+        <ul class="load_tj_game">
+            <li><mip-link href="#" class="pic"><mip-img src="images/3.jpg"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/2.jpg"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/1.jpg"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/1.jpg"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">软件名</span> </mip-link> </li>
+            <li><mip-link href="#" class="pic"><mip-img  src="images/game1.png"></mip-img><span class="word">\jj</span> </mip-link> </li>
+        </ul>
+    </div>
+</div>
+<div class="border_link_w" ></div>
+<mip-vd-tabs>
+    <section class="load_nav">
+        <li>简介</li>
+        <li>相关</li>
+        <li>资讯</li>
+    </section>
+        <div class="load_detail_item item1" id="wrapper">
+            <ul class="detail_pic">
+                    <li><mip-img src="images/pic1.jpg"> </mip-img></li>
+                    <li><mip-img src="images/2.png"></mip-img></li>
+                    <li><mip-img src="images/pic1.jpg"> </mip-img></li>
+                    <li><mip-img src="images/pic2.jpg"> </mip-img></li>
+                    <li><mip-img src="images/1.jpg"></mip-img></li>
+                    <li><mip-img src="images/game1.png"></mip-img></li>
+            </ul>
+            <div class="expand" id="xgk">
+                <ul class="lx">
+                    <li><mip-link  href="#" class="a">网易游戏</mip-link></li>
+                    <li><mip-link  href="#" class="a">网易游戏</mip-link></li>
+                    <li><mip-link  href="#" class="a">网易游戏</mip-link></li>
+                    <li><mip-link  href="#" class="a">网易游戏</mip-link></li>
+                </ul>
+            </div>
+            <div class="detail_txt">
+                <div class="summary" >
+                    <p class="red">
+                        想要了解阴阳师最新资讯、攻略和福利的玩家，<span class="blue">电视剧</span>快快点击加入阴阳师玩家交流群
+                        想要了解阴阳师最新资讯、攻略和福利的玩家，<span class="blue">电视剧</span>快快点击加入阴阳师玩家交流群
+                        想要了解阴阳师最新资讯、攻略和福利的玩家，<span class="blue">电视剧</span>快快点击加入阴阳师玩家交流群
+                    </p>
+                </div>
+                <mip-accordion sessions-key="mip_2">
+                    <section>
+                        <h4 class="toggle">
+                            <span class="show-more">显示全部</span>
+                            <span class="show-less">收起</span>
+                        </h4>
+                        <p class="intro details" >
+                            <span class="red">
+                                想要了解阴阳师最新资讯、攻略和福利的玩家，<i class="blue">电视剧</i>快快点击加入阴阳师玩家交流群
+                            </span>
+                            <strong class="intro_title">软件介绍</strong>
+                            <span>想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群</span>
+                            <span>想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群</span>
+                            <span>想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群</span>
+                            <strong class="intro_title">功能介绍</strong>
+                            <span>想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群</span>
+                            <span>想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群</span>
+                            <span>想要了解阴阳师最新资讯、攻略和福利的玩家，快快点击加入阴阳师玩家交流群</span>
+                        </p>
+                    </section>
+                </mip-accordion>
+            </div>
+            <div class="border_link" ></div>
+            <ul class="version_list">
+                <li>
+                    <mip-link href="#" class="txt"><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link>
+                    <mip-link href="#" class="btn"><em></em>下载</mip-link>
+                </li>
+                <li>
+                    <mip-link href="#" class="txt"><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link>
+                    <mip-link href="#" class="btn"><em></em>下载</mip-link>
+                </li>
+                <li>
+                    <mip-link href="#" class="txt"><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link>
+                    <mip-link href="#" class="btn"><em></em>下载</mip-link>
+                </li>
+            </ul>
+            <ul class="version_list version_list2 haspic">
+                <li >
+                    <mip-link  href="#" class="txt" ><mip-img  src="images/loading.gif" width="50" height="50"></mip-img><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link >
+                    <mip-link  href="#" class="btn"><em></em>下载</mip-link >
+                </li>
+                <li >
+                    <mip-link  href="#" class="txt" ><mip-img  src="images/loading.gif" width="50" height="50"></mip-img><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link >
+                    <mip-link  href="#" class="btn"><em></em>下载</mip-link >
+                </li>
+                <li >
+                    <mip-link  href="#" class="txt" ><mip-img  src="images/loading.gif" width="50" height="50"></mip-img><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link >
+                    <mip-link  href="#" class="btn"><em></em>下载</mip-link >
+                </li>
+                <li >
+                    <mip-link  href="#" class="txt" ><mip-img  src="images/loading.gif" width="50" height="50"></mip-img><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link >
+                    <mip-link  href="#" class="btn"><em></em>下载</mip-link >
+                </li>
+            </ul>
+        </div>
+        <div class="load_detail_item item2">
+            <ul class="version_list">
+                <li>
+                    <mip-link href="#" class="txt"><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link>
+                    <mip-link href="#" class="btn"><em></em>下载</mip-link>
+                </li>
+                <li>
+                    <mip-link href="#" class="txt"><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link>
+                    <mip-link href="#" class="btn"><em></em>下载</mip-link>
+                </li>
+                <li>
+                    <mip-link href="#" class="txt"><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link>
+                    <mip-link href="#" class="btn"><em></em>下载</mip-link>
+                </li>
+            </ul>
+            <ul class="version_list version_list2 haspic">
+                <li >
+                    <mip-link  href="#" class="txt" ><mip-img  src="images/game1.png" width="50" height="50"></mip-img><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link >
+                    <mip-link  href="#" class="btn"><em></em>下载</mip-link >
+                </li>
+                <li >
+                    <mip-link  href="#" class="txt" ><mip-img  src="images/game1.png" width="50" height="50"></mip-img><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link >
+                    <mip-link  href="#" class="btn"><em></em>下载</mip-link >
+                </li>
+                <li >
+                    <mip-link  href="#" class="txt" ><mip-img  src="images/game1.png" width="50" height="50"></mip-img><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link >
+                    <mip-link  href="#" class="btn"><em></em>下载</mip-link >
+                </li>
+                <li >
+                    <mip-link  href="#" class="txt" ><mip-img  src="images/game1.png" width="50" height="50"></mip-img><span class="name">青丘狐传说手游腾讯版</span><i>大小：999M  时间：2018-09-22</i></mip-link >
+                    <mip-link  href="#" class="btn"><em></em>下载</mip-link >
+                </li>
+            </ul>
+        </div>
+        <div class="load_detail_item item3">
+            <div class="new_game_con">
+                <ul class="con1">
+                    <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                    <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                    <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                    <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                    <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                    <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                    <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                    <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+                </ul>
+            </div>
+        </div>
+</mip-vd-tabs>
+<div class="border_link" ></div>
+<div class="new_game">
+    <p class="new_game_title">
+        <b>游戏2</b>
+    </p>
+    <div class="new_game_con">
+        <ul class="con1">
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+        </ul>
+    </div>
+</div>
+<div class="new_game">
+    <p class="new_game_title">
+        <b>游戏2</b>
+    </p>
+    <div class="new_game_con con_list5">
+        <ul class="con1">
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+            <li><mip-link href="#" class="pic"><mip-img src="images/game1.png"   ></mip-img><span class="word">软件名软件名软件名</span></mip-link> <mip-link href="#" class="a"><span class="btn">下载</span></mip-link></li>
+        </ul>
+    </div>
+</div>
+<mip-btn-gototop class="back-top">
+    <div><img src="images/sq_br_up.png"> </div>
+</mip-btn-gototop>
+</mip-btn-down>
+<mip-stats-cnzz token="1253533538"></mip-stats-cnzz>
+<script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
+<script src="https://mipcache.bdstatic.com/static/v1/mip-accordion/mip-accordion.js"></script>
+<script src="https://mipcache.bdstatic.com/static/v1/mip-vd-tabs/mip-vd-tabs.js"></script>
+<script src="https://mipcache.bdstatic.com/static/v1/mip-link/mip-link.js"></script>
+<script src="https://mipcache.bdstatic.com/static/v1/mip-accordion/mip-accordion.js"></script>
+<script src="https://mipcache.bdstatic.com/static/v1/mip-lightbox/mip-lightbox.js"></script>
+<script src="http://localhost:8000/local-extension-loader/mip-btn-toggle.js"></script>
+<script src="http://localhost:8000/local-extension-loader/mip-btn-down.js"></script>
+<script src="http://localhost:8000/local-extension-loader/mip-btn-gototop.js"></script>
+<script src="https://mipcache.bdstatic.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
+<script src="https://mipcache.bdstatic.com/static/v1/mip-stats-cnzz/mip-stats-cnzz.js"></script>
+<mip-stats-baidu token="02890d4a309827eb62bc3335b2b28f7f"></mip-stats-baidu>
+</body>
+</html>

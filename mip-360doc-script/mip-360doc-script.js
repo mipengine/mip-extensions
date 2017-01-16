@@ -59,7 +59,6 @@ define(function (require) {
                 sendlog('Componentclick?id=8');
             });
         }
-        getBlockArt();
     };
     function check() {
         try {

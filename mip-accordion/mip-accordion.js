@@ -42,7 +42,7 @@ define(function (require) {
             if(expanded === "open") {
                 $targetdom.attr("aria-expanded","close");
                 $(this).parents("section").removeAttr("expanded");
-                if(!!$showMore.length && !!$showLess) {
+                if(!!$showMore.length && !!$showLess.length) {
                     $showMore.css('display','block');
                     $showLess.css('display','none');
                 }
@@ -50,7 +50,7 @@ define(function (require) {
             } else {
                 $targetdom.attr("aria-expanded","open");
                 $(this).parents("section").attr("expanded","open");
-                 if(!!$showMore.length && !!$showLess) {
+                 if(!!$showMore.length && !!$showLess.length) {
                     $showLess.css('display','block');
                     $showMore.css('display','none');
                 }

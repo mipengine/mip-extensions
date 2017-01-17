@@ -1,6 +1,7 @@
 # mip-btn-gototop
 
-mip-btn-gototop 组件说明
+mip-btn-gototop 用来支持网页快速回顶按钮，用来支持网页快速回顶功能。
+
 
 标题|内容
 ----|----

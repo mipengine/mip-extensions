@@ -1,11 +1,11 @@
 # mip-btn-toggle
 
-mip-btn-toggle 组件说明
+mip-btn-toggle 用来支持点击按钮显示隐藏切换详情页
 
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|N/S
 所需脚本|http://mipcache.bdstatic.com/static/mip-btn-toggle/{版本号}/mip-btn-toggle.js
 
 ## 示例
@@ -13,20 +13,16 @@ mip-btn-toggle 组件说明
 ### 基本用法
 ```html
 <mip-btn-toggle>
-    自定义内容，可以嵌套其他组件
+    <i class="hideshowbtn">点我</i>
 </mip-btn-toggle>
 ```
 
 ## 属性
+显示隐藏切换位置(hsId)
 
-### {属性名}
+### {hsId}
 
-说明：{说明}
-必选项：{是|否}
-类型：{类型}
-取值范围：{取值范围}
-单位：{单位}
-默认值：{默认值}
+说明：{显示隐藏切换位置}
+必选项：{是}
 
-## 注意事项
 

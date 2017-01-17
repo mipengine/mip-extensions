@@ -8,7 +8,7 @@ define(function (require) {
     var $ = require('jquery');
     var JSLOADED = [];
     var customElement = require('customElement').create();
-    customElement.prototype.build = function () {
+    customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
         var STATICURL = element.getAttribute('staticurl');
         var IMGDIR = element.getAttribute('imgdir');
@@ -16,13 +16,31 @@ define(function (require) {
         var script = element.querySelector('script[type="application/json"]') || null;
         if (script) {
             var obj = JSON.parse(script.textContent.toString());
-            var funstr = '';
+            var fnparams = '';
+            var fnstring = '';
             for (var key in obj) {
                 if (obj.hasOwnProperty(key)) {
-                    funstr += key + '(' + obj[key] + ');';
+                    fnstring = key;
+                    fnparams = obj[key];
                 }
             }
-            eval(funstr);
+            switch (fnstring) {
+                case 'seccheck':
+                    seccheck(fnparams);
+                    break;
+                case 'urlforward':
+                    urlforward(fnparams);
+                    break;
+                case 'fastpostform':
+                    fastpostform(fnparams);
+                    break;
+                case 'checkpostvalue':
+                    checkpostvalue(fnparams);
+                    break;
+                case 'postsubmitnewthread':
+                    postsubmitnewthread(fnparams);
+                    break;
+            }
         }
         var page = {
             converthtml: function () {
@@ -50,7 +68,7 @@ define(function (require) {
                 var selector = '';
                 if (lastpage) {
                     selector += '<a id="select_a" style="margin:0 2px;padding:1px 0 0 0;border:0;display:inline-block;'
-                    + 'position:relative;width:100px;height:31px;line-height:27px;background:url('
+                    + 'position:relative;width:100px;height:31px;line-height:27px;background:url(' + SITEURL
                     + STATICURL + '/image/mobile/images/pic_select.png) no-repeat;text-align:left;text-indent:20px;">';
                     selector += '<span>第' + curpage + '页</span>';
                 }
@@ -425,7 +443,7 @@ define(function (require) {
                         contentobj = document.createElement('div');
                         contentobj = $(contentobj);
                         contentobj.css({position: 'absolute', height: '30px', top: '-30px', left: '50%'});
-                        contentobj.html('<img src="' + STATICURL + 'image/mobile/images/icon_arrow.gif"'
+                        contentobj.html('<img src="' + SITEURL + STATICURL + 'image/mobile/images/icon_arrow.gif"'
                             + 'style="vertical-align:middle;margin-right:5px;-moz-transform:rotate(180deg);'
                             + '-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);">'
                             + '<span id="refreshtxt">下拉可以刷新</span>');
@@ -467,7 +485,7 @@ define(function (require) {
                 .on('touchend', function (e) {
                     if (status) {
                         if (reloadflag) {
-                            contentobj.html('<img src="' + STATICURL + 'image/mobile/images/icon_load.gif"'
+                            contentobj.html('<img src="' + SITEURL + STATICURL + 'image/mobile/images/icon_load.gif"'
                                 + 'style="vertical-align:middle;margin-right:5px;">正在加载...');
                             contentobj.animate({top: (-30 + 75) + 'px'}, 618, 'linear');
                             divobj.animate({height: '75px'}, 618, 'linear', function () {
@@ -505,7 +523,23 @@ define(function (require) {
                 else {
                     p1 = /<script(.*?)>([^\x00]+?)<\/script>/i;
                     arr1 = p1.exec(arr[0]);
-                    eval(arr1[2]);
+                    p1 = /\{(\w+)\(/i;
+                    var fnname = p1.exec(arr1[2]);
+                    p1 = /\,\s*(\{[^}]*\})/i;
+                    var fnparamArr2 = p1.exec(arr1[2]);
+                    switch (fnname[1]) {
+                        case 'errorhandle_fastpost':
+                            p1 = /[^\:\=]{1}([\']{1})([^\']+)\1[\,\)]/i;
+                            var fnparamArr1 = p1.exec(arr1[2]);
+                            errorhandlefastpost(fnparamArr1[2], fnparamArr2[1]);
+                            break;
+                        case 'succeedhandle_fastpost':
+                            p1 = /[^\:\=]{1}([\']{1})([^\']+)\1[\,\)]/g;
+                            var fnparamArr = p1.exec(arr1[2]);
+                            fnparamArr1 = p1.exec(arr1[2]);
+                            succeedhandlefastpost(fnparamArr[2], fnparamArr1[2], fnparamArr2[1]);
+                            break;
+                    }
                 }
             }
             return s;
@@ -618,20 +652,24 @@ define(function (require) {
         }
 
 		// seccheck.htm 刷新验证码
-        function seccheck(sechash) {
-            (function () {
-                $('.seccodeimg').on('click', function () {
-                    $('#seccodeverify_' + sechash).attr('value', '');
-                    var tmprandom = 'S' + Math.floor(Math.random() * 1000);
-                    $('.sechash').attr('value', tmprandom);
-                    $(this).attr('src', 'misc.php?mod=seccode&update={$ran}&idhash=' + tmprandom + '&mobile=2');
-                });
-            })();
+        function seccheck(params) {
+            var paramsArr = params.split('###');
+            var sechash = paramsArr[0];
+            var ran = paramsArr[1];
+            $('.seccodeimg').on('click', function () {
+                $('#seccodeverify_' + sechash).attr('value', '');
+                var tmprandom = 'S' + Math.floor(Math.random() * 1000);
+                $('.sechash').attr('value', tmprandom);
+                $('.seccodeimg img').attr('src', 'misc.php?mod=seccode&update=' + ran
+                    + '&idhash=' + tmprandom + '&mobile=2');
+            });
         }
 
 		// forumdisplay_fastpost.htm
-        function fastpostform(text, type) {
-            var form = $('#fastpostform');
+        function fastpostform(params) {
+            var paramsArr = params.split('###');
+            var text = paramsArr[0];
+            var type = paramsArr[1];
             if (type !== 'send_reply_fast') {
                 $('#fastpostmessage').on('focus', function () {
                     if (type === 'nologin') {
@@ -688,6 +726,8 @@ define(function (require) {
             });
         }
         function succeedhandlefastpost(locationhref, message, param) {
+            param = param.replace(new RegExp(/\'/g), '"');
+            param = JSON.parse(param);
             var pid = param.pid;
             var tid = param.tid;
             if (pid) {
@@ -762,10 +802,7 @@ define(function (require) {
         }
 
 		// post.htm
-        function postsubmitnewthread(geo, networkerrortext) {
-            if (geo) {
-                geo.getcurrentposition();
-            }
+        function postsubmitnewthread(getgeo, networkerrortext) {
             $('#postsubmit').on('click', function () {
                 var obj = $(this);
                 if (obj.attr('disable') === 'true') {

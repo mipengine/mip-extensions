@@ -10,20 +10,42 @@ define(function (require) {
     var platform = util.platform;
     var JSLOADED = [];
     var customElement = require('customElement').create();
-    customElement.prototype.build = function () {
+    customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
         var STATICURL = element.getAttribute('staticurl');
         var IMGDIR = element.getAttribute('imgdir');
+        var SITEURL = element.getAttribute('siteurl');
         var script = element.querySelector('script[type="application/json"]') || null;
         if (script) {
             var obj = JSON.parse(script.textContent.toString());
-            var funstr = '';
+            var fnparams = '';
+            var fnstring = '';
             for (var key in obj) {
                 if (obj.hasOwnProperty(key)) {
-                    funstr += key + '(' + obj[key] + ');';
+                    fnstring = key;
+                    fnparams = obj[key];
                 }
             }
-            eval(funstr);
+            switch (fnstring) {
+                case 'seccheck':
+                    seccheck(fnparams);
+                    break;
+                case 'urlforward':
+                    urlforward(fnparams);
+                    break;
+                case 'getvisitclienthref1':
+                    getvisitclienthref1(fnparams);
+                    break;
+                case 'getvisitclienthref2':
+                    getvisitclienthref2(fnparams);
+                    break;
+                case 'fastpostformsubmit':
+                    fastpostformsubmit(fnparams);
+                    break;
+                case 'subforum':
+                    subforum(fnparams);
+                    break;
+            }
         }
         var page = {
             converthtml: function () {
@@ -51,7 +73,7 @@ define(function (require) {
                 var selector = '';
                 if (lastpage) {
                     selector += '<a id="select_a" style="margin:0 2px;padding:1px 0 0 0;border:0;display:inline-block;'
-                    + 'position:relative;width:100px;height:31px;line-height:27px;background:url('
+                    + 'position:relative;width:100px;height:31px;line-height:27px;background:url(' + SITEURL
                     + STATICURL + '/image/mobile/images/pic_select.png) no-repeat;text-align:left;text-indent:20px;">';
                     selector += '<span>第' + curpage + '页</span>';
                 }
@@ -150,7 +172,7 @@ define(function (require) {
                 obj.css('display', 'none');
                 var parentnode = obj.parent();
                 parentnode.find('.loading').remove();
-                parentnode.append('<div class="loading" style="background:url(' + IMGDIR
+                parentnode.append('<div class="loading" style="background:url(' + SITEURL + IMGDIR
                     + '/imageloading.gif) no-repeat center center;width:' + parentnode.width()
                     + 'px;height:' + parentnode.height() + 'px"></div>');
                 var loadnums = parseInt(obj.attr('load'), 0) || 0;
@@ -347,57 +369,6 @@ define(function (require) {
                 });
             }
         };
-        var geo = {
-            latitude: null,
-            longitude: null,
-            loc: null,
-            errmsg: null,
-            timeout: 5000,
-            getcurrentposition: function () {
-                if (!navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(this.locationsuccess, this.locationerror, {
-                        enableHighAcuracy: true,
-                        timeout: this.timeout,
-                        maximumAge: 3000
-                    });
-                }
-            },
-            locationerror: function (error) {
-                geo.errmsg = 'error';
-                switch (error.code) {
-                    case error.TIMEOUT:
-                        geo.errmsg = '获取位置超时，请重试';
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        geo.errmsg = '无法检测到您的当前位置';
-                        break;
-                    case error.PERMISSION_DENIED:
-                        geo.errmsg = '请允许能够正常访问您的当前位置';
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        geo.errmsg = '发生未知错误';
-                        break;
-                }
-            },
-            locationsuccess: function (position) {
-                geo.latitude = position.coords.latitude;
-                geo.longitude = position.coords.longitude;
-                geo.errmsg = '';
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://maps.google.com/maps/api/geocode/json?latlng=' + geo.latitude + ',' + geo.longitude + '&language=zh-CN&sensor=true',
-                    dataType: 'json'
-                })
-                .success(function (s) {
-                    if (s.status === 'OK') {
-                        geo.loc = s.results[0].formatted_address;
-                    }
-                })
-                .error(function () {
-                    geo.loc = null;
-                });
-            }
-        };
         var pullrefresh = {
             init: function () {
                 var pos = {};
@@ -426,7 +397,7 @@ define(function (require) {
                         contentobj = document.createElement('div');
                         contentobj = $(contentobj);
                         contentobj.css({position: 'absolute', height: '30px', top: '-30px', left: '50%'});
-                        contentobj.html('<img src="' + STATICURL + 'image/mobile/images/icon_arrow.gif"'
+                        contentobj.html('<img src="' + SITEURL + STATICURL + 'image/mobile/images/icon_arrow.gif"'
                             + 'style="vertical-align:middle;margin-right:5px;-moz-transform:rotate(180deg);'
                             + '-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);">'
                             + '<span id="refreshtxt">下拉可以刷新</span>');
@@ -468,7 +439,7 @@ define(function (require) {
                 .on('touchend', function (e) {
                     if (status) {
                         if (reloadflag) {
-                            contentobj.html('<img src="' + STATICURL + 'image/mobile/images/icon_load.gif"'
+                            contentobj.html('<img src="' + SITEURL + STATICURL + 'image/mobile/images/icon_load.gif"'
                                 + 'style="vertical-align:middle;margin-right:5px;">正在加载...');
                             contentobj.animate({top: (-30 + 75) + 'px'}, 618, 'linear');
                             divobj.animate({height: '75px'}, 618, 'linear', function () {
@@ -506,7 +477,23 @@ define(function (require) {
                 else {
                     p1 = /<script(.*?)>([^\x00]+?)<\/script>/i;
                     arr1 = p1.exec(arr[0]);
-                    eval(arr1[2]);
+                    p1 = /\{(\w+)\(/i;
+                    var fnname = p1.exec(arr1[2]);
+                    p1 = /\,\s*(\{[^}]*\})/i;
+                    var fnparamArr2 = p1.exec(arr1[2]);
+                    switch (fnname[1]) {
+                        case 'errorhandle_fastpost':
+                            p1 = /[^\:\=]{1}([\']{1})([^\']+)\1[\,\)]/i;
+                            var fnparamArr1 = p1.exec(arr1[2]);
+                            errorhandlefastpost(fnparamArr1[2], fnparamArr2[1]);
+                            break;
+                        case 'succeedhandle_fastpost':
+                            p1 = /[^\:\=]{1}([\']{1})([^\']+)\1[\,\)]/g;
+                            var fnparamArr = p1.exec(arr1[2]);
+                            fnparamArr1 = p1.exec(arr1[2]);
+                            succeedhandlefastpost(fnparamArr[2], fnparamArr1[2], fnparamArr2[1]);
+                            break;
+                    }
                 }
             }
             return s;
@@ -610,6 +597,39 @@ define(function (require) {
             formdialog.init();
             redirect.init();
         });
+        function succeedhandlefastpost(locationhref, message, param) {
+            param = param.replace(new RegExp(/\'/g), '"');
+            param = JSON.parse(param);
+            var pid = param.pid;
+            var tid = param.tid;
+            if (pid) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'forum.php?mod=viewthread&tid=' + tid + '&viewpid=' + pid + '&mobile=2',
+                    dataType: 'xml'
+                })
+                .success(function (s) {
+                    $('#post_new').append(s.lastChild.firstChild.nodeValue);
+                })
+                .error(function () {
+                    window.location.href = 'forum.php?mod=viewthread&tid=' + tid;
+                    popup.close();
+                });
+            }
+            else {
+                if (!message) {
+                    message = '{lang postreplyneedmod}';
+                }
+                popup.open(message, 'alert');
+            }
+            $('#fastpostmessage').attr('value', '');
+            if (param.sechash) {
+                $('.seccodeimg').click();
+            }
+        }
+        function errorhandlefastpost(message, param) {
+            popup.open(message, 'alert');
+        }
 
 		// showmessage.htm 几秒跳转
         function urlforward(url, sec) {
@@ -651,15 +671,17 @@ define(function (require) {
         }
 
 		// seccheck.htm 刷新验证码
-        function seccheck(sechash) {
-            (function () {
-                $('.seccodeimg').on('click', function () {
-                    $('#seccodeverify_' + sechash).attr('value', '');
-                    var tmprandom = 'S' + Math.floor(Math.random() * 1000);
-                    $('.sechash').attr('value', tmprandom);
-                    $(this).attr('src', 'misc.php?mod=seccode&update={$ran}&idhash=' + tmprandom + '&mobile=2');
-                });
-            })();
+        function seccheck(params) {
+            var paramsArr = params.split('###');
+            var sechash = paramsArr[0];
+            var ran = paramsArr[1];
+            $('.seccodeimg').on('click', function () {
+                $('#seccodeverify_' + sechash).attr('value', '');
+                var tmprandom = 'S' + Math.floor(Math.random() * 1000);
+                $('.sechash').attr('value', tmprandom);
+                $('.seccodeimg img').attr('src', 'misc.php?mod=seccode&update=' + ran
+                    + '&idhash=' + tmprandom + '&mobile=2');
+            });
         }
 
         // viewthread.htm
@@ -697,11 +719,11 @@ define(function (require) {
                 var subobj = $(obj.attr('href'));
                 if (subobj.css('display') === 'none') {
                     subobj.css('display', 'block');
-                    obj.find('img').attr('src', STATICURL + 'image/mobile/images/collapsed_yes.png');
+                    obj.find('img').attr('src', SITEURL + STATICURL + 'image/mobile/images/collapsed_yes.png');
                 }
                 else {
                     subobj.css('display', 'none');
-                    obj.find('img').attr('src', STATICURL + 'image/mobile/images/collapsed_no.png');
+                    obj.find('img').attr('src', SITEURL + STATICURL + 'image/mobile/images/collapsed_no.png');
                 }
             });
         }

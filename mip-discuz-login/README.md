@@ -14,7 +14,7 @@ mip-discuz-login discuz手机页面登陆功能组件
 - 自定义function, script 标签中的参数必须带双引号，也就是说 script 标签中的数据必须是 json 格式的
 - json 格式中的key 为自定义函数名，value为自定义函数参数
 ```html
-<mip-discuz-login staticurl="/static/" imgdir="/static/uploads/">
+<mip-discuz-login staticurl="/static/" imgdir="/static/uploads/" siteurl="https://m.baidu.com">
     <script type="application/json">
     {
         "seccheck": "999"
@@ -31,5 +31,10 @@ mip-discuz-login discuz手机页面登陆功能组件
 
 ### imgdir
 说明：图片资源存储路径
+必选项：是   
+类型：字符串 
+
+### siteurl
+说明：网站url
 必选项：是   
 类型：字符串 

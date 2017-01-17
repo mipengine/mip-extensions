@@ -1,12 +1,12 @@
 /**
- * @file mip-map-baidu 组件
+ * @file mip-baiyun-map 组件
  * @author unofficial
  * @time 2017-01-17
  */
 
 define(function (require) {
 	var customElement = require('customElement').create();
-	var mapElement = document.getElementsByTagName('mip-map-baidu')[0];
+	var mapElement = document.getElementsByTagName('mip-baiyun-map')[0];
 	var startElement = document.getElementById('l-start');
 	var endElement = document.getElementById('l-end');
 	var failElement = document.getElementById('l-fail');

@@ -1,18 +1,18 @@
-# mip-map-baidu
+# mip-baiyun-map
 
-mip-map-baidu 组件说明
+mip-baiyun-map 组件说明
 
 标题|内容
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/mip-map-baidu/{版本号}/mip-map-baidu.js
+所需脚本|http://mipcache.bdstatic.com/static/mip-baiyun-map/{版本号}/mip-baiyun-map.js
 
 ## 示例
 
 ### 基本用法
 ```html
-<mip-map-baidu data-x="116.404" data-y="39.915" data-zoom="16" data-way="1" data-ak="密钥">
+<mip-baiyun-map data-x="116.404" data-y="39.915" data-zoom="16" data-way="1" data-ak="密钥">
 	<div id="allmap"><!-- 必须 --></div>
 	<div id="way" class="way">
 		<div id="tip" class="tip">
@@ -31,7 +31,7 @@ mip-map-baidu 组件说明
 			<button id="l-confirm" class="l-confirm">确定</button>
 		</div>
 	</div>
-</mip-map-baidu>
+</mip-baiyun-map>
 ```
 
 ## 属性

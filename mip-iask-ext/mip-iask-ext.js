@@ -120,7 +120,7 @@ define(function (require) {
                         if (e == null || e === 'null') {
                             // 跳转到登录页面
                             var thisHref = window.location.href;
-                            window.location.href = 'http://m.iask.sina.com.cn/login?source=' + thisHref;
+                            window.location.href = 'https://mipp.iask.cn/login?source=' + thisHref;
                         }
                         else {
                             var questionId = $('.report_id').text();
@@ -174,7 +174,7 @@ define(function (require) {
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {
-                    indexLogin.attr('href', 'http://m.iask.sina.com.cn/login?source=' + thisHref);
+                    indexLogin.attr('href', 'https://mipp.iask.cn/login?source=' + thisHref);
                 }
                 else {
                     var user = $.parseJSON(e);

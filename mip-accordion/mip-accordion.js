@@ -36,14 +36,24 @@ define(function (require) {
             var targetId = $(this).attr("aria-controls");
             var $targetdom = $("#"+ targetId);
             var expanded =  $targetdom.attr("aria-expanded");
+            var $showMore =  $(this).parents("section").find('.show-more');
+            var $showLess =  $(this).parents("section").find('.show-less');
 
             if(expanded === "open") {
                 $targetdom.attr("aria-expanded","close");
                 $(this).parents("section").removeAttr("expanded");
+                if(!!$showMore.length && !!$showLess) {
+                    $showMore.css('display','block');
+                    $showLess.css('display','none');
+                }
                 setsession(element,targetId,false);
             } else {
                 $targetdom.attr("aria-expanded","open");
                 $(this).parents("section").attr("expanded","open");
+                 if(!!$showMore.length && !!$showLess) {
+                    $showLess.css('display','block');
+                    $showMore.css('display','none');
+                }
                 setsession(element,targetId,true);
             }
         });
@@ -95,7 +105,7 @@ define(function (require) {
             var header = $(section).find('[accordionbtn]');
             var content = $(section).find('[accordionbox]');
 
-            if (!header.length || !content.length) {
+            if(!header.length || !content.length) {
                 header = $(section.children.item(0));
                 content = header.next();
             }

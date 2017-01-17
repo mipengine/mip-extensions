@@ -87,5 +87,5 @@ mip-map-baidu 组件说明
 默认值：起点start ; 终点end
 
 ## 注意事项
-注意结构有些固定，后期视情况继续优化
+注意结构有些固定，后期视情况继续优化  
 ![](https://cloud.githubusercontent.com/assets/13213114/22011830/f882e586-dccb-11e6-9f05-657f88cd925f.gif)

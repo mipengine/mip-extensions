@@ -13,7 +13,7 @@ mip-baiyun-map 组件说明
 ### 基本用法
 ```html
 <mip-baiyun-map data-x="116.404" data-y="39.915" data-zoom="16" data-way="1" data-ak="密钥">
-	<div id="allmap"><!-- 必须 --></div>
+	<div id="allmap" class="map"><!-- 必须 --></div>
 	<div id="way" class="way">
 		<div id="tip" class="tip">
 			<button data-id="1" class="cur">公交</button>
@@ -27,21 +27,14 @@ mip-baiyun-map 组件说明
 			<div>
 				终点：<input type="text" id="l-end" name="l-end" value="">
 			</div>
-			<div id="l-result"></div>
+			<div id="l-result"><!-- 公交路线必须 --></div>
 			<button id="l-confirm" class="l-confirm">确定</button>
 		</div>
 	</div>
 </mip-baiyun-map>
 ```
 
-## 属性
-
-### id
-
-说明：地图依据ID生成输出内容  
-必选项：否  
-类型：string  
-默认值：allmap  
+## 属性 
 
 ### data-x
 
@@ -79,13 +72,11 @@ mip-baiyun-map 组件说明
 说明：地图线路查询方式  
 必选项：是  
 
-### way > tip > id
-
-说明：地图线路查询方式，起点与重点的ID名  
-必选项：是  
-类型：string
-默认值：起点start ; 终点end
 
 ## 注意事项
-注意结构有些固定，后期视情况继续优化  
+  
+- ID: allmap 地图容器ID必须唯一  
+- ID: l-result 公交路线ID必须唯一  
+- 元素结构固定  
+  
 ![](https://cloud.githubusercontent.com/assets/13213114/22011830/f882e586-dccb-11e6-9f05-657f88cd925f.gif)

@@ -1,5 +1,15 @@
 # 升级日志
 
+#### 2017.01.18
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-discuz-login](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-login)|[升级] 论坛登录
+[mip-discuz-post](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-post)|[升级] 论坛发帖
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级] 折叠组件：支持默认展开节点
+
 #### 2017.01.17
 
 > 核心代码上线
@@ -12,7 +22,7 @@
 组件名|功能说明
 ---|---
 [mip-discuz-login](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-login)|[新增] 论坛登录
-mip-discuz-post](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-post)|[新增] 论坛发帖
+[mip-discuz-post](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-post)|[新增] 论坛发帖
 [mip-gototop](https://github.com/mipengine/mip-extensions/tree/master/mip-gototop)|[升级] 快速回顶
 [mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
 [mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件

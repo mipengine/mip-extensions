@@ -12,6 +12,7 @@ mip-tj 移动适配页精彩推荐广告
 
 移动适配页精彩推荐第三方广告插件
 ```html	
+<img alt="老干妈赚外国人的钱" src="https://www.gucheng.com/hot/UploadFiles_8844/201611/2016110111361387.jpg">
 <mip-tj 
      ayid="y74002"
 	 adtype="ad-dsf"

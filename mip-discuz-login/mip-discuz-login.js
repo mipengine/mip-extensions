@@ -141,6 +141,60 @@ define(function (require) {
                 return true;
             }
         };
+        var img = {
+            init: function (iserrt) {
+                var errhandle = this.errorhandle;
+                $('img').on('load', function () {
+                    var obj = $(this);
+                    obj.attr('zsrc', obj.attr('src'));
+                    if (obj.width() < 5 && obj.height() < 10 && obj.css('display') !== 'none') {
+                        return errhandle(obj, iserrt);
+                    }
+                    obj.css('display', 'inline');
+                    obj.css('visibility', 'visible');
+                    if (obj.width() > window.innerWidth) {
+                        obj.css('width', window.innerWidth);
+                    }
+                    obj.parent().find('.loading').remove();
+                    obj.parent().find('.error_text').remove();
+                })
+                .on('error', function () {
+                    var obj = $(this);
+                    obj.attr('zsrc', obj.attr('src'));
+                    errhandle(obj, iserrt);
+                });
+            },
+            errorhandle: function (obj, iserrt) {
+                if (obj.attr('noerror') === 'true') {
+                    return;
+                }
+                obj.css('visibility', 'hidden');
+                obj.css('display', 'none');
+                var parentnode = obj.parent();
+                parentnode.find('.loading').remove();
+                parentnode.append('<div class="loading" style="background:url(' + SITEURL + IMGDIR
+                    + '/imageloading.gif) no-repeat center center;width:' + parentnode.width()
+                    + 'px;height:' + parentnode.height() + 'px"></div>');
+                var loadnums = parseInt(obj.attr('load'), 0) || 0;
+                if (loadnums < 3) {
+                    obj.attr('src', obj.attr('zsrc'));
+                    obj.attr('load', ++loadnums);
+                    return false;
+                }
+                if (iserrt) {
+                    parentnode.find('.loading').remove();
+                    parentnode.append('<div class="error_text">点击重新加载</div>');
+                    parentnode.find('.error_text').one('click', function () {
+                        obj.attr('load', 0).find('.error_text').remove();
+                        parentnode.append('<div class="loading" style="background:url(' + IMGDIR
+                            + '/imageloading.gif) no-repeat center center;width:' + parentnode.width()
+                            + 'px;height:' + parentnode.height() + 'px"></div>');
+                        obj.attr('src', obj.attr('zsrc'));
+                    });
+                }
+                return false;
+            }
+        };
         var atap = {
             init: function () {
                 $('.atap').on('tap', function () {
@@ -529,6 +583,9 @@ define(function (require) {
             }
             if ($('.display').length > 0) {
                 display.init();
+            }
+            if ($('img').length > 0) {
+                img.init(1);
             }
             if ($('.atap').length > 0) {
                 atap.init();

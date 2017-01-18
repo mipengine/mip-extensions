@@ -18,19 +18,21 @@ define(function (require) {
      * 构造元素，只会运行一次
      */
     customElement.prototype.firstInviewCallback = function () {
-        this.reqMap();
-        var self = this;
+        var baiyunMap = new BaiyunMap();
         window.addEventListener('load', function () {
-            self.map();
+            baiyunMap.map();
         });
         // 注册查询方式
-        mapElement.dataset.way && this.way();
+        mapElement.dataset.way && baiyunMap.way();
     };
 
     /**
-     * 插入地图元素至Body末尾
+     * Say Hello
+     *
+     * @class       BaiyunMap
+     * @description 插入地图元素至Body末尾
      */
-    customElement.prototype.reqMap = function () {
+    function BaiyunMap() {
         var ak = mapElement.dataset.ak;
         // add map class
         var headElement = document.getElementsByTagName('body')[0];
@@ -38,12 +40,12 @@ define(function (require) {
         scriptElement.type = 'text/javascript';
         scriptElement.src = 'http://api.map.baidu.com/getscript?v=2.0&ak=' + ak;
         headElement.appendChild(scriptElement);
-    };
+    }
 
     /**
      * map init
      */
-    customElement.prototype.map = function () {
+    BaiyunMap.prototype.map = function () {
         var id = mapElement.firstChild.id || 'allmap';
         var zoom = mapElement.dataset.zoom || 16;
         var x = mapElement.dataset.x;
@@ -65,12 +67,12 @@ define(function (require) {
     /**
      * what way
      */
-    customElement.prototype.way = function () {
+    BaiyunMap.prototype.way = function () {
         var self = this;
         mapElement.addEventListener('click', function (e) {
             var targetEle = e.target;
             if (targetEle.parentElement.id === 'tip') {
-                way = targetEle.dataset.id;
+                way = Number(targetEle.dataset.id);
                 // 选中
                 var butArr = [].slice.call(targetEle.parentElement.children);
                 butArr.forEach(function (e) {
@@ -87,7 +89,7 @@ define(function (require) {
     /**
      * get route way
      */
-    customElement.prototype.getRoute = function () {
+    BaiyunMap.prototype.getRoute = function () {
         // need: way / start / end
         var start = startElement.value;
         var end = endElement.value;

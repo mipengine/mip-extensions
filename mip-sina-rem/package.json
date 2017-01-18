@@ -1,0 +1,14 @@
+{
+    "name": "mip-sina-rem",
+    "version": "1.0.0",
+    "description": "新浪页面rem适配",
+    "contributors": [
+        {
+            "name": "fengzihao",
+            "email": "452242153@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

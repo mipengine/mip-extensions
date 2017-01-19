@@ -1,5 +1,5 @@
 ﻿/**
- * @file 360doc 自定 义逻辑组件
+ * @file 360doc 自定义逻辑组件
  * @author www.360doc.com技术部
  */
 define(function (require) {
@@ -23,7 +23,7 @@ define(function (require) {
         var t = setTimeout(function () {
             check();
             clearTimeout(t);
-        }, 10000);
+        }, 20000);
         if ($('.mip-360doc-script-plg2') !== null) {
             $('.mip-360doc-script-plg2').on('click', function (event) {
                 sendlog('Componentclick?id=1');
@@ -59,14 +59,24 @@ define(function (require) {
                 sendlog('Componentclick?id=8');
             });
         }
+        getBlockArt();
+        if ($('.mip-360doc-script-keyword') !== null) {
+            parseSearchWord();
+        }
     };
     function check() {
         try {
             if (document.documentElement.outerHTML.indexOf('iframeu2825450_0') < 0) {
                 sendlog('mipads/u2825450');
             }
+            else {
+                sendlog('mipadsShow/u2825450');
+            }
             if (document.documentElement.outerHTML.indexOf('iframeu2825719_0') < 0) {
                 sendlog('mipads/u2825719');
+            }
+            else {
+                sendlog('mipadsShow/u2825719');
             }
         }
         catch (e) { }
@@ -132,7 +142,7 @@ define(function (require) {
             error: function () { }
         });
     }
-    //  不显示已被删除的文章.
+    //  不显示已被删除的文章
     function getBlockArt() {
         var fetchJsonp = require('fetch-jsonp');
         fetchJsonp('https://blockart.360doc.com/ajax/getstatusmip.ashx?aid=' + getID(), {
@@ -150,6 +160,31 @@ define(function (require) {
     function getID() {
         var artid = $('.mip-360doc-script-saveid').html();
         return artid;
+    }
+    //  获取搜索词
+    function parseSearchWord() {
+        try {
+            var url = '';
+            var keyword = '';
+            var index = -1;
+            var index2 = -1;
+            if (document.referrer) {
+                url = document.referrer;
+            }
+            if (url.length > 0 && url.indexOf('//m.baidu.com') >= 0) {
+                index = url.indexOf('word=');
+                if (index > 0) {
+                    index2 = url.indexOf('&', index);
+                }
+                if (index2 > 0) {
+                    keyword = url.substring(index + 5, index2);
+                    if (keyword.length > 0) {
+                        $('.mip-360doc-script-keyword').val(decodeURI(keyword));
+                    }
+                }
+            }
+        }
+        catch (e) { }
     }
     return customElem;
 });

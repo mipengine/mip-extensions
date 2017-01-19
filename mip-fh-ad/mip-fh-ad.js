@@ -89,7 +89,7 @@ define(function (require) {
                                 break;
                         }
 
-                        $body.addclass('view-fh-ad-' + (+k));
+                        $body.addClass('view-fh-ad-' + (+k));
                     }
                     // 无特定广告位id投广告
                     else {

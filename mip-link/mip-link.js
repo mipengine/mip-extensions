@@ -5,15 +5,13 @@
  */
 
 define(function (require) {
-    var $ = require('zepto');
-
     var customElement = require('customElement').create();
 
     /**
      * build
      *
      */
-    customElement.prototype.build = function () {
+    customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
         var url = element.getAttribute('href');
         var title = element.getAttribute('title') || '';

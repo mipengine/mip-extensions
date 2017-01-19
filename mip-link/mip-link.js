@@ -25,8 +25,16 @@ define(function (require) {
             pageType = 2;
         }
 
+        var mipLinkObj = {
+            'url': url,
+            'title': title,
+            'pageType': pageType,
+            'click': (element.getAttribute('data-title') || element.innerText.replace(/(^\s*)|(\s*$)/g, '').split('\n')[0])
+        };
+        var strData = JSON.stringify(mipLinkObj);
+
         var htmlDom = element.innerHTML;
-        var domStr = '<a href=' + url + ' data-title=' + title + ' data-pageType=' + pageType + '>' + htmlDom + '</a>';
+        var domStr = '<a href=' + url + ' data-mipLink =' + strData + '>' + htmlDom + '</a>';
         element.innerHTML = domStr;
     };
 

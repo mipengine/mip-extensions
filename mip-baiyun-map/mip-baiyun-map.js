@@ -29,7 +29,7 @@ define(function (require) {
         var headElement = document.getElementsByTagName('body')[0];
         var scriptElement = document.createElement('script');
         scriptElement.type = 'text/javascript';
-        scriptElement.src = 'http://api.map.baidu.com/getscript?v=2.0&ak=' + ak;
+        scriptElement.src = '//api.map.baidu.com/getscript?v=2.0&ak=' + ak;
         headElement.appendChild(scriptElement);
     }
 

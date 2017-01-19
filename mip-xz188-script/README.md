@@ -14,11 +14,11 @@ mip-xz188-script 页面逻辑脚本集合
 <mip-xz188-script>
 <div class="header">
         <div class="header_con">
-            <mip-btn-toggle class="menu" hsId="1"><i class="hideshowbtn">分类</i></mip-btn-toggle>
+            <mip-xz188-toggle class="menu" hsId="1"><i class="hideshowbtn">分类</i></mip-xz188-toggle>
             <div class="logo">
                 <mip-link href="#"><img src=""></a>
             </div>
-            <mip-btn-toggle class="search" hsId="0"><i class="hideshowbtn"></i></mip-btn-toggle>
+            <mip-xz188-toggle class="search" hsId="0"><i class="hideshowbtn"></i></mip-xz188-toggle>
         </div>
     </div>
     <div class="search_box" >
@@ -29,10 +29,10 @@ mip-xz188-script 页面逻辑脚本集合
                 <input type="hidden" name="tempid" value="1">
                 <input type="text" class="search-tx" value="" name="keyboard" placeholder="请输入搜索词...">
                 <input type="submit" class="search-bt" value="">
-                <mip-btn-toggle class="close-search" hsId="2"><i class="hideshowbtn">取消</i></mip-btn-toggle>
+                <mip-xz188-toggle class="close-search" hsId="2"><i class="hideshowbtn">取消</i></mip-xz188-toggle>
             </mip-form>
         </div>
-        <mip-btn-toggle class="hide_box" hsId="3"><i class="hideshowbtn"></i></mip-btn-toggle>
+        <mip-xz188-toggle class="hide_box" hsId="3"><i class="hideshowbtn"></i></mip-xz188-toggle>
     </div>
     <div class="top_menu_wrap">
         <div class="top_menu">

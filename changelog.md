@@ -2,6 +2,20 @@
 
 #### 2017.01.18
 
+> 核心代码上线
+
+    1. 增加动画方案
+    2. 增加存储方案
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
+
+#### 2017.01.18
+
 > 组件上线
 
 组件名|功能说明
@@ -11,11 +25,6 @@
 [mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级] 折叠组件：支持默认展开节点
 
 #### 2017.01.17
-
-> 核心代码上线
-
-	1. 增加动画方案
-	2. 增加存储方案
 
 > 组件上线
 

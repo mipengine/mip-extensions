@@ -1,5 +1,5 @@
 /**
- * @file mip-btn-down 组件
+ * @file mip-xz188-script 组件
  * @author
  */
 

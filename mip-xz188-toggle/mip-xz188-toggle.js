@@ -1,5 +1,5 @@
 /**
- * @file mip-btn-toggle 组件
+ * @file mip-xz188-toggle 组件
  * @author
  */
 

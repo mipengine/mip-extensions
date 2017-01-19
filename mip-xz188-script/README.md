@@ -1,17 +1,17 @@
-# mip-btn-down
+# mip-xz188-script
 
-mip-btn-down 页面逻辑脚本集合
+mip-xz188-script 页面逻辑脚本集合
 
 标题|内容
 ----|----
 类型|通用
 支持布局|N/S
-所需脚本|http://mipcache.bdstatic.com/static/mip-btn-down/{版本号}/mip-btn-down.js
+所需脚本|http://mipcache.bdstatic.com/static/mip-xz188-script/{版本号}/mip-xz188-script.js
 
 ## 示例
 
 ```html
-<mip-btn-down>
+<mip-xz188-script>
 <div class="header">
         <div class="header_con">
             <mip-btn-toggle class="menu" hsId="1"><i class="hideshowbtn">分类</i></mip-btn-toggle>
@@ -102,4 +102,4 @@ mip-btn-down 页面逻辑脚本集合
             </div>
         </div>
     </div>
- </mip-btn-down>
+ </mip-xz188-script>

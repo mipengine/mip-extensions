@@ -33,6 +33,17 @@ define(function (require) {
         return html;
     };
 
+    // 没有飞华直投广告的操作
+    var hasNoFhAd = function (element, posId) {
+        $('#ad-s-1255').show();
+        $('#ask-inof-blew-ad').show();
+        if (+posId === 1) {
+            element.html(loadBdAd());
+        }
+        $body.addClass('view-fh-ad-union');
+        $mipFhAdBdHide.show().removeClass('dn');
+    };
+
     var hasFhAd = false;
     var $mipFhAdBdHide = $('[mip-fh-ad-bd-hide]');
     // 初始化直投广告
@@ -109,17 +120,15 @@ define(function (require) {
                     }
                 });
 
-                !hasFhAd && ($mipFhAdBdHide.show().removeClass('dn'));
+                adObj.length <= 0 && (hasFhAd = false);
+
+                if (!hasFhAd) {
+                    hasNoFhAd(element, posId);
+                }
             });
         }
         else {
-            $('#ad-s-1255').show();
-            $('#ask-inof-blew-ad').show();
-            if (+posId === 1) {
-                element.html(loadBdAd());
-            }
-            $body.addClass('view-fh-ad-union');
-            $mipFhAdBdHide.show().removeClass('dn');
+            hasNoFhAd(element, posId);
         }
     };
 

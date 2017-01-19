@@ -19,8 +19,14 @@ define(function (require) {
             return;
         }
 
+        var pageType = 1;
+        var cacheMeta = document.querySelector('meta[property="mip:use_cache"]');
+        if (cacheMeta && cacheMeta.getAttribute('content') === 'no') {
+            pageType = 2;
+        }
+
         var htmlDom = element.innerHTML;
-        var domStr = '<a href=' + url + ' data-title=' + title + '>' + htmlDom + '</a>';
+        var domStr = '<a href=' + url + ' data-title=' + title + ' data-pageType=' + pageType + '>' + htmlDom + '</a>';
         element.innerHTML = domStr;
     };
 

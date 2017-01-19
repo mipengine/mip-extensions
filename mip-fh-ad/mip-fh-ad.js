@@ -25,9 +25,9 @@ define(function (require) {
         var html = ['<div class="fh-ad-1">', '<span class="btn-fh-ad-1" on="tap:fh-ad-1.close"></span>', '</div>'];
 
         html = html.concat(['<mip-ad type="baidu-wm-ext" ',
-            ,'domain="1.feihua.com" token="dy3a1ecf96f3cef331db4c3e8da4f73ffa54acde0b36"'
+            ,'domain="1.feihua.com" token="cb3a1ecf96f3cff53edb4c3e8da4f73ffa54acde0b36"'
             ,'>'
-            ,'<div id="dy3a1ecf96f3cef331db4c3e8da4f73ffa54acde0b36"></div>', '</mip-ad>']);
+            ,'<div id="cb3a1ecf96f3cff53edb4c3e8da4f73ffa54acde0b36"></div>', '</mip-ad>']);
 
         html = html.join('');
         return html;
@@ -89,7 +89,7 @@ define(function (require) {
                                 break;
                         }
 
-                        $body.addClass('view-fh-ad-' + (+k));
+                        $body.addclass('view-fh-ad-' + (+k));
                     }
                     // 无特定广告位id投广告
                     else {

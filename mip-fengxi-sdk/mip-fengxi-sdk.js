@@ -11,9 +11,9 @@ define(function (require) {
     var performance = require('performance');
 
     /**
-     * 第一次进入可视区回调,只会执行一次，做懒加载，利于网页速度
+     * 创建元素回调
      */
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.createdCallback = function () {
         var $element = $(this.element);
         var production = $element.attr('production');
         var cert = $element.attr('cert');
@@ -39,7 +39,6 @@ define(function (require) {
         var scriptNode = document.createElement('script');
         scriptNode.type = 'text/javascript';
         scriptNode.src = 'https://fengxi.bj.bcebos.com/angelia.js';
-        scriptNode.async = 'true';
         document.body.appendChild(scriptNode);
     };
 

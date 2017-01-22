@@ -11,7 +11,7 @@
 
 ```html
 <mip-ad 
-    type="ad-ssprelease"
+    type="ad-baidussp"
     sspId="xxx">
 </mip-ad>
 ```

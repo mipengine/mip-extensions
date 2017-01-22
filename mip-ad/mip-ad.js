@@ -16,8 +16,7 @@ define(function(require) {
     require('./mip-baidu-wm-ext');
     require('./mip-ad-imageplus');
     require('./mip-ad-ssp');
-    require('./mip-ad-zhitou');
-
+    require('./mip-ad-ssprelease');
 
     /**
      * render
@@ -40,8 +39,8 @@ define(function(require) {
 
     // Add alias
     // TODO: another plan
-    // setTimeout(function() {
-    //     MIP.registerMipElement('mip-embed', customElement);
-    // }, 0);
+    setTimeout(function() {
+        MIP.registerMipElement('mip-embed', customElement);
+    }, 0);
     return customElement;
 });

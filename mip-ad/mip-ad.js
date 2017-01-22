@@ -16,7 +16,7 @@ define(function(require) {
     require('./mip-baidu-wm-ext');
     require('./mip-ad-imageplus');
     require('./mip-ad-ssp');
-    require('./mip-ad-ssprelease');
+    require('./mip-ad-baidussp');
 
     /**
      * render

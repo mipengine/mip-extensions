@@ -19,13 +19,13 @@ define(function (require) {
         node.onload = function () {
 
             var container = document.createElement('div');
-            container.id = "_" + Math.random().toString(36).slice(2);
+            container.id = '_' + Math.random().toString(36).slice(2);
             element.appendChild(container);
 
             var scriptNode = document.createElement('script');
-            scriptNode.innerHTML = 'BAIDU_CLB_fillSlotAsync("'+ code +'","'+ container.id +'");';
+            scriptNode.innerHTML = 'BAIDU_CLB_fillSlotAsync("' + code + '","' + container.id + '");';
             element.appendChild(scriptNode);
-        }
+        };
     }
 
     return {

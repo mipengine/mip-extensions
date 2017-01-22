@@ -1,6 +1,16 @@
 # 升级日志
 
-#### 2017.01.18
+#### 2017.01.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-baiyun-map](https://github.com/mipengine/mip-extensions/tree/master/mip-baiyun-map)|[新增] baiyun地图组件
+[mip-fengxi-sdk](https://github.com/mipengine/mip-extensions/tree/master/mip-fengxi-sdk)|[升级] 凤悉sdk插件
+
+
+#### 2017.01.19
 
 > 核心代码上线
 

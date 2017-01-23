@@ -12,7 +12,7 @@ define(function (require) {
     /**
      * 构造元素，只会运行一次
      */
-    customElement.prototype.build = function () {
+    customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
         // 获取点击按钮
         var clickBtn = element.querySelector('[showmorebtn]');
@@ -40,7 +40,8 @@ define(function (require) {
             maxLenFn();
         }
         else {
-            return;
+            maxHeight = 0;
+            maxHeightFn();
         }
 
         // 高度阈值控制

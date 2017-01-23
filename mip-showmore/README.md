@@ -1,4 +1,4 @@
-# mip-accordion
+# mip-showmore
 
 mip-showmore 用来支持现在更多内容
 

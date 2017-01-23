@@ -68,7 +68,7 @@ mip-list 列表组件，可以渲染同步数据，或者异步请求数据后�
 ### 点击加载更多
 
 ```html
-<mip-list template="mip-template-id" src="http://172.20.136.103:3000/list?" id="mip-list" has-more>
+<mip-list template="mip-template-id" src="http://xxx?" id="mip-list" has-more>
     <template type="mip-mustache" id="mip-template-id">
         <div>
             <li>{{key}}: {{value}}</li>

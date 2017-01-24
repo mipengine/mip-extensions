@@ -25,11 +25,12 @@ define(function (require) {
             pageType = 2;
         }
 
+        var innerText = element.innerText.replace(/(^\s*)|(\s*$)/g, '').split('\n')[0];
         var mipLinkObj = {
             'url': url,
             'title': title,
             'pageType': pageType,
-            'click': (element.getAttribute('data-title') || element.innerText.replace(/(^\s*)|(\s*$)/g, '').split('\n')[0])
+            'click': (element.getAttribute('data-title') || innerText)
         };
         var strData = JSON.stringify(mipLinkObj);
 

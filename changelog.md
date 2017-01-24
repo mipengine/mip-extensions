@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.01.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[新增] 通用列表组件
+
+
 #### 2017.01.20
 
 > 组件上线

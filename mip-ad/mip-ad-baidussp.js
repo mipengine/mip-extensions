@@ -25,6 +25,8 @@ define(function (require) {
             var scriptNode = document.createElement('script');
             scriptNode.innerHTML = 'BAIDU_CLB_fillSlotAsync("' + code + '","' + container.id + '");';
             element.appendChild(scriptNode);
+
+            me.applyFillContent(container, true);
         };
     }
 

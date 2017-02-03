@@ -17,7 +17,7 @@ define(function (require) {
     // 直投广告请求url
     var ajaxurl = 'https://partners.fh21.com.cn/partners/showcodejsonp?callback=?';
     // 页面广告参数
-    var param = $('#adParam');
+    var param = $('.adParam');
     var paramObj = param.data('keyword');
 
     // load btm baidu ad
@@ -35,8 +35,8 @@ define(function (require) {
 
     // 没有飞华直投广告的操作
     var hasNoFhAd = function (element, posId) {
-        $('#ad-s-1255').show();
-        $('#ask-inof-blew-ad').show();
+        $('.ad-s-1255').show();
+        $('.ask-info-blew-ad').show();
         if (+posId === 1) {
             element.html(loadBdAd());
         }
@@ -77,11 +77,11 @@ define(function (require) {
                                 element.html('<div id="ad_position_1">' + v + '</div>');
                                 break;
                             case 14:
-                                $('#liveAdBlock').html(v);
+                                $('.liveAdBlock').html(v);
                                 break;
                             // 我要提问广告位
                             case 47:
-                                $('#i-2-iask').html(v);
+                                $('.i-2-iask').html(v);
                                 break;
                             // 向Ta提问广告位
                             case 48:
@@ -111,16 +111,14 @@ define(function (require) {
                                 break;
                             // 广告位id为47时，加载我要提问下方文字广告和问题详情下方网盟广告
                             case 47:
-                                $('#ad-s-1255').show();
-                                $('#ask-inof-blew-ad').show();
+                                $('.ad-s-1255').show();
+                                $('.ask-info-blew-ad').show();
                                 break;
                         }
 
                         $body.addClass('view-fh-ad-' + (+k) + '-union');
                     }
                 });
-
-                adObj.length <= 0 && (hasFhAd = false);
 
                 if (!hasFhAd) {
                     hasNoFhAd(element, posId);
@@ -153,8 +151,8 @@ define(function (require) {
     var menuCtrl = function () {
         // 菜单
         var state = true;
-        var $menuBar = $('#menuBar');
-        $('#menu').on('click', function () {
+        var $menuBar = $('.menuBar');
+        $('.menu').on('click', function () {
             if (state) {
                 state = false;
                 $menuBar.show();
@@ -166,7 +164,7 @@ define(function (require) {
         });
         $('.returns').on('click', function () {
             state = true;
-            $('#menuBar').hide();
+            $menuBar.hide();
         });
     };
 

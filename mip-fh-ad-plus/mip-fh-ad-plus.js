@@ -13,6 +13,7 @@ define(function (require) {
 
     var customElem = require('customElement').create();
     var $body = $('body');
+    var $emptyShowEle = $('[fh-ad-empty-show]');
 
     // 页面广告参数
     var $adKeywords = $('meta[name="fh-ad-keywords"]');
@@ -35,9 +36,13 @@ define(function (require) {
             pid: posId.join(',')
         };
 
+        var FhAdPutNum = $('mip-fh-ad-plus').length;
+
         // 判断直投广告参数,是否加载直投广告请求
         if (kw && kw.length) {
             $.getJSON(adUrl, query, function (res) {
+                var fhAdNum = $body.attr('fh-ad-num') || 0;
+
                 var data = $.parseJSON(res.result);
 
                 // 遍历直投广告ID
@@ -48,18 +53,26 @@ define(function (require) {
                         element.html(v);
 
                         $body.addClass('view-fh-ad-' + (+k));
+                        $body.attr('fh-ad-num', ++fhAdNum);
                     }
                     // 无特定广告位id直投广告显示网盟
                     else {
                         element.children(':first-child').show();
 
                         $body.addClass('view-fh-ad-' + (+k) + '-union');
+                        $body.attr('fh-ad-num', --fhAdNum);
+                    }
+                    // 所有的直投广告位均无直投广告
+                    if (fhAdNum === -FhAdPutNum) {
+                        $emptyShowEle.show();
                     }
                 });
             });
         }
+        // 无任何直投广告位
         else {
             $body.addClass('view-fh-ad-union');
+            $emptyShowEle.show();
         }
     };
 
@@ -68,7 +81,7 @@ define(function (require) {
         // 获取元素绑定的广告位id和关键词
         var posId = $element.attr('fh-ad-pid');
         var keywords = $element.attr('fh-ad-keywords') || paramObj;
-        var lazy = $element.attr('lazy');
+        var lazy = $element.attr('lazy') || 'false';
 
         // 广告初始化参数
         // 广告位id数组 [1, 11, 14, 47, 48, 49];

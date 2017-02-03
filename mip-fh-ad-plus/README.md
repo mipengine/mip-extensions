@@ -38,5 +38,5 @@ mip-fh-ad-plus 用来支持整站页面的直投广告显示
 必填：否
 格式：boolean
 取值：true/false
-默认值：true
+默认值：false
 

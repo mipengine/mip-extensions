@@ -4,7 +4,7 @@ define(function(require) {
 
     function setCnzz(){
         var doc = document,
-             = doc.querySelector('mip-diyiyou-cnzz').getAttribute('token');
+            mipCnzzId = doc.querySelector('mip-diyiyou-cnzz').getAttribute('token');
             idList = mipCnzzId.split(',');
 
         for(var x = 0, l = idList.length; x < l; x++ ){

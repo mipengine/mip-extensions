@@ -7,6 +7,7 @@ define(function(require) {
              = doc.querySelector('mip-diyiyou-cnzz').getAttribute('token');
             idList = mipCnzzId.split(',');
 
+        //添加统计代码
         for(var x = 0, l = idList.length; x < l; x++ ){
             var s = doc.createElement('script');
             s.type = "text/javascript"; 

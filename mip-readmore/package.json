@@ -1,0 +1,14 @@
+{
+    "name": "mip-readmore",
+    "version": "1.0.0",
+    "description": "为无分页文章提供超过长度隐藏操作，点击查看全文可展开。",
+    "contributors": [
+        {
+            "name": "gengxin",
+            "email": "137105161@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

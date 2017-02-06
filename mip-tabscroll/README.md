@@ -102,220 +102,220 @@ mip-tabscroll 用来支详情页的选项卡切换
 				</section>
 			</section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/ertonggushi1/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/ertonggushi1/" title="儿童故事">儿童故事</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/ertonggushi1/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/ertonggushi1/" title="儿童故事" target="_blank">儿童故事</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32170.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2bd9517967_90_90.png" alt="儿歌多多"  class="pic"></mip-img><span class="name">儿歌多多</span><span class="count">2889次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32170.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2bd9517967_90_90.png" alt="儿歌多多"  class="pic"></mip-img><span class="name">儿歌多多</span><span class="count">2889次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
 					</ul>
 				</div>
 		   </section>
 		   <section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/shuiqiangushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/shuiqiangushi/" title="睡前故事">睡前故事</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/shuiqiangushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/shuiqiangushi/" title="睡前故事" target="_blank">睡前故事</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
 					</ul>
 				</div>
 		  </section>
 		  <section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" title="唐诗宋词">唐诗宋词</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" title="唐诗宋词" target="_blank">唐诗宋词</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
 				 </ul>
 			</div>
 		 </section>
 		<section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/heji/tonghuagushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tonghuagushi/" title="童话故事">童话故事</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/tonghuagushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tonghuagushi/" title="童话故事" target="_blank">童话故事</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
 				 </ul>
 			</div>
 		</section>
 		<section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/heji/youshenggushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/youshenggushi/" title="有声故事">有声故事</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/youshenggushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/youshenggushi/" title="有声故事">有声故事</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
 				 </ul>
 			</div>
 		</section>
 		<section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/heji/taijiaoyinyue/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiaoyinyue/" title="胎教音乐">胎教音乐</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/taijiaoyinyue/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiaoyinyue/" title="胎教音乐">胎教音乐</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32792.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-17/580483f6bb168_90_90.png" alt="儿歌童谣大全300首"  class="pic"></mip-img><span class="name">儿歌童谣大全300首</span><span class="count">61次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32427.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d0ba402213e_90_90.png" alt="叫叫讲故事"  class="pic"></mip-img><span class="name">叫叫讲故事</span><span class="count">34次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32792.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-17/580483f6bb168_90_90.png" alt="儿歌童谣大全300首"  class="pic"></mip-img><span class="name">儿歌童谣大全300首</span><span class="count">61次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32427.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d0ba402213e_90_90.png" alt="叫叫讲故事"  class="pic"></mip-img><span class="name">叫叫讲故事</span><span class="count">34次下载</span></a></li>
 				 </ul>
 			</div>
 		</section>
 		<section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/heji/taijiao/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiao/" title="胎教">胎教</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/taijiao/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiao/" title="胎教">胎教</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32273.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57baac509f715_90_90.png" alt="胎教故事app"  class="pic"></mip-img><span class="name">胎教故事app</span><span class="count">42次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/33221.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-11-29/583cd77ff3cc9_90_90.png" alt="妈妈怀孕育儿百科大全"  class="pic"></mip-img><span class="name">妈妈怀孕育儿百科大全</span><span class="count">37次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32273.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57baac509f715_90_90.png" alt="胎教故事app"  class="pic"></mip-img><span class="name">胎教故事app</span><span class="count">42次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/33221.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-11-29/583cd77ff3cc9_90_90.png" alt="妈妈怀孕育儿百科大全"  class="pic"></mip-img><span class="name">妈妈怀孕育儿百科大全</span><span class="count">37次下载</span></a></li>
 				</ul>
 			</div>
 		</section>
 		<section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/down/gushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/down/gushi/" title="讲故事">讲故事</a>”类热门APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/down/gushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/down/gushi/" title="讲故事" target="_blank">讲故事</a>”类热门APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
 				</ul>
 			</div>
 		</section>
 		<section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/company/232/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/company/232/" title="工程师爸爸">工程师爸爸</a>”其它APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/company/232/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/company/232/" title="工程师爸爸" target="_blank">工程师爸爸</a>”其它APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32256.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-21/57b9271f880bd_90_90.png" alt="工程师爸爸儿童桌面"  class="pic"></mip-img><span class="name">工程师爸爸儿童桌面</span><span class="count">43次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32333.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57bffd44bd6a8_90_90.png" alt="小书虫"  class="pic"></mip-img><span class="name">小书虫</span><span class="count">30次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32276.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57bab8e112df9_90_90.png" alt="口袋故事读读"  class="pic"></mip-img><span class="name">口袋故事读读</span><span class="count">26次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32204.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b51dc312f90_90_90.png" alt="我爱汉字"  class="pic"></mip-img><span class="name">我爱汉字</span><span class="count">19次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32334.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57c000afe2bd3_90_90.png" alt="宝贝写字"  class="pic"></mip-img><span class="name">宝贝写字</span><span class="count">19次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32256.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-21/57b9271f880bd_90_90.png" alt="工程师爸爸儿童桌面"  class="pic"></mip-img><span class="name">工程师爸爸儿童桌面</span><span class="count">43次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32333.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57bffd44bd6a8_90_90.png" alt="小书虫"  class="pic"></mip-img><span class="name">小书虫</span><span class="count">30次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32276.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57bab8e112df9_90_90.png" alt="口袋故事读读"  class="pic"></mip-img><span class="name">口袋故事读读</span><span class="count">26次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32204.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b51dc312f90_90_90.png" alt="我爱汉字"  class="pic"></mip-img><span class="name">我爱汉字</span><span class="count">19次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32334.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57c000afe2bd3_90_90.png" alt="宝贝写字"  class="pic"></mip-img><span class="name">宝贝写字</span><span class="count">19次下载</span></a></li>
 				 </ul>
 			</div>
 		</section>
 	</section>
 	<section class="dtbox">
 		<section class="list-wrap list-wrapt">
-			<p class="title"><a href="http://m.qbaobei.com/heji/ertonggushi1/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/ertonggushi1/" title="儿童故事">儿童故事</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/ertonggushi1/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/ertonggushi1/" title="儿童故事">儿童故事</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32170.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2bd9517967_90_90.png" alt="儿歌多多"  class="pic"></mip-img><span class="name">儿歌多多</span><span class="count">2889次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32170.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2bd9517967_90_90.png" alt="儿歌多多"  class="pic"></mip-img><span class="name">儿歌多多</span><span class="count">2889次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
 				</ul>
 			</div>
 	    </section>
 		<section class="list-wrap list-wrapt">
-			<p class="title"><a href="http://m.qbaobei.com/heji/shuiqiangushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/shuiqiangushi/" title="睡前故事">睡前故事</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/shuiqiangushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/shuiqiangushi/" title="睡前故事" target="_blank">睡前故事</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
 				 </ul>
 			</div>
 		</section>
 		<section class="list-wrap list-wrapt">
-			<p class="title"><a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" title="唐诗宋词">唐诗宋词</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" title="唐诗宋词" target="_blank">唐诗宋词</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
 				 </ul>
 			</div>
 		</section>
 		<section class="list-wrap list-wrapt">
-			<p class="title"><a href="http://m.qbaobei.com/heji/tonghuagushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tonghuagushi/" title="童话故事">童话故事</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/tonghuagushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tonghuagushi/" title="童话故事" target="_blank">童话故事</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
 				 </ul>
 			</div>
 		</section>
 		<section class="list-wrap list-wrapt">
-			<p class="title"><a href="http://m.qbaobei.com/heji/youshenggushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/youshenggushi/" title="有声故事">有声故事</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/youshenggushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/youshenggushi/" title="有声故事" target="_blank">有声故事</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
 				</ul>
 			</div>
 		</section>
 		<section class="list-wrap list-wrapt">
-			<p class="title"><a href="http://m.qbaobei.com/heji/taijiaoyinyue/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiaoyinyue/" title="胎教音乐">胎教音乐</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/taijiaoyinyue/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiaoyinyue/" title="胎教音乐" target="_blank">胎教音乐</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32792.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-17/580483f6bb168_90_90.png" alt="儿歌童谣大全300首"  class="pic"></mip-img><span class="name">儿歌童谣大全300首</span><span class="count">61次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32427.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d0ba402213e_90_90.png" alt="叫叫讲故事"  class="pic"></mip-img><span class="name">叫叫讲故事</span><span class="count">34次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32792.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-17/580483f6bb168_90_90.png" alt="儿歌童谣大全300首"  class="pic"></mip-img><span class="name">儿歌童谣大全300首</span><span class="count">61次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32427.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d0ba402213e_90_90.png" alt="叫叫讲故事"  class="pic"></mip-img><span class="name">叫叫讲故事</span><span class="count">34次下载</span></a></li>
 				</ul>
 			</div>
 		</section>
 		<section class="list-wrap list-wrapt">
-			<p class="title"><a href="http://m.qbaobei.com/heji/taijiao/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiao/" title="胎教">胎教</a>”相关APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/heji/taijiao/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiao/" title="胎教" target="_blank">胎教</a>”相关APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32273.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57baac509f715_90_90.png" alt="胎教故事app"  class="pic"></mip-img><span class="name">胎教故事app</span><span class="count">42次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/33221.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-11-29/583cd77ff3cc9_90_90.png" alt="妈妈怀孕育儿百科大全"  class="pic"></mip-img><span class="name">妈妈怀孕育儿百科大全</span><span class="count">37次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32273.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57baac509f715_90_90.png" alt="胎教故事app"  class="pic"></mip-img><span class="name">胎教故事app</span><span class="count">42次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/33221.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-11-29/583cd77ff3cc9_90_90.png" alt="妈妈怀孕育儿百科大全"  class="pic"></mip-img><span class="name">妈妈怀孕育儿百科大全</span><span class="count">37次下载</span></a></li>
 			    </ul>
 			</div>
 		</section>
 		<section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/down/gushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/down/gushi/" title="讲故事">讲故事</a>”类热门APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/down/gushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/down/gushi/" title="讲故事" target="_blank">讲故事</a>”类热门APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
 			   </ul>
 			</div>
 		</section>
 		<section class="list-wrap ">
-			<p class="title"><a href="http://m.qbaobei.com/company/232/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/company/232/" title="工程师爸爸">工程师爸爸</a>”其它APP</span></p>
+			<p class="title"><a href="http://m.qbaobei.com/company/232/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/company/232/" title="工程师爸爸" target="_blank">工程师爸爸</a>”其它APP</span></p>
 			<div class="swiper-container1 show-applys">
 				<ul class="swiper-wrapper list-apply clear">
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32256.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-21/57b9271f880bd_90_90.png" alt="工程师爸爸儿童桌面"  class="pic"></mip-img><span class="name">工程师爸爸儿童桌面</span><span class="count">43次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32333.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57bffd44bd6a8_90_90.png" alt="小书虫"  class="pic"></mip-img><span class="name">小书虫</span><span class="count">30次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32276.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57bab8e112df9_90_90.png" alt="口袋故事读读"  class="pic"></mip-img><span class="name">口袋故事读读</span><span class="count">26次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32204.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b51dc312f90_90_90.png" alt="我爱汉字"  class="pic"></mip-img><span class="name">我爱汉字</span><span class="count">19次下载</span></a></li>
-					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32334.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57c000afe2bd3_90_90.png" alt="宝贝写字"  class="pic"></mip-img><span class="name">宝贝写字</span><span class="count">19次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32256.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-21/57b9271f880bd_90_90.png" alt="工程师爸爸儿童桌面"  class="pic"></mip-img><span class="name">工程师爸爸儿童桌面</span><span class="count">43次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32333.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57bffd44bd6a8_90_90.png" alt="小书虫"  class="pic"></mip-img><span class="name">小书虫</span><span class="count">30次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32276.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57bab8e112df9_90_90.png" alt="口袋故事读读"  class="pic"></mip-img><span class="name">口袋故事读读</span><span class="count">26次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32204.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b51dc312f90_90_90.png" alt="我爱汉字"  class="pic"></mip-img><span class="name">我爱汉字</span><span class="count">19次下载</span></a></li>
+					<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32334.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57c000afe2bd3_90_90.png" alt="宝贝写字"  class="pic"></mip-img><span class="name">宝贝写字</span><span class="count">19次下载</span></a></li>
 			   </ul>
 			</div>
 		</section>
@@ -332,7 +332,7 @@ mip-tabscroll 用来支详情页的选项卡切换
 	                    <p class="comments-user-info"><span class="name">王小丫</span><span class="time">12-10 12:00</span></p>
 	                    <p class="comments-user-text">幸福的所得税GV的搞定，多少分对方水电费，对方的观点是</p>
 	                </div>
-	                <input type="button" class="btn btn-w" value="我要评论">
+	                <button class="btn btn-w">我要评论</button>
 	            </div>
 
 	            <div class="comments-box">
@@ -342,116 +342,118 @@ mip-tabscroll 用来支详情页的选项卡切换
 	                </div>
 
 	                <div class="buttons">
+	                    <button class="btn btn-cancel">取消</button>
+	                    <button class="btn btn-ok btn-notj" disabled>提交</button>
 	                    <input type="button" class="btn btn-cancel" value="取消">
-	                    <input type="button" class="btn btn-ok btn-notj" value="提交" disabled>
+	                    <input type="button" >
 	                </div>
 	            </div>
 	        </section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/ertonggushi1/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/ertonggushi1/" title="儿童故事">儿童故事</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/ertonggushi1/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/ertonggushi1/" title="儿童故事" target="_blank">儿童故事</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32170.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2bd9517967_90_90.png" alt="儿歌多多"  class="pic"></mip-img><span class="name">儿歌多多</span><span class="count">2889次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32170.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2bd9517967_90_90.png" alt="儿歌多多"  class="pic"></mip-img><span class="name">儿歌多多</span><span class="count">2889次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
 				    </ul>
 				</div>
 	       </section>
 		   <section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/shuiqiangushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/shuiqiangushi/" title="睡前故事">睡前故事</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/shuiqiangushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/shuiqiangushi/" title="睡前故事" target="_blank">睡前故事</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32171.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b2c27e8b5b0_90_90.png" alt="贝瓦儿歌"  class="pic"></mip-img><span class="name">贝瓦儿歌</span><span class="count">616次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
 					 </ul>
 				</div>
 			</section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" title="唐诗宋词">唐诗宋词</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tangshisongcijingxuan/" title="唐诗宋词" target="_blank">唐诗宋词</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32201.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b50ed5bac8d_90_90.png" alt="小伴龙"  class="pic"></mip-img><span class="name">小伴龙</span><span class="count">670次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
 					</ul>
 				</div>
 			</section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/tonghuagushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tonghuagushi/" title="童话故事">童话故事</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/tonghuagushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/tonghuagushi/" title="童话故事" target="_blank">童话故事</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
 					 </ul>
 				</div>
 			</section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/youshenggushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/youshenggushi/" title="有声故事">有声故事</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/youshenggushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/youshenggushi/" title="有声故事" target="_blank">有声故事</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32165.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b28a3cab36b_90_90.png" alt="儿童故事电台"  class="pic"></mip-img><span class="name">儿童故事电台</span><span class="count">81次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32557.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-21/57e231f7c9359_90_90.png" alt="咿啦看书"  class="pic"></mip-img><span class="name">咿啦看书</span><span class="count">67次下载</span></a></li>
 					 </ul>
 				</div>
 			</section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/taijiaoyinyue/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiaoyinyue/" title="胎教音乐">胎教音乐</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/taijiaoyinyue/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiaoyinyue/" title="胎教音乐" target="_blank">胎教音乐</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32792.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-17/580483f6bb168_90_90.png" alt="儿歌童谣大全300首"  class="pic"></mip-img><span class="name">儿歌童谣大全300首</span><span class="count">61次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32427.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d0ba402213e_90_90.png" alt="叫叫讲故事"  class="pic"></mip-img><span class="name">叫叫讲故事</span><span class="count">34次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32792.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-17/580483f6bb168_90_90.png" alt="儿歌童谣大全300首"  class="pic"></mip-img><span class="name">儿歌童谣大全300首</span><span class="count">61次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32427.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d0ba402213e_90_90.png" alt="叫叫讲故事"  class="pic"></mip-img><span class="name">叫叫讲故事</span><span class="count">34次下载</span></a></li>
 					 </ul>
 				</div>
 			</section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/heji/taijiao/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiao/" title="胎教">胎教</a>”相关APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/heji/taijiao/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/heji/taijiao/" title="胎教" target="_blank">胎教</a>”相关APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32273.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57baac509f715_90_90.png" alt="胎教故事app"  class="pic"></mip-img><span class="name">胎教故事app</span><span class="count">42次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/33221.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-11-29/583cd77ff3cc9_90_90.png" alt="妈妈怀孕育儿百科大全"  class="pic"></mip-img><span class="name">妈妈怀孕育儿百科大全</span><span class="count">37次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32159.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-15/57b1924c83232_90_90.png" alt="口袋故事"  class="pic"></mip-img><span class="name">口袋故事</span><span class="count">304次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32273.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57baac509f715_90_90.png" alt="胎教故事app"  class="pic"></mip-img><span class="name">胎教故事app</span><span class="count">42次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32439.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-09-08/57d1105a42dd1_90_90.png" alt="启蒙听听儿歌故事"  class="pic"></mip-img><span class="name">启蒙听听儿歌故事</span><span class="count">42次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/33221.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-11-29/583cd77ff3cc9_90_90.png" alt="妈妈怀孕育儿百科大全"  class="pic"></mip-img><span class="name">妈妈怀孕育儿百科大全</span><span class="count">37次下载</span></a></li>
 					</ul>
 				</div>
 			</section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/down/gushi/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/down/gushi/" title="讲故事">讲故事</a>”类热门APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/down/gushi/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/down/gushi/" title="讲故事" target="_blank">讲故事</a>”类热门APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32908.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-10-31/5816ef1e270e3_90_90.jpg" alt="亲宝听"  class="pic"></mip-img><span class="name">亲宝听</span><span class="count">912次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32160.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-26/58606ea50cc7c_90_90.jpg" alt="宝贝听听"  class="pic"></mip-img><span class="name">宝贝听听</span><span class="count">252次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32161.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b272005ed93_90_90.png" alt="袋鼠跳跳童书"  class="pic"></mip-img><span class="name">袋鼠跳跳童书</span><span class="count">178次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32163.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-16/57b27ba87d0e9_90_90.png" alt="咔哒故事"  class="pic"></mip-img><span class="name">咔哒故事</span><span class="count">125次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32431.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-12-02/584120c8ae6ba_90_90.jpg" alt="宝贝家"  class="pic"></mip-img><span class="name">宝贝家</span><span class="count">117次下载</span></a></li>
 					 </ul>
 				</div>
 			</section>
 			<section class="list-wrap ">
-				<p class="title"><a href="http://m.qbaobei.com/company/232/" class="more fr">更多></a><span class="name">“<a href="http://m.qbaobei.com/company/232/" title="工程师爸爸">工程师爸爸</a>”其它APP</span></p>
+				<p class="title"><a href="http://m.qbaobei.com/company/232/" class="more fr" target="_blank">更多></a><span class="name">“<a href="http://m.qbaobei.com/company/232/" title="工程师爸爸" target="_blank">工程师爸爸</a>”其它APP</span></p>
 				<div class="swiper-container1 show-applys">
 					<ul class="swiper-wrapper list-apply clear">
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32256.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-21/57b9271f880bd_90_90.png" alt="工程师爸爸儿童桌面"  class="pic"></mip-img><span class="name">工程师爸爸儿童桌面</span><span class="count">43次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32333.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57bffd44bd6a8_90_90.png" alt="小书虫"  class="pic"></mip-img><span class="name">小书虫</span><span class="count">30次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32276.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57bab8e112df9_90_90.png" alt="口袋故事读读"  class="pic"></mip-img><span class="name">口袋故事读读</span><span class="count">26次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32204.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b51dc312f90_90_90.png" alt="我爱汉字"  class="pic"></mip-img><span class="name">我爱汉字</span><span class="count">19次下载</span></a></li>
-						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32334.html"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57c000afe2bd3_90_90.png" alt="宝贝写字"  class="pic"></mip-img><span class="name">宝贝写字</span><span class="count">19次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32256.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-21/57b9271f880bd_90_90.png" alt="工程师爸爸儿童桌面"  class="pic"></mip-img><span class="name">工程师爸爸儿童桌面</span><span class="count">43次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32333.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57bffd44bd6a8_90_90.png" alt="小书虫"  class="pic"></mip-img><span class="name">小书虫</span><span class="count">30次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32276.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-22/57bab8e112df9_90_90.png" alt="口袋故事读读"  class="pic"></mip-img><span class="name">口袋故事读读</span><span class="count">26次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32204.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-18/57b51dc312f90_90_90.png" alt="我爱汉字"  class="pic"></mip-img><span class="name">我爱汉字</span><span class="count">19次下载</span></a></li>
+						<li class="swiper-slide fl"><a href="http://m.qbaobei.com/d/32334.html" target="_blank"><mip-img src="http://pic.qbaobei.com/thumb/Uploads/Picture/2016-08-26/57c000afe2bd3_90_90.png" alt="宝贝写字"  class="pic"></mip-img><span class="name">宝贝写字</span><span class="count">19次下载</span></a></li>
 				    </ul>
 				</div>
 			</section>

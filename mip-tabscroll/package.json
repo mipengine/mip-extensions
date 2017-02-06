@@ -1,9 +1,9 @@
 {
     "name": "mip-tabscroll",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": {
         "name": "yml",
-        "email": "2670365311@qq.com"
+        "email": "1179739037@qq.com"
     },
     "engines": {
         "mip": ">=1.1.0"

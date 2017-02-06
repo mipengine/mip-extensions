@@ -35,7 +35,7 @@ define(function (require) {
             var dtiltop = $('.show-detail .list2').offset().top;
             var sctop = $(window).scrollTop();
             var tab1 = $('#tab1 ul');
-            if (flagt) { // 如果是安装
+            if (flagt) { 
                 if (sctop > sofftop) {
                     tab1.addClass('on ont');
                     flag = true;

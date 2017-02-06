@@ -29,7 +29,7 @@ mip-fh-ad-plus 用来支持整站页面的直投广告显示
 
 ### fh-ad-keywords
 
-说明：飞华直投广告关键词组,多词用,分隔例:`fh-ad-keywords="瘦身,性病,减肥"`, 如果没有指定则直接获取`#adParam`的`data-keyword`
+说明：飞华直投广告关键词组,多词用,分隔例:`fh-ad-keywords="瘦身,性病,减肥"`, 如果没有指定则直接获取`meta[name="fh-ad-keywords"]`的`content`属性值
 必填：否
 
 ### lazy
@@ -38,5 +38,5 @@ mip-fh-ad-plus 用来支持整站页面的直投广告显示
 必填：否
 格式：boolean
 取值：true/false
-默认值：true
+默认值：false
 

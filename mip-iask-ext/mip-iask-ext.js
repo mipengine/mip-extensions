@@ -244,8 +244,8 @@ define(function (require) {
         },
         // 好万家导流
         guideData: function () {
-            var urlf = 'https://mipp.iask.cn/t/mipdf?t=fous';
-            var urlr = 'https://mipp.iask.cn/t/mipdf?t=recom';
+            var urlf = 'http://m.iask.sina.com.cn/t/mipdf?t=fous';
+            var urlr = 'http://m.iask.sina.com.cn/t/mipdf?t=recom';
             try {
                 $.ajax({
                     type: 'GET',

@@ -2,7 +2,7 @@
 * @file 脚本支持
 * @author  hejieye
 * @time  20170106
-* @version 1.3.1
+* @version 1.3.2
 */
 define(function (require) {
     var $ = require('zepto');
@@ -167,29 +167,24 @@ define(function (require) {
         },
         // 验证登录信息
         checkLogin: function () {
-            var indexLogin = $('.index_login');
+            var btnUser = $('.btn-user');
             var thisHref = window.location.href;
-            var nickName = null;
-            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
+            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin/checkLogin?mip=' + Math.random();
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {
-                    indexLogin.attr('href', 'https://mipp.iask.cn/login?source=' + thisHref);
-                }
-                else {
-                    var user = $.parseJSON(e);
-                    nickName = user.nickname;
-                    if (nickName.length > 4) {
-                        nickName = nickName.substring(0, 3) + '....';
-                    }
-                    indexLogin.removeClass('btn-header btn-user');
-                    indexLogin.addClass('user-nick');
-                    indexLogin.html(nickName);
-
-                    indexLogin.click(function (event) {
+                    $('.icon-ency-login').attr('href', 'https://mipp.iask.cn/login?source=' + thisHref);
+                    btnUser.click(function (event) {
                         event.preventDefault();
                         event.stopPropagation();
-                        $('.user-more').show();
+                        $('.login-out').show();
+                    });
+                }
+                else {
+                    btnUser.click(function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $('.login-in').show();
                     });
                 }
             });

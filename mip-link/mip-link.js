@@ -20,7 +20,7 @@ define(function (require) {
         var parent = document.createElement('a');
         parent.href = element.getAttribute('href');
         node.replaceChild(parent, element);
-        parent.appendChild(this.element);
+        parent.appendChild(element);
 
     };
 

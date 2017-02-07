@@ -1,5 +1,13 @@
 # 升级日志
 
+#### 2017.02.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[升级] 飞华广告组件
+
 #### 2017.01.23
 
 > 组件上线
@@ -7,6 +15,7 @@
 组件名|功能说明
 ---|---
 [mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[新增] 通用列表组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告组件
 
 
 #### 2017.01.20

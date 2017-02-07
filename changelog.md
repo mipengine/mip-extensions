@@ -1,5 +1,167 @@
 # 升级日志
 
+#### 2017.01.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[新增] 通用列表组件
+
+
+#### 2017.01.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-baiyun-map](https://github.com/mipengine/mip-extensions/tree/master/mip-baiyun-map)|[新增] baiyun地图组件
+[mip-fengxi-sdk](https://github.com/mipengine/mip-extensions/tree/master/mip-fengxi-sdk)|[升级] 凤悉sdk插件
+
+
+#### 2017.01.19
+
+> 核心代码上线
+
+    1. 增加动画方案
+    2. 增加存储方案
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
+
+#### 2017.01.18
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-discuz-login](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-login)|[升级] 论坛登录
+[mip-discuz-post](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-post)|[升级] 论坛发帖
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级] 折叠组件：支持默认展开节点
+
+#### 2017.01.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-discuz-login](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-login)|[新增] 论坛登录
+[mip-discuz-post](https://github.com/mipengine/mip-extensions/tree/master/mip-discuz-post)|[新增] 论坛发帖
+[mip-gototop](https://github.com/mipengine/mip-extensions/tree/master/mip-gototop)|[升级] 快速回顶
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-gototop](https://github.com/mipengine/mip-extensions/tree/master/mip-gototop)|[升级] 快速回顶
+
+#### 2017.01.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-ad-plus)|[新增] 飞华直投广告
+[mip-cr173-tags](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-tags)|[升级] 西西软件园适配下载地址组件
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
+#### 2017.01.12
+
+> 核心代码上线
+
+    1. 轮播图支持图片popup
+    2. 轮播图【设置指示器可配】支持当前显示的图片和总图片的数量，例如右下角显示1/20
+    3. 轮播图支持滑动时的效果。 目前的是在滑动后显示下一张图片，没有拖动效果
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 百度统计组件支持事件追踪
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级] 折叠组件：支持默认展开节点
+
+#### 2017.01.10
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-analytics](https://github.com/mipengine/mip-extensions/tree/master/mip-analytics)|[升级] 提供统计发送接口
+[mip-fengxi-sdk](https://github.com/mipengine/mip-extensions/tree/master/mip-fengxi-sdk)|[升级] 凤悉sdk插件
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+[mip-news-iframe-interface](https://github.com/mipengine/mip-extensions/tree/master/mip-news-iframe-interface)|[升级] 资讯下iframe双向通信接口
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-mz-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-appdownload)|[升级] 木子 app下载
+
+#### 2017.01.09
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级] google 广告组件
+[mip-changyan](https://github.com/mipengine/mip-extensions/tree/master/mip-changyan)|[升级] 支持在线评论插件 畅言
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)|[升级]文字截断，查看更多组件
+[mip-mz-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-appdownload)|[升级] 木子 app下载
+[mip-analytics](https://github.com/mipengine/mip-extensions/tree/master/mip-analytics)|[升级] 提供统计发送接口
+
+#### 2017.01.06
+
+> 核心代码上线
+
+    1、修复图片弹出BUG
+    2、升级视频组件，支持http视频跳转到http承接页播放
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-analytics](https://github.com/mipengine/mip-extensions/tree/master/mip-analytics)|[新增] 提供统计发送接口
+[mip-mustache](https://github.com/mipengine/mip-extensions/tree/master/mip-mustache)|[新增] 通用模板组件
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)|[升级][BUG] 文字截断，查看更多组件
+[mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[升级] 西西软件园编辑人员统计组件
+[mip-down-dropload](https://github.com/mipengine/mip-extensions/tree/master/mip-down-dropload)|[升级] 用来支持页面下拉加载
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
+#### 2017.01.05
+
+> 组件上线 
+
+组件名|功能说明
+---|---
+[mip-fengxi-sdk](https://github.com/mipengine/mip-extensions/tree/master/mip-fengxi-sdk)|[新增] 凤悉sdk插件
+[mip-cr173-ppzs](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-ppzs)|[升级] 西西软件园皮皮助手下载
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 表单组件 http跳转
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)|[升级] 文字截断，查看更多组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告
+[mip-fh-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-ad)|[升级] 用来支持m.fh21.com.cn问答详情页的直投广告显示
+
+
+#### 2017.01.04
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-content-readmore](https://github.com/mipengine/mip-extensions/tree/master/mip-content-readmore)|[新增] 文字截断，查看更多组件
+[mip-nine-business](https://github.com/mipengine/mip-extensions/tree/master/mip-nine-business)|[新增] 页面公共业务逻辑
+[mip-nine-download](https://github.com/mipengine/mip-extensions/tree/master/mip-nine-business)|[新增] 页面下载业务
+[mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级] google 广告组件
+[mip-cr173-tags](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-tags)|[升级] 西西软件园适配下载地址组件
+[mip-mz-addonapp](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-addonapp)|[升级] 木子推荐app下载
+[mip-mz-appdownload](https://github.com/mipengine/mip-extensions/tree/master/mip-mz-appdownload)|[升级] 木子 app下载
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+
 #### 2017.01.03
 
 > 组件上线

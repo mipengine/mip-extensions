@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author  hejieye
-* @time  20161230
-* @version 1.2.0
+* @time  20170106
+* @version 1.3.1
 */
 define(function (require) {
     var $ = require('zepto');
@@ -114,13 +114,13 @@ define(function (require) {
                     alert('请选择举报原因！');
                 }
                 else {
-                    var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
+                    var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
                     $.get(checkLoginUrl,
                     function (e) {
                         if (e == null || e === 'null') {
                             // 跳转到登录页面
                             var thisHref = window.location.href;
-                            window.location.href = 'http://m.iask.sina.com.cn/login?source=' + thisHref;
+                            window.location.href = 'https://mipp.iask.cn/login?source=' + thisHref;
                         }
                         else {
                             var questionId = $('.report_id').text();
@@ -170,11 +170,11 @@ define(function (require) {
             var indexLogin = $('.index_login');
             var thisHref = window.location.href;
             var nickName = null;
-            var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
+            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {
-                    indexLogin.attr('href', 'http://m.iask.sina.com.cn/login?source=' + thisHref);
+                    indexLogin.attr('href', 'https://mipp.iask.cn/login?source=' + thisHref);
                 }
                 else {
                     var user = $.parseJSON(e);
@@ -242,6 +242,38 @@ define(function (require) {
                 $(this).siblings('.iask-show-more').show();
             });
         },
+        // 好万家导流
+        guideData: function () {
+            var urlf = 'https://mipp.iask.cn/t/mipdf?t=fous';
+            var urlr = 'https://mipp.iask.cn/t/mipdf?t=recom';
+            try {
+                $.ajax({
+                    type: 'GET',
+                    url: urlf,
+                    dataType: 'html',
+                    success: function (data) {
+                        if (!!data) {
+                            $('.load_today_focus').empty();
+                            $('.load_today_focus').append(data);
+                        }
+                    }
+                });
+                $.ajax({
+                    type: 'GET',
+                    url: urlr,
+                    dataType: 'html',
+                    success: function (data) {
+                        if (!!data) {
+                            $('.load_recom_red').empty();
+                            $('.load_recom_red').append(data);
+                        }
+                    }
+                });
+            }
+            catch (e) {
+                console.log(e);
+            }
+        },
         init: function () {
             this.switchBlock();
             this.changeMore();
@@ -255,6 +287,7 @@ define(function (require) {
             this.userInfoHide();
             this.checkData();
             this.accordion();
+            this.guideData();
         }
     };
 

@@ -1,7 +1,7 @@
 {
-    "name": "mip-muzi-appdownload",
+    "name": "mip-discuz-post",
     "version": "1.0.0",
-    "description": "app下载组件! 主要功能是下载，还有一些附加功能和一些无法预测的功能",
+    "description": "discuz 发布功能组件",
     "contributors": [
         {
             "name": "pifire",

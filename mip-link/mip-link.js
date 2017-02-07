@@ -5,7 +5,6 @@
  */
 
 define(function (require) {
-    var $ = require('zepto');
 
     var customElement = require('customElement').create();
 
@@ -23,7 +22,7 @@ define(function (require) {
         node.replaceChild(parent, element);
         parent.appendChild(this.element);
 
-    }
+    };
 
     return customElement;
 

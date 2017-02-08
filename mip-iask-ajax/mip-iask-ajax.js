@@ -7,6 +7,7 @@
 define(function (require) {
 
     var $ = require('zepto');
+    var viewer = require('viewer');
     var self = this;
     var customElem = require('customElement').create();
     var checkLogin = function (url, params, isLogin, div, type) {
@@ -19,7 +20,7 @@ define(function (require) {
                 if (e === null || e === 'null') {
                     // 跳转到登录页面
                     var thisHref = window.location.href;
-                    if (this.isIframed) {
+                    if (viewer.isIframed) {
                         self.sendMessage('mibm-jumplink', {
                             'url': 'https://mipp.iask.cn/login?source=' + thisHref
                         });

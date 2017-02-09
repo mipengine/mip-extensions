@@ -1,6 +1,6 @@
 # mip-tx-cookie
 
-mip-tx-cookie 组件说明  铁血cookie记录用于区分版本
+mip-tx-cookie 组件说明  铁血cookie记录，用于区分版本。
 
 标题|内容
 ----|----

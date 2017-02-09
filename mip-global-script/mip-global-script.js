@@ -155,6 +155,9 @@ define(function (require) {
                         case 'xiangjq':
                             hmToken = 'ab45ac2154ecb6d04f668776b011733e';
                             break;
+                        case 'lhbin':
+                            hmToken = '5f3634e250e76045193e2a7256dbe058';
+                            break;
                     }
                     if (hmToken !== '') {
                         $('body').append('<mip-stats-baidu token="' + hmToken + '">');

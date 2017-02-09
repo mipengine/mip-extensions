@@ -169,7 +169,7 @@ define(function (require) {
         checkLogin: function () {
             var btnUser = $('.btn-user');
             var thisHref = window.location.href;
-            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin/checkLogin?mip=' + Math.random();
+            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {

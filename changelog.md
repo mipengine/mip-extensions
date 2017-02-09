@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.02.09
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+
 #### 2017.02.08
 
 > 组件上线

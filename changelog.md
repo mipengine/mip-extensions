@@ -1,5 +1,13 @@
 # 升级日志
 
+#### 2017.02.10
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+
 #### 2017.02.09
 
 > 组件上线

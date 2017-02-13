@@ -3,7 +3,7 @@
  *
  * @author fengchuantao
  * @time 2016.7.28
- * @modify wangpei07 2016.11.21
+ * @modify wangpei07 2016.11.21, liangjiaying 2017.01
  */
 define(function (require) {
     var $ = require('zepto');
@@ -150,10 +150,10 @@ define(function (require) {
         }
 
         if (addClearBtn) {
-            var clearArr = ["text", "input", "datetime", "email", "number", "search", "tel", "url"];
-            var clearList = "";
-            for(var i in clearArr) {
-                clearList += ",input[type=" + clearArr[i] + "]";
+            var clearArr = ['text', 'input', 'datetime', 'email', 'number', 'search', 'tel', 'url'];
+            var clearList = '';
+            for (var i in clearArr) {
+                clearList += ',input[type=' + clearArr[i] + ']';
             }
             clearList = clearList.slice(1);
 
@@ -183,7 +183,7 @@ define(function (require) {
                     else {
                         util.css(cross, {display: 'none'});
                         self.oninput = function () {
-                            if (util.platform.isAndroid() && self.type == 'search') {
+                            if (util.platform.isAndroid() && self.type === 'search') {
                                 // andriod type=search自带清空按钮, 不显示清空
                                 return;
                             }
@@ -193,19 +193,16 @@ define(function (require) {
                 };
                 // 点击提交时，如果报错信息展示，则隐藏清空按钮
                 clearItems[index].onblur = function () {
-                     util.css(cross, {display: 'none'});
-                }
+                    util.css(cross, {display: 'none'});
+                };
             }
 
-            cross.addEventListener('touchstart', clear);
             cross.addEventListener('click', clear);
 
             function clear(e) {
                 var name = e.target.getAttribute('name');
                 cross.parentNode.querySelector('input[name="' + name + '"]').value = '';
                 util.css(cross, {display: 'none'});
-                e.preventDefault();
-                e.stopPropagation();
             }
         }
     };

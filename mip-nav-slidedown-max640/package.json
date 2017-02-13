@@ -1,0 +1,17 @@
+{
+    "name": "mip-nav-slidedown-max640",
+    "version": "1.0.1",
+    "contributors": [
+        {
+            "name": "liangjiaying",
+            "email": "liangjiaying@baidu.com"
+        },
+        {
+            "name": "unofficial",
+            "email": "cangku@unofficial.cn"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

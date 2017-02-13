@@ -1,5 +1,5 @@
 /**
- * @file 菜单 mip-nav-slidedown
+ * @file 菜单 mip-nav-slidedown-max640
  * @author liangjiaying
  * @time 2016.09
  */
@@ -26,6 +26,19 @@ define(function (require) {
         var brandHref = $this.data('brandhref') || '#';
         var $ulNav = $this.find('#' + id);
         var $container = $('<div></div>');
+        var $logo = $this.find('input[name=logo]');
+        var type = $logo.data('type');
+        var val = $logo.val();
+        var logo;
+        if (type === 'image' || !type) {
+            // layout width height
+            var layout = $logo.data('layout');
+            var width = $logo.data('width');
+            var height = $logo.data('height');
+            logo = '<mip-img layout="'+ layout +'" width="'+ width +'" height="'+ height +'" src="'+ val +'"></mip-img>';
+        } else {
+            logo = val ? val : '';
+        }
         var $btnWrap = '<div class="navbar-header">'
             + '<button class="navbar-toggle collapsed" type="button" data-target="#'
             + id + '" aria-controls="' + id + '" aria-expanded="false">'
@@ -34,7 +47,7 @@ define(function (require) {
             + '<span class="icon-bar"></span>'
             + '<span class="icon-bar"></span>'
             + '</button>'
-            + (showBrand ? '<a href=' + brandHref + ' class="navbar-brand"></a>' : '')
+            + (showBrand ? '<a href=' + brandHref + ' class="navbar-brand">'+ logo +'</a>' : '')
             + '</div>';
         $container.append($btnWrap).append($ulNav).appendTo($this);
         $('.mip-nav-wrapper').addClass('show');
@@ -72,9 +85,6 @@ define(function (require) {
      * @param  {event} e click event
      */
     function navClickHandler(e) {
-        if (window.innerWidth > 767) {
-            return;
-        }
 
         var $wiseNav = $('#bs-navbar');
 

@@ -12,7 +12,7 @@ define(function (require) {
             DateTime: $('.f-information').attr('data-DateTime'),
             Id: $('.f-information').attr('data-id')
         };
-        var src = 'http://count.612.com//index.php?m=r';
+        var src = 'https://count.612.com//index.php?m=r';
         var charset = '&charset=' + getPageCharset();
         var atime = '&atime=' + webInfo.DateTime;
         var ref = '&ref=' + encodeURIComponent(document.referrer);

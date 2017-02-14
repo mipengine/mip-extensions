@@ -45,7 +45,7 @@ define(function (require) {
     }
 
     function getCdnUrl(url) {
-        return '//mib.bdstatic.com/doc/detail/' + encodeURIComponent(url) + '/0/';
+        return '//mib.bdstatic.com/doc/detail/' + encodeURIComponent(url) + '/0/#from=sub';
     }
 
     function formatTime(time) {

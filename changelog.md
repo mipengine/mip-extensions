@@ -1,5 +1,20 @@
 # 升级日志
 
+#### 2017.02.14
+
+> 核心代码上线
+
+    1. 更新 fetch 网络库 polyfill
+    2. template 模板兼容数组和非数组
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
+[mip-nav-slidedown ](https://github.com/mipengine/mip-extensions/tree/master/mip-nav-slidedown )|[升级] 增加icon位文字配置项
+
 #### 2017.02.10
 
 > 组件上线

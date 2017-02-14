@@ -7,10 +7,10 @@
 define(function (require) {
 
     var customElement = require('customElement').create();
-
+    var util = require('util');
 
     /**
-     * build
+     * firstInviewCallback
      *
      */
     customElement.prototype.firstInviewCallback = function () {
@@ -19,6 +19,10 @@ define(function (require) {
 
         var parent = document.createElement('a');
         parent.href = element.getAttribute('href');
+        util.css(parent, {
+            margin: 0,
+            padding: 0
+        });
         node.replaceChild(parent, element);
         parent.appendChild(element);
 

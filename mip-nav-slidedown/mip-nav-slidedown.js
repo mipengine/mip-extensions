@@ -22,7 +22,8 @@ define(function (require) {
     function render(me) {
         var $this = $(me);
         var id = $this.data('id');
-        var showBrand = $this.data('showbrand') !== '0';
+        var showBrand = !($this.data('showbrand') === 0);
+        var brandName = $this.data('brandname') || '';
         var brandHref = $this.data('brandhref') || '#';
         var $ulNav = $this.find('#' + id);
         var $container = $('<div></div>');
@@ -34,7 +35,7 @@ define(function (require) {
             + '<span class="icon-bar"></span>'
             + '<span class="icon-bar"></span>'
             + '</button>'
-            + (showBrand ? '<a href=' + brandHref + ' class="navbar-brand"></a>' : '')
+            + (showBrand ? '<a href=' + brandHref + ' class="navbar-brand">' + brandName + '</a>' : '')
             + '</div>';
         $container.append($btnWrap).append($ulNav).appendTo($this);
         $('.mip-nav-wrapper').addClass('show');

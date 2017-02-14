@@ -280,7 +280,7 @@ define(function (require) {
             this.btnSend();
             this.checkLogin();
             this.userInfoHide();
-            this.checkData();
+            // this.checkData();
             this.accordion();
             this.guideData();
         }

@@ -11,7 +11,7 @@ mip-nav-slidedown 实现响应式的菜单，在mip官网有引用
 ## 示例
 ```html
 <div class="mip-nav-wrapper">
-<mip-nav-slidedown data-id="bs-navbar" class="mip-element-sidebar container" data-showbrand="1">
+<mip-nav-slidedown data-id="bs-navbar" class="mip-element-sidebar container" data-showbrand="1" data-brandname="MIP官网">
     <nav id="bs-navbar" class="navbar-collapse collapse navbar navbar-static-top">
         <ul class="nav navbar-nav navbar-right">
             <li class="index-body">
@@ -43,10 +43,16 @@ mip-nav-slidedown 实现响应式的菜单，在mip官网有引用
 类型：字符串  
 
 ### data-showbrand  
-说明：是否需要左上角显示可点击图标  
+说明：是否需要左上角显示可点击区域  
 必选项：否  
-类型：字符串，0（不显示），1（显示）  
+类型：数字  
+取值：0（不显示），1（显示）  
 默认值：1
+
+### data-brandname  
+说明：左上角显示可点击区域文字，仅在data-showbrand=1时显示  
+必选项：否  
+类型：字符串，如"MIP官网"  
 
 ### data-brandhref  
 说明：左上角图标跳转链接，在data-showbrand为1时有效  

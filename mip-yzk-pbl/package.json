@@ -1,0 +1,13 @@
+{
+    "name": "mip-yzk-pbl",
+    "version": "1.0.0",
+    "description": "瀑布流组件",
+    "contributors": [
+        {
+            "name": "yzk"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

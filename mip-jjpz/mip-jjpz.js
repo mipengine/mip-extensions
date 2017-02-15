@@ -61,90 +61,118 @@ define(function (require) {
     var base = {
         na: function () {
             var ua = window.navigator.userAgent.toLowerCase();
-            var isIE = (ua.indexOf("msie") > -1) ? true : false;
-            var isFirefox = (ua.indexOf("firefox") > -1) ? true : false;
-            var isChrome = (ua.indexOf("chrome") > -1) ? true : false;
-            var isSafari = (ua.indexOf("safari") > -1) ? true : false;
-            var isOpera = (ua.indexOf("opera") > -1) ? true : false;
-            var isAndroid = (ua.indexOf("android") > -1) ? true : false;
+            var isIE;
+            var isFirefox;
+            var isChrome;
+            var isSafari;
+            var isOpera;
+            var isAndroid;
+            (ua.indexOf('msie') > -1) ? isIE = true : isIE = false;
+            (ua.indexOf('firefox') > -1) ? isFirefox = true : isFirefox = false;
+            (ua.indexOf('chrome') > -1) ? isChrome = true : isChrome = false;
+            (ua.indexOf('safari') > -1) ? isSafari = true : isSafari = false;
+            (ua.indexOf('opera') > -1) ? isOpera = true : isOpera = false;
+            (ua.indexOf('android') > -1) ? isAndroid = true : isAndroid = false;
             if (isIE) {
-                return "Microsoft Internet Explorer " + ua.match(/msie.([\d.]+)/)[1]
-            } else if (isFirefox) {
-                return "Firefox " + ua.match(/firefox.([\d.]+)/)[1]
-            } else if (isChrome) {
-                return "Chrome " + ua.match(/chrome.([\d.]+)/)[1]
-            } else if (isOpera) {
-                return "Opera " + ua.match(/opera.([\d.]+)/)[1]
-            } else if (isSafari && isAndroid) {
-                return "Android's browser " + ua.match(/version.([\d.]+)/)[1]
-            } else if (isSafari) {
-                return "Safari " + ua.match(/version.([\d.]+)/)[1]
-            } else {
-                return "unknown"
+                return 'Microsoft Internet Explorer ' + ua.match(/msie.([\d.]+)/)[1];
+            }
+            else if (isFirefox) {
+                return 'Firefox ' + ua.match(/firefox.([\d.]+)/)[1];
+            }
+            else if (isChrome) {
+                return 'Chrome ' + ua.match(/chrome.([\d.]+)/)[1];
+            }
+            else if (isOpera) {
+                return 'Opera ' + ua.match(/opera.([\d.]+)/)[1];
+            }
+            else if (isSafari && isAndroid) {
+                return 'Android\'s browser ' + ua.match(/version.([\d.]+)/)[1];
+            }
+            else if (isSafari) {
+                return 'Safari ' + ua.match(/version.([\d.]+)/)[1];
+            }
+            else {
+                return 'unknown';
             }
         },
         os: function () {
             var ua = window.navigator.userAgent.toLowerCase();
-            var isWNT = (ua.indexOf("windows nt") > -1) ? true : false;
-            var isWindows = (ua.indexOf("windows") > -1) ? true : false;
-            var isWP = (ua.indexOf("windows phone") > -1) ? true : false;
-            var isMac = (ua.indexOf("mac") > -1) ? true : false;
-            var isUnix = (ua.indexOf("x11") > -1) ? true : false;
-            var isIphone = (ua.indexOf("iphone") > -1) ? true : false;
-            var isIpad = (ua.indexOf("ipad") > -1) ? true : false;
-            var isIpod = (ua.indexOf("ipod") > -1) ? true : false;
-            var isAndroid = (ua.indexOf("android") > -1) ? true : false;
+            var isWNT;
+            var isWindows;
+            var isWP;
+            var isMac;
+            var isUnix;
+            var isIphone;
+            var isIpad;
+            var isIpod;
+            var isAndroid;
+            (ua.indexOf('windows nt') > -1) ? isWNT = true : isWNT = false;
+            (ua.indexOf('windows') > -1) ? isWindows = true : isWindows = false;
+            (ua.indexOf('windows phone') > -1) ? isWP = true : isWP = false;
+            (ua.indexOf('mac') > -1) ? isMac = true : isMac = false;
+            (ua.indexOf('x11') > -1) ? isUnix = true : isUnix = false;
+            (ua.indexOf('iphone') > -1) ? isIphone = true : isIphone = false;
+            (ua.indexOf('ipad') > -1) ? isIpad = true : isIpad = false;
+            (ua.indexOf('ipod') > -1) ? isIpod = true : isIpod = false;
+            (ua.indexOf('android') > -1) ? isAndroid = true : isAndroid = false;
             if (isWindows) {
-                var tmp = "";
+                var tmp = '';
                 if (isWNT) {
                     switch (ua.match(/windows nt ([\d\.]+)/)[1]) {
-                        case "6.2":
-                            tmp = "Win8";
+                        case '6.2':
+                            tmp = 'Win8';
                             break;
-                        case "6.1":
-                            tmp = "Win7";
+                        case '6.1':
+                            tmp = 'Win7';
                             break;
-                        case "6.0":
-                            tmp = "WinVista";
+                        case '6.0':
+                            tmp = 'WinVista';
                             break;
-                        case "5.2":
-                            tmp = "Windows Server 2003";
+                        case '5.2':
+                            tmp = 'Windows Server 2003';
                             break;
-                        case "5.1":
-                            tmp = "WinXp";
+                        case '5.1':
+                            tmp = 'WinXp';
                             break;
-                        case "5.0":
-                            tmp = "Win2000";
+                        case '5.0':
+                            tmp = 'Win2000';
                             break;
                         default:
-                            tmp = "other Windows";
-                            break
+                            tmp = 'other Windows';
+                            break;
                     }
-                    return tmp
-                } else {
+                    return tmp;
+                }
+                else {
                     if (isWP) {
-                        return "mobile windows"
-                    } else {
-                        return "Lower windows"
+                        return 'mobile windows';
+                    }
+                    else {
+                        return 'Lower windows';
                     }
                 }
-            } else if (isIphone || isIpad || isIpod) {
-                return "Iphone or Ipad or Ipod"
-            } else if (isMac) {
-                return "Mac OS X"
-            } else if (isAndroid) {
-                return "Android " + ua.match(/android.([\d\.]+)/)[1]
-            } else if (isUnix) {
-                return "like Unix"
-            } else {
-                return "unknown"
+            }
+            else if (isIphone || isIpad || isIpod) {
+                return 'Iphone or Ipad or Ipod';
+            }
+            else if (isMac) {
+                return 'Mac OS X';
+            }
+            else if (isAndroid) {
+                return 'Android ' + ua.match(/android.([\d\.]+)/)[1];
+            }
+            else if (isUnix) {
+                return 'like Unix';
+            }
+            else {
+                return 'unknown';
             }
         },
         size: function () {
-            return window.screen.width + "*" + window.screen.height
+            return window.screen.width + '*' + window.screen.height;
         },
         src: document.referrer,
-        url: document.location.href,
+        url: document.location.href
     };
     var $f = {
         init: function () {
@@ -225,6 +253,7 @@ define(function (require) {
                 $('.ui_outer').find('.header2').append('<span class="split">|</span>' + data.RLEVEL_SZ + '星评级');
                 $('.baseInfo_url').find('.jjxx-h').append('<span class="split">|</span>' + data.RLEVEL_SZ + '星评级');
             }
+
             if (param.fundGetType === 1) {
                 $('.Fearnings').html('最新净值（<span class="numberFont">' + data.FSRQ.slice(5, 10) + '</span>）');
                 $('.FearningsDay').html('日涨幅');
@@ -321,6 +350,7 @@ define(function (require) {
                     var jzzzldata = $f.initNumber2(datas[i].JZZZL, 2);
                     gotoLSSYLdiv += '<td class="' + jzzzlcolor + ' numberFont">' + jzzzldata + '</td>';
                 }
+
                 gotoLSSYLdiv += '</tr>';
             }
 
@@ -409,7 +439,7 @@ define(function (require) {
                 tthistbl.find('.fund-buy').attr('href', param.funBuyUrl + '#code=' + datas[i].FCODE);
             }
             var turl = param.sameType + '#' + param.fundtype;
-            var  htmlli = '';
+            var htmlli = '';
             htmlli += '<li class="fund-item-last1"><a class="more" href=';
             htmlli += turl + '>查看全部同类基金>&gt;</a><a></a></li>';
             thisul.append(htmlli);
@@ -664,10 +694,12 @@ define(function (require) {
                             if (type) {
                                 shareTo(type);
                             }
+
                         }, 1200);
 
                     });
                 }
+
                 e.stopPropagation();
 
             });
@@ -685,6 +717,7 @@ define(function (require) {
                     $f.alertWindow('错误的链接地址或标题');
                     return;
                 }
+
                 var shareUrl = '';
                 switch (dest.toLowerCase()) {
                     case 'sina':
@@ -749,6 +782,7 @@ define(function (require) {
                 if (parseFloat(str) === 0) {
                     return 'ui_black';
                 }
+
                 return 'ui_red';
             }
             else if (parseFloat(str) < 0) {
@@ -767,6 +801,7 @@ define(function (require) {
             if (alertMaskerUI != null) {
                 alertMaskerUI.remove();
             }
+
             var alertMaskhtml = '';
             alertMaskhtml += '<div class="alertMasker _alertMaskerUI_"> <div> <div class="alert"><div class="inner">';
             alertMaskhtml += '<p></p><footer><a href="javascript:void(null)" class="button" for="yes" >确定</a>';
@@ -784,8 +819,7 @@ define(function (require) {
             tthis.initAlertMask();
 
             var tempTxt = txt ? txt : '';
-            var tempCallback = callback ? callback : function () {
-            };
+            var tempCallback = callback ? callback : function () {};
 
             var btnTxt = option ? '确定' : option;
             target = $('._alertMaskerUI_');
@@ -824,6 +858,7 @@ define(function (require) {
                     if (typeof resultData === 'string') {
                         resultData = JSON.parse(resultData);
                     }
+
                     if (resultData.ErrCode === 0) {
                         callback(resultData);
                     }
@@ -922,26 +957,38 @@ define(function (require) {
         },
         // 东财统计
         jsLoad: function (sUrl, sBianMa, fCallback) {
-            var _script = document.createElement('script');
-            _script.setAttribute('charset', sBianMa);
-            _script.setAttribute('type', 'text/javascript');
-            _script.setAttribute('src', sUrl);
-            document.getElementsByTagName('head')[0].appendChild(_script);
+            var Tscript = document.createElement('script');
+            Tscript.setAttribute('charset', sBianMa);
+            Tscript.setAttribute('type', 'text/javascript');
+            Tscript.setAttribute('src', sUrl);
+            document.getElementsByTagName('head')[0].appendChild(Tscript);
+            var seckov= /gecko/.test(window.navigator.userAgent.toLowerCase()) ;
+            var opera= /opera/.test(window.navigator.userAgent.toLowerCase());
             if (/msie/.test(window.navigator.userAgent.toLowerCase())) {
-                _script.onreadystatechange = function () {
-                    if (this.readyState == 'loaded' || this.readyState == 'complete') {
-                        _script.parentNode.removeChild(_script);
-                        if (fCallback) fCallback()
+                Tscript.onreadystatechange = function () {
+                    if (this.readyState === 'loaded' || this.readyState === 'complete') {
+                        Tscript.parentNode.removeChild(Tscript);
+                        if (fCallback) {
+                            fCallback();
+                        }
                     }
+
+                };
+            }
+            else if (seckov || opera) {
+                Tscript.onload = function () {
+                    Tscript.parentNode.removeChild(Tscript);
+                    if (fCallback) {
+                        fCallback();
+                    }
+
+                };
+            }
+            else {
+                Tscript.parentNode.removeChild(Tscript);
+                if (fCallback) {
+                    fCallback();
                 }
-            } else if (/gecko/.test(window.navigator.userAgent.toLowerCase()) || /opera/.test(window.navigator.userAgent.toLowerCase())) {
-                _script.onload = function () {
-                    _script.parentNode.removeChild(_script);
-                    if (fCallback) fCallback()
-                }
-            } else {
-                _script.parentNode.removeChild(_script);
-                if (fCallback) fCallback()
             }
         }
     };
@@ -951,9 +998,10 @@ define(function (require) {
         param.data.FCODE = $f.getQueryString('fundcode') || '000009';
         param.dataPage.FCODE = $f.getQueryString('fundcode') || '000009';
         $f.init();
-        window.jsonp = function () { };
-        var tmp = "na=" + base.na() + "&os=" + base.os() + "&size=" + base.size() + "&src=" + base.src + "&url=" + base.url + "&type=Mongo&v=" + Math.random();
-        $f.jsLoad("https://counter1.1234567.com.cn/?" + tmp + "&callback=jsonp", "utf-8", function () { })
+        window.jsonp = function () {};
+        var tmp = 'na=' + base.na() + '&os=' + base.os() + '&size=' + base.size();
+         tmp+= '&src=' + base.src + '&url=' + base.url + '&type=Mongo&v=' + Math.random();
+        $f.jsLoad('https://counter1.1234567.com.cn/?' + tmp + '&callback=jsonp', 'utf-8', function () {});
     };
 
     return customElem;

@@ -4,8 +4,9 @@
     "description": "组件介绍",
     "contributors": [
         {
-            "name": "",
-            "email": ""
+            "name": "MIP authors",
+            "email": "mip-support@baidu.com",
+            "url": "https://www.mipengine.org"
         }
     ],
     "engines": {

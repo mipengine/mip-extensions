@@ -1,0 +1,14 @@
+{
+    "name": "mip-huimee",
+    "version": "1.0.0",
+    "description": "用于投放第三方广告",
+    "contributors": [
+        {
+            "name": "hoogecc",
+            "email": "hoogecc17@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

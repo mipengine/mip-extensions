@@ -25,7 +25,7 @@ define(function (require) {
                 window.top.location.href = installAppUrl;
                 clearTimeout(timer);
             }, 1500);
-            
+
             window.open(openInAppUrl, '_top');
 
             var visibilitychange = function () {
@@ -35,7 +35,7 @@ define(function (require) {
 
             document.addEventListener('visibilitychange', visibilitychange, false);
             document.addEventListener('webkitvisibilitychange', visibilitychange, false);
-            window.addEventListener('pagehide', function() {
+            window.addEventListener('pagehide', function () {
                 clearTimeout(timer);
             }, false);
         }
@@ -87,16 +87,15 @@ define(function (require) {
     };
 
 
-    function canShowBanner () {
+    function canShowBanner() {
         this.isSysBanner = platform.isSafari() || platform.isBaidu();// || platform.isQQ();
         this.showSysBanner = !viewer.isIframed && this.isSysBanner;
-        if(this.showSysBanner) {
-            console.log('platform.isSafari()', platform.isSafari())
+        if (this.showSysBanner) {
             return false;
         }
 
         this.isEmbeddedSafari = viewer.isIframed && this.isSysBanner;
-        if(this.isEmbeddedSafari) {
+        if (this.isEmbeddedSafari) {
             return false;
         }
 
@@ -108,7 +107,7 @@ define(function (require) {
         return true;
     }
 
-    function iosAppBanner () {
+    function iosAppBanner() {
         var self = this;
 
         if (!canShowBanner.call(self)) {
@@ -119,7 +118,7 @@ define(function (require) {
         preProcess.init(this.element);
 
         var content = this.metaTag.getAttribute('content');
-        var parts = content.replace(/\s/,'').split(',');
+        var parts = content.replace(/\s/, '').split(',');
         var config = {};
         parts.forEach(function (part) {
             var params = part.split('=');
@@ -134,7 +133,7 @@ define(function (require) {
         openButton.setup(this.openButton, openInAppUrl, installAppUrl);
     }
 
-    function andriodAppBanner () {
+    function andriodAppBanner() {
         var self = this;
 
         if (!canShowBanner.call(self)) {
@@ -146,8 +145,7 @@ define(function (require) {
 
         this.manifestLink = null;
         this.manifestHref = '';
-        this.missingDataSources_ = false;
-        // alert(1);
+        this.missingDataSources = false;
 
         this.manifestLink = document.head.querySelector('link[rel=manifest],link[rel=origin-manifest]');
 
@@ -166,29 +164,27 @@ define(function (require) {
         }
 
         this.manifestHref = this.manifestLink.getAttribute('href');
-        // if (/http:\/\//.test(this.manifestHref)) {
-        //     alert('http');
-        //     console.error('必须是https的连接');
-        // }
+        if (/http:\/\//.test(this.manifestHref)) {
+            console.error('必须是https的连接');
+        }
 
         fetchJsonp(this.manifestHref).then(function (res) {
             return res.json();
         }).then(function (data) {
-            var apps = data['related_applications'];
+            var apps = data.related_applications;
             if (!apps) {
                 self.element.remove();
             }
             for (var i = 0; i < apps.length; i++) {
-              var app = apps[i];
-              if (app['platform'] == 'play') {
-                var installAppUrl = app['install'];
-                var openInAppUrl = app['open'];
-                openButton.setup(self.openButton, openInAppUrl, installAppUrl);
-              }
+                var app = apps[i];
+                if (app.platform === 'play') {
+                    var installAppUrl = app.install;
+                    var openInAppUrl = app.open;
+                    openButton.setup(self.openButton, openInAppUrl, installAppUrl);
+                }
             }
         });
 
-        // openButton.setup(this.openButton, 'zhihu://questions/53799426', 'http://m.downxia.com/downinfo/35295.html');
     }
 
     /**
@@ -201,13 +197,13 @@ define(function (require) {
 
         util.css(this.element, {
             display: '',
-            visibility: 'hidden',
+            visibility: 'hidden'
         });
 
         self.openButton = null;
         self.canShowBanner = null;
         self.dismissButton = null;
-        
+
         if (platform.isIos()) {
             iosAppBanner.call(this);
         }

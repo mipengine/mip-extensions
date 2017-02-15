@@ -77,12 +77,10 @@ define(function (require) {
                 element.remove();
                 return;
             }
-            else {
-                util.css(element, {
-                    visibility: 'visible'
-                });
-                dismissButton.add(element);
-            }
+            util.css(element, {
+                visibility: 'visible'
+            });
+            dismissButton.add(element);
         }
     };
 

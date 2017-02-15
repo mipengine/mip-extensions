@@ -1,5 +1,16 @@
 # 升级日志
 
+#### 2017.02.15
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-huimee](https://github.com/mipengine/mip-extensions/tree/master/mip-huimee)|[新增] 汇米广告组件
+[mip-app-banner](https://github.com/mipengine/mip-extensions/tree/master/mip-app-banner)|[新增] 调起app组件
+[mip-link](https://github.com/mipengine/mip-extensions/tree/master/mip-link)|[升级] 升级支持spider抓取
+
+
 #### 2017.02.14
 
 > 核心代码上线

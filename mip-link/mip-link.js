@@ -13,6 +13,16 @@ define(function (require) {
      * firstInviewCallback
      *
      */
+    
+    function getPaddingOrMargin (elem, style) {
+        var res = document && document.defaultView 
+         && document.defaultView.getComputedStyle()
+         && document.defaultView.getComputedStyle(element, null)
+         && document.defaultView.getComputedStyle(element, null)[style];
+
+         return res ? res : '0px';
+    }
+
     customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
         var node = element.parentNode;
@@ -28,10 +38,10 @@ define(function (require) {
 
         // padding 和 margin 设置，优先考虑 mip-link 的样式设置
 
-        var elementPadding = document.defaultView.getComputedStyle(element, null)['padding'];
-        var elementMargin = document.defaultView.getComputedStyle(element, null)['margin'];
-        var parentPadding = document.defaultView.getComputedStyle(parent, null)['padding'] || 0;
-        var parengMargin = document.defaultView.getComputedStyle(parent, null)['margin'] || 0;
+        var elementPadding = getPaddingOrMargin(element, 'padding');
+        var elementMargin = getPaddingOrMargin(element, 'margin');
+        var parentPadding = getPaddingOrMargin(parent, 'padding');
+        var parengMargin = getPaddingOrMargin(parent, 'margin');
 
         var paddingValue = elementPadding !== '0px' ? 0 : parentPadding;
         var marginValue = elementMargin !== '0px' ? 0 : parengMargin;

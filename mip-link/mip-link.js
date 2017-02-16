@@ -15,10 +15,9 @@ define(function (require) {
      */
     
     function getPaddingOrMargin (elem, style) {
-        var res = document && document.defaultView 
-         && document.defaultView.getComputedStyle()
-         && document.defaultView.getComputedStyle(element, null)
-         && document.defaultView.getComputedStyle(element, null)[style];
+        var res = document && document.defaultView
+         && document.defaultView.getComputedStyle(elem, null)
+         && document.defaultView.getComputedStyle(elem, null)[style];
 
          return res ? res : '0px';
     }

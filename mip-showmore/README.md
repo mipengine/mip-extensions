@@ -1,6 +1,6 @@
 # mip-showmore
 
-mip-showmore 用来支持现在更多内容
+mip-showmore 用来支持显示更多内容
 
 标题|内容
 ----|----

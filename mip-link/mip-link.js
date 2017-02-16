@@ -39,21 +39,19 @@ define(function (require) {
 
         var elementPadding = getPaddingOrMargin(element, 'padding');
         var elementMargin = getPaddingOrMargin(element, 'margin');
-        var parentPadding = getPaddingOrMargin(parent, 'padding');
-        var parengMargin = getPaddingOrMargin(parent, 'margin');
 
-        var paddingValue = elementPadding !== '0px' ? elementPadding : parentPadding;
-        var marginValue = elementMargin !== '0px' ? elementPadding : parengMargin;
+        if (elementPadding !== '0px' || elementMargin !== '0px') {
+            util.css(parent, {
+                margin: elementMargin,
+                padding: elementPadding
+            });
 
-        util.css(parent, {
-            margin: marginValue,
-            padding: paddingValue
-        });
+            util.css(element, {
+                margin: 0,
+                padding: 0
+            });
+        }
 
-        util.css(element, {
-            margin: 0,
-            padding: 0
-        });
     };
 
     return customElement;

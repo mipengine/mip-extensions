@@ -20,9 +20,9 @@ define(function (require) {
 
         var parent = document.createElement('a');
         parent.href = element.getAttribute('href');
-        parent.classList += classVal;
+        parent.classList += classVal.replace('mip-element', '');
         
-        element.removeAttribute('class');
+        element.setAttribute('class', 'mip-element');
         node.replaceChild(parent, element);
         parent.appendChild(element);
 

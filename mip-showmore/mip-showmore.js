@@ -13,22 +13,22 @@ define(function (require) {
      */
     customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
-
+        var $element = $(element);
         // 获取点击按钮
-        var clickBtn = element.querySelector('[showmorebtn]');
+        var clickBtn = $element.find('[showmorebtn]');
         // 获取内容显示框
-        var showBox = element.querySelector('[showmorebox]');
+        var showBox = $element.find('[showmorebox]');
         // 获取动画时间
-        var animateTime = element.getAttribute('animatetime') || 0;
+        var animateTime = $element.attr('animatetime') || 0;
         // 如果动画不是数字
         if (isNaN(animateTime)) {
             return;
         }
 
         // 获取高度阈值
-        var maxHeight = element.getAttribute('maxheight');
+        var maxHeight = $element.attr('maxheight');
         // 获取字数阈值
-        var maxLen = element.getAttribute('maxlen');
+        var maxLen = $element.attr('maxlen');
         // 如果展开按钮或者显示框不存在则返回
         if (!clickBtn || !showBox) {
             return;
@@ -50,7 +50,7 @@ define(function (require) {
         }
 
         // 避免初始加载闪现
-        $(element).css('visibility', 'visible');
+        $element.css('visibility', 'visible');
 
         // 高度阈值控制
         function maxHeightFn() {
@@ -76,6 +76,10 @@ define(function (require) {
                     else {
                         $(this).addClass('mip-showmore-boxshow');
                         $showBox.css('height', showBoxHei + 'px');
+                        setTimeout(function () {
+                            // 防止内部出现懒加载元素导致高度计算不对
+                            $showBox.css('height', 'auto');
+                        }, animateTime);
                         changeBtnText('show');
                     }
                 });
@@ -94,7 +98,7 @@ define(function (require) {
             if (innerText.length > maxLen) {
                 // 显示展开更多按钮
                 $(element).find('.mip-showmore-btnshow').css('display', 'block');
-                cutOffText = innerText.slice(0, maxLen) + '......';
+                cutOffText = innerText.slice(0, maxLen) + '...';
                 originalHtml = $showBox.html();
                 $showBox.html('');
                 $showBox.append('<p class="mip-showmore-cutofftext">' + cutOffText + '</p>');
@@ -119,12 +123,12 @@ define(function (require) {
         // 按钮文案显示切换
         function changeBtnText(type) {
             if (type === 'show') {
-                $(element).find('.mip-showmore-btnshow').css('display', 'none');
-                $(element).find('.mip-showmore-btnhide').css('display', 'block');
+                $element.find('.mip-showmore-btnshow').css('display', 'none');
+                $element.find('.mip-showmore-btnhide').css('display', 'block');
             }
             else {
-                $(element).find('.mip-showmore-btnshow').css('display', 'block');
-                $(element).find('.mip-showmore-btnhide').css('display', 'none');
+                $element.find('.mip-showmore-btnshow').css('display', 'block');
+                $element.find('.mip-showmore-btnhide').css('display', 'none');
             }
         }
     };

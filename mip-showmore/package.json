@@ -1,0 +1,14 @@
+{
+    "name": "mip-showmore",
+    "version": "1.0.0",
+    "description": "mip点击显示更多组件",
+    "contributors": [
+        {
+            "name": "fengchuantao",
+            "email": "fengchuantao@baidu.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

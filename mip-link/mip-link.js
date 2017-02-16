@@ -25,6 +25,9 @@ define(function (require) {
     customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
         var node = element.parentNode;
+
+        var elementPadding = getPaddingOrMargin(element, 'padding');
+        var elementMargin = getPaddingOrMargin(element, 'margin');
         var classVal = element.getAttribute('class');
 
         var parent = document.createElement('a');
@@ -35,23 +38,15 @@ define(function (require) {
         node.replaceChild(parent, element);
         parent.appendChild(element);
 
-        // padding 和 margin 设置，优先考虑 mip-link 的样式设置
+        util.css(parent, {
+            margin: elementMargin,
+            padding: elementPadding
+        });
 
-        var elementPadding = getPaddingOrMargin(element, 'padding');
-        var elementMargin = getPaddingOrMargin(element, 'margin');
-
-        if (elementPadding !== '0px' || elementMargin !== '0px') {
-            util.css(parent, {
-                margin: elementMargin,
-                padding: elementPadding
-            });
-
-            util.css(element, {
-                margin: 0,
-                padding: 0
-            });
-        }
-
+        util.css(element, {
+            margin: 0,
+            padding: 0
+        });
     };
 
     return customElement;

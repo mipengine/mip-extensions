@@ -36,6 +36,7 @@ define(function (require) {
         var attr = $(elem).attr('aid');
         var channel = $(elem).attr('channel');
         var department = $(elem).attr('department');
+        var paramId = $(elem).attr('param');
         switch (attr) {
             case 'take_ip':
                 loadJs(elem, 'https://ipdisplay.xywy.com/take_ip', function () {
@@ -75,11 +76,9 @@ define(function (require) {
                     }
                 });
                 break;
-
             case 'stat':
                 loadJs(elem, 'https://a.xywy.com/mip/stat.js');
                 break;
-
             case 'tongji':
                 loadJs(elem, 'https://stat.xywy.com/a.js', function () {
                     var oIframe = document.createElement('iframe');
@@ -92,19 +91,18 @@ define(function (require) {
                     }
                 });
                 break;
-
             case 'odm':
                 loadJs(elem, 'https://stat.xywy.com/odm.js');
                 break;
-
+            case 'a_new_test':
+                loadJs(elem, 'https://stat.xywy.com/a_new_test.js?param=' + paramId + '&projectid=2250537300');
+                break;
             case 'visit':
                 loadJs(elem, 'https://stat.xywy.com/visit.js');
                 break;
-
             case 'get_ip':
                 loadJs(elem, 'https://page.xywy.com/get_ip');
                 break;
-
             default:
                 break;
         }

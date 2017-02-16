@@ -42,12 +42,17 @@ define(function (require) {
         var parentPadding = getPaddingOrMargin(parent, 'padding');
         var parengMargin = getPaddingOrMargin(parent, 'margin');
 
-        var paddingValue = elementPadding !== '0px' ? 0 : parentPadding;
-        var marginValue = elementMargin !== '0px' ? 0 : parengMargin;
-        
+        var paddingValue = elementPadding !== '0px' ? elementPadding : parentPadding;
+        var marginValue = elementMargin !== '0px' ? elementPadding : parengMargin;
+
         util.css(parent, {
             margin: marginValue,
             padding: paddingValue
+        });
+
+        util.css(element, {
+            margin: 0,
+            padding: 0
         });
     };
 

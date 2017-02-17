@@ -208,7 +208,7 @@ define(function (require) {
         // 数据上报
         checkData: function () {
             $('mip-ad,mip-embed').each(function () {
-                effects.sendPost('http://dd.iask.cn/ddd/adAudit', '144', '241', null, '195', 'm_q_detail_attention_1');
+                effects.sendPost('https://mipu.iask.cn/ddd/adAudit', '144', '241', null, '195', 'm_q_detail_attention_1');
             });
             setInterval(function () {
                 // 判断是否加载出来
@@ -216,7 +216,7 @@ define(function (require) {
                     var loadFlag = $(this).attr('loadFlag');
                     if ($(this).html().indexOf('iframe') > 0 && loadFlag === undefined) {
                         $(this).attr('loadFlag', true);
-                        effects.sendPost('http://dd.iask.cn/ddd/adStatus', '144', '241', 1, '195', 'm_q_detail_attention_1');
+                        effects.sendPost('https://mipu.iask.cn/ddd/adStatus', '144', '241', 1, '195', 'm_q_detail_attention_1');
                     }
                 });
             }, 100);
@@ -280,7 +280,7 @@ define(function (require) {
             this.btnSend();
             this.checkLogin();
             this.userInfoHide();
-            // this.checkData();
+            this.checkData();
             this.accordion();
             this.guideData();
         }

@@ -1,5 +1,27 @@
 # 升级日志
 
+#### 2017.02.17
+
+> 核心代码上线
+
+    1. 升级mip-pix统计组件，实现统计请求内容的自动替换
+    2. platform功能完善
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件 
+
+#### 2017.02.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-link](https://github.com/mipengine/mip-extensions/tree/master/mip-link)|[升级] 升级支持spider抓取
+
 #### 2017.02.15
 
 > 组件上线

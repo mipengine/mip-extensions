@@ -1,0 +1,13 @@
+{
+    "name": "mip-qbb-ad",
+    "version": "1.0.0",
+    "description": "插入广告",
+    "contributors": [
+        {
+            "name": "yml",
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

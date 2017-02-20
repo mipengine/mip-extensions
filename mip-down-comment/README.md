@@ -1,6 +1,6 @@
 # mip-comment-down
 
-mip-comment-down 用来支持文章详情页的
+mip-comment-down 用来支持文章详情页的评论
 
 标题|内容
 ----|----

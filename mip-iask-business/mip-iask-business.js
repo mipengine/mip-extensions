@@ -125,7 +125,7 @@ define(function (require) {
     };
     // 南方网通底部悬浮广告
     var southnetwork = function (sources, openId, div) {
-        var url = 'http://imgv2.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
+        var url = 'https://imgv2-ssl.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
         try {
             $.getJSON(url,
             function (data) {

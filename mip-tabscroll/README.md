@@ -344,8 +344,6 @@ mip-tabscroll 用来支详情页的选项卡切换
 	                <div class="buttons">
 	                    <button class="btn btn-cancel">取消</button>
 	                    <button class="btn btn-ok btn-notj" disabled>提交</button>
-	                    <input type="button" class="btn btn-cancel" value="取消">
-	                    <input type="button" >
 	                </div>
 	            </div>
 	        </section>

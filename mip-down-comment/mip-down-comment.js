@@ -135,7 +135,7 @@ define(function (require) {
     }
 
     customElem.prototype.build = function () {
-        // this.element 可取到当前实例对应的 dom 元素
+
         var element = this.element;
         comment(element);
     };

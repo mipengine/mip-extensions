@@ -1,0 +1,16 @@
+{
+    "name": "mip-flexible",
+    "version": "1.0.0",
+    "description": "flexible.js mip版本,用于REM实现页面自适应效果.",
+    "contributors": [
+        {
+            "name": "yuuk",
+            "email": "645481746@qq.com",
+            "github": "https://github.com/yuuk/",
+            "url": "http://www.zuocai.tv"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

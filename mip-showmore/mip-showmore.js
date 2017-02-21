@@ -110,7 +110,7 @@ define(function (require) {
             var originalHtml = showBox.innerHTML;
 
             // 获取剪切后的字符串
-            cutOffText = cutHtmlStr(originalHtml, maxLen);
+            cutOffText = cutHtmlStr(maxLen);
 
             // 如果长度大于阀值
             if (originalHtml.length !== cutOffText.length) {
@@ -140,7 +140,7 @@ define(function (require) {
         }
 
         // 剪切字符串
-        function cutHtmlStr(originalHtml, maxLen) {
+        function cutHtmlStr(maxLen) {
             var allChildList = showBox.childNodes;
             var cutHtml = '';
             var tmpNum = 0;

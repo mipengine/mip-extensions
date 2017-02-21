@@ -81,7 +81,7 @@ define(function (require) {
     function onSubmit() {
         var self = this;
         var preventSubmit = false;
-        var inputs = $(self).find('input[type="text"],input[type="input"]');
+        var inputs = $(self).find('input, textarea, select');
         var isGet = self.getAttribute('method') === 'get';
         var getUrl = self.getAttribute('url');
         var isHttp = getUrl.match('http://');
@@ -95,7 +95,13 @@ define(function (require) {
             var value = item.value;
             var reg;
 
-            valueJson += '&' + item.name + '=' + item.value;
+            if (item.type == 'checkbox' || item.type == 'radio') {
+                value = item.checked ? item.value : ''
+            } else if(item.type == 'submit') {
+                return;
+            }
+
+            valueJson += '&' + item.name + '=' + value;
             if (type) {
                 if (regval) {
                     reg = value === '' ? false : (new RegExp(regval)).test(value);
@@ -183,7 +189,7 @@ define(function (require) {
                     else {
                         util.css(cross, {display: 'none'});
                         self.oninput = function () {
-                            if (util.platform.isAndroid() && self.type === 'search') {
+                            if (util && util.platform && util.platform.isAndroid() && self.type === 'search') {
                                 // andriod type=search自带清空按钮, 不显示清空
                                 return;
                             }

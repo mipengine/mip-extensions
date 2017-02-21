@@ -1,0 +1,14 @@
+{
+    "name": "mip-showmore",
+    "version": "1.0.0",
+    "description": "组件的作用是显示更多,实现文字的显示收起效果",
+    "contributors": [
+        {
+            "name": "yml",
+            "email": "1179739037@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

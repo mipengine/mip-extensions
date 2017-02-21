@@ -1,0 +1,13 @@
+{
+    "name": "mip-qbb-viewport",
+    "version": "1.0.0",
+    "description": "设置不同视窗下的rem,实现响应式",
+    "contributors": [
+        {
+            "name": "yml"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -12,8 +12,13 @@ mip-app-banner 组件说明
 
 ### 基本用法
 ```html
+<head>
+    <meta name="apple-itunes-app" content="app-id=xxxx, app-argument=medium://xxxx">
+    <link rel="manifest" href="xxxx/manifest">
+</head>
+...
 <mip-app-banner id="my-app-banner" layout="nodisplay">
-    自定义内容，可以嵌套其他组件
+    <button open-button>打开app</button>
 </mip-app-banner>
 ```
 
@@ -21,38 +26,58 @@ mip-app-banner 组件说明
 
 ### id
 
-说明：组件id，组件唯一标识
-必选项：是
-类型：字符串
-单位：无
-默认值：无
+说明：组件id，组件唯一标识  
+必选项：是  
+类型：字符串  
+单位：无  
+默认值：无  
 
 ### layout
 
-说明：组件布局，只能设置值为nodisplay
-必选项：是
-类型：字符串
-取值范围：nodisplay
-单位：无
-默认值：nodisplay
+说明：组件布局，只能设置值为nodisplay  
+必选项：是  
+类型：字符串  
+取值范围：nodisplay  
+单位：无  
+默认值：nodisplay  
+
+## 子节点
+
+### &lt;button open-button&gt;
+
+说明：调起 app 的按钮，必须带有 open-button 属性  
+必选项：是  
+类型：html 节点  
+取值范围：无  
+单位：无  
+默认值：&lt;button open-button&gt;  
+
+## 浏览器兼容性
+
+浏览器|Android+chrome|Android+baidu|IOS+safari |其他情况
+---|---|---|---|---
+结果页打开|支持|不支持屏蔽|不支持，暂时屏蔽|支持
+非结果页打开|不支持屏蔽|不支持屏蔽|浏览器banner|支持
+
 
 ## 注意事项
 
 - 在引用组件的页面头部head标签中需要加两个标签
 
-	- IOS 使用：`<meta name="apple-itunes-app" content="app-id=app的id, app-argument=medium://p/9ea61abf530f">`
-    - Android 使用：`<link rel="manifest" href="http://172.24.16.91:3000/manifest">`
+	- IOS 使用：`<meta name="apple-itunes-app" content="app-id=app的id, app-argument=medium://xxxx">`
+  - Android 使用：`<link rel="manifest" href="https://xxxx/manifest.json">`
+  - manifest 的 url 必须是 https的
 
 - manifest.json 示例
 
 ```
 {
-  "prefer_related_applications": true, // This is not necessary for <amp-app-banner>, but signals a preference on non-AMP pages using the same manifest.json file for the native app over a web app if available
+  "prefer_related_applications": true, 
   "related_applications": [
     {
       "platform": "play",
-      "id": "com.app.path",
-      "url": "android-app://com.app.path/https/host.com/path/to/app-content"
+      "open": "scheme://xx",
+      "install": "your download url"
     }
   ]
 }

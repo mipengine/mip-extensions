@@ -1,5 +1,22 @@
 # 升级日志
 
+#### 2017.02.21
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
+
+#### 2017.02.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtn-count](hhttps://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[平台][新增] 站内个人统计功能
+[mip-39alimama](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-39alimama)|[平台][升级] 阿里妈妈广告
+
 #### 2017.02.17
 
 > 核心代码上线

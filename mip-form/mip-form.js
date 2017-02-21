@@ -95,11 +95,11 @@ define(function (require) {
             var value = item.value;
             var reg;
 
-            if (item.type === 'submit') {
+            if(item.type === 'submit') {
                 return;
             }
             else if (item.type === 'checkbox' || item.type === 'radio') {
-                value = item.checked ? item.value : '';
+                value = item.checked ? item.value : ''
             }
 
             valueJson += '&' + item.name + '=' + value;
@@ -163,7 +163,7 @@ define(function (require) {
                 clearList += ',input[type=' + clearArr[i] + ']';
             }
             clearList = clearList.slice(1);
-
+            // XXX: clearItems为类数组对象
             var clearItems = element.querySelectorAll(clearList);
 
             if (!clearItems.length) {

@@ -14,9 +14,9 @@ mip-form 用来支持 mip 中的表单提交。
 
 ```html
 <mip-form method="get" url="https://www.mipengine.org?we=123">
-    <input type="input" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
+    <input type="text" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
     <div target="username">姓名不能为空</div>
-    <input type="input" name="age" validatetarget="age" validatetype="must" placeholder="年龄">
+    <input type="number" name="age" validatetarget="age" validatetype="must" placeholder="年龄">
     <div target="age">年龄不能为空</div>
     <input type="submit" value="提交">
 </mip-form>
@@ -27,7 +27,7 @@ mip-form 用来支持 mip 中的表单提交。
 <mip-form method="get" url="https://www.mipengine.org" clear>
     <input type="text" name="username2" validatetarget="username2" validatetype="must" placeholder="姓名">
     <div target="username2">姓名不能为空</div>
-    <input type="input" name="age2" validatetarget="age2" validatetype="must" placeholder="年龄">
+    <input type="number" name="age2" validatetarget="age2" validatetype="must" placeholder="年龄">
     <div target="age2">年龄不能为空</div>
     <input type="submit" value="提交">
 </mip-form>
@@ -37,7 +37,7 @@ mip-form 用来支持 mip 中的表单提交。
 
 ```html
 <mip-form method="get" url="https://www.mipengine.org">
-     <input type="input" name="customnumber" validatetarget="custom" validatetype="custom" validatereg="^[0-9]*$" placeholder="我是自定义验证规则数字">
+     <input type="text" name="customnumber" validatetarget="custom" validatetype="custom" validatereg="^[0-9]*$" placeholder="我是自定义验证规则数字">
      <div class="mip-form-target" target="custom">请输入正确的数字</div>
      <input type="submit" value="提交">
  </mip-form>

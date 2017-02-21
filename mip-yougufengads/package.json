@@ -1,0 +1,14 @@
+﻿{
+    "name": "mip-gufengads",
+    "version": "1.0.0",
+    "description": "用来处理广告",
+    "contributors": [
+        {
+            "name": "yuan3570",
+            "email": "623319047@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

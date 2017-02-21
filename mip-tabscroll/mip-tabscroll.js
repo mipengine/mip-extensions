@@ -12,8 +12,6 @@ define(function (require) {
         var flagt = true;
         $('.tab1 li').on('click', function () {
             var index = $(this).index();
-            $(this).addClass('cur').siblings().removeClass('cur');
-            $('.dtbox').eq(index).addClass('cur').siblings().removeClass('cur');
             if (flag) {
                 if (flagt) {
                     var sdheight = $('.show-detail .list1').height();

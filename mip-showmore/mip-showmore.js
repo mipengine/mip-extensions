@@ -39,14 +39,14 @@ define(function (require) {
         // 获取显示框显示对象
         // 处理阈值高度(高度优先于字体长度,不允许两个同时存在)
         if (maxHeight && !isNaN(maxHeight)) {
-            maxHeightFn();
+            toggle();
         }
         else if (maxLen && !isNaN(maxLen)) {
             maxLenFn();
         }
         else {
             maxHeight = 0;
-            maxHeightFn();
+            toggle();
         }
 
         // 避免初始加载闪现
@@ -54,9 +54,8 @@ define(function (require) {
             'visibility': 'visible'
         });
 
-
         // 高度阈值控制
-        function maxHeightFn() {
+        function toggle() {
             // 获取页面元素高度
             var showBoxHei = util.rect.getElementOffset(showBox).height;
 
@@ -81,7 +80,11 @@ define(function (require) {
                         util.css(showBox, {
                             'height': maxHeight + 'px'
                         });
-                        changeBtnText('hide');
+                        changeBtnText({
+                            'display': 'block'
+                        }, {
+                            'display': 'none'
+                        });
                     }
                     else {
                         this.classList.add('mip-showmore-boxshow');
@@ -93,10 +96,15 @@ define(function (require) {
                         setTimeout(function () {
                             // 防止内部出现懒加载元素导致高度计算不对
                             util.css(showBox, {
+                                'transition': 'height 0s',
                                 'height': 'auto'
                             });
                         }, runtime);
-                        changeBtnText('show');
+                        changeBtnText({
+                            'display': 'none'
+                        }, {
+                            'display': 'block'
+                        });
                     }
                 });
             }
@@ -128,12 +136,20 @@ define(function (require) {
                     if (this.classList.contains('mip-showmore-boxshow')) {
                         showBox.innerHTML = cutOffText;
                         this.classList.remove('mip-showmore-boxshow');
-                        changeBtnText('hide');
+                        changeBtnText({
+                            'display': 'block'
+                        }, {
+                            'display': 'none'
+                        });
                     }
                     else {
                         showBox.innerHTML = originalHtml;
                         this.classList.add('mip-showmore-boxshow');
-                        changeBtnText('show');
+                        changeBtnText({
+                            'display': 'none'
+                        }, {
+                            'display': 'block'
+                        });
                     }
                 });
             }
@@ -175,25 +191,16 @@ define(function (require) {
         }
 
         // 按钮文案显示切换
-        function changeBtnText(type) {
+        function changeBtnText(showBtnObj, hideBtnObj) {
             var btnShow = element.querySelector('.mip-showmore-btnshow');
             var btnHide = element.querySelector('.mip-showmore-btnhide');
-            if (type === 'show') {
-                util.css(btnShow, {
-                    'display': 'none'
-                });
-                util.css(btnHide, {
-                    'display': 'block'
-                });
-            }
-            else {
-                util.css(btnShow, {
-                    'display': 'block'
-                });
-                util.css(btnHide, {
-                    'display': 'none'
-                });
-            }
+            changeBtnShow(btnShow, showBtnObj);
+            changeBtnShow(btnHide, hideBtnObj);
+        }
+
+        // 文案切换显示
+        function changeBtnShow(obj, cssObj) {
+            util.css(obj, cssObj);
         }
     };
     return customElement;

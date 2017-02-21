@@ -63,7 +63,8 @@ define(function (require) {
         }
         docEl.setAttribute('data-dpr', dpr);
         if (!metaEl) {
-            console.warn('请设置viewport meta标签');
+            //  console.warn('请设置viewport meta标签');
+            return;
         }
         function refreshRem() {
             var width = docEl.getBoundingClientRect().width;

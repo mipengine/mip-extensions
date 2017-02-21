@@ -7,6 +7,7 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
+
     /**
      * 构造元素，只会运行一次
      */
@@ -103,65 +104,74 @@ define(function (require) {
 
         // 字数控制
         function maxLenFn() {
-            // 获取原生原始的字符串
-            var innerText = showBox.innerText.replace(/(^\s*)|(\s*$)/g, '');
-            if (innerText === '') {
-                innerText = showBox.textContent;
-            }
-
-            // 报错剪切后的字符串
+            // 剪切后的字符串
             var cutOffText;
             // 存储原始html对象
-            var originalHtml;
+            var originalHtml = showBox.innerHTML;
+
+            // 获取剪切后的字符串
+            cutOffText = cutHtmlStr(originalHtml, maxLen);
 
             // 如果长度大于阀值
-            if (innerText.length > maxLen) {
+            if (originalHtml.length !== cutOffText.length) {
                 // 显示展开更多按钮
                 var showBtnMore = element.querySelector('.mip-showmore-btnshow');
                 util.css(showBtnMore, {
                     'display': 'block'
                 });
 
-                // 剪切字符串长度
-                cutOffText = innerText.slice(0, maxLen) + '...';
-                originalHtml = showBox.innerHTML;
-                showBox.innerHTML = '';
-
-                // 创建摘要
-                var eleCutOff = document.createElement('p');
-                // 创建原始demo
-                var eleOriginalHtml = document.createElement('div');
-                eleCutOff.className = 'mip-showmore-cutofftext';
-                eleOriginalHtml.className = 'mip-showmore-originalhtml';
-                eleCutOff.innerHTML = cutOffText;
-                eleOriginalHtml.innerHTML = originalHtml;
-                showBox.appendChild(eleCutOff);
-                showBox.appendChild(eleOriginalHtml);
+                cutOffText = '<p class=\'mip-showmore-abstract\'>' + cutOffText + '...' + '</p>';
+                showBox.innerHTML = cutOffText;
 
                 // 绑定显示全部标签
                 clickBtn.addEventListener('click', function () {
                     if (this.classList.contains('mip-showmore-boxshow')) {
-                        util.css(eleCutOff, {
-                            'display': 'block'
-                        });
-                        util.css(eleOriginalHtml, {
-                            'display': 'none'
-                        });
+                        showBox.innerHTML = cutOffText;
                         this.classList.remove('mip-showmore-boxshow');
                         changeBtnText('hide');
                     }
                     else {
-                        util.css(eleCutOff, {
-                            'display': 'none'
-                        });
-                        util.css(eleOriginalHtml, {
-                            'display': 'block'
-                        });
+                        showBox.innerHTML = originalHtml;
                         this.classList.add('mip-showmore-boxshow');
                         changeBtnText('show');
                     }
                 });
             }
+        }
+
+        // 剪切字符串
+        function cutHtmlStr(originalHtml, maxLen) {
+            var allChildList = showBox.childNodes;
+            var cutHtml = '';
+            var tmpNum = 0;
+            var newNodeList = [];
+            for (var i = 0; i < allChildList.length; i++) {
+                var tmpHtml = allChildList[i].textContent.replace(/(^\s*)|(\s*$)/g, '');
+                if ((cutHtml.length + tmpHtml.length) <= maxLen) { // 如果长度没有达到最大字数
+                    cutHtml = cutHtml + tmpHtml;
+                    tmpNum = cutHtml.length;
+                    newNodeList.push(allChildList[i]);
+                }
+                else { // 已经大于
+                    var diffNum = maxLen - tmpNum > 0 ? maxLen - tmpNum : tmpNum - maxLen;
+                    var cutText = tmpHtml ? tmpHtml.slice(0, diffNum) : '';
+                    allChildList[i].textContent = cutText;
+                    newNodeList.push(allChildList[i]);
+                    break;
+                }
+            }
+            var endHtml = '';
+            for (var j = 0; j < newNodeList.length; j++) {
+                var nodeType = newNodeList[j].nodeType;
+                if (nodeType === 1) {
+                    endHtml = endHtml + newNodeList[j].outerHTML;
+                }
+                else if (nodeType === 3) {
+                    endHtml = endHtml + newNodeList[j].textContent;
+                }
+
+            }
+            return endHtml;
         }
 
         // 按钮文案显示切换

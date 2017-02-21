@@ -204,7 +204,7 @@ define(function (require) {
                 };
             }
 
-            cross.addEventListener('click', clear);
+            cross.addEventListener('touchend', clear);
 
             function clear(e) {
                 var name = e.target.getAttribute('name');

@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.02.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-dfads](hhttps://github.com/mipengine/mip-extensions-platform/tree/master/mip-dfads)|[平台][新增] 汇米第三方广告
+[mip-showmore](https://github.com/mipengine/mip-extensions/tree/master/mip-showmore)|[新增][官方] 查看更多组件
+
 #### 2017.02.21
 
 > 组件上线

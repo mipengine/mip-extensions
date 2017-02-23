@@ -56,8 +56,8 @@ define(function (require) {
 
             try {
                 statusData = JSON.parse(decodeURIComponent(statusData));
-            } catch(e) {
-                console.warn("事件追踪data-stats-baidu-obj数据不正确");
+            } catch (e) {
+                console.warn("事件追踪data-stats-cnzz-obj数据不正确");
                 return;
             }
             
@@ -91,8 +91,8 @@ define(function (require) {
                     var statusJson;
                     try {
                         statusJson = JSON.parse(decodeURIComponent(tempData));
-                    } catch(e) {
-                        console.warn("事件追踪data-stats-baidu-obj数据不正确");
+                    } catch (e) {
+                        console.warn("事件追踪data-stats-cnzz-obj数据不正确");
                         return;
                     }
                     if (!statusJson.data) {

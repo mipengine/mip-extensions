@@ -101,7 +101,7 @@ define(function (require) {
                     var statusJson;
                     try {
                         statusJson = JSON.parse(decodeURIComponent(tempData));
-                    } catch(e) {
+                    } catch (e) {
                         console.warn("事件追踪data-stats-baidu-obj数据不正确");
                         return;
                     }

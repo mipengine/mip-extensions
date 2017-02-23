@@ -79,7 +79,7 @@ define(function (require) {
             }
             else {
                 tagBox[index].addEventListener(eventtype, function (event) {
-                    var tempData = event.target.getAttribute('data-stats-cnzz-obj');
+                    var tempData = this.getAttribute('data-stats-cnzz-obj');
                     if (!tempData) {
                         return;
                     }

@@ -89,7 +89,7 @@ define(function (require) {
             }
             else {
                 tagBox[index].addEventListener(eventtype, function (event) {
-                    var tempData = event.target.getAttribute('data-stats-baidu-obj');
+                    var tempData = this.getAttribute('data-stats-baidu-obj');
                     if (!tempData) {
                         return;
                     }

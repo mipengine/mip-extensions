@@ -7,7 +7,7 @@ define(function (require) {
 	var util = require('util');
 	var viewport = require('viewport');
     var customElement = require('customElement').create();
-	const YOFFSET = 100;
+	var YOFFSET = 100;
     /**
      * 构造元素，只会运行一次
      */

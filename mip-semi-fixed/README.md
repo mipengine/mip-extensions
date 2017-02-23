@@ -6,7 +6,7 @@ mip-semi-fixed 滚动页面到一定高度时后再实现悬浮固定定位，�
 ----|----
 类型|通用
 支持布局|不使用布局
-所需脚本|http://mipcache.bdstatic.com/static/mip-semi-fixed/{版本号}/mip-semi-fixed.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-semi-fixed/mip-semi-fixed.js
 
 ## 示例
 

@@ -17,13 +17,15 @@ define(function (require) {
         var element = self.element;
         var url = element.getAttribute('src');
         if (!url) {
+            /* eslint-disable fecs-camelcase */
             console.error('未填写src字段，不能获取数据');
             element.remove();
             return;
         }
-        self.rn = element.getAttribute('rn') ? parseInt(element.getAttribute('rn')) : 20;
-        self.pn = element.getAttribute('pn') ? parseInt(element.getAttribute('pn')) : 6;
-        self.bufferHeightPx = element.getAttribute('bufferHeightPx') ? parseInt(element.getAttribute('bufferHeightPx')) : 10;
+        self.rn = element.getAttribute('rn') ? parseInt(element.getAttribute('rn'), 10) : 20;
+        self.pn = element.getAttribute('pn') ? parseInt(element.getAttribute('pn'), 10) : 6;
+        self.bufferHeightPx = element.getAttribute('bufferHeightPx')
+            ? parseInt(element.getAttribute('bufferHeightPx'), 10) : 10;
         self.loadingHtml = element.getAttribute('loadingHtml') ? element.getAttribute('loadingHtml') : '加载中...';
         self.loadFailHtml = element.getAttribute('loadFailHtml') ? element.getAttribute('loadFailHtml') : '加载失败';
         self.loadOverHtml = element.getAttribute('loadOverHtml') ? element.getAttribute('loadOverHtml') : '加载完毕';
@@ -31,40 +33,27 @@ define(function (require) {
         url = self.pn ? url += '?pn=' + self.pn++ : url;
 
         self.pushResult = function (rn, status) {
-        // 异步获取数据示例
+            // 异步获取数据示例
             var defer = $.Deferred();
             if (rn > self.rn) {
                 defer.resolve('NULL');
-            } else {
+            }
+            else {
                 fetchJsonp(url, {
                     jsonpCallback: 'callback'
                 }).then(function (res) {
                     return res.json();
                 }).then(function (data) {
-                    var data = {
-                        "items": [
-                            {
-                                "number": "1",
-                                "img": "https://dummyimage.com/600x120"
-                            }, {
-                                "number": "2",
-                                "img": "https://dummyimage.com/600x120"
-                            }, {
-                                "number": "3",
-                                "img": "https://dummyimage.com/600x120"
-                            }
-                        ]
-                    };
                     templates.render(self.element, data.items).then(function (htmls) {
                         defer.resolve(htmls);
                     });
                 });
-            };
+            }
             return defer.promise();
         };
 
         var InfiniteScroll = require('./infinitescroll');
-        var dd = new InfiniteScroll({
+        new InfiniteScroll({
             $result: $('.mip-infinitescroll-results'),
             $wrapper: $(window),
             $scroller: $('body'),

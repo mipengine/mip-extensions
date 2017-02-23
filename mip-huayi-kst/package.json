@@ -1,0 +1,12 @@
+{
+    "name": "mip-huayi-kst",
+    "version": "1.0.0",
+    "author": {
+        "name": "huayi",
+        "email": "temp@cnode.cn",
+        "url": "http://www.ythuayi.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

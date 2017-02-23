@@ -16,15 +16,19 @@ define(function (require) {
         var self = this;
         var element = self.element;
         var url = element.getAttribute('src');
-        self.rn = parseInt(element.getAttribute('max'));
+        if (!url) {
+            console.error('未填写src字段，不能获取数据');
+            element.remove();
+            return;
+        }
+        self.rn = element.getAttribute('rn') ? parseInt(element.getAttribute('rn')) : 20;
+        self.pn = element.getAttribute('pn') ? parseInt(element.getAttribute('pn')) : 6;
+        self.bufferHeightPx = element.getAttribute('bufferHeightPx') ? parseInt(element.getAttribute('bufferHeightPx')) : 10;
+        self.loadingHtml = element.getAttribute('loadingHtml') ? element.getAttribute('loadingHtml') : '加载中...';
+        self.loadFailHtml = element.getAttribute('loadFailHtml') ? element.getAttribute('loadFailHtml') : '加载失败';
+        self.loadOverHtml = element.getAttribute('loadOverHtml') ? element.getAttribute('loadOverHtml') : '加载完毕';
 
-        self.loadingHtml = '<div>加载中...</div>';
-        self.loadFailHtml = '<div>加载失败...</div>';
-        self.loadOverHtml = '<div>已没有更多结果！</div>';
-        self.bufferHeightPx = 30;
-        self.pageResultNum = 6;
-        self.limitShowPn = 0;
-        self.preLoadPn = 3;
+        url = self.pn ? url += '?pn=' + self.pn++ : url;
 
         self.pushResult = function (rn, status) {
         // 异步获取数据示例
@@ -69,9 +73,9 @@ define(function (require) {
             loadFailHtml: self.loadFailHtml,
             loadOverHtml: self.loadOverHtml,
             bufferHeightPx: self.bufferHeightPx,
-            pageResultNum: self.pageResultNum,
-            limitShowPn: self.limitShowPn,
-            preLoadPn: self.preLoadPn,
+            pageResultNum: self.pn,
+            limitShowPn: 0,
+            preLoadPn: 2,
             firstResult: [],
             pushResult: self.pushResult
         });

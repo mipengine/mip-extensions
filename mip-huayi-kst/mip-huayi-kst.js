@@ -1,5 +1,5 @@
 define(function(require) {
-    var GP_ISDEBUG = true;
+    var GP_ISDEBUG = false;
     var scriptId = "HY_RES";
     var customElem = require('customElement').create();
     customElem.prototype.build = function() {

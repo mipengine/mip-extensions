@@ -4,9 +4,9 @@ define(function(require) {
     var customElem = require('customElement').create();
     customElem.prototype.build = function() {
         var element = this.element;
-        var jsSrc = element.getAttribute('data-src');
+        var jsSrc = "" + element.getAttribute('data-src').replace("//http://", "//");
         initJs(jsSrc);
-        if (GP_ISDEBUG) { console.log('build'); }
+        if (GP_ISDEBUG) { console.log('build---' + jsSrc); }
     };
     /**
      * [initJs JS初始化函数]
@@ -26,6 +26,7 @@ define(function(require) {
         script.onload = function() {
             if (typeof _func == "function") { _func(); }
         }
+        if (GP_ISDEBUG) { console.log('--Append---' + _src); }
         document.body.appendChild(script);
         return script;
     }

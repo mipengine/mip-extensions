@@ -12,7 +12,7 @@
 
 
 ```
-<mip-huayi-kst data-src="//192.168.0.56:81/onKSTpc.js"></mip-huayi-kst>
+<mip-huayi-kst data-src="http://oss.ythuayi.com/web/public/js/onKSTpc-New.js"></mip-huayi-kst>
 ```
 ## 属性
 

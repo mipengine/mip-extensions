@@ -10,6 +10,7 @@ define(function (require) {
 
     function render(element, me) {
 
+        /* 图加功能下线 */
         element.remove();
         return;
         // var unionId = element.getAttribute('unionId');

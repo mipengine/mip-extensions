@@ -1,0 +1,14 @@
+{
+    "name": "mip-hdj",
+    "version": "1.0.0",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "tanyanfei",
+            "email": "785423753@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

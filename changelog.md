@@ -38,7 +38,7 @@
 
 组件名|功能说明
 ---|---
-[mip-dfads](hhttps://github.com/mipengine/mip-extensions-platform/tree/master/mip-dfads)|[平台][新增] 汇米第三方广告
+[mip-dfads](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-dfads)|[平台][新增] 汇米第三方广告
 [mip-showmore](https://github.com/mipengine/mip-extensions/tree/master/mip-showmore)|[新增][官方] 查看更多组件
 
 #### 2017.02.21
@@ -55,7 +55,7 @@
 
 组件名|功能说明
 ---|---
-[mip-qqtn-count](hhttps://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[平台][新增] 站内个人统计功能
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[平台][新增] 站内个人统计功能
 [mip-39alimama](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-39alimama)|[平台][升级] 阿里妈妈广告
 
 #### 2017.02.17

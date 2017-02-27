@@ -203,7 +203,7 @@ define(function (require) {
             if (status !== null) {
                 url += '&status=1';
             }
-            $('body').append('<mip-img src=\'' + url + '\' class=\'mask\' >');
+            $('body').append('<mip-pix src=\'' + url + '\' ></mip-pix>');
         },
         // 数据上报
         checkData: function () {

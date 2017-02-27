@@ -6,6 +6,16 @@
 
 组件名|功能说明
 ---|---
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 提高代码强壮性
+[mip-stats-cnzz](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-cnzz)|[升级] 提高代码强壮性
+
+#### 2017.02.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
 [mip-qbb-qinxin](hhttps://github.com/mipengine/mip-extensions-platform/tree/master/mip-qbb-qinxin)|[平台][新增] 第三方自用
 [mip-qbb-base64](hhttps://github.com/mipengine/mip-extensions-platform/tree/master/mip-qbb-base64)|[平台][新增] 转码组件
 [mip-qbb-isweixin](hhttps://github.com/mipengine/mip-extensions-platform/tree/master/mip-qbb-isweixin)|[平台][新增] 提示微信跳转浏览下载

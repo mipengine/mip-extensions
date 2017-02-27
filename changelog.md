@@ -1,6 +1,18 @@
 # 升级日志
 
-#### 2017.02.23
+#### 2017.02.27
+
+> 核心代码上线
+
+    1. mip-carousel 轮播组件：修正轮播不触发某张图片的 build
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+
+#### 2017.02.24
 
 > 组件上线
 

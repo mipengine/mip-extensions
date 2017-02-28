@@ -34,7 +34,7 @@ define(function (require) {
     /**
      * firstInviewCallback
      */
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.build = function () {
 
         var self = this;
         var element = self.element;
@@ -46,9 +46,10 @@ define(function (require) {
         var idx = document.querySelectorAll('mip-fixed').length;
 
         // 获取 fixed 元素，和滚动元素容器
-        self.staticDiv = element.querySelector('div[static]');
-        self.mipFixed = element.querySelector('div[semifixed]');
+        self.staticDiv = element.querySelector('div[mip-semi-fixed="static"]');
+        self.mipFixed = element.querySelector('div[mip-semi-fixed="semifixed"]');
 
+        // 结果页打开，移动到 fixed layer
         if (layer) {
             var data = {
                 element: self.mipFixed,
@@ -64,10 +65,32 @@ define(function (require) {
             zIndex: 10000 - idx
         });
 
+        // 如果页面已经滚动了一定位置，则直接固定
+        if (offsetTop - scrollTop <= threshold) {
+
+            util.css(self.mipFixed, {
+                opacity: 1,
+                position: 'fixed',
+                top: threshold + 'px',
+                zIndex: 10000 - idx
+            });
+
+            util.css(self.staticDiv, {
+                opacity: 0
+            });
+        }
+
+        // 监听resize
+        window.onresize = function () {
+            scrollTop = viewport.getScrollTop();
+            offsetTop = element.offsetTop;
+        };
+
         // 监听滚动事件
         viewport.on('scroll', function () {
 
             scrollTop = viewport.getScrollTop();
+            offsetTop = element.offsetTop;
 
             if (offsetTop - scrollTop <= threshold) {
                 util.css(self.mipFixed, 'opacity', '1');

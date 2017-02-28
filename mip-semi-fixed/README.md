@@ -13,27 +13,27 @@ mip-semi-fixed 滚动页面到一定高度时后再实现悬浮定位，回滚�
 ### 基本用法
 
 ```html
- <mip-semi-fixed>
-    <div static>
-        MIP-SEMI-FIXEDMIP-SEMI-FIXED
+<mip-semi-fixed>
+    <div mip-semi-fixed="static">
+        MIP-SEMI-FIXED MIP-SEMI-FIXED
     </div>
-    <div semifixed>
+    <div mip-semi-fixed="semifixed">
         MIP-SEMI-FIXED
     </div>
- </mip-semi-fixed>
+</mip-semi-fixed>
 ```
 
 ### 设置 fixed 时距离页面顶部的阈值
 
 ```html
- <mip-semi-fixed threshold="100">
-    <div static>
-        MIP-SEMI-FIXEDMIP-SEMI-FIXED
+<mip-semi-fixed threshold="150">
+    <div mip-semi-fixed="static">
+        MIP-SEMI-FIXED MIP-SEMI-FIXED 
     </div>
-    <div semifixed>
-        MIP-SEMI-FIXED
+    <div mip-semi-fixed="semifixed">
+        MIP-SEMI-FIXED 
     </div>
- </mip-semi-fixed>
+</mip-semi-fixed>
 ```
 
 ## 属性

@@ -1,6 +1,6 @@
 /**
- * @file mip-experiment 组件
- * @author liangjiaying 2017.02
+ * @file mip-experiment extension
+ * @author liangjiaying<jiaojiaomao220@163.com> 2017.02
  */
 
 define(function (require) {
@@ -10,7 +10,7 @@ define(function (require) {
     var customStorage = new util.customStorage(0);
 
     /**
-     * 初始化实验设置
+     * experiment variables initialization
      *
      * @param  {Object} ele mip-dom
      */
@@ -18,7 +18,7 @@ define(function (require) {
         var expString = ele.querySelector('script[type="application/json"]').innerHTML;
         var expJson = '';
 
-        // 验证mip-experiment合法性
+        // mip-experiment variables valication
         try {
             expJson = JSON.parse(expString);
         } catch (err) {
@@ -29,18 +29,18 @@ define(function (require) {
         }
 
         for (var expName in expJson) {
-            // 读取sticky和实验分组情况
+            // read experiment group
             var expGroup = getExpGroup(expName, expJson);
             setExpGroup(expName, expGroup);
         }
     }
 
     /**
-     * 获取实验分组: 根据url、storage历史获取分组, 或重新分组
+     * read experiment group: use url group、history group, or set new group
      *
-     * @param  {string} expName 实验名
-     * @param  {Object} expJson 实验分组配置
-     * @return {string} 分组名
+     * @param  {string} expName experiment name
+     * @param  {Object} expJson json for experiment config
+     * @return {string} group name
      */
     function getExpGroup(expName, expJson) {
         var isSticky = (expJson[expName].sticky === false ? false : true);
@@ -63,10 +63,10 @@ define(function (require) {
         return finalGroup;
 
         /**
-         * 从URL中获取强制分组信息实验分组配置配置
-         * hash取值：#mip-x-btn-color=red&mip-x-font-color=white
+         * get forced group from URL
+         * hash：#mip-x-btn-color=red&mip-x-font-color=white
          *
-         * @return {string} 分组
+         * @return {string} experiment group name
          */
         function getExpGroupFromUrl() {
             var hash = window.location.hash.slice(1);
@@ -87,9 +87,9 @@ define(function (require) {
         }
 
         /**
-         * 从缓存中获取用户分组
+         * get group form localstorage
          *
-         * @return {string} 分组
+         * @return {string} experiment group name
          */
         function getExpGroupFromStorage() {
             var group = customStorage.get('mip-x-' + expName);
@@ -97,9 +97,9 @@ define(function (require) {
         }
 
         /**
-         * 重新给用户分组
+         * reset group
          *
-         * @return {string} 分组
+         * @return {string} experiment group name
          */
         function getExpGroupNew() {
             var rNumber = Math.random() * 100;
@@ -122,11 +122,11 @@ define(function (require) {
         }
 
         /**
-         * 递归计算实验配置项比例
+         * Add config ratio recursively
          *
-         * @param {number} i      指定叠加的最终位数
-         * @param {Object} expVar 用户填写的variables
-         * @return {number} 分组之和
+         * @param {number} i      i
+         * @param {Object} expVar variables in config
+         * @return {number} addition of config
          */
         function addVars(i, expVar) {
             var groups = Object.keys(expVar);
@@ -139,10 +139,10 @@ define(function (require) {
     }
 
     /**
-     * 设置实验分组，将分组名传入body属性
+     * assign experiment to <body>
      *
-     * @param {string} expName  实验名
-     * @param {string} expGroup 实验分组
+     * @param {string} expName  experiment name
+     * @param {string} expGroup experiment group
      */
     function setExpGroup(expName, expGroup) {
         customStorage.set('mip-x-' + expName, expGroup);
@@ -152,7 +152,7 @@ define(function (require) {
     }
 
     /**
-     * 构造元素，只会运行一次
+     * build element, exec only once
      */
     customElement.prototype.build = function () {
         var element = this.element;

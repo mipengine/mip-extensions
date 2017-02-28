@@ -1,0 +1,14 @@
+{
+    "name": "mip-content-readmore",
+    "version": "1.0.2",
+    "description": "查看更多文本内容",
+    "contributors": [
+        {
+            "name": "sora",
+            "email": "jfdsies@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

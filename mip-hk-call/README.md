@@ -13,7 +13,7 @@
 在MIP HTML中，直接使用标签, 用于调起好看客户端。
 
 ```html
-<mip-hk-call class="haokan-dl-link-w" type="article" urlKey="http://news.yesky.com/focus/145/106124645.shtml" apk="5" page="erji_detail_news">
+<mip-hk-call class="haokan-dl-link-w" type="article" urlKey="http://news.yesky.com/focus/145/106124645.shtml" apk="5" page="erji_detail_news" act="top">
     <a target="_blank" href="###" class="J_app_call">立即下载</i></a>
 </mip-hk-call>
 ```
@@ -40,6 +40,12 @@
 类型：数字
 
 ### page
+
+说明：不同页面对应不同统计参数
+必选项：否
+类型：字符串
+
+### act
 
 说明：不同位置对应不同统计参数
 必选项：否

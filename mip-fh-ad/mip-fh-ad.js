@@ -17,17 +17,31 @@ define(function (require) {
     // 直投广告请求url
     var ajaxurl = 'https://partners.fh21.com.cn/partners/showcodejsonp?callback=?';
     // 页面广告参数
-    var param = $('#adParam');
+    var param = $('.adParam');
     var paramObj = param.data('keyword');
 
     // load btm baidu ad
     var loadBdAd = function () {
         var html = ['<div class="fh-ad-1">', '<span class="btn-fh-ad-1" on="tap:fh-ad-1.close"></span>', '</div>'];
 
-        html =  html.concat(['<mip-ad type="ad-qwang" ', 'cpro_psid="u2355234"', '></mip-ad>']);
+        html = html.concat(['<mip-ad type="baidu-wm-ext" ',
+            ,'domain="1.feihua.com" token="gm3a1ecf98f1cbf13adb4c3e8da4f73ffa54acde0b36"'
+            ,'>'
+            ,'<div id="gm3a1ecf98f1cbf13adb4c3e8da4f73ffa54acde0b36"></div>', '</mip-ad>']);
 
         html = html.join('');
         return html;
+    };
+
+    // 没有飞华直投广告的操作
+    var hasNoFhAd = function (element, posId) {
+        $('.ad-s-1255').show();
+        $('.ask-info-blew-ad').show();
+        if (+posId === 1) {
+            element.html(loadBdAd());
+        }
+        $body.addClass('view-fh-ad-union');
+        $mipFhAdBdHide.show().removeClass('dn');
     };
 
     var hasFhAd = false;
@@ -63,11 +77,11 @@ define(function (require) {
                                 element.html('<div id="ad_position_1">' + v + '</div>');
                                 break;
                             case 14:
-                                $('#liveAdBlock').html(v);
+                                $('.liveAdBlock').html(v);
                                 break;
                             // 我要提问广告位
                             case 47:
-                                $('#i-2-iask').html(v);
+                                $('.i-2-iask').html(v);
                                 break;
                             // 向Ta提问广告位
                             case 48:
@@ -97,8 +111,8 @@ define(function (require) {
                                 break;
                             // 广告位id为47时，加载我要提问下方文字广告和问题详情下方网盟广告
                             case 47:
-                                $('#ad-s-1255').show();
-                                $('#ask-inof-blew-ad').show();
+                                $('.ad-s-1255').show();
+                                $('.ask-info-blew-ad').show();
                                 break;
                         }
 
@@ -106,17 +120,13 @@ define(function (require) {
                     }
                 });
 
-                !hasFhAd && ($mipFhAdBdHide.show().removeClass('dn'));
+                if (!hasFhAd) {
+                    hasNoFhAd(element, posId);
+                }
             });
         }
         else {
-            $('#ad-s-1255').show();
-            $('#ask-inof-blew-ad').show();
-            if (+posId === 1) {
-                element.html(loadBdAd());
-            }
-            $body.addClass('view-fh-ad-union');
-            $mipFhAdBdHide.show().removeClass('dn');
+            hasNoFhAd(element, posId);
         }
     };
 
@@ -141,8 +151,8 @@ define(function (require) {
     var menuCtrl = function () {
         // 菜单
         var state = true;
-        var $menuBar = $('#menuBar');
-        $('#menu').on('click', function () {
+        var $menuBar = $('.menuBar');
+        $('.menu').on('click', function () {
             if (state) {
                 state = false;
                 $menuBar.show();
@@ -154,7 +164,7 @@ define(function (require) {
         });
         $('.returns').on('click', function () {
             state = true;
-            $('#menuBar').hide();
+            $menuBar.hide();
         });
     };
 

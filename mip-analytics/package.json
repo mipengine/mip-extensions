@@ -1,0 +1,14 @@
+{
+    "name": "mip-analytics",
+    "version": "1.0.0",
+    "description": "统计发送接口",
+    "contributors": [
+        {
+            "name": "lijialong",
+            "email": "306880673@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

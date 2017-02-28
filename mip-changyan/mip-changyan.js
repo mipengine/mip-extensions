@@ -1,30 +1,30 @@
 /**
-* 畅言插件
-* @author smileU
-* @version 1.0.0
+ * @file
+ * 畅言插件
+ * @author smileU
+ * @version 1.0.1
 */
-define(function(require) {
-	var $ = require('zepto');
-	
-	var customElement = require('customElement').create();
-	
-	customElement.prototype.createdCallback = function () {
-		
-		var _element = this.element;
-
-		var appid = _element.getAttribute('appid'),
-		conf = _element.getAttribute("conf");
-
-		var $_element = $(_element);
-		var html = [
-		    '<script type="text/javascript">',
-			'var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "//changyan.sohu.com/upload/changyan.js?appid=' + appid + '&conf=' + conf + '";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })();',
-		    '</script>'
-		];
-
-		$_element.append(html.join(''));
-	}
-
-	return customElement;
-	
+define(function (require) {
+    var customElement = require('customElement').create();
+    customElement.prototype.createdCallback = function () {
+        var ele = this.element;
+        var appid = ele.getAttribute('appid');
+        var conf = ele.getAttribute('conf');
+        var criWidth = ele.getAttribute('critical-width');
+        var viewport = require('viewport');
+        var width = viewport.getWidth();
+        var scriptTag = document.createElement('script');
+        scriptTag.setAttribute('type', 'text/javascript');
+        scriptTag.setAttribute('charset', 'UTF-8');
+        if (width < criWidth) {
+            scriptTag.id = 'changyan_mobile_js';
+            scriptTag.setAttribute('src', 'https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf);
+        }
+        else {
+            scriptTag.src = 'https://changyan.sohu.com/upload/changyan.js?client_id=' + appid + '&conf=' + conf;
+        }
+        ele.appendChild(scriptTag);
+    };
+    return customElement;
 });
+

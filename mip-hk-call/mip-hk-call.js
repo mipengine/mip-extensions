@@ -1,10 +1,14 @@
 /**
- * 百度好看调起客户端
+ * @file 百度好看调起客户端
+ * @author  liujunqiu
+ * @time 2016.11.29
  */
 define(function (require) {
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
+    var util = require('util');
+    var platform = util.platform;
 
     var androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan1015351w.apk';
     var iosLink = 'https://itunes.apple.com/cn/app/id1092031003?mt=8';
@@ -24,85 +28,92 @@ define(function (require) {
 
         var brower = {
             os: function () {
-                if (isAndroid.test(userAgent)) {
-                    return 'android';
-                } else if (isiPhone.test(userAgent)) {
+                if (platform.isIos()) {
                     return 'ios';
-                } else {
-                    return '';
                 }
+
+                return 'android';
             },
             osv: function () {
                 if (isAndroid.test(userAgent)) {
                     return userAgent.replace(androidVer, '$1');
-                } else if (isiPhone.test(userAgent)) {
-                    return userAgent.replace(iosVer, '$1').replace(/_/, '.');
-                } else {
-                    return '';
                 }
+                else if (isiPhone.test(userAgent)) {
+                    return userAgent.replace(iosVer, '$1').replace(/_/, '.');
+                }
+
+                return '';
             }
         };
 
         return brower;
     })();
     // 调起类型
-    var callType = ['article', 'topic', 'video', 'gallery', 'beauty', 'activity'];
+    // var callType = ['article', 'topic', 'video', 'gallery', 'beauty', 'activity'];
     var userAgent = navigator.userAgent;
     var isIos9 = function () {
         if ((userAgent.match(/iPhone/i) || userAgent.match(/iPod/i))) {
             return Boolean(userAgent.match(/OS (9|10)_\d[_\d]* like Mac OS X/i));
-        } else {
-            return false;
         }
+
+        return false;
     };
     var installApp = 0;
 
-    function build() {
+    function firstInviewCallback() {
         var element = this.element;
 
         var type = $(element).attr('type');
         var urlKey = $(element).attr('urlKey');
         var apk = $(element).attr('apk');
         var page = $(element).attr('page');
+        var pos = '';
 
         if (typeof apk !== 'undefined' && brower.os() !== 'ios') {
-            if (apk === '1') { //首页底部浮层
+            if (apk === '1') { // 首页底部浮层
                 androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan1018504p.apk';
-                var page = 'index_hk';
-                var pos = '1018504p';
-            } else if (apk === '2') { //详情页查看评论图集
+                page = 'index_hk';
+                pos = '1018504p';
+            }
+            else if (apk === '2') { // 详情页查看评论图集
                 androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan1018504q.apk';
-                var page = page;
-                var pos = '1018504q';
-            } else if (apk === '3') { //详情页精彩推荐
+                page = page;
+                pos = '1018504q';
+            }
+            else if (apk === '3') { // 详情页精彩推荐
                 androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan1018504r.apk';
-                var page = page;
-                var pos = '1018504r';
-            } else if (apk === '4') { //个人中心
+                page = page;
+                pos = '1018504r';
+            }
+            else if (apk === '4') { // 个人中心
                 androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan1018504s.apk';
-                var page = 'erji_index_level';
-                var pos = '1018504s';
-            } else if (apk === '5') {  //详情页顶部浮层
+                page = 'erji_index_level';
+                pos = '1018504s';
+            }
+            else if (apk === '5') {  // 详情页顶部浮层
                 androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan1018504p.apk';
-                var page = page;
-                var pos = '1018504p';
-            } else if (parseInt(apk) > 5) {
+                page = page;
+                pos = '1018504p';
+            }
+            else if (parseInt(apk, 10) > 5) {
                 androidLink = 'http://dl.hao123.com/waphao123/tn_apk/baiduhaokan' + apk + '.apk';
-                var page = page;
-                var pos = apk;
+                page = page;
+                pos = apk + '&act=' + $(element).attr('act');
             }
         }
 
-        var jump = 'http://wapsite.baidu.com/haokan/' + (type == 'article' ? 'doc' : type)
+        var jump = 'http://wapsite.baidu.com/haokan/' + (type === 'article' ? 'doc' : type)
                     + '/detail?url_key=' + encodeURIComponent(urlKey);
         var schemaUrl = '';
+        var appLink = '';
         if (type !== '' && urlKey !== '') {
-            var schemaUrl = type + '?url=' + encodeURIComponent(urlKey);
+            schemaUrl = type + '?url=' + encodeURIComponent(urlKey);
         }
         if (brower.os() === 'ios') {
-            var appLink = iosLink;
-        } else {
-            var appLink = androidLink;
+            appLink = iosLink;
+        }
+        else {
+            appLink = androidLink;
         }
         var schema = 'baiduhaokan://' + schemaUrl;
 
@@ -113,7 +124,7 @@ define(function (require) {
         }
 
         var timer = '';
-        $(element).find('.J_app_call').attr("href", jump);
+        $(element).find('.J_app_call').attr('href', jump);
         if (!isIos9()) {
             $(element).find('.J_app_call').bind('click', function (e) {
                 if (typeof apk !== 'undefined' && brower.os() !== 'ios') {
@@ -136,7 +147,8 @@ define(function (require) {
                             clearTimeout(timer);
                         }, 1000);
                     }
-                } else if (brower.os() === 'ios') {
+                }
+                else if (brower.os() === 'ios') {
                     window.location.href = schema;
                     timer = setTimeout(function () {
                         if (Date.now() - nowTime < 1200) {
@@ -144,36 +156,37 @@ define(function (require) {
                         }
                         clearTimeout(timer);
                     }, 1000);
-                } else {
+                }
+                else {
                     window.location.href = appLink;
                 }
 
                 return false;
             });
         }
-    };
+    }
 
     function getJson(url, callback, cbName) {
-        var cbName = cbName || "_Hao"+ Math.floor(1e4 * Math.random());
-        var scriptElm = document.createElement("script");
-        scriptElm.src = url +'&cb='+ cbName +'&t='+ new Date().getTime();
+        var cbFunName = cbName || '_Hao' + Math.floor(1e4 * Math.random());
+        var scriptElm = document.createElement('script');
+        scriptElm.src = url + '&cb=' + cbFunName + '&t=' + new Date().getTime();
         scriptElm.type = 'text/javascript';
         scriptElm.setAttribute('charset', 'utf-8');
-        document.getElementsByTagName("head")[0].appendChild(scriptElm);
-        window[cbName] = function (data) {
+        document.getElementsByTagName('head')[0].appendChild(scriptElm);
+        window[cbFunName] = function (data) {
             if (typeof callback === 'function') {
                 callback(data);
             }
-            var _timer = setTimeout(function () {
-                document.getElementsByTagName("head")[0].removeChild(scriptElm);
-                clearTimeout(_timer);
+            var tmpTimer = setTimeout(function () {
+                document.getElementsByTagName('head')[0].removeChild(scriptElm);
+                clearTimeout(tmpTimer);
             }, 20);
-        }
-    };
+        };
+    }
 
     if (brower.os() === 'android') {
         getJson('http://127.0.0.1:41333/ping/?callback=ping', function (ret) {
-            if (ret.error == 0) {
+            if (ret.error === 0) {
                 installApp = 1;
                 if (!/baidubrowser/.test(navigator.userAgent)) {
                     $('.J_dl_content').html('打开');
@@ -182,7 +195,7 @@ define(function (require) {
         }, 'ping');
     }
 
-    customElem.prototype.build = build;
+    customElem.prototype.firstInviewCallback = firstInviewCallback;
 
     return customElem;
 });

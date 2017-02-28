@@ -1,6 +1,6 @@
 # 类型: ad-qwang 全网推荐
 
-全网推荐
+全网推荐  
 
 ## 支持布局
 
@@ -13,20 +13,6 @@
 
 ```html
 <mip-ad 
-	type="ad-qwang" 
-	cpro_psid="u2619809" 
-	cpro_pswidth="auto" 
-	cpro_psheight="230">
-</mip-ad>
-```
-
-### fixed 布局
-
-```html
-<mip-ad 
-	layout="fixed" 
-	width="414" 
-	height="80" 
 	type="ad-qwang" 
 	cpro_psid="u2619809" 
 	cpro_pswidth="auto" 

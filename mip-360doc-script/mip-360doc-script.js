@@ -1,29 +1,90 @@
-﻿define(function (require) {
+﻿/**
+ * @file 360doc 自定义逻辑组件
+ * @author www.360doc.com技术部
+ */
+define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        getRefNum();
-        $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'http://www.360doc.cn/images/xiazai.png\'  class=\'pic2\'/></span>');
-        var picn = $('.mip-360doc-script-pic').length;
-        if (picn > 1) {
-            $('.mip-360doc-script-pic').eq(0).css('display', 'inline').siblings('.mip-360doc-script-pic').hide();
+        if ($('.mip-360doc-script-wxggalink') !== null) {
+            $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/xiazai.png\'  class=\'pic2\'/></span>');
+            var picn = $('.mip-360doc-script-pic').length;
+            if (picn > 1) {
+                $('.mip-360doc-script-pic').eq(0).css('display', 'inline').siblings('.mip-360doc-script-pic').hide();
+            }
+            $('.mip-360doc-script-box960').css('display', '');
+            setone();
         }
-        $('.mip-360doc-script-box960').css('display', '');
-        setone();
+        getRefNum();// 鲜花
         //  统计
-        sendlog('mipConn');
+        record();
         //  检测广告
-        setTimeout(check, 5000);
+        var t = setTimeout(function () {
+            check();
+            clearTimeout(t);
+        }, 20000);
+        if ($('.mip-360doc-script-plg2') !== null) {
+            $('.mip-360doc-script-plg2').on('click', function (event) {
+                sendlog('Componentclick?id=1');
+            });
+        }
+        if ($('.mip-360doc-script-p_header_sc') !== null) {
+            $('.mip-360doc-script-p_header_sc').on('click', function (event) {
+                sendlog('Componentclick?id=2');
+            });
+        }
+        if ($('.mip-360doc-scropt-plzs') !== null) {
+            $('.mip-360doc-scropt-plzs').on('click', function (event) {
+                sendlog('Componentclick?id=4');
+            });
+        }
+        if ($('.mip-360doc-script-gz1') !== null) {
+            $('.mip-360doc-script-gz1').on('click', function (event) {
+                sendlog('Componentclick?id=5');
+            });
+        }
+        if ($('.mip-360doc-script-xh1') !== null) {
+            $('.mip-360doc-script-xh1').on('click', function (event) {
+                sendlog('Componentclick?id=6');
+            });
+        }
+        if ($('.mip-360doc-script-reflectionurl') !== null) {
+            $('.mip-360doc-script-reflectionurl').on('click', function (event) {
+                sendlog('Componentclick?id=7');
+            });
+        }
+        if ($('.mip-360doc-script-p_footer_sc') !== null) {
+            $('.mip-360doc-script-p_footer_sc').on('click', function (event) {
+                sendlog('Componentclick?id=8');
+            });
+        }
+        getBlockArt();
+        if ($('.mip-360doc-script-keyword') !== null) {
+            parseSearchWord();
+        }
     };
     function check() {
         try {
             if (document.documentElement.outerHTML.indexOf('iframeu2825450_0') < 0) {
                 sendlog('mipads/u2825450');
             }
+            else {
+                sendlog('mipadsShow/u2825450');
+            }
             if (document.documentElement.outerHTML.indexOf('iframeu2825719_0') < 0) {
                 sendlog('mipads/u2825719');
             }
+            else {
+                sendlog('mipadsShow/u2825719');
+            }
+        }
+        catch (e) { }
+    }
+    function record() {
+        try {
+            var domain = document.domain;
+            sendlog('mipConn?domain=_' + encodeURI(domain) + '_&aid=' + getID());
         }
         catch (e) { }
     }
@@ -36,7 +97,7 @@
             window[key] = null;
             img = null;
         };
-        img.src = 'http://mipeclick.360doc.com/' + url;
+        img.src = 'https://mipeclick.360doc.com/' + url;
     }
     //  广告轮播
     function setone() {
@@ -81,25 +142,49 @@
             error: function () { }
         });
     }
+    //  不显示已被删除的文章
+    function getBlockArt() {
+        var fetchJsonp = require('fetch-jsonp');
+        fetchJsonp('https://blockart.360doc.com/ajax/getstatusmip.ashx?aid=' + getID(), {
+            jsonpCallback: 'callback'
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            if (data.result === 1) {
+                $('.mip-360doc-script-tit').html('');
+                $('.mip-360doc-script-con').html('对不起，该文章已被删除！');
+            }
+        });
+    }
     //  获取文章id
     function getID() {
-        var url = $('.mip-360doc-script-p_header_sc').attr('href');
-        if (url.indexOf('360doc') < 0) {
-            return '';
-        }
-        var index = url.indexOf('artid=');
-        if (index <= 0) {
-            return '';
-        }
-        var index2 = url.indexOf('&', index);
-        if (index2 <= 0) {
-            return '';
-        }
-        var artid = url.substr(index + 6, index2 - index - 6);
+        var artid = $('.mip-360doc-script-saveid').html();
         return artid;
     }
-    if (navigator.userAgent.toLowerCase().indexOf('ucbrowser') > -1) {
-        $('.mip-360doc-script-p_header_nav2').width('69%');
+    //  获取搜索词
+    function parseSearchWord() {
+        try {
+            var url = '';
+            var keyword = '';
+            var index = -1;
+            var index2 = -1;
+            if (document.referrer) {
+                url = document.referrer;
+            }
+            if (url.length > 0 && url.indexOf('//m.baidu.com') >= 0) {
+                index = url.indexOf('word=');
+                if (index > 0) {
+                    index2 = url.indexOf('&', index);
+                }
+                if (index2 > 0) {
+                    keyword = url.substring(index + 5, index2);
+                    if (keyword.length > 0) {
+                        $('.mip-360doc-script-keyword').val(decodeURI(keyword));
+                    }
+                }
+            }
+        }
+        catch (e) { }
     }
     return customElem;
 });

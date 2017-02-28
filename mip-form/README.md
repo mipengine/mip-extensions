@@ -13,6 +13,25 @@ mip-form 用来支持 mip 中的表单提交。
 ### 基本使用
 
 ```html
+<div>http跳转 - 无clear</div><input type="input" name="username" validatetarget="username" style="background: yellow;"validatetype="must" placeholder="姓名">
+<mip-form method="get" url="http://www.mipengine.org?we=123">
+
+    <input type="input" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
+    <div target="username">姓名不能为空</div>
+    <input type="input" name="age" validatetarget="age" validatetype="must" placeholder="年龄">
+    <div target="age">年龄不能为空</div>
+    <input type="submit" value="提交">
+</mip-form>
+<hr>
+<div>https跳转 - 有clear</div>
+<mip-form method="get" url="https://www.mipengine.org" clear>
+    <input type="text" name="username2" validatetarget="username2" validatetype="must" placeholder="姓名">
+    <div target="username2">姓名不能为空</div>
+    <input type="input" name="age2" validatetarget="age2" validatetype="must" placeholder="年龄">
+    <div target="age2">年龄不能为空</div>
+    <input type="submit" value="提交">
+</mip-form>
+<hr>
 <mip-form method="post" url="www.baidu.com">
      <input type="input" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
      <div class="mip-form-target" target="username">姓名不能为空</div>

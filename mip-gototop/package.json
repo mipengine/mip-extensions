@@ -1,12 +1,17 @@
 {
     "name": "mip-gototop",
-    "version": "1.0.2",
-    "author": {
-        "name": "MIP authors",
-        "email": "mip-support@baidu.com",
-        "url": "https://www.mipengine.org"
-    },
+    "version": "1.0.1",
+    "contributors": [
+        {
+            "name": "MIP authors",
+            "email": "mip-support@baidu.com",
+            "url": "https://www.mipengine.org"
+        },{
+            "name": "FengZihao",
+            "email": "452242153@qq.com"
+        }
+    ],
     "engines": {
-        "mip": ">=1.1.0"
+        "mip": ">=1.0.5"
     }
 }

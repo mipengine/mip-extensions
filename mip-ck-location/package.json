@@ -1,0 +1,11 @@
+{
+    "name": "mip-ck-location",
+    "version": "1.0.0",
+    "author": {
+        "name": "yoyoyoo",
+        "email": "2996309530@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -16,21 +16,21 @@ define(function (require) {
      * build
      */
     customElement.prototype.build = function () {
-        var _element = this.element;
+        var element = this.element;
 
         new Share({
-            title: _element.getAttribute('title') || document.title,
-            url: _element.getAttribute('url') || location.href,
-            content: _element.getAttribute('content') || '',
-            iconUrl: _element.getAttribute('icon') || ''
-        }, $(_element));
+            title: element.getAttribute('title') || document.title,
+            url: element.getAttribute('url') || location.href,
+            content: element.getAttribute('content') || '',
+            iconUrl: element.getAttribute('icon') || ''
+        }, $(element));
 
-        var elem = $(_element).children().not("mip-i-space")[0];
+        var elem = $(element).children().not('mip-i-space')[0];
 
         this.applyFillContent(elem);
 
-    }
- 
+    };
+
     return customElement;
 
 });

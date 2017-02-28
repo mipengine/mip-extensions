@@ -1,0 +1,12 @@
+{
+    "name": "mip-xem-review",
+    "version": "1.0.2",
+    "author": {
+        "name": "xem",
+        "email": "mip@hzxem.com",
+        "url": "https://www.hzxem.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

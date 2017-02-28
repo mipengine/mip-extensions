@@ -1,37 +1,69 @@
 # mip-semi-fixed
 
-mip-semi-fixed 滚动页面到一定高度时后再实现悬浮固定定位，回滚恢复初始状态
+mip-semi-fixed 滚动页面到一定高度时后再实现悬浮定位，回滚复位
 
 标题|内容
 ----|----
 类型|通用
-支持布局|不使用布局
+支持布局|responsive,fixed-height,fill,container,fixed
 所需脚本|http://mipcache.bdstatic.com/static/v1/mip-semi-fixed/mip-semi-fixed.js
 
 ## 示例
 
 ### 基本用法
+
 ```html
-<div id="semi-normal">
-    自定义内容，可以嵌套其他组件或标签
-</div>
-<mip-semi-fixed id="semi-fixed"  threshold="100">
-    自定义内容，可以嵌套其他组件或标签
-</mip-semi-fixed>
+ <mip-semi-fixed>
+    <div static>
+        MIP-SEMI-FIXEDMIP-SEMI-FIXED
+    </div>
+    <div semifixed>
+        MIP-SEMI-FIXED
+    </div>
+ </mip-semi-fixed>
 ```
 
+### 设置 fixed 时距离页面顶部的阈值
+
+```html
+ <mip-semi-fixed threshold="100">
+    <div static>
+        MIP-SEMI-FIXEDMIP-SEMI-FIXED
+    </div>
+    <div semifixed>
+        MIP-SEMI-FIXED
+    </div>
+ </mip-semi-fixed>
+```
 
 ## 属性
 
 ### threshold
 
-说明：组件显示悬浮切换时页面已经滚动的高度
+说明：元素 fixed 状态时距离页面顶部的距离
 必选项：否
-取值范围：数值
+类型：整数
+取值范围：无
 单位：无
-默认值：100
+默认值：0
 
-## 注意事项
-- mip-semi-fixed 默认是隐藏的。
-- mip-semi-fixed 组件内元素的悬浮定位的位置由用户根据需求，通过css自行控制位置或是样式。
-- mip-semi-fixed 内部可任意修改或添加其他标签和内容，使用灵活。
+## 子节点
+
+### div[static]
+
+说明：滚动状态时内容容器，必须是具有 `static` 属性的 `div` 标签
+必选项：是
+类型：DOM 节点
+取值范围：无
+单位：无
+默认值：div[static]
+
+### div[semifixed]
+
+说明：fixed 状态时内容容器，必须是具有 `semifixed` 属性的 `div` 标签
+必选项：是
+类型：DOM 节点
+取值范围：无
+单位：无
+默认值：div[semifixed]
+

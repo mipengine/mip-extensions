@@ -15,15 +15,16 @@ define(function (require) {
      * @return {Boolean}           [description]
      */
     function isAncestors (childNode, Ancestors) {
-        while(true) {
-            if (childNode.parentNode === Ancestors) {
+        while(childNode && Ancestors) {
+            if (childNode.parentNode && childNode.parentNode === Ancestors) {
                 return true;
             }
             childNode = childNode.parentNode;
-            if (childNode.tagName.toUpperCase() === 'BODY' && childNode.classList.toString().indexOf('mip-fixedlayer') <= -1) {
+            if (childNode && childNode.tagName.toUpperCase() === 'BODY') {
                 return false;
             }
         }
+        return false;
     }
     
     var render = function(_this, me) {

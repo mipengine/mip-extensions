@@ -39,8 +39,8 @@ define(function(require) {
 
     // Add alias
     // TODO: another plan
-    setTimeout(function() {
-        MIP.registerMipElement('mip-embed', customElement);
-    }, 0);
+    // setTimeout(function() {
+    //     MIP.registerMipElement('mip-embed', customElement);
+    // }, 0);
     return customElement;
 });

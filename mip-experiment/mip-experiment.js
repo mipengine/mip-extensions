@@ -48,21 +48,17 @@ define(function (require) {
         expVar.default = 100;
 
         var groupFromUrl = getExpGroupFromUrl();
-        console.log('实验名： ' + expName + ', URL分组 ' + groupFromUrl);
 
         var groupFromStorage = '';
         if (isSticky && !groupFromUrl) {
             groupFromStorage = getExpGroupFromStorage();
-            console.log('实验名： ' + expName + ', storage分组 ' + groupFromStorage);
         }
 
         if (!groupFromStorage && !groupFromUrl) {
             var groupNew = getExpGroupNew();
-            console.log('实验名： ' + expName + ', 新分组 ' + groupNew);
         }
 
         var finalGroup = groupFromUrl || groupFromStorage || groupNew;
-        console.log('实验名： ' + expName + ', 最终分组 ' + finalGroup + '\n\n');
 
         return finalGroup;
 

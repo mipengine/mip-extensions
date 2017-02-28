@@ -17,13 +17,10 @@ define(function (require) {
     function isAncestors (childNode, Ancestors) {
         while(true) {
             if (childNode.parentNode === Ancestors) {
-                console.log('true');
                 return true;
             }
             childNode = childNode.parentNode;
-            console.log(childNode.classList);
             if (childNode.tagName.toUpperCase() === 'BODY' && childNode.classList.toString().indexOf('mip-fixedlayer') <= -1) {
-                console.log('fasle');
                 return false;
             }
         }

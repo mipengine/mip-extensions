@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.02.28
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[升级] 西西软件园编辑人员统计组件
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+
 #### 2017.02.27
 
 > 核心代码上线

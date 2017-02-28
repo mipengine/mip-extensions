@@ -203,7 +203,7 @@ define(function (require) {
             if (status !== null) {
                 url += '&status=1';
             }
-            $('body').append('<mip-pix src=\'' + url + '\'></mip-pix>');
+            $('body').append('<mip-pix src=\'' + url + '\' ></mip-pix>');
         },
         // 数据上报
         checkData: function () {
@@ -280,7 +280,7 @@ define(function (require) {
             this.btnSend();
             this.checkLogin();
             this.userInfoHide();
-            this.checkData();
+            // this.checkData();
             this.accordion();
             this.guideData();
         }

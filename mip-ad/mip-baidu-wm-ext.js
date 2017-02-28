@@ -10,9 +10,9 @@ define(function (require) {
 
     /**
      * [isAncestors 针对判断是否是祖先节点]
-     * @param  {[type]}  childNode [description]
-     * @param  {[type]}  Ancestors [description]
-     * @return {Boolean}           [description]
+     * @param  {[type]}  childNode [子节点]
+     * @param  {[type]}  Ancestors [祖先节点]
+     * @return {Boolean}           
      */
     function isAncestors (childNode, Ancestors) {
         while(childNode && Ancestors) {

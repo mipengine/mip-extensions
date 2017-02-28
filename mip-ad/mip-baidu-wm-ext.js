@@ -7,6 +7,27 @@
  */
 
 define(function (require) {
+
+    /**
+     * [isAncestors 针对判断是否是祖先节点]
+     * @param  {[type]}  childNode [description]
+     * @param  {[type]}  Ancestors [description]
+     * @return {Boolean}           [description]
+     */
+    function isAncestors (childNode, Ancestors) {
+        while(true) {
+            if (childNode.parentNode === Ancestors) {
+                console.log('true');
+                return true;
+            }
+            childNode = childNode.parentNode;
+            console.log(childNode.classList);
+            if (childNode.tagName.toUpperCase() === 'BODY' && childNode.classList.toString().indexOf('mip-fixedlayer') <= -1) {
+                console.log('fasle');
+                return false;
+            }
+        }
+    }
     
     var render = function(_this, me) {
 
@@ -28,7 +49,7 @@ define(function (require) {
                 var elem = window.getComputedStyle(child, null);
                 var pos = elem && elem.getPropertyValue('position') ? 
                           elem.getPropertyValue('position') : '';
-                if(layer && layer.querySelector('#'+token)){
+                if(layer && isAncestors(child, layer)){
                   return;
                 }
                 if(pos == 'fixed' && layer) {

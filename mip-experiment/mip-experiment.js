@@ -15,7 +15,8 @@ define(function (require) {
      * @param  {Object} ele mip-dom
      */
     function initExp(ele) {
-        var expString = ele.querySelector('script[type="application/json"][for="mip-experiment"]').innerHTML;
+        var jsonScript = ele.querySelector('script[type="application/json"][for="mip-experiment"]');
+        var expString = jsonScript ? jsonScript.innerHTML : '';
         var needConsole = ele.hasAttribute('needConsole');
         var expJson = '';
 
@@ -43,26 +44,30 @@ define(function (require) {
      *
      * @param  {string} expName experiment name
      * @param  {Object} expJson json for experiment config
-     * @param  {boolean} whether dump group info to console
-     * @return {string} group name
+     * @param  {boolean} needConsole whether dump group info to console
      */
-    var Experiment = function(expName, expJson, needConsole) {
+    var Experiment = function (expName, expJson, needConsole) {
         this.expName = expName;
-        this.isSticky = (expJson[expName].sticky === false ? false : true);
         this.expVar = expJson[expName].variants || {};
         this.expVar.default = 100;
         this.needConsole = needConsole;
-    }
+        this.isSticky = (function () {
+            if (!('sticky' in expJson[expName])) {
+                return true;
+            }
+            return !!expJson[expName].sticky;
+        })();
+    };
 
     /**
      * get experiment group
      *
      * @return {string} group name
      */
-    Experiment.prototype.getExpGroup = function() {
+    Experiment.prototype.getExpGroup = function () {
         // if url hash is set, get group from URL
         var groupFromUrl = this._getExpGroupFromUrl();
-        if(this.needConsole) {
+        if (this.needConsole) {
             console.log('实验名: ' + this.expName);
             console.log('URL hash分组生效: ' + groupFromUrl);
         }
@@ -71,7 +76,7 @@ define(function (require) {
         var groupFromStorage = '';
         if (this.isSticky && !groupFromUrl) {
             groupFromStorage = this._getExpGroupFromStorage();
-            if(this.needConsole) {
+            if (this.needConsole) {
                 console.log('历史分组生效: ' + groupFromStorage);
             }
         }
@@ -79,17 +84,17 @@ define(function (require) {
         // make a new arrengment
         if (!groupFromStorage && !groupFromUrl) {
             var groupNew = this._getExpGroupNew();
-            if(this.needConsole) {
+            if (this.needConsole) {
                 console.log('重新分组: ' + groupNew);
             }
         }
 
         var finalGroup = groupFromUrl || groupFromStorage || groupNew;
-        if(this.needConsole) {
+        if (this.needConsole) {
             console.log('最终分组: ' + finalGroup + '\n\n');
         }
         return finalGroup;
-    }
+    };
 
     /**
      * get forced group from URL
@@ -97,9 +102,9 @@ define(function (require) {
      *
      * @return {string} experiment group name
      */
-    Experiment.prototype._getExpGroupFromUrl = function() {
+    Experiment.prototype._getExpGroupFromUrl = function () {
         var hash = window.location.hash.slice(1);
-        var group = ''
+        var group = '';
         if (!hash) {
             return '';
         }
@@ -114,24 +119,24 @@ define(function (require) {
             group = expGroup in this.expVar ? expGroup : '';
         }
         return group;
-    }
+    };
 
     /**
      * get group form localstorage
      *
      * @return {string} experiment group name
      */
-    Experiment.prototype._getExpGroupFromStorage = function() {
+    Experiment.prototype._getExpGroupFromStorage = function () {
         var group = customStorage.get('mip-x-' + this.expName);
         return group in this.expVar ? group : '';
-    }
+    };
 
     /**
      * reset group
      *
      * @return {string} experiment group name
      */
-    Experiment.prototype._getExpGroupNew = function() {
+    Experiment.prototype._getExpGroupNew = function () {
         var rNumber = Math.random() * 100;
         var groups = Object.keys(this.expVar);
         // 根据随机数和每组份数计算新分组
@@ -149,7 +154,7 @@ define(function (require) {
             }
         }
         return 'default';
-    }
+    };
 
     /**
      * Add config ratio recursively
@@ -158,28 +163,26 @@ define(function (require) {
      * @param {Object} expVar variables in config
      * @return {number} addition of config
      */
-    Experiment.prototype._addVars = function(i, expVar) {
+    Experiment.prototype._addVars = function (i, expVar) {
         var groups = Object.keys(expVar);
         if (i === 0) {
             return expVar[groups[0]];
-        } else {
-            return expVar[groups[i]] + arguments.callee(i - 1, expVar);
         }
-    }
+        return expVar[groups[i]] + arguments.callee(i - 1, expVar);
+    };
 
     /**
      * assign experiment to <body>
      *
-     * @param {string} expName  experiment name
      * @param {string} expGroup experiment group
      */
-    Experiment.prototype.setExpGroup = function(expGroup) {
+    Experiment.prototype.setExpGroup = function (expGroup) {
         customStorage.set('mip-x-' + this.expName, expGroup);
         if (expGroup !== 'default') {
             // XXX: no use of document.body for there might be multiple bodies
             document.querySelector('body').setAttribute('mip-x-' + this.expName, expGroup);
         }
-    }
+    };
 
     /**
      * build element, exec only once
@@ -188,7 +191,7 @@ define(function (require) {
         var element = this.element;
         element.needConsole = element.hasAttribute('needConsole');
         initExp(element);
-        util.css(element, 'display', 'inherit')
+        util.css(element, 'display', 'inherit');
     };
 
     return customElement;

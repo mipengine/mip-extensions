@@ -2,7 +2,6 @@
 
 mip-experiment 组件用于前端抽样实验。  
 可用于按钮，banner，广告等前端可控元素的改版实验，与mip-pix，可配合使用。  
-测试时，可通过给URL添加hash强制中抽样，如#mip-x-button-color=yellow
 
 标题|内容
 ----|----
@@ -12,7 +11,7 @@ mip-experiment 组件用于前端抽样实验。
 
 ## 示例
 
-### 基本用法
+### 1. 基本用法
 每次刷新会重新分组。
 ```html
 <style>
@@ -34,11 +33,11 @@ body[mip-x-button-color=blue] .exp-btn1 {
 }
 </style>
 <mip-experiment layout="nodisplay" class="mip-hidden">
-    <script type="application/json">
+    <script type="application/json" for="mip-experiment">
         {
             "button-color": {
                 "sticky": false,
-                "descri": "设置按钮背景色,黄-灰-蓝-绿",
+                "descri": "1.设置按钮背景色,黄-灰-蓝-绿",
                 "variants": {
                     "yellow": 30,
                     "grey": 30,
@@ -53,7 +52,7 @@ body[mip-x-button-color=blue] .exp-btn1 {
 </mip-experiment>
 ```
 
-### 固定分组用法
+### 2. 固定分组用法
 第一次实验抽样后，分组存储在localStorage中，再次刷新分组不变。
 ```html
 <style>
@@ -75,11 +74,11 @@ body[mip-x-button-color2=blue] .exp-btn2 {
 }
 </style>
 <mip-experiment layout="nodisplay" class="mip-hidden">
-    <script type="application/json">
+    <script type="application/json" for="mip-experiment">
         {
             "button-color2": {
                 "sticky": true,
-                "descri": "设置按钮背景色,黄-灰-蓝-绿",
+                "descri": "2.设置按钮背景色,黄-灰-蓝-绿",
                 "variants": {
                     "yellow": 30,
                     "grey": 30,
@@ -94,7 +93,7 @@ body[mip-x-button-color2=blue] .exp-btn2 {
 </mip-experiment>
 ```
 
-### 多组抽样
+### 3. 多组抽样
 
 ```html
 <style>
@@ -122,11 +121,11 @@ body[mip-x-font-color=white] .exp-btn3 {
 }
 </style>
 <mip-experiment layout="nodisplay" class="mip-hidden">
-    <script type="application/json">
+    <script type="application/json" for="mip-experiment">
         {
             "button-color3": {
                 "sticky": false,
-                "descri": "设置按钮背景色,黄-灰-蓝-绿",
+                "descri": "3.设置按钮背景色,黄-灰-蓝-绿",
                 "variants": {
                     "yellow": 30,
                     "grey": 30,
@@ -147,6 +146,80 @@ body[mip-x-font-color=white] .exp-btn3 {
     <p>设置按钮字体色,黑(50%)-白(50%)</p>
     <p>每次刷新重新分组</p>
     <button class="exp-btn3">修改背景色&字体颜色</button>
+</mip-experiment>
+```
+
+### 4. 调试：打印实验信息
+在mip-experiment上添加needConsole参数，可以在控制台看到分组过程和情况
+
+```html
+<style>
+button {
+    background-color: aquamarine;
+    color: black;
+    display: block;
+    margin:10px;
+    padding:20px;
+}
+body[mip-x-button-color4=yellow] .exp-btn4 {
+    background-color: yellow;
+}
+</style>
+<mip-experiment layout="nodisplay" class="mip-hidden" needConsole>
+    <script type="application/json" for="mip-experiment">
+        {
+            "button-color4": {
+                "sticky" : false,
+                "descri": "4.设置按钮背景色,黄-绿",
+                "variants": {
+                    "yellow": 50
+                }
+            }
+        }
+    </script>
+    <p>设置按钮背景色,黄(50%)-绿(默认50%)</p>
+    <p>每次刷新重新分组</p>
+    <p>控制台显示分组过程信息</p>
+    <button class="exp-btn4">修改背景色</button>
+</mip-experiment>
+```
+
+### 5. 调试：URL强制中抽样
+测试时，可通过给URL添加hash强制中抽样，如#mip-x-button-color5=red
+
+```html
+<style>
+button {
+    background-color: aquamarine;
+    color: black;
+    display: block;
+    margin:10px;
+    padding:20px;
+}
+body[mip-x-button-color5=yellow] .exp-btn5 {
+    background-color: yellow;
+}
+body[mip-x-button-color5=red] .exp-btn5 {
+    background-color: red;
+}
+</style>
+<mip-experiment layout="nodisplay" class="mip-hidden" needConsole>
+    <script type="application/json" for="mip-experiment">
+        {
+            "button-color5": {
+                "sticky" : false,
+                "descri": "5.设置按钮背景色,黄-红-绿",
+                "variants": {
+                    "yellow": 50,
+                    "red": 1
+                }
+            }
+        }
+    </script>
+    <p>设置按钮背景色,黄(50%)-红(1%)-绿(默认49%)</p>
+    <p>在url中添加‘#mip-x-button-color5=red’显示红色按钮</p>
+    <p>控制台显示分组过程信息</p>
+    <button class="exp-btn5">修改背景色</button>
 </mip-experiment>
 ```
 

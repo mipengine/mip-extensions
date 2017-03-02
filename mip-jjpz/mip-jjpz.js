@@ -962,8 +962,8 @@ define(function (require) {
             Tscript.setAttribute('type', 'text/javascript');
             Tscript.setAttribute('src', sUrl);
             document.getElementsByTagName('head')[0].appendChild(Tscript);
-            var seckov= /gecko/.test(window.navigator.userAgent.toLowerCase()) ;
-            var opera= /opera/.test(window.navigator.userAgent.toLowerCase());
+            var seckov = /gecko/.test(window.navigator.userAgent.toLowerCase());
+            var opera = /opera/.test(window.navigator.userAgent.toLowerCase());
             if (/msie/.test(window.navigator.userAgent.toLowerCase())) {
                 Tscript.onreadystatechange = function () {
                     if (this.readyState === 'loaded' || this.readyState === 'complete') {
@@ -999,8 +999,9 @@ define(function (require) {
         param.dataPage.FCODE = $f.getQueryString('fundcode') || '000009';
         $f.init();
         window.jsonp = function () {};
-        var tmp = 'na=' + base.na() + '&os=' + base.os() + '&size=' + base.size();
-         tmp+= '&src=' + base.src + '&url=' + base.url + '&type=Mongo&v=' + Math.random();
+        var tmp = '';
+        tmp += 'na=' + base.na() + '&os=' + base.os() + '&size=' + base.size() + '&src=' + base.src;
+        tmp += '&url=' + base.url + '&type=Mongo&v=' + Math.random();
         $f.jsLoad('https://counter1.1234567.com.cn/?' + tmp + '&callback=jsonp', 'utf-8', function () {});
     };
 

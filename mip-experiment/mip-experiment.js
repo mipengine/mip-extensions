@@ -47,16 +47,12 @@ define(function (require) {
      * @param  {boolean} needConsole whether dump group info to console
      */
     var Experiment = function (expName, expJson, needConsole) {
+        var exp = expJson[expName];
         this.expName = expName;
-        this.expVar = expJson[expName].variants || {};
+        this.expVar = exp.variants || {};
         this.expVar.default = 100;
         this.needConsole = needConsole;
-        this.isSticky = (function () {
-            if (!('sticky' in expJson[expName])) {
-                return true;
-            }
-            return !!expJson[expName].sticky;
-        })();
+        this.isSticky = exp.hasOwnProperty('sticky') ? !!exp.sticky : true;
     };
 
     /**

@@ -10,19 +10,19 @@ define(function (require) {
     var localurl = location.href;
 
     // 恢复用户上次选择
-    function userselect(id) {
+    function userSelect(id) {
         var self = this;
         var sessionsKey = 'MIP-' + id + '-' + localurl;
-        var datajson = getsession(sessionsKey);
+        var datajson = getSession(sessionsKey);
 
-        for (var pro in datajson) {
-            if (!datajson.hasOwnProperty(pro)) {
+        for (var prop in datajson) {
+            if (!datajson.hasOwnProperty(prop)) {
                 return;
             }
 
-            var expand = datajson[pro];
+            var expand = datajson[prop];
             if (expand) {
-                var content = $('#' + pro, self);
+                var content = $('#' + prop, self);
                 content.attr('aria-expanded', 'open');
                 content.parents('section').attr('expanded', 'open');
             }
@@ -48,7 +48,7 @@ define(function (require) {
                     $showLess.css('display', 'none');
                 }
 
-                setsession(element, targetId, false);
+                setSession(element, targetId, false);
             }
             else {
 
@@ -64,7 +64,7 @@ define(function (require) {
 
                         sections[i].removeAttribute('expanded');
                         cont.removeAttribute('aria-expanded');
-                        setsession(element, id, false);
+                        setSession(element, id, false);
                     }
                 }
 
@@ -75,23 +75,23 @@ define(function (require) {
                     $showMore.css('display', 'none');
                 }
 
-                setsession(element, targetId, true);
+                setSession(element, targetId, true);
             }
         });
     }
 
 
     // 设置session storage
-    function setsession(element, obj, expand) {
+    function setSession(element, obj, expand) {
         var sessionsKey = 'MIP-' + element.getAttribute('sessions-key') + '-' + localurl;
 
-        var objsession = getsession(sessionsKey);
+        var objsession = getSession(sessionsKey);
         objsession[obj] = expand;
         sessionStorage[sessionsKey] = JSON.stringify(objsession);
     }
 
     // 获取sission
-    function getsession(sessionsKey) {
+    function getSession(sessionsKey) {
         var data = sessionStorage[sessionsKey];
         return data ? JSON.parse(data) : {};
     }
@@ -105,7 +105,7 @@ define(function (require) {
         this.sections = $(element).find('section');
         this.id = $(element).attr('sessions-key');
         this.element.setAttribute('role', 'tablist');
-        this.currentState = getsession.call(this);
+        this.currentState = getSession.call(this);
         this.sections.map(function (index, section) {
             var header = $(section).find('[accordionbtn]');
             var content = $(section).find('[accordionbox]');
@@ -138,7 +138,7 @@ define(function (require) {
             // 手动控制或者自动根据用户操作控制
             if (self.type === 'manual' && section.hasAttribute('expanded')) {
                 content.attr('aria-expanded', 'open');
-                setsession(element, $(element).attr('aria-controls'), true);
+                setSession(element, $(element).attr('aria-controls'), true);
             }
             else if (self.type === 'automatic') {
                 content.attr('aria-expanded', section.hasAttribute('expanded').toString());
@@ -148,7 +148,7 @@ define(function (require) {
         });
 
         if (self.type === 'automatic') {
-            userselect.call(element, this.id);
+            userSelect.call(element, this.id);
         }
 
         bindEven(element);

@@ -3,7 +3,7 @@
 * @file ½Å±¾Ö§³Ö
 * @author jqthink@gmail.com
 * @time 2017.03.02
-* @version 1.0.0
+* @version 1.0.1
 */
 define(function (require) {
     var $ = require('zepto');

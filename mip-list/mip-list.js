@@ -67,11 +67,16 @@ define(function (require) {
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
-            renderTemplate.call(self, data);
-            self.button.innerHTML = '点击查看更多';
-            if (data.isEnd) {
-                self.isEnd = data.isEnd;
-                self.button.innerHTML = '已经加载完毕';
+            if (!data.status && data.data) {
+                renderTemplate.call(self, data.data);
+                self.button.innerHTML = '点击查看更多';
+                if (data.data.isEnd) {
+                    self.isEnd = data.isEnd;
+                    self.button.innerHTML = '已经加载完毕';
+                }
+            }
+            else {
+                self.button.innerHTML = '加载失败';
             }
         });
     }
@@ -151,7 +156,9 @@ define(function (require) {
             }).then(function (res) {
                 return res.json();
             }).then(function (data) {
-                renderTemplate.call(self, data);
+                if (!data.status && data.data) {
+                    renderTemplate.call(self, data.data);
+                }
             });
         }
     };

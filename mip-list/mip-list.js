@@ -85,6 +85,13 @@ define(function (require) {
      * @return {string}         拼接好的 url
      */
     function getUrl(src, pnName, pn) {
+        if (!src) {
+            console.error('mip-list 的 src 属性不能为空');
+            return;
+        }
+        if (!pnName || !pn) {
+            return;
+        }
         var url = src;
         if (src.indexOf('?') > 0) {
             url += src[src.length - 1] === '?' ? '' : '&';
@@ -132,20 +139,21 @@ define(function (require) {
         if (element.hasAttribute('has-more')) {
             self.pnName = element.getAttribute('pnName') || 'pn';
             self.pn = element.getAttribute('pn') || 1;
-            url = getUrl(src, self.pnName, self.pn++);
-
             self.addEventAction('more', function () {
                 pushResult.call(self, src);
             });
         }
 
-        fetchJsonp(url, {
-            jsonpCallback: 'callback'
-        }).then(function (res) {
-            return res.json();
-        }).then(function (data) {
-            renderTemplate.call(self, data);
-        });
+        if (element.hasAttribute('preLoad')) {
+            url = getUrl(src, self.pnName, self.pn++);
+            fetchJsonp(url, {
+                jsonpCallback: 'callback'
+            }).then(function (res) {
+                return res.json();
+            }).then(function (data) {
+                renderTemplate.call(self, data);
+            });
+        }
     };
 
     return customElement;

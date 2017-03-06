@@ -60,18 +60,53 @@ define(function (require) {
         self.button = document.querySelector('.mip-list-more');
         self.button.innerHTML = '加载中...';
 
-        fetchJsonp(src + '?pn=' + self.pn++, {
+        var url = getUrl(src, self.pnName, self.pn++);
+
+        fetchJsonp(url, {
             jsonpCallback: 'callback'
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
-            renderTemplate.call(self, data);
-            self.button.innerHTML = '点击查看更多';
-            if (data.isEnd) {
-                self.isEnd = data.isEnd;
-                self.button.innerHTML = '已经加载完毕';
+            if (!data.status && data.data) {
+                renderTemplate.call(self, data.data);
+                self.button.innerHTML = '点击查看更多';
+                if (data.data.isEnd) {
+                    self.isEnd = data.isEnd;
+                    self.button.innerHTML = '已经加载完毕';
+                }
+            }
+            else {
+                self.button.innerHTML = '加载失败';
             }
         });
+    }
+
+    /**
+     * [getUrl 获取最后拼接好的数据请求 url]
+     *
+     * @param  {string}  src    原始 url
+     * @param  {string}  pnName 翻页字段名
+     * @param  {integer} pn     页码
+     * @return {string}         拼接好的 url
+     */
+    function getUrl(src, pnName, pn) {
+        if (!src) {
+            console.error('mip-list 的 src 属性不能为空');
+            return;
+        }
+        if (!pnName || !pn) {
+            return;
+        }
+        var url = src;
+        if (src.indexOf('?') > 0) {
+            url += src[src.length - 1] === '?' ? '' : '&';
+            url += pnName + '=' + pn;
+        }
+        else {
+            url += '?' + pnName + '=' + pn;
+        }
+
+        return url;
     }
 
     /**
@@ -84,6 +119,7 @@ define(function (require) {
         self.container = document.createElement('div');
         self.applyFillContent(this.container);
         self.element.appendChild(this.container);
+
 
         if (!self.container.hasAttribute('role')) {
             self.container.setAttribute('role', 'list');
@@ -106,21 +142,25 @@ define(function (require) {
 
         // 有查看更多属性的情况
         if (element.hasAttribute('has-more')) {
+            self.pnName = element.getAttribute('pnName') || 'pn';
             self.pn = element.getAttribute('pn') || 1;
-            url += '?pn=' + self.pn++;
-
             self.addEventAction('more', function () {
                 pushResult.call(self, src);
             });
         }
 
-        fetchJsonp(url, {
-            jsonpCallback: 'callback'
-        }).then(function (res) {
-            return res.json();
-        }).then(function (data) {
-            renderTemplate.call(self, data);
-        });
+        if (element.hasAttribute('preLoad')) {
+            url = getUrl(src, self.pnName, self.pn++);
+            fetchJsonp(url, {
+                jsonpCallback: 'callback'
+            }).then(function (res) {
+                return res.json();
+            }).then(function (data) {
+                if (!data.status && data.data) {
+                    renderTemplate.call(self, data.data);
+                }
+            });
+        }
     };
 
     return customElement;

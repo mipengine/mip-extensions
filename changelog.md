@@ -1,5 +1,18 @@
 # 升级日志
 
+#### 2017.03.06
+
+> 核心代码上线
+
+    1.  platform功能扩展，支持主流app webview识别，包括手百，微博，微信，QQ；
+    2.  cookie清理，超过5k的cookie清理至3k以下
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-appdl](https://github.com/mipengine/mip-extensions/tree/master/mip-appdl)|[升级] 下载组件
+
 #### 2017.03.03
 
 > 组件上线

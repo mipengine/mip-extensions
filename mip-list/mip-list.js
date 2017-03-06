@@ -60,7 +60,9 @@ define(function (require) {
         self.button = document.querySelector('.mip-list-more');
         self.button.innerHTML = '加载中...';
 
-        fetchJsonp(src + '?pn=' + self.pn++, {
+        var url = getUrl(src, self.pnName, self.pn++);
+
+        fetchJsonp(url, {
             jsonpCallback: 'callback'
         }).then(function (res) {
             return res.json();
@@ -75,6 +77,27 @@ define(function (require) {
     }
 
     /**
+     * [getUrl 获取最后拼接好的数据请求 url]
+     *
+     * @param  {string}  src    原始 url
+     * @param  {string}  pnName 翻页字段名
+     * @param  {integer} pn     页码
+     * @return {string}         拼接好的 url
+     */
+    function getUrl(src, pnName, pn) {
+        var url = src;
+        if (src.indexOf('?') > 0) {
+            url += src[src.length - 1] === '?' ? '' : '&';
+            url += pnName + '=' + pn;
+        }
+        else {
+            url += '?' + pnName + '=' + pn;
+        }
+
+        return url;
+    }
+
+    /**
      * 构造元素，只会运行一次
      */
     customElement.prototype.firstInviewCallback = function () {
@@ -84,6 +107,7 @@ define(function (require) {
         self.container = document.createElement('div');
         self.applyFillContent(this.container);
         self.element.appendChild(this.container);
+
 
         if (!self.container.hasAttribute('role')) {
             self.container.setAttribute('role', 'list');
@@ -106,8 +130,9 @@ define(function (require) {
 
         // 有查看更多属性的情况
         if (element.hasAttribute('has-more')) {
+            self.pnName = element.getAttribute('pnName') || 'pn';
             self.pn = element.getAttribute('pn') || 1;
-            url += '?pn=' + self.pn++;
+            url = getUrl(src, self.pnName, self.pn++);
 
             self.addEventAction('more', function () {
                 pushResult.call(self, src);

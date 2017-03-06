@@ -68,7 +68,7 @@ mip-list 列表组件，可以渲染同步数据，或者异步请求数据后�
 ### 点击加载更多
 
 ```html
-<mip-list template="mip-template-id" src="http://xxx?" id="mip-list" has-more>
+<mip-list template="mip-template-id" src="http://xxx?a=a&b=b" id="mip-list" has-more pnName="pageNum" pn=2>
     <template type="mip-mustache" id="mip-template-id">
         <div>
             <li>{{key}}: {{value}}</li>
@@ -82,7 +82,7 @@ mip-list 列表组件，可以渲染同步数据，或者异步请求数据后�
 
 ### src
 
-说明：异步请求的数据接口    
+说明：异步请求的数据接口，如果没有其他参数结尾请不要带 ？      
 必选项：否    
 类型：字符串    
 取值范围：必须是https的    
@@ -114,7 +114,25 @@ mip-list 列表组件，可以渲染同步数据，或者异步请求数据后�
 类型：字符串    
 取值范围：无    
 单位：无    
-默认值：无 
+默认值：无
+
+### pnName
+
+说明：翻页变量名     
+必选项：否    
+类型：字符串    
+取值范围：无    
+单位：无    
+默认值：pn
+
+### pn
+
+说明：翻页初始页码，每次请求会自动加1     
+必选项：否    
+类型：整数    
+取值范围：无    
+单位：无    
+默认值：1 
 
 ## 注意事项
 

@@ -41,7 +41,6 @@ define(function (require) {
         $(video).css('height', window.innerWidth / 16 * 9 + 'px');
 
         $element[0].appendChild(video);
-        $element[0].appendChild(domAdTip);
 
         //  当播放开始的时候设置为自动播放
         video.onplay = function () {
@@ -51,6 +50,7 @@ define(function (require) {
         //  如果有广告并且非IOS上的QQ浏览器 则播放广告
         if (adSrc && !(platform.isIos() && platform.isQQ())) {
             video.src = adSrc;
+            $element[0].appendChild(domAdTip);
 
             //  广告播放完毕
             video.onended = function () {

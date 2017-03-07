@@ -103,7 +103,7 @@ define(function (require) {
                     return res.json();
                 }).then(function (data) {
                     if (data && !data.status && data.data) {
-                        if (data.data.isEnd) {
+                        if (data.data.isEnd || !data.data.items) {
                             defer.resolve('NULL');
                         }
                         templates.render(self.element, data.data.items).then(function (htmls) {

@@ -3,7 +3,7 @@
  *
  * @author fengchuantao
  * @time 2016.7.28
- * @modify wangpei07 2016.11.21
+ * @modify wangpei07 2016.11.21, liangjiaying 2017.01
  */
 define(function (require) {
     var $ = require('zepto');
@@ -81,7 +81,7 @@ define(function (require) {
     function onSubmit() {
         var self = this;
         var preventSubmit = false;
-        var inputs = $(self).find('input[type="text"],input[type="input"]');
+        var inputs = $(self).find('input, textarea, select');
         var isGet = self.getAttribute('method') === 'get';
         var getUrl = self.getAttribute('url');
         var isHttp = getUrl.match('http://');
@@ -95,7 +95,14 @@ define(function (require) {
             var value = item.value;
             var reg;
 
-            valueJson += '&' + item.name + '=' + item.value;
+            if(item.type === 'submit') {
+                return;
+            }
+            else if (item.type === 'checkbox' || item.type === 'radio') {
+                value = item.checked ? item.value : ''
+            }
+
+            valueJson += '&' + item.name + '=' + value;
             if (type) {
                 if (regval) {
                     reg = value === '' ? false : (new RegExp(regval)).test(value);
@@ -150,20 +157,32 @@ define(function (require) {
         }
 
         if (addClearBtn) {
-            var textInput = element.querySelectorAll('input[type=text],input[type=input]');
-            if (!textInput.length) {
+            var clearArr = ['text', 'input', 'datetime', 'email', 'number', 'search', 'tel', 'url'];
+            var clearList = '';
+            for (var i in clearArr) {
+                clearList += ',input[type=' + clearArr[i] + ']';
+            }
+            clearList = clearList.slice(1);
+            // XXX: clearItems为类数组对象
+            var clearItems = element.querySelectorAll(clearList);
+
+            if (!clearItems.length) {
                 return;
             }
+
             var cross = document.createElement('div');
             cross.id = 'mip-form-cross';
             this.cross = cross;
 
-            for (var index = 0; index < textInput.length; index++) {
-                var height = textInput[index].offsetHeight;
-                textInput[index].onfocus = function () {
+            for (var index = 0; index < clearItems.length; index++) {
+                var height = clearItems[index].offsetHeight;
+                clearItems[index].onfocus = function () {
                     var self = this;
                     cross.setAttribute('name', self.getAttribute('name'));
-                    util.css(cross, {top: self.offsetTop + (height - 16) / 2  - 8 + 'px'});
+                    util.css(cross, {
+                        top: self.offsetTop + (height - 16) / 2  - 8 + 'px',
+                        left: self.offsetWidth - 32 + 'px'
+                    });
                     self.parentNode.appendChild(cross);
                     if (self.value !== '') {
                         util.css(cross, {display: 'block'});
@@ -171,25 +190,26 @@ define(function (require) {
                     else {
                         util.css(cross, {display: 'none'});
                         self.oninput = function () {
+                            if (util && util.platform && util.platform.isAndroid() && self.type === 'search') {
+                                // andriod type=search自带清空按钮, 不显示清空
+                                return;
+                            }
                             util.css(cross, {display: (self.value !== '' ? 'block' : 'none')});
                         };
                     }
                 };
                 // 点击提交时，如果报错信息展示，则隐藏清空按钮
-                textInput[index].onblur = function () {
-                     util.css(cross, {display: 'none'});
-                }
+                clearItems[index].onblur = function () {
+                    util.css(cross, {display: 'none'});
+                };
             }
 
-            cross.addEventListener('touchstart', clear);
-            cross.addEventListener('click', clear);
+            cross.addEventListener('touchend', clear);
 
             function clear(e) {
                 var name = e.target.getAttribute('name');
                 cross.parentNode.querySelector('input[name="' + name + '"]').value = '';
                 util.css(cross, {display: 'none'});
-                e.preventDefault();
-                e.stopPropagation();
             }
         }
     };

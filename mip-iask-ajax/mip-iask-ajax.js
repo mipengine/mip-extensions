@@ -2,11 +2,12 @@
 * @file 脚本支持
 * @author  hejieye
 * @time  2016-12-13
-* @version 1.0.5
+* @version 1.0.6
 */
 define(function (require) {
 
     var $ = require('zepto');
+    var viewer = require('viewer');
     var customElem = require('customElement').create();
     var checkLogin = function (url, params, isLogin, div, type) {
         var json = $.parseJSON(params);
@@ -18,7 +19,14 @@ define(function (require) {
                 if (e === null || e === 'null') {
                     // 跳转到登录页面
                     var thisHref = window.location.href;
-                    window.location.href = 'https://mipp.iask.cn/login?source=' + thisHref;
+                    if (viewer.isIframed) {
+                        viewer.sendMessage('mibm-jumplink', {
+                            'url': 'https://mipp.iask.cn/login?source=' + thisHref
+                        });
+                    }
+                    else {
+                        window.location.href = 'https://mipp.iask.cn/login?source=' + thisHref;
+                    }
                 }
                 else {
                     ajaxPost(url, json, div, type);
@@ -61,4 +69,3 @@ define(function (require) {
 
     return customElem;
 });
-

@@ -98,9 +98,6 @@ define(function (require) {
                         case 'heyut':
                             hmToken = '8a899cd3945b7ecd68c31964aaae5e23';
                             break;
-                        case 'laidj':
-                            hmToken = '7fd7efd67c1d7b49705b79f60e8611f4';
-                            break;
                         case 'liziyi':
                             hmToken = '5bec470cb053e1006cd204355bdf43b5';
                             break;
@@ -118,9 +115,6 @@ define(function (require) {
                             break;
                         case 'yangts':
                             hmToken = 'f14e6d054b5915121975cefd7510b090';
-                            break;
-                        case 'liuzz':
-                            hmToken = '8f248355ff210a2386539f459db03299';
                             break;
                         case 'wuchen':
                             hmToken = 'f07fbce4707da7b81bf9bb26b6625898';
@@ -149,11 +143,14 @@ define(function (require) {
                         case 'chenyi':
                             hmToken = '72175bcc660d8027f02d1693240a2b67';
                             break;
-                        case 'shengxl':
-                            hmToken = 'd758ab3875812648dbeed9f24cfccd68';
-                            break;
                         case 'xiangjq':
                             hmToken = 'ab45ac2154ecb6d04f668776b011733e';
+                            break;
+                        case 'lhbin':
+                            hmToken = '5f3634e250e76045193e2a7256dbe058';
+                            break;
+                        case 'gongmin1':
+                            hmToken = '2bd7f516dd17a31d63156a0a52a187a9';
                             break;
                     }
                     if (hmToken !== '') {

@@ -20,6 +20,11 @@ define(function (require) {
         var targetSrc = $element.attr('target-src');
         var poster = $element.attr('poster');
 
+        // 广告提示的dom
+        var domAdTip = document.createElement('div');
+        domAdTip.innerHTML = '广告';
+        domAdTip.className = 'ad-tip';
+
         //  初始化播放器
         var video = document.createElement('video');
 
@@ -36,6 +41,7 @@ define(function (require) {
         $(video).css('height', window.innerWidth / 16 * 9 + 'px');
 
         $element[0].appendChild(video);
+        $element[0].appendChild(domAdTip);
 
         //  当播放开始的时候设置为自动播放
         video.onplay = function () {
@@ -48,6 +54,8 @@ define(function (require) {
 
             //  广告播放完毕
             video.onended = function () {
+                // 隐藏广告提示
+                domAdTip.style.display = 'none';
                 video.src = targetSrc;
                 video.autoplay = true;
                 video.setAttribute('autoplay', 'autoplay');

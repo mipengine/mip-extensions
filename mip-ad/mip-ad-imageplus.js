@@ -10,23 +10,26 @@ define(function (require) {
 
     function render(element, me) {
 
-        var unionId = element.getAttribute('unionId');
-        var formList = element.getAttribute('formList') || '';
-        var nopicFormList = element.getAttribute('nopicFormList') || '';
+        /* 图加功能下线 */
+        element.remove();
+        return;
+        // var unionId = element.getAttribute('unionId');
+        // var formList = element.getAttribute('formList') || '';
+        // var nopicFormList = element.getAttribute('nopicFormList') || '';
 
-        var scriptNode = document.createElement('script');
-        scriptNode.innerHTML = [
-            'var  baiduImagePlus = {',
-            'unionId: "' + unionId + '"',
-            '' + formList ? ',formList:' + formList : '',
-            '' + nopicFormList ? ',nopicFormList:' + nopicFormList : '',
-            '}' 
-        ].join('');
-        element.appendChild(scriptNode);
+        // var scriptNode = document.createElement('script');
+        // scriptNode.innerHTML = [
+        //     'var  baiduImagePlus = {',
+        //     'unionId: "' + unionId + '"',
+        //     '' + formList ? ',formList:' + formList : '',
+        //     '' + nopicFormList ? ',nopicFormList:' + nopicFormList : '',
+        //     '}' 
+        // ].join('');
+        // element.appendChild(scriptNode);
 
-        var node = document.createElement('script');
-        node.src = '//cpro.baidustatic.com/cpro/ui/mi.js';
-        element.appendChild(node);
+        // var node = document.createElement('script');
+        // node.src = '//cpro.baidustatic.com/cpro/ui/mi.js';
+        // element.appendChild(node);
     }
 
     return {

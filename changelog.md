@@ -1,5 +1,192 @@
 # 升级日志
 
+#### 2017.03.06
+
+> 核心代码上线
+
+    1.  platform功能扩展，支持主流app webview识别，包括手百，微博，微信，QQ；
+    2.  cookie清理，超过5k的cookie清理至3k以下
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-appdl](https://github.com/mipengine/mip-extensions/tree/master/mip-appdl)|[升级] 下载组件
+
+#### 2017.03.03
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 可播放广告的视频组件
+[mip-wkad ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad )|[升级] 寻医问药广告组件
+
+#### 2017.03.02
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 表单组件 http跳转
+
+#### 2017.03.01
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ticket](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ticket)|[平台][新增] 适用于票价的选择、票数的增加和减少
+
+#### 2017.02.28
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-count](https://github.com/mipengine/mip-extensions/tree/master/mip-cr173-count)|[升级] 西西软件园编辑人员统计组件
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+
+#### 2017.02.27
+
+> 核心代码上线
+
+    1. mip-carousel 轮播组件：修正轮播不触发某张图片的 build
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+
+#### 2017.02.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 提高代码强壮性
+[mip-stats-cnzz](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-cnzz)|[升级] 提高代码强壮性
+
+#### 2017.02.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qbb-qinxin](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qbb-qinxin)|[平台][新增] 第三方自用
+[mip-qbb-base64](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qbb-base64)|[平台][新增] 转码组件
+[mip-qbb-isweixin](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qbb-isweixin)|[平台][新增] 提示微信跳转浏览下载
+
+#### 2017.02.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-dfads](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-dfads)|[平台][新增] 汇米第三方广告
+[mip-showmore](https://github.com/mipengine/mip-extensions/tree/master/mip-showmore)|[新增][官方] 查看更多组件
+
+#### 2017.02.21
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
+
+#### 2017.02.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[平台][新增] 站内个人统计功能
+[mip-39alimama](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-39alimama)|[平台][升级] 阿里妈妈广告
+
+#### 2017.02.17
+
+> 核心代码上线
+
+    1. 升级mip-pix统计组件，实现统计请求内容的自动替换
+    2. platform功能完善
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件 
+
+#### 2017.02.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-link](https://github.com/mipengine/mip-extensions/tree/master/mip-link)|[升级] 升级支持spider抓取
+
+#### 2017.02.15
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-huimee](https://github.com/mipengine/mip-extensions/tree/master/mip-huimee)|[新增] 汇米广告组件
+[mip-app-banner](https://github.com/mipengine/mip-extensions/tree/master/mip-app-banner)|[新增] 调起app组件
+[mip-link](https://github.com/mipengine/mip-extensions/tree/master/mip-link)|[升级] 升级支持spider抓取
+
+
+#### 2017.02.14
+
+> 核心代码上线
+
+    1. 更新 fetch 网络库 polyfill
+    2. template 模板兼容数组和非数组
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
+[mip-nav-slidedown ](https://github.com/mipengine/mip-extensions/tree/master/mip-nav-slidedown )|[升级] 增加icon位文字配置项
+
+#### 2017.02.10
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+
+#### 2017.02.09
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+
+#### 2017.02.08
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+
+#### 2017.02.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[升级] 飞华广告组件
+
 #### 2017.01.23
 
 > 组件上线
@@ -7,6 +194,7 @@
 组件名|功能说明
 ---|---
 [mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[新增] 通用列表组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告组件
 
 
 #### 2017.01.20

@@ -111,19 +111,6 @@ define(function (require) {
             }
         });
     };
-    // 南方网通底部悬浮广告
-    var southnetwork = function (sources, openId, div) {
-        var url = 'http://imgv2.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
-        try {
-            $.getJSON(url,
-            function (data) {
-                var htmls = this.putMXfAd(data.m[0].link, data.m[0].pic);
-                $(div).empty();
-                $(div).append(htmls);
-            });
-        }
-        catch (e) {}
-    };
     // 动态添加 mip-fixed悬浮广告
     var putMXfAd = function (picLink, picLocal) {
         var htmls = '';
@@ -135,6 +122,19 @@ define(function (require) {
         htmls += '</a>';
         htmls += '</div></mip-fixed>';
         return htmls;
+    };
+    // 南方网通底部悬浮广告
+    var southnetwork = function (sources, openId, div) {
+        var url = 'https://imgv2-ssl.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
+        try {
+            $.getJSON(url,
+            function (data) {
+                var htmls = putMXfAd(data.m[0].link, data.m[0].pic);
+                $(div).empty();
+                $(div).append(htmls);
+            });
+        }
+        catch (e) {}
     };
     var putQiyeInfo = function (companyName, drName, website, picLocal) {
         var htmls = '<div class=\'firms-con\'>';

@@ -1,0 +1,14 @@
+{
+    "name": "mip-experiment",
+    "version": "1.0.0",
+    "description": "前端实验组件",
+    "contributors": [
+        {
+            "name": "liangjiaying",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

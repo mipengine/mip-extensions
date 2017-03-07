@@ -23,7 +23,7 @@ define(function (require) {
         var t = setTimeout(function () {
             check();
             clearTimeout(t);
-        }, 20000);
+        }, 10000);
         if ($('.mip-360doc-script-plg2') !== null) {
             $('.mip-360doc-script-plg2').on('click', function (event) {
                 sendlog('Componentclick?id=1');
@@ -65,21 +65,32 @@ define(function (require) {
         }
     };
     function check() {
-        try {
-            if (document.documentElement.outerHTML.indexOf('iframeu2825450_0') < 0) {
-                sendlog('mipads/u2825450');
-            }
-            else {
-                sendlog('mipadsShow/u2825450');
-            }
-            if (document.documentElement.outerHTML.indexOf('iframeu2825719_0') < 0) {
-                sendlog('mipads/u2825719');
-            }
-            else {
-                sendlog('mipadsShow/u2825719');
+        var deny1 = true;
+        var deny2 = true;
+        var node;
+        if (document.getElementsByClassName('like_content') && document.getElementsByClassName('like_content')[0]) {
+            node = document.getElementsByClassName('like_content')[0];
+            if (node.getElementsByTagName('iframe') && node.getElementsByTagName('iframe')[0]
+            && node.getElementsByTagName('iframe')[0].src
+            && node.getElementsByTagName('iframe')[0].src.indexOf('baidu.com') > 0) {
+                deny1 = false;
             }
         }
-        catch (e) { }
+
+        if (document.getElementsByClassName('like_content') && document.getElementsByClassName('like_content')[1]) {
+            node = document.getElementsByClassName('like_content')[1];
+            if (node.getElementsByTagName('iframe') && node.getElementsByTagName('iframe')[0]
+            && node.getElementsByTagName('iframe')[0].src
+            && node.getElementsByTagName('iframe')[0].src.indexOf('baidu.com') > 0) {
+                deny2 = false;
+            }
+        }
+        if (deny1) {
+            sendlog('mipads/iframe_likecontent');
+        }
+        if (deny2) {
+            sendlog('mipads/iframe_service');
+        }
     }
     function record() {
         try {

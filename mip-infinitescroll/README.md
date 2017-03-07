@@ -138,12 +138,10 @@ mip-infinitescroll 组件说明
 {
     status: 0, 
     data: { 
-        items: [], 
-        isEnd: 1 
+        items: []
     }
 }
 
   - status 0 表示请求成功
   - items: [] 是需要渲染的数序
-  - isEnd 表示是否是最后一页，非必须
 ```

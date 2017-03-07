@@ -1,5 +1,21 @@
 # 升级日志
 
+#### 2017.03.07
+
+> 核心代码上线
+
+    1.  修改mip-pix触发时机，增加对mip-experiment支持
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-experiment](https://github.com/mipengine/mip-extensions/tree/master/mip-experiment)|[新增] A/B 对照实验组件
+[mip-infinitescroll](https://github.com/mipengine/mip-extensions/tree/master/mip-infinitescroll)|[新增] 无限滚动组件
+[mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+[mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[升级] 通用列表组件 增加参数可配
+
 #### 2017.03.06
 
 > 核心代码上线
@@ -185,7 +201,7 @@
 
 组件名|功能说明
 ---|---
-[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[升级] 飞华广告组件
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-ad-plus)|[升级] 飞华广告组件
 
 #### 2017.01.23
 

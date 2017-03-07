@@ -12,7 +12,18 @@ mip-infinitescroll 组件说明
 
 ### 基本用法
 ```html
-<mip-infinitescroll src="xxx" template="myTemplate" rn='20' bufferHeightPx='40' pn='2' loadingHtml='loading' loadFailHtml='failed' loadOverHtml='over!'>
+<mip-infinitescroll data-src="xxx" template="myTemplate">
+    <script type="application/json">
+    {
+        "rn": 40,
+        "pn": 3,
+        "pnName": "pn",
+        "bufferHeightPx": 40,
+        "loadingHtml": "loading",
+        "loadFailHtml": "failed",
+        "loadOverHtml": "over!"
+    }
+    </script>
     <template type="mip-mustache" id="myTemplate">
         <li>
             <mip-img
@@ -34,7 +45,7 @@ mip-infinitescroll 组件说明
 
 ## 属性
 
-### src
+### data-src
 
 说明：异步请求数据接口   
 必选项：是   
@@ -52,6 +63,8 @@ mip-infinitescroll 组件说明
 单位：无   
 默认值：无
 
+## 参数配置
+
 ### rn
 
 说明：results number,需要显示的结果总数量     
@@ -68,7 +81,16 @@ mip-infinitescroll 组件说明
 类型：整数   
 取值范围：无   
 单位：无   
-默认值：6    
+默认值：6  
+
+### pnName
+
+说明：翻页关键字            
+必选项：否   
+类型：字符串   
+取值范围：无   
+单位：无   
+默认值：pn    
 
 ### bufferHeightPx
 
@@ -105,3 +127,17 @@ mip-infinitescroll 组件说明
 取值范围：无   
 单位：无   
 默认值：加载完毕
+
+## 注意事项
+
+- 异步请求接口必须是 https
+- 异步请求接口需要规范 callback 为 'callback'
+- 接口返回的数据格式需要是如下格式：
+
+```
+{ status: 0, data: { items: [], isEnd: 1 } }
+
+status 0 表示请求成功
+items: [] 是需要渲染的数序
+isEnd 表示是否是最后一页，非必须
+```

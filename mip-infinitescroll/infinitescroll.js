@@ -12,6 +12,9 @@ define(function () {
         };
         var me = this;
 
+        opt.$result = $(opt.$result);
+        opt.$loading = $(opt.$loading);
+
         // 设置默认值
         me.options = $.extend({
             $wrapper: $(window),                        // 视窗

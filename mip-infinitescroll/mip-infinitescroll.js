@@ -8,6 +8,45 @@ define(function (require) {
     var customElement = require('customElement').create();
     var templates = require('templates');
     var fetchJsonp = require('fetch-jsonp');
+    var InfiniteScroll = require('./infinitescroll');
+    var infiniteScroll = null;
+
+    /**
+     * [extendObj 合并数据]
+     *
+     * @param  {Object} opt 默认数据对象
+     * @param  {Object} ext 需要合并的数据对象
+     * @return {Object}     合并后的数据对象
+     */
+    function extendObj(opt, ext) {
+
+        for (var key in ext) {
+            if (ext.hasOwnProperty(key)) {
+                opt[key] = ext[key];
+            }
+        }
+
+        return opt;
+    }
+
+    /**
+     * [getUrl url 拼接函数]
+     *
+     * @param  {string} src 获取的最初url
+     * @return {string}     拼接后的url
+     */
+    function getUrl(src) {
+        var self = this;
+        var url = src;
+        if (src.indexOf('?') > 0) {
+            url += src[src.length - 1] === '?' ? '' : '&';
+            url += self.params.pnName + '=' + self.params.pn;
+        }
+        else {
+            url += '?' + self.params.pnName + '=' + self.params.pn;
+        }
+        return url;
+    }
 
     /**
      * 构造元素，只会运行一次
@@ -15,59 +54,87 @@ define(function (require) {
     customElement.prototype.firstInviewCallback = function () {
         var self = this;
         var element = self.element;
-        var url = element.getAttribute('src');
-        if (!url) {
-            /* eslint-disable fecs-camelcase */
+        var src = element.getAttribute('data-src') || '';
+
+        // 如果没有写data-src, 则报错提示
+        if (!src) {
             console.error('未填写src字段，不能获取数据');
             element.remove();
             return;
         }
-        self.rn = element.getAttribute('rn') ? parseInt(element.getAttribute('rn'), 10) : 20;
-        self.pn = element.getAttribute('pn') ? parseInt(element.getAttribute('pn'), 10) : 6;
-        self.bufferHeightPx = element.getAttribute('bufferHeightPx')
-            ? parseInt(element.getAttribute('bufferHeightPx'), 10) : 10;
-        self.loadingHtml = element.getAttribute('loadingHtml') ? element.getAttribute('loadingHtml') : '加载中...';
-        self.loadFailHtml = element.getAttribute('loadFailHtml') ? element.getAttribute('loadFailHtml') : '加载失败';
-        self.loadOverHtml = element.getAttribute('loadOverHtml') ? element.getAttribute('loadOverHtml') : '加载完毕';
 
-        url = self.pn ? url += '?pn=' + self.pn++ : url;
+        // 默认参数设置
+        self.params = {
+            rn: 20,
+            pn: 6,
+            bufferHeightPx: 10,
+            loadingHtml: '加载中...',
+            loadFailHtml: '加载失败',
+            loadOverHtml: '加载完毕!',
+            pnName: 'pn'
+        };
+
+        // 获取用户设置参数
+        try {
+            var script = element.querySelector('script[type="application/json"]');
+            if (script) {
+                self.params = extendObj(self.params, JSON.parse(script.textContent.toString()));
+            }
+        }
+        catch (e) {
+            console.warn('json is illegal'); // eslint-disable-line
+            console.warn(e); // eslint-disable-line
+            return;
+        }
+
+        self.url = getUrl.call(self, src);
 
         self.pushResult = function (rn, status) {
             // 异步获取数据示例
             var defer = $.Deferred();
+
             if (rn > self.rn) {
                 defer.resolve('NULL');
             }
             else {
-                fetchJsonp(url, {
+                fetchJsonp(self.url, {
                     jsonpCallback: 'callback'
                 }).then(function (res) {
                     return res.json();
                 }).then(function (data) {
-                    templates.render(self.element, data.items).then(function (htmls) {
-                        defer.resolve(htmls);
-                    });
+                    if (data && !data.status && data.data) {
+                        if (data.data.isEnd) {
+                            defer.resolve('NULL');
+                        }
+                        templates.render(self.element, data.data.items).then(function (htmls) {
+                            defer.resolve(htmls);
+                        });
+                    }
+                    else {
+                        defer.resolve('NULL');
+                    }
                 });
             }
             return defer.promise();
         };
 
-        var InfiniteScroll = require('./infinitescroll');
-        new InfiniteScroll({
-            $result: $('.mip-infinitescroll-results'),
-            $wrapper: $(window),
-            $scroller: $('body'),
-            $loading: $('.mip-infinitescroll-loading'),
-            loadingHtml: self.loadingHtml,
-            loadFailHtml: self.loadFailHtml,
-            loadOverHtml: self.loadOverHtml,
-            bufferHeightPx: self.bufferHeightPx,
-            pageResultNum: self.pn,
+        infiniteScroll = new InfiniteScroll({
+            $result: element.querySelector('.mip-infinitescroll-results'),
+            $loading: element.querySelector('.mip-infinitescroll-loading'),
+            loadingHtml: self.params.loadingHtml,
+            loadFailHtml: self.params.loadFailHtml,
+            loadOverHtml: self.params.loadOverHtml,
+            bufferHeightPx: self.params.bufferHeightPx,
+            pageResultNum: self.params.pn,
             limitShowPn: 0,
             preLoadPn: 2,
             firstResult: [],
             pushResult: self.pushResult
         });
+    };
+
+    customElement.prototype.detachedCallback = function () {
+        infiniteScroll = null;
     };
 
     return customElement;

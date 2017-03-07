@@ -67,11 +67,11 @@ define(function (require) {
         self.params = {
             rn: 20,
             pn: 6,
+            pnName: 'pn',
             bufferHeightPx: 10,
             loadingHtml: '加载中...',
             loadFailHtml: '加载失败',
-            loadOverHtml: '加载完毕!',
-            pnName: 'pn'
+            loadOverHtml: '加载完毕!'
         };
 
         // 获取用户设置参数
@@ -103,12 +103,14 @@ define(function (require) {
                     return res.json();
                 }).then(function (data) {
                     if (data && !data.status && data.data) {
-                        if (data.data.isEnd || !data.data.items) {
+                        if (rn > self.params.rn || !data.data.items) {
                             defer.resolve('NULL');
                         }
                         templates.render(self.element, data.data.items).then(function (htmls) {
                             defer.resolve(htmls);
                         });
+                        self.params.pn ++;
+                        self.url = getUrl.call(self, src);
                     }
                     else {
                         defer.resolve('NULL');

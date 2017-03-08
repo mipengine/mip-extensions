@@ -15,72 +15,88 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 每种事件可以配置多个
 
 ```html
-<div class="test fds aaa fd32" style="height:200px; background-color:blue;"></div>
-<div class="test2 hahaha" style="height:200px; background-color:yellow;"></div>
+<div class="className1" data-click="{foo:1,boo:2}">
+    <button data-click="{button:1}"> BUTTON 1</button>
+    <button > BUTTON 2</button>
+</div>
+<div class="className2"></div>
 
 
 <mip-analytics>
 <script type="application/json">
 {
     "hosts" : {
-		"test" : "https://m.baidu.com/div1?",
-		"disp" : "https://m.baidu.com/${disp}?",
-		"test2" : "https://m.baidu.com/_${div2}.gif?"
-	},
+        "className1" : "https://m.baidu.com/div1?",
+        "disp" : "https://m.baidu.com/${disp}?",
+        "className2" : "https://m.baidu.com/_${div2}.gif?"
+    },
 
     "setting" : {
 
         "click" : [
             {
-				"selector" : ".test",
-                "host" : "test",
+                "selector" : ".className1",
+                "tag": "button",
+                "host" : "className1",
                 "queryString" : {
-					"name" : "alan",
-					"mipstart" : "${MIPStart}",
-					"list": {
-						"age":"123"
-					}
-				}
+                    "name" : "alan",
+                    "mipstart" : "${MIPStart}",
+                    "list": {
+                        "age":"123"
+                    }
+                }
             },
 
             {
-				"selector" : ".test2",
-                "host" : "test2",
-				"queryString" : {},
+                "selector" : ".className2",
+                "host" : "className2",
+                "queryString" : {
+                    "name" : "alan",
+                    "mipstart" : "${MIPStart}",
+                    "list": {
+                        "age":"45"
+                    }
+                }
+            },
+
+            {
+                "selector" : ".className3",
+                "host" : "className3",
+                "queryString" : {},
                 "vars" : {
-					"div2" : "divfdsf"
-				}
+                    "div2" : "divfdsf"
+                }
             }
         ],
 
         "disp" : [
             {
                 "host" : "disp",
-				"queryString" : {
-					"MIPStart" : "${MIPStart}",
-					"MIPPageShow" : "${MIPPageShow}",
-					"MIPDomContentLoaded" : "${MIPDomContentLoaded}",
-					"MIPFirstScreen" : "${MIPFirstScreen}"
-				},
+                "queryString" : {
+                    "MIPStart" : "${MIPStart}",
+                    "MIPPageShow" : "${MIPPageShow}",
+                    "MIPDomContentLoaded" : "${MIPDomContentLoaded}",
+                    "MIPFirstScreen" : "${MIPFirstScreen}"
+                },
                 "vars" : {
-					"disp" : "displog"
-				}
+                    "disp" : "displog"
+                }
             }
         ],
         "timerxx" : [
-			{
-				"host" : "test2",
-				"queryString" : {
-					"timer" : "timer"
-				},
+            {
+                "host" : "className2",
+                "queryString" : {
+                    "timer" : "timer"
+                },
                 "vars" : {
-					"div2" : "fda"
-				},
-				"option" : {
-					"interval" : 2000
-				}
-			}
-		],
+                    "div2" : "div2"
+                },
+                "option" : {
+                    "interval" : 2000
+                }
+            }
+        ],
         "scroll" : []
     }
 }
@@ -113,19 +129,28 @@ ___
 
 #### setting.click
 
-说明：配置点击事件
+说明：配置点击事件  
 
-必选项：否
+必选项：否  
 
-类型：Array
+类型：Array   
 
 ##### setting.click.selector
 
-说明：指定触发点击的选择器
+说明：指定触发点击的选择器     
+
+必选项：是  
+
+类型：css选择器
+
+##### setting.click.tag
+
+说明：指定触发点击的选择器，有此属性时，setting.click.selector 为选择器父节点，点击事件绑定在父节点上
 
 必选项：是
 
 类型：css选择器
+
 
 ##### setting.click.host
 

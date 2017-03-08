@@ -127,7 +127,13 @@ define(function (require) {
 
         },
 
-        send: function (cfg) {
+        send: function (cfg, params) {
+            if (params) {
+                cfg.queryString.ext = params;
+            }
+            else {
+                delete cfg.queryString.ext;
+            }
             var queryString = this.serialize(cfg.queryString, cfg.vars) + '&t=' + new Date().getTime();
             var url = this.valReplace(cfg.host, cfg.vars) + queryString;
             this.imgSendLog(url);
@@ -138,9 +144,18 @@ define(function (require) {
     // 点击事件handle
     var clickHandle = function (triggers, eventName) {
         triggers.forEach(function (el, index) {
-            util.event.delegate(document, el.selector, eventName, function (event) {
-                log.send(el);
-            }, false);
+            // var ancestors = el.tag ? document.querySelectorAll(el.selector) : [document];
+            var eventTag = el.tag || el.selector;
+
+            // ancestors.forEach(function (dom) {
+                util.event.delegate(document, eventTag, eventName, function (event) {
+                    var params = this.getAttribute('data-click') || '';
+                    console.log(params.length);
+                    var paramsObj = (new Function('return ' + params))();
+
+                    log.send(el, paramsObj);
+                }, false);
+            // });
         });
     };
 

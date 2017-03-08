@@ -15,72 +15,88 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 每种事件可以配置多个
 
 ```html
-<div class="test fds aaa fd32" style="height:200px; background-color:blue;"></div>
-<div class="test2 hahaha" style="height:200px; background-color:yellow;"></div>
+<div class="test fds aaa fd32">
+    <button data-click="{button:1}"> BUTTON 1</button>
+    <button > BUTTON 2</button>
+</div>
+<div class="test2 hahaha"></div>
 
 
 <mip-analytics>
 <script type="application/json">
 {
     "hosts" : {
-		"test" : "https://m.baidu.com/div1?",
-		"disp" : "https://m.baidu.com/${disp}?",
-		"test2" : "https://m.baidu.com/_${div2}.gif?"
-	},
+        "test" : "https://m.baidu.com/div1?",
+        "disp" : "https://m.baidu.com/${disp}?",
+        "test2" : "https://m.baidu.com/_${div2}.gif?"
+    },
 
     "setting" : {
 
         "click" : [
             {
-				"selector" : ".test",
+                "selector" : ".test",
+                "tag": "button",
                 "host" : "test",
                 "queryString" : {
-					"name" : "alan",
-					"mipstart" : "${MIPStart}",
-					"list": {
-						"age":"123"
-					}
-				}
+                    "name" : "alan",
+                    "mipstart" : "${MIPStart}",
+                    "list": {
+                        "age":"123"
+                    }
+                }
             },
 
             {
-				"selector" : ".test2",
+                "selector" : ".test3",
+                "host" : "test",
+                "queryString" : {
+                    "name" : "alan",
+                    "mipstart" : "${MIPStart}",
+                    "list": {
+                        "age":"45"
+                    }
+                }
+            },
+
+            {
+                "selector" : ".test2",
                 "host" : "test2",
-				"queryString" : {},
+                "queryString" : {},
                 "vars" : {
-					"div2" : "divfdsf"
-				}
+                    "div2" : "divfdsf"
+                }
             }
         ],
 
         "disp" : [
             {
                 "host" : "disp",
-				"queryString" : {
-					"MIPStart" : "${MIPStart}",
-					"MIPPageShow" : "${MIPPageShow}",
-					"MIPDomContentLoaded" : "${MIPDomContentLoaded}",
-					"MIPFirstScreen" : "${MIPFirstScreen}"
-				},
+                "queryString" : {
+                    "MIPStart" : "${MIPStart}",
+                    "MIPPageShow" : "${MIPPageShow}",
+                    "MIPDomContentLoaded" : "${MIPDomContentLoaded}",
+                    "MIPFirstScreen" : "${MIPFirstScreen}"
+                },
                 "vars" : {
-					"disp" : "displog"
-				}
+                    "disp" : "displog"
+                }
             }
         ],
         "timerxx" : [
-			{
-				"host" : "test2",
-				"queryString" : {
-					"timer" : "timer"
-				},
+            {
+                "host" : "test2",
+                "queryString" : {
+                    "timer" : "timer"
+                },
                 "vars" : {
-					"div2" : "fda"
-				},
-				"option" : {
-					"interval" : 2000
-				}
-			}
-		],
+                    "div2" : "fda"
+                },
+                "option" : {
+                    "interval" : 2000
+                }
+            }
+        ],
         "scroll" : []
     }
 }

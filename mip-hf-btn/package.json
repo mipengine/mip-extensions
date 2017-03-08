@@ -1,0 +1,14 @@
+{
+    "name": "mip-hf-btn",
+    "version": "1.0.0",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "anqin",
+            "email": "1248432885@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -1,5 +1,16 @@
 # 升级日志
 
+#### 2017.03.08
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qbb-resetpit](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qbb-resetpit)|[平台][新增] 根据图片尺寸设置展现宽高
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级] 折叠组件：支持配置只展开一个节点
+[mip-analytics](https://github.com/mipengine/mip-extensions/tree/master/mip-analytics)|[升级] 添加可配置参数
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 可播放广告的视频组件
+
 #### 2017.03.07
 
 > 核心代码上线

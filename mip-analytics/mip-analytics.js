@@ -150,7 +150,6 @@ define(function (require) {
             // ancestors.forEach(function (dom) {
                 util.event.delegate(document, eventTag, eventName, function (event) {
                     var params = this.getAttribute('data-click') || '';
-                    console.log(params.length);
                     var paramsObj = (new Function('return ' + params))();
 
                     log.send(el, paramsObj);

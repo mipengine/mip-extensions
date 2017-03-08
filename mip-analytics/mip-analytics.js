@@ -132,7 +132,13 @@ define(function (require) {
                 cfg.queryString.ext = params;
             }
             else {
-                delete cfg.queryString.ext;
+                try {
+                    delete cfg.queryString.ext;
+                }
+                catch (e) {
+                    cfg.queryString.ext = undefined;
+                }
+                
             }
             var queryString = this.serialize(cfg.queryString, cfg.vars) + '&t=' + new Date().getTime();
             var url = this.valReplace(cfg.host, cfg.vars) + queryString;
@@ -144,17 +150,17 @@ define(function (require) {
     // 点击事件handle
     var clickHandle = function (triggers, eventName) {
         triggers.forEach(function (el, index) {
-            // var ancestors = el.tag ? document.querySelectorAll(el.selector) : [document];
+            var ancestors = el.tag ? document.querySelectorAll(el.selector) : [document];
             var eventTag = el.tag || el.selector;
 
-            // ancestors.forEach(function (dom) {
-                util.event.delegate(document, eventTag, eventName, function (event) {
+            ancestors.forEach(function (dom) {
+                util.event.delegate(dom, eventTag, eventName, function (event) {
                     var params = this.getAttribute('data-click') || '';
                     var paramsObj = (new Function('return ' + params))();
 
                     log.send(el, paramsObj);
                 }, false);
-            // });
+            });
         });
     };
 

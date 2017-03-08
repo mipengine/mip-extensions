@@ -15,29 +15,29 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
 每种事件可以配置多个
 
 ```html
-<div class="test fds aaa fd32">
+<div class="className1" data-click="{foo:1,boo:2}">
     <button data-click="{button:1}"> BUTTON 1</button>
     <button > BUTTON 2</button>
 </div>
-<div class="test2 hahaha"></div>
+<div class="className2"></div>
 
 
 <mip-analytics>
 <script type="application/json">
 {
     "hosts" : {
-        "test" : "https://m.baidu.com/div1?",
+        "className1" : "https://m.baidu.com/div1?",
         "disp" : "https://m.baidu.com/${disp}?",
-        "test2" : "https://m.baidu.com/_${div2}.gif?"
+        "className2" : "https://m.baidu.com/_${div2}.gif?"
     },
 
     "setting" : {
 
         "click" : [
             {
-                "selector" : ".test",
+                "selector" : ".className1",
                 "tag": "button",
-                "host" : "test",
+                "host" : "className1",
                 "queryString" : {
                     "name" : "alan",
                     "mipstart" : "${MIPStart}",
@@ -48,8 +48,8 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
             },
 
             {
-                "selector" : ".test3",
-                "host" : "test",
+                "selector" : ".className2",
+                "host" : "className2",
                 "queryString" : {
                     "name" : "alan",
                     "mipstart" : "${MIPStart}",
@@ -60,8 +60,8 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
             },
 
             {
-                "selector" : ".test2",
-                "host" : "test2",
+                "selector" : ".className3",
+                "host" : "className3",
                 "queryString" : {},
                 "vars" : {
                     "div2" : "divfdsf"
@@ -85,7 +85,7 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
         ],
         "timerxx" : [
             {
-                "host" : "test2",
+                "host" : "className3",
                 "queryString" : {
                     "timer" : "timer"
                 },

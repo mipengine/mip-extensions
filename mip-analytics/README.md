@@ -85,12 +85,12 @@ mip-analytics 提供统计发送接口，由使用方决定在什么时候发送
         ],
         "timerxx" : [
             {
-                "host" : "className3",
+                "host" : "className2",
                 "queryString" : {
                     "timer" : "timer"
                 },
                 "vars" : {
-                    "div2" : "fda"
+                    "div2" : "div2"
                 },
                 "option" : {
                     "interval" : 2000
@@ -129,19 +129,28 @@ ___
 
 #### setting.click
 
-说明：配置点击事件
+说明：配置点击事件  
 
-必选项：否
+必选项：否  
 
-类型：Array
+类型：Array   
 
 ##### setting.click.selector
 
-说明：指定触发点击的选择器
+说明：指定触发点击的选择器     
+
+必选项：是  
+
+类型：css选择器
+
+##### setting.click.tag
+
+说明：指定触发点击的选择器，有此属性时，setting.click.selector 为选择器父节点，点击事件绑定在父节点上
 
 必选项：是
 
 类型：css选择器
+
 
 ##### setting.click.host
 

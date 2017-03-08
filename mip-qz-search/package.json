@@ -1,0 +1,14 @@
+{
+    "name": "mip-qz-search",
+    "version": "1.0.0",
+    "description": "前瞻网搜索组件",
+    "contributors": [
+        {
+            "name": "ningsong",
+            "email": "312358502@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

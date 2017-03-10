@@ -1,0 +1,15 @@
+{
+    "name": "mip-semi-fixed",
+    "version": "1.0.0",
+    "description": "滚动页面到一定高度时后再实现悬浮定位，回滚复位",
+    "contributors": [
+        {
+            "name": "hfhd",
+            "email": "annie163_xaq@yeah.net",
+            "url": "https://www.mipengine.org"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

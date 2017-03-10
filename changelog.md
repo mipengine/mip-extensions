@@ -1,5 +1,13 @@
 # 升级日志
 
+#### 2017.03.09
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qbb-comment](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qbb-comment)|[平台][新增] qbb评论组件
+
 #### 2017.03.08
 
 > 组件上线

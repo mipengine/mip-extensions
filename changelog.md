@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.03.10
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[新增] 滑动悬浮组件
+[mip-ad](https://github.com/mipengine/mip-extensions/tree/master/mip-ad)|[升级] 广告组件回复图加广告
+
 #### 2017.03.09
 
 > 组件上线

@@ -1,0 +1,17 @@
+/**
+ * @file mip-semi-fixed样式文件
+ */
+.mip-fixedlayer div[mip-semi-fixed-scrollSatus],
+mip-semi-fixed div[mip-semi-fixed-scrollSatus] {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+.mip-fixedlayer div[mip-semi-fixed-fixedSatus],
+mip-semi-fixed div[mip-semi-fixed-fixedSatus] {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+}

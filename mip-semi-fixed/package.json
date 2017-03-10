@@ -1,11 +1,12 @@
 {
     "name": "mip-semi-fixed",
     "version": "1.0.0",
-    "description": "组件介绍",
+    "description": "滑动悬浮组件",
     "contributors": [
         {
-            "name": "",
-            "email": ""
+            "name": "MIP authors",
+            "email": "mip-support@baidu.com",
+            "url": "https://www.mipengine.org"
         }
     ],
     "engines": {

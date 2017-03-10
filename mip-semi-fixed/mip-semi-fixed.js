@@ -100,15 +100,20 @@ define(function (require) {
     }
 
     /**
-     * firstInviewCallback
+     * build
      */
     customElement.prototype.build = function () {
 
         var self = this;
         var element = self.element;
+        self.container = element.querySelector('div[mip-semi-fixed-container]');
+        if (!self.container) {
+            console.error('必须有 <div mip-semi-fixed-container> 子节点');
+            return;
+        }
+
         self.threshold = element.getAttribute('threshold') || YOFFSET;
         self.fixedClassNames = ' ' + element.getAttribute('fixedClassNames');
-        self.container = element.querySelector('div[mip-semi-fixed-container]');
         self.container.setAttribute(STATUS.STATUS_SCROLL, '');
 
         // 初始状态为 fixed 时
@@ -131,7 +136,7 @@ define(function (require) {
             });
             element.appendChild(self.fixedContainer);
 
-            var idx = document.querySelectorAll('mip-fixed').length;
+            var idx = document.querySelectorAll('mip-fixed').length || 0;
 
             // 结果页打开，移动到 fixed layer
             if (fixedElement._fixedLayer) {

@@ -5,14 +5,13 @@ mip-game4399-download 实现了简单的游戏下载控件。
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
 所需脚本|http://mipcache.bdstatic.com/static/v1/mip-game4399-download/mip-game4399-download.js
 
 ## 示例
 
 ### 下载控件
 ```html
-<mip-game4399-download texttip= "['球球大作战']" downbtntext="下载" other-downsrc="http://a.4399.cn/mobile/82714.html" android-downsrc="http://a.4399.cn/mobile/82714.html"  ios-downsrc="http://i.4399.cn/mobile/161515.html"></mip-game4399-download>
+<mip-game4399-download texttip= "游戏名" downbtntext="下载" other-downsrc="" android-downsrc=""  ios-downsrc=""></mip-game4399-download>
 ```
 
 ## 属性

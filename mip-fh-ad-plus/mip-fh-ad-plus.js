@@ -21,7 +21,7 @@ define(function (require) {
     var paramObj = $adKeywords.attr('content');
 
     // 直投广告请求url
-    var adUrl = 'http://partners.sandbox.fh21.com.cn/partners/showcodejsonp?callback=?';
+    var adUrl = 'https://partners.fh21.com.cn/partners/showcodejsonp?callback=?';
 
     // 初始化直 投广告
     var init = function (opt) {

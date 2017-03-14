@@ -6,7 +6,7 @@ mip-list 列表组件，可以渲染同步数据，或者异步请求数据后�
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-list/mip-list.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-list/mip-list.js
 
 ## 示例
 
@@ -136,20 +136,14 @@ mip-list 列表组件，可以渲染同步数据，或者异步请求数据后�
 
 ## 注意事项
 
-- 异步请求的接口需要规范 callback 为 'callback'
+- 异步请求的接口需要规范过callback 为 'cb'
 - 有has-more 属性时，mip-list标签，必须要有id属性，同时需要有点击按钮的dom节点，并且此节点有on属性，属性值为：tap:你的mip-list的id.more
 - 接口返回的数据格式需要是如下格式：
 
 ```
-{
-    status: 0, 
-    data: { 
-        items: [], 
-        isEnd: 1 
-    }
-}
+{ status: 0, data: { items: [], isEnd: 1 } }
 
-  - status 0 表示请求成功
-  - items: [] 是需要渲染的数序
-  - isEnd 表示是否是最后一页，非必须
+status 0 表示请求成功
+items: [] 是需要渲染的数序
+isEnd 表示是否是最后一页，非必须
 ```

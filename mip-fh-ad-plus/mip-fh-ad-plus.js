@@ -156,7 +156,7 @@ define(function (require) {
         return flag;
     }
 
-    var getUids = function (ele) {
+    function getUids(ele) {
         var res = [];
 
         $.each(ele, function (k, v) {

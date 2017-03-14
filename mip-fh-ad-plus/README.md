@@ -2,11 +2,11 @@
 
 mip-fh-ad-plus 用来支持整站页面的直投广告显示
 
-|描述|展示页面直投广告|
-|---|---|
-|类型|广告|
-|支持布局|N/S|
-|所需脚本|https://mipcache.bdstatic.com/static/v1/mip-fh-ad-plus/mip-fh-ad-plus.js|
+标题|内容
+----|----
+类型|广告
+支持布局|N/A
+所需脚本|https://mipcache.bdstatic.com/extensions/platform/v1/mip-fh-async/mip-fh-ad-plus.js
 
 ## 示例
 

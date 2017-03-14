@@ -6,7 +6,7 @@ mip-infinitescroll 组件说明
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-infinitescroll/mip-infinitescroll.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-infinitescroll/mip-infinitescroll.js
 
 ## 示例
 
@@ -143,5 +143,5 @@ mip-infinitescroll 组件说明
 }
 
   - status 0 表示请求成功
-  - items: [] 是需要渲染的数据
+  - items: [] 是需要渲染的数序
 ```

@@ -6,6 +6,9 @@
  */
 define(function (require) {
     var $ = require('zepto');
+    var util = require('util');
+    var platform = util.platform;
+
     var defaultOpt = {
         url: window.location.href,
         title: '百度搜索有惊喜',       // 分享至外站的title,必选
@@ -20,8 +23,8 @@ define(function (require) {
     var Browser = detect.browser;
     var isZbios = (Browser.n == 'zbios') ? 1 : 0;
     var isUC = (Browser.n == 'uc' && (typeof(ucweb) != 'undefined' || typeof(ucbrowser) != 'undefined')) ? 1 : 0;
-    var isQQ = (Browser.n == 'qq' && Browser.v && Browser.v > '5.4') ? 1 : 0;
-    var isWechat = (Browser.n == 'wechat') ? 1 : 0;
+    var isQQ = (platform.isQQ() && Browser.v && Browser.v > '5.4') ? 1 : 0;
+    var isWechat = platform.isWechatApp() ? 1 : 0;
     var share_promise = new Promise(function(resolve, reject) {
         if (isQQ) {
             // zepto $.ajax在qq浏览器上无法加载这个api url,永远返回fail,jquery以及直接请求均可以,原因不明,采用原生方法实现异步加载
@@ -100,8 +103,6 @@ define(function (require) {
     // QQ浏览器分享接口
     var qqShare = function (to_app, opt) {
         var viewer = require('viewer');
-        var util = require('util');
-        var platform = util.platform;
         var key = to_app;
 
         var qqAppList = {

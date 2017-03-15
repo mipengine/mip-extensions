@@ -1,0 +1,13 @@
+{
+    "name": "mip-qgyx",
+    "version": "1.0.0",
+
+    "author": {
+        "name": "houxingkuo",
+        "email": "544213260@email.com"
+    },
+
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

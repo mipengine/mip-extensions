@@ -66,7 +66,8 @@ define(function (require) {
         // 默认参数设置
         self.params = {
             rn: 20,
-            pn: 6,
+            prn: 6,
+            pn: 1,
             pnName: 'pn',
             bufferHeightPx: 10,
             loadingHtml: '加载中...',
@@ -127,7 +128,7 @@ define(function (require) {
             loadFailHtml: self.params.loadFailHtml,
             loadOverHtml: self.params.loadOverHtml,
             bufferHeightPx: self.params.bufferHeightPx,
-            pageResultNum: self.params.pn,
+            pageResultNum: self.params.prn,
             limitShowPn: 0,
             preLoadPn: 2,
             firstResult: [],

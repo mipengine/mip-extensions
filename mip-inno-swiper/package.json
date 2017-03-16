@@ -1,0 +1,14 @@
+{
+    "name": "mip-inno-swiper",
+    "version": "1.0.0",
+    "description": "swiper mip plugin",
+    "contributors": [
+        {
+            "name": "yangnan",
+            "email": "1037796164@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

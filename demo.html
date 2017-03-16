@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html mip>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+    <link rel="canonical" href="https://m.hddszx.com">
+    <title>测试MIP组件快商通</title>
+    <style mip-custom>
+        html {
+            font-size: 10px;
+        }
+        
+        @media screen and (min-width:321px) and (max-width:375px) {
+            html {
+                font-size: 11px
+            }
+        }
+        
+        @media screen and (min-width:376px) and (max-width:414px) {
+            html {
+                font-size: 12px
+            }
+        }
+        
+        @media screen and (min-width:415px) and (max-width:639px) {
+            html {
+                font-size: 15px
+            }
+        }
+        
+        @media screen and (min-width:640px) and (max-width:719px) {
+            html {
+                font-size: 20px
+            }
+        }
+        
+        @media screen and (min-width:720px) and (max-width:749px) {
+            html {
+                font-size: 22.5px
+            }
+        }
+        
+        @media screen and (min-width:750px) and (max-width:799px) {
+            html {
+                font-size: 23.5px
+            }
+        }
+        
+        @media screen and (min-width:800px) {
+            html {
+                font-size: 25px
+            }
+        }
+        
+        body {
+            font-size: 1rem;
+            font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+        }
+        
+        .clear {
+            clear: both;
+        }
+        /*HEADER>MENU*/
+        
+        #hamburger {
+            width: 15%;
+            float: left;
+        }
+        
+        .logo {
+            width: 70%;
+            float: left;
+        }
+        
+        .tel {
+            width: 15%;
+            float: left;
+        }
+        
+        .tel a {
+            display: block;
+        }
+        
+        .header {
+            background: #663399;
+            width: 100%;
+            display: table;
+            height: 4rem;
+        }
+        
+        .header:after {
+            content: '';
+            clear: both;
+        }
+        
+        mip-sidebar {
+            z-index: 10000 !important;
+        }
+        
+        .popMenus {
+            max-width: 100% !important;
+            width: 100% !important;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+            background-color: rgb(153, 102, 204);
+        }
+        
+        .pop_title {
+            position: relative;
+            z-index: 2;
+            background-color: #663399;
+            padding: 0 3%;
+        }
+        
+        .pop_title span {
+            display: inline-block;
+            float: left;
+            font-size: 1.5rem;
+            line-height: 2.66;
+            color: #fff;
+        }
+        
+        .pop_title button {
+            border: none;
+            float: right;
+            display: block;
+            width: 2.45rem;
+            position: absolute;
+            right: 3%;
+            top: 50%;
+            margin-top: -1.175rem;
+            background: transparent;
+        }
+        
+        .mip-layout-container {
+            width: 100%;
+            display: table;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        
+        .mip-layout-container:after {
+            content: '';
+            clear: both;
+        }
+        
+        .mip-vd-tabs-nav {
+            display: block;
+            height: 100%;
+            padding: 0;
+            background: transparent;
+        }
+        
+        .mip-vd-tabs-row-tile {
+            width: 25%;
+            background: #663399;
+            height: 100%;
+            float: left;
+        }
+        
+        .mip-vd-tabs-nav-li {
+            width: 100%;
+            height: auto;
+            padding: 0;
+            color: #fff;
+            font-size: 1.6rem;
+            line-height: 2;
+        }
+        
+        .mip-vd-tabs-nav .mip-vd-tabs-nav-selected {
+            border: none;
+            color: #fff;
+            background: #96c;
+        }
+        
+        .menuContent {
+            width: 75%;
+            /*height: 100%;*/
+            overflow: hidden;
+            float: left;
+            padding: 0 6%;
+            box-sizing: border-box;
+            color: #fff;
+        }
+        
+        .menuContent a {
+            color: #fff;
+        }
+        
+        .menuList h4 {
+            font-size: 1.6rem;
+            color: #fff;
+            line-height: 1.83;
+            border-bottom: 1px solid #fff;
+            margin-top: 2%;
+            font-weight: normal
+        }
+        
+        .menuList .links {
+            padding: 3% 0.5%;
+        }
+        
+        .menuList .links a {
+            display: block;
+            float: left;
+            color: #fff;
+            font-size: 1.4rem;
+            line-height: 2.2;
+            width: 50%;
+            overflow: hidden;
+        }
+        /*侧边栏菜单END*/
+        /*底部*/
+        
+        .footer {
+            margin-bottom: 6rem;
+            background: #333366;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            padding: 2rem 0;
+            color: #669;
+        }
+        
+        .navbar-bottom {
+            height: 6rem;
+        }
+        
+        .navbar-bottom a {
+            display: inline-block;
+            color: #fff;
+        }
+        
+        .navbar-bottom .col {
+            height: 100%;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .navbar-bottom .ico {
+            width: 3rem;
+            height: 3rem;
+            margin: 0.5rem auto;
+        }
+        
+        .navbar-bottom .col:nth-child(1) {
+            background: #2f314f;
+        }
+        
+        .navbar-bottom .col:nth-child(2) {
+            background: #26c540;
+        }
+        
+        .navbar-bottom .col:nth-child(3) {
+            background: #3366cc;
+        }
+        
+        .navbar-bottom .col:nth-child(4) {
+            background: #ff6005;
+        }
+        
+        .navbar-bottom .mip-img-subtitle {
+            padding-top: 0;
+            color: #fff;
+        }
+        /*底部END*/
+        /*返回顶部*/
+        
+        .gototop {
+            width: 4.5rem;
+            height: 4.5rem;
+            right: 5% !important;
+        }
+        
+        .gototop>* {
+            border: none;
+            background: transparent;
+        }
+        
+        .mip-fill-content {
+            margin: 0;
+        }
+        /*返回顶部*/
+        /*****************************************************************/
+        /*首页内容*/
+        
+        mip-fixed[type="top"],
+        mip-fixed[type="bottom"] {
+            max-height: 150px !important;
+            z-index: 999 !important;
+        }
+        
+        section.block {
+            background: #639;
+            overflow: hidden;
+        }
+        
+        section>header {
+            border-left: #f7e195 solid 3px;
+            color: #f7e195;
+            padding-left: 0.5em;
+            margin: 0.5em;
+            font-size: 2em;
+        }
+        
+        .mip-img-subtitle {
+            font-size: 1.3em;
+            line-height: 1.5em;
+        }
+        
+        .newnavs {
+            width: 100%;
+            display: table;
+        }
+        
+        .newnavs:after {
+            content: '';
+            clear: both;
+        }
+        
+        .newnav {
+            width: 25%;
+            float: left;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+        
+        .col {
+            float: left;
+            box-sizing: border-box;
+        }
+        
+        .item .col {
+            padding: 20px;
+        }
+        
+        .item .col:nth-child(1) {
+            background: #726abd;
+        }
+        
+        .item .col:nth-child(2) {
+            background: #3bc7c7;
+        }
+        
+        .item .col:nth-child(3) {
+            background: #f17782;
+        }
+        
+        .item .col:nth-child(4) {
+            background: #ff5dac;
+        }
+        
+        .item .col:nth-child(5) {
+            background: #e4d497;
+        }
+        
+        .item .col:nth-child(6) {
+            background: #50c5a7;
+        }
+        
+        .item .col:nth-child(7) {
+            background: #8956a1;
+        }
+        
+        .item .col:nth-child(8) {
+            background: #8bb9df;
+        }
+        
+        .item .col:nth-child(9) {
+            background: #ed9d60;
+        }
+        
+        .item p {
+            color: #fff;
+        }
+        
+        .col-md-4 {
+            width: 33.33%;
+        }
+        
+        .col-md-3 {
+            width: 25%;
+        }
+        
+        .teyue .mip-carousel-slideBox {
+            width: 5.5556% !important;
+        }
+        
+        section.button {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        section.button a {
+            background: #26c540;
+            font-size: 2em;
+            padding: 0.8em 3.2em;
+            border-radius: 8px;
+            display: inline-block;
+            color: #fff;
+        }
+        
+        section.warning {
+            background: #7c0002;
+            color: #fbfac1;
+            line-height: 1.5;
+            padding: 10px;
+        }
+        
+        section.warning h3 {
+            font-size: 1.4em;
+            text-align: center;
+        }
+        
+        section.warning p {
+            font-size: 1em;
+        }
+        
+        section.warning p span {
+            float: right;
+            line-height: 2;
+        }
+        /*首页内容END*/
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div id="hamburger" class="mip-button" on="tap:sidebar.open">
+            <div id="logo">
+                <mip-img layout="responsive" width="40" height="40" src="images/menu.png"></mip-img>
+            </div>
+        </div>
+        <h1 class="logo">
+            <a href="//m.hddszx.com//index.html" target="_blank">
+                <mip-img layout="responsive" width="180" height="40" src="images/logo.png">
+                </mip-img>
+            </a>
+        </h1>
+        <div class="tel">
+            <a href="tel:03103082777">
+                <mip-img layout="responsive" width="40" height="40" src="images/toptel.png">
+                </mip-img>
+            </a>
+        </div>
+    </div>
+    <mip-sidebar id="sidebar" layout="nodisplay" class="mip-hidden popMenus">
+        <div class="pop_title">
+            <span>热门项目</span>
+            <button class="mip-button" on="tap:sidebar.close">
+<mip-img layout="responsive" width="49" height="47" src="images/closePopMenu.png">
+</mip-img>
+</button>
+            <div class="clear"></div>
+        </div>
+        <mip-vd-tabs>
+            <section>
+                <li>优惠活动</li>
+                <li>五官整形</li>
+                <li>面部整形</li>
+                <li>形体雕塑</li>
+                <li>皮肤美容</li>
+                <li>微整形</li>
+                <li>毛发移植</li>
+            </section>
+            <div class="menuContent ">
+                <div class="menuLists">
+                    <div class="menuList">
+                        <h4>优惠活动</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/ny2016/" target="_blank">
+年终感恩盛典
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menuContent ">
+                <div class="menuLists">
+                    <div class="menuList">
+                        <h4>眼部整形</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/syp/" target="_blank">
+双眼皮
+</a>
+                            <a href="//m.hddszx.com/zhuanti/kaiyanjiao/" target="_blank">
+开眼角
+</a>
+                            <a href="//m.hddszx.com/zhuanti/sypxf/" target="_blank">
+双眼皮修复
+</a>
+                            <a href="//m.hddszx.com/zhuanti/qyd/" target="_blank">
+祛眼袋
+</a>
+                            <a href="//m.hddszx.com/zhuanti/yanjianxiachui/" target="_blank">
+眼睑下垂矫正
+</a>
+                            <a href="//m.hddszx.com/zhuanti/yanweitisheng/" target="_blank">
+眼尾提升
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>鼻部整形</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/jtlb/" target="_blank">
+假体隆鼻
+</a>
+                            <a href="//m.hddszx.com/zhuanti/bbzhzxsjz/" target="_blank">
+鼻综合整形
+</a>
+                            <a href="//m.hddszx.com/zhuanti/biyi/" target="_blank">
+鼻翼整形
+</a>
+                            <a href="//m.hddszx.com/zhuanti/bijian/" target="_blank">
+鼻尖整形
+</a>
+                            <a href="//m.hddszx.com/zhuanti/bqszz/" target="_blank">
+鼻缺损再造
+</a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="menuList">
+                        <h4>唇部整形</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/hcgb/" target="_blank">
+厚唇改薄
+</a>
+                            <a href="//m.hddszx.com/zhuanti/cgcx/" target="_blank">
+唇弓成形
+</a>
+                            <a href="//m.hddszx.com/zhuanti/chunzhu/" target="_blank">
+唇珠成形
+</a>
+                            <a href="//m.hddszx.com/zhuanti/renzhong/" target="_blank">人中成型术</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>耳部整形</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/feqc/" target="_blank">
+副耳切除
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>眉部整形</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/qms/" target="_blank">
+切眉术
+</a>
+                            <a href="//m.hddszx.com/zhuanti/tms/" target="_blank">
+提眉术
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menuContent ">
+                <div class="menuLists">
+                    <div class="menuList">
+                        <h4>面部轮廓</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/xhj/" target="_blank">
+下颌角整形
+</a>
+                            <a href="//m.hddszx.com/zhuanti/qgqg" target="_blank">
+颧弓颧骨整形
+</a>
+                            <a href="//m.hddszx.com/zhuanti/jiuwo/" target="_blank">
+酒窝成型
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menuContent ">
+                <div class="menuLists">
+                    <div class="menuList">
+                        <h4>胸部整形</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/jtlx/" target="_blank">
+假体隆胸
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ztzffx/" target="_blank">
+自体丰胸
+</a>
+                            <a href="//m.hddszx.com/zhuanti/rtsx/" target="_blank">
+乳头缩小
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ryph/" target="_blank">
+乳晕漂红
+</a>
+                            <a href="//m.hddszx.com/zhuanti/rufangxiachui/" target="_blank">
+乳房下垂矫正
+</a>
+                            <a href="//m.hddszx.com/zhuanti/jurusuoxiao/" target="_blank">
+巨乳缩小
+</a>
+                            <a href="//m.hddszx.com/zhuanti/furu/" target="_blank">
+副乳去除
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>溶脂塑身</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/rongzhi/" target="_blank">
+溶脂塑身
+</a>
+                            <a href="//m.hddszx.com/zhuanti/rongzhizhen/" target="_blank">
+溶脂针
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menuContent ">
+                <div class="menuLists">
+                    <div class="menuList">
+                        <h4>美白祛斑</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/meibainf/" target="_blank">
+美白嫩肤
+</a>
+                            <a href="//m.hddszx.com/zhuanti/quban/" target="_blank">
+祛斑
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>祛皱紧肤</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/chaoshengdao/" target="_blank">
+超声刀
+</a>
+                            <a href="//m.hddszx.com/zhuanti/sgdb/" target="_blank">
+水光蛋白
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>其它美容</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/guosuan/" target="_blank">
+果酸焕肤
+</a>
+                            <a href="//m.hddszx.com/zhuanti/qudou/" target="_blank">
+祛痘
+</a>
+                            <a href="//m.hddszx.com/zhuanti/qz/" target="_blank">
+祛痣
+</a>
+                            <a href="//m.hddszx.com/zhuanti/wenshen/" target="_blank">
+洗纹身
+</a>
+                            <a href="//m.hddszx.com/zhuanti/taiji/" target="_blank">
+祛胎记
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menuContent ">
+                <div class="menuLists">
+                    <div class="menuList">
+                        <h4>优惠</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/ladygod/" target="_blank">
+都市女神俱乐部
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>微创除皱</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/zscz/" target="_blank">注射除皱</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>微创塑形</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/bns/" target="_blank">
+丰太阳穴
+</a>
+                            <a href="//m.hddszx.com/zhuanti/zslb/" target="_blank">
+一针隆鼻
+</a>
+                            <a href="//m.hddszx.com/zhuanti/fxb/" target="_blank">
+丰下巴
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ztzffmj/" target="_blank">
+丰面颊
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ztfet/" target="_blank">
+丰额头
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ztfpgj/" target="_blank">
+丰苹果肌
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ftyx/" target="_blank">
+丰太阳穴
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ztfec/" target="_blank">
+丰耳垂
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ztzffengtun/" target="_blank">
+丰臀
+</a>
+                            <a href="//m.hddszx.com/zhuanti/ztfbcg/" target="_blank">
+鼻唇沟填充
+</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="menuList">
+                        <h4>微创瘦身</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/botox/" target="_blank">
+一针瘦腿
+</a>
+                            <a href="//m.hddszx.com/zhuanti/slz/" target="_blank">
+一针瘦脸
+</a>
+                            <a href="//m.hddszx.com/zhuanti/rongzhizhen/" target="_blank"></a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menuContent ">
+                <div class="menuLists">
+                    <div class="menuList">
+                        <h4>毛发移植</h4>
+                        <div class="links clearfix">
+                            <a href="//m.hddszx.com/zhuanti/mfyz" target="_blank">
+SF活细胞
+</a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </mip-vd-tabs>
+    </mip-sidebar>
+    <mip-carousel autoplay layout="responsive" width="640" height="520">
+        <mip-img src="images/1.png">
+        </mip-img>
+        <mip-img src="images/2.png">
+        </mip-img>
+    </mip-carousel>
+    <section class="newnavs">
+        <div class="newnav">
+            <a href="//m.hddszx.com/" target="_blank" on="tap:sidebar.open">
+                <mip-img layout="responsive" width="110" height="110" src="images/newNav1.jpg">
+                </mip-img>
+                <p class="mip-img-subtitle">热门项目</p>
+            </a>
+        </div>
+        <div class="newnav">
+            <a href="//m.hddszx.com/gyds/yydt/" target="_blank">
+                <mip-img layout="responsive" width="110" height="110" src="images/newNav2.jpg">
+                </mip-img>
+                <p class="mip-img-subtitle">活动中心</p>
+            </a>
+        </div>
+        <div class="newnav">
+            <a href="//m.hddszx.com/gyds/alzx/" target="_blank">
+                <mip-img layout="responsive" width="110" height="110" src="images/newNav3.jpg">
+                </mip-img>
+                <p class="mip-img-subtitle">案例中心</p>
+            </a>
+        </div>
+        <div class="newnav">
+            <a href="//m.hddszx.com/gyds/wenxinhuanjing/" target="_blank">
+                <mip-img layout="responsive" width="110" height="110" src="images/newNav4.jpg">
+                </mip-img>
+                <p class="mip-img-subtitle">温馨环境</p>
+            </a>
+        </div>
+        <div class="newnav">
+            <a href="//m.hddszx.com/gyds/dsjj/" target="_blank">
+                <mip-img layout="responsive" width="110" height="110" src="images/newNav5.jpg">
+                </mip-img>
+                <p class="mip-img-subtitle">都市简介</p>
+            </a>
+        </div>
+        <div class="newnav">
+            <a href="//m.hddszx.com/gyds/zjtd/" target="_blank">
+                <mip-img layout="responsive" width="110" height="110" src="images/newNav6.jpg">
+                </mip-img>
+                <p class="mip-img-subtitle">专家团队</p>
+            </a>
+        </div>
+        <div class="newnav">
+            <a href="//m.hddszx.com/" target="_blank">
+                <mip-img layout="responsive" width="110" height="110" src="images/newNav7.jpg">
+                </mip-img>
+                <p class="mip-img-subtitle">在线咨询</p>
+            </a>
+        </div>
+        <div class="newnav">
+            <a href="//m.hddszx.com/gyds/lianxiwomen/" target="_blank">
+                <mip-img layout="responsive" width="110" height="110" src="images/newNav8.jpg">
+                </mip-img>
+                <p class="mip-img-subtitle">来院路线</p>
+            </a>
+        </div>
+    </section>
+    <section class="block">
+        <header>王牌项目</header>
+        <div class="item">
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/syp/" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_01.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle">双眼皮</p>
+                </a>
+            </div>
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/jtlb" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_02.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle">隆鼻</p>
+                </a>
+            </div>
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/ztzffx/" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_03.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle">动感丰胸</p>
+                </a>
+            </div>
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/rongzhi/" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_04.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle">溶脂塑身</p>
+                </a>
+            </div>
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/meibainf" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_05.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle" target="_blank">美白嫩肤</p>
+                </a>
+            </div>
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/botox" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_06.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle">BOTOX塑形</p>
+                </a>
+            </div>
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/qudou" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_07.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle">祛痘</p>
+                </a>
+            </div>
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/quban" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_08.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle">祛斑点痣</p>
+                </a>
+            </div>
+            <div class="col col-md-4">
+                <a href="//m.hddszx.com/zhuanti/slz" target="_blank">
+                    <mip-img layout="responsive" width="350" height="263" alt="baidu mip img" src="images/item_09.png">
+                    </mip-img>
+                    <p class="mip-img-subtitle">精致改脸型</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="block">
+        <header>案例展示</header>
+        <div class="anli">
+            <mip-carousel autoplay layout="responsive" width="640" height="348">
+                <a href="//m.hddszx.com/gyds/alzx/" target="_blank">
+                    <mip-img src="images/1.jpg">
+                    </mip-img>
+                </a>
+                <a href="//m.hddszx.com/gyds/alzx/" target="_blank">
+                    <mip-img src="images/2.jpg">
+                    </mip-img>
+                </a>
+            </mip-carousel>
+        </div>
+    </section>
+    <section class="block">
+        <header>特邀专家</header>
+        <div class="teyue">
+        </div>
+    </section>
+    <section>
+        <a href="//m.hddszx.com/gyds/zjtd/" target="_blank">
+            <mip-img layout="responsive" width="640" height="515" src="images/zhengxing.jpg">
+            </mip-img>
+        </a>
+    </section>
+    <section class="button">
+        <a href="//m.hddszx.com" target="_blank">我要完美蜕变</a>
+    </section>
+    <section class="warning">
+        <h3>郑重声明</h3>
+        <p>近期发现某些不良机构恶意盗用本院模特/顾客对比照的现象。现向社会郑重声明！都市整形美容所有模特均为签约模特，顾客形象对比视频照片均为都市医生团队真实案例，且有形象签约协议，针对盗用本院签约模特的行为，都市整形保留对其追究法律责任的权利! <br>
+            <span>邯郸都市整形医院</span>
+            <div class="clear"></div>
+        </p>
+    </section>
+    <mip-huayi-kst data-src="http://oss.ythuayi.com/web/public/js/onKSTpc-New.js"></mip-huayi-kst>
+    <div class="footer">
+        邯郸都市医疗整形美容 版权所有
+        <br>冀ICP备14016836号-4
+    </div>
+    <mip-fixed type="bottom">
+        <div class="navbar-bottom">
+            <div class="col col-md-3">
+                <a href="//m.hddszx.com" target="_blank">
+                    <div class="ico">
+                        <mip-img layout="responsive" width="60" height="60" src="images/barhome.png">
+                        </mip-img>
+                    </div>
+                    <span>首页</span>
+                </a>
+            </div>
+            <div class="col col-md-3">
+                <a href="//m.hddszx.com/" target="_blank">
+                    <div class="ico">
+                        <mip-img layout="responsive" width="60" height="60" src="images/bartel.png">
+                        </mip-img>
+                    </div>
+                    <span>电话咨询</span>
+                </a>
+            </div>
+            <div class="col col-md-3">
+                <a href="//m.hddszx.com/" target="_blank">
+                    <div class="ico">
+                        <mip-img layout="responsive" width="60" height="60" src="images/barmap.png">
+                        </mip-img>
+                    </div>
+                    <span>来院咨询</span>
+                </a>
+            </div>
+            <div class="col col-md-3">
+                <a href="//m.hddszx.com/" target="_blank">
+                    <div class="ico">
+                        <mip-img layout="responsive" width="60" height="60" src="images/barswt.png">
+                        </mip-img>
+                    </div>
+                    <span>在线咨询</span>
+                </a>
+            </div>
+        </div>
+    </mip-fixed>
+    <mip-fixed type="gototop" class="gototop">
+        <mip-gototop threshold="300">
+            <mip-img layout="responsive" width="90" height="90" src="images/gotop.png">
+            </mip-img>
+        </mip-gototop>
+    </mip-fixed>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-sidebar/mip-sidebar.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-gototop/mip-gototop.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-nav-slidedown/mip-nav-slidedown.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-vd-tabs/mip-vd-tabs.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-huayi-kst/mip-huayi-kst.js"></script>
+</body>
+
+</html>

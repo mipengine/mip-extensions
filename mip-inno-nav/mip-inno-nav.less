@@ -1,198 +1,70 @@
 /**
  * @file mip-inno-nav样式文件
  */
-
-
-.mip-nav-wrapper {
-  height: 72px;
-  &.show {
-    opacity: 1!important;
-  }
-  .hr-xs {
-    display: none;
-  }
-  #bs-navbar {
-    margin-bottom: 0;
-    margin-right: 0px;
-    float: right;
-    .navbar-nav {
-      display: -ms-flexbox;
-      display: flex;
-      margin-top: 10px;
-      margin-right: -25px;
-      li {
-        list-style: none;
-        line-height: 50px;
-        &.active a,
-        &.active mip-link {
-          color: black;
-          font-weight: bold;
-        }
-      }
-      mip-link,
-      a {
-        margin: 15px;
-        padding: 10px;
-        &:hover,
-        &:focus {
-          text-decoration: none;
-          background: transparent;
-          color: black;
-        }
-      }
-    }
-  }
-  .navbar-wise-close {
-    display: none;
-  }
-  .navbar-brand {
-    float: none;
-    display: inline-block;
-    margin: 15px 0 10px;
-    width: 81px;
-    height: 41px;
-    background-size: 100% auto;
+body{
+  background: #ccc;
+}
+mip-inno-nav{
+  span.menu{
+    background-image: url(http://m.innotopia.cn/assets/img/menu.png);
+    width: 7.7%;
+    height: 2.34rem;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    background-size: 100%;
     position: absolute;
-    font-size: 26px;
-    &:hover,
-    &:active {
-      color: rgba(255, 255, 255, 0.85);
-    }
+    top: 0;
   }
-  .navbar-header {
-    float: left;
-  }
-  .navbar-toggle {
+  menu{
     display: none;
+    margin: 0;
+    background: #f69927;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 1.34rem;
+    box-sizing: border-box;
+    .close{
+      position: absolute;
+      width:1rem;
+      height:1rem;
+      background-image: url(http://m.innotopia.cn/assets/img/close.png);
+      background-size: 100%;
+      display: block;
+      top:2rem;
+      left:1.3rem;
+    }
+    .logo{
+      background-size: auto 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url(http://m.innotopia.cn/assets/img/logo.svg);
+      height: 2.43rem;
+      width: 100%;
+      margin-bottom: 2.75rem;
+    }
+    mip-link{
+      display: block;
+      width:100%;
+      text-align: center;
+      margin: 1.25rem 0;
+      font-family:PingFangSC-Regular;
+      font-size:1rem;
+      color:#ffffff;
+      text-decoration: none;
+    }
+    hr{
+      background-color: #fff;
+      height:1px;
+      border:none;
+      margin: 0.625rem 0;
+
+    }
   }
 }
 
+
 @media screen and (max-width: 767px) {
-  .mip-nav-wrapper {
-    height: 44px;
-    #bs-navbar {
-      height: 0;
-      transition: height 0.3s;
-      margin-top: 44px;
-      width: 100%;
-      left: 0;
-      overflow-y: scroll;
-      z-index: 1000;
-      border: 0;
-      float: none;
-      position: absolute;
-      background-color: white;
-      .navbar-nav {
-        margin: 0;
-        min-height: 283px;
-        height: 100%;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        li {
-          padding: 5px 0;
-        }
-        a,
-        mip-link {
-          text-align: center;
-          color: #333;
-          font-size: 18px;
-          padding: 0;
-          margin: 0;
-          display: block;
-        }
-      }
-    }
-    .navbar-header {
-      float: none;
-    }
-    .container > .navbar-collapse {
-      padding: 0;
-      background-color: white;
-    }
-    .navbar-static-top .navbar-brand {
-      left: 50%;
-      margin-left: -30px;
-    }
-    .navbar-static-top a {
-      margin: 0;
-    }
-    .navbar-brand {
-      margin: 5px 0 0;
-      width: 68px;
-      height: 33px;
-      font-size: 23px;
-    }
-    .navbar-toggle {
-      display: block;
-      margin: 9px 0;
-      padding: 5px;
-      border: 0;
-      background: transparent;
-      float: right;
-      .icon-bar {
-        background-color: white;
-        height: 2px;
-        width: 23px;
-        background: #999;
-        display: block;
-      }
-      .icon-bar + .icon-bar {
-        margin-top: 6px;
-      }
-    }
-    .hr-xs {
-      display: block!important;
-      border-color: #eee;
-      margin: 0 10px;
-      border-top: 0;
-    }
-    .navbar-wise-close {
-      display: block;
-      text-align: center;
-      margin: 20px 0;
-    }
-    #navbar-wise-close-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid #d4d4d4;
-      display: inline-block;
-      position: relative;
-      &:before {
-        content: '';
-        width: 1px;
-        height: 25px;
-        display: inline-block;
-        position: absolute;
-        background: #d4d4d4;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        top: 7px;
-      }
-      &:after {
-        content: '';
-        width: 1px;
-        height: 25px;
-        display: inline-block;
-        position: absolute;
-        background: #d4d4d4;
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        top: 7px;
-      }
-      &.down {
-        background: #f3f3f3;
-      }
-    }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
-  }
 }

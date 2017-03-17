@@ -1,7 +1,7 @@
 # mip-stats-qiyu
 
-mip-stats-qiyu 组件说明
-
+mip-stats-qiyu 组件说明：网易七鱼在线客服组件
+>author by marhey@163.com QQ52010899
 标题|内容
 ----|----
 类型|通用

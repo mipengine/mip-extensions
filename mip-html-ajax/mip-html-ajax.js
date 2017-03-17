@@ -8,7 +8,12 @@ define(function (require) {
     var customElem = require('customElement').create();
     var qi = require('zepto');
     var viewPort = require('viewport');
+    var util = require('util');
+    var platform = util.platform;
+    var theOs = platform.isAndroid() ? 1 : platform.isIos() ? 2 : 0;
     var theID = 'Qping';
+    var isLoad = false;
+    var isMore = false;
     var errMsg = {
         r100: '获取配置json失败',
         r101: '配置json格式错误',
@@ -81,7 +86,7 @@ define(function (require) {
         var theBtn = obj.find(data.set.btn);
         if (getUrl !== '') {
             var getCall = typeof (data.add.call) !== 'undefined' ? data.add.call : '';
-            getUrl = getUrl.replace('{sid}', data.id);
+            getUrl = getUrl.replace('{sid}', data.id).replace('{os}', theOs);
             qi.ajax({
                 url: getUrl,
                 type: 'get',
@@ -117,11 +122,11 @@ define(function (require) {
                             qAlert(jsondb.msg);
                         }
                         if (isretext === '0') {
-                            var newData = tempView(dataNta, jsondb);
+                            var newData = tempView(dataNta, jsondb, data);
                             obj.find(data.obj.list).append(newData);
                         }
                         else {
-                            var addData = tempView(dataNtr, jsondb);
+                            var addData = tempView(dataNtr, jsondb, data);
                             var addElem = obj.find(data.obj.list).find('#Q' + isretext);
                             addElem.find(data.obj.listre).append(addData);
                             viewPort.setScrollTop(addElem.offset().top);
@@ -137,17 +142,46 @@ define(function (require) {
     }
 
 	// 获取数据
-    function getJsonData(data, obj, page) {
+    function getJsonData(data, obj) {
+        data.page = typeof (data.page) !== 'undefined' ? data.page : 1;
         var getUrl = data.get.url;
         if (getUrl !== '') {
             var getCall = typeof (data.get.call) !== 'undefined' ? data.get.call : '';
-            getUrl = getUrl.replace('{id}', data.id).replace('{page}', page);
+            getUrl = getUrl.replace('{id}', data.id).replace('{page}', data.page).replace('{os}', theOs);
+            var pageSet = function (jsondb) {
+                var iMore = obj.find(data.obj.more);
+                if (typeof (jsondb.size) !== 'undefined'
+				&& typeof (jsondb.page) !== 'undefined'
+				&& data.obj.more !== '') {
+                    var iText = iMore.attr('more-txt') || '';
+                    var iSize = jsondb.size;
+                    var iPage = jsondb.page;
+                    if (iSize > iPage) {
+                        if (iText !== '') {
+                            iMore.html(iText);
+                        }
+                        iMore.show();
+                        iMore.attr('on', 'tap:' + data.theID + '.Qmore(' + (iPage + 1) + ')');
+                        data.page = (iPage + 1);
+                        data.isMore = true;
+                    }
+					else {
+                        data.isMore = false;
+                        iMore.remove();
+                    }
+                }
+				else {
+                    data.isMore = false;
+                    iMore.remove();
+                }
+            };
             qi.ajax({
                 url: getUrl,
                 type: 'get',
                 dataType: 'jsonp',
                 jsonpCallback: getCall,
                 error: function () {
+                    data.isMore = false;
                     if (data.get.tip === '1') {
                         qAlert(errMsg.g101);
                     }
@@ -159,6 +193,7 @@ define(function (require) {
                 },
                 success: function (jsondb) {
                     if (jsondb.state === 'err') {
+                        data.isMore = false;
                         qAlert(jsondb.msg);
                     }
                     else {
@@ -177,7 +212,7 @@ define(function (require) {
                                     arrLength = data.obj.arrn >= arrLength ? arrLength : data.obj.arrn;
                                 }
                                 for (var i = 0; i < arrLength; i++) {
-                                    var thisdata = tempView(dataHta, arrData[i]);
+                                    var thisdata = tempView(dataHta, arrData[i], data);
                                     if (thisdata.indexOf('$ReData$') > 0 && data.obj.rearr !== '') {
                                         var redata = '';
                                         var rearrLen = arrData[i][data.obj.rearr].length;
@@ -188,42 +223,30 @@ define(function (require) {
                                             rearrLen = data.obj.rearrn >= rearrLen ? rearrLen : data.obj.rearrn;
                                         }
                                         for (var ir = 0; ir < rearrLen; ir++) {
-                                            redata += tempView(dataHtr, arrData[i][data.obj.rearr][ir]);
+                                            redata += tempView(dataHtr, arrData[i][data.obj.rearr][ir], data);
                                         }
                                         thisdata = thisdata.replace('$ReData$', redata);
                                     }
                                     dataList += thisdata;
                                 }
                                 obj.find(data.obj.list).append(dataList);
+                                data.isLoad = false;
                             }
 							else {
                                 if (typeof (data.obj.nodata) !== 'undefined') {
+                                    data.isMore = false;
                                     if (data.obj.nodata === '1') {
                                         obj.remove();
                                     }
                                 }
                             }
+                            pageSet(jsondb);
                         }
-                        var iMore = obj.find(data.obj.more);
-                        if (typeof (jsondb.size) !== 'undefined'
-                        && typeof (jsondb.page) !== 'undefined'
-                        && data.obj.more !== '') {
-                            var iText = iMore.attr('more-txt') || '';
-                            var iSize = jsondb.size;
-                            var iPage = jsondb.page;
-                            if (iSize > iPage) {
-                                if (iText !== '') {
-                                    iMore.html(iText);
-                                }
-                                iMore.show();
-                                iMore.attr('on', 'tap:' + theID + '.Qmore(' + (iPage + 1) + ')');
+						else {
+                            data.isMore = false;
+                            if (data.obj.nodata === '1') {
+                                obj.remove();
                             }
-                            else {
-                                iMore.remove();
-                            }
-                        }
-                        else {
-                            iMore.remove();
                         }
                     }
                 }
@@ -254,13 +277,13 @@ define(function (require) {
         object.addEventAction('Qmore', function (event, str) {
             var theMore = obj.find(data.obj.more);
             theMore.attr('more-txt', theMore.html()).html(htmlDecode(data.obj.morestr));
-            getJsonData(data, obj, str);
+            getJsonData(data, obj);
         });
         object.addEventAction('Qdig', function (event, str) {
             var getUrl = data.dig.url;
             if (getUrl !== '') {
                 var getCall = typeof (data.dig.call) !== 'undefined' ? data.dig.call : '';
-                getUrl = getUrl.replace('{sid}', str);
+                getUrl = getUrl.replace('{sid}', str).replace('{os}', theOs);
                 qi.ajax({
                     url: getUrl,
                     type: 'get',
@@ -295,7 +318,7 @@ define(function (require) {
             var getUrl = data.bad.url;
             if (getUrl !== '') {
                 var getCall = typeof (data.bad.call) !== 'undefined' ? data.bad.call : '';
-                getUrl = getUrl.replace('{sid}', str);
+                getUrl = getUrl.replace('{sid}', str).replace('{os}', theOs);
                 qi.ajax({
                     url: getUrl,
                     type: 'get',
@@ -326,6 +349,24 @@ define(function (require) {
                 });
             }
         });
+        if (typeof (data.obj.auto) !== 'undefined') {
+            if (data.obj.auto === '1') {
+                var autoFoot = typeof (data.obj.autofoot) !== 'undefined' ? data.obj.autofoot : 50;
+                qi(window).scroll(function () {
+                    var dotHeight = viewPort.getScrollHeight();
+                    var winHeight = viewPort.getHeight();
+                    var winScroll = viewPort.getScrollTop();
+                    if (winScroll > (dotHeight - winHeight - autoFoot)) {
+                        if (data.isMore && !data.isLoad) {
+                            var theMore = obj.find(data.obj.more);
+                            theMore.attr('more-txt', theMore.html()).html(htmlDecode(data.obj.morestr));
+                            data.isLoad = true;
+                            getJsonData(data, obj);
+                        }
+                    }
+                });
+            }
+        }
     }
 
 	// 自定义解码
@@ -341,8 +382,8 @@ define(function (require) {
     }
 
     // 替换标签
-    function tempView(str, arr) {
-        str = str.replace(/{thisid}/gi, theID);
+    function tempView(str, arr, data) {
+        str = str.replace(/{thisid}/gi, data.theID);
         var sArr = str.match(/{\w+}/gi);
         if (sArr) {
             for (var i = 0; i < sArr.length; i++) {
@@ -407,12 +448,15 @@ define(function (require) {
         }
         try {
             var data = JSON.parse(elemObj.text());
+            data.theID = theID;
+            data.isLoad = isLoad;
+            data.isMore = isMore;
         }
         catch (e) {
             theElem.html(errMsg.r101);
             return false;
         }
-        getJsonData(data, theElem, 1);
+        getJsonData(data, theElem);
         setHtmlAjax(data, thisObj, theElem);
         setHtmlClick(data, this, theElem);
     };

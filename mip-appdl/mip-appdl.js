@@ -19,8 +19,6 @@ define(function (require) {
         var showText = getShowText.call(element) || '';
         var imageAddr = element.getAttribute('src') || '';
         var imageStr = '';
-        var otherDownsrc = element.getAttribute("other-downsrc") || "";
-        src = !!src ? src : otherDownsrc;
 
         if (imageAddr) {
             imageStr = [
@@ -91,7 +89,7 @@ define(function (require) {
         var regIOS = /(iPhone|iPad|iPod|iOS)/i;
         var regAdr = /(Android)/i;
 
-        return regIOS.test(agent) ? 'Ios' : regAdr.test(agent) ? 'Android' : '';
+        return regIOS.test(agent) ? 'Ios' : regAdr.test(agent) ? 'Android' : 'Other';
     }
 
     /**

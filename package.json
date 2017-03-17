@@ -1,0 +1,13 @@
+{
+    "name": "mip-nav-nrslidedown",
+    "version": "1.0.0",
+    "contributors": [
+        {
+            "name": "zhou",
+            "email": "zhou0202@qq.com"
+        } 
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

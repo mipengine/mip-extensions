@@ -31,7 +31,7 @@ mip-em-hq  自有业务详情页整体交互组件
                     <a target="_blank" href="http://stattg.eastmoney.com/10095">
                         <div class="header_center">
 
-                            <p class="word_big word">东方财富网手机版</p>
+                            <p class="word_big word">行情中心</p>
 
                         </div>
                     </a>

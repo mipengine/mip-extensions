@@ -1288,6 +1288,9 @@ define(function (require) {
         }).on("click", ".sq", function () {
             $(".navitems").removeClass("on");
         })
+        $("#searchbox").on("click",function(){
+            window.location.href="http://wap.eastmoney.com/quoteCenter/center/Search.shtml";
+        })
     };
     return customElem;
 });

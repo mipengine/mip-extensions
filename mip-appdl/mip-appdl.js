@@ -19,6 +19,8 @@ define(function (require) {
         var showText = getShowText.call(element) || '';
         var imageAddr = element.getAttribute('src') || '';
         var imageStr = '';
+        var otherDownsrc = element.getAttribute("other-downsrc") || "";
+        src = !!src ? src : otherDownsrc;
 
         if (imageAddr) {
             imageStr = [

@@ -1,15 +1,15 @@
 # mip-em-hq
 
-mip-em-hq 东方财富行情单页组件
+mip-em-hq  自有业务详情页整体交互组件
 
-标题|东方财富行情单页组件
+标题|内容
 ----|----
-类型|定制
-支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-em-hq/mip-em-hq.js
+类型|业务，定制
+支持布局|responsive,fill,container
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-em-hq/mip-em-hq.js
 
-示例
-----
+## 示例
+
 ```html
     <mip-em-hq>
         <div id="share_wx_bg"></div>
@@ -26,7 +26,7 @@ mip-em-hq 东方财富行情单页组件
         </div>
         <div class="phone-top">
             <header id="commonHead">
-                <div id="slideHeader" class="slideRight">
+                <div id="slideHeader">
 
                     <a target="_blank" href="http://stattg.eastmoney.com/10095">
                         <div class="header_center">
@@ -50,6 +50,7 @@ mip-em-hq 东方财富行情单页组件
                 <a href="http://wap.eastmoney.com/3g/zjlx/"
                     target="_blank">资金流向</a>
             </div>
+            <div id="searchbox"><span name="stockbtn" class="search_btn_bg"></span>输代码、名称或简拼查询</div>
             <div id="s_stock_content" class="s_stock_content">
                 <div class="content_top">
                     <div class="s_stock_name"><span class="name">东方财富(300059)</span><span id="stock_status" class="font_red"></span></div>
@@ -96,11 +97,6 @@ mip-em-hq 东方财富行情单页组件
             </div>
 
             <div id="s_stock_content_more" class="s_stock_content_more">
-                <table id="stock_infos_nav" class="stock_nav_bar_table" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <td><span tab="">盘口</span></td>
-                    </tr>
-                </table>
                 <div class="stock_more_infos">
                     <ul id="stock_infos_list" class="stock_infos_list">
                         <li class="on">
@@ -185,8 +181,6 @@ mip-em-hq 东方财富行情单页组件
                     </ul>
                 </div>
             </div>
-            <div class="live-upload" id="live-upload">
-            </div>
             <table id="fixedTable" class="stock_nav_bar_table" cellpadding="0" cellspacing="0" border="0">
                 <tr></tr>
             </table>
@@ -216,15 +210,6 @@ mip-em-hq 东方财富行情单页组件
                         </ul>
                     </nav>
                 </div>
-                <ul class="foo clearfix">
-                    <li><a href="http://wap.eastmoney.com/Default.aspx?vt=1" target="_blank">彩版</a></li>
-                    <li class="on">触版</li>
-                    <li><a href="http://www.eastmoney.com/go.php?p=www" target="_blank">PC版</a></li>
-                </ul>
-                <div class="feedback">
-                    <a href="http://wap.eastmoney.com/YiJian.aspx?url=http%3a%2f%2fm.quote.eastmoney.com%2fstock%2c300059.shtml%3fcoop_s%3d"
-                        target="_blank">意见反馈</a>
-                </div>
             </footer>
         </div>
     </mip-em-hq>
@@ -233,4 +218,4 @@ mip-em-hq 东方财富行情单页组件
 
 ## 注意事项
 
-1.定制js 东方财富行情单页使用
+1.定制js 

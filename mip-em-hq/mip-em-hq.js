@@ -1,7 +1,7 @@
 define(function (require) {
     var $ = require('jquery');
     var customElem = require('customElement').create();
-    var stockEntity = {};
+    window.stockEntity = {};
     window.common = {
         //判断ios版本号是否是ios4，true表示是
         gt_iOS4: function () {
@@ -438,16 +438,16 @@ define(function (require) {
 
         },
         //根据股票代码获取市场
-        getMessageCode: function (sc) {
+        getMkt: function (sc) {
             var i = sc.substring(0, 1);
             var j = sc.substring(0, 3);
             if (i == "5" || i == "6" || i == "9") {
                 return "1," + sc; //上证股票
             } else {
                 if (j == "009" || j == "126" || j == "110") {
-                    return "1," + sc; //上证股票
+                    return "1"; //上证股票
                 } else {
-                    return "0," + sc; //深圳股票
+                    return "2"; //深圳股票
                 }
             }
         },
@@ -1254,7 +1254,7 @@ define(function (require) {
     }
     customElem.prototype.build = function () {
         var scode = common.getQueryString("code") || "300059";
-        var smkt = getMessageCode(scode);
+        var smkt = common.getMkt(scode);
         stockEntity = {
             stockMarket: smkt,
             stockId: scode + smkt,

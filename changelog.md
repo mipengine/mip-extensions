@@ -7,6 +7,10 @@
 组件名|功能说明
 ---|---
 [mip-gudindgufeng](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-gudindgufeng)|[新增][平台] gufengmh.com站点投放汇米广告固定位广告插件
+[mip-gudingwzshipin](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-gudingwzshipin)|[新增][平台] 用于wzshipin.com站点投放汇米广告固定位广告的组件
+[mip-game4399-download](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-game4399-download)|[新增][平台] mip-game4399-download 实现了简单的游戏下载控件
+[mip-ticket](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ticket)|[升级][平台] mip-适用于票价的选择、票数的增加和减少
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-ad-plus)|[升级][平台] 支持整站页面的直投广告显示
 
 #### 2017.03.16
 
@@ -23,6 +27,7 @@
 [mip-99down-comment](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-99down-comment)|[新增][平台] 99down下载站文章详情页的评论
 [mip-infinitescroll](https://github.com/mipengine/mip-extensions/tree/master/mip-infinitescroll)|[升级] 修改配置参数
 [mip-share](https://github.com/mipengine/mip-extensions/tree/master/mip-share)|[升级] 修复 mip-share 分享组件 Android weChat 下分享bug
+[mip-ticket](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ticket)|[升级][平台] mip-适用于票价的选择、票数的增加和减少
 
 #### 2017.03.14
 

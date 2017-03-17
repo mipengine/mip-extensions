@@ -89,7 +89,7 @@ define(function (require) {
         var regIOS = /(iPhone|iPad|iPod|iOS)/i;
         var regAdr = /(Android)/i;
 
-        return regIOS.test(agent) ? 'Ios' : regAdr.test(agent) ? 'Android' : '';
+        return regIOS.test(agent) ? 'Ios' : regAdr.test(agent) ? 'Android' : 'Other';
     }
 
     /**

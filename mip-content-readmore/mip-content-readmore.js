@@ -75,12 +75,16 @@ define(function (require) {
             len++;
         }
         if (content !== undefined && conlen > len) {
-            me.innerHTML = '<div class="mip-content-readmore"><em><code class="mip-readmore-fx"></code></em><span>'
+            var id = Math.floor(Math.random() * 100);
+            me.innerHTML = '<div class="mip-content-readmore" data-mip-readmore-id="' + id
+                + '"><em><code class="mip-readmore-fx"></code></em><span>'
                 + buttitle + '</span></div>';
-            element.innerHTML = content.substring(0, len) + ' ......';
+            element.innerHTML = content.substring(0, len) + '<mip-readmore' + id
+                + '> ......</mip-readmore' + id + '>';
             var readmoreele = $('.mip-content-readmore');
             readmoreele[readmoreele.length - 1].addEventListener('click', function () {
-                element.innerHTML = content;
+                var thisid = this.getAttribute('data-mip-readmore-id');
+                $('mip-readmore' + thisid)[0].innerHTML = content.substring(len);
                 me.innerHTML = '';
             }, false);
         }

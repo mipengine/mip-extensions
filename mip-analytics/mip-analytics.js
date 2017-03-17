@@ -5,6 +5,8 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
+    var performance = require('performance');
+    var mipSpeedInfo = {};
 
     /**
      * 构造元素，只会运行一次
@@ -17,7 +19,7 @@ define(function (require) {
         }
         catch (e) {
             console.warn('json is illegal'); // eslint-disable-line
-            console.warn(e);// eslint-disable-line
+            console.warn(e); // eslint-disable-line
             return;
         }
 
@@ -49,9 +51,10 @@ define(function (require) {
          * 数据序列化处理
          *
          * @param {Object} obj 必须是对象
+         * @param {string} vars 配置变量,用于替换1级参数的插值
          * @return {string}
          */
-        serialize: function (obj) {
+        serialize: function (obj, vars) {
             if (!obj) {
                 return '';
             }
@@ -70,7 +73,7 @@ define(function (require) {
                             item = JSON.stringify(item);
                         }
 
-                        str += k + '=' + encodeURIComponent(item) + '&';
+                        str += k + '=' + encodeURIComponent(this.valReplace(item, vars)) + '&';
                     }
 
                 }
@@ -105,21 +108,40 @@ define(function (require) {
         /**
          * 替换插值 ${var}
          *
-         * @param {Object} cfg 配置对象
+         * @param {string}  str 被替换的字符串
+         * @param {string}  vars 替换变量
          * @return {string}
          */
-        hostReplace: function (cfg) {
-            cfg.vars = cfg.vars || {};
-            cfg.host = cfg.host.replace(/(\${.*})/g, function (match, $1) {
-                return cfg.vars[$1.substring(2, $1.length - 1).trim()] || $1;
+        valReplace: function (str, vars) {
+            vars = vars || {};
+            util.fn.extend(vars, mipSpeedInfo);
+
+            return str.replace(/(\${.*})/g, function (match, $1) {
+                var key = $1.substring(2, $1.length - 1).trim();
+                if (typeof vars[key] === 'object') {
+                    return '';
+                }
+
+                return vars[key] || $1;
             });
 
-            return cfg.host;
         },
 
-        send: function (cfg) {
-            var queryString = this.serialize(cfg.queryString) + '&t=' + new Date().getTime();
-            var url = this.hostReplace(cfg) + queryString;
+        send: function (cfg, params) {
+            if (params) {
+                cfg.queryString.ext = params;
+            }
+            else {
+                try {
+                    delete cfg.queryString.ext;
+                }
+                catch (e) {
+                    cfg.queryString.ext = undefined;
+                }
+                
+            }
+            var queryString = this.serialize(cfg.queryString, cfg.vars) + '&t=' + new Date().getTime();
+            var url = this.valReplace(cfg.host, cfg.vars) + queryString;
             this.imgSendLog(url);
         }
     };
@@ -128,25 +150,67 @@ define(function (require) {
     // 点击事件handle
     var clickHandle = function (triggers, eventName) {
         triggers.forEach(function (el, index) {
-            util.event.delegate(document, el.selector, eventName, function (event) {
-                log.send(el);
-            }, false);
+            var ancestors = el.tag ? document.querySelectorAll(el.selector) : [document];
+            var eventTag = el.tag || el.selector;
+
+            ancestors.forEach(function (dom) {
+                util.event.delegate(dom, eventTag, eventName, function (event) {
+                    var params = this.getAttribute('data-click') || '';
+                    var paramsObj = (new Function('return ' + params))();
+
+                    log.send(el, paramsObj);
+                }, false);
+            });
         });
     };
 
     // 定时器存储
     var timer = [];
 
+    // 关键事件点
+    var eventPoint = [
+        'MIPStart',
+        'MIPPageShow',
+        'MIPDomContentLoaded',
+        'MIPFirstScreen'
+    ];
+    var defaultDispKey = 'domready';
+    var isSendDisp = {};
+    isSendDisp[defaultDispKey] = 0;
+
+    // 关键信息都有时，判定为domready
+    var isDomReady = function (data) {
+        return data ? eventPoint.every(function (el, index) {
+            return data[el];
+        }) : false;
+    };
+
     // event bind
     var triggers = {
+
         click: function (triggers) {
             clickHandle(triggers, 'click');
         },
+
         touchend: function (triggers) {
             clickHandle(triggers, 'touchend');
         },
-        disp: function (triggers) {},
+
+        disp: function (triggers) {
+            performance.on('update', function (data) {
+                if (!isSendDisp[defaultDispKey] && isDomReady(data)) {
+                    mipSpeedInfo = data;
+                    isSendDisp[defaultDispKey] === 1;
+                    triggers.forEach(function (el, index) {
+                        log.send(el);
+                    });
+                }
+
+            });
+        },
+
         scroll: function () {},
+
         timer: function (triggers) {
             triggers.forEach(function (el, index) {
                 timer.push(setInterval(function () {

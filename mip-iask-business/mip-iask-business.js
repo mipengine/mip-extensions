@@ -2,7 +2,7 @@
 * @file 脚本支持
 * @author hejieye
 * @time  2016-12-20
-* @version 1.2.0
+* @version 1.2.1
 */
 define(function (require) {
 
@@ -10,7 +10,7 @@ define(function (require) {
     var customElem = require('customElement').create();
     // 商业广告
     var ipLoad = function (callback) {
-        var url = 'http://ipip.iask.cn/iplookup/search?format=json&callback=?';
+        var url = 'https://mipp.iask.cn/iplookup/search?format=json&callback=?';
         try {
             $.getJSON(url,
             function (data) {
@@ -73,7 +73,7 @@ define(function (require) {
         if (type === '') {
             return;
         }
-        var url = 'http://m.iask.sina.com.cn/t/wlsh?openCorporationId=' + openId + '&type=' + type;
+        var url = 'https://mipp.iask.cn/t/wlsh?openCorporationId=' + openId + '&type=' + type;
         $.get(url,
         function (data) {
             var res = $.parseJSON(data);
@@ -111,19 +111,6 @@ define(function (require) {
             }
         });
     };
-    // 南方网通底部悬浮广告
-    var southnetwork = function (sources, openId, div) {
-        var url = 'http://imgv2.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
-        try {
-            $.getJSON(url,
-            function (data) {
-                var htmls = this.putMXfAd(data.m[0].link, data.m[0].pic);
-                $(div).empty();
-                $(div).append(htmls);
-            });
-        }
-        catch (e) {}
-    };
     // 动态添加 mip-fixed悬浮广告
     var putMXfAd = function (picLink, picLocal) {
         var htmls = '';
@@ -135,6 +122,19 @@ define(function (require) {
         htmls += '</a>';
         htmls += '</div></mip-fixed>';
         return htmls;
+    };
+    // 南方网通底部悬浮广告
+    var southnetwork = function (sources, openId, div) {
+        var url = 'https://imgv2-ssl.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
+        try {
+            $.getJSON(url,
+            function (data) {
+                var htmls = putMXfAd(data.m[0].link, data.m[0].pic);
+                $(div).empty();
+                $(div).append(htmls);
+            });
+        }
+        catch (e) {}
     };
     var putQiyeInfo = function (companyName, drName, website, picLocal) {
         var htmls = '<div class=\'firms-con\'>';
@@ -153,7 +153,7 @@ define(function (require) {
     };
     // 加载url中的js
     var loadURLJS = function (tags, params) {
-        var url = 'http://m.iask.sina.com.cn/mib/tag/';
+        var url = 'https://mipp.iask.cn/mib/tag/';
         var arry = tags.split(':');
         for (var i = 0; i < arry.length; i++) {
             url = url + arry[i];

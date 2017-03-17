@@ -1,0 +1,15 @@
+{
+    "name": "mip-list",
+    "version": "1.0.0",
+    "description": "列表组件",
+    "contributors": [
+        {
+            "name": "MIP authors",
+            "email": "mip-support@baidu.com",
+            "url": "https://www.mipengine.org"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

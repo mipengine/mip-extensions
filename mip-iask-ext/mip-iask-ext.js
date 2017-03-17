@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author  hejieye
-* @time  20161230
-* @version 1.2.0
+* @time  20170106
+* @version 1.3.2
 */
 define(function (require) {
     var $ = require('zepto');
@@ -19,9 +19,8 @@ define(function (require) {
                     $(this).addClass('current');
 
                     var index = $(this).index();
-                    var nodes = $(this).parent().siblings();
+                    var nodes = $('.relative_kownlege').find('.tabs-con');
                     $(nodes).hide();
-
                     $(nodes).slice(index, index + 1).show();
                 }
                 catch (e) {}
@@ -47,6 +46,20 @@ define(function (require) {
                     $(this).attr('pagecount', endcount);
                 }
                 catch (e) {}
+            });
+        },
+        // 相关知识换一换
+        kownlegMore: function () {
+            $('.kownleg-change').on('click', function (event) {
+                event.preventDefault();
+                $('div.similar').find('div.show').removeClass('show').addClass('hide').appendTo($('div.similar'));
+                var i = 1;
+                $('div.similar').find('div.hide').each(function () {
+                    if (i === 1) {
+                        $(this).removeClass('hide').addClass('show');
+                    }
+                    i ++;
+                });
             });
         },
          // 展开 or 收起
@@ -114,13 +127,13 @@ define(function (require) {
                     alert('请选择举报原因！');
                 }
                 else {
-                    var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
+                    var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
                     $.get(checkLoginUrl,
                     function (e) {
                         if (e == null || e === 'null') {
                             // 跳转到登录页面
                             var thisHref = window.location.href;
-                            window.location.href = 'http://m.iask.sina.com.cn/login?source=' + thisHref;
+                            window.location.href = 'https://mipp.iask.cn/login?source=' + thisHref;
                         }
                         else {
                             var questionId = $('.report_id').text();
@@ -167,29 +180,24 @@ define(function (require) {
         },
         // 验证登录信息
         checkLogin: function () {
-            var indexLogin = $('.index_login');
+            var btnUser = $('.btn-user');
             var thisHref = window.location.href;
-            var nickName = null;
-            var checkLoginUrl = 'http://m.iask.sina.com.cn/checkLogin?mip=' + Math.random();
+            var checkLoginUrl = 'https://mipp.iask.cn/checkLogin?mip=' + Math.random();
             $.get(checkLoginUrl,
             function (e) {
                 if (e === null || e === 'null') {
-                    indexLogin.attr('href', 'http://m.iask.sina.com.cn/login?source=' + thisHref);
-                }
-                else {
-                    var user = $.parseJSON(e);
-                    nickName = user.nickname;
-                    if (nickName.length > 4) {
-                        nickName = nickName.substring(0, 3) + '....';
-                    }
-                    indexLogin.removeClass('btn-header btn-user');
-                    indexLogin.addClass('user-nick');
-                    indexLogin.html(nickName);
-
-                    indexLogin.click(function (event) {
+                    $('.icon-ency-login').attr('href', 'https://mipp.iask.cn/login?source=' + thisHref);
+                    btnUser.click(function (event) {
                         event.preventDefault();
                         event.stopPropagation();
-                        $('.user-more').show();
+                        $('.login-out').show();
+                    });
+                }
+                else {
+                    btnUser.click(function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $('.login-in').show();
                     });
                 }
             });
@@ -208,12 +216,12 @@ define(function (require) {
             if (status !== null) {
                 url += '&status=1';
             }
-            $('body').append('<mip-img src=\'' + url + '\' class=\'mask\' >');
+            $('body').append('<mip-pix src=\'' + url + '\' ></mip-pix>');
         },
         // 数据上报
         checkData: function () {
             $('mip-ad,mip-embed').each(function () {
-                effects.sendPost('http://dd.iask.cn/ddd/adAudit', '144', '241', null, '195', 'm_q_detail_attention_1');
+                effects.sendPost('https://mipu.iask.cn/ddd/adAudit', '144', '241', null, '195', 'm_q_detail_attention_1');
             });
             setInterval(function () {
                 // 判断是否加载出来
@@ -221,7 +229,7 @@ define(function (require) {
                     var loadFlag = $(this).attr('loadFlag');
                     if ($(this).html().indexOf('iframe') > 0 && loadFlag === undefined) {
                         $(this).attr('loadFlag', true);
-                        effects.sendPost('http://dd.iask.cn/ddd/adStatus', '144', '241', 1, '195', 'm_q_detail_attention_1');
+                        effects.sendPost('https://mipu.iask.cn/ddd/adStatus', '144', '241', 1, '195', 'm_q_detail_attention_1');
                     }
                 });
             }, 100);
@@ -242,6 +250,38 @@ define(function (require) {
                 $(this).siblings('.iask-show-more').show();
             });
         },
+        // 好万家导流
+        guideData: function () {
+            var urlf = 'https://mipp.iask.cn/t/mipdf?t=fous';
+            var urlr = 'https://mipp.iask.cn/t/mipdf?t=recom';
+            try {
+                $.ajax({
+                    type: 'GET',
+                    url: urlf,
+                    dataType: 'html',
+                    success: function (data) {
+                        if (!!data) {
+                            $('.load_today_focus').empty();
+                            $('.load_today_focus').append(data);
+                        }
+                    }
+                });
+                $.ajax({
+                    type: 'GET',
+                    url: urlr,
+                    dataType: 'html',
+                    success: function (data) {
+                        if (!!data) {
+                            $('.load_recom_red').empty();
+                            $('.load_recom_red').append(data);
+                        }
+                    }
+                });
+            }
+            catch (e) {
+                console.log(e);
+            }
+        },
         init: function () {
             this.switchBlock();
             this.changeMore();
@@ -253,8 +293,10 @@ define(function (require) {
             this.btnSend();
             this.checkLogin();
             this.userInfoHide();
-            this.checkData();
+            // this.checkData();
             this.accordion();
+            this.guideData();
+            this.kownlegMore();
         }
     };
 

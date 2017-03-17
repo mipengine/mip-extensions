@@ -20,6 +20,11 @@ define(function (require) {
         var targetSrc = $element.attr('target-src');
         var poster = $element.attr('poster');
 
+        // 广告提示的dom
+        var domAdTip = document.createElement('div');
+        domAdTip.innerHTML = '广告';
+        domAdTip.className = 'ad-tip';
+
         //  初始化播放器
         var video = document.createElement('video');
 
@@ -45,9 +50,12 @@ define(function (require) {
         //  如果有广告并且非IOS上的QQ浏览器 则播放广告
         if (adSrc && !(platform.isIos() && platform.isQQ())) {
             video.src = adSrc;
+            $element[0].appendChild(domAdTip);
 
             //  广告播放完毕
             video.onended = function () {
+                // 隐藏广告提示
+                domAdTip.style.display = 'none';
                 video.src = targetSrc;
                 video.autoplay = true;
                 video.setAttribute('autoplay', 'autoplay');

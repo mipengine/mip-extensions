@@ -10,6 +10,7 @@ define(function (require) {
 
     function render(element, me) {
 
+        /* 图加功能下线 */
         var unionId = element.getAttribute('unionId');
         var formList = element.getAttribute('formList') || '';
         var nopicFormList = element.getAttribute('nopicFormList') || '';

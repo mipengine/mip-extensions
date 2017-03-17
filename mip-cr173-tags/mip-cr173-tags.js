@@ -58,7 +58,7 @@ define(function (require) {
     function addTags(tagsHtml, firstSystem, firstId, firstName, systemName) {
         tagsHtml = '<div class=\'g-tags-box\'><ul>' + tagsHtml + '</ul></div>';
         $('.g-tags-box').remove();
-        $('.m-down-msg').after(tagsHtml);
+        $('.g-game-msg').after(tagsHtml);
         $('.g-tags-box').show();
         if (pageInfo.system.indexOf(systemName) === -1) {
             $('.m-down-msg .info .pic ul li b').each(function () {

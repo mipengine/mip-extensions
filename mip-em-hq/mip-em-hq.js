@@ -442,7 +442,7 @@ define(function (require) {
             var i = sc.substring(0, 1);
             var j = sc.substring(0, 3);
             if (i == "5" || i == "6" || i == "9") {
-                return "1," + sc; //上证股票
+                return "1"; //上证股票
             } else {
                 if (j == "009" || j == "126" || j == "110") {
                     return "1"; //上证股票

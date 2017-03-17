@@ -1,5 +1,48 @@
 # 升级日志
 
+#### 2017.03.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-gudindgufeng](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-gudindgufeng)|[新增][平台] gufengmh.com站点投放汇米广告固定位广告插件
+
+#### 2017.03.16
+
+> 核心代码上线
+
+    1、单元测试用例上线；
+    2、mip-video问题修复；
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fh-async](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-async)|[新增][平台] 用来支持整站全网异步接口渲染组件
+[mip-99down-comment](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-99down-comment)|[新增][平台] 99down下载站文章详情页的评论
+[mip-infinitescroll](https://github.com/mipengine/mip-extensions/tree/master/mip-infinitescroll)|[升级] 修改配置参数
+[mip-share](https://github.com/mipengine/mip-extensions/tree/master/mip-share)|[升级] 修复 mip-share 分享组件 Android weChat 下分享bug
+
+#### 2017.03.14
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-99down-dropload](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-99down-dropload)|[新增][平台] 支持页面下拉加载
+[mip-huayi-kst](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-huayi-kst)|[新增][平台] 华怡MIP站点幻灯片、快商通|商务通邀请框通用推送组件
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-ad-plus)|[新增][平台] 支持整站页面的直投广告显示
+[mip-wangxia-topc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wangxia-topc)|[新增][平台] 移动跳转PC
+
+#### 2017.03.13
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zixun](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zixun)|[新增][平台] 根据关键词加载商务通咨询邀请框
+
 #### 2017.01.06
 
 > 核心代码上线
@@ -20,7 +63,7 @@
 
 #### 2017.01.05
 
-> 组件上线 
+> 组件上线
 
 组件名|功能说明
 ---|---
@@ -184,7 +227,7 @@
 [mip-html-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-html-ajax)|[升级] 评论提交加载
 [mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
 [mip-iask-ext](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ext)|[升级] 爱问详细页插件
-[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件 
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
 [mip-jjpz](https://github.com/mipengine/mip-extensions/tree/master/mip-jjpz)|[升级] 自有业务详情页整体交互组件
 
 #### 2016.12.16
@@ -243,7 +286,7 @@
 [mip-html-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-html-ajax)|[升级] 评论提交加载
 [mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[升级] 百度资讯垂类新闻和热点推荐组件
 [mip-iask-ajax](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-ajax)|[升级] iask—ajax请求
-[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件 
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
 [mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 爱问商业广告组件
 [mip-jjpz](https://github.com/mipengine/mip-extensions/tree/master/mip-jjpz)|[升级] 自有业务详情页整体交互组件
 
@@ -474,7 +517,7 @@
 [mip-xueyou-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xueyou-article)|[新增] 学优网文章阅读组件
 [mip-xueyou-list](https://github.com/mipengine/mip-extensions/tree/master/mip-xueyou-list)|[新增] 学优网list组件
 
-#### 2016.11.15 
+#### 2016.11.15
 
 > 核心代码上线
 
@@ -488,7 +531,7 @@
 [mip-wkad-config ](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config )|[升级] 寻医问药广告配置组件 
 [mip-wkfun](https://github.com/mipengine/mip-extensions/tree/master/mip-wkfun)|[升级] 寻医问药页面功能组件
 
-#### 2016.11.11 
+#### 2016.11.11
 
 > 核心代码上线
 

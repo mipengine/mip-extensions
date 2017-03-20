@@ -3,7 +3,7 @@
  * @author liangjiaying<jiaojiaomao220@163.com> 2017.02
  */
 
-define(function(require) {
+define(function (require) {
 
     var customElement = require('customElement').create();
     var util = require('util');
@@ -52,7 +52,7 @@ define(function(require) {
      * @param  {Object} expJson json for experiment config
      * @param  {boolean} needConsole whether dump group info to console
      */
-    var Experiment = function(expName, expJson, needConsole) {
+    var Experiment = function (expName, expJson, needConsole) {
         var exp = expJson[expName];
         this.expName = expName;
         this.expVar = exp.variants || {};
@@ -67,7 +67,7 @@ define(function(require) {
      *
      * @return {string} group name
      */
-    Experiment.prototype.getExpGroup = function() {
+    Experiment.prototype.getExpGroup = function () {
         // if url hash is set, get group from URL
         var groupFromUrl = this._getExpGroupFromUrl();
         if (this.needConsole) {
@@ -105,7 +105,7 @@ define(function(require) {
      *
      * @return {string} experiment group name
      */
-    Experiment.prototype._getExpGroupFromUrl = function() {
+    Experiment.prototype._getExpGroupFromUrl = function () {
         var hash = window.location.hash.slice(1);
         var group = '';
         if (!hash) {
@@ -129,7 +129,7 @@ define(function(require) {
      *
      * @return {string} experiment group name
      */
-    Experiment.prototype._getExpGroupFromStorage = function() {
+    Experiment.prototype._getExpGroupFromStorage = function () {
         var group = customStorage.get('mip-x-' + this.expName);
         return group in this.expVar ? group : '';
     };
@@ -139,7 +139,7 @@ define(function(require) {
      *
      * @return {string} experiment group name
      */
-    Experiment.prototype._getExpGroupNew = function() {
+    Experiment.prototype._getExpGroupNew = function () {
         var rNumber = Math.random() * 100;
         var groups = Object.keys(this.expVar);
         // 根据随机数和每组份数计算新分组
@@ -166,7 +166,7 @@ define(function(require) {
      * @param {Object} expVar variables in config
      * @return {number} addition of config
      */
-    Experiment.prototype._addVars = function(i, expVar) {
+    Experiment.prototype._addVars = function (i, expVar) {
         var groups = Object.keys(expVar);
         if (i === 0) {
             return expVar[groups[0]];
@@ -179,7 +179,7 @@ define(function(require) {
      *
      * @param {string} expGroup experiment group
      */
-    Experiment.prototype.setExpGroup = function(expGroup) {
+    Experiment.prototype.setExpGroup = function (expGroup) {
         customStorage.set('mip-x-' + this.expName, expGroup);
         if (expGroup !== 'default') {
             // XXX: no use of document.body for there might be multiple bodies
@@ -189,10 +189,9 @@ define(function(require) {
 
     /**
      * bind event, when trigger, fire baidu-stats request
-     * 
-     * @return {Null}
+     *
      */
-    Experiment.prototype.bindBaiduStats = function() {
+    Experiment.prototype.bindBaiduStats = function () {
         // make sure user need baidu-stats
         if (!this.baiduStats) {
             return;
@@ -222,18 +221,16 @@ define(function(require) {
 
                 eleDom.addEventListener(stats.event, Experiment.prototype._sendStats.bind(undefined, stats, this.expName), false);
             }
-
         }
-
-    }
+    };
 
     /**
      * send baidu-stats using certain value
-     * 
-     * @param  {Object}
-     * @param  {String}
+     *
+     * @param  {Object} obj params
+     * @param  {string} expName name
      */
-    Experiment.prototype._sendStats = function(obj, expName) {
+    Experiment.prototype._sendStats = function (obj, expName) {
         var expAttr = 'mip-x-' + expName;
         var expResult = document.body.getAttribute(expAttr) || 'default';
         try {
@@ -241,12 +238,12 @@ define(function(require) {
         } catch (e) {
             console.warn(e);
         }
-    }
+    };
 
     /**
      * build element, exec only once
      */
-    customElement.prototype.build = function() {
+    customElement.prototype.build = function () {
         var element = this.element;
         element.needConsole = element.hasAttribute('needConsole');
         initExp(element);

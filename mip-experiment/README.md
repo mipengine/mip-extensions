@@ -223,6 +223,89 @@ body[mip-x-button-color5=red] .exp-btn5 {
 </mip-experiment>
 ```
 
+### 6. 与百度统计配合使用
+
+`<mip-experiment>`可以和`<mip-stats-baidu>`标签配合统计页面元素事件的触发次数。这个功能使用百度统计的[_trackEvent API](http://tongji.baidu.com/open/api/more?p=guide_trackEvent)发送统计请求，在百度统计后台-访问分析-事件分析可以看到统计结果。
+
+#### 注意事项：
+
+1. 需要按照`<mip-stats-baidu>`文档引入百度统计代码和标签。
+2. 如果引入了多个百度统计，请以_hmt.id中的token为准，在token对应的统计后台查看数据。
+3. 开发时请关注控制台报错。
+4. 百度统计的数据产出有一定延迟，请在第二天查看数据
+
+#### 统计使用说明：
+
+1. **配置多个统计：**baidu-stats 为统计配置的数组，里面每一个元素相当于一句 js 的`addEventListener`
+2. **配置统计参数：**每个配置可以传入四个参数
+    1. 第一个为元素选择器（支持element, id, class）
+    2. 第二个为事件（click, touchend）
+    3. 第三个可以自定义（可以选择填写广告的单价或事件的权重）
+    4. 第四个可以自定义
+3. **统计结果：**在站长平台看到的统计结果有四个参数ABCD:
+    A. 第一个对应元素加事件，相当于统计参数的1和2，格式为element__click
+    B. 第二个对应当前实验名和实验分组，格式为mip-x-name=group
+    C. 第三个对应参数3，自定义
+    D. 第四个对应参数4，自定义
+
+下面例子可用于实验 “改变按钮的背景色，计算按钮的点展比”。在baidu-stats中配置了页面加载的次数和按钮点击次数的统计。最后数据的产生格式为：
+
+__|次数|参数A|参数B|参数C|参数D|
+----|----|----|----|----|----|
+第1行|3083|window__load|mip-x-button-color6=red|
+第2行|3013|window__load|mip-x-button-color6=grey|
+第3行|4742|window__load|mip-x-button-color6=default|
+第4行|127|window__load|mip-x-button-color6=red|2.23|xxx|
+第5行|210|window__load|mip-x-button-color6=grey|2.23|xxx|
+第6行|272|window__load|mip-x-button-color6=default|2.23|xxx|
+
+- 第1行和第4行为按钮红色情况，点占比为127/3083 = 4.12%
+- 第2行和第5行为按钮灰色情况，点占比为210/3013 = 6.97%
+- 第3行和第6行为按钮黑色情况(默认，对照组)，点占比为272/4742 = 5.74%
+
+可见，红色按钮实验点占比降低，灰色按钮实验点占比升高。
+
+```html
+<style>
+button {
+    background-color: black;
+    display: block;
+    margin:10px;
+    padding:20px;
+}
+body[mip-x-button-color=red] #btn01 {
+    background-color: red;
+}
+body[mip-x-button-color=grey] #btn01 {
+    background-color: #888888;
+}
+</style>
+<mip-experiment layout="nodisplay" class="mip-hidden">
+    <script type="application/json" for="mip-experiment">
+        {
+            "button-color6": {
+                "sticky": false,
+                "descri": "设置按钮背景色,红-灰-黑（默认）",
+                "variants": {
+                    "red": 30,
+                    "grey": 30
+                },
+                "baidu-stats": [
+                    ["window", "load"],
+                    ["#btn01", "click"，"2.23", "xxx"]
+                ]
+            }
+        }
+    </script>
+    <p>设置按钮背景色,红（30%）-灰（30%）-黑（默认40%）</p>
+    <p>每次刷新重新分组</p>
+    <button id="btn01">修改背景色</button>
+</mip-experiment>
+<script src="https://mipcache.bdstatic.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
+```
+
+
+
 
 ## 属性
 

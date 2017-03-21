@@ -22,7 +22,7 @@ define(function (require) {
         var rid = '&rid=' + webInfo.Id;
         var platform = '&platform=2';
         var content = '&content=' + encodeURIComponent(document.title);
-        if (compareDate(webInfo.DateTime, '2015/12/31')) {
+        if (compareDate(webInfo.DateTime, '2014/12/31')) {
             var jsStrdate = src + charset + atime + ref + url + username + type + rid + platform + content;
             document.write('<iframe src="' + jsStrdate + '" width="0" height="0" style="display:none;"></iframe>');
             var bjname = webInfo.Username;
@@ -46,7 +46,7 @@ define(function (require) {
                     case 'zhongzai':
                         cnzzid = 1256652057, cnzzsite = 's11.cnzz.com';
                         break;
-                    case 'zhengjin':
+                    case 'chenzhihua':
                         cnzzid = 1260137048, cnzzsite = 's11.cnzz.com';
                         break;
                     case 'cr173_zjj':
@@ -55,13 +55,13 @@ define(function (require) {
                     case 'huyakun':
                         cnzzid = 1256652041, cnzzsite = 's4.cnzz.com';
                         break;
-                    case 'cr173hyj':
+                    case 'zhangcongqing':
                         cnzzid = 1259255061, cnzzsite = 's4.cnzz.com';
                         break;
                     case 'fanqiang':
                         cnzzid = 1259255027, cnzzsite = 's11.cnzz.com';
                         break;
-                    case 'hjl':
+                    case 'wangzhuang':
                         cnzzid = 1256652029, cnzzsite = 's11.cnzz.com';
                         break;
                     case 'zhangwen':
@@ -70,7 +70,7 @@ define(function (require) {
                     case 'pengqi':
                         cnzzid = 1257189713, cnzzsite = 's4.cnzz.com';
                         break;
-                    case 'zhoubing':
+                    case 'xudewen':
                         cnzzid = 1256652011, cnzzsite = 's4.cnzz.com';
                         break;
                     case 'luowen':
@@ -97,8 +97,8 @@ define(function (require) {
                     case 'liuxiaocong':
                         cnzzid = 1260137076, cnzzsite = 's95.cnzz.com';
                         break;
-                    case 'lpp_cr173':
-                        cnzzid = 1256651941, cnzzsite = 's95.cnzz.com';
+                    case 'zhangyanan':
+                        cnzzid = 1259255042, cnzzsite = 's95.cnzz.com';
                         break;
                     case 'oywx':
                         cnzzid = 1256651884, cnzzsite = 's4.cnzz.com';
@@ -106,19 +106,25 @@ define(function (require) {
                     case 'ganzhen':
                         cnzzid = 1256651837, cnzzsite = 's11.cnzz.com';
                         break;
-                    case 'liuxiaoqing':
+                    case 'tandan':
                         cnzzid = 1259255086, cnzzsite = 's95.cnzz.com';
                         break;
-                    case 'yanwencai':
+                    case 'xiaokaiyang':
                         cnzzid = 1259257431, cnzzsite = 's95.cnzz.com';
                         break;
                     case 'fangyu':
                         cnzzid = 1259257460, cnzzsite = 's4.cnzz.com';
                         break;
-                    case 'lujieming':
-                        cnzzid = 1259257489, cnzzsite = 's11.cnzz.com';
+                    case 'cr_wh':
+                        cnzzid = 1261372691, cnzzsite = 's4.cnzz.com';
                         break;
-                    case 'laiweiqiang':
+                    case 'wujiaqi':
+                        cnzzid = 1261372711, cnzzsite = 's11.cnzz.com';
+                        break;
+                    case 'lujieming':
+                        cnzzid = 1256651941, cnzzsite = 's11.cnzz.com';
+                        break;
+                    case 'huangkui':
                         cnzzid = 1260137150, cnzzsite = 's95.cnzz.com';
                         break;
                 }

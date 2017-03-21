@@ -60,7 +60,12 @@ define(function (require) {
                 return;
             }
 
-            statusData = JSON.parse(decodeURIComponent(statusData));
+            try {
+                statusData = JSON.parse(decodeURIComponent(statusData));
+            } catch(e) {
+                console.warn("事件追踪data-stats-baidu-obj数据不正确");
+                return;
+            }
 
             var eventtype = statusData.type;
 
@@ -89,11 +94,17 @@ define(function (require) {
             }
             else {
                 tagBox[index].addEventListener(eventtype, function (event) {
-                    var tempData = event.target.getAttribute('data-stats-baidu-obj');
+                    var tempData = this.getAttribute('data-stats-baidu-obj');
                     if (!tempData) {
                         return;
                     }
-                    var statusJson = JSON.parse(decodeURIComponent(tempData));
+                    var statusJson;
+                    try {
+                        statusJson = JSON.parse(decodeURIComponent(tempData));
+                    } catch (e) {
+                        console.warn("事件追踪data-stats-baidu-obj数据不正确");
+                        return;
+                    }
                     if (!statusJson.data) {
                         return;
                     }

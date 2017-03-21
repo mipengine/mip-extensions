@@ -89,7 +89,7 @@ define(function (require) {
         var regIOS = /(iPhone|iPad|iPod|iOS)/i;
         var regAdr = /(Android)/i;
 
-        return regIOS.test(agent) ? 'Ios' : regAdr.test(agent) ? 'Android' : '';
+        return regIOS.test(agent) ? 'Ios' : regAdr.test(agent) ? 'Android' : 'Other';
     }
 
     /**
@@ -97,15 +97,7 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        var tpl = element.getAttribute('tpl') || 'imageText';
-
-        // 展示模板渲染
-        if (tpl === 'imageText') {
-            getHtml.call(element);
-        }
-        else {
-            getHtml.call(element);
-        }
+        getHtml.call(element);
     };
 
     return customElement;

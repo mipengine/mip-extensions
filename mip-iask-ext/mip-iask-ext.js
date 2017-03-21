@@ -19,9 +19,8 @@ define(function (require) {
                     $(this).addClass('current');
 
                     var index = $(this).index();
-                    var nodes = $(this).parent().siblings();
+                    var nodes = $('.relative_kownlege').find('.tabs-con');
                     $(nodes).hide();
-
                     $(nodes).slice(index, index + 1).show();
                 }
                 catch (e) {}
@@ -47,6 +46,20 @@ define(function (require) {
                     $(this).attr('pagecount', endcount);
                 }
                 catch (e) {}
+            });
+        },
+        // 相关知识换一换
+        kownlegMore: function () {
+            $('.kownleg-change').on('click', function (event) {
+                event.preventDefault();
+                $('div.similar').find('div.show').removeClass('show').addClass('hide').appendTo($('div.similar'));
+                var i = 1;
+                $('div.similar').find('div.hide').each(function () {
+                    if (i === 1) {
+                        $(this).removeClass('hide').addClass('show');
+                    }
+                    i ++;
+                });
             });
         },
          // 展开 or 收起
@@ -203,7 +216,7 @@ define(function (require) {
             if (status !== null) {
                 url += '&status=1';
             }
-            $('body').append('<mip-img src=\'' + url + '\' class=\'mask\' >');
+            $('body').append('<mip-pix src=\'' + url + '\' ></mip-pix>');
         },
         // 数据上报
         checkData: function () {
@@ -280,9 +293,10 @@ define(function (require) {
             this.btnSend();
             this.checkLogin();
             this.userInfoHide();
-            this.checkData();
+            // this.checkData();
             this.accordion();
             this.guideData();
+            this.kownlegMore();
         }
     };
 

@@ -248,22 +248,7 @@ body[mip-x-button-color5=red] .exp-btn5 {
     C. 第三个对应参数3，自定义
     D. 第四个对应参数4，自定义
 
-下面例子可用于实验 “改变按钮的背景色，计算按钮的点展比”。在baidu-stats中配置了页面加载的次数和按钮点击次数的统计。最后数据的产生格式为：
-
-__|次数|参数A|参数B|参数C|参数D|
-----|----|----|----|----|----|
-第1行|3083|window__load|mip-x-button-color6=red|
-第2行|3013|window__load|mip-x-button-color6=grey|
-第3行|4742|window__load|mip-x-button-color6=default|
-第4行|127|window__load|mip-x-button-color6=red|2.23|xxx|
-第5行|210|window__load|mip-x-button-color6=grey|2.23|xxx|
-第6行|272|window__load|mip-x-button-color6=default|2.23|xxx|
-
-- 第1行和第4行为按钮红色情况，点占比为127/3083 = 4.12%
-- 第2行和第5行为按钮灰色情况，点占比为210/3013 = 6.97%
-- 第3行和第6行为按钮黑色情况(默认，对照组)，点占比为272/4742 = 5.74%
-
-可见，红色按钮实验点占比降低，灰色按钮实验点占比升高。
+下面例子可用于实验 “改变按钮的背景色，计算按钮的点展比”。在baidu-stats中配置了页面加载的次数和按钮点击次数的统计。
 
 ```html
 <style>
@@ -303,7 +288,22 @@ body[mip-x-button-color=grey] #btn01 {
 </mip-experiment>
 <script src="https://mipcache.bdstatic.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
 ```
+最后数据的产生格式为：  
 
+|次数|参数A|参数B|参数C|参数D|
+----|----|----|----|----|----|
+第1行|3083|window__load|mip-x-button-color6=red|
+第2行|3013|window__load|mip-x-button-color6=grey|
+第3行|4742|window__load|mip-x-button-color6=default|
+第4行|127|#btn01__click|mip-x-button-color6=red|2.23|xxx|
+第5行|210|#btn01__click|mip-x-button-color6=grey|2.23|xxx|
+第6行|272|#btn01__click|mip-x-button-color6=default|2.23|xxx|
+
+- 第1行和第4行为按钮红色情况，点占比为127/3083 = 4.12%
+- 第2行和第5行为按钮灰色情况，点占比为210/3013 = 6.97%
+- 第3行和第6行为按钮黑色情况(默认，对照组)，点占比为272/4742 = 5.74%
+
+可见，红色按钮实验点占比降低，灰色按钮实验点占比升高。
 
 
 

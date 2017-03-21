@@ -338,6 +338,11 @@ body[mip-x-button-color=grey] #btn01 {
 默认值：true  
 取值：true, false  
 
+### baidu-stats 
+
+说明：实验分组统计配置。具体配置方法，请参考本文【6. 与百度统计配合使用】
+必选项：否  
+类型：数组  
 
 ## 注意事项
 1. `<application/json>`为实验分组配置，要求填写合法的JSON对象。开发时请注意控制台是否有报错。

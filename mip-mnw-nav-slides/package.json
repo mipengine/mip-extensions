@@ -1,0 +1,12 @@
+{
+    "name": "mip-mnw-nav-slides",
+    "version": "1.0.0",
+    "author": {
+        "name": "J_da",
+        "email": "jdt@mnw.cn",
+        "url": "http://www.mnw.cn"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

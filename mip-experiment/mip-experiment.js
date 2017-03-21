@@ -218,7 +218,7 @@ define(function (require) {
             for (var j = 0; j < stats.eleDoms.length; j++) {
                 var eleDom = stats.eleDoms[j];
 
-                eleDom.addEventListener(stats.event, Experiment.prototype._sendStats.bind(undefined, stats, this.expName), false);
+                eleDom.addEventListener(stats.event, this._sendStats.bind(undefined, stats, this.expName), false);
             }
         }
     };
@@ -232,11 +232,7 @@ define(function (require) {
     Experiment.prototype._sendStats = function (obj, expName) {
         var expAttr = 'mip-x-' + expName;
         var expResult = document.body.getAttribute(expAttr) || 'default';
-        try {
-            _hmt.push(['_trackEvent', obj.ele + '__' + obj.event, expAttr + '=' + expResult, obj.label]);
-        } catch (e) {
-            console.warn(e);
-        }
+        _hmt.push(['_trackEvent', obj.ele + '__' + obj.event, expAttr + '=' + expResult, obj.label]);
     };
 
     /**

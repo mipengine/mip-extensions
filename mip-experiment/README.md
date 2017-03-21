@@ -229,7 +229,7 @@ body[mip-x-button-color5=red] .exp-btn5 {
 
 #### 注意事项：
 
-1. 需要按照`<mip-stats-baidu>`文档引入百度统计代码和标签。
+1. 需要按照`<mip-stats-baidu>`文档引入百度统计代码和标签，请保证 mip-stats-baidu.js 在 mip-experiment.js 之前引入。
 2. 如果引入了多个百度统计，请以_hmt.id中的token为准，在token对应的统计后台查看数据。
 3. 开发时请关注控制台报错。
 4. 百度统计的数据产出有一定延迟，请在第二天查看数据
@@ -346,3 +346,4 @@ body[mip-x-button-color=grey] #btn01 {
 
 ## 注意事项
 1. `<application/json>`为实验分组配置，要求填写合法的JSON对象。开发时请注意控制台是否有报错。
+2. 如果使用百度统计，请保证mip-stats-baidu.js在mip-experiment.js之前引入。

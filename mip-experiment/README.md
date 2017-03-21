@@ -290,7 +290,7 @@ body[mip-x-button-color=grey] #btn01 {
 ```
 最后数据的产生格式为：  
 
-|次数|参数A|参数B|参数C|参数D|
+--|次数|参数A|参数B|参数C|参数D|
 ----|----|----|----|----|----|
 第1行|3083|window__load|mip-x-button-color6=red|
 第2行|3013|window__load|mip-x-button-color6=grey|

@@ -191,9 +191,9 @@ define(function (require) {
      * bind event, when trigger, fire baidu-stats request
      *
      */
-    Experiment.prototype.bindBaiduStats = function (stats) {
+    Experiment.prototype.bindBaiduStats = function (baidustats) {
         // make sure user need baidu-stats
-        if (!stats) {
+        if (!baidustats) {
             return;
         }
         // make sure baidu-stats exist
@@ -202,11 +202,12 @@ define(function (require) {
             return;
         }
 
-        for (var i = 0; i < stats.length; i++) {
+        for (var i = 0; i < baidustats.length; i++) {
             var stats = {};
-            stats.ele = stats[i][0] || '';
-            stats.event = stats[i][1] || '';
-            stats.label = stats[i][2] || '';
+            var statsVar = baidustats[i];
+            stats.ele = statsVar[0] || '';
+            stats.event = statsVar[1] || '';
+            stats.label = statsVar[2] || '';
             stats.eleDoms = [];
 
             if (stats.ele === 'window') {

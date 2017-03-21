@@ -16,6 +16,10 @@ define(function (require) {
      */
     function initExp(ele) {
         var jsonScript = ele.querySelector('script[type="application/json"][for="mip-experiment"]');
+        if (!jsonScript) {
+            console.warn('<mip-experiment>找不到配置 for="mip-experiment"');
+            return;
+        }
         var expString = jsonScript ? jsonScript.innerHTML : '';
         var needConsole = ele.hasAttribute('needConsole');
         var expJson = '';
@@ -36,6 +40,8 @@ define(function (require) {
             // read experiment group
             var expGroup = exp.getExpGroup();
             exp.setExpGroup(expGroup);
+            // add baidu-stats
+            exp.bindBaiduStats(exp.baiduStats);
         }
     }
 
@@ -53,6 +59,7 @@ define(function (require) {
         this.expVar.default = 100;
         this.needConsole = needConsole;
         this.isSticky = exp.hasOwnProperty('sticky') ? !!exp.sticky : true;
+        this.baiduStats = exp['baidu-stats'];
     };
 
     /**
@@ -178,6 +185,55 @@ define(function (require) {
             // XXX: no use of document.body for there might be multiple bodies
             document.querySelector('body').setAttribute('mip-x-' + this.expName, expGroup);
         }
+    };
+
+    /**
+     * bind event, when trigger, fire baidu-stats request
+     *
+     */
+    Experiment.prototype.bindBaiduStats = function (baidustats) {
+        // make sure user need baidu-stats
+        if (!baidustats) {
+            return;
+        }
+        // make sure baidu-stats exist
+        if (!window._hmt) {
+            console.warn('<mip-experiment>找不到百度统计，请确认mip-stats-baidu.js在mip-experiment.js之前');
+            return;
+        }
+
+        for (var i = 0; i < baidustats.length; i++) {
+            var stats = {};
+            var statsVar = baidustats[i];
+            stats.ele = statsVar[0] || '';
+            stats.event = statsVar[1] || '';
+            stats.label = statsVar[2] || '';
+            stats.eleDoms = [];
+
+            if (stats.ele === 'window') {
+                stats.eleDoms[0] = window;
+            } else {
+                stats.eleDoms = document.querySelectorAll(stats.ele);
+            }
+
+            for (var j = 0; j < stats.eleDoms.length; j++) {
+                var eleDom = stats.eleDoms[j];
+
+                eleDom.addEventListener(stats.event, this._sendStats.bind(undefined, stats, this.expName), false);
+            }
+        }
+    };
+
+    /**
+     * send baidu-stats using certain value
+     *
+     * @param  {Object} obj params
+     * @param  {string} expName name
+     */
+    Experiment.prototype._sendStats = function (obj, expName) {
+        var expAttr = 'mip-x-' + expName;
+        var expResult = document.body.getAttribute(expAttr) || 'default';
+        _hmt.push(['_trackEvent', obj.ele + '__' + obj.event, expAttr + '=' + expResult, obj.label]);
     };
 
     /**

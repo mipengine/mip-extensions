@@ -41,7 +41,7 @@ define(function (require) {
             var expGroup = exp.getExpGroup();
             exp.setExpGroup(expGroup);
             // add baidu-stats
-            exp.bindBaiduStats();
+            exp.bindBaiduStats(exp.baiduStats);
         }
     }
 
@@ -191,9 +191,9 @@ define(function (require) {
      * bind event, when trigger, fire baidu-stats request
      *
      */
-    Experiment.prototype.bindBaiduStats = function () {
+    Experiment.prototype.bindBaiduStats = function (stats) {
         // make sure user need baidu-stats
-        if (!this.baiduStats) {
+        if (!stats) {
             return;
         }
         // make sure baidu-stats exist
@@ -202,11 +202,11 @@ define(function (require) {
             return;
         }
 
-        for (var i = 0; i < this.baiduStats.length; i++) {
+        for (var i = 0; i < stats.length; i++) {
             var stats = {};
-            stats.ele = this.baiduStats[i][0] || '';
-            stats.event = this.baiduStats[i][1] || '';
-            stats.label = this.baiduStats[i][2] || '';
+            stats.ele = stats[i][0] || '';
+            stats.event = stats[i][1] || '';
+            stats.label = stats[i][2] || '';
             stats.eleDoms = [];
 
             if (stats.ele === 'window') {

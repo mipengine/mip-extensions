@@ -237,16 +237,14 @@ body[mip-x-button-color5=red] .exp-btn5 {
 #### 统计使用说明：
 
 1. **配置多个统计：**baidu-stats 为统计配置的数组，里面每一个元素相当于一句 js 的`addEventListener`
-2. **配置统计参数：**每个配置可以传入四个参数
+2. **配置统计参数：**每个配置可以传入三个参数
     1. 第一个为元素选择器（支持element, id, class）
     2. 第二个为事件（click, touchend）
     3. 第三个可以自定义（可以选择填写广告的单价或事件的权重）
-    4. 第四个可以自定义
 3. **统计结果：**在站长平台看到的统计结果有四个参数ABCD:
     A. 第一个对应元素加事件，相当于统计参数的1和2，格式为element__click
     B. 第二个对应当前实验名和实验分组，格式为mip-x-name=group
     C. 第三个对应参数3，自定义
-    D. 第四个对应参数4，自定义
 
 下面例子可用于实验 “改变按钮的背景色，计算按钮的点展比”。在baidu-stats中配置了页面加载的次数和按钮点击次数的统计。
 
@@ -290,14 +288,14 @@ body[mip-x-button-color=grey] #btn01 {
 ```
 最后数据的产生格式为：  
 
---|次数|参数A|参数B|参数C|参数D|
-----|----|----|----|----|----|
+--|次数|参数A|参数B|参数C|
+----|----|----|----|----|
 第1行|3083|window__load|mip-x-button-color6=red|
 第2行|3013|window__load|mip-x-button-color6=grey|
 第3行|4742|window__load|mip-x-button-color6=default|
-第4行|127|#btn01__click|mip-x-button-color6=red|2.23|xxx|
-第5行|210|#btn01__click|mip-x-button-color6=grey|2.23|xxx|
-第6行|272|#btn01__click|mip-x-button-color6=default|2.23|xxx|
+第4行|127|#btn01__click|mip-x-button-color6=red|2.23|
+第5行|210|#btn01__click|mip-x-button-color6=grey|2.23|
+第6行|272|#btn01__click|mip-x-button-color6=default|2.23|
 
 - 第1行和第4行为按钮红色情况，点占比为127/3083 = 4.12%
 - 第2行和第5行为按钮灰色情况，点占比为210/3013 = 6.97%

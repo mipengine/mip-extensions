@@ -207,7 +207,6 @@ define(function (require) {
             stats.ele = this.baiduStats[i][0] || '';
             stats.event = this.baiduStats[i][1] || '';
             stats.label = this.baiduStats[i][2] || '';
-            stats.value = this.baiduStats[i][3] || '';
             stats.eleDoms = [];
 
             if (stats.ele === 'window') {
@@ -234,7 +233,7 @@ define(function (require) {
         var expAttr = 'mip-x-' + expName;
         var expResult = document.body.getAttribute(expAttr) || 'default';
         try {
-            _hmt.push(['_trackEvent', obj.ele + '__' + obj.event, expAttr + '=' + expResult, obj.label, obj.value]);
+            _hmt.push(['_trackEvent', obj.ele + '__' + obj.event, expAttr + '=' + expResult, obj.label]);
         } catch (e) {
             console.warn(e);
         }

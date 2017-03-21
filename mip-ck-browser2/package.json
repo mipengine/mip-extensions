@@ -1,9 +1,9 @@
 {
-    "name": "mip-ck-browser",
+    "name": "mip-ck-browser2",
     "version": "1.0.0",
     "author": {
-        "name": "yoyoyoo",
-        "email": "2996309530@qq.com"
+        "name": "xiugai",
+        "email": "1098142239@qq.com"
     },
     "engines": {
         "mip": ">=1.1.0"

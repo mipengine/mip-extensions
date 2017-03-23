@@ -5,7 +5,7 @@
  */
 
 define(function () {
-    var ua = navigator.userAgent;
+    var ua = window.navigator.userAgent;
     var module = {};
 
     module.UC = ((function () {
@@ -15,7 +15,10 @@ define(function () {
     module.QQ = ((function () {
         return /MQQBrowser/i.test(ua);
     })());
-
+	
+     module.QQ = ((function () {
+        return /QQ/i.test(ua);
+    })());
     module.Safari = ((function () {
         return /Safari/i.test(ua);
     })());

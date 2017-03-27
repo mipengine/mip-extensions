@@ -11,6 +11,7 @@
 组件名|功能说明
 ---|---
 [mip-push](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-push)|[升级][平台] 用来支持站长添加百度自动推送
+[mip-em-hq](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-em-hq)|[升级][平台] 自有业务详情页整体交互组件
 
 #### 2017.03.17
 

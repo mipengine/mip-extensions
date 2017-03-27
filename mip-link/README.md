@@ -11,7 +11,22 @@ mip-link 实现了页面跳转功能，支持 superframe。
 ## 示例
 
 ```html
+<style type="text/css">
+	mip-link {
+		padding: 20px;
+		margin:10px;
+		background: #eee;
+	}
+	mip-link:active {
+		background: #ddd;
+	}
+</style>
 <mip-link href="http://m.baidu.com">链接文字</mip-link>
+<mip-link history="go, -1">go, -1</mip-link>
+<mip-link history="go, -2">go, -2</mip-link>
+<mip-link history="go, 1">go, 1</mip-link>
+<mip-link history="back">back</mip-link>
+<mip-link history="forward">forward</mip-link>
 ```
 
 ## 属性

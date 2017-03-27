@@ -4,7 +4,7 @@
  * @time 2016.06.21
  */
 
-define(function (require) {
+define(function(require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
@@ -16,7 +16,7 @@ define(function (require) {
      */
     function is_noCache() {
         var cache_meta = document.querySelector('meta[property="mip:use_cache"]');
-        if(cache_meta && cache_meta.getAttribute('content') === 'no') {
+        if (cache_meta && cache_meta.getAttribute('content') === 'no') {
             return true;
         }
         return false
@@ -28,32 +28,35 @@ define(function (require) {
      *
      * @param  {Event} e event
      */
-    function onClick (e) {
+    function onClick(e) {
 
         e.preventDefault();
 
         var href = this.getAttribute('href');
+        var history = this.getAttribute('history');
         var pageType = is_noCache() ? 2 : 1;
 
-        if (!href) { return; }
+        if (!!href) {
+            if (window.parent !== window) {
+                var elem = $(this);
+                var message = {
+                    'event': 'loadiframe',
+                    'data': {
+                        'url': href,
+                        'title': (elem.attr('title') || elem.text().trim().split('\n')[0]),
+                        'click': elem.data('click'),
+                        'pageType': pageType
+                    }
+                };
 
-        if (window.parent !== window) {
+                window.parent.postMessage(message, '*');
+            } else {
+                location.href = href;
+            }
+        } else if(!!history) {
+            // go back and forward
+            
 
-            var elem = $(this);
-            var message = {
-                'event': 'loadiframe',
-                'data': {
-                    'url': href,
-                    'title': (elem.attr('title') || elem.text().trim().split('\n')[0]),
-                    'click': elem.data('click'),
-                    'pageType': pageType 
-                }
-            };
-
-            window.parent.postMessage(message, '*');
-        }
-        else {
-            location.href = href;
         }
 
     }
@@ -62,7 +65,7 @@ define(function (require) {
      * build
      *
      */
-    customElement.prototype.build = function () {
+    customElement.prototype.build = function() {
         var _element = this.element;
 
         $(_element).on('click', onClick.bind(_element));

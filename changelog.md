@@ -1,5 +1,17 @@
 # 升级日志
 
+#### 2017.03.27
+
+> 核心代码上线
+
+    1、mip fixed 3.0升级
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-push](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-push)|[升级][平台] 用来支持站长添加百度自动推送
+
 #### 2017.03.17
 
 > 组件上线

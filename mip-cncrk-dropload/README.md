@@ -8,9 +8,7 @@ mip-cncrk-dropload 用来支持页面下拉加载
 支持布局|N/S
 所需脚本|http://mipcache.bdstatic.com/static/v1/mip-cncrk-dropload/mip-cncrk-dropload.js
 
-#http://www.99down.com/index.php?m=content&c=index&a=mip_json&siteid=1&modelid=12&pagesize=20&id=1390&catid=160&page=10
-#http://www.99down.com/index.php?m=content&amp;c=index&amp;a=mip_json&amp;siteid=1&amp;modelid=12&amp;pagesize=20&amp;id=1390&amp;catid=160&amp;page=10
-#http://m.cncrk.com/mip/dropdown.asp?m=content&amp;c=index&amp;a=mip_json&amp;siteid=1&amp;modelid=12&amp;pagesize=20&amp;id=1390&amp;catid=160
+
 ## 示例
 
 ```html

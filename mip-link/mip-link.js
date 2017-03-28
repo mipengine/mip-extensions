@@ -4,22 +4,21 @@
  * @time 2016.06.21
  */
 
-define(function(require) {
+define(function (require) {
     var $ = require('zepto');
-
     var customElement = require('customElement').create();
 
     /**
-     * [is_noCache 判断是否禁止缓存]
-     * 
-     * @return {Boolean} 
+     * [isNoCache 判断是否禁止缓存]
+     *
+     * @return {boolean}
      */
-function is_noCache() {
-        var cache_meta = document.querySelector('meta[property="mip:use_cache"]');
-        if (cache_meta && cache_meta.getAttribute('content') === 'no') {
+    function isNoCache() {
+        var cachemeta = document.querySelector('meta[property="mip:use_cache"]');
+        if (cachemeta && cachemeta.getAttribute('content') === 'no') {
             return true;
         }
-        return false
+        return false;
     }
 
     /**
@@ -33,26 +32,28 @@ function is_noCache() {
 
         var href = this.getAttribute('href');
         var history = this.getAttribute('history');
-        var pageType = is_noCache() ? 2 : 1;
+        var pageType = isNoCache() ? 2 : 1;
 
         if (href) {
             if (window.parent !== window) {
                 var elem = $(this);
                 var message = {
-                    'event': 'loadiframe',
-                    'data': {
-                        'url': href,
-                        'title': (elem.attr('title') || elem.text().trim().split('\n')[0]),
-                        'click': elem.data('click'),
-                        'pageType': pageType
+                    event: 'loadiframe',
+                    data: {
+                        url: href,
+                        title: (elem.attr('title') || elem.text().trim().split('\n')[0]),
+                        click: elem.data('click'),
+                        pageType: pageType
                     }
                 };
 
                 window.parent.postMessage(message, '*');
-            } else {
+            }
+            else {
                 location.href = href;
             }
-        } else if(history) {
+        }
+        else if (history) {
             // histry: go back and forward
             var historyArr = history.split(',');
             var func = historyArr[0];
@@ -68,7 +69,7 @@ function is_noCache() {
                 case 'forward':
                     window.history.forward();
                     break;
-            }            
+            }
         }
     }
 
@@ -76,11 +77,11 @@ function is_noCache() {
      * build
      *
      */
-    customElement.prototype.build = function() {
-        var _element = this.element;
+    customElement.prototype.build = function () {
+        var ele = this.element;
 
-        $(_element).on('click', onClick.bind(_element));
-    }
+        $(ele).on('click', onClick.bind(ele));
+    };
 
     return customElement;
 

@@ -1,6 +1,6 @@
 /**
  * @file 跳转链接
- * @author junmer
+ * @author junmer, Jenny_L(jiaojiaomao220@163.com)
  * @time 2016.06.21
  */
 
@@ -14,14 +14,13 @@ define(function(require) {
      * 
      * @return {Boolean} 
      */
-    function is_noCache() {
+function is_noCache() {
         var cache_meta = document.querySelector('meta[property="mip:use_cache"]');
         if (cache_meta && cache_meta.getAttribute('content') === 'no') {
             return true;
         }
         return false
     }
-
 
     /**
      * 点击链接事件
@@ -36,7 +35,7 @@ define(function(require) {
         var history = this.getAttribute('history');
         var pageType = is_noCache() ? 2 : 1;
 
-        if (!!href) {
+        if (href) {
             if (window.parent !== window) {
                 var elem = $(this);
                 var message = {
@@ -53,12 +52,24 @@ define(function(require) {
             } else {
                 location.href = href;
             }
-        } else if(!!history) {
-            // go back and forward
-            
-
+        } else if(history) {
+            // histry: go back and forward
+            var historyArr = history.split(',');
+            var func = historyArr[0];
+            // XXX: avoid using eval
+            switch (func) {
+                case 'go':
+                    var step = historyArr[1];
+                    window.history.go(step);
+                    break;
+                case 'back':
+                    window.history.back();
+                    break;
+                case 'forward':
+                    window.history.forward();
+                    break;
+            }            
         }
-
     }
 
     /**

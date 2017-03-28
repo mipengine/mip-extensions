@@ -1,6 +1,6 @@
 # mip-link
 
-mip-link 实现了页面跳转功能，支持 superframe。
+mip-link 用来支持在 mip 页面跳转，解决类似 iframe 嵌套情况下不能跳出父级的问题
 
 标题|内容
 ----|----
@@ -44,5 +44,10 @@ mip-link 实现了页面跳转功能，支持 superframe。
 必选项：否  
 类型：字符串  
 取值范围：任何  
-默认值：`""`
+
+### history
+说明：对 window.history 的操作  
+必选项：否  
+类型：字符串  
+取值范围：'go, -1(任何数字)', 'back', 'forward'  
 

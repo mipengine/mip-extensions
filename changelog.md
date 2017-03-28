@@ -1,5 +1,13 @@
 # 升级日志
 
+#### 2017.03.28
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
 #### 2017.03.27
 
 > 核心代码上线

@@ -68,21 +68,20 @@ define(function (require) {
         var deny1 = true;
         var deny2 = true;
         var node;
-        if ($('.like_content') && $('.like_content').eq(0)) {
-            node = $('.like_content').eq(0);
-            if (node.find('iframe') && node.find('iframe').eq(0)
-            && node.find('iframe').eq(0).src
-            && (node.find('iframe').eq(0).src.indexOf('baidu.com') > 0
-            || node.getElementsByTagName('iframe')[0].src.indexOf('360doc.cn') > 0)) {
+        if (document.getElementsByClassName('like_content') && document.getElementsByClassName('like_content')[0]) {
+            node = document.getElementsByClassName('like_content')[0];
+            if (node.getElementsByTagName('iframe') && node.getElementsByTagName('iframe')[0]
+            && node.getElementsByTagName('iframe')[0].src
+            && node.getElementsByTagName('iframe')[0].src.indexOf('baidu.com') > 0) {
                 deny1 = false;
             }
         }
-        if ($('.like_content') && $('.like_content').eq(1)) {
-            node = $('.like_content').eq(1);
-            if (node.find('iframe') && node.find('iframe').eq(0)
-            && node.find('iframe').eq(0).src
-            && (node.find('iframe').eq(0).src.indexOf('baidu.com') > 0
-            || node.getElementsByTagName('iframe')[0].src.indexOf('360doc.cn') > 0)) {
+
+        if (document.getElementsByClassName('like_content') && document.getElementsByClassName('like_content')[1]) {
+            node = document.getElementsByClassName('like_content')[1];
+            if (node.getElementsByTagName('iframe') && node.getElementsByTagName('iframe')[0]
+            && node.getElementsByTagName('iframe')[0].src
+            && node.getElementsByTagName('iframe')[0].src.indexOf('baidu.com') > 0) {
                 deny2 = false;
             }
         }

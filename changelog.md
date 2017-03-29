@@ -1,5 +1,18 @@
 # 升级日志
 
+#### 2017.03.29
+
+> 核心代码上线
+
+    1、mip fixed 3.0升级去掉最大宽高限制
+    2、mip-coursel 组件升级
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-mg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-mg)|[升级][平台] 特殊词过滤
+
 #### 2017.03.28
 
 > 组件上线

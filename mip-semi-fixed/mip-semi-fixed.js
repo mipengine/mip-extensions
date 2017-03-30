@@ -165,6 +165,20 @@ define(function (require) {
             });
 
         }
+
+        /**
+         * [关闭点击事件]
+         */
+        self.addEventAction('close', function (event) {
+            util.css(element, {
+                display: 'none'
+            });
+            if (viewer.isIframed) {
+                util.css(self.fixedContainer, {
+                    display: 'none'
+                });
+            }
+        });
     };
 
     return customElement;

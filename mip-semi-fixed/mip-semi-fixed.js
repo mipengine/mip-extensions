@@ -170,7 +170,14 @@ define(function (require) {
          * [关闭点击事件]
          */
         self.addEventAction('close', function (event) {
-            element.remove();
+            util.css(element, {
+                display: 'none'
+            });
+            if (viewer.isIframed) {
+                util.css(self.fixedContainer, {
+                    display: 'none'
+                });
+            }
         });
     };
 

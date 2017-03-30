@@ -58,7 +58,7 @@
 
 组件名|功能说明
 ---|---
-[mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/mastermip-wkfun-change-style)|[升级][平台] 增加键盘事件
+[mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-change-style)|[升级][平台] 增加键盘事件
 [mip-pcsoft-slide](https://github.com/mipengine/mip-extensions-platform/tree/mip-pcsoft-slide)|[新增][平台] 点击按钮，对应的部分，以上的内容给隐藏掉
 [mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/mip-wkfun-change-style)|[升级][github] 寻医问药页面功能组件修改
 
@@ -76,7 +76,7 @@
 
 组件名|功能说明
 ---|---
-[ mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/master/ mip-wkfun-change-style)|[升级][平台] 修改提交逻辑
+[ mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-change-style)|[升级][平台] 修改提交逻辑
 [mip-fh-async](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-async)|[升级][平台] 修改异步提交
 [mip-pcsoft-form](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pcsoft-form)|[新增][平台]判断手机系统，搜索关键词后，跳转对应的下载页面
 [mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-change-style)|[新增][平台]寻医问药页面功能组件

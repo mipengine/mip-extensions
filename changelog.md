@@ -43,6 +43,54 @@
 [mip-push](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-push)|[升级][平台] 用来支持站长添加百度自动推送
 [mip-em-hq](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-em-hq)|[升级][平台] 自有业务详情页整体交互组件
 
+#### 2017.03.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-em-hq](https://github.com/mipengine/mip-extensions-platform/tree/mip-em-hq)|[新增][平台] 自有业务详情页整体交互组件
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/mip-qqtn-count)|[升级][github] 站内个人统计功能
+
+#### 2017.03.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/mastermip-wkfun-change-style)|[升级][平台] 增加键盘事件
+[mip-pcsoft-slide](https://github.com/mipengine/mip-extensions-platform/tree/mip-pcsoft-slide)|[新增][平台] 点击按钮，对应的部分，以上的内容给隐藏掉
+[mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/mip-wkfun-change-style)|[升级][github] 寻医问药页面功能组件修改
+
+#### 2017.03.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-ad-plus)|[升级][平台] 修改自有组件https
+
+#### 2017.03.21
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[ mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/master/ mip-wkfun-change-style)|[升级][平台] 修改提交逻辑
+[mip-fh-async](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-async)|[升级][平台] 修改异步提交
+[mip-pcsoft-form](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pcsoft-form)|[新增][平台]判断手机系统，搜索关键词后，跳转对应的下载页面
+[mip-wkfun-change-style](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-change-style)|[新增][平台]寻医问药页面功能组件
+[mip-stats-qiyu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-stats-qiyu)|[新增][平台]网易七鱼在线客服组件
+
+#### 2017.03.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[ mip-ticket](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ticket)|[升级][平台] 修改readme
+[mip-pcsoft-paging](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pcsoft-paging)|[新增][平台] 新增pcsoft分页组件
+
 #### 2017.03.17
 
 > 组件上线

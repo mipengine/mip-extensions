@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.03.30
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级] 增加关闭按钮
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级] 360doc网业务逻辑组件
+
 #### 2017.03.29
 
 > 核心代码上线

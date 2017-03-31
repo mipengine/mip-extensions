@@ -8,12 +8,26 @@ define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
 
+    /**
+     * [is_noCache 判断是否禁止缓存]
+     *
+     * @return {boolean}
+     */
+    function isNoCache() {
+        var cacheMeta = document.querySelector('meta[property="mip:use_cache"]');
+        if (cacheMeta && cacheMeta.getAttribute('content') === 'no') {
+            return true;
+        }
+        return false;
+
+    }
+
     function getCSSStyle(elem, style) {
         var res = document && document.defaultView
          && document.defaultView.getComputedStyle(elem, null)
          && document.defaultView.getComputedStyle(elem, null)[style];
 
-        return res ? res : '0px';
+        return res ? res : null;
     }
 
 
@@ -23,6 +37,7 @@ define(function (require) {
      */
     customElement.prototype.firstInviewCallback = function () {
         var element = this.element;
+        element.setAttribute('pageType', isNoCache() ? 2 : 1);
 
         var elementDisplay = getCSSStyle(element, 'display');
         var elementColor = getCSSStyle(element, 'color');

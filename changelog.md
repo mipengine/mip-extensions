@@ -1,5 +1,17 @@
 # 升级日志
 
+#### 2017.03.31
+
+> 核心代码上线
+
+    1、mip hash 上线
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级] 修复点击穿透的 bug
+
 #### 2017.03.30
 
 > 组件上线

@@ -8,64 +8,68 @@ define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
+    var util = require('util');
 
-    /**
-     * [is_noCache 判断是否禁止缓存]
-     * 
-     * @return {Boolean} 
-     */
-    function is_noCache() {
-        var cache_meta = document.querySelector('meta[property="mip:use_cache"]');
-        if(cache_meta && cache_meta.getAttribute('content') === 'no') {
-            return true;
-        }
-        return false
+    function getCSSStyle (elem, style) {
+        var res = document && document.defaultView
+         && document.defaultView.getComputedStyle(elem, null)
+         && document.defaultView.getComputedStyle(elem, null)[style];
+
+         return res ? res : '0px';
     }
 
-
-    /**
-     * 点击链接事件
-     *
-     * @param  {Event} e event
-     */
-    function onClick (e) {
-
-        e.preventDefault();
-
-        var href = this.getAttribute('href');
-        var pageType = is_noCache() ? 2 : 1;
-
-        if (!href) { return; }
-
-        if (window.parent !== window) {
-
-            var elem = $(this);
-            var message = {
-                'event': 'loadiframe',
-                'data': {
-                    'url': href,
-                    'title': (elem.attr('title') || elem.text().trim().split('\n')[0]),
-                    'click': elem.data('click'),
-                    'pageType': pageType 
-                }
-            };
-
-            window.parent.postMessage(message, '*');
-        }
-        else {
-            location.href = href;
+    function getChildNodes(newNode, oldNode) {
+        for (var index = 0; index < oldNode.childNodes.length; index ++) {
+            console.log(index);
+            console.log(oldNode.childNodes[index]);
+            newNode.appendChild(oldNode.childNodes[index]);
         }
 
+        return newNode;
     }
 
     /**
      * build
      *
      */
-    customElement.prototype.build = function () {
-        var _element = this.element;
+    customElement.prototype.firstInviewCallback = function () {
+        var element = this.element;
+        var parentNode = element.parentNode;
 
-        $(_element).on('click', onClick.bind(_element));
+        var elementPadding = getCSSStyle(element, 'padding');
+        var elementMargin = getCSSStyle(element, 'margin');
+        var elementDisplay = getCSSStyle(element, 'display');
+        var elementColor = getCSSStyle(element, 'color');
+        var elementLineHeight = getCSSStyle(element, 'line-height');
+
+        var classVal = element.getAttribute('class');
+
+        var tagA = document.createElement('a');
+        tagA.href = element.getAttribute('href');
+        if (element.children.length) {
+            for (var index = 0; index < element.children.length; index ++) {
+                tagA.appendChild(element.children[index]);
+            }
+        }
+        else {
+            tagA.innerText = element.innerText;
+        }
+
+        element.innerText = '';
+        element.appendChild(tagA);
+
+        util.css(tagA, {
+            margin: 0,
+            padding: 0,
+            display: elementDisplay,
+            color: elementColor,
+        });
+
+        util.css(element, {
+            display: elementDisplay,
+            color: elementColor
+        });
+
     }
 
     return customElement;

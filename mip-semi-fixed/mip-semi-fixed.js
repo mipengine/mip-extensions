@@ -170,6 +170,7 @@ define(function (require) {
          * [关闭点击事件]
          */
         self.addEventAction('close', function (event) {
+            event.preventDefault();
             util.css(element, {
                 display: 'none'
             });

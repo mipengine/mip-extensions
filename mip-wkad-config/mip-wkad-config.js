@@ -54,6 +54,18 @@ define(function (require) {
                             mobileAd.getAd(ggArr);
                         });
                     }
+                    else if (channel === 'newclub') {
+                        loadJs(elem, 'https://a.xywy.com/display/display_load.js', function () {
+                            var ggArr = {};
+                            var string = '';
+                            $.each(keys_arr, function (index, value) {
+                                string = string + '|' + value;
+                            });
+                            ggArr['ad_key'] = string.substr(1);
+                            ggArr['department'] = department;
+                            mobileAd.getAd(ggArr);
+                        });
+                    }
                     else if (channel === 'medicine') {
                         loadJs(elem, 'https://a.xywy.com/keyword/keyword_v1.js', function () {
                             var ggArr = {};

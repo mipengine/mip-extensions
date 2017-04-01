@@ -39,6 +39,7 @@ define(function (require) {
                                 string = string + '|' + value;
                             });
                             ggArr['ad_key'] = string.substr(1);
+                            ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
                         });
                     }
@@ -51,6 +52,7 @@ define(function (require) {
                             });
                             ggArr['ad_key'] = string.substr(1);
                             ggArr['department'] = department;
+                            ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
                         });
                     }
@@ -63,6 +65,7 @@ define(function (require) {
                             });
                             ggArr['ad_key'] = string.substr(1);
                             ggArr['department'] = department;
+                            ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
                         });
                     }
@@ -74,6 +77,7 @@ define(function (require) {
                                 string = string + '|' + value;
                             });
                             ggArr['ad_key'] = string.substr(1);
+                            ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
                         });
                     }

@@ -1,0 +1,14 @@
+{
+    "name": "mip-cr173-systemshow",
+    "version": "1.0.1",
+	"description": "system show content",
+    "contributors": [
+        {
+            "name": "Zhang",
+            "email": "https://www.cr173.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

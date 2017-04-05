@@ -3,7 +3,7 @@
 * @file 脚本支持
 * @author myoa@163.com
 * @time 2016.11.18
-* @version 1.1.3
+* @version 1.1.4
 */
 define(function (require) {
     var $ = require('zepto');
@@ -13,8 +13,6 @@ define(function (require) {
         var el = this.element;
         var docId = el.getAttribute('id');
         var code = el.getAttribute('token');
-        // 以self方式重置a标签
-        $('.openself').attr('target', '_self');
         // 查看更多按钮功能
         var btnMax = $('#btnToMax');
         var artbox = $('#artbox');
@@ -57,11 +55,13 @@ define(function (require) {
         var admbottomInit = getCookie('admbottom');
         var admtop = $('#mip-adm-top');
         var admbottom = $('#mip-adm-bottom');
+        admtop.addClass('piaoc');
+        admbottom.addClass('piaoc');
         if (admtopInit === 'close') {
             // 头部广告单元以嵌入方式加载
             admnum--;
             admtop.removeClass('hide');
-            admtop.removeClass('fix');
+            admtop.removeClass('piaoc');
             dbshow || opendubao();
         }
         else {
@@ -70,16 +70,16 @@ define(function (require) {
                 var gt = getScrollTop();
                 if (gt > 100) {
                     admtop.removeClass('hide');
-                    admtop.addClass('fix');
+                    admtop.addClass('piaoc');
                 }
                 if (gt < -50) {
-                    admtop.removeClass('fix');
+                    admtop.removeClass('piaoc');
                 }
             });
         }
         if (admbottomInit === 'close') {
             admnum--;
-            admbottom.removeClass('fix');
+            admbottom.removeClass('piaoc');
         }
         if (admnum > 0) {
             var admbtn = $('.btnclose');
@@ -90,7 +90,7 @@ define(function (require) {
                 }
                 else {
                     setCookie('admbottom', 'close');
-                    admbottom.removeClass('fix');
+                    admbottom.removeClass('piaoc');
                 }
                 dbshow || opendubao();
             });
@@ -102,7 +102,7 @@ define(function (require) {
             dtp = 'fanwen';
         }
         if (readed !== 'false') {
-            $.getJSON('http://www.wangshengbo.cn/api/' + dtp + '/hits/?id=' + docId + '&code=' + code + '&jsoncallback=?',
+            $.get('/tongji/' + dtp + '/' + docId + '/',
                 function (rda) {
                     setCookie('readed_' + docId, 'false');
                 }

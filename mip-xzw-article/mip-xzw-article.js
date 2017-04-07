@@ -32,7 +32,7 @@ define(function (require) {
             starbg.hide();
         });
         // 根据请求更换不同星座数据
-        var aid = getUrl('aid');
+        var aid = getUrl('aid')-1;
         $.ajax({
             url: 'http://cache.xzw.com/mip/data.js',
             dataType: 'jsonp',

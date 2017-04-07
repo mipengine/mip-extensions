@@ -7,7 +7,7 @@
 
 组件名|功能说明
 ---|---
-[mip-wkad-config.js](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config)|[升级] 增加参数
+[mip-wkad-config](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config)|[升级] 增加参数
 
 #### 2017.04.06
 

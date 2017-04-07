@@ -1,5 +1,35 @@
 # 升级日志
 
+
+#### 2017.04.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkad-config.js](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config)|[升级] 增加参数
+
+#### 2017.04.06
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-eject](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-eject)|[新增][平台] 点击下载按钮弹出推荐内容
+[mip-qqtnhealth-dynamicmenu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtnhealth-dynamicmenu)|[升级][平台] 组件渲染内容修改
+[mip-cr173-addrecomd](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-addrecomd)|[升级][平台] 逻辑业务修改
+
+#### 2017.04.05
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zixun](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zixun)|[升级][平台] 逻辑业务修改
+[mip-cr173-addrecomd](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-addrecomd)|[新增][平台] 添加推荐板块
+[mip-qqtnhealth-dynamicmenu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtnhealth-dynamicmenu)|[新增][平台] 页面特效
+[mip-wkfun-appdown](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-appdown)|[新增][平台] 寻医问药页下载提示条功能效果
+
 #### 2017.03.31
 
 > 核心代码上线

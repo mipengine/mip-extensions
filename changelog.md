@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.04.11
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-eject](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-eject)|[升级][平台] 点击下载按钮弹出推荐内容
+[mip-cr173-addrecomd](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-addrecomd)|[升级][平台] 添加推荐板块
+
 #### 2017.04.10
 
 > 组件上线

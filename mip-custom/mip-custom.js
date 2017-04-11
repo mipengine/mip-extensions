@@ -9,6 +9,14 @@ define(function (require) {
     var templates = require('templates');
     var fetchJsonp = require('fetch-jsonp');
 
+    var regexs = {
+        style: /<style>(\S*)<\/style>/,
+        html: /<\/style>([\S\s]*)<script>/,
+        script: /<script>([\S\s]*)<\/script>/,
+        customTag: /<(\S*)>/,
+        innerhtml: />([\S\s]*)<\//
+    };
+
     /**
      * [extendObj 合并数据]
      *
@@ -27,15 +35,15 @@ define(function (require) {
         return opt;
     }
 
-    function getUrlparams () {
+    function getUrlparams() {
         var params = {};
-        
+
         var url = location.href.split('#');
         var args = url && url[1] ? url[1].split('&') : [];
 
-        for(var index = 0; index < args.length; index ++) {
+        for (var index = 0; index < args.length; index++) {
             var tmp = args[index].split('=');
-            if(tmp[0] && tmp[1]) {
+            if (tmp[0] && tmp[1]) {
                 params[tmp[0]] = tmp[1];
             }
         }
@@ -51,9 +59,9 @@ define(function (require) {
      */
     function getUrl() {
         var self = this;
-        var url = 'http://172.20.136.127:3000/mip-custom?';
-        
-        for (key in self.params) {
+        var url = 'http://172.20.136.113:3000/mip-custom?';
+
+        for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
                 url += key + '=' + self.params[key] + '&';
             }
@@ -101,13 +109,14 @@ define(function (require) {
                 var str = decodeURIComponent(data[i].tpl);
 
                 // style 处理
-                var style = getSubString(str, /<style>(\S*)<\/style>/);
+                var style = getSubString(str, regexs.style);
                 var head = document.querySelector('head');
                 if (style && head) {
                     var styleTag = head.querySelector('style[mip-custom]');
                     if (styleTag) {
                         styleTag.innerText = styleTag.innerHTML + style;
-                    } else {
+                    }
+                    else {
                         var styleCustom = document.createElement('style');
                         styleCustom.setAttribute('mip-custom', '');
                         styleCustom.innerHTML = style;
@@ -116,8 +125,8 @@ define(function (require) {
                 }
 
                 // html 处理
-                var html = getSubString(str,/<\/style>([\S\s]*)<script>/);
-                var customTag = getSubString(html, /<(\S*)>/);
+                var html = getSubString(str, regexs.html);
+                var customTag = getSubString(html, regexs.customTag);
                 var tplId = customTag + '-' + Math.random().toString(36).slice(2);
                 var customNode = document.createElement(customTag);
                 var tpl = document.createElement('template');
@@ -127,16 +136,16 @@ define(function (require) {
 
                 tpl.setAttribute('type', 'mip-mustache');
                 tpl.id = tplId;
-                tpl.innerHTML = getSubString(html, />([\S\s]*)<\//);
+                tpl.innerHTML = getSubString(html, regexs.innerhtml);
                 element.appendChild(customNode);
-                
+
                 // 模板渲染
                 templates.render(customNode, data[i].data).then(function (htmls) {
                     customNode.innerHTML += htmls;
                 });
-                
+
                 // script 处理
-                var script = getSubString(str, /<script>([\S\s]*)<\/script>/);
+                var script = getSubString(str, regexs.script);
                 var node = document.createElement('script');
                 node.innerHTML = script;
                 element.appendChild(node);

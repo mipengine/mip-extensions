@@ -142,13 +142,13 @@ define(function (require) {
                 // 模板渲染
                 templates.render(customNode, data[i].data).then(function (htmls) {
                     customNode.innerHTML += htmls;
-                });
 
-                // script 处理
-                var script = getSubString(str, regexs.script);
-                var node = document.createElement('script');
-                node.innerHTML = script;
-                element.appendChild(node);
+                    // script 处理
+                    var script = getSubString(str, regexs.script);
+                    var node = document.createElement('script');
+                    node.innerHTML = script;
+                    element.appendChild(node);
+                });
             }
         });
 

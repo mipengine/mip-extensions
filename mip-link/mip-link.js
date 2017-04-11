@@ -8,6 +8,14 @@ define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
 
+    var STYLE = [
+        'width',
+        'height',
+        'display',
+        'font-size',
+        'color'
+    ];
+
     /**
      * [is_noCache 判断是否禁止缓存]
      *
@@ -39,35 +47,34 @@ define(function (require) {
         var element = this.element;
         element.setAttribute('pageType', isNoCache() ? 2 : 1);
 
-        var elementDisplay = getCSSStyle(element, 'display');
-        var elementColor = getCSSStyle(element, 'color');
-
         var tagA = document.createElement('a');
         tagA.href = element.getAttribute('href');
+
         if (element.children.length) {
             for (var index = 0; index < element.children.length; index++) {
                 tagA.appendChild(element.children[index]);
             }
         }
         else {
-            tagA.innerText = element.innerText;
+            tagA.innerHTML = element.innerHTML;
         }
 
-        element.innerText = '';
+        element.innerHTML = '';
         element.appendChild(tagA);
 
         util.css(tagA, {
             margin: 0,
-            padding: 0,
-            display: elementDisplay,
-            color: elementColor
+            padding: 0
         });
 
-        util.css(element, {
-            display: elementDisplay,
-            color: elementColor
-        });
-
+        for (var index = 0; index < STYLE.length; index++) {
+            var key = STYLE[index];
+            var val = getCSSStyle(element, STYLE[index]);
+            if (val) {
+                util.css(tagA, key, val);
+                util.css(element, key, val);
+            }
+        }
     };
 
     return customElement;

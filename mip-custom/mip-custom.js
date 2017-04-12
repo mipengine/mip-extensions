@@ -14,7 +14,7 @@ define(function (require) {
         html: /<mip-\S*>(.*)<\/mip-\S*></,
         script: /<script[^>]*>(.*?)<\/script>/g,
         innerhtml: />([\S\s]*)<\//,
-        customTag: /<\/(mip-\S*)>/,
+        customTag: /<(mip-[^>]*)>/,
         httppathname: /\/c\/(\S*)/,
         httpspathname: /\/c\/s\/(\S*)/
     };
@@ -63,7 +63,7 @@ define(function (require) {
      */
     function getUrl() {
         var self = this;
-        var url = 'http://172.20.136.120:3000/mip-custom?tag=mip-rec&';
+        var url = 'http://192.168.1.101:3000/mip-custom?tag=mip-rec&';
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
@@ -121,7 +121,9 @@ define(function (require) {
                 var script = str.match(regexs.script);
                 script.forEach(function(tmp) {
                     var innerhtml = tmp.match(/<script>([\S\s]*)<\/script>/)[1];
-                    node.innerHTML += innerhtml;
+                    if (node.innerHTML.indexOf(innerhtml) === -1) {
+                        node.innerHTML += innerhtml;
+                    }
                 });
                 document.body.appendChild(node);
 

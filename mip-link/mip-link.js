@@ -9,8 +9,6 @@ define(function (require) {
     var util = require('util');
 
     var STYLE = [
-        'width',
-        'height',
         'display',
         'font-size',
         'color'
@@ -49,16 +47,7 @@ define(function (require) {
 
         var tagA = document.createElement('a');
         tagA.href = element.getAttribute('href');
-
-        if (element.children.length) {
-            for (var index = 0; index < element.children.length; index++) {
-                tagA.appendChild(element.children[index]);
-            }
-        }
-        else {
-            tagA.innerHTML = element.innerHTML;
-        }
-
+        tagA.innerHTML = element.innerHTML;
         element.innerHTML = '';
         element.appendChild(tagA);
 

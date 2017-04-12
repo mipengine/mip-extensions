@@ -12,7 +12,7 @@ define(function (require) {
 
     var regexs = {
         html: /<mip-\S*>(.*)<\/mip-\S*></,
-        script: /<script>([\S\s]*)<\/script>/,
+        script: /<script[^>]*>(.*?)<\/script>/g,
         innerhtml: />([\S\s]*)<\//,
         customTag: /<\/(mip-\S*)>/,
         httppathname: /\/c\/(\S*)/,
@@ -114,20 +114,19 @@ define(function (require) {
                 var str = decodeURIComponent(data[i].tpl);
 
                 // script 处理
-                var script = getSubString(str, regexs.script);
                 var node = document.body.querySelector('script[mip-custom]') || document.createElement('script');
                 node.setAttribute('type','text/javascript');
                 node.setAttribute('mip-custom','');
-                if (script !== node.innerHTML) {
-                    node.innerHTML += script;
-                }
-                
+
+                var script = str.match(regexs.script);
+                script.forEach(function(tmp) {
+                    var innerhtml = tmp.match(/<script>([\S\s]*)<\/script>/)[1];
+                    node.innerHTML += innerhtml;
+                });
                 document.body.appendChild(node);
 
-
                 // html 处理
-                var html = getSubString(str, regexs.html, 1);
-                html = html.substring(-1, html.length - 1);
+                var html = str.replace(/<script[^>]*>(.*?)<\/script>/g, ' ');
                 var customTag = getSubString(html, regexs.customTag);
                 var tplId = customTag + '-' + Math.random().toString(36).slice(2);
                 var customNode = document.createElement(customTag);

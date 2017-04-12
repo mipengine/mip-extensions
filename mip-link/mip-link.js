@@ -48,6 +48,7 @@ define(function (require) {
         var tagA = document.createElement('a');
         tagA.href = element.getAttribute('href');
         tagA.innerHTML = element.innerHTML;
+
         element.innerHTML = '';
         element.appendChild(tagA);
 
@@ -59,7 +60,7 @@ define(function (require) {
         for (var index = 0; index < STYLE.length; index++) {
             var key = STYLE[index];
             var val = getCSSStyle(element, STYLE[index]);
-            if (val) {
+            if (val && val !== '0px') {
                 util.css(tagA, key, val);
                 util.css(element, key, val);
             }

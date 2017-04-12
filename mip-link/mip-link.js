@@ -6,8 +6,13 @@
 
 define(function (require) {
     var $ = require('zepto');
-
     var customElement = require('customElement').create();
+
+    var STYLE = [
+        'display',
+        'font-size',
+        'color'
+    ];
 
     /**
      * [is_noCache 判断是否禁止缓存]
@@ -28,6 +33,7 @@ define(function (require) {
      *
      * @param  {Event} e event
      */
+// <<<<<<< Updated upstream
     function onClick (e) {
 
         e.preventDefault();
@@ -67,6 +73,33 @@ define(function (require) {
 
         $(_element).on('click', onClick.bind(_element));
     }
+// =======
+    // customElement.prototype.build = function () {
+    //     var element = this.element;
+    //     element.setAttribute('pageType', isNoCache() ? 2 : 1);
+
+    //     var tagA = document.createElement('a');
+    //     tagA.href = element.getAttribute('href');
+    //     tagA.innerHTML = element.innerHTML;
+
+    //     element.innerHTML = '';
+    //     element.appendChild(tagA);
+
+    //     util.css(tagA, {
+    //         margin: 0,
+    //         padding: 0
+    //     });
+
+    //     for (var index = 0; index < STYLE.length; index++) {
+    //         var key = STYLE[index];
+    //         var val = getCSSStyle(element, STYLE[index]);
+    //         if (val && val !== '0px') {
+    //             util.css(tagA, key, val);
+    //             util.css(element, key, val);
+    //         }
+    //     }
+    // };
+// >>>>>>> Stashed changes
 
     return customElement;
 

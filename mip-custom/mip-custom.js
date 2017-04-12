@@ -6,15 +6,25 @@
 define(function (require) {
 
     var customElement = require('customElement').create();
+
     var templates = require('templates');
     var fetchJsonp = require('fetch-jsonp');
 
     var regexs = {
-        style: /<style>(\S*)<\/style>/,
-        html: /<\/style>([\S\s]*)<script>/,
+        html: /<mip-\S*>(.*)<\/mip-\S*></,
         script: /<script>([\S\s]*)<\/script>/,
-        customTag: /<(\S*)>/,
-        innerhtml: />([\S\s]*)<\//
+        innerhtml: />([\S\s]*)<\//,
+        customTag: /<\/(mip-\S*)>/,
+        httppathname: /\/c\/(\S*)/,
+        httpspathname: /\/c\/s\/(\S*)/
+    };
+
+    var params = {
+        lid: "",
+        query: "",
+        title: document.head.querySelector("title").innerText,
+        cuid: "",
+        url: getSubString(location.pathname, regexs.httpspathname) || getSubString(location.pathname, regexs.httppathname)
     };
 
     /**
@@ -35,16 +45,10 @@ define(function (require) {
         return opt;
     }
 
-    function getUrlparams() {
-        var params = {};
-
-        var url = location.href.split('#');
-        var args = url && url[1] ? url[1].split('&') : [];
-
-        for (var index = 0; index < args.length; index++) {
-            var tmp = args[index].split('=');
-            if (tmp[0] && tmp[1]) {
-                params[tmp[0]] = tmp[1];
+    function getHashparams() {
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                params[key] = MIP.hash.get(key) || params[key];
             }
         }
 
@@ -59,7 +63,7 @@ define(function (require) {
      */
     function getUrl() {
         var self = this;
-        var url = 'http://172.20.136.113:3000/mip-custom?';
+        var url = 'http://172.20.136.120:3000/mip-custom?tag=mip-rec&';
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
@@ -69,8 +73,9 @@ define(function (require) {
         return url;
     }
 
-    function getSubString(str, reg) {
-        var res = str.match(reg) && str.match(reg)[1] ? str.match(reg)[1] : '';
+    function getSubString(str, reg, pos) {
+        pos = pos ? 0 : 1;
+        var res = str.match(reg) && str.match(reg)[pos] ? str.match(reg)[pos] : '';
         return res;
     }
 
@@ -83,7 +88,7 @@ define(function (require) {
         var element = self.element;
 
         // 默认参数设置
-        self.params = getUrlparams();
+        self.params = getHashparams();
 
         // 获取用户设置参数
         try {
@@ -108,24 +113,21 @@ define(function (require) {
             for (var i = 0; i < data.length; i++) {
                 var str = decodeURIComponent(data[i].tpl);
 
-                // style 处理
-                var style = getSubString(str, regexs.style);
-                var head = document.querySelector('head');
-                if (style && head) {
-                    var styleTag = head.querySelector('style[mip-custom]');
-                    if (styleTag) {
-                        styleTag.innerText = styleTag.innerHTML + style;
-                    }
-                    else {
-                        var styleCustom = document.createElement('style');
-                        styleCustom.setAttribute('mip-custom', '');
-                        styleCustom.innerHTML = style;
-                        head.appendChild(styleCustom);
-                    }
+                // script 处理
+                var script = getSubString(str, regexs.script);
+                var node = document.body.querySelector('script[mip-custom]') || document.createElement('script');
+                node.setAttribute('type','text/javascript');
+                node.setAttribute('mip-custom','');
+                if (script !== node.innerHTML) {
+                    node.innerHTML += script;
                 }
+                
+                document.body.appendChild(node);
+
 
                 // html 处理
-                var html = getSubString(str, regexs.html);
+                var html = getSubString(str, regexs.html, 1);
+                html = html.substring(-1, html.length - 1);
                 var customTag = getSubString(html, regexs.customTag);
                 var tplId = customTag + '-' + Math.random().toString(36).slice(2);
                 var customNode = document.createElement(customTag);
@@ -142,13 +144,8 @@ define(function (require) {
                 // 模板渲染
                 templates.render(customNode, data[i].data).then(function (htmls) {
                     customNode.innerHTML += htmls;
-
-                    // script 处理
-                    var script = getSubString(str, regexs.script);
-                    var node = document.createElement('script');
-                    node.innerHTML = script;
-                    element.appendChild(node);
                 });
+
             }
         });
 

@@ -2,7 +2,7 @@
 * 星座屋mip改造 javascript功能插件
 * @file 页面主要内容改造
 * @author mipxzw@163.com
-* @version 1.0.0
+* @version 1.0.2
 */
 define(function (require) {
     var $ = require('zepto');
@@ -11,6 +11,9 @@ define(function (require) {
     customElem.prototype.build = function () {
         var starBox = $('.xz_select');
         var starbg = $('.bg_black');
+        if (!getUrl('aid')) {
+            window.location.href = urlUpdateParams(window.location.href, 'aid', 1);
+        }
         // 控制弹层开启
         $(document).on('click', '.chos_btn', function (event) {
             event = event || window.event;
@@ -32,7 +35,7 @@ define(function (require) {
             starbg.hide();
         });
         // 根据请求更换不同星座数据
-        var aid = getUrl('aid');
+        var aid = getUrl('aid') - 1;
         $.ajax({
             url: 'http://cache.xzw.com/mip/data.js',
             dataType: 'jsonp',
@@ -60,6 +63,17 @@ define(function (require) {
             },
             timeout: 3000
         });
+       // 更换星座
+        $('li', starBox).click(function () {
+            var i = $(this).index() + 1;
+            changeStar(i);
+        });
+
+       // 改变星座
+        function changeStar(index) {
+            window.location.href = urlUpdateParams(window.location.href, 'aid', index);
+        }
+
        // 获取url参数
         function getUrl(name) {
             var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -69,11 +83,39 @@ define(function (require) {
             }
             return null;
         }
+
+       // 改变url参数
+        function urlUpdateParams(url, name, value) {
+            var r = url;
+            if (r !== null && r !== 'undefined' && r !== '') {
+                value = encodeURIComponent(value);
+                var reg = new RegExp('(^|)' + name + '=([^&]*)(|$)');
+                var tmp = name + '=' + value;
+                if (url.match(reg) !== null) {
+                    r = url.replace(evil(reg), tmp);
+                }
+                else {
+                    if (url.match('[\?]')) {
+                        r = url + '&' + tmp;
+                    }
+                    else {
+                        r = url + '?' + tmp;
+                    }
+                }
+            }
+            return r;
+        }
+
        // 获取时间
         function myDates() {
             var date = new Date();
             var s = '' + date.getFullYear() + (date.getMonth() + 1) + date.getDate();
             return s;
+        }
+       // 转换对象
+        function evil(fn) {
+            var Fn = Function;
+            return new Fn('return ' + fn)();
         }
     };
     return customElem;

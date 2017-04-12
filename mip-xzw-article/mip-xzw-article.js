@@ -64,7 +64,7 @@ define(function (require) {
             timeout: 3000
         });
        // 更换星座
-        $('li', starBox).click(function () {
+        $(document).on('click', '.xz_select li', function (e) {
             var i = $(this).index() + 1;
             changeStar(i);
         });

@@ -11,9 +11,6 @@ define(function (require) {
     customElem.prototype.build = function () {
         var starBox = $('.xz_select');
         var starbg = $('.bg_black');
-        if (!getUrl('aid')) {
-            window.location.href = urlUpdateParams(window.location.href, 'aid', 1);
-        }
         // 控制弹层开启
         $(document).on('click', '.chos_btn', function (event) {
             event = event || window.event;
@@ -35,7 +32,11 @@ define(function (require) {
             starbg.hide();
         });
         // 根据请求更换不同星座数据
-        var aid = getUrl('aid') - 1;
+        var aid = getUrl('aid');
+        if (!aid) {
+            aid = 1;
+        }
+        aid = aid - 1;
         $.ajax({
             url: 'http://cache.xzw.com/mip/data.js',
             dataType: 'jsonp',
@@ -53,13 +54,13 @@ define(function (require) {
         });
        // 获取今日运势内容
         $.ajax({
-            url: 'http://m.xzw.com/fortune/ajax/back/' + myDates() + '/' + getUrl('aid') + '/' + getUrl('aid') + '.html',
+            url: 'http://cache.xzw.com/mip/fortune/1/' + myDates() + '/' + getUrl('aid') + '.js',
             dataType: 'jsonp',
             jsonp: 'callback',
             jsonpCallback: 'call_fortune',
             success: function (data) {
-                $('.fortune em em').width(data.s);
-                $('.fortune p a').html(data.v);
+                $('.fortune em em').width(data.data.s);
+                $('.fortune p a').html(data.data.v);
             },
             timeout: 3000
         });

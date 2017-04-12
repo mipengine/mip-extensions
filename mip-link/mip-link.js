@@ -9,6 +9,7 @@ define(function (require) {
     var util = require('util');
 
     var STYLE = [
+        // 'width',
         'display',
         'font-size',
         'color'
@@ -47,14 +48,24 @@ define(function (require) {
 
         var tagA = document.createElement('a');
         tagA.href = element.getAttribute('href');
-        tagA.innerHTML = element.innerHTML;
+        
+        // 迁移子节点
+        var nodes = [];
+        var CHILDRENS = element.childNodes;
+        for (var index = 0; index < CHILDRENS.length; index++) {
+            nodes.push(CHILDRENS[index]);
+        }
+        element.appendChild(tagA);
 
-        element.innerHTML = '';
+        for (index = 0; index < nodes.length; index++) {
+            tagA.appendChild(nodes[index]);
+        }
         element.appendChild(tagA);
 
         util.css(tagA, {
             margin: 0,
-            padding: 0
+            padding: 0,
+            width: '100%'
         });
 
         for (var index = 0; index < STYLE.length; index++) {

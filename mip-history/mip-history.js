@@ -8,10 +8,13 @@ define(function (require) {
     var customElement = require('customElement').create();
 
     /**
-     * trigger when history btn clicked
+     * trigger when btn is in view. add event listener, when click,
+     * make corresponding history move.
+     *
+     * @param  {Object} ele mip-history element
      */
-    function btnClick() {
-        var history = this.getAttribute('history');
+    function init(ele) {
+        var history = ele.getAttribute('history');
         if (history) {
             // histry: go back and forward
             var historyArr = history.split(',');
@@ -21,17 +24,23 @@ define(function (require) {
                 case 'go':
                     var step = historyArr[1];
                     if (step) {
-                        window.history.go(step - 0);
+                        ele.addEventListener('click', function () {
+                            window.history.go(step - 0);
+                        }, false);
                     }
                     else {
                         console.warn('history.go() 需要填写第二个参数');
                     }
                     break;
                 case 'back':
-                    window.history.back();
+                    ele.addEventListener('click', function () {
+                        window.history.back();
+                    }, false);
                     break;
                 case 'forward':
-                    window.history.forward();
+                    ele.addEventListener('click', function () {
+                        window.history.forward();
+                    }, false);
                     break;
             }
         }
@@ -40,10 +49,10 @@ define(function (require) {
     /**
      * 构造元素，只会运行一次
      */
-    customElement.prototype.build = function () {
+    customElement.prototype.firstInviewCallback = function () {
         var ele = this.element;
+        init(ele);
 
-        ele.addEventListener('click', btnClick, false);
     };
 
     return customElement;

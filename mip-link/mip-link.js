@@ -9,7 +9,6 @@ define(function (require) {
     var util = require('util');
 
     var STYLE = [
-        // 'width',
         'display',
         'font-size',
         'color'
@@ -48,7 +47,7 @@ define(function (require) {
 
         var tagA = document.createElement('a');
         tagA.href = element.getAttribute('href');
-        
+
         // 迁移子节点
         var nodes = [];
         var CHILDRENS = element.childNodes;

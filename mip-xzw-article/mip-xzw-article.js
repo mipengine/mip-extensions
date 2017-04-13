@@ -40,7 +40,7 @@ define(function (require) {
         aid = aid - 1;
         $('title').text(adata[aid]);
         $.ajax({
-            url: 'http://cache.xzw.com/mip/data.js',
+            url: 'https://cache.xzw.com/mip/data.js',
             dataType: 'jsonp',
             data: {'id': aid},
             jsonp: 'callback',
@@ -56,7 +56,7 @@ define(function (require) {
         });
        // 获取今日运势内容
         $.ajax({
-            url: 'http://cache.xzw.com/mip/fortune/1/' + myDates() + '/' + getUrl('aid') + '.js',
+            url: 'https://cache.xzw.com/mip/fortune/1/' + myDates() + '/' + getUrl('aid') + '.js',
             dataType: 'jsonp',
             jsonp: 'callback',
             jsonpCallback: 'call_fortune',

@@ -47,6 +47,7 @@ define(function (require) {
 
         var tagA = document.createElement('a');
         tagA.href = element.getAttribute('href');
+        tagA.setAttribute('mip-link','');
 
         // 迁移子节点
         var nodes = [];

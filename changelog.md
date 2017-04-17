@@ -1,5 +1,16 @@
 # 升级日志
 
+#### 2017.04.14
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-sn-shop-floor](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-floor)|[新增][平台] 苏宁o2o定制组件
+[mip-sn-shop-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-list)|[新增][平台] 实现了自定义实现了sn获取接口数据后，渲染列表数据的功能
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[升级][平台]站内个人统计功能
+
+
 #### 2017.04.11
 
 > 组件上线

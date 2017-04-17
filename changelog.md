@@ -1,5 +1,33 @@
 # 升级日志
 
+#### 2017.04.14
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-sn-shop-floor](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-floor)|[新增][平台] 苏宁o2o定制组件
+[mip-sn-shop-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-list)|[新增][平台] 实现了自定义实现了sn获取接口数据后，渲染列表数据的功能
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[升级][平台]站内个人统计功能
+
+
+#### 2017.04.11
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-eject](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-eject)|[升级][平台] 点击下载按钮弹出推荐内容
+[mip-cr173-addrecomd](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-addrecomd)|[升级][平台] 添加推荐板块
+
+#### 2017.04.10
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkfun-newslist](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-newslist)|[新增][平台] 底层页功能组件
+[mip-wkfun-newclub](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-newclub)|[升级][平台] 寻医问药页面功能组件
 
 #### 2017.04.07
 

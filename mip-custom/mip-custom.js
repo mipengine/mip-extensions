@@ -9,6 +9,7 @@ define(function (require) {
 
     var templates = require('templates');
     var fetchJsonp = require('fetch-jsonp');
+    var viewer = require('viewer');
 
     var regexs = {
         html: /<mip-\S*>(.*)<\/mip-\S*></,
@@ -84,7 +85,11 @@ define(function (require) {
      * 构造元素，初次进入到视图区执行
      */
     customElement.prototype.firstInviewCallback = function () {
-        // TODO
+
+        if (viewer.isIframe) {
+            return;
+        }
+
         var self = this;
         var element = self.element;
 
@@ -143,7 +148,7 @@ define(function (require) {
                 tpl.setAttribute('type', 'mip-mustache');
                 tpl.id = tplId;
                 tpl.innerHTML = getSubString(html, regexs.innerhtml);
-                element.appendChild(customNode[i]);
+                element.appendChild(customNode);
 
                 // 模板渲染
                 var key = 0;

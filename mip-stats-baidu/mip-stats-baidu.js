@@ -150,17 +150,13 @@ define(function (require) {
         var referrer = '';
 
         var bdUrl = document.referrer;
-        console.log('mip path 地址: ' + bdUrl);
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
-        console.log('hash-word: ' + hashWord);
-        console.log('hash-eqid: ' + hashEqid);
         if (hashWord || hashEqid) {
             referrer = makeReferrer(bdUrl, {
                 word: hashWord,
                 eqid: hashEqid
             });
-            console.log('_setReferrerOverride: ' + referrer);
             _hmt.push('_setReferrerOverride', referrer);
         }
 

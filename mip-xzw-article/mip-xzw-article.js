@@ -1,5 +1,5 @@
 /**
-* 星座屋mip改造组件
+* 星座屋mip首页组件
 * @file 页面主要内容改造
 * @author mipxzw@163.com
 * @version 1.0.2
@@ -12,7 +12,6 @@ define(function (require) {
     customElem.prototype.build = function () {
         var starBox = $('.xz_select');
         var starbg = $('.bg_black');
-        // 控制弹层开启
         $(document).on('click', '.chos_btn', function (event) {
             event = event || window.event;
             event.stopPropagation();
@@ -77,7 +76,7 @@ define(function (require) {
 
        // 运势详情
         $(document).on('click', '.fortune a', function (e) {
-            window.location.href = 'fortune.html?aid=' + (aid) + '';
+            window.location.href = 'fortune.html?aid=' + (aid+1) + '';
         });
        // 改变星座
         function changeStar(index) {

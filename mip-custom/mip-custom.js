@@ -8,7 +8,7 @@ define(function (require) {
     var customElement = require('customElement').create();
 
     var templates = require('templates');
-    var fetchJsonp = require('fetch-jsonp');
+    // var fetch = require('fetch');
     var viewer = require('viewer');
 
     var regexs = {
@@ -64,8 +64,8 @@ define(function (require) {
      */
     function getUrl() {
         var self = this;
-        var url = 'http://172.20.136.161:3000/mip-custom?tag=mip-recommend&';
-        // var url = 'http://localhost:8000/custom/';
+        // var url = 'http://172.20.136.161:3000/mip-custom?tag=mip-recommend&';
+        var url = 'http://localhost:8000/custom/';
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
@@ -111,9 +111,7 @@ define(function (require) {
 
         self.url = getUrl.call(self);
 
-        fetchJsonp(self.url, {
-            jsonpCallback: 'callback'
-        }).then(function (res) {
+        fetch(self.url).then(function (res) {
             return res.json();
         }).then(function (data) {
             for (var i = 0; i < data.length; i++) {

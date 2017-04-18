@@ -63,7 +63,8 @@ define(function (require) {
      */
     function getUrl() {
         var self = this;
-        var url = 'http://192.168.1.101:3000/mip-custom?tag=mip-rec&';
+        var url = 'http://172.20.136.161:3000/mip-custom?tag=mip-recommend&';
+        // var url = 'http://localhost:8000/custom/';
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
@@ -113,10 +114,13 @@ define(function (require) {
             for (var i = 0; i < data.length; i++) {
                 var str = decodeURIComponent(data[i].tpl);
 
+                var html = str.replace(/<script[^>]*>(.*?)<\/script>/g, ' ');
+                var customTag = getSubString(html, regexs.customTag);
+
                 // script 处理
-                var node = document.body.querySelector('script[mip-custom]') || document.createElement('script');
+                var node = document.body.querySelector('script[' + customTag + ']') || document.createElement('script');
                 node.setAttribute('type','text/javascript');
-                node.setAttribute('mip-custom','');
+                node.setAttribute(customTag,'');
 
                 var script = str.match(regexs.script);
                 script.forEach(function(tmp) {
@@ -128,8 +132,7 @@ define(function (require) {
                 document.body.appendChild(node);
 
                 // html 处理
-                var html = str.replace(/<script[^>]*>(.*?)<\/script>/g, ' ');
-                var customTag = getSubString(html, regexs.customTag);
+
                 var tplId = customTag + '-' + Math.random().toString(36).slice(2);
                 var customNode = document.createElement(customTag);
                 var tpl = document.createElement('template');
@@ -140,16 +143,15 @@ define(function (require) {
                 tpl.setAttribute('type', 'mip-mustache');
                 tpl.id = tplId;
                 tpl.innerHTML = getSubString(html, regexs.innerhtml);
-                element.appendChild(customNode);
+                element.appendChild(customNode[i]);
 
                 // 模板渲染
-                templates.render(customNode, data[i].data).then(function (htmls) {
-                    customNode.innerHTML += htmls;
+                var key = 0;
+                templates.render(customNode, data[i].data, true).then(function (res) {
+                    res.element.innerHTML = res.html;
                 });
-
             }
         });
-
     };
 
     return customElement;

@@ -1,5 +1,5 @@
 /**
-* 星座屋mip改造 javascript功能插件
+* 星座屋mip改造组件
 * @file 页面主要内容改造
 * @author mipxzw@163.com
 * @version 1.0.2

@@ -38,10 +38,10 @@ define(function (require) {
 
 
     /**
-     * firstInviewCallback
+     * build
      *
      */
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.build = function () {
         var element = this.element;
         element.setAttribute('pageType', isNoCache() ? 2 : 1);
 

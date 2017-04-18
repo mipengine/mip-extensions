@@ -7,6 +7,7 @@
 
 define(function (require) {
     var $ = require('zepto');
+    var viewer = require('viewer');
 
     var customElement = require('customElement').create();
 
@@ -26,7 +27,7 @@ define(function (require) {
             ]);
 
             // XXX: 解决来自百度搜索，内外域名不一致问题
-            if (window.parent !== window) {
+            if (viewer.isIframed) {
                 bdSearchCase();
             }
 

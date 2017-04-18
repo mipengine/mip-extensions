@@ -77,7 +77,7 @@ define(function (require) {
 
        // 运势详情
         $(document).on('click', '.fortune a', function (e) {
-            window.location.href = 'fortune.html?aid=' + getUrl('aid') + '';
+            window.location.href = 'fortune.html?aid=' + (aid+1) + '';
         });
        // 改变星座
         function changeStar(index) {

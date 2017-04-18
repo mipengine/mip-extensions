@@ -5,12 +5,12 @@
  * From: mip-stats-baidu
  */
 
-define(function(require) {
+define(function (require) {
     var $ = require('zepto');
 
     var customElement = require('customElement').create();
 
-    customElement.prototype.createdCallback = function() {
+    customElement.prototype.createdCallback = function () {
         var elem = this.element;
         var token = elem.getAttribute('token');
         var setConfig = elem.getAttribute('setconfig');
@@ -25,9 +25,9 @@ define(function(require) {
                 token
             ]);
 
-            // XXX: 解决iframe内外域名不一致问题
+            // XXX: 解决来自百度搜索，内外域名不一致问题
             if (window.parent !== window) {
-                fixIframeCase();
+                bdSearchCase();
             }
 
             /**
@@ -41,7 +41,7 @@ define(function(require) {
             var hm = document.createElement('script');
             hm.src = '//hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
-            hm.onload = function() {
+            hm.onload = function () {
                 bindEle();
             };
         }
@@ -67,8 +67,9 @@ define(function(require) {
 
             try {
                 statusData = JSON.parse(decodeURIComponent(statusData));
-            } catch (e) {
-                console.warn("事件追踪data-stats-baidu-obj数据不正确");
+            }
+            catch (e) {
+                console.warn('事件追踪data-stats-baidu-obj数据不正确');
                 return;
             }
 
@@ -96,7 +97,8 @@ define(function(require) {
 
             if (eventtype === 'load') {
                 _hmt.push(data);
-            } else {
+            }
+            else {
                 tagBox[index].addEventListener(eventtype, function(event) {
                     var tempData = this.getAttribute('data-stats-baidu-obj');
                     if (!tempData) {
@@ -105,8 +107,9 @@ define(function(require) {
                     var statusJson;
                     try {
                         statusJson = JSON.parse(decodeURIComponent(tempData));
-                    } catch (e) {
-                        console.warn("事件追踪data-stats-baidu-obj数据不正确");
+                    }
+                    catch (e) {
+                        console.warn('事件追踪data-stats-baidu-obj数据不正确');
                         return;
                     }
                     if (!statusJson.data) {
@@ -140,20 +143,22 @@ define(function(require) {
     }
 
     /**
-     * 解决iframe内外域名不一致问题
+     * 解决来自百度搜索，内外域名不一致问题
      */
-    function fixIframeCase() {
+    function bdSearchCase() {
         var referrer = '';
-        var href = window.location.href;
-        console.log('cache地址：' + href);
-        var originOri = getBaiduUrl(href);
-        console.log('mip path 地址: ' + originOri); 
+
+        var bdUrl = document.referrer;
+        console.log('mip path 地址: ' + bdUrl);
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
-        console.log('hash-word: ' + hashWord); 
-        console.log('hash-eqid: ' + hashEqid); 
+        console.log('hash-word: ' + hashWord);
+        console.log('hash-eqid: ' + hashEqid);
         if (hashWord || hashEqid) {
-            referrer = makeReferrer(originOri, hashWord, hashEqid);
+            referrer = makeReferrer(bdUrl, {
+                word: hashWord,
+                eqid: hashEqid
+            });
             console.log('_setReferrerOverride: ' + referrer);
             _hmt.push('_setReferrerOverride', referrer);
         }
@@ -161,53 +166,27 @@ define(function(require) {
     }
 
     /**
-     * 根据当前页面url，拼装成mip-path/mip-shell url
+     * 生成百度统计_setReferrerOverride对应的referrer
      *
-     * @param  {String} url 当前页面url
-     * @return {String}     mip-shell url
+     * @param  {string} url       需要被添加参数的 url
+     * @param  {Object} hashObj   参数对象
+     * @return {string}           拼装后的 url
      */
-    function getBaiduUrl(url) {
-        var baiduPrefix = 'https://m.baidu.com/mip/c/';
-        var cachePrefix = 'https://mipcache.bdstatic.com/c/';
-        var originUrl = url.replace(cachePrefix, '');
-        return baiduPrefix + encodeRestfulUrl(originUrl);
-    }
-
-    /**
-     * 针对Url中"//"的情况做兼容
-     *
-     * @param  {String} url url
-     * @return {String}     url
-     */
-    function encodeRestfulUrl(url) {
-        var restful = encodeURIComponent(url);
-        restful = restful.replace(/%2F/g, '/');
-        for (var i = 0; i < restful.length; i++) {
-            var char = restful.charAt(i);
-            var nextChar = restful.charAt(i + 1);
-            if (char === '/' && nextChar !== '/') {
-                continue;
-            }
-            while (restful.charAt(i) === '/' && i < restful.length) {
-                restful = restful.slice(0, i) + '%2F' + restful.slice(i + 1);
-                i += 3;
-            }
-        }
-        return restful;
-    }
-
-    function makeReferrer(originUrl, hash1, hash2) {
+    function makeReferrer(url, hashObj) {
         var referrer = '';
-        var conjMark = originUrl.indexOf('?') < 0 ? '?' : '&';
-        var urlData = 'url=' + hash1 + '&eqid=' + hash2;
-        if (originUrl.indexOf('#') < 0) {
-            referrer = originUrl + conjMark + urlData;
-        } else {
-            var 
-            referrer = originUrl.replace('#', conjMark + urlData + '#')
+        var conjMark = url.indexOf('?') < 0 ? '?' : '&';
+        var urlData = '';
+        for (var key in hashObj) {
+            urlData += '&' + key + '=' + hashObj[key];
+        }
+        urlData = urlData.slice(1);
+        if (url.indexOf('#') < 0) {
+            referrer = url + conjMark + urlData;
+        }
+        else {
+            referrer = url.replace('#', conjMark + urlData + '#');
         }
         return referrer;
     }
-
     return customElement;
 });

@@ -1,5 +1,5 @@
 /**
-* 星座屋mip改造 javascript功能插件
+* 星座屋mip首页组件
 * @file 页面主要内容改造
 * @author mipxzw@163.com
 * @version 1.0.2
@@ -12,7 +12,6 @@ define(function (require) {
     customElem.prototype.build = function () {
         var starBox = $('.xz_select');
         var starbg = $('.bg_black');
-        // 控制弹层开启
         $(document).on('click', '.chos_btn', function (event) {
             event = event || window.event;
             event.stopPropagation();
@@ -39,8 +38,9 @@ define(function (require) {
         }
         aid = aid - 1;
         $('title').text(adata[aid]);
+        var ajaxUrl = $('.complex_info').data('url');
         $.ajax({
-            url: 'https://cache.xzw.com/mip/data.js',
+            url: ajaxUrl,
             dataType: 'jsonp',
             data: {'id': aid},
             jsonp: 'callback',
@@ -55,8 +55,10 @@ define(function (require) {
             timeout: 3000
         });
        // 获取今日运势内容
+        var forUrl = $('.fortune').data('url');
+        var nUrl = forUrl.replace('[date]', myDates()).replace('[aid]', (aid + 1));
         $.ajax({
-            url: 'https://cache.xzw.com/mip/fortune/1/' + myDates() + '/' + getUrl('aid') + '.js',
+            url: nUrl,
             dataType: 'jsonp',
             jsonp: 'callback',
             jsonpCallback: 'call_fortune',
@@ -77,7 +79,6 @@ define(function (require) {
             window.location.href = 'fortune.html?aid=' + (aid+1) + '';
         });
 
-       // 改变星座
         function changeStar(index) {
             window.location.href = urlUpdateParams(window.location.href, 'aid', index);
         }

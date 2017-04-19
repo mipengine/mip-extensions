@@ -27,7 +27,7 @@ define(function (require) {
             ]);
 
             // XXX: 解决来自百度搜索，内外域名不一致问题
-            if (true || viewer.isIframed) {
+            if (viewer.isIframed) {
                 bdSearchCase();
             }
 

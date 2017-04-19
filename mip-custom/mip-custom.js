@@ -8,7 +8,6 @@ define(function (require) {
     var customElement = require('customElement').create();
 
     var templates = require('templates');
-    // var fetch = require('fetch');
     var viewer = require('viewer');
 
     var regexs = {

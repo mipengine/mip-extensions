@@ -140,10 +140,11 @@ define(function (require) {
             console.error('mip-list 的 src 属性不能为空');
         }
 
+        self.pnName = element.getAttribute('pnName') || 'pn';
+        self.pn = element.getAttribute('pn') || 1;
+
         // 有查看更多属性的情况
         if (element.hasAttribute('has-more')) {
-            self.pnName = element.getAttribute('pnName') || 'pn';
-            self.pn = element.getAttribute('pn') || 1;
             self.addEventAction('more', function () {
                 pushResult.call(self, src);
             });

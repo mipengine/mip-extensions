@@ -27,6 +27,9 @@ define(function (require) {
         url: getSubString(location.pathname, regexs.httpspathname) || getSubString(location.pathname, regexs.httppathname)
     };
 
+    var commonData = {};
+    var tplData = {};
+
     /**
      * [extendObj 合并数据]
      *
@@ -94,6 +97,7 @@ define(function (require) {
 
         // 默认参数设置
         self.params = getHashparams();
+        console.log(self);
 
         // 获取用户设置参数
         try {
@@ -109,12 +113,25 @@ define(function (require) {
         }
 
         self.url = getUrl.call(self);
+        console.log('mip-list: ',self.url);
 
         fetch(self.url).then(function (res) {
             return res.json();
         }).then(function (data) {
-            for (var i = 0; i < data.length; i++) {
-                var str = decodeURIComponent(data[i].tpl);
+            if (data && data.status && data.status.errorno) {
+                console.error(data.status.errormsg);
+                return;
+            }
+            if (data && data.data && data.data.common) {
+                commonData = data.data.common;
+            }
+            if (data && data.data && data.data.template) {
+                tplData = data.data.template;
+            }
+            console.log(data,tplData);
+            for (var i = 0; i < tplData.length; i++) {
+                var str = decodeURIComponent(tplData[i].tpl);
+                console.log(str);
 
                 var html = str.replace(/<script[^>]*>(.*?)<\/script>/g, ' ');
                 var customTag = getSubString(html, regexs.customTag);
@@ -125,7 +142,8 @@ define(function (require) {
                 node.setAttribute(customTag,'');
 
                 var script = str.match(regexs.script);
-                script.forEach(function(tmp) {
+                console.log(script);
+                script && script.forEach(function(tmp) {
                     var innerhtml = tmp.match(/<script>([\S\s]*)<\/script>/)[1];
                     if (node.innerHTML.indexOf(innerhtml) === -1) {
                         node.innerHTML += innerhtml;
@@ -149,7 +167,7 @@ define(function (require) {
 
                 // 模板渲染
                 var key = 0;
-                templates.render(customNode, data[i].data, true).then(function (res) {
+                templates.render(customNode, tplData[i].tpldata, true).then(function (res) {
                     res.element.innerHTML = res.html;
                 });
             }

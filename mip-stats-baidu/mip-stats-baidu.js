@@ -27,7 +27,7 @@ define(function (require) {
             ]);
 
             // XXX: 解决来自百度搜索，内外域名不一致问题
-            if (viewer.isIframed) {
+            if (true || viewer.isIframed) {
                 bdSearchCase();
             }
 
@@ -152,7 +152,7 @@ define(function (require) {
         var bdUrl = document.referrer;
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
-        if (hashWord || hashEqid) {
+        if ((hashWord || hashEqid) && bdUrl) {
             var hashObj = {};
             if (hashEqid) {
                 hashObj.url = '';

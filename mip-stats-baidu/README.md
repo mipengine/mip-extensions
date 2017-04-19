@@ -16,7 +16,8 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 百度统计插件引入示例:
 
 ```
-<mip-stats-bidu token="02890d4a309827eb62bc3335b2b28f7f" setconfig="%5B_setAutoPageview%2C%20false%5D"></mip-stats-bidu>
+mip-stats-baidu 引入
+<mip-stats-baidu token="02890d4a309827eb62bc3335b2b28f7f" setconfig="%5B_setAutoPageview%2C%20false%5D"></mip-stats-baidu>
 
 ```
 

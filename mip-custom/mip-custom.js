@@ -13,6 +13,7 @@ define(function (require) {
     var regexs = {
         html: /<mip-\S*>(.*)<\/mip-\S*></,
         script: /<script[^>]*>(.*?)<\/script>/g,
+        style: /<style[^>]*>(.*?)<\/style>/g,
         innerhtml: />([\S\s]*)<\//,
         customTag: /<(mip-[^>]*)>/,
         httppathname: /\/c\/(\S*)/,
@@ -22,13 +23,13 @@ define(function (require) {
     var params = {
         lid: "",
         query: "",
-        title: document.head.querySelector("title").innerText,
+        title: '',
         cuid: "",
-        url: getSubString(location.pathname, regexs.httpspathname) || getSubString(location.pathname, regexs.httppathname)
+        originUrl: getSubString(location.pathname, regexs.httpspathname) || getSubString(location.pathname, regexs.httppathname)
     };
 
     var commonData = {};
-    var tplData = {};
+    var template = {};
 
     /**
      * [extendObj 合并数据]
@@ -66,8 +67,7 @@ define(function (require) {
      */
     function getUrl() {
         var self = this;
-        // var url = 'http://172.20.136.161:3000/mip-custom?tag=mip-recommend&';
-        var url = 'http://localhost:8000/custom/';
+        var url = 'https://mipcache.bdstatic.com/custom?';
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
@@ -83,21 +83,34 @@ define(function (require) {
         return res;
     }
 
+    function set (str, reg, tag, attr, container) {
+        var node = container.querySelector(tag+ '[' + attr + ']') || document.createElement(tag);
+        node.setAttribute(attr,'');
+        var style = str.match(reg);
+        style && style.forEach(function(tmp) {
+            var r = new RegExp("<" + tag + ">([\\S\\s]*)</" + tag + ">");
+            var innerhtml = tmp.match(r)[1];
+            if (node.innerHTML.indexOf(innerhtml) === -1) {
+                node.innerHTML += innerhtml;
+            }
+        });
+        container.appendChild(node);
+    }
+
     /**
      * 构造元素，初次进入到视图区执行
      */
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.build = function () {
 
-        if (viewer.isIframe) {
-            return;
-        }
+        // if (!viewer.isIframe) {
+        //     return;
+        // }
 
         var self = this;
         var element = self.element;
 
         // 默认参数设置
         self.params = getHashparams();
-        console.log(self);
 
         // 获取用户设置参数
         try {
@@ -113,12 +126,14 @@ define(function (require) {
         }
 
         self.url = getUrl.call(self);
-        console.log('mip-list: ',self.url);
+        // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalurl=xywy.com/fdsjifosdf/fjdsof&uid=12133&title=test';
+        console.log(self.url);
 
         fetch(self.url).then(function (res) {
             return res.json();
         }).then(function (data) {
-            if (data && data.status && data.status.errorno) {
+
+            if (data && data.errno) {
                 console.error(data.status.errormsg);
                 return;
             }
@@ -126,50 +141,50 @@ define(function (require) {
                 commonData = data.data.common;
             }
             if (data && data.data && data.data.template) {
-                tplData = data.data.template;
+                template = data.data.template;
             }
-            console.log(data,tplData);
-            for (var i = 0; i < tplData.length; i++) {
-                var str = decodeURIComponent(tplData[i].tpl);
-                console.log(str);
 
-                var html = str.replace(/<script[^>]*>(.*?)<\/script>/g, ' ');
-                var customTag = getSubString(html, regexs.customTag);
+            for(var k = 0; k < template.length; k++) {
+                var tplData = template[k];
+                var container = document.createElement('div');
+                container.setAttribute('mip-custom-item', k);
+                element.appendChild(container);
 
-                // script 处理
-                var node = document.body.querySelector('script[' + customTag + ']') || document.createElement('script');
-                node.setAttribute('type','text/javascript');
-                node.setAttribute(customTag,'');
-
-                var script = str.match(regexs.script);
-                console.log(script);
-                script && script.forEach(function(tmp) {
-                    var innerhtml = tmp.match(/<script>([\S\s]*)<\/script>/)[1];
-                    if (node.innerHTML.indexOf(innerhtml) === -1) {
-                        node.innerHTML += innerhtml;
+                console.log(3);
+                for (var i = 0; i < tplData.length; i++) {
+                    var str = tplData[i].tpl ? decodeURIComponent(tplData[i].tpl) : null;
+                    if (!str) {
+                        return;
                     }
-                });
-                document.body.appendChild(node);
+                    var html = str.replace(regexs.script, '')
+                                  .replace(regexs.style, '');
+                    var customTag = getSubString(html, regexs.customTag);
 
-                // html 处理
+                    // style 处理
+                    set(str, regexs.style, 'style', 'mip-custom-css', document.head);
 
-                var tplId = customTag + '-' + Math.random().toString(36).slice(2);
-                var customNode = document.createElement(customTag);
-                var tpl = document.createElement('template');
+                    // script 处理
+                    set (str, regexs.script, 'script', customTag, document.body);
 
-                customNode.setAttribute('template', tplId);
-                customNode.appendChild(tpl);
+                    // html 处理
+                    var tplId = customTag + '-' + Math.random().toString(36).slice(2);
+                    var customNode = document.createElement(customTag);
+                    var tpl = document.createElement('template');
 
-                tpl.setAttribute('type', 'mip-mustache');
-                tpl.id = tplId;
-                tpl.innerHTML = getSubString(html, regexs.innerhtml);
-                element.appendChild(customNode);
+                    customNode.setAttribute('template', tplId);
+                    customNode.appendChild(tpl);
 
-                // 模板渲染
-                var key = 0;
-                templates.render(customNode, tplData[i].tpldata, true).then(function (res) {
-                    res.element.innerHTML = res.html;
-                });
+                    tpl.setAttribute('type', 'mip-mustache');
+                    tpl.id = tplId;
+                    tpl.innerHTML = getSubString(html, regexs.innerhtml);
+                    container.appendChild(customNode);
+
+                    // 模板渲染
+                    var key = 0;
+                    templates.render(customNode, tplData[i].tpldata, true).then(function (res) {
+                        res.element.innerHTML = res.html;
+                    });
+                }
             }
         });
     };

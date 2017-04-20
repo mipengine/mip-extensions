@@ -1,5 +1,5 @@
 /**
-* 星座屋mip改造 javascript功能插件
+* 星座屋mip首页组件
 * @file 页面主要内容改造
 * @author mipxzw@163.com
 * @version 1.0.2
@@ -8,13 +8,10 @@ define(function (require) {
     var $ = require('zepto');
     var isShowStar = false;
     var customElem = require('customElement').create();
+    var adata = ['白羊', '金牛', '双子', '巨蟹', '狮子', '处女', '天秤', '天蝎', '射手', '摩羯', '水瓶', '双鱼'];
     customElem.prototype.build = function () {
         var starBox = $('.xz_select');
         var starbg = $('.bg_black');
-        if (!getUrl('aid')) {
-            window.location.href = urlUpdateParams(window.location.href, 'aid', 1);
-        }
-        // 控制弹层开启
         $(document).on('click', '.chos_btn', function (event) {
             event = event || window.event;
             event.stopPropagation();
@@ -35,9 +32,15 @@ define(function (require) {
             starbg.hide();
         });
         // 根据请求更换不同星座数据
-        var aid = getUrl('aid') - 1;
+        var aid = getUrl('aid');
+        if (!aid) {
+            aid = 1;
+        }
+        aid = aid - 1;
+        $('title').text(adata[aid]);
+        var ajaxUrl = $('.complex_info').data('url');
         $.ajax({
-            url: 'http://cache.xzw.com/mip/data.js',
+            url: ajaxUrl,
             dataType: 'jsonp',
             data: {'id': aid},
             jsonp: 'callback',
@@ -52,24 +55,30 @@ define(function (require) {
             timeout: 3000
         });
        // 获取今日运势内容
+        var forUrl = $('.fortune').data('url');
+        var nUrl = forUrl.replace('[date]', myDates()).replace('[aid]', (aid + 1));
         $.ajax({
-            url: 'http://m.xzw.com/fortune/ajax/back/' + myDates() + '/' + getUrl('aid') + '/' + getUrl('aid') + '.html',
+            url: nUrl,
             dataType: 'jsonp',
             jsonp: 'callback',
             jsonpCallback: 'call_fortune',
             success: function (data) {
-                $('.fortune em em').width(data.s);
-                $('.fortune p a').html(data.v);
+                $('.fortune em em').width(data.data.s);
+                $('.fortune p a').html(data.data.v);
             },
             timeout: 3000
         });
        // 更换星座
-        $('li', starBox).click(function () {
+        $(document).on('click', '.xz_select li', function (e) {
             var i = $(this).index() + 1;
             changeStar(i);
         });
 
-       // 改变星座
+        // 运势详情
+        $(document).on('click', '.fortune a', function (e) {
+            window.location.href = 'fortune.html?aid=' + (aid+1) + '';
+        });
+
         function changeStar(index) {
             window.location.href = urlUpdateParams(window.location.href, 'aid', index);
         }

@@ -1,5 +1,46 @@
 # 升级日志
 
+#### 2017.04.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[新增] 星座屋mip改造插件
+[mip-xzw-fortune](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-fortune)|[新增][平台] 飞星座屋运势详情组件
+[mip-fh-paging](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-paging)|[新增][平台] 飞华分页交互组件
+[mip-cs-meiqia](https://github.com/mipengine/mip-extensions/tree/master/mip-cs-meiqia)|[新增][平台] 美洽在线客服组件
+
+
+#### 2017.04.19
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[升级] 线上 bug 修复
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 提高代码强壮性
+[mip-stats-bidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-bidu)|[升级] 提高代码强壮性
+
+#### 2017.04.18
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-tuijian-baidu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tuijian-baidu)|[新增][平台] 百度推荐
+[mip-zixun](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zixun)|[升级][平台] 逻辑业务修改
+
+
+#### 2017.04.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-link](https://github.com/mipengine/mip-extensions/tree/master/mip-link)|[升级] 修改回调函数
+ 
+
 #### 2017.04.14
 
 > 组件上线

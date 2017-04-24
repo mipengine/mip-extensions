@@ -42,7 +42,7 @@ define(function (require) {
         }, false);
         element.addEventListener('click', function () {
             viewport.setScrollTop(0);
-        }, false);
+        }, false);  
     };
 
     return customElement;

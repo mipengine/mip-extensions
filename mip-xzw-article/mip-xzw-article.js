@@ -2,7 +2,7 @@
 * 星座屋mip改造 javascript功能插件
 * @file 页面主要内容改造
 * @author mipxzw@163.com
-* @version 1.0.3
+* @version 1.0.4
 */
 define(function (require) {
     var $ = require('zepto');
@@ -54,13 +54,13 @@ define(function (require) {
         });
        // 获取今日运势内容
         $.ajax({
-            url: 'http://cache.xzw.com/mip/fortune/1/' + myDates() + '/' + getUrl('aid') + '.js',
+            url: 'http://cache.xzw.com/mip/fortune/1/' + myDates() + '/' + aid + '.js',
             dataType: 'jsonp',
             jsonp: 'callback',
             jsonpCallback: 'call_fortune',
             success: function (data) {
                 $('.fortune em em').width(data.data.s);
-                $('.fortune p a').html(data.data.v);
+                $('.fortune p a').html(data.data.v).attr('href', 'fortune.html?aid=' + (aid + 1) + '');
             },
             timeout: 3000
         });
@@ -68,11 +68,6 @@ define(function (require) {
         $(document).on('click', '.xz_select li', function (e) {
             var i = $(this).index() + 1;
             changeStar(i);
-        });
-
-        // 运势详情
-        $(document).on('click', '.fortune a', function (e) {
-            window.location.href = 'fortune.html?aid=' + (aid + 1) + '';
         });
 
        // 改变星座

@@ -8,6 +8,7 @@ define(function (require) {
     var util = require('util');
     var viewer = require('viewer');
     var templates = require('templates');
+    var fetchJsonp = require('fetch-jsonp');
     var customElement = require('customElement').create();
 
     var regexs = {
@@ -108,6 +109,7 @@ define(function (require) {
                 node.innerHTML += innerhtml;
             }
         });
+
         container.appendChild(node);
     }
 
@@ -169,7 +171,8 @@ define(function (require) {
 
             this.href += ((this.href[this.href.length - 1] === '&') ? '' : '&') + 'clk_info=' + JSON.stringify(clkInfo);
             console.log(this.href);
-            this.click();
+            location.href = this.href;
+            // this.onclick();
 
         });
 
@@ -191,9 +194,11 @@ define(function (require) {
 
         self.url = getUrl.call(self);
         // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalurl=xywy.com/fdsjifosdf/fjdsof&uid=12133&title=test';
+        // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalurl=xywy.com/fdsjifosdf/fjdsof&accid=12133&title=test';
         console.log(self.url);
-
-        fetch(self.url).then(function (res) {
+        fetchJsonp(self.url, {
+            jsonpCallback: 'cb'
+        }).then(function (res) {
             return res.json();
         }).then(function (data) {
             console.log(data);
@@ -213,10 +218,10 @@ define(function (require) {
                 var container = document.createElement('div');
                 container.setAttribute('mip-custom-item', k);
                 element.appendChild(container);
-
+                console.log(tplData);
                 for (var i = 0; i < tplData.length; i++) {
-                    console.log('tplData', tplData);
-                    var str = tplData[i].tpl ? decodeURIComponent(tplData[i].tpl) : null;
+
+                    var str = tplData[i].tpl ? tplData[i].tpl: null;
                     if (!str) {
                         return;
                     }

@@ -1,0 +1,12 @@
+{
+    "name": "mip-99down-dropload",
+    "version": "1.0.0",
+    "author": {
+        "name": "Lindar",
+        "email": "506102816@qq.com",
+        "url": "http://www.99down.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

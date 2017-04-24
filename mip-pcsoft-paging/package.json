@@ -1,0 +1,13 @@
+{
+    "name": "mip-pcsoft-paging",
+    "version": "1.0.0",
+	 "description": "paging",
+    "author": {
+        "name": "pcsoft",
+        "email": "1194747937@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}
+

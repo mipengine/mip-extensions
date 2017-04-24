@@ -5,10 +5,10 @@
 
 define(function (require) {
 
-    var customElement = require('customElement').create();
-
-    var templates = require('templates');
+    var util = require('util');
     var viewer = require('viewer');
+    var templates = require('templates');
+    var customElement = require('customElement').create();
 
     var regexs = {
         html: /<mip-\S*>(.*)<\/mip-\S*></,
@@ -16,16 +16,16 @@ define(function (require) {
         style: /<style[^>]*>(.*?)<\/style>/g,
         innerhtml: />([\S\s]*)<\//,
         customTag: /<(mip-[^>]*)>/,
-        httppathname: /\/c\/(\S*)/,
-        httpspathname: /\/c\/s\/(\S*)/
+        reghttp: /\/c\/(\S*)/,
+        reghttps: /\/c\/s\/(\S*)/
     };
 
     var params = {
-        lid: "",
-        query: "",
+        lid: '',
+        query: '',
         title: '',
-        cuid: "",
-        originUrl: getSubString(location.pathname, regexs.httpspathname) || getSubString(location.pathname, regexs.httppathname)
+        cuid: '',
+        originUrl: getSubString(location.pathname, regexs.reghttps) || getSubString(location.pathname, regexs.reghttp)
     };
 
     var commonData = {};
@@ -49,7 +49,13 @@ define(function (require) {
         return opt;
     }
 
+    /**
+     * [getHashparams mip连接特殊情况，从 hash 中获取参数
+     *
+     * @return {Object}     合并后的数据对象
+     */
     function getHashparams() {
+
         for (var key in params) {
             if (params.hasOwnProperty(key)) {
                 params[key] = MIP.hash.get(key) || params[key];
@@ -77,24 +83,63 @@ define(function (require) {
         return url;
     }
 
+    /**
+     * [getSubString 根据正则获取子串]
+     *
+     * @param  {string}  str [截取钱字符串]
+     * @param  {RegExp}  reg [正则表达式]
+     * @param  {integer} pos [位置]
+     * @return {string}      [截取后字符串]
+     */
     function getSubString(str, reg, pos) {
         pos = pos ? 0 : 1;
         var res = str.match(reg) && str.match(reg)[pos] ? str.match(reg)[pos] : '';
         return res;
     }
 
-    function set (str, reg, tag, attr, container) {
-        var node = container.querySelector(tag+ '[' + attr + ']') || document.createElement(tag);
-        node.setAttribute(attr,'');
+    function set(str, reg, tag, attr, container) {
+        var node = container.querySelector(tag + '[' + attr + ']') || document.createElement(tag);
+        node.setAttribute(attr, '');
         var style = str.match(reg);
-        style && style.forEach(function(tmp) {
-            var r = new RegExp("<" + tag + ">([\\S\\s]*)</" + tag + ">");
+        style && style.forEach(function (tmp) {
+            var r = new RegExp('<' + tag + '>([\\S\\s]*)</' + tag + '>');
             var innerhtml = tmp.match(r)[1];
             if (node.innerHTML.indexOf(innerhtml) === -1) {
                 node.innerHTML += innerhtml;
             }
         });
         container.appendChild(node);
+    }
+
+    /**
+     * [getXPath 获取 xpath 数组]
+     *
+     * @param  {DOM}   node [点击节点]
+     * @param  {DOM}   wrap [容器]
+     * @param  {Array} path [结果数组]
+     * @return {Array}      [结果数组]
+     */
+    function getXPath(node, wrap, path) {
+        path = path || [];
+        wrap = wrap || document;
+        if (node === wrap || !node || !wrap) {
+            return path;
+        }
+        if (node.parentNode !== wrap) {
+            path = getXPath(node.parentNode, wrap, path);
+        }
+        var count = 1;
+        var sibling = node.previousSibling;
+        while (sibling) {
+            if (sibling.nodeType === 1 && sibling.nodeName === node.nodeName) {
+                count++;
+            }
+            sibling = sibling.previousSibling;
+        }
+        if (node.nodeType === 1) {
+            path.push(node.nodeName.toLowerCase() + (count > 1 ? count : ''));
+        }
+        return path;
     }
 
     /**
@@ -108,6 +153,25 @@ define(function (require) {
 
         var self = this;
         var element = self.element;
+
+        // 监听 a 标签点击事件
+        util.event.delegate(element, 'a', 'click', function (event) {
+            event && event.preventDefault();
+
+            var xpath = '';
+            var path = getXPath(this, element);
+
+            path && path.forEach(function (val) {
+                xpath += xpath ? '_' + val : val;
+            });
+
+            var clkInfo = {xpath: xpath};
+
+            this.href += ((this.href[this.href.length - 1] === '&') ? '' : '&') + 'clk_info=' + JSON.stringify(clkInfo);
+            console.log(this.href);
+            this.click();
+
+        });
 
         // 默认参数设置
         self.params = getHashparams();
@@ -132,7 +196,7 @@ define(function (require) {
         fetch(self.url).then(function (res) {
             return res.json();
         }).then(function (data) {
-
+            console.log(data);
             if (data && data.errno) {
                 console.error(data.status.errormsg);
                 return;
@@ -144,27 +208,26 @@ define(function (require) {
                 template = data.data.template;
             }
 
-            for(var k = 0; k < template.length; k++) {
+            for (var k = 0; k < template.length; k++) {
                 var tplData = template[k];
                 var container = document.createElement('div');
                 container.setAttribute('mip-custom-item', k);
                 element.appendChild(container);
 
-                console.log(3);
                 for (var i = 0; i < tplData.length; i++) {
+                    console.log('tplData', tplData);
                     var str = tplData[i].tpl ? decodeURIComponent(tplData[i].tpl) : null;
                     if (!str) {
                         return;
                     }
-                    var html = str.replace(regexs.script, '')
-                                  .replace(regexs.style, '');
+                    var html = str.replace(regexs.script, '').replace(regexs.style, '');
                     var customTag = getSubString(html, regexs.customTag);
 
                     // style 处理
                     set(str, regexs.style, 'style', 'mip-custom-css', document.head);
 
                     // script 处理
-                    set (str, regexs.script, 'script', customTag, document.body);
+                    set(str, regexs.script, 'script', customTag, document.body);
 
                     // html 处理
                     var tplId = customTag + '-' + Math.random().toString(36).slice(2);
@@ -180,9 +243,9 @@ define(function (require) {
                     container.appendChild(customNode);
 
                     // 模板渲染
-                    var key = 0;
-                    templates.render(customNode, tplData[i].tpldata, true).then(function (res) {
+                    templates.render(customNode, tplData[i].tplData, true).then(function (res) {
                         res.element.innerHTML = res.html;
+
                     });
                 }
             }

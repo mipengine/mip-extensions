@@ -1,0 +1,12 @@
+{
+    "name": "mip-fh-async",
+    "version": "1.0.0",
+    "description": "异步提交组件",
+    "author": {
+        "name": "laoono",
+        "email": "laoono@163.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -2,7 +2,7 @@
 * 星座屋mip改造 javascript功能插件
 * @file 页面主要内容改造
 * @author mipxzw@163.com
-* @version 1.0.3
+* @version 1.0.4
 */
 define(function (require) {
     var $ = require('zepto');

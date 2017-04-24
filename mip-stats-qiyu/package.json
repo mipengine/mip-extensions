@@ -1,0 +1,14 @@
+{
+    "name": "mip-stats-qiyu",
+    "version": "1.0.0",
+    "description": "组件介绍:七鱼在线客服组件",
+    "contributors": [
+        {
+            "name": "marhey",
+            "email": "marhey@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

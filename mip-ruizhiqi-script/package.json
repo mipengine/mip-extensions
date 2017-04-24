@@ -1,0 +1,12 @@
+{
+    "name": "mip-ruizhiqi-script",
+    "version": "1.0.0",
+    "author": {
+        "name": "Abin",
+	"email": "abinsoft@qq.com",
+        "url": "http://www.ruizhiqi.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

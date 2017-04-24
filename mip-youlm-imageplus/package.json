@@ -1,0 +1,12 @@
+{
+    "name": "mip-youlm-imageplus”,
+    "version": "1.0.2",
+    "author": {
+        "name": “yowl””
+        "email": “316476361@qq.com",
+        "url": "https://www.youlm.com"
+    },
+    "engines": {
+        "mip": ">=1.0.2”
+    }
+}

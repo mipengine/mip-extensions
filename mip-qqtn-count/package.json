@@ -1,0 +1,12 @@
+{
+    "name": "mip-qqtn-count",
+    "version": "1.0.1",
+	"description": "animate",
+    "author": {
+        "name": "Zhang",
+        "url": "https://www.qqtn.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -43,6 +43,7 @@ define(function (require) {
             data: {'id': aid},
             jsonp: 'callback',
             jsonpCallback: 'call_data',
+            cache:true,
             success: function (data) {
                 var starData = data.data;
                 var items = starData[aid];
@@ -54,10 +55,11 @@ define(function (require) {
         });
        // 获取今日运势内容
         $.ajax({
-            url: 'http://cache.xzw.com/mip/fortune/1/' + myDates() + '/' + aid + '.js',
+            url: 'https://cache.xzw.com/mip/fortune/1/' + myDates() + '/' + aid + '.js',
             dataType: 'jsonp',
             jsonp: 'callback',
             jsonpCallback: 'call_fortune',
+            cache:true,
             success: function (data) {
                 $('.fortune em em').width(data.data.s);
                 $('.fortune p a').html(data.data.v).attr('href', 'fortune.html?aid=' + (aid + 1) + '');

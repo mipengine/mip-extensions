@@ -3,7 +3,7 @@
  * @author
  */
 
-define(function (require) {
+define(function () {
 
     var $ = require('zepto');
     var util = require('util');
@@ -33,6 +33,7 @@ define(function (require) {
 
     var commonData = {};
     var template = {};
+    var config = {};
 
     /**
      * [extendObj 合并数据]
@@ -101,7 +102,6 @@ define(function (require) {
     }
 
     function set(str, reg, tag, attr, container) {
-        // console.log(tag,attr,tag + '[' + attr + ']', container);
 
         var node = container.querySelector(tag + '[' + attr + ']') || document.createElement(tag);
         node.setAttribute(attr, '');
@@ -162,7 +162,12 @@ define(function (require) {
 
         // 监听 a 标签点击事件
         util.event.delegate(element, 'a', 'click', function (event) {
+            if (this.hasAttribute('clicked', '')) {
+                return;
+            }
+
             event && event.preventDefault();
+            this.setAttribute('clicked', '');
 
             var xpath = '';
             var path = getXPath(this, element);
@@ -171,13 +176,8 @@ define(function (require) {
                 xpath += xpath ? '_' + val : val;
             });
 
-            var clkInfo = {xpath: xpath};
-
-            this.href += ((this.href[this.href.length - 1] === '&') ? '' : '&') + 'clk_info=' + JSON.stringify(clkInfo);
-            console.log(this.href);
-            // location.href = this.href;
-            // $(this).click();
-
+            this.href += ((this.href[this.href.length - 1] === '&') ? '' : '&') + 'clk_info=' + JSON.stringify({xpath: xpath});
+            this.click();
         });
 
         // 默认参数设置
@@ -205,25 +205,44 @@ define(function (require) {
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
-            console.log(data);
+            // console.log(data);
             if (data && data.errno) {
                 console.error(data.errormsg);
                 return;
             }
+            data.config = {
+                "domain": "http://cp01-aladdin-product-28.epc.baidu.com:8500/",
+                "paths": {
+                    "js/nav": "static/js/nav",
+                    "js/util": "static/js/util"
+                }
+            };
+            if (data && data.config) {
+                if (data.config.paths) {
+                    for (var key in data.config.paths) {
+                        if (data.config.paths.hasOwnProperty(key)) {
+                            data.config.paths[key] = data.config.domain + data.config.paths[key];
+                        }
+                    }
+                }
+                require.config(data.config);
+            }
+
             if (data && data.data && data.data.common) {
                 commonData = data.data.common;
             }
+
             if (data && data.data && data.data.template) {
                 template = data.data.template;
             }
 
             for (var k = 0; k < template.length; k++) {
                 var tplData = template[k];
-                // console.log(tplData);
+
                 var container = document.createElement('div');
                 container.setAttribute('mip-custom-item', k);
                 element.appendChild(container);
-                // console.log(tplData);
+
                 for (var i = 0; i < tplData.length; i++) {
 
                     var str = tplData[i].tpl ? decodeURIComponent(tplData[i].tpl): null;
@@ -231,10 +250,9 @@ define(function (require) {
                         return;
                     }
                     var html = str.replace(regexs.script, '').replace(regexs.style, '');
-                    // console.log(html);
+
                     var reg = new RegExp('\<([^\\s|\>]*)','g');
                     var customTag = reg.exec(html)[1];
-                    // console.log(str, html, customTag);
 
                     // style 处理
                     set(str, regexs.style, 'style', 'mip-custom-css', document.head);
@@ -246,13 +264,10 @@ define(function (require) {
                     var tagArray = tag.split(' ');
                     for (var index = 0; index < tagArray.length; index++) {
                         var attrs = tagArray[index].split('=');
-                        // console.log(attrs);
                         if (attrs[1]) {
                             customNode.setAttribute(attrs[0], attrs[1].replace(/"/ig, ''));
                         }
                     }
-                    // console.log(tagArray);
-                    // console.log(tag);
 
                     var tpl = document.createElement('template');
 
@@ -267,7 +282,6 @@ define(function (require) {
                     // 模板渲染
                     templates.render(customNode, tplData[i].tplData, true).then(function (res) {
                         res.element.innerHTML = res.html;
-                        // console.log(res.html);
 
                         // script 处理
                         var timer = setTimeout(function () {

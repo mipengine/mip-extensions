@@ -162,7 +162,7 @@ define(function (require) {
                 hashObj.word = hashWord;
             }
             referrer = makeReferrer(bdUrl, hashObj);
-            _hmt.push('_setReferrerOverride', referrer);
+            _hmt.push(['_setReferrerOverride', referrer]);
         }
 
     }

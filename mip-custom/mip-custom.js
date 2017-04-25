@@ -16,7 +16,8 @@ define(function (require) {
         script: /<script[^>]*>(.*?)<\/script>/g,
         style: /<style[^>]*>(.*?)<\/style>/g,
         innerhtml: />([\S\s]*)<\//,
-        customTag: /<(mip-[^>]*)>/,
+        customTag: /<(mip-\S+)(\s|>)/,
+        tagandAttr: /<(mip-[^>]*)>/,
         reghttp: /\/c\/(\S*)/,
         reghttps: /\/c\/s\/(\S*)/
     };
@@ -99,6 +100,8 @@ define(function (require) {
     }
 
     function set(str, reg, tag, attr, container) {
+        // console.log(tag,attr,tag + '[' + attr + ']', container);
+
         var node = container.querySelector(tag + '[' + attr + ']') || document.createElement(tag);
         node.setAttribute(attr, '');
         var style = str.match(reg);
@@ -195,13 +198,13 @@ define(function (require) {
         self.url = getUrl.call(self);
         // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalurl=xywy.com/fdsjifosdf/fjdsof&uid=12133&title=test';
         // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalurl=xywy.com/fdsjifosdf/fjdsof&accid=12133&title=test';
-        console.log(self.url);
+        // console.log(self.url);
         fetchJsonp(self.url, {
             jsonpCallback: 'cb'
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
-            console.log(data);
+            // console.log(data);
             if (data && data.errno) {
                 console.error(data.status.errormsg);
                 return;
@@ -215,13 +218,14 @@ define(function (require) {
 
             for (var k = 0; k < template.length; k++) {
                 var tplData = template[k];
+                console.log(tplData);
                 var container = document.createElement('div');
                 container.setAttribute('mip-custom-item', k);
                 element.appendChild(container);
-                console.log(tplData);
+                // console.log(tplData);
                 for (var i = 0; i < tplData.length; i++) {
 
-                    var str = tplData[i].tpl ? tplData[i].tpl: null;
+                    var str = tplData[i].tpl ? decodeURIComponent(tplData[i].tpl): null;
                     if (!str) {
                         return;
                     }
@@ -231,12 +235,21 @@ define(function (require) {
                     // style 处理
                     set(str, regexs.style, 'style', 'mip-custom-css', document.head);
 
-                    // script 处理
-                    set(str, regexs.script, 'script', customTag, document.body);
-
                     // html 处理
                     var tplId = customTag + '-' + Math.random().toString(36).slice(2);
                     var customNode = document.createElement(customTag);
+                    var tag = getSubString(html, regexs.tagandAttr);
+                    var tagArray = tag.split(' ');
+                    for (var index = 0; index < tagArray.length; index++) {
+                        var attrs = tagArray[index].split('=');
+                        // console.log(attrs);
+                        if (attrs[1]) {
+                            customNode.setAttribute(attrs[0], attrs[1].replace(/"/ig, ''));
+                        }
+                    }
+                    // console.log(tagArray);
+                    // console.log(tag);
+
                     var tpl = document.createElement('template');
 
                     customNode.setAttribute('template', tplId);
@@ -250,7 +263,13 @@ define(function (require) {
                     // 模板渲染
                     templates.render(customNode, tplData[i].tplData, true).then(function (res) {
                         res.element.innerHTML = res.html;
+                        console.log(res.html);
 
+                        // script 处理
+                        var timer = setTimeout(function () {
+                            set(str, regexs.script, 'script', customTag, document.body);
+                            clearTimeout(timer);
+                        }, 0)
                     });
                 }
             }

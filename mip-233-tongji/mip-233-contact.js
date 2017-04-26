@@ -9,7 +9,7 @@ define(function (require) {
     customElem.prototype.build = function () {
         var element = this.element;
         var s = document.createElement('script');
-        s.src="http://s95.cnzz.com/stat.php?id=1254966436&web_id=1254966436";
+        s.src="https://s95.cnzz.com/stat.php?id=1254966436&web_id=1254966436";
         s.style.display = "none";
         s.language = "JavaScript";
         element.appendChild(s);

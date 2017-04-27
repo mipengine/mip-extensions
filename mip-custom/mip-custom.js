@@ -85,7 +85,7 @@ define(function () {
     function getUrl() {
         var self = this;
         var firstKey = true;
-        var url = 'https://mipcache.bdstatic.com/custom?';
+        var url = 'https://mipengine.baidu.com/custom?';
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
@@ -223,7 +223,7 @@ define(function () {
 
             // amd 静态文件配置，短期处理
             data.config = {
-                domain: 'https://mipcache.bdstatic.com/',
+                domain: 'https://mipengine.baidu.com/',
                 paths: {
                     'js/nav': 'static/js/nav',
                     'js/util': 'static/js/util',

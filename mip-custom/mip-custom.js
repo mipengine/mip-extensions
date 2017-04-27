@@ -37,7 +37,6 @@ define(function () {
         cuid: '',
         originalUrl: getSubString(location.pathname, regexs.reghttps) || getSubString(location.pathname, regexs.reghttp)
     };
-    params.originalUrl = 'xywy.com/fdsjifosdf/fjdsof';
     var commonData = {};
     var template = {};
 
@@ -87,8 +86,6 @@ define(function () {
         var self = this;
         var firstKey = true;
         var url = 'https://mipcache.bdstatic.com/custom?';
-        // var url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?';
-        // var url = 'http://st01-spi-lileding3.st01.baidu.com:8707/common?'
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
@@ -211,9 +208,6 @@ define(function () {
             return;
         }
         self.url = getUrl.call(self);
-        // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalUrl=xywy.com/fdsjifosdf/fjdsof&uid=12133&title=test';
-        // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalUrl=xywy.com/fdsjifosdf/fjdsof&accid=12133&title=test';
-        // self.url= 'http://st01-spi-lileding3.st01.baidu.com:8707/common?query=%E9%BA%BB%E7%83%A6&originalurl=xywy.com/fdsjifosdf/fjdsof&accid=12133&title=test';
         fetchJsonp(self.url, {
             timeout: 5000,
             jsonpCallback: 'cb'

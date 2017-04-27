@@ -1,5 +1,116 @@
 # 升级日志
 
+#### 2017.04.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[新增] 星座屋mip改造插件
+[mip-xzw-fortune](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-fortune)|[新增][平台] 飞星座屋运势详情组件
+[mip-fh-paging](https://github.com/mipengine/mip-extensions/tree/master/mip-fh-paging)|[新增][平台] 飞华分页交互组件
+[mip-cs-meiqia](https://github.com/mipengine/mip-extensions/tree/master/mip-cs-meiqia)|[新增][平台] 美洽在线客服组件
+
+
+#### 2017.04.19
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[升级] 线上 bug 修复
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 提高代码强壮性
+[mip-stats-bidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-bidu)|[升级] 提高代码强壮性
+
+#### 2017.04.18
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-tuijian-baidu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tuijian-baidu)|[新增][平台] 百度推荐
+[mip-zixun](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zixun)|[升级][平台] 逻辑业务修改
+
+
+#### 2017.04.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-link](https://github.com/mipengine/mip-extensions/tree/master/mip-link)|[升级] 修改回调函数
+ 
+
+#### 2017.04.14
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-sn-shop-floor](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-floor)|[新增][平台] 苏宁o2o定制组件
+[mip-sn-shop-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-list)|[新增][平台] 实现了自定义实现了sn获取接口数据后，渲染列表数据的功能
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[升级][平台]站内个人统计功能
+
+
+#### 2017.04.11
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-eject](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-eject)|[升级][平台] 点击下载按钮弹出推荐内容
+[mip-cr173-addrecomd](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-addrecomd)|[升级][平台] 添加推荐板块
+
+#### 2017.04.10
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkfun-newslist](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-newslist)|[新增][平台] 底层页功能组件
+[mip-wkfun-newclub](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-newclub)|[升级][平台] 寻医问药页面功能组件
+
+#### 2017.04.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkad-config](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config)|[升级] 增加参数
+
+#### 2017.04.06
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-eject](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-eject)|[新增][平台] 点击下载按钮弹出推荐内容
+[mip-qqtnhealth-dynamicmenu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtnhealth-dynamicmenu)|[升级][平台] 组件渲染内容修改
+[mip-cr173-addrecomd](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-addrecomd)|[升级][平台] 逻辑业务修改
+
+#### 2017.04.05
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zixun](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zixun)|[升级][平台] 逻辑业务修改
+[mip-cr173-addrecomd](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-addrecomd)|[新增][平台] 添加推荐板块
+[mip-qqtnhealth-dynamicmenu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtnhealth-dynamicmenu)|[新增][平台] 页面特效
+[mip-wkfun-appdown](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-appdown)|[新增][平台] 寻医问药页下载提示条功能效果
+
+#### 2017.03.31
+
+> 核心代码上线
+
+    1、mip hash 上线
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级] 修复点击穿透的 bug
+
 #### 2017.03.30
 
 > 组件上线

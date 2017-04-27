@@ -11,6 +11,10 @@ define(function () {
     var fetchJsonp = require('fetch-jsonp');
     var customElement = require('customElement').create();
 
+    /**
+     * [regexs 正则表达式]
+     * @type {Object}
+     */
     var regexs = {
         html: /<mip-\S*>(.*)<\/mip-\S*></,
         script: /<script[^>]*>(.*?)<\/script>/g,
@@ -22,18 +26,19 @@ define(function () {
         reghttps: /\/c\/s\/(\S*)/
     };
 
+    /**
+     * [params 请求数据所需参数]
+     * @type {Object}
+     */
     var params = {
-        lid: '',
+        logid: '',
         query: '',
         title: '',
         cuid: '',
-        originalurl: getSubString(location.pathname, regexs.reghttps) || getSubString(location.pathname, regexs.reghttp)
+        originalUrl: getSubString(location.pathname, regexs.reghttps) || getSubString(location.pathname, regexs.reghttp)
     };
-
-    params.originalurl = 'xywy.com/fdsjifosdf/fjdsof';
     var commonData = {};
     var template = {};
-    var config = {};
 
     /**
      * [extendObj 合并数据]
@@ -65,7 +70,9 @@ define(function () {
             }
         }
 
+        // 修改字段名
         params.query = MIP.hash.get('word') || '';
+        params.logid = MIP.hash.get('lid') || '';
         return params;
     }
 
@@ -77,12 +84,13 @@ define(function () {
      */
     function getUrl() {
         var self = this;
-        // var url = 'https://mipcache.bdstatic.com/custom?';
-        var url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?';
+        var firstKey = true;
+        var url = 'https://mipcache.bdstatic.com/custom?';
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
-                url += key + '=' + self.params[key] + '&';
+                url += (!firstKey ? '&' : '') + key + '=' + self.params[key];
+                firstKey = false;
             }
         }
         return url;
@@ -106,10 +114,12 @@ define(function () {
 
         var node = container.querySelector(tag + '[' + attr + ']') || document.createElement(tag);
         node.setAttribute(attr, '');
-        var style = str.match(reg);
-        style && style.forEach(function (tmp) {
-            var r = new RegExp('<' + tag + '>([\\S\\s]*)</' + tag + '>');
-            var innerhtml = tmp.match(r)[1];
+        var substrs = str.match(reg);
+        substrs && substrs.forEach(function (tmp) {
+            var reg = new RegExp('<' + tag + '>([\\S\\s]*)</' + tag + '>', 'g');
+            var substr = reg.exec(tmp);
+            var innerhtml = substr && substr[1] ? substr[1] : '';
+
             if (node.innerHTML.indexOf(innerhtml) === -1) {
                 node.innerHTML += innerhtml;
             }
@@ -153,12 +163,15 @@ define(function () {
      * 构造元素，初次进入到视图区执行
      */
     customElement.prototype.build = function () {
-        // if (!viewer.isIframed) {
-        //     return;
-        // }
+
+        // 非结果页进入不展现定制化内容
+        if (!viewer.isIframed) {
+            return;
+        }
 
         var self = this;
         var element = self.element;
+
         // 监听 a 标签点击事件
         util.event.delegate(element, 'a', 'click', function (event) {
             if (this.hasAttribute('clicked', '')) {
@@ -170,18 +183,19 @@ define(function () {
 
             var xpath = '';
             var path = getXPath(this, element);
-
             path && path.forEach(function (val) {
                 xpath += xpath ? '_' + val : val;
             });
 
-            this.href += ((this.href[this.href.length - 1] === '&') ? '' : '&') + 'clk_info=' + JSON.stringify({xpath: xpath});
+            this.href += ((this.href[this.href.length - 1] === '&') ? '' : '&')
+                      + 'clk_info=' + JSON.stringify({xpath: xpath});
             this.click();
         });
+
         // 默认参数设置
         self.params = getHashparams();
 
-        // 获取用户设置参数
+        // 获取用户设置参数，获取不到
         try {
             var script = element.querySelector('script[type="application/json"]');
             if (script) {
@@ -194,22 +208,26 @@ define(function () {
             return;
         }
         self.url = getUrl.call(self);
-        // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalurl=xywy.com/fdsjifosdf/fjdsof&uid=12133&title=test';
-        // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E9%BA%BB%E7%83%A6&originalurl=xywy.com/fdsjifosdf/fjdsof&accid=12133&title=test';
         fetchJsonp(self.url, {
+            timeout: 5000,
             jsonpCallback: 'cb'
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
+
+            // 返回数据问题
             if (data && data.errno) {
                 console.error(data.errormsg);
                 return;
             }
+
+            // amd 静态文件配置，短期处理
             data.config = {
-                "domain": "http://cp01-aladdin-product-28.epc.baidu.com:8500/",
-                "paths": {
-                    "js/nav": "static/js/nav",
-                    "js/util": "static/js/util"
+                domain: 'http://cp01-aladdin-product-28.epc.baidu.com:8500/',
+                paths: {
+                    'js/nav': 'static/js/nav',
+                    'js/util': 'static/js/util',
+                    'js/mip-ecom/ck': 'static/js/mip-ecom/ck'
                 }
             };
             if (data && data.config) {
@@ -223,30 +241,32 @@ define(function () {
                 require.config(data.config);
             }
 
+            // common 数据缓存
             if (data && data.data && data.data.common) {
                 commonData = data.data.common;
             }
 
+            // 模板数据缓存
             if (data && data.data && data.data.template) {
                 template = data.data.template;
             }
 
-            for (var k = 0; k < template.length; k++) {
-                var tplData = template[k];
+            for (var tplLen = 0; tplLen < template.length; tplLen++) {
+                var tplData = template[tplLen];
 
                 var container = document.createElement('div');
-                container.setAttribute('mip-custom-item', k);
+                container.setAttribute('mip-custom-item', tplLen);
                 element.appendChild(container);
 
-                for (var i = 0; i < tplData.length; i++) {
+                for (var len = 0; len < tplData.length; len++) {
 
-                    var str = tplData[i].tpl ? decodeURIComponent(tplData[i].tpl): null;
+                    var str = tplData[len].tpl ? decodeURIComponent(tplData[len].tpl) : null;
                     if (!str) {
                         return;
                     }
-                    var html = str.replace(regexs.script, '').replace(regexs.style, '');
 
-                    var reg = new RegExp('\<([^\\s|\>]*)','g');
+                    var html = str.replace(regexs.script, '').replace(regexs.style, '');
+                    var reg = new RegExp('\<([^\\s|\>]*)', 'g');
                     var customTag = reg.exec(html)[1];
 
                     // style 处理
@@ -275,17 +295,21 @@ define(function () {
                     container.appendChild(customNode);
 
                     // 模板渲染
-                    templates.render(customNode, tplData[i].tplData, true).then(function (res) {
+                    templates.render(customNode, tplData[len].tplData, true).then(function (res) {
                         res.element.innerHTML = res.html;
 
                         // script 处理
                         var timer = setTimeout(function () {
                             set(str, regexs.script, 'script', customTag, document.body);
                             clearTimeout(timer);
-                        }, 0)
+                        }, 0);
                     });
                 }
             }
+        }, function (error) {
+            console.error(error);
+        }).catch(function (evt) {
+            console.warn(evt);
         });
     };
 

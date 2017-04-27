@@ -30,6 +30,7 @@ define(function (require) {
         $(document).on('click', '.bg_black', function (e) {
             starBox.hide();
             starbg.hide();
+            isShowStar = false;
         });
         // 根据请求更换不同星座数据
         var aid = getUrl('aid');

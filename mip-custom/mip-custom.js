@@ -165,7 +165,7 @@ define(function () {
     customElement.prototype.build = function () {
 
         // 非结果页进入不展现定制化内容
-        if (!viewer.isIframed) {
+        if (!viewer.isIframed && (/^https:\/\/m.baidu.com/.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
             return;
         }
 
@@ -223,7 +223,7 @@ define(function () {
 
             // amd 静态文件配置，短期处理
             data.config = {
-                domain: 'http://cp01-aladdin-product-28.epc.baidu.com:8500/',
+                domain: 'https://mipcache.bdstatic.com/',
                 paths: {
                     'js/nav': 'static/js/nav',
                     'js/util': 'static/js/util',
@@ -255,7 +255,7 @@ define(function () {
                 var tplData = template[tplLen];
 
                 var container = document.createElement('div');
-                container.setAttribute('mip-custom-item', tplLen);
+                container.setAttribute('mip-custom-container', tplLen);
                 element.appendChild(container);
 
                 for (var len = 0; len < tplData.length; len++) {
@@ -292,18 +292,18 @@ define(function () {
                     tpl.setAttribute('type', 'mip-mustache');
                     tpl.id = tplId;
                     tpl.innerHTML = getSubString(html, regexs.innerhtml);
-                    container.appendChild(customNode);
+                    var item = document.createElement('div');
+                    item.setAttribute('mip-custom-item', len);
+                    item.appendChild(customNode);
+                    container.appendChild(item);
 
                     // 模板渲染
                     templates.render(customNode, tplData[len].tplData, true).then(function (res) {
                         res.element.innerHTML = res.html;
-
-                        // script 处理
-                        var timer = setTimeout(function () {
-                            set(str, regexs.script, 'script', customTag, document.body);
-                            clearTimeout(timer);
-                        }, 0);
+                        return len;
                     });
+
+                    set(str, regexs.script, 'script', customTag, document.body);
                 }
             }
         }, function (error) {

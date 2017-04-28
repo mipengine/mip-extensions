@@ -1,5 +1,57 @@
 # 升级日志
 
+#### 2017.04.28
+
+> 核心代码上线
+
+    1、升级 template
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-custom](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-custom)|[新增] mip-xzw-fortune 定制化 MIP 通用组件
+
+#### 2017.04.27
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xzw-fortune](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xzw-fortune)|[升级][平台] mip-xzw-fortune 星座屋mip运势插件
+[mip-fh-async](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-async)|[升级][平台] 用来支持整站全网异步接口渲染组件
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[新增][平台] 公司业务需求
+[mip-233-tongji](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-tongji)|[新增][平台] 添加cnzz统计
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[升级] 记录修改状态
+[mip-wkad-config](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config)|[升级] 新加科室id
+
+#### 2017.04.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[升级][平台] 修改代码逻辑
+
+#### 2017.04.25
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[升级][平台] 修改代码逻辑
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[升级] 去除缓存字符串
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 修改百度统计内api使用
+
+#### 2017.04.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[新增][平台] 腾牛个性页面的伸缩导航
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[升级] 更新组件
+
 #### 2017.04.20
 
 > 组件上线
@@ -39,7 +91,7 @@
 组件名|功能说明
 ---|---
 [mip-link](https://github.com/mipengine/mip-extensions/tree/master/mip-link)|[升级] 修改回调函数
- 
+
 
 #### 2017.04.14
 

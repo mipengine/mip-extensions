@@ -85,7 +85,7 @@ define(function () {
     function getUrl() {
         var self = this;
         var firstKey = true;
-        var url = 'https://mipengine.baidu.com/custom?';
+        var url = 'https://mipengine.baidu.com/common?';
 
         for (var key in self.params) {
             if (self.params.hasOwnProperty(key)) {
@@ -165,7 +165,10 @@ define(function () {
     customElement.prototype.build = function () {
 
         // 非结果页进入不展现定制化内容
-        if (!viewer.isIframed && (/^https:\/\/m.baidu.com/.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
+        if (!viewer.isIframed) {
+            return;
+        }
+        if (!(/^https:\/\/m.baidu.com/.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
             return;
         }
 

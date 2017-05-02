@@ -4,11 +4,12 @@
 
 - 所属产品项目：定制化MIP
 - 产品版本：v1.0.0
-- 文档版本：v1.0.0
+- 文档版本：v1.0.1
 
 撰写人|修改日期|修改内容|更新版本
 ---|---|---|---
 王培|2017-04-19|创建文档|v1.0.0
+王培|2017-05-02|增加必要属性 title|v1.0.1
 
 ## 说明
 
@@ -18,7 +19,7 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-custom/mip-custom.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-custom/mip-custom.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
 
 ## 示例
 
@@ -47,7 +48,6 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
     <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
     <link rel="canonical" href="对应的 h5 页面 url">
     <style mip-custom>
-        /* */
     </style>
 </head>
 <body>
@@ -91,7 +91,7 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
 
 ## 注意事项
 
-- 组件暂时还未上线
 - 每个 MIP 页面中的定制化模板，插入之前必须准备 **accid**，需要联系百度 PM 手工申请
+- title 是页面中内容标题，**不是**`<title>`标签中的文本
 
 

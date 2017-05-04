@@ -1,5 +1,25 @@
 # 升级日志
 
+#### 2017.05.03
+
+> 核心代码上线
+
+    1、viewer增加单测
+    2. mip-img 修复多次初始化问题
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-custom](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-custom)|[升级] 修改接口 API
+
+
+#### 2017.05.02
+
+> 核心代码上线
+
+    1、滑动隐藏手百顶栏
+
 #### 2017.04.28
 
 > 核心代码上线

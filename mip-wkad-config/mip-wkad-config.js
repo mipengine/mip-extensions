@@ -2,8 +2,8 @@
 * 寻医问药mip改造 广告配置组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2016.11.25
-* @version 1.0.0
+* @time 2017.05.02
+* @version 1.0.4
 */
 define(function (require) {
     var $ = require('zepto');
@@ -28,6 +28,14 @@ define(function (require) {
         var channel = $(elem).attr('channel');
         var department = $(elem).attr('department');
         var paramId = $(elem).attr('param');
+        var departId = $(elem).attr('depart_id');
+        var departSid = $(elem).attr('depart_sid');
+        if(departId){
+            window['subject_pid'] = departId;
+        }
+        if(departSid){
+            window['subject'] = departSid;
+        }
         switch (attr) {
             case 'take_ip':
                 loadJs(elem, 'https://ipdisplay.xywy.com/take_ip', function () {
@@ -39,6 +47,7 @@ define(function (require) {
                                 string = string + '|' + value;
                             });
                             ggArr['ad_key'] = string.substr(1);
+                            ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
                         });
                     }
@@ -51,6 +60,20 @@ define(function (require) {
                             });
                             ggArr['ad_key'] = string.substr(1);
                             ggArr['department'] = department;
+                            ggArr['charset'] = 'utf8';
+                            mobileAd.getAd(ggArr);
+                        });
+                    }
+                    else if (channel === 'newclub') {
+                        loadJs(elem, 'https://a.xywy.com/display/display_load.js', function () {
+                            var ggArr = {};
+                            var string = '';
+                            $.each(keys_arr, function (index, value) {
+                                string = string + '|' + value;
+                            });
+                            ggArr['ad_key'] = string.substr(1);
+                            ggArr['department'] = department;
+                            ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
                         });
                     }
@@ -62,6 +85,7 @@ define(function (require) {
                                 string = string + '|' + value;
                             });
                             ggArr['ad_key'] = string.substr(1);
+                            ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
                         });
                     }

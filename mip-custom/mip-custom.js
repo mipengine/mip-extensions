@@ -168,7 +168,7 @@ define(function () {
         if (!viewer.isIframed) {
             return;
         }
-        if (!(/.baidu.com/.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
+        if (!(/^(http(s)?:\/\/)?[^\/]*baidu.com/.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
             return;
         }
 

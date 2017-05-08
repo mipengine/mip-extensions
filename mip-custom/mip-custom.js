@@ -220,7 +220,7 @@ define(function () {
 
             // 返回数据问题
             if (data && data.errno) {
-                console.error(data.errormsg);
+                console.error(data.errmsg);
                 return;
             }
 

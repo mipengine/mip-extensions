@@ -124,7 +124,6 @@ define(function (require) {
             try {
                 var  wrapp = fixedElement._fixedLayer.querySelector('#' + element.id);
                 self.fixedContainer = wrapp.querySelector('div[mip-semi-fixed-container]');
-                // console.log(self.fixedContainer);
                 self.fixedContainer.className += self.fixedClassNames;
                 self.fixedContainer.setAttribute(STATUS.STATUS_FIXED, '');
                 self.fixedContainer.removeAttribute(STATUS.STATUS_SCROLL);

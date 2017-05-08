@@ -1,5 +1,53 @@
 # 升级日志
 
+#### 2017.05.05
+
+> 核心代码上线
+
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[升级][平台] 公司业务需求
+[mip-cambrian](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cambrian)|[升级][平台] 寒武纪组件-修改接口 API
+
+
+#### 2017.05.04
+
+> 核心代码上线
+1. 手百下mip页面滑动隐藏顶栏逻辑修改
+2. 去掉多余的打印的信息
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cambrian](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cambrian)|[新增][平台] 寒武纪组件
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[升级][平台] 公司业务需求
+[mip-custom](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-custom)|[升级] 修改报错字段名
+
+
+#### 2017.05.03
+
+> 核心代码上线
+
+    1、viewer增加单测
+    2. mip-img 修复多次初始化问题
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-custom](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-custom)|[升级] 修改接口 API
+
+
+#### 2017.05.02
+
+> 核心代码上线
+
+    1、滑动隐藏手百顶栏
+
 #### 2017.04.28
 
 > 核心代码上线

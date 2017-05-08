@@ -198,13 +198,16 @@ define(function (require) {
                         };
                     }
                 };
-                // 点击提交时，如果报错信息展示，则隐藏清空按钮
+                    //失去焦点时按钮消失 
                 clearItems[index].onblur = function () {
-                    util.css(cross, {display: 'none'});
+                    // blur延迟在clear之后执行 
+                    window.setTimeout(function() {
+                        util.css(cross, {display: 'none'});
+                    }, 200); 
                 };
             }
 
-            cross.addEventListener('touchend', clear);
+            cross.addEventListener('click', clear);
 
             function clear(e) {
                 var name = e.target.getAttribute('name');

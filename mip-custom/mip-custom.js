@@ -168,7 +168,7 @@ define(function () {
         if (!viewer.isIframed) {
             return;
         }
-        if (!(/^https:\/\/m.baidu.com/.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
+        if (!(/.baidu.com/.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
             return;
         }
 
@@ -177,7 +177,7 @@ define(function () {
 
         // 监听 a 标签点击事件
         util.event.delegate(element, 'a', 'click', function (event) {
-            if (this.hasAttribute('clicked', '')) {
+            if (this.hasAttribute('mip-link') || this.hasAttribute('clicked')) {
                 return;
             }
 
@@ -220,7 +220,7 @@ define(function () {
 
             // 返回数据问题
             if (data && data.errno) {
-                console.error(data.errmsg);
+                console.error(data.errormsg);
                 return;
             }
 

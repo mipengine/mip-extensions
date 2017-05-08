@@ -175,10 +175,13 @@ define(function (require) {
                         };
                     }
                 };
-                // 点击提交时，如果报错信息展示，则隐藏清空按钮
-                textInput[index].onblur = function () {
-                     util.css(cross, {display: 'none'});
-                }
+                // 失去焦点时按钮消失
+                 clearItems[index].onblur = function () {
+                    // blur延迟在clear之后执行 
+                    window.setTimeout(function() {
+                        util.css(cross, {display: 'none'});
+                    }, 200); 
+                };
             }
 
             cross.addEventListener('touchstart', clear);

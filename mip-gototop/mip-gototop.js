@@ -29,7 +29,7 @@ define(function (require) {
             }
         });
 
-        element.addEventListener('touchend', function () {
+        element.addEventListener('click', function () {
             viewport.setScrollTop(0);
         }, false);
     };

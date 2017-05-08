@@ -1,0 +1,12 @@
+{
+    "name": "mip-tuijian-baidu",
+    "version": "1.0.0",
+    "author": {
+        "name": "zengguanming",
+        "email": "zengguanming@baidu.com",
+        "url": "http://tuijian.baidu.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -90,11 +90,13 @@ define(function (require) {
         var offsetTop = element.offsetTop;
 
         if (offsetTop - scrollTop <= this.threshold) {
-            util.css(this.fixedContainer, {opacity: 1, display: 'block'});
+            util.css(this.fixedContainer.parentNode, {display: 'block'});
+            util.css(this.fixedContainer, {opacity: 1});
             util.css(this.container, {opacity: 0});
         }
         else {
-            util.css(this.fixedContainer, {opacity: 0, display: 'none'});
+            util.css(this.fixedContainer.parentNode, {display: 'none'});
+            util.css(this.fixedContainer, {opacity: 0});
             util.css(this.container, {opacity: 1});
         }
     }
@@ -120,7 +122,9 @@ define(function (require) {
         if (viewer.isIframed) {
 
             try {
-                self.fixedContainer = fixedElement._fixedLayer.querySelector('#' + self.container.id);
+                var  wrapp = fixedElement._fixedLayer.querySelector('#' + element.id);
+                self.fixedContainer = wrapp.querySelector('div[mip-semi-fixed-container]');
+                // console.log(self.fixedContainer);
                 self.fixedContainer.className += self.fixedClassNames;
                 self.fixedContainer.setAttribute(STATUS.STATUS_FIXED, '');
                 self.fixedContainer.removeAttribute(STATUS.STATUS_SCROLL);
@@ -159,7 +163,8 @@ define(function (require) {
             self.container.setAttribute(STATUS.STATUS_FIXED, '');
             util.css(self.container, 'top', self.threshold + 'px');
         } else if (viewer.isIframed && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
-            util.css(this.fixedContainer, {opacity: 1, display: 'block'});
+            util.css(this.fixedContainer.parentNode, {display: 'block'});
+            util.css(this.fixedContainer, {opacity: 1});
             util.css(this.container, {opacity: 0});
         }
 

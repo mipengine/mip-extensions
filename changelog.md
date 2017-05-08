@@ -10,7 +10,7 @@
 
 组件名|功能说明
 ---|---
-[mip-custom](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-custom)|[新增] mip-xzw-fortune 定制化 MIP 通用组件
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[新增] 定制化 MIP 通用组件
 
 #### 2017.04.27
 

@@ -90,11 +90,11 @@ define(function (require) {
         var offsetTop = element.offsetTop;
 
         if (offsetTop - scrollTop <= this.threshold) {
-            util.css(this.fixedContainer, {opacity: 1});
+            util.css(this.fixedContainer, {opacity: 1, display: 'block'});
             util.css(this.container, {opacity: 0});
         }
         else {
-            util.css(this.fixedContainer, {opacity: 0});
+            util.css(this.fixedContainer, {opacity: 0, display: 'none'});
             util.css(this.container, {opacity: 1});
         }
     }
@@ -104,6 +104,7 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
 
+
         var self = this;
         var element = self.element;
         self.container = element.querySelector('div[mip-semi-fixed-container]');
@@ -111,42 +112,26 @@ define(function (require) {
             console.error('必须有 <div mip-semi-fixed-container> 子节点');
             return;
         }
-
         self.threshold = element.getAttribute('threshold') || YOFFSET;
         self.fixedClassNames = ' ' + element.getAttribute('fixedClassNames');
         self.container.setAttribute(STATUS.STATUS_SCROLL, '');
 
-        // 初始状态为 fixed 时
-        if (element.offsetTop - viewport.getScrollTop() <= self.threshold) {
-            if (self.container.className.indexOf(self.fixedClassNames) < 0) {
-                self.container.className += self.fixedClassNames;
-            }
-            self.container.setAttribute(STATUS.STATUS_FIXED, '');
-            util.css(self.container, 'top', self.threshold + 'px');
-        }
-
         // iframe 中
         if (viewer.isIframed) {
-            self.fixedContainer = self.container.cloneNode(true);
-            self.fixedContainer.className += self.fixedClassNames;
-            self.fixedContainer.setAttribute(STATUS.STATUS_FIXED, '');
-            util.css(self.fixedContainer, {
-                top: self.threshold + 'px',
-                opacity: 0
-            });
-            element.appendChild(self.fixedContainer);
 
-            var idx = document.querySelectorAll('mip-fixed').length || 0;
-
-            // 结果页打开，移动到 fixed layer
-            if (fixedElement._fixedLayer) {
-                var data = {
-                    element: self.fixedContainer,
-                    id: 'Fixed' + idx
-                };
-                fixedElement.moveToFixedLayer(data, parseInt(idx, 10));
+            try {
+                self.fixedContainer = fixedElement._fixedLayer.querySelector('#' + self.container.id);
+                self.fixedContainer.className += self.fixedClassNames;
+                self.fixedContainer.setAttribute(STATUS.STATUS_FIXED, '');
+                self.fixedContainer.removeAttribute(STATUS.STATUS_SCROLL);
+                util.css(self.fixedContainer, {
+                    top: self.threshold + 'px',
+                    opacity: 0
+                });
+            } catch (e) {
+                console.error(e);
             }
-
+               
             viewport.on('scroll', function () {
                 onIframeScroll.call(self, viewport);
             });
@@ -164,6 +149,18 @@ define(function (require) {
                 onScroll.call(self, viewport);
             });
 
+        }
+
+        // 初始状态为 fixed 时
+        if (!viewer.isIframed && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
+            if (self.container.className.indexOf(self.fixedClassNames) < 0) {
+                self.container.className += self.fixedClassNames;
+            }
+            self.container.setAttribute(STATUS.STATUS_FIXED, '');
+            util.css(self.container, 'top', self.threshold + 'px');
+        } else if (viewer.isIframed && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
+            util.css(this.fixedContainer, {opacity: 1, display: 'block'});
+            util.css(this.container, {opacity: 0});
         }
 
         /**

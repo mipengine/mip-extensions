@@ -6,6 +6,13 @@
 
 1. 通过本地存储，增加 mip 页面的 hash 记录功能
 
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-bdb-custom-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-bdb-custom-content)|[升级][平台] 本地宝展示文章结尾的自定义内容板块
+
+
 
 #### 2017.05.05
 

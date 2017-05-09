@@ -263,9 +263,16 @@ define(function () {
 
                 for (var len = 0; len < tplData.length; len++) {
 
+                    // 某条结果为空时不渲染
+                    var result = tplData[len].tplData;
+                    if(!result || (result instanceof Array && !result.length)
+                        || (result instanceof Object && !Object.keys(result).length)) {
+                        continue;
+                    }
+
                     var str = tplData[len].tpl ? decodeURIComponent(tplData[len].tpl) : null;
                     if (!str) {
-                        return;
+                        continue;
                     }
 
                     var html = str.replace(regexs.script, '').replace(regexs.style, '');
@@ -301,7 +308,7 @@ define(function () {
                     container.appendChild(item);
 
                     // 模板渲染
-                    templates.render(customNode, tplData[len].tplData, true).then(function (res) {
+                    templates.render(customNode, result, true).then(function (res) {
                         res.element.innerHTML = res.html;
                         return len;
                     });

@@ -1,0 +1,13 @@
+{
+    "name": "mip-cncrk-dropload",
+    "version": "1.0.0",
+	"description":"用于起点软件园下拉加载列表",
+    "author": {
+        "name": "Lindar",
+        "email": "5531574@qq.com",
+        "url": "http://www.cncrk.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

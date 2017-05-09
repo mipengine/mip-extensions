@@ -1,0 +1,13 @@
+{
+    "name": "mip-ticket",
+    "version": "1.0.1",
+    "contributors": [
+        {
+            "name": "yanfei",
+            "email": "785423753@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

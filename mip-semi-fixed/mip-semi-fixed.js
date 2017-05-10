@@ -138,7 +138,7 @@ define(function (require) {
             catch (e) {
                 console.error(e);
             }
-
+               
             viewport.on('scroll', function () {
                 onIframeScroll.call(self, viewport);
             });
@@ -168,6 +168,7 @@ define(function (require) {
         }
         else if (util.platform.isIos() && viewer.isIframedv阿荣
                 && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
+
             util.css(this.fixedContainer.parentNode, {display: 'block'});
             util.css(this.fixedContainer, {opacity: 1});
             util.css(this.container, {opacity: 0});

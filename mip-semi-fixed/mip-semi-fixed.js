@@ -122,7 +122,7 @@ define(function (require) {
         self.container.setAttribute(STATUS.STATUS_SCROLL, '');
 
         // iframe 中
-        if (viewer.isIframed) {
+        if (viewer.isIframed && util.platform.isIos()) {
 
             try {
                 var  wrapp = fixedElement._fixedLayer.querySelector('#' + element.id);
@@ -158,13 +158,13 @@ define(function (require) {
         }
 
         // 初始状态为 fixed 时
-        if (!viewer.isIframed && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
+        if (!util.platform.isIos() && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
             if (self.container.className.indexOf(self.fixedClassNames) < 0) {
                 self.container.className += self.fixedClassNames;
             }
             self.container.setAttribute(STATUS.STATUS_FIXED, '');
             util.css(self.container, 'top', self.threshold + 'px');
-        } else if (viewer.isIframed && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
+        } else if (viewer.isIframed && element.offsetTop - viewport.getScrollTop() <= self.threshold && util.platform.isIos()) {
             util.css(this.fixedContainer.parentNode, {display: 'block'});
             util.css(this.fixedContainer, {opacity: 1});
             util.css(this.container, {opacity: 0});

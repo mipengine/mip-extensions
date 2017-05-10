@@ -106,9 +106,12 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
 
-
         var self = this;
         var element = self.element;
+        if (fixedElement && fixedElement._fixedLayer && element.parentNode === fixedElement._fixedLayer) {
+            return;
+        }
+
         self.container = element.querySelector('div[mip-semi-fixed-container]');
         if (!self.container) {
             console.error('必须有 <div mip-semi-fixed-container> 子节点');

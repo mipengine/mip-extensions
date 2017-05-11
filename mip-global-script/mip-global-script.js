@@ -62,14 +62,8 @@ define(function (require) {
                         case 'cjh':
                             hmToken = '934bb6a05ccea7b642b9e35bb798c1c9';
                             break;
-                        case 'caoch':
-                            hmToken = 'a8ab61dc4bb98855125bcca18c1125a8';
-                            break;
                         case 'guoqian':
                             hmToken = 'e20ff59a84ded600cecd51eac7776549';
-                            break;
-                        case 'yangting':
-                            hmToken = 'c3ee7441928ffc7129fed0cb62651c1d';
                             break;
                         case 'chenyang':
                             hmToken = '24c19e56533b8eebf5e470064847cc4d';
@@ -91,9 +85,6 @@ define(function (require) {
                             break;
                         case 'liyanxia':
                             hmToken = '31c9d092c6c1f89069c4ddbddbb4e61c';
-                            break;
-                        case 'qianky':
-                            hmToken = '56c698055d435e894112c05f962eb832';
                             break;
                         case 'heyut':
                             hmToken = '8a899cd3945b7ecd68c31964aaae5e23';
@@ -119,17 +110,11 @@ define(function (require) {
                         case 'wuchen':
                             hmToken = 'f07fbce4707da7b81bf9bb26b6625898';
                             break;
-                        case 'twbin':
-                            hmToken = '5fa1fc10e76253896ab6a3cd210f07e6';
-                            break;
                         case 'zhsj':
                             hmToken = '9cf1da9c75892b364e84679c639fdda1';
                             break;
                         case 'yusx':
                             hmToken = '729dfd7586b5214b5291952eae829ae2';
-                            break;
-                        case 'chensc':
-                            hmToken = '8a59f97f89eae9571fbbdf73817884b1';
                             break;
                         case 'zhangjia':
                             hmToken = '4c9e959e0cc9c237f200201b7b15225b';
@@ -172,6 +157,9 @@ define(function (require) {
                             break;
                         case 'huangzheng':
                             hmToken = '6a37b5321385228343e0603ffb5ad640';
+                            break;
+                        case 'wucyang':
+                            hmToken = 'eba389846988eb9e6a2d0c4fb0fc477e';
                             break;
                     }
                     if (hmToken !== '') {

@@ -167,6 +167,7 @@ define(function (require) {
             util.css(self.container, 'top', self.threshold + 'px');
         }
         else if (util.platform.isIos() && viewer.isIframed
+
                 && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
 
             util.css(this.fixedContainer.parentNode, {display: 'block'});

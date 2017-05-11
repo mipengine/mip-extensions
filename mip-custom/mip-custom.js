@@ -57,7 +57,6 @@ define(function () {
             element.remove();
             return;
         }
-        // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E4%B8%B0%E8%83%B8&originalUrl=xywy.com/fijdsjfidsf&accid=e2217bab684fbb898dccf04b&title=%E8%87%AA%E4%BD%93%E8%84%82%E8%82%AA%E4%B8%B0%E8%83%B8,%E5%B0%86%E4%BD%93%E5%86%85%E5%A4%9A%E4%BD%99%E8%84%82%E8%82%AA%E7%A7%BB%E6%A4%8D%E4%B8%B0%E8%83%B8,%E5%90%8C%E6%97%B6%E5%81%9A%E5%88%B0%E7%98%A6%E8%BA%AB%E5%92%8C%E4%B8%B0%E8%83%B8,%E8%84%82..&logid=10421587805058473194'
         fetchJsonp(self.url, {
             timeout: 10000,
             jsonpCallback: 'cb'

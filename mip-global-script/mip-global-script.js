@@ -12,6 +12,7 @@ define(function (require) {
                 if ($(this).find(option).length < nub) {
                     $(this).remove();
                 }
+
             });
         },
         tongJi: function () {
@@ -28,6 +29,7 @@ define(function (require) {
                             if (date1.getTime() < date2.getTime()) {
                                 hmToken = '58ca8f8a68d893aa08befe6eb5237a34';
                             }
+
                             break;
                         case 'hxb':
                             hmToken = '7c9a22609a0017275f143d3b1af47740';
@@ -167,10 +169,11 @@ define(function (require) {
                     }
                 }
             }
+
         },
         init: function () {
-            this.hideList('.hidelist', 'li', 1);// 优化隐藏
-            this.tongJi();// 编辑统计
+            this.hideList('.hidelist', 'li', 1); // 优化隐藏
+            this.tongJi(); // 编辑统计
         }
     };
     customElem.prototype.build = function () {

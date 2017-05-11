@@ -40,7 +40,7 @@ define(function (require) {
             'js/util': 'static/js/util',
             'js/mip-ecom/ck': 'static/js/mip-ecom/ck'
         }
-    }
+    };
 
     function addPaths(config) {
         if (config.paths) {

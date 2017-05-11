@@ -234,7 +234,7 @@ define(function (require) {
      */
     function proxyLink(element) {
         util.event.delegate(element, 'a', 'click', function (event) {
-            if (this.hasAttribute('mip-link') || /clk_info/.test( this.href)) {
+            if (this.hasAttribute('mip-link') || /clk_info/.test(this.href)) {
                 return;
             }
 

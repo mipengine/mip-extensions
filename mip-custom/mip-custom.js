@@ -23,7 +23,6 @@ define(function () {
     var customElement = require('customElement').create();
 
     var url = require('mip-custom/url');
-    var log = require('mip-custom/log');
     var dom = require('mip-custom/dom');
     var dataProcessor = require('mip-custom/data');
 

@@ -3,6 +3,12 @@
  * @author pearl
  */
 define(function (require) {
+    /**
+     * [util 引入工具类]
+     * @type {Object}
+     */
+    var util = require('util');
+
     var data = require('mip-custom/data');
     var MIP = window.MIP || {};
 
@@ -20,8 +26,10 @@ define(function (require) {
         }
 
         // 修改字段名
-        params.query = MIP.hash.get('word') || '';
-        params.logid = MIP.hash.get('lid') || '';
+        var ifHash = MIP && MIP.hash && MIP.hash.get;
+        params.query = ifHash ? MIP.hash.get('word') : '';
+        params.logid = ifHash ? MIP.hash.get('lid') : '';
+
         return params;
     }
 
@@ -75,7 +83,8 @@ define(function (require) {
         if (!userParams) {
             return null;
         }
-        return data.extend(getHashParams(), userParams);
+
+        return util.fn.extend(getHashParams(), userParams);
     }
 
     /**
@@ -90,7 +99,7 @@ define(function (require) {
         var urlParams = getUrlParams(element);
 
         if (!urlParams) {
-            return null;
+            return;
         }
 
         for (var key in urlParams) {

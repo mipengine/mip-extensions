@@ -36,7 +36,7 @@ define(function (require) {
      * @return {integer} res 返回的数值
      */
     function getCss(elem, style) {
-        var res = parseInt(util.css(elem, style).slice(0, -2), 10);
+        var res = parseInt(util.css(elem, style), 10);
         return res || 0;
     }
 
@@ -117,7 +117,7 @@ define(function (require) {
 
         tpl.setAttribute('type', 'mip-mustache');
         tpl.id = id;
-        tpl.innerHTML = dataProcessor.subStr(html, regexs.innerhtml);
+        tpl.innerHTML = dataProcessor.subStr(html, regexs.innerHtml);
 
         return tpl;
 
@@ -162,7 +162,12 @@ define(function (require) {
      */
     function renderHtml(element, str, len, result, container) {
         var html = str.replace(regexs.script, '').replace(regexs.style, '');
-        var customTag = (new RegExp(regexs.tag, 'g')).exec(html)[1];
+        var customTag = (new RegExp(regexs.tag, 'g')).exec(html);
+        customTag = customTag && customTag[1] ? customTag[1] : null;
+
+        if (!customTag) {
+            return null;
+        }
 
         // html 处理
         var customNode = createCustomNode(html, customTag);
@@ -220,6 +225,10 @@ define(function (require) {
 
             // html 处理
             var customTag = renderHtml(element, str, len, result, container);
+
+            if (!customTag) {
+                continue;
+            }
 
             // script 处理
             renderStyleOrScript(str, regexs.script, 'script', customTag, document.body);

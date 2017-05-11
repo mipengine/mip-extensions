@@ -12,12 +12,12 @@ define(function (require) {
         html: /<mip-\S*>(.*)<\/mip-\S*></,
         script: /<script[^>]*>(.*?)<\/script>/g,
         style: /<style[^>]*>(.*?)<\/style>/g,
-        innerhtml: />([\S\s]*)<\//,
+        innerHtml: />([\S\s]*)<\//,
         customTag: /<(mip-\S+)>/,
         tag: '\<([^\\s|\>]*)',
         tagandAttr: /<(mip-[^>]*)>/,
-        reghttp: /\/c\/(\S*)/,
-        reghttps: /\/c\/s\/(\S*)/,
+        regHttp: /\/c\/(\S*)/,
+        regHttps: /\/c\/s\/(\S*)/,
         domain: /^(http(s)?:\/\/)?[^\/]*baidu.com/
     };
 
@@ -30,7 +30,7 @@ define(function (require) {
         logid: '',
         query: '',
         title: '',
-        originalUrl: getSubString(location.pathname, regexs.reghttps) || getSubString(location.pathname, regexs.reghttp)
+        originalUrl: getSubString(location.pathname, regexs.regHttps) || getSubString(location.pathname, regexs.regHttp)
     };
 
     var config = {
@@ -55,24 +55,6 @@ define(function (require) {
     }
 
     /**
-     * [extendObj 合并数据]
-     *
-     * @param  {Object} opt 默认数据对象
-     * @param  {Object} ext 需要合并的数据对象
-     * @return {Object}     合并后的数据对象
-     */
-    function extend(opt, ext) {
-
-        for (var key in ext) {
-            if (ext.hasOwnProperty(key)) {
-                opt[key] = ext[key];
-            }
-        }
-
-        return opt;
-    }
-
-    /**
      * [getSubString 根据正则获取子串]
      *
      * @param  {string}  str [截取钱字符串]
@@ -93,7 +75,6 @@ define(function (require) {
         regexs: regexs,
         params: params,
         config: config,
-        extend: extend,
         addPaths: addPaths,
         subStr: getSubString
     };

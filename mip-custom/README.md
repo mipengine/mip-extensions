@@ -20,7 +20,7 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-custom/mip-custom.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-custom/mip-custom.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js<br>https://mipcache.bdstatic.com/static/v1/mip-fixed/mip-fixed.js
 
 ## 示例
 

@@ -6,13 +6,14 @@
 define(function (require) {
     var util = require('util');
     var fn = util.fn;
-    var EventEmitter = require('util').EventEmitter;
 
     /**
      * Login Class
      *
+     * @param {Object} data url
+     * @class
      */
-    function Login (data) {
+    function Login(data) {
         this._loginMap = [];
         this._loginConfig = data;
         this._href = window.location.href;
@@ -26,19 +27,19 @@ define(function (require) {
         if (!this._checkParam()) {
             return;
         }
-        var login = document.querySelectorAll("[on='tap:mip-access.login']");
-        var logout = document.querySelectorAll("[on='tap:mip-access.logout']");
-        for (key in login) {
-            if (login[key].addEventListener) {
-                login[key].addEventListener('click', this._login.bind(this));
+        var login = document.querySelectorAll('[on="tap:mip-access.login"]');
+        var logout = document.querySelectorAll('[on="tap:mip-access.logout"]');
+        for (var loginKey in login) {
+            if (login[loginKey].addEventListener) {
+                login[loginKey].addEventListener('click', this._login.bind(this));
             }
         }
-        for (key in logout) {
-            if (logout[key].addEventListener) {
-                logout[key].addEventListener('click', this._logout.bind(this));
+        for (var logoutKey in logout) {
+            if (logout[logoutKey].addEventListener) {
+                logout[logoutKey].addEventListener('click', this._logout.bind(this));
             }
         }
-    }
+    };
 
     /**
      * Check login params
@@ -52,13 +53,13 @@ define(function (require) {
         }
         if (fn.isPlainObject(lc)) {
             for (var k in lc) {
-                if (!!k) {
+                if (k) {
                     this._loginMap[k] = lc[k];
                 }
             }
         }
         return true;
-    }
+    };
 
     /**
      * Login function
@@ -74,7 +75,7 @@ define(function (require) {
                         + ',resizable=no,copyhistory=yes,width=400,height=400';
         loginUrl = this._splice(loginUrl);
         window.open(loginUrl, '_blank', winParam);
-    }
+    };
 
     /**
      * Login function
@@ -92,25 +93,26 @@ define(function (require) {
                 window.location.reload();
             }
         });
-    }
+    };
 
     /**
      * Splice function
      *
-     * @param {string} login url
+     * @param {string} url url
      * @return {string} splice login url
      */
     Login.prototype._splice = function (url) {
         var search = url.split('?');
         // warning: test, need delete
-        var returnUrl = encodeURIComponent('https://mipcache.bdstatic.com/static/v1/mip-access/mip-login-done.html?url=' + encodeURIComponent(this._href));
+        var returnUrl = encodeURIComponent('http://172.24.17.88:3000/mip_access/mip-login-done?url=' + encodeURIComponent(this._href));
         if (search && search.length > 1) {
             url += '&returnUrl=' + returnUrl;
-        } else {
+        }
+        else {
             url += '?returnUrl=' + returnUrl;
         }
         return url;
-    }
+    };
 
     return Login;
 });

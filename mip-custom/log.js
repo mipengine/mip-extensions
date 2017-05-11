@@ -5,12 +5,6 @@
 define(function (require) {
 
     /**
-     * [util 引入工具类]
-     * @type {Object}
-     */
-    var util = require('util');
-
-    /**
      * [getXPath 获取 xpath 数组]
      *
      * @param  {DOM}   node [点击节点]
@@ -40,7 +34,6 @@ define(function (require) {
         }
         return path;
     }
-    
     return {
         getXPath: getXPath
     };

@@ -152,6 +152,27 @@ define(function (require) {
                         case 'gongmin1':
                             hmToken = '2bd7f516dd17a31d63156a0a52a187a9';
                             break;
+                        case 'liyao':
+                            hmToken = 'fe6fc705ae7b974b9cde4b03cc4b6fbc';
+                            break;
+                        case 'tangzc':
+                            hmToken = '993021e54cd6ec227763d52777dbcc7f';
+                            break;
+                        case 'pencheng':
+                            hmToken = '6901c04df1397a8177ca8944e59e2740';
+                            break;
+                        case 'oyangl':
+                            hmToken = '00c1a711fcc23fcf19dc9fcd985498ae';
+                            break;
+                        case 'xieli':
+                            hmToken = '1d149f84449ec9b1f31c6ffaa3f3099e';
+                            break;
+                        case 'zhouyi':
+                            hmToken = '8568dfea94c1d89e4d2ad66cdb973352';
+                            break;
+                        case 'huangzheng':
+                            hmToken = '6a37b5321385228343e0603ffb5ad640';
+                            break;
                     }
                     if (hmToken !== '') {
                         $('body').append('<mip-stats-baidu token="' + hmToken + '">');

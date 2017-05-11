@@ -1,5 +1,116 @@
 # 升级日志
 
+#### 2017.05.08
+
+> 核心代码上线
+
+1. 通过本地存储，增加 mip 页面的 hash 记录功能
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-bdb-custom-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-bdb-custom-content)|[升级][平台] 本地宝展示文章结尾的自定义内容板块
+
+
+
+#### 2017.05.05
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[升级][平台] 公司业务需求
+[mip-cambrian](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cambrian)|[升级][平台] 寒武纪组件-修改接口 API
+
+
+#### 2017.05.04
+
+> 核心代码上线
+1. 手百下mip页面滑动隐藏顶栏逻辑修改
+2. 去掉多余的打印的信息
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cambrian](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cambrian)|[新增][平台] 寒武纪组件
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[升级][平台] 公司业务需求
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改报错字段名
+
+
+#### 2017.05.03
+
+> 核心代码上线
+
+    1、viewer增加单测
+    2. mip-img 修复多次初始化问题
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改接口 API
+
+
+#### 2017.05.02
+
+> 核心代码上线
+
+    1、滑动隐藏手百顶栏
+
+#### 2017.04.28
+
+> 核心代码上线
+
+    1、升级 template
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[新增] 定制化 MIP 通用组件
+
+#### 2017.04.27
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xzw-fortune](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xzw-fortune)|[升级][平台] mip-xzw-fortune 星座屋mip运势插件
+[mip-fh-async](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-async)|[升级][平台] 用来支持整站全网异步接口渲染组件
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[新增][平台] 公司业务需求
+[mip-233-tongji](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-tongji)|[新增][平台] 添加cnzz统计
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[升级] 记录修改状态
+[mip-wkad-config](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad-config)|[升级] 新加科室id
+
+#### 2017.04.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[升级][平台] 修改代码逻辑
+
+#### 2017.04.25
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[升级][平台] 修改代码逻辑
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[升级] 去除缓存字符串
+[mip-stats-baidu](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-baidu)|[升级] 修改百度统计内api使用
+
+#### 2017.04.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[新增][平台] 腾牛个性页面的伸缩导航
+[mip-xzw-article](https://github.com/mipengine/mip-extensions/tree/master/mip-xzw-article)|[升级] 更新组件
+
 #### 2017.04.20
 
 > 组件上线
@@ -39,7 +150,7 @@
 组件名|功能说明
 ---|---
 [mip-link](https://github.com/mipengine/mip-extensions/tree/master/mip-link)|[升级] 修改回调函数
- 
+
 
 #### 2017.04.14
 

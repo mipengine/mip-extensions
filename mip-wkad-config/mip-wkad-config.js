@@ -2,8 +2,8 @@
 * 寻医问药mip改造 广告配置组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2017.04.06
-* @version 1.0.2
+* @time 2017.05.02
+* @version 1.0.4
 */
 define(function (require) {
     var $ = require('zepto');
@@ -28,6 +28,14 @@ define(function (require) {
         var channel = $(elem).attr('channel');
         var department = $(elem).attr('department');
         var paramId = $(elem).attr('param');
+        var departId = $(elem).attr('depart_id');
+        var departSid = $(elem).attr('depart_sid');
+        if(departId){
+            window['subject_pid'] = departId;
+        }
+        if(departSid){
+            window['subject'] = departSid;
+        }
         switch (attr) {
             case 'take_ip':
                 loadJs(elem, 'https://ipdisplay.xywy.com/take_ip', function () {

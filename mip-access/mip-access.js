@@ -8,6 +8,7 @@ define(function (require) {
     var md5 = require('./mip-access-md5');
     var LoginModule = require('./mip-login');
     var evaluateAccessExpr = require('./mip-access-expr');
+
     var fn = util.fn;
     var AccessType = {
         CLIENT: 'client',
@@ -17,9 +18,9 @@ define(function (require) {
     var TAG = 'mip-access';
     var CustomStorage = util.customStorage;
     var storage = new CustomStorage(0);
+    var cacheHosts = ['mipcache.bdstatic.com', 'c.mipcdn.com'];
     var reg = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/g;
     var hosts = window.location.href.match(reg);
-    var cacheHosts = ['mipcache.bdstatic.com', 'c.mipcdn.com'];
 
     /**
      * Access Class
@@ -29,8 +30,7 @@ define(function (require) {
     function Access() {
         var elements = document.querySelectorAll('[mip-access-hide]');
         for (var i = 0; i < elements.length; i++) {
-            var style = window.getComputedStyle(elements[i]);
-            elements[i]._display = style.display;
+            elements[i]._display = util.css(elements[i], 'display');
         }
     }
 
@@ -58,7 +58,6 @@ define(function (require) {
                 this._runPingback();
                 break;
             case AccessType.SERVER:
-                break;
             case AccessType.OTHER:
                 break;
         }
@@ -105,8 +104,8 @@ define(function (require) {
      * @return {Object|string} login url
      */
     Access.prototype._buildConfigLoginMap = function (configJson) {
-        var loginConfig = configJson.login;
         var loginMap = {};
+        var loginConfig = configJson.login;
         if (typeof loginConfig === 'string') {
             loginMap.signIn = this._buildUrl(loginConfig);
         }
@@ -146,21 +145,6 @@ define(function (require) {
     };
 
     /**
-     * Create adapt according type
-     *
-     */
-    Access.prototype._createAdapter = function () {
-        switch (this._type) {
-            case AccessType.CLIENT:
-                break;
-            case AccessType.SERVER:
-                break;
-            case AccessType.OTHER:
-                break;
-        }
-    };
-
-    /**
      * Ping back to publisher server when dom ready
      *
      */
@@ -179,8 +163,7 @@ define(function (require) {
      *
      */
     Access.prototype._applyPingback = function () {
-        fetch(this._pingback).then(function (res) {
-        });
+        fetch(this._pingback).then(function (res) {});
     };
 
     /**
@@ -226,19 +209,20 @@ define(function (require) {
      *
      */
     Access.prototype._applyAuthorization = function () {
-        fetch(this._authorization).then(function (res) {
+        var self = this;
+        fetch(self._authorization).then(function (res) {
             if (res.ok) {
                 res.text().then(function (data) {
-                    this._authorizationFallback = JSON.parse(data);
-                    this._applyAuthorizationToElement();
-                }.bind(this));
+                    self._authorizationFallback = JSON.parse(data);
+                    self._applyAuthorizationToElement();
+                });
             }
             else {
-                this._applyAuthorizationToElement();
+                self._applyAuthorizationToElement();
             }
-        }.bind(this)).catch(function () {
-            this._applyAuthorizationToElement();
-        }.bind(this));
+        }).catch(function () {
+            self._applyAuthorizationToElement();
+        });
     };
 
     /**
@@ -270,7 +254,7 @@ define(function (require) {
                     else {
                         var display = elements[i]._display;
                         display = display ? display : 'block';
-                        elements[i].style.display = elements[i]._display;
+                        util.css(elements[i], 'display', elements[i]._display);
                     }
                 }
                 elements[i]._display = undefined;
@@ -357,5 +341,6 @@ define(function (require) {
             }
         });
     };
+
     return new Access()._start();
 });

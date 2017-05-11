@@ -30,14 +30,10 @@ define(function (require) {
         var login = document.querySelectorAll('[on="tap:mip-access.login"]');
         var logout = document.querySelectorAll('[on="tap:mip-access.logout"]');
         for (var loginKey in login) {
-            if (login[loginKey].addEventListener) {
-                login[loginKey].addEventListener('click', this._login.bind(this));
-            }
+            login[loginKey].addEventListener('click', this._login.bind(this));
         }
         for (var logoutKey in logout) {
-            if (logout[logoutKey].addEventListener) {
-                logout[logoutKey].addEventListener('click', this._logout.bind(this));
-            }
+            logout[logoutKey].addEventListener('click', this._logout.bind(this));
         }
     };
 
@@ -48,14 +44,12 @@ define(function (require) {
      */
     Login.prototype._checkParam = function () {
         var lc = this._loginConfig;
-        if (!lc) {
+        if (!lc || !fn.isPlainObject(lc)) {
             return false;
         }
-        if (fn.isPlainObject(lc)) {
-            for (var k in lc) {
-                if (k) {
-                    this._loginMap[k] = lc[k];
-                }
+        for (var k in lc) {
+            if (lc.hasOwnProperty[k]) {
+                this._loginMap[k] = lc[k];
             }
         }
         return true;

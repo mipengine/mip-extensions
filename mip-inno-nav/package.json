@@ -1,0 +1,14 @@
+{
+    "name": "mip-inno-nav",
+    "version": "1.0.1",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "yangnan",
+            "email": "1037796164@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

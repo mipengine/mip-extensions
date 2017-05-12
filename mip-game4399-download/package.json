@@ -1,0 +1,12 @@
+{
+    "name": "mip-game4399-download",
+    "version": "1.0.0",
+    "author": {
+        "name": "wyc",
+        "email": "wyccylcyl@163.com"
+    },
+
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

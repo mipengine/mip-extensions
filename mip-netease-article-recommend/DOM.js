@@ -156,7 +156,7 @@ define(function (require) {
             });
             if (scrollItem._offset === 0) {
                 var docid = scrollItem.dataset.docid;
-                openApp.href = '3g.163.com/wap/special/mip_open_app/#' + docid;
+                openApp.href = 'http://3g.163.com/wap/special/mip_open_app/#' + docid;
             }
         });
 

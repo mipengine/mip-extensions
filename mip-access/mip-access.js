@@ -5,6 +5,7 @@
 
 define(function (require) {
     var util = require('util');
+    var viewer = require('viewer');
     var md5 = require('./mip-access-md5');
     var LoginModule = require('./mip-login');
     var evaluateAccessExpr = require('./mip-access-expr');
@@ -37,12 +38,11 @@ define(function (require) {
     /**
      * Start parsing access process
      *
-     * @return {Object} self object
-    */
+     */
     Access.prototype._start = function () {
         this._init();
         if (!this._enabled) {
-            return this;
+            return;
         }
         this._startInternal();
     };
@@ -279,19 +279,22 @@ define(function (require) {
      * @return {Object} varibles list object
      */
     Access.prototype._prepareUrlVars = function () {
-        var location = window.location.href;
-        var sourceUrl = location;
-        var mipDocUrl = location.substr(0, location.indexOf(window.location.search));
-        for (var key in cacheHosts) {
-            if (hosts[0] === cacheHosts[key]) {
-                sourceUrl.replace(sourceUrl.host + '/c/', '');
-            }
+        var sourceUrl = window.location.href;
+        var canonical = document.head.querySelector('link[rel="canonical"]');
+        canonical = canonical ? canonical.href : sourceUrl;
+        var mipUrl = sourceUrl;
+        var matchs = sourceUrl.match(reg);
+        if (viewer.isIframed && matchs.length > 1) {
+            var domain = matchs[1];
+            var pth = mipUrl.slice(mipUrl.indexOf(domain));
+            var protocol = sourceUrl.match(/\/s\//) ? 'https://' : 'http://';
+            mipUrl = protocol + pth;
         }
         var vars = {
             READER_ID: this._rid,
-            SOURCE_URL: sourceUrl,
-            MIPDOC_URL: mipDocUrl,
-            CANONICAL_URL: window.location.href,
+            SOURCE_URL: this._getUrlWithoutFragment(sourceUrl),
+            MIPDOC_URL: this._getUrlWithoutFragment(mipUrl),
+            CANONICAL_URL: this._getUrlWithoutFragment(canonical),
             DOCUMENT_REFERRER: document.referrer,
             RANDOM: Math.random()
         };
@@ -303,6 +306,21 @@ define(function (require) {
         };
         return vars;
     };
+
+    /**
+     * Get url without fragmeent
+     *
+     * @param {string} url url
+     * @return {string} url of authorization
+     */
+    Access.prototype._getUrlWithoutFragment  = function (url) {
+        if (!url) {
+            return;
+        }
+        var ele = document.createElement('a');
+        ele.href = url;
+        return ele.protocol + '//' + ele.host + ele.port + ele.pathname;
+    }
 
     /**
      * Instead varible
@@ -329,7 +347,7 @@ define(function (require) {
     Access.prototype._bindEvent = function () {
         window.addEventListener('message', function (event) {
             // warning
-            if (event.origin === 'http://172.24.17.88:3000'
+            if (event.origin === 'http://localhost:3000'
                 && event.source && event.data
                 && event.data.type === 'refresh') {
                 if (event.source) {

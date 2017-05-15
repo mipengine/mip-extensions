@@ -29,11 +29,11 @@ define(function (require) {
         }
         var login = document.querySelectorAll('[on="tap:mip-access.login"]');
         var logout = document.querySelectorAll('[on="tap:mip-access.logout"]');
-        for (var loginKey in login) {
-            login[loginKey].addEventListener('click', this._login.bind(this));
+        for (var i = 0; i < login.length; i++) {
+            login[i].addEventListener('click', this._login.bind(this));
         }
-        for (var logoutKey in logout) {
-            logout[logoutKey].addEventListener('click', this._logout.bind(this));
+        for (var j = 0; j < logout.length; j++) {
+            logout[j].addEventListener('click', this._logout.bind(this));
         }
     };
 
@@ -48,7 +48,7 @@ define(function (require) {
             return false;
         }
         for (var k in lc) {
-            if (lc.hasOwnProperty[k]) {
+            if (lc.hasOwnProperty(k)) {
                 this._loginMap[k] = lc[k];
             }
         }
@@ -98,7 +98,7 @@ define(function (require) {
     Login.prototype._splice = function (url) {
         var search = url.split('?');
         // warning: test, need delete
-        var returnUrl = encodeURIComponent('http://172.24.17.88:3000/mip_access/mip-login-done?url=' + encodeURIComponent(this._href));
+        var returnUrl = encodeURIComponent('http://localhost:3000/mip-login-done/mip-login-done?url=' + encodeURIComponent(this._href));
         if (search && search.length > 1) {
             url += '&returnUrl=' + returnUrl;
         }

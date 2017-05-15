@@ -93,7 +93,7 @@ define(function (require) {
 
         titleWidth = parseFloat(window.getComputedStyle(titleList[0]).width);
         var docid = titleList[0].dataset.docid;
-        openApp.href = 'http://3g.163.com/news/article/' + docid + '.html';
+        openApp.href = 'http://3g.163.com/wap/special/mip_open_app/#' + docid;
 
         // 标题初始位置
         [].forEach.call(titleList, function (scrollTitle, index) {

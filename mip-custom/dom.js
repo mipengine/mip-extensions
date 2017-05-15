@@ -239,7 +239,7 @@ define(function (require) {
     /**
      * [proxyLink a 标签事件代理]
      *
-     * @param  {DOM} element mip-custom，只监听当前组件下的 a 标签
+     * @param  {DOM} element    mip-custom，只监听当前组件下的 a 标签
      */
     function proxyLink(element) {
         util.event.delegate(element, 'a', 'click', function (event) {

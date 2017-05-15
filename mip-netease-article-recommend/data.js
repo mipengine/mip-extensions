@@ -1,5 +1,5 @@
 /**
- * @file data.js
+ * @file 从接口获取列表数据
  * @author zhangyiding@corp.netease.com
  */
 

@@ -10,6 +10,13 @@ mip-netease-article-recommend 为网易移动站文章页实现了底部相关�
 
 ## 示例
 
+### 基本使用
+
 ```html
-<mip-netease-article-recommend><mip-netease-article-recommend>
+<mip-netease-article-recommend>
+</mip-netease-article-recommend>
 ```
+
+## 属性
+
+无

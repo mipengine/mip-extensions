@@ -1,5 +1,5 @@
 /**
- * @file displayState.js
+ * @file 获取底栏是否应该显示
  * @author zhangyiding@corp.netease.com
  */
 

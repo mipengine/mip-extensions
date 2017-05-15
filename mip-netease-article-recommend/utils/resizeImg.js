@@ -1,5 +1,5 @@
 /**
- * @file resizeImg.js
+ * @file 压缩图片
  * @author zhangyiding@corp.netease.com
  */
 
@@ -29,7 +29,9 @@ define(function (require) {
             resizedImgSrc = 'http://imgsize.ph.126.net/?imgurl=' + src + '_' + width + 'x' + height + 'x1x' + quality + '.jpg' + (enlarge ? '&enlarge=true' : '');
         } else {
             resizedImgSrc = src.replace(/\?imageView.*/, '');
-            resizedImgSrc = resizedImgSrc + '?imageView&thumbnail=' + width + 'y' + height + '&quality=' + quality + '&type=' + ext + '&interlace=1' + (enlarge ? '&enlarge=1' : '');
+            resizedImgSrc = resizedImgSrc + '?imageView&thumbnail=' + width + 'y' + height;
+            resizedImgSrc = resizedImgSrc + '&quality=' + quality;
+            resizedImgSrc = resizedImgSrc + '&type=' + ext + '&interlace=1' + (enlarge ? '&enlarge=1' : '');
         }
         return resizedImgSrc;
     };

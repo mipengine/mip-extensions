@@ -1,5 +1,5 @@
 /**
- * @file DOM.js
+ * @file 生成DOM,初始化事件
  * @author zhangyiding@corp.netease.com
  */
 

@@ -1,5 +1,5 @@
 /**
- * @file webpSupport.js
+ * @file 检测webp格式支持
  * @author zhangyiding@corp.netease.com
  */
 

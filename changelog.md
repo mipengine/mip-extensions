@@ -1,27 +1,5 @@
 # 升级日志
 
-#### 2017.05.12
-
-> 组件上线
-
-组件名|功能说明
----|---
-[mip-tiantis-jsridg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-jsridg)|[新增][平台] 封装了天体系统的JS逻辑
-
-#### 2017.05.11
-
-> 核心代码上线
-
-1. 支持 mip-semi-fixed 悬浮
-
-> 组件上线
-
-组件名|功能说明
----|---
-[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改域名限制，调整代码结构
-[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
-[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级] 修复重复渲染的bug
-
 #### 2017.05.08
 
 > 核心代码上线
@@ -32,7 +10,7 @@
 
 组件名|功能说明
 ---|---
-[mip-bdb-custom-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-bdb-custom-content)|[新增][平台] 本地宝展示文章结尾的自定义内容板块
+[mip-bdb-custom-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-bdb-custom-content)|[升级][平台] 本地宝展示文章结尾的自定义内容板块
 
 
 

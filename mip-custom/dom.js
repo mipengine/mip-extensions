@@ -253,6 +253,8 @@ define(function (require) {
             event && event.preventDefault();
 
             var xpath = '';
+
+            var path = log.getXPath(this, element);
             
             path && path.forEach(function (val) {
                 xpath += xpath ? '_' + val : val;

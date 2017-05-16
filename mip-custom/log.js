@@ -34,8 +34,41 @@ define(function (require) {
         }
         return path;
     }
+    function sendLog(API_URL, data) {
+        if (!API_URL) {
+            return;
+        }
+        var data = data || {};
+        data.t = + new Date;
+
+        var url = API_URL;
+
+        var parasArr = [];
+        for (var key in data) {
+            parasArr.push(key + '=' + data[key]);
+        }
+        if (url.indexOf('?') === -1) {
+            url += '?';
+        }
+        else {
+            url += '&';
+        }
+
+        url += parasArr.join('&');
+
+        var k = 'MIP_CUSTOM_LOG_' + data.t;
+        var img = window[k] = new Image();
+        img.onload = img.onerror = img.onabort = function () {
+            img.onload = img.onerror = img.onabort = null;
+            img = null;
+            window[k] = null;
+        };
+        img.src = url;
+    }
+
     return {
-        getXPath: getXPath
+        getXPath: getXPath,
+        sendLog: sendLog
     };
 
 });

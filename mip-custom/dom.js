@@ -247,16 +247,24 @@ define(function (require) {
                 return;
             }
 
+
+            var link = this.getAttribute('data-log-href');
+
             event && event.preventDefault();
 
             var xpath = '';
-            var path = log.getXPath(this, element);
+            
             path && path.forEach(function (val) {
                 xpath += xpath ? '_' + val : val;
             });
-
-            this.href += ((this.href[this.href.length - 1] === '&') ? '' : '&')
+            var logUrl = (link) ? link : this.href;
+            logUrl = ((logUrl[logUrl.length - 1] === '&') ? '' : '&')
                       + 'clk_info=' + JSON.stringify({xpath: xpath});
+            if (link) {
+                log.sendLog(logUrl, {});
+            } else {
+                this.href += logUrl;
+            }
             this.click();
         });
     }

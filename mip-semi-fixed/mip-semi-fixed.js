@@ -61,9 +61,9 @@ define(function (require) {
         var threshold = this.threshold;
         var fixedClassNames = this.fixedClassNames;
         var scrollTop = viewport.getScrollTop();
-        var offsetTop = element.offsetTop;
+        var offsetTop = element.getBoundingClientRect().top;
 
-        if (offsetTop - scrollTop <= threshold) {
+        if (offsetTop <= threshold) {
             if (container.className.indexOf(fixedClassNames) < 0) {
                 container.className += fixedClassNames;
             }
@@ -87,7 +87,7 @@ define(function (require) {
 
         var element = this.element;
         var scrollTop = viewport.getScrollTop();
-        var offsetTop = element.offsetTop;
+        var offsetTop = element.getBoundingClientRect().top;
 
         if (offsetTop - scrollTop <= this.threshold) {
             util.css(this.fixedContainer, {opacity: 1});
@@ -117,7 +117,7 @@ define(function (require) {
         self.container.setAttribute(STATUS.STATUS_SCROLL, '');
 
         // 初始状态为 fixed 时
-        if (element.offsetTop - viewport.getScrollTop() <= self.threshold) {
+        if (element.getBoundingClientRect().top <= self.threshold) {
             if (self.container.className.indexOf(self.fixedClassNames) < 0) {
                 self.container.className += self.fixedClassNames;
             }

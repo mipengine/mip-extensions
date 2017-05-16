@@ -13,21 +13,38 @@ mip-semi-fixed 滑动悬浮组件
 ### 基本用法
 
 ```html
-<mip-semi-fixed id="semi-fixed" fixedClassNames="fixedStyle">
+<!-- <mip-semi-fixed id="semi-fixed" fixedClassNames="fixedStyle">
     <div mip-semi-fixed-container class="absoluteStyle">
         MIP-SEMI-FIXED MIP-SEMI-FIXED
     </div>
-</mip-semi-fixed>
+</mip-semi-fixed> -->
 ```
 
 ### 设置 fixed 时距离页面顶部的阈值
 
 ```html
-<mip-semi-fixed id="semi-fixed" threshold="150" fixedClassNames="fixedStyle">
+<style>
+	.divholder {
+		padding:100px;
+		margin-top:100px;
+		background: #eee;
+	}
+</style>
+<div style="padding:100px 10px; background: orange; position: relative;">
+<mip-semi-fixed id="semi-fixed" threshold="20" fixedClassNames="fixedStyle">
     <div mip-semi-fixed-container class="absoluteStyle">
         MIP-SEMI-FIXED MIP-SEMI-FIXED
     </div>
+</div>
 </mip-semi-fixed>
+<div class="divholder">123</div>
+<div class="divholder">123</div>
+<div class="divholder">123</div>
+<div class="divholder">123</div>
+<div class="divholder">123</div>
+<div class="divholder">123</div>
+<div class="divholder">123</div>
+
 ```
 
 ## 属性

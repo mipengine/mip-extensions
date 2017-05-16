@@ -34,6 +34,14 @@ define(function (require) {
         }
         return path;
     }
+
+    /**
+     * [getXPath 获取 xpath 数组]
+     *
+     * @param  {string}   API_URL [日志接收host]
+     * @param  {Object}   data [参数对象]
+     * 
+     */
     function sendLog(API_URL, data) {
         if (!API_URL) {
             return;

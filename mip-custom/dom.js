@@ -247,7 +247,7 @@ define(function (require) {
                 return;
             }
 
-
+            // 处理需要单独发送日志的 a 标签
             var link = this.getAttribute('data-log-href');
 
             event && event.preventDefault();

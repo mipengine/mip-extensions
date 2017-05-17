@@ -36,7 +36,7 @@ define(function () {
         var regexs = dataProcessor.regexs;
 
         // 非结果页进入不展现定制化内容
-        if (!viewer.isIframed) {
+        /*if (!viewer.isIframed) {
             element.remove();
             return;
         }
@@ -44,7 +44,7 @@ define(function () {
         if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
             element.remove();
             return;
-        }
+        }*/
 
         var commonData = {};
         var template = {};
@@ -63,7 +63,7 @@ define(function () {
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
-
+            console.log(data);
             // 返回数据问题
             if (data && data.errno) {
                 console.error(data.errmsg);

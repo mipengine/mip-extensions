@@ -216,6 +216,7 @@ define(function (require) {
 
             // 某条结果 tpl 为空时不渲染此条结果
             var str = tplData[len].tpl ? decodeURIComponent(tplData[len].tpl) : null;
+            console.log(str);
             if (!str) {
                 continue;
             }
@@ -250,7 +251,7 @@ define(function (require) {
             // 处理需要单独发送日志的 a 标签
             var link = this.getAttribute('data-log-href');
 
-            event && event.preventDefault();
+            //event && event.preventDefault();
 
             var xpath = '';
 
@@ -260,14 +261,13 @@ define(function (require) {
                 xpath += xpath ? '_' + val : val;
             });
             var logUrl = (link) ? link : this.href;
-            logUrl = ((logUrl[logUrl.length - 1] === '&') ? '' : '&')
+            logUrl += ((logUrl[logUrl.length - 1] === '&') ? '' : '&')
                       + 'clk_info=' + JSON.stringify({xpath: xpath});
             if (link) {
                 log.sendLog(logUrl, {});
             } else {
                 this.href += logUrl;
             }
-            this.click();
         });
     }
 

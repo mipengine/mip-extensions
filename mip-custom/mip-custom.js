@@ -97,6 +97,7 @@ define(function () {
                 dom.render(element, tplData, container);
             }
         }, function (error) {
+            console.error(data.errmsg);
             element.remove();
             console.error(error);
         }).catch(function (evt) {

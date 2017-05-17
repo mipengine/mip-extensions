@@ -249,13 +249,10 @@ define(function (require) {
 
             // 处理需要单独发送日志的 a 标签
             var link = this.getAttribute('data-log-href');
-
-            //event && event.preventDefault();
-
             var xpath = '';
 
             var path = log.getXPath(this, element);
-            
+
             path && path.forEach(function (val) {
                 xpath += xpath ? '_' + val : val;
             });
@@ -264,7 +261,8 @@ define(function (require) {
                       + 'clk_info=' + JSON.stringify({xpath: xpath});
             if (link) {
                 log.sendLog(logUrl, {});
-            } else {
+            }
+            else {
                 this.href += logUrl;
             }
         });

@@ -39,21 +39,21 @@ define(function (require) {
      * [getXPath 获取 xpath 数组]
      *
      * @param  {string}   API_URL [日志接收host]
-     * @param  {Object}   data [参数对象]
-     * 
+     * @param  {Object}   logdata [参数对象]
      */
-    function sendLog(API_URL, data) {
+    function sendLog(API_URL, logdata) {
         if (!API_URL) {
             return;
         }
-        var data = data || {};
-        data.t = + new Date;
+        var data = logdata || {};
 
         var url = API_URL;
 
         var parasArr = [];
         for (var key in data) {
-            parasArr.push(key + '=' + data[key]);
+            if (data.hasOwnProperty(key)) {
+                parasArr.push(key + '=' + data[key]);
+            }
         }
         if (url.indexOf('?') === -1) {
             url += '?';
@@ -63,7 +63,7 @@ define(function (require) {
         }
 
         url += parasArr.join('&');
-
+        data.t = +new Date();
         var k = 'MIP_CUSTOM_LOG_' + data.t;
         var img = window[k] = new Image();
         img.onload = img.onerror = img.onabort = function () {

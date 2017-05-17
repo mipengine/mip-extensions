@@ -63,7 +63,6 @@ define(function () {
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
-            
             // 返回数据问题
             if (data && data.errno) {
                 console.error(data.errmsg);

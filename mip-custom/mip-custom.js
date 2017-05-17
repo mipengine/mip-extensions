@@ -63,8 +63,10 @@ define(function () {
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
+            
             // 返回数据问题
             if (data && data.errno) {
+                console.error(data.errmsg);
                 element.remove();
                 return;
             }
@@ -97,7 +99,6 @@ define(function () {
                 dom.render(element, tplData, container);
             }
         }, function (error) {
-            console.error(data.errmsg);
             element.remove();
             console.error(error);
         }).catch(function (evt) {

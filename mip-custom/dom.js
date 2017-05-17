@@ -73,6 +73,9 @@ define(function (require) {
                 id: 'Fixed' + idx
             };
             fixedElement.moveToFixedLayer(data, parseInt(idx, 10));
+
+            // 为悬浮节点添加代理事件
+            proxyLink(customNode, fixedElement._fixedLayer);
         }
     }
 
@@ -240,8 +243,9 @@ define(function (require) {
      * [proxyLink a 标签事件代理]
      *
      * @param  {DOM} element    mip-custom，只监听当前组件下的 a 标签
+     * @param  {DOM} fixedLayer fixed body
      */
-    function proxyLink(element) {
+    function proxyLink(element, fixedLayer) {
         util.event.delegate(element, 'a', 'click', function (event) {
             if (this.hasAttribute('mip-link') || /clk_info/.test(this.href)) {
                 return;
@@ -249,13 +253,17 @@ define(function (require) {
 
             // 处理需要单独发送日志的 a 标签
             var link = this.getAttribute('data-log-href');
-            var xpath = '';
-
-            var path = log.getXPath(this, element);
-
-            path && path.forEach(function (val) {
-                xpath += xpath ? '_' + val : val;
-            });
+          
+            var path = null;
+            if (fixedLayer) {
+                path = log.getXPath(this, fixedLayer);
+                path.unshift('.mip-fixedlayer');
+            }
+            else {
+                path = log.getXPath(this, element);
+            }
+            var xpath = path ? path.join('_') : '';
+          
             var logUrl = (link) ? link : this.href;
             logUrl += ((logUrl[logUrl.length - 1] === '&') ? '' : '&')
                       + 'clk_info=' + JSON.stringify({xpath: xpath});

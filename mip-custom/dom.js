@@ -216,7 +216,6 @@ define(function (require) {
 
             // 某条结果 tpl 为空时不渲染此条结果
             var str = tplData[len].tpl ? decodeURIComponent(tplData[len].tpl) : null;
-            console.log(str);
             if (!str) {
                 continue;
             }

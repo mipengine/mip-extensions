@@ -34,8 +34,49 @@ define(function (require) {
         }
         return path;
     }
+
+    /**
+     * [getXPath 获取 xpath 数组]
+     *
+     * @param  {string}   API_URL [日志接收host]
+     * @param  {Object}   logdata [参数对象]
+     */
+    function sendLog(API_URL, logdata) {
+        if (!API_URL) {
+            return;
+        }
+        var data = logdata || {};
+
+        var url = API_URL;
+
+        var parasArr = [];
+        for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+                parasArr.push(key + '=' + data[key]);
+            }
+        }
+        if (url.indexOf('?') === -1) {
+            url += '?';
+        }
+        else {
+            url += '&';
+        }
+
+        url += parasArr.join('&');
+        data.t = +new Date();
+        var k = 'MIP_CUSTOM_LOG_' + data.t;
+        var img = window[k] = new Image();
+        img.onload = img.onerror = img.onabort = function () {
+            img.onload = img.onerror = img.onabort = null;
+            img = null;
+            window[k] = null;
+        };
+        img.src = url;
+    }
+
     return {
-        getXPath: getXPath
+        getXPath: getXPath,
+        sendLog: sendLog
     };
 
 });

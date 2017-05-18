@@ -271,7 +271,7 @@ define(function (require) {
                 log.sendLog(logUrl, {});
             }
             else {
-                this.href += logUrl;
+                this.href = logUrl;
             }
         });
     }

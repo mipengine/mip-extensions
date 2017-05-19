@@ -8,6 +8,7 @@
 ---|---
 [mip-netease-article-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-article-recommend)|[升级][平台] 升级推荐组件
 [mip-askad](https://github.com/mipengine/mip-extensions/tree/master/mip-askad)|[升级] 修改url
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav) 升级组件
 
 #### 2017.05.18
 

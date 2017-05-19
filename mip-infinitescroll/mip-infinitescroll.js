@@ -48,7 +48,7 @@ define(function (require) {
 
         // 默认参数设置
         self.params = {
-            rn: 0,
+            rn: 20,
             prn: 6,
             pn: 1,
             pnName: 'pn',

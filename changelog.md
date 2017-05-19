@@ -1,25 +1,74 @@
 # 升级日志
 
-#### 2017.05.12     
-      
-> 组件上线        
-      
-组件名|功能说明      
----|---       
-[mip-tiantis-jsridg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-jsridg)|[新增][平台] 封装了天体系统的JS逻辑       
-      
-#### 2017.05.11       
-      
-> 核心代码上线      
-      
-1. 支持 mip-semi-fixed 悬浮       
-      
-> 组件上线        
-      
-组件名|功能说明      
- ----|---       
-[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改域名限制，调整代码结构       
-[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计       
+#### 2017.05.19
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-netease-article-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-article-recommend)|[升级][平台] 升级推荐组件
+[mip-askad](https://github.com/mipengine/mip-extensions/tree/master/mip-askad)|[升级] 修改url
+
+#### 2017.05.18
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-netease-article-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-article-recommend)|[升级][平台] 升级推荐组件
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改sf中url问题
+
+#### 2017.05.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改sf中url问题
+
+#### 2017.05.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-netease-tracker](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-tracker)|[新增][平台] 为网易移动站文章页实现了统计功能
+
+#### 2017.05.15
+
+> 核心代码上线
+
+1. 兼容viewer a标签delegate问题
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-tiantis-54kefu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-54kefu)|[新增][平台] 封装了54kefu
+[mip-netease-article-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-article-recommend)|[新增][平台] 为网易移动站文章页实现了底部相关文章推荐功能
+[mip-tiantis-51la](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-51la)|[新增][平台] 封装了51la统计
+[mip-xiaoniaole](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xiaoniaole)|[新增][平台] 用于xiaoniaole.cn站点投放汇米广告固定位广告的组件
+
+#### 2017.05.12
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-tiantis-jsridg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-jsridg)|[新增][平台] 封装了天体系统的JS逻辑
+
+#### 2017.05.11
+
+> 核心代码上线
+
+1. 支持 mip-semi-fixed 悬浮
+
+> 组件上线
+
+组件名|功能说明
+ ----|---
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改域名限制，调整代码结构
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
 [mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级] 修复重复渲染的bug
 
 #### 2017.05.08

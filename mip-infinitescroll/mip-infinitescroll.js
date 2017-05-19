@@ -5,29 +5,12 @@
 
 define(function (require) {
 
-    var customElement = require('customElement').create();
+    var util = require('util');
     var templates = require('templates');
     var fetchJsonp = require('fetch-jsonp');
+    var customElement = require('customElement').create();
     var InfiniteScroll = require('./infinitescroll');
     var infiniteScroll = null;
-
-    /**
-     * [extendObj 合并数据]
-     *
-     * @param  {Object} opt 默认数据对象
-     * @param  {Object} ext 需要合并的数据对象
-     * @return {Object}     合并后的数据对象
-     */
-    function extendObj(opt, ext) {
-
-        for (var key in ext) {
-            if (ext.hasOwnProperty(key)) {
-                opt[key] = ext[key];
-            }
-        }
-
-        return opt;
-    }
 
     /**
      * [getUrl url 拼接函数]
@@ -79,7 +62,7 @@ define(function (require) {
         try {
             var script = element.querySelector('script[type="application/json"]');
             if (script) {
-                self.params = extendObj(self.params, JSON.parse(script.textContent.toString()));
+                self.params = util.fn.extend(self.params, JSON.parse(script.textContent.toString()));
             }
         }
         catch (e) {

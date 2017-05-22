@@ -17,21 +17,22 @@ mip-gototop 提供了一个用来支持网页快速回顶按钮，用来支持�
     <mip-gototop></mip-gototop>
 </mip-fixed>
 ```
+<!--组件预览使用-->
 
 ```html-example
 <style mip-custom>
-	div{
+	.placeholder{
 		width:100%;
 		height:300px;
 		border-bottom: 1px solid #ccc;
 	}
 </style>
-<div>这</div>
-<div>里</div>
-<div>是</div>
-<div>占</div>
-<div>位</div>
-<div>符</div>
+<div class="placeholder">这</div>
+<div class="placeholder">里</div>
+<div class="placeholder">是</div>
+<div class="placeholder">占</div>
+<div class="placeholder">位</div>
+<div class="placeholder">符</div>
 <mip-fixed type="gototop">
     <mip-gototop></mip-gototop>
 </mip-fixed>
@@ -44,21 +45,22 @@ mip-gototop 提供了一个用来支持网页快速回顶按钮，用来支持�
     <mip-gototop threshold='300'></mip-gototop>
 </mip-fixed>
 ```
+<!--组件预览使用-->
 
 ```html-example
 <style mip-custom>
-	div{
+	.placeholder {
 		width:100%;
 		height:300px;
 		border-bottom: 1px solid #ccc;
 	}
 </style>
-<div>这</div>
-<div>里</div>
-<div>是</div>
-<div>占</div>
-<div>位</div>
-<div>符</div>
+<div class="placeholder">这</div>
+<div class="placeholder">里</div>
+<div class="placeholder">是</div>
+<div class="placeholder">占</div>
+<div class="placeholder">位</div>
+<div class="placeholder">符</div>
 <mip-fixed type="gototop">
     <mip-gototop threshold='300'></mip-gototop>
 </mip-fixed>

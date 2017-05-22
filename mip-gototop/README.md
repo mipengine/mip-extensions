@@ -23,8 +23,7 @@ mip-gototop 提供了一个用来支持网页快速回顶按钮，用来支持�
 	div{
 		width:100%;
 		height:300px;
-		background-color: pink;
-		border-bottom: 100px;
+		border-bottom: 1px solid #ccc;
 	}
 </style>
 <div>这</div>
@@ -51,8 +50,7 @@ mip-gototop 提供了一个用来支持网页快速回顶按钮，用来支持�
 	div{
 		width:100%;
 		height:300px;
-		background-color: pink;
-		border-bottom: 100px;
+		border-bottom: 1px solid #ccc;
 	}
 </style>
 <div>这</div>

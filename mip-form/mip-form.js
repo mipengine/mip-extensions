@@ -143,6 +143,7 @@ define(function (require) {
             self.getElementsByTagName('form')[0].submit();
         }
     }
+
     /**
      * [build build函数]
      */

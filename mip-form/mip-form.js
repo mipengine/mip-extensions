@@ -9,6 +9,8 @@ define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
     var util = require('util');
+    var viewer = require('viewer');
+    var windowInIframe = viewer.isIframed;
 
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
@@ -143,6 +145,30 @@ define(function (require) {
             self.getElementsByTagName('form')[0].submit();
         }
     }
+    //检查是否聚焦
+    function checkFocus (){
+        var inputAll = document.querySelectorAll('input');   
+        Array.prototype.forEach.call(inputAll,function(item,index){
+            item.onfocus = function(){
+                sendFormMessage('focus');
+            }
+            item.onblur = function(){
+                sendFormMessage('blur');
+             }
+        })                           
+        
+    }   
+
+   //向SF发送数据
+    function sendFormMessage(event) {
+        
+        if (windowInIframe) {
+            // mip_video_jump 为写在外层的承接方法
+            viewer.sendMessage('input-' + event , {
+            });
+        }                
+     }
+
 
     /**
      * [build build函数]
@@ -203,12 +229,18 @@ define(function (require) {
                     util.css(cross, {display: 'none'});
                 };
             }
-
-            cross.addEventListener('touchend', clear);
+            cross.addEventListener('touchstart', clear, false);
+            cross.addEventListener('mousedown', clear, false);
+            cross.addEventListener('click', clear, false);
+            checkFocus();
 
             function clear(e) {
+                e.stopPropagation();
+                e.preventDefault();
                 var name = e.target.getAttribute('name');
-                cross.parentNode.querySelector('input[name="' + name + '"]').value = '';
+                var input_select = cross.parentNode.querySelector('input[name="' + name + '"]');
+                input_select.focus();                
+                input_select.value = '';
                 util.css(cross, {display: 'none'});
             }
         }

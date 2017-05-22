@@ -97,11 +97,11 @@ define(function (require) {
             var value = item.value;
             var reg;
 
-            if(item.type === 'submit') {
+            if (item.type === 'submit') {
                 return;
             }
             else if (item.type === 'checkbox' || item.type === 'radio') {
-                value = item.checked ? item.value : ''
+                value = item.checked ? item.value : '';
             }
 
             valueJson += '&' + item.name + '=' + value;
@@ -145,29 +145,27 @@ define(function (require) {
             self.getElementsByTagName('form')[0].submit();
         }
     }
-    //检查是否聚焦
-    function checkFocus (){
-        var inputAll = document.querySelectorAll('input');   
-        Array.prototype.forEach.call(inputAll,function(item,index){
-            item.onfocus = function(){
+    // 检查是否聚焦
+    function checkFocus() {
+        var inputAll = document.querySelectorAll('input');
+        Array.prototype.forEach.call(inputAll, function (item, index) {
+            item.onfocus = function () {
                 sendFormMessage('focus');
-            }
-            item.onblur = function(){
+            };
+            item.onblur = function () {
                 sendFormMessage('blur');
-             }
-        })                           
-        
-    }   
+            };
+        });
+    }
 
-   //向SF发送数据
+    // 向SF发送数据
     function sendFormMessage(event) {
-        
-        if (windowInIframe) {
-            // mip_video_jump 为写在外层的承接方法
-            viewer.sendMessage('input-' + event , {
-            });
-        }                
-     }
+            if (windowInIframe) {
+                // mip_video_jump 为写在外层的承接方法
+                viewer.sendMessage('input-' + event, {
+                });
+            }
+        }
 
 
     /**
@@ -238,9 +236,9 @@ define(function (require) {
                 e.stopPropagation();
                 e.preventDefault();
                 var name = e.target.getAttribute('name');
-                var input_select = cross.parentNode.querySelector('input[name="' + name + '"]');
-                input_select.focus();                
-                input_select.value = '';
+                var inputSelect = cross.parentNode.querySelector('input[name="' + name + '"]');
+                inputSelect.focus();
+                inputSelect.value = '';
                 util.css(cross, {display: 'none'});
             }
         }

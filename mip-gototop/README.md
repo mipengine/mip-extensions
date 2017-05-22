@@ -17,9 +17,10 @@ mip-gototop 提供了一个用来支持网页快速回顶按钮，用来支持�
     <mip-gototop></mip-gototop>
 </mip-fixed>
 ```
-<!--组件预览使用-->
+
 
 ```html-example
+<!--组件预览使用-->
 <style mip-custom>
 	.placeholder{
 		width:100%;
@@ -45,9 +46,9 @@ mip-gototop 提供了一个用来支持网页快速回顶按钮，用来支持�
     <mip-gototop threshold='300'></mip-gototop>
 </mip-fixed>
 ```
-<!--组件预览使用-->
 
 ```html-example
+<!--组件预览使用-->
 <style mip-custom>
 	.placeholder {
 		width:100%;

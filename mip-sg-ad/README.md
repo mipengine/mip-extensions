@@ -1,6 +1,6 @@
 # mip-sg-ad
 
-mip-sg-ad 星游广告
+mip-sg-ad 星游传媒广告组件
 
 标题|内容
 ----|----
@@ -13,7 +13,7 @@ mip-sg-ad 星游广告
 ### 标题加内容形式
 
 ```html
-<mip-sg-ad sg-ad-pid="666" ></mip-sg-ad>
+<mip-sg-ad sg-ad-pid="817" ></mip-sg-ad>
 ```
 
 
@@ -21,6 +21,6 @@ mip-sg-ad 星游广告
 
 ### sg-ad-pid
 
-说明：广告的唯一ID值
-必选项：是  
+说明：星游传媒广告的ID值。
 类型：字符串
+必选项：是

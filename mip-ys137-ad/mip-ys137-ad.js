@@ -20,35 +20,40 @@ define(function(require) {
         opt = opt || {};
         // 设置配置项默认值
         var ad_id = [opt.id] || [0];
+		var tu =opt.tu;
 		var element = opt.element;
-		
-		switch(+ad_id){
-			case 1://分页后（四图）
-				element.html(getbaidu_ad("nbdqx58bef"));
-				break;
-			case 2://分页后（搜索推荐）
-				element.html(getbaidu_ad("u4djpnkdfe"));
-				break;
-			case 3://头部
-				element.html("");//预留
-				break;
-			default:
-				element.html("");
-				break;
+		if(tu!=""){
+			//有设置tu的，优先展现
+			element.html(getbaidu_ad(tu));
+		}else{
+			switch(+ad_id){
+				case 1://分页后（四图）
+					element.html(getbaidu_ad("nbdqx58bef"));
+					break;
+				case 2://分页后（搜索推荐）
+					element.html(getbaidu_ad("u4djpnkdfe"));
+					break;
+				case 3://头部
+					element.html("");//预留
+					break;
+				default:
+					element.html("");
+					break;
+			}
 		}
-		
-		
 	};
 	//获取插件参数
 	var getOpt = function (element) {
         var $element = $(element);
-        // 获取元素绑定的广告位id和关键词
+        // 获取元素绑定的属性
         var ad_id = $element.attr('id');
 		var lazy = $element.attr('lazy');
+		var tu = $element.attr('tu');
         // 广告初始化参数
         var opt = {
             id: ad_id,
 			lazy: lazy,
+			tu:tu,
             element: $element
         };
         return opt;

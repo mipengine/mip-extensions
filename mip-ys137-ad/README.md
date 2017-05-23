@@ -15,11 +15,18 @@ mip-ys137-ad 管理页面上的所有广告位
 <mip-ys137-ad id="1">
 </mip-ys137-ad>
 ```
+
 ### lazy广告
 ```html
 <div style="height:1000px;">
 </div>
 <mip-ys137-ad id="2" lazy="true">
+</mip-ys137-ad>
+```
+
+### 直接投放百度广告
+```html
+<mip-ys137-ad tu="nbdqx58bef">
 </mip-ys137-ad>
 ```
 
@@ -40,3 +47,11 @@ mip-ys137-ad 管理页面上的所有广告位
 类型：布尔
 取值范围：true,false
 默认值：false
+
+### tu
+
+说明：百度代码位反屏蔽代码
+必选项：否
+类型：字符串
+取值范围：无
+默认值：''

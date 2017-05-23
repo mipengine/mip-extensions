@@ -1,0 +1,12 @@
+{
+    "name": "mip-bdb-block",
+    "version": "1.0.0",
+    "author": {
+        "name": "56",
+        "email": "569477480@qq.com",
+        "url": "http://m.bendibao.com"
+    },
+    "engines": {
+        "mip": ">=1.1.3"
+    }
+}

@@ -25,6 +25,7 @@ define(function(require) {
 		if(tu!=""){
 			//有设置tu的，优先展现
 			element.html(getbaidu_ad(tu));
+
 		}else{
 			switch(+ad_id){
 				case 1://分页后（四图）

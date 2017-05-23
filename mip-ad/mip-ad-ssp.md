@@ -14,8 +14,8 @@
 ```html
 <mip-ad
     type="ad-ssp"
-    data-site-id="xxxxxxxxtodo"
-    data-block-id="xxxx"
+    data-site-id="1118394"
+    data-block-id="2683"
     >
 </mip-ad>
 ```
@@ -27,8 +27,8 @@
 <mip-fixed type="top" >
     <mip-ad
         type="ad-ssp"
-        data-site-id="xxxxxxxxtodo"
-        data-block-id="xxxx"
+        data-site-id="1118394"
+        data-block-id="2684"
         layout="fixed-height"
         height="75px"
         >

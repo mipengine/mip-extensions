@@ -1,0 +1,9 @@
+{
+	"name": "mip-netease-article-recommend",
+	"version": "1.0.0",
+	"description": "article recommend for netease mobile site",
+	"author": {
+		"name": "zhangyiding",
+		"email": "zhangyiding@corp.netease.com"
+	}
+}

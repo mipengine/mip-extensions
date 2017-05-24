@@ -1,0 +1,196 @@
+mip-netease-article-recommend {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+
+  li {
+    list-style: none;
+  }
+
+  .doc-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 61px;
+    box-sizing: border-box;
+    padding: 8px 16px;
+    background: #fff;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-box-shadow: 0 -1px 2px 0 #e8e8e8;
+    box-shadow: 0 -1px 2px 0 #e8e8e8;
+    transition: opacity .8s ease 0s, visibility 0s linear .8s;
+    -webkit-transition: opacity .8s ease 0s, visibility 0s linear .8s;
+    max-width: 620px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  }
+
+  .doc-footer-show {
+    opacity: .95;
+    visibility: visible;
+    -webkit-transition: opacity .8s ease 0s, visibility 0s linear 0s;
+    transition: opacity .8s ease 0s, visibility 0s linear 0s;
+  }
+
+  .open-app {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .scroll-image-wrapper {
+    width: 41px;
+    height: 41px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+
+    & .current {
+      opacity: 1;
+    }
+  }
+
+  .scroll-image {
+    border-radius: 10px;
+    overflow: hidden;
+    will-change: opacity;
+    -webkit-transition: .8s ease;
+    transition: .8s ease;
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .scroll-panel {
+    position: absolute;
+    width: 120px;
+    height: 2px;
+    left: 50%;
+    bottom: 7px;
+    display: inline-block;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-size: 0;
+  }
+
+  .scroll-indicator {
+    width: 15px;
+    margin: 0 2.5px;
+    box-sizing: border-box;
+    height: 100%;
+    background: #ebebeb;
+    display: inline-block;
+    -webkit-transition: .8s ease;
+    transition: .8s ease;
+  }
+
+  .scroll-indicator-current {
+    background: #d8d8d8;
+  }
+
+  .scroll-title-wrapper {
+    float: left;
+    height: 36px;
+    width: 60.4%;
+    max-width: 290px;
+    margin-left: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-title-list {
+    width: 100%;
+    height: 100%;
+
+    .no-transition {
+      transition: none;
+      -webkit-transition: none;
+    }
+  }
+
+  .scroll-title {
+    will-change: transform;
+    -webkit-transition: ease .8s;
+    transition: ease .8s;
+    position: absolute;
+    font-size: 14px;
+    top: 0;
+    left: 0;
+  }
+
+  .open-btn {
+    font-family: PingFang-SC-Regular;
+    font-size: 14px;
+    width: 74px;
+    height: 32px;
+    text-align: center;
+    letter-spacing: 0;
+    color: #fff;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    background: #e31818;
+    display: inline-block;
+    margin-top: 7px;
+    margin-left: 11px;
+
+    span {
+      line-height: 32px;
+    }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    background: url("http://img3.cache.netease.com/f2e/wap/touch_article_2016/ssr_trunk/dist/images/close_btn_minfy.png") no-repeat;
+    background-size: contain;
+  }
+
+  // 小屏适配
+  @media screen and (max-width:320px) {
+    .scroll-title-wrapper {
+      width: 65.5%;
+    }
+
+    .doc-footer {
+      padding: 8px;
+    }
+
+    .open-btn {
+      width: 49px;
+      margin-left: 1px;
+    }
+  }
+  @media screen and (max-width:360px) {
+    .open-btn {
+      margin-left: 3px;
+    }
+  }
+  @media screen and (max-width:375px) {
+    .open-btn {
+      margin-left: 3px;
+    }
+  }
+  @media screen and (min-width:400px) {
+    .scroll-title-wrapper {
+      margin-left: 10px;
+    }
+
+    .open-btn {
+      margin-left: 13px;
+    }
+  }
+}

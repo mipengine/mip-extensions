@@ -18,12 +18,15 @@ mip-semi-fixed 滑动悬浮组件
         MIP-SEMI-FIXED MIP-SEMI-FIXED
     </div>
 </mip-semi-fixed>
-<div class="placeholder"></div>
-<div class="placeholder"></div>
-<div class="placeholder"></div>
-<div class="placeholder"></div>
-<div class="placeholder"></div>
-<div class="placeholder"></div>
+ <div class="placeholder">我走过山时，山不说话，</div>
+ <div class="placeholder">我路过海时，海不说话，</div>
+ <div class="placeholder">小毛驴滴滴答答，</div>
+ <div class="placeholder">倚天剑伴我走天涯。 </div>
+ <div class="placeholder">大家都说我因为爱着杨过大侠，</div>
+ <div class="placeholder">才在峨眉山上出了家， </div>
+ <div class="placeholder">其实我只是爱上了峨眉山上的云和霞，</div>
+ <div class="placeholder">像极了十六岁那年的烟花。</div>
+ 
 
 ```
 

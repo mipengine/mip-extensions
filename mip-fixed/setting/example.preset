@@ -1,0 +1,17 @@
+<style mip-custom>
+   .placeholder{
+     width:100%;
+       height:300px;
+     border-bottom: 1px solid #aaa;
+   }
+ </style>
+
+ 
+ 
+ <div class="placeholder">这</div>
+ <div class="placeholder">里</div>
+ <div class="placeholder">是</div>
+ <div class="placeholder">占</div>
+ <div class="placeholder">位</div>
+ <div class="placeholder">符</div>
+ 

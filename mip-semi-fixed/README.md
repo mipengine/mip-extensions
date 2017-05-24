@@ -18,6 +18,13 @@ mip-semi-fixed 滑动悬浮组件
         MIP-SEMI-FIXED MIP-SEMI-FIXED
     </div>
 </mip-semi-fixed>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+
 ```
 
 ### 设置 fixed 时距离页面顶部的阈值
@@ -28,6 +35,13 @@ mip-semi-fixed 滑动悬浮组件
         MIP-SEMI-FIXED MIP-SEMI-FIXED
     </div>
 </mip-semi-fixed>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+<div class="placeholder"></div>
+
 ```
 
 ## 属性

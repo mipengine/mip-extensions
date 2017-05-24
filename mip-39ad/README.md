@@ -1,4 +1,4 @@
-# mip-39ad
+﻿# mip-39ad
 
 39广告组件
 
@@ -13,7 +13,7 @@
 只需要一个`<mip-39ad>`标签，无须其他填充dom
 
 ```
-<mip-39ad asid="3002" hide-layer-id="AdWapAskOnlineFloat" ></mip-39ad>
+<mip-39ad asid="3002"></mip-39ad>
 ```
 
 ## 属性
@@ -24,10 +24,4 @@
 必填：是   
 格式：数字    
 取值：4位   
-
-### hide-layer-id
-
-说明：要增加关闭按钮的层的ID
-必填：否   
-格式：字符串     
 

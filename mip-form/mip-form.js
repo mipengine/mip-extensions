@@ -95,11 +95,11 @@ define(function (require) {
             var value = item.value;
             var reg;
 
-            if(item.type === 'submit') {
+            if (item.type === 'submit') {
                 return;
             }
             else if (item.type === 'checkbox' || item.type === 'radio') {
-                value = item.checked ? item.value : ''
+                value = item.checked ? item.value : '';
             }
 
             valueJson += '&' + item.name + '=' + value;
@@ -203,12 +203,16 @@ define(function (require) {
                     util.css(cross, {display: 'none'});
                 };
             }
-
-            cross.addEventListener('touchend', clear);
-
+            cross.addEventListener('touchstart', clear, false);
+            cross.addEventListener('mousedown', clear, false);
+            cross.addEventListener('click', clear, false);
             function clear(e) {
+                e.stopPropagation();
+                e.preventDefault();
                 var name = e.target.getAttribute('name');
-                cross.parentNode.querySelector('input[name="' + name + '"]').value = '';
+                var inputSelect = cross.parentNode.querySelector('input[name="' + name + '"]');
+                inputSelect.focus();
+                inputSelect.value = '';
                 util.css(cross, {display: 'none'});
             }
         }

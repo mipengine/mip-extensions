@@ -68,8 +68,8 @@ mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、�
 ```html
 <mip-ad
     type="ad-ssp"
-    data-site-id="268848748"
-    data-block-id="1136"
+    data-site-id="1118394"
+    data-block-id="2684"
     >
 </mip-ad>
 ```

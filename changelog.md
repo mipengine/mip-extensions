@@ -1,5 +1,13 @@
 # 升级日志
 
+#### 2017.05.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-sn-shop-floor](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-floor)|[升级][平台]	苏宁o2o定制组件
+
 #### 2017.05.19
 
 > 组件上线

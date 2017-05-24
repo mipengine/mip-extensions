@@ -585,7 +585,7 @@ define(function (require) {
                     var a = this.info('mid') === void 0 ? -1 : this.info('mid');
                     var b = this.info('imids') === void 0 ? 0 : this.info('imids');
                     var c = d.joinParameters({
-                        aid: this.info('aid'),
+                        aid: String(this.info('aid')).substr(1,parseInt(String(this.info('aid')).substr(0,1))),
                         gid: this.info('gid') === void 0 ? 0 : this.info('gid'),
                         height: 0,
                         width: 0,
@@ -655,7 +655,7 @@ define(function (require) {
                 },
                 // 获得服务器url地址
                 getServerUrl: function () {
-                    return d.getProtocol() + this.getBaseUrl() + '20160105?';
+                    return d.getProtocol() + this.getBaseUrl() + '20160105?' + 'ukey=' + this.aid + '&';
                 },
                 // 获得基础路径
                 getBaseUrl: function () {
@@ -810,15 +810,18 @@ define(function (require) {
         // this.element 可取到当前实例对应的 dom 元素
         var element2 = this.element;
         var id = element2.getAttribute('asid');
+        var rdStr = '';
+        for (i = 0; i < 5; i++){rdStr+=String(Math.floor(Math.random()*10))};
+        var rid = String(id.length) + id + rdStr;
         var hideLayerId = element2.getAttribute('hide-layer-id');
         var n = require('zepto');
         var i = n(element2);
         var script = [
-                '<script type="text/javascript" id="ads_' + id + '">',
-                'MIP39GlobNode.acAsId = ' + id + ';MIP39GlobNode.acFormat = 0;MIP39GlobNode.acMode = 1;MIP39GlobNode.acGroupId = 1;MIP39GlobNode.acServerBaseUrl = "d-mip.39.net/";',
+                '<script type="text/javascript" id="ads_' + rid + '">',
+                'MIP39GlobNode.acAsId = ' + rid + ';MIP39GlobNode.acFormat = 0;MIP39GlobNode.acMode = 1;MIP39GlobNode.acGroupId = 1;MIP39GlobNode.acServerBaseUrl = "d-mip.39.net/";',
                 '</script>'];
         i.append(script.join(''));
-        ks(id);
+        ks(rid);
         setTimeout(function () {
              if (hideLayerId) {
             i.find(".close").click(function () {window.document.getElementById(hideLayerId).style.display = "none";});

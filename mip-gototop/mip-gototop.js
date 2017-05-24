@@ -37,7 +37,7 @@ define(function (require) {
             }
         });
 
-        element.addEventListener('click', function () { 
+        element.addEventListener('click', function () {
             viewport.setScrollTop(0);
         }, false);
     };

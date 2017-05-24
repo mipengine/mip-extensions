@@ -1,0 +1,13 @@
+{
+    "name": "mip-tiantis",
+    "version": "1.0.0",
+    "contributors": [
+        {
+            "name": "tiantis",
+            "email": "renyanwei@qihuiwang.com"
+        } 
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

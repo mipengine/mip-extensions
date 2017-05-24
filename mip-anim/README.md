@@ -13,7 +13,7 @@ mip-anim 用来支持在 mip中gif图的使用
 ### 带placeholder的加载方式
 
 ```html
-<mip-anim layout="fixed" width=210 height=210 src="xxx" alt="an animation">
+<mip-anim layout="fixed" width=210 height=210 src="https://raw.githubusercontent.com/mipengine/mip-blog/master/img/mip-anim.gif" alt="an animation">
    <mip-img layout="fixed-height" width=210 height=210 src="xxxx"></mip-img>
 </mip-anim>
 ```
@@ -21,7 +21,7 @@ mip-anim 用来支持在 mip中gif图的使用
 ### 只有gif图
 
 ```html
-<mip-anim layout="fixed" width=210 height=210 src="xxx" alt="an animation"></mip-anim>
+<mip-anim layout="fixed" width=210 height=210 src="https://raw.githubusercontent.com/mipengine/mip-blog/master/img/mip-anim.gif" alt="an animation"></mip-anim>
 ```
 
 ## 属性

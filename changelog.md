@@ -5,6 +5,8 @@
 
 组件名|功能说明
 ---|---
+[mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[新增][平台]异步加载数据
+[mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[新增][平台]管理页面上的所有广告位
 [mip-39ad](https://github.com/mipengine/mip-extensions/tree/master/mip-39ad)|[升级]在mip-semi-fixed组件下，解决mip-39ad不能加载广告问题
 [mip-gototop](https://github.com/mipengine/mip-extensions/tree/master/mip-gototop)|[升级]支持pc click事件
 [mip-carousel](https://github.com/mipengine/mip-extensions/tree/master/mip-carousel)|[升级]支持pc click事件

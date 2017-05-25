@@ -1,11 +1,13 @@
-# 类型: ad-baidu 网盟广告
+# mip-ad:ad-baidu 网盟广告
 
-网盟广告。
+mip-ad 的一种类型：网盟广告。
 
-## 支持布局
+标题|内容
+----|----
+类型|通用
+支持布局|fixed-height, fixed
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
 
-- fixed-height
-- fixed
 
 ## 示例
 
@@ -22,10 +24,12 @@
 
 ### 非定制加布局
 
+组件布局：[文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)。width 和 height 请根据广告实际宽高填写。
+
 ```html
 <div class="mip-adbd">
     <mip-ad
-        layout="fixed"
+        layout="responsive"
         width="414"
         height="80" 
         type="ad-baidu" 
@@ -39,11 +43,13 @@
 需要注意的是：
 
 - 定制广告的 script 标签中的参数必须带双引号，也就是说 script 标签中的数据必须是 json 格式的
-- mip-embed 或者 mip-ad 标签必须有一个div子节点，并且此节点必须有属性id，并且id的属性值是"cpro_"为前缀，script标签中的cproid为后缀的字符串，本例应为"cproid="u1908671"
+- mip-ad 标签必须有一个div子节点，并且此节点必须有属性id，并且id的属性值是"cpro_"为前缀，script标签中的cproid为后缀的字符串，本例应为"cproid="u1908671"
+- 定制广告的参数与原页面参数保持一致，如下代码仅为参考
+- layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)
 
 ```html
-<mip-embed 
-    layout="fixed"
+<mip-ad 
+    layout="responsive"
     width="414"
     height="157" 
     type="ad-baidu" 
@@ -68,7 +74,7 @@
     }
     </script>
     <div id="cpro_u1908671"></div>
-</mip-embed>
+</mip-ad>
 ```
 
 ## 属性

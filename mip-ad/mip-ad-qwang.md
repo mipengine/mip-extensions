@@ -1,11 +1,12 @@
-# 类型: ad-qwang 全网推荐
+# mip-ad:ad-qwang 全网推荐
 
-全网推荐  
+mip-ad 的一种类型：全网推荐。
 
-## 支持布局
-
-- fixed-height
-- fixed 
+标题|内容
+----|----
+类型|通用
+支持布局|fixed-height, fixed
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
 
 ## 示例
 
@@ -13,6 +14,20 @@
 
 ```html
 <mip-ad 
+	type="ad-qwang" 
+	cpro_psid="u2619809" 
+	cpro_pswidth="auto" 
+	cpro_psheight="230">
+</mip-ad>
+```
+
+### 组件 layout="fixed" 布局
+
+```html
+<mip-ad 
+	layout="fixed" 
+	width="414" 
+	height="80" 
 	type="ad-qwang" 
 	cpro_psid="u2619809" 
 	cpro_pswidth="auto" 

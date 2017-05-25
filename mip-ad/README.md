@@ -1,83 +1,33 @@
 # mip-ad 广告
 
-用来支持站长添加网页内自定义广告，主要包括连接、图文，多图，banner四种形式，这类广告可以制定大小也可以被用户关闭。
-
+mip-ad 用于在MIP页中引入广告脚本，投放广告。 
+ 
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive
+支持布局|多种 [文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)
 所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
 
-## 示例
+支持：
 
-### 基本使用
+- [全网推荐](/3-widget/5-ad-widget/ad-qwang-widget.md)
+- [网盟广告](/3-widget/5-ad-widget/ad-baidu-widget.md)
+- [网盟扩展广告](/3-widget/5-ad-widget/ad-baidu-wm-ext-widget.md)
+- [图加广告](/3-widget/5-ad-widget/ad-imageplus-widget.md)
+- [ssp内容联盟广告](/3-widget/5-ad-widget/ad-ssp-widget.md) 
+- [通用广告](/3-widget/5-ad-widget/ad-comm-widget.md)
 
-```html
-<mip-ad layout="fixed"  type="ad-baidu" cproid="u2791376" class="mip-element mip-layout-container"></mip-ad>
-```
 
-### 图加广告
+## 广告类型选择
 
-```html
-<mip-ad 
-    type="ad-imageplus"
-    unionId="u2816363"
-    >
-    <mip-img src="http://placeholder.qiniudn.com/100x100"></mip-img>
-</mip-ad>
-```
-
-### 网盟扩展广告
-
-```html
-<mip-ad 
-    type="baidu-wm-ext" 
-    domain="//dup.lovedword.com/" 
-    token="3a1ec097f7cbf63edb0e7f98eff238f950e6ca0b29e67fe1103c" 
->
-	<div id="3a1ec097f7cbf63edb0e7f98eff238f950e6ca0b29e67fe1103c"></div>
-</mip-ad>
-```
-
-### 全网推荐广告
-
-```html
-<mip-ad 
-    type="ad-qwang" 
-    cpro_psid="u2619809" 
-    cpro_pswidth="auto" 
-    cpro_psheight="230">
-</mip-ad>
-```
-
-### 通用广告banner样式基本使用
-
-```html
-<mip-ad 
-    type="ad-comm"
-    tpl="onlyImg" 
-    href="//m.baidu.com/s?word=百度" 
-    data-size="1242 180" 
-    src="//m.baidu.com/static/search/ala/ad_1.png">
-</mip-ad>
-```
-
-### SSP 内容联盟广告
-
-```html
-<mip-ad
-    type="ad-ssp"
-    data-site-id="1118394"
-    data-block-id="2684"
-    >
-</mip-ad>
-```
-
-## 支持广告
-
-- [通用广告](mip-ad-comm.md)
-- [全网广告](mip-ad-qwang.md)
-- [网盟广告](mip-ad-baidu.md)
-- [图加广告](mip-ad-imageplus.md)
-- [网盟扩展广告](mip-baidu-wm-ext.md)
-- [SSP 内容联盟广告](mip-baidu-ssp.md)
+投放平台：
+- union.baidu.com  
+    - 搜索推荐 --> [全网推荐 ad-qwang](/3-widget/5-ad-widget/ad-qwang-widget.md)
+    - 网盟广告 --> [网盟广告 ad-baidu](/3-widget/5-ad-widget/ad-baidu-widget.md)
+    - 反屏蔽网盟广告 --> [网盟扩展广告 ad-baidu-ext](/3-widget/5-ad-widget/ad-baidu-wm-ext-widget.md)
+- ssp.baidu.com  
+    - 直投广告 --> [ad-baiduaap ssp直投广告](/3-widget/5-ad-widget/ad-baidussp-widget.md)
+    - 内容联盟广告 --> [ssp 内容联盟广告 ad-ssp](/3-widget/5-ad-widget/ad-ssp-widget.md)
+    - 余下投放方式 --> [网盟广告 ad-baidu](/3-widget/5-ad-widget/ad-baidu-widget.md)
+- 无  
+    - 自定义广告 --> [通用广告 ad-comm](/3-widget/5-ad-widget/ad-comm-widget.md)

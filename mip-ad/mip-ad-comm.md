@@ -1,20 +1,21 @@
-# 类型: ad-comm 通用广告
+# mip-ad:ad-comm 通用广告
 
-通用广告
+mip-ad 的一种类型：通用广告。
 
-## 支持布局
-
-- reponsive
-- fixed-height
-- fixed
+标题|内容
+----|----
+类型|通用
+支持布局|reponsive, fixed-height, fixed
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
 
 ## 示例
 
 ### banner 样式
 
+layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)。width 和 height 请根据广告实际宽高填写。
 ```html
 <mip-ad
-    layout="fixed"
+    layout="responsive"
     width="414"
     height="80" 
     type="ad-comm"

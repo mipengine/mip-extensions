@@ -50,7 +50,7 @@
 规则：属性 bottom 或 top 必须有一个
 
 ```html
-<mip-fixed type="right">
+<mip-fixed type="right" top="50px">
     自定义内容，可以嵌套其他组件
 </mip-fixed>
 ```

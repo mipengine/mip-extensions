@@ -15,18 +15,9 @@
 规则：宽度默认屏幕100%，高度最多85像素
 
 ```html
-<style mip-custom>
-    .container {
-        height: 2000px;
-        background: linear-gradient(#fff, #000);
-    }
-</style>
-
-<div class="container">
-    <mip-fixed type="bottom">
-        自定义内容，可以嵌套其他组件
-    </mip-fixed>
-</div>
+<mip-fixed type="bottom">
+    自定义内容，可以嵌套其他组件
+</mip-fixed>
 ```
 
 ### 底部悬浮

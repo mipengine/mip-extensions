@@ -1,6 +1,6 @@
-# mip-semi-fixed
+# mip-semi-fixed 滑动悬浮组件 
 
-mip-semi-fixed 滑动悬浮组件   
+position:sticky的js兼容版本。页面元素滑动到顶部时自动贴顶。  
 
 标题|内容
 ----|----

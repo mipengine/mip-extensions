@@ -1,6 +1,6 @@
-# mip-sidebar
+# mip-sidebar 侧边栏
 
-mip-sidebar 侧边栏组件。
+侧边栏组件，点击按钮，侧边栏滑入屏幕。
 
 标题|内容
 ----|----

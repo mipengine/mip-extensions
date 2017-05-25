@@ -1,6 +1,6 @@
-# mip-anim
+# mip-anim 动图
 
-mip-anim 用来支持在 mip中gif图的使用
+用来支持在 MIP 页中 gif 图的使用。
 
 标题|内容
 ----|----

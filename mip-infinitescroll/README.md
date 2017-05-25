@@ -1,6 +1,6 @@
-# mip-infinitescroll
+# mip-infinitescroll 无限滚动
 
-mip-infinitescroll 组件说明
+当用户滚动到页面底部时，加载更多。
 
 标题|内容
 ----|----

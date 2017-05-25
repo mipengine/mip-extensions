@@ -1,6 +1,6 @@
-# mip-html-os
+# mip-html-os 操作系统
 
-mip-html-os 用来支持页面内容元素区分OS显示
+元素区分操作系统显示内容，支持 Andriod 和 iOS。
 
 标题|内容
 ----|----

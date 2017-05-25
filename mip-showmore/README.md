@@ -1,6 +1,6 @@
-# mip-showmore
+# mip-showmore 显示更多
 
-mip-showmore 用来支持显示更多内容
+隐藏过长的文章，点击按钮显示更多内容。
 
 标题|内容
 ----|----

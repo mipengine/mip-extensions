@@ -5,6 +5,11 @@
  * @version 1.0
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
+require.config({
+    paths:{
+        'mip-psdsp-um': "//su.bdimg.com/static/dspui/js/um_mip"
+    }
+});
 
 define(function (require) {
 
@@ -30,47 +35,12 @@ define(function (require) {
         var node = document.createElement('div');
         node.appendChild(scriptNode);
         domEle.appendChild(node);
-        initJs(node, mipEle);
-    }
+        mipEle.applyFillContent(node, true);
+        
+        require(['mip-psdsp-um'],function(um){
 
-    /**
-     * initJs JS初始化函数
-     *
-     * @param  {dom} node   盛放script的div
-     * @param  {Object} mipEle mip元素
-     */
-    function initJs(node, mipEle) {
-        var adScript;
-        adScript = addScriptOnce('MIP_ADQW_EMBED', '//su.bdimg.com/static/dspui/js/um_mip.js');
-
-        if (!adScript) {
-            return;
-        }
-
-        node.appendChild(adScript);
-        adScript.onload = function () {
-            mipEle.applyFillContent(node, true);
-        };
-    }
-
-    /**
-     * 仅引入一次脚本
-     *
-     * @param {string} scriptId  广告脚本标识ID
-     * @param {string} scriptSrc 广告脚本地址
-     * @return {obj} false/scriptElement
-     */
-    function addScriptOnce(scriptId, scriptSrc) {
-        // 短期方案，修复网盟广告加载顺序问题
-        // var jsdom = document.getElementById(scriptId);
-        // if (jsdom) {
-        //     return false;
-        // }
-
-        var script = document.createElement('script');
-        script.src = scriptSrc;
-        script.id = scriptId;
-        return script;
+            um.init();
+        })
     }
 
     return {

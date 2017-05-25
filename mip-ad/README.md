@@ -48,7 +48,9 @@
     cpro_pswidth="auto" 
     cpro_psheight="230">
 </mip-ad>
+
 ```
+
 
 ### 通用广告banner样式基本使用
 

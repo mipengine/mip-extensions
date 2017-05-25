@@ -110,14 +110,3 @@
 - type为 left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
 
 - type为 gototop 类别不需要任何属性。
-
-### fixed 元素个数限制
-
-- `top <= 1`
-
-- `bottom <= 1`
-
-- `left + right <= 1`
-
-- `gototop <= 1`
-

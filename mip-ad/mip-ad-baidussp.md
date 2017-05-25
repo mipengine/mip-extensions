@@ -1,4 +1,6 @@
-# 类型: ad-ssprelease ssp直投广告
+# mip-ad:ad-baidussp ssp直投广告
+
+mip-ad 的一种类型：ssp直投广告。
 
 ## 支持布局
 

@@ -12,7 +12,7 @@
 
 ```
 <mip-audio 
-	src="http://cp01-ps-fe-1.epc.baidu.com:8001/javascripts/nicai.mp3"
+	src="http://yinyueshiting.baidu.com/data2/music/122873158/49046814400128.mp3?xcode=1b2a4f4315be4ae75990d376263109e0"
 ></mip-audio>
 	
 ```

@@ -2,6 +2,10 @@
 
 
 #### 2017.05.25
+> 核心代码上线 1.0.47
+
+1. 兼容 pc 下 tap 触发的问题
+2. 轮播组件支持 mip-link PC上支持click 
 
 > 组件上线
 
@@ -10,6 +14,7 @@
 [mip-mmbang-flexible](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-mmbang-flexible)|[新增][平台]	妈妈帮移动端适配方案
 [mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[升级][平台]异步加载数据
 [mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
+
 
 #### 2017.05.24
 

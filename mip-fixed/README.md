@@ -49,12 +49,12 @@
 </mip-fixed>
 ```
 
-### 底部悬浮
+### 右边悬浮
 
-规则：宽度不超过屏幕10%，高度不超过屏幕25%，属性 bottom 或 top 必须有一个
+规则：宽度不超过屏幕10%，属性 bottom 或 top 必须有一个
 
 ```html
-<mip-fixed type="right" top="50px">
+<mip-fixed type="right">
     自定义内容，可以嵌套其他组件
 </mip-fixed>
 ```

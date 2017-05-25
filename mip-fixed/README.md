@@ -37,7 +37,7 @@
 
 ### 左边悬浮
 
-规则：宽度不超过屏幕10%，高度不超过屏幕25%，属性 bottom 或 top 必须有一个
+规则：属性 bottom 或 top 必须有一个
 
 ```html
 <mip-fixed type="left" bottom="50px">

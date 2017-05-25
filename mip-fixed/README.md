@@ -12,8 +12,6 @@
 
 ### 顶部悬浮
 
-规则：宽度默认屏幕100%，高度最多85像素
-
 ```html
 <style mip-custom>
     .container {
@@ -30,8 +28,6 @@
 ```
 
 ### 底部悬浮
-
-规则：宽度默认屏幕100%，高度最多85像素
 
 ```html
 <mip-fixed type="bottom">
@@ -51,7 +47,7 @@
 
 ### 右边悬浮
 
-规则：宽度不超过屏幕10%，属性 bottom 或 top 必须有一个
+规则：属性 bottom 或 top 必须有一个
 
 ```html
 <mip-fixed type="right">

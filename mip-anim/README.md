@@ -14,7 +14,7 @@ mip-anim 用来支持在 mip中gif图的使用
 
 ```html
 <mip-anim layout="fixed" width=210 height=210 src="https://raw.githubusercontent.com/mipengine/mip-blog/master/img/mip-anim.gif" alt="an animation">
-   <mip-img layout="fixed-height" width=210 height=210 src="https://raw.githubusercontent.com/mipengine/mip-blog/master/img/mip-anim.gif"></mip-img>
+   <mip-img class="background" layout="fixed-height" width=210 height=210 src="https://www.mipengine.org/static/img/mip_logo_white_8c902ec.png"></mip-img>
 </mip-anim>
 ```
 

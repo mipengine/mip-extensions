@@ -1,13 +1,12 @@
 # mip-ad 广告
 
-mip-ad 用来支持站长添加网页内自定义广告，主要包括连接、图文，多图，banner四种形式，这类广告可以制定大小也可以被用户关闭。
+用来支持站长添加网页内自定义广告，主要包括连接、图文，多图，banner四种形式，这类广告可以制定大小也可以被用户关闭。
 
 标题|内容
 ----|----
 类型|通用
 支持布局|responsive
 所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
-版本v1.0|支持别名mip-embed
 
 ## 示例
 

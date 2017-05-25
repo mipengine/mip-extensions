@@ -1,6 +1,6 @@
-# mip-stats-tianrun
+# mip-stats-tianrun 天润统计
 
-mip-stats-tianrun 用来支持站长添加天润统计。
+添加天润统计。
 
 标题|内容
 ----|----

@@ -1,6 +1,6 @@
-# mip-appdl
+# mip-appdl App 下载
 
-mip-appdl 用来支持在 mip 中app的下载
+App 下载，可区分安卓和 iOS。
 
 描述|提供了一个mip中app的下载容器.
 ----|----

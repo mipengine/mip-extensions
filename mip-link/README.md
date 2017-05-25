@@ -1,6 +1,6 @@
-# mip-link
+# mip-link 跳转里阿尼额
 
-mip-link 实现了页面跳转功能，支持 superframe。
+实现了页面跳转功能，解决 iframe 嵌套情况下不能跳出父级的问题。。
 
 标题|内容
 ----|----

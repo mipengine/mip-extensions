@@ -1,6 +1,6 @@
-# mip-nav-slidedown
+# mip-nav-slidedown 菜单
 
-mip-nav-slidedown 实现响应式的菜单，在mip官网有引用
+响应式菜单，在mip官网有引用。
 
 标题|内容
 ----|----

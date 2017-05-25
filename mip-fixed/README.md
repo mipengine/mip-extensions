@@ -12,8 +12,6 @@
 
 ### 顶部悬浮
 
-规则：宽度默认屏幕100%，高度最多85像素
-
 ```html
 <style mip-custom>
     .container {
@@ -31,8 +29,6 @@
 
 ### 底部悬浮
 
-规则：宽度默认屏幕100%，高度最多85像素
-
 ```html
 <mip-fixed type="bottom">
     自定义内容，可以嵌套其他组件
@@ -41,7 +37,7 @@
 
 ### 左边悬浮
 
-规则：宽度不超过屏幕10%，高度不超过屏幕25%，属性 bottom 或 top 必须有一个
+规则：属性 bottom 或 top 必须有一个
 
 ```html
 <mip-fixed type="left" bottom="50px">
@@ -49,9 +45,9 @@
 </mip-fixed>
 ```
 
-### 底部悬浮
+### 右边悬浮
 
-规则：宽度不超过屏幕10%，高度不超过屏幕25%，属性 bottom 或 top 必须有一个
+规则：属性 bottom 或 top 必须有一个
 
 ```html
 <mip-fixed type="right" top="50px">
@@ -114,14 +110,3 @@
 - type为 left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
 
 - type为 gototop 类别不需要任何属性。
-
-### fixed 元素个数限制
-
-- `top <= 1`
-
-- `bottom <= 1`
-
-- `left + right <= 1`
-
-- `gototop <= 1`
-

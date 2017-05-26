@@ -46,8 +46,8 @@ define(function (require) {
      * @type {Object}
      */
     var STATUS = {
-        STATUS_FIXED: 'mip-semi-fixed-fixedSatus',
-        STATUS_SCROLL: 'mip-semi-fixed-scrollSatus'
+        STATUS_FIXED: 'mip-semi-fixed-fixedStatus',
+        STATUS_SCROLL: 'mip-semi-fixed-scrollStatus'
     };
 
     /**

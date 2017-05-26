@@ -61,7 +61,7 @@ define(function (require) {
         var threshold = this.threshold;
         var fixedClassNames = this.fixedClassNames;
         var scrollTop = viewport.getScrollTop();
-        var offsetTop = element.offsetTop;
+        var offsetTop = util.rect.getElementOffset(element).top;
 
         if (offsetTop - scrollTop <= threshold) {
             if (container.className.indexOf(fixedClassNames) < 0) {
@@ -87,7 +87,7 @@ define(function (require) {
 
         var element = this.element;
         var scrollTop = viewport.getScrollTop();
-        var offsetTop = element.offsetTop;
+        var offsetTop = util.rect.getElementOffset(element).top;
 
         if (offsetTop - scrollTop <= this.threshold) {
             util.css(this.fixedContainer.parentNode, {display: 'block'});

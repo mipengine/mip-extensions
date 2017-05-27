@@ -72,7 +72,6 @@ define(function () {
         dom.proxyLink(element);
 
         self.url = url.get(element);
-        self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?logid=11926077628997716860&query=%E5%8F%8C%E7%9C%BC%E7%9A%AE+xywy&originalUrl=http://3g.club.xywy.com/mip/20151128/94185977.htm';
    
         if (!self.url) {
             element.remove();

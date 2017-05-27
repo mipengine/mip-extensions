@@ -1,4 +1,19 @@
 # 升级日志
+
+#### 2017.05.27
+
+> 核心代码上线 1.0.48
+
+1. 修改 mip-semi-fixed 节点clone策略
+2. 提供向 body 中插入 mip-fixed 占位的接口
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级] 修复重复渲染的bug
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 增加曝光日志和错误日志
+
 #### 2017.05.26
 
 > 组件上线

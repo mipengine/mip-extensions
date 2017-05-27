@@ -54,15 +54,15 @@ define(function () {
         var regexs = dataProcessor.regexs;
 
         // 非结果页进入不展现定制化内容
-        // if (!viewer.isIframed) {
-        //     element.remove();
-        //     return;
-        // }
+        if (!viewer.isIframed) {
+            element.remove();
+            return;
+        }
 
-        // if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
-        //     element.remove();
-        //     return;
-        // }
+        if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
+            element.remove();
+            return;
+        }
 
         var commonData = {};
         var template = {};

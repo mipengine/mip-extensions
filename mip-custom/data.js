@@ -43,7 +43,8 @@ define(function (require) {
             srcid: getHashData('srcid')
         },
         exposure: {
-            fm: 'view'
+            fm: 'view',
+            data: encodeURIComponent('[{"type": "w", "action": "show"}]') 
         },
         error: {
             fm: 'ex',

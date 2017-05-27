@@ -26,6 +26,8 @@ define(function (require) {
     var dataProcessor = require('mip-custom/data');
     var regexs = dataProcessor.regexs;
 
+    var maxzIndex = 0;
+
     /**
      * [getCss 获取样式]
      * 由于目前只需要取 height 和 paddig-bottom，
@@ -49,7 +51,7 @@ define(function (require) {
      */
     function moveToFixedLayer(element, customNode, container) {
         container.remove();
-        var idx = document.querySelectorAll('mip-fixed').length || 0;
+        // var idx = document.querySelectorAll('mip-fixed').length || 0;
         var type = customNode.getAttribute('mip-fixed');
         var top = customNode.getAttribute('top') || null;
         var bot = customNode.getAttribute('bottom') || null;
@@ -68,11 +70,7 @@ define(function (require) {
 
         // 结果页打开，移动到 fixed layer
         if (fixedElement._fixedLayer) {
-            var data = {
-                element: fixedParent,
-                id: 'Fixed' + idx
-            };
-            fixedElement.moveToFixedLayer(data, parseInt(idx, 10));
+            fixedElement.setFixedElement([fixedParent], true);
 
             // 为悬浮节点添加代理事件
             proxyLink(customNode, fixedElement._fixedLayer);
@@ -190,9 +188,14 @@ define(function (require) {
             if (res.element.hasAttribute('mip-fixed')
                 && res.element.parentNode.getAttribute('type') === 'bottom') {
 
-                var height = getCss(res.element, 'height');
-                var paddingBottom = getCss(element, 'padding-bottom');
-                util.css(element, {'padding-bottom': paddingBottom - 10 + height});
+                fixedElement.setPlaceholder();
+                var zIndex = getCss(res.element.parentNode, 'z-index');
+
+                if (zIndex >= maxzIndex) {
+                    maxzIndex = zIndex;
+                    fixedElement.setPlaceholder(getCss(res.element, 'height') - 10);
+                }
+
             }
         });
 
@@ -253,7 +256,7 @@ define(function (require) {
 
             // 处理需要单独发送日志的 a 标签
             var link = this.getAttribute('data-log-href');
-          
+
             var path = null;
             if (fixedLayer) {
                 path = log.getXPath(this, fixedLayer);
@@ -263,7 +266,7 @@ define(function (require) {
                 path = log.getXPath(this, element);
             }
             var xpath = path ? path.join('_') : '';
-          
+
             var logUrl = (link) ? link : this.href;
             logUrl += ((logUrl[logUrl.length - 1] === '&') ? '' : '&')
                       + 'clk_info=' + JSON.stringify({xpath: xpath});

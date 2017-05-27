@@ -5,16 +5,15 @@
 
 define(function () {
     /**
+     * [util 引入工具类]
+     * @type {Object}
+     */
+    var util = require('util');
+    /**
      * [viewer 窗口]
      * @type {Object}
      */
     var viewer = require('viewer');
-
-    /**
-     * [fetchJsonp jsonp异步请求库]
-     * @type {Object}
-     */
-    var fetchJsonp = require('fetch-jsonp');
 
     /**
      * [customElement 组件元素]
@@ -24,10 +23,21 @@ define(function () {
 
     var url = require('mip-custom/url');
     var dom = require('mip-custom/dom');
+    var log = require('mip-custom/log');
     var dataProcessor = require('mip-custom/data');
+    var logData = dataProcessor.logData;
 
     /**
-     * 构造元素，初次进入到视图区执行
+     * 初次进入到视图区执行
+     */
+    customElement.prototype.firstInviewCallback = function () {
+
+        // 曝光日志
+        log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
+    };
+
+    /**
+     * 构造元素
      */
     customElement.prototype.build = function () {
 
@@ -36,35 +46,51 @@ define(function () {
         var regexs = dataProcessor.regexs;
 
         // 非结果页进入不展现定制化内容
-        if (!viewer.isIframed) {
-            element.remove();
-            return;
-        }
+        // if (!viewer.isIframed) {
+        //     element.remove();
+        //     return;
+        // }
 
-        if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
-            element.remove();
-            return;
-        }
+        // if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
+        //     element.remove();
+        //     return;
+        // }
 
         var commonData = {};
         var template = {};
+
+        var errorData = {};
 
         // 监听 a 标签点击事件
         dom.proxyLink(element);
 
         self.url = url.get(element);
+   
         if (!self.url) {
             element.remove();
             return;
         }
-        fetchJsonp(self.url, {
-            timeout: 10000,
-            jsonpCallback: 'cb'
-        }).then(function (res) {
+
+        // fetchJsonp to fetch
+        fetch(self.url).then(function (res) {
+            errorData = {
+                st: res.status,
+                info: res.statusText
+            };
+
+            if (res.status !== 200) {
+                log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
+            }
             return res.json();
         }).then(function (data) {
             // 返回数据问题
             if (data && data.errno) {
+
+                // send error log
+                errorData.en = data.errno;
+                errorData.info = data.errmsg;
+                log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
+
                 console.error(data.errmsg);
                 element.remove();
                 return;
@@ -99,6 +125,8 @@ define(function () {
             }
         }, function (error) {
             element.remove();
+            errorData.en = error;
+            log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             console.error(error);
         }).catch(function (evt) {
             console.warn(evt);

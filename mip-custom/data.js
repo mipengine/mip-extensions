@@ -33,6 +33,24 @@ define(function (require) {
         originalUrl: getSubString(location.pathname, regexs.regHttps) || getSubString(location.pathname, regexs.regHttp)
     };
 
+    var logData = {
+        host: 'https://sp1.baidu.com/5b1ZeDe5KgQFm2e88IuM_a/owb.gif',
+        params: {
+            type: 3,
+            pid: 1106,
+            qid: getHashData('lid'),
+            q: getHashData('word'),
+            srcid: getHashData('srcid'),
+            t: +new Date()
+        },
+        exposure: {
+            fm: 'view'
+        },
+        error: {
+            fm: 'ex'
+        }
+    };
+
     var config = {
         domain: 'https://mipengine.baidu.com/',
         paths: {
@@ -41,6 +59,17 @@ define(function (require) {
             'js/mip-ecom/ck': 'static/js/mip-ecom/ck'
         }
     };
+
+    /**
+     * [getHashData 根据 key 获取 hash 中的数据]
+     *
+     * @param  {string} key key
+     * @return {string}     value
+     */
+    function getHashData(key) {
+        var MIP = window.MIP || {};
+        return MIP && MIP.hash && MIP.hash.get ? MIP.hash.get(key) : '';
+    }
 
     function addPaths(config) {
         if (config.paths) {
@@ -76,7 +105,9 @@ define(function (require) {
         params: params,
         config: config,
         addPaths: addPaths,
-        subStr: getSubString
+        subStr: getSubString,
+        logData: logData,
+        getHashData: getHashData
     };
 
 });

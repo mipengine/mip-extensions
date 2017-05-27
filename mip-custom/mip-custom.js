@@ -5,6 +5,11 @@
 
 define(function () {
     /**
+     * [util 引入工具类]
+     * @type {Object}
+     */
+    var util = require('util');
+    /**
      * [viewer 窗口]
      * @type {Object}
      */
@@ -24,10 +29,23 @@ define(function () {
 
     var url = require('mip-custom/url');
     var dom = require('mip-custom/dom');
+    var log = require('mip-custom/log');
     var dataProcessor = require('mip-custom/data');
+    var logData = dataProcessor.logData;
 
     /**
-     * 构造元素，初次进入到视图区执行
+     * 初次进入到视图区执行
+     */
+    customElement.prototype.firstInviewCallback = function () {
+ 
+        // 曝光日志
+        logData.params.t = +new Date();
+        log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
+     };
+  
+
+    /**
+     * 构造元素
      */
     customElement.prototype.build = function () {
 
@@ -36,23 +54,26 @@ define(function () {
         var regexs = dataProcessor.regexs;
 
         // 非结果页进入不展现定制化内容
-        if (!viewer.isIframed) {
-            element.remove();
-            return;
-        }
+        // if (!viewer.isIframed) {
+        //     element.remove();
+        //     return;
+        // }
 
-        if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
-            element.remove();
-            return;
-        }
+        // if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
+        //     element.remove();
+        //     return;
+        // }
 
         var commonData = {};
         var template = {};
+        var errorData = {};
 
         // 监听 a 标签点击事件
         dom.proxyLink(element);
 
         self.url = url.get(element);
+        self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?logid=11926077628997716860&query=%E5%8F%8C%E7%9C%BC%E7%9A%AE+xywy&originalUrl=http://3g.club.xywy.com/mip/20151128/94185977.htm';
+   
         if (!self.url) {
             element.remove();
             return;
@@ -65,7 +86,13 @@ define(function () {
         }).then(function (data) {
             // 返回数据问题
             if (data && data.errno) {
+                errorData = {
+                    info: data.errmsg,
+                    st: 200,
+                    t: +new Date()
+                };
                 console.error(data.errmsg);
+                log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
                 element.remove();
                 return;
             }
@@ -98,6 +125,7 @@ define(function () {
                 dom.render(element, tplData, container);
             }
         }, function (error) {
+            log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             element.remove();
             console.error(error);
         }).catch(function (evt) {

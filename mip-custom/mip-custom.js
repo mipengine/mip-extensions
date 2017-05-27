@@ -33,6 +33,7 @@ define(function () {
     customElement.prototype.firstInviewCallback = function () {
 
         // 曝光日志
+        logData.params.t = +new Date();
         log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
     };
 
@@ -45,16 +46,16 @@ define(function () {
         var element = self.element;
         var regexs = dataProcessor.regexs;
 
-        // 非结果页进入不展现定制化内容
-        // if (!viewer.isIframed) {
-        //     element.remove();
-        //     return;
-        // }
+        非结果页进入不展现定制化内容
+        if (!viewer.isIframed) {
+            element.remove();
+            return;
+        }
 
-        // if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
-        //     element.remove();
-        //     return;
-        // }
+        if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
+            element.remove();
+            return;
+        }
 
         var commonData = {};
         var template = {};
@@ -75,7 +76,8 @@ define(function () {
         fetch(self.url).then(function (res) {
             errorData = {
                 st: res.status,
-                info: res.statusText
+                info: res.statusText,
+                t: +new Date()
             };
 
             if (res.status !== 200) {

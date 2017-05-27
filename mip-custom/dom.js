@@ -51,7 +51,6 @@ define(function (require) {
      */
     function moveToFixedLayer(element, customNode, container) {
         container.remove();
-        // var idx = document.querySelectorAll('mip-fixed').length || 0;
         var type = customNode.getAttribute('mip-fixed');
         var top = customNode.getAttribute('top') || null;
         var bot = customNode.getAttribute('bottom') || null;

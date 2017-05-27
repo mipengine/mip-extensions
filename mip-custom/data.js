@@ -40,8 +40,7 @@ define(function (require) {
             pid: 1106,
             qid: getHashData('lid'),
             q: getHashData('word'),
-            srcid: getHashData('srcid'),
-            t: +new Date()
+            srcid: getHashData('srcid')
         },
         exposure: {
             fm: 'view'

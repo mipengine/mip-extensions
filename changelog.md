@@ -1,5 +1,14 @@
 # 升级日志
+#### 2017.05.26
 
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[新增][平台]	腾牛个性页面的内容植入和伸缩导航
+[mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[升级][平台]异步加载数据
+[mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-ad-plus)|[升级][平台]自有业务直销广告组件
 
 #### 2017.05.25
 > 核心代码上线 1.0.47

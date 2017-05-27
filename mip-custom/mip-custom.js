@@ -35,8 +35,8 @@ define(function () {
         // 曝光日志
         logData.params.t = +new Date();
         log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
-    };
-
+     };
+  
     /**
      * 构造元素
      */
@@ -59,7 +59,6 @@ define(function () {
 
         var commonData = {};
         var template = {};
-
         var errorData = {};
 
         // 监听 a 标签点击事件
@@ -89,8 +88,10 @@ define(function () {
             if (data && data.errno) {
 
                 // send error log
-                errorData.en = data.errno;
-                errorData.info = data.errmsg;
+                errorData = {
+                    info: data.errmsg,
+                    t: +new Date()
+                };
                 log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
 
                 console.error(data.errmsg);
@@ -126,9 +127,9 @@ define(function () {
                 dom.render(element, tplData, container);
             }
         }, function (error) {
+            log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             element.remove();
             errorData.en = error;
-            log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             console.error(error);
         }).catch(function (evt) {
             console.warn(evt);

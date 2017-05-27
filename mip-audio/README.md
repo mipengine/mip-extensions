@@ -12,7 +12,7 @@
 
 ```
 <mip-audio 
-	src="http://yinyueshiting.baidu.com/data2/music/122873158/49046814400128.mp3?xcode=1b2a4f4315be4ae75990d376263109e0"
+	src="https://www.mipengine.org/static/RonaldJenkees-GuitarSound.mp3"
 ></mip-audio>
 	
 ```
@@ -21,7 +21,7 @@
 
 ### src
 
-说明：音频地址
-必填：是
-格式：url
+说明：音频地址  
+必填：是  
+格式：url  
 使用限制：必须是https的

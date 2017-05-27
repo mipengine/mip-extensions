@@ -5,6 +5,11 @@
 
 define(function () {
     /**
+     * [util 引入工具类]
+     * @type {Object}
+     */
+    var util = require('util');
+    /**
      * [viewer 窗口]
      * @type {Object}
      */
@@ -24,10 +29,23 @@ define(function () {
 
     var url = require('mip-custom/url');
     var dom = require('mip-custom/dom');
+    var log = require('mip-custom/log');
     var dataProcessor = require('mip-custom/data');
+    var logData = dataProcessor.logData;
 
     /**
-     * 构造元素，初次进入到视图区执行
+     * 初次进入到视图区执行
+     */
+    customElement.prototype.firstInviewCallback = function () {
+ 
+        // 曝光日志
+        logData.params.t = +new Date();
+        log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
+     };
+  
+
+    /**
+     * 构造元素
      */
     customElement.prototype.build = function () {
 
@@ -48,11 +66,13 @@ define(function () {
 
         var commonData = {};
         var template = {};
+        var errorData = {};
 
         // 监听 a 标签点击事件
         dom.proxyLink(element);
 
         self.url = url.get(element);
+   
         if (!self.url) {
             element.remove();
             return;
@@ -65,7 +85,13 @@ define(function () {
         }).then(function (data) {
             // 返回数据问题
             if (data && data.errno) {
+                errorData = {
+                    info: data.errmsg,
+                    st: 200,
+                    t: +new Date()
+                };
                 console.error(data.errmsg);
+                log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
                 element.remove();
                 return;
             }
@@ -98,6 +124,7 @@ define(function () {
                 dom.render(element, tplData, container);
             }
         }, function (error) {
+            log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             element.remove();
             console.error(error);
         }).catch(function (evt) {

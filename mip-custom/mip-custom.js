@@ -46,7 +46,7 @@ define(function () {
         var element = self.element;
         var regexs = dataProcessor.regexs;
 
-        非结果页进入不展现定制化内容
+        // 非结果页进入不展现定制化内容
         if (!viewer.isIframed) {
             element.remove();
             return;

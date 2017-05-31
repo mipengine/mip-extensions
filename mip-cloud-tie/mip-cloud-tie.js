@@ -1,8 +1,8 @@
 /**
  * @file mip-cloud-tie 组件
- * @author
+ * @author 点点
  */
-define(function(e) {
+define("mip-cloud-tie/mip-cloud-tie", ["require", "customElement"], function(e) {
 	var i = e("customElement").create();
 	return i.prototype.createdCallback = function() {
 	var i = this.element,
@@ -15,5 +15,15 @@ define(function(e) {
 	d = document.createElement("script");
 	d.innerHTML = r;
 	i.appendChild(d),i.appendChild(a)
+	}, i
+}), define("mip-cloud-tie", ["mip-cloud-tie/mip-cloud-tie"], function(e) {
+	return e
+}), function() {
+	function e(e, i) {
+		e.registerMipElement("mip-cloud-tie", i)
 	}
-});
+	if (window.MIP) require(["mip-cloud-tie"], function(i) {
+		e(window.MIP, i)
+	});
+	else require(["mip", "mip-cloud-tie"], e)
+}();

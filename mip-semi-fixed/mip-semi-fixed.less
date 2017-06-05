@@ -1,8 +1,12 @@
 /**
  * @file mip-semi-fixed样式文件
  */
-.mip-fixedlayer div[mip-semi-fixed-scrollSatus],
-mip-semi-fixed div[mip-semi-fixed-scrollSatus] {
+mip-semi-fixed {
+    position: relative;
+    width: 100%;
+}
+.mip-fixedlayer div[mip-semi-fixed-scrollStatus],
+mip-semi-fixed div[mip-semi-fixed-scrollStatus] {
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -10,9 +14,13 @@ mip-semi-fixed div[mip-semi-fixed-scrollSatus] {
          -o-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
 }
-.mip-fixedlayer div[mip-semi-fixed-fixedSatus],
-mip-semi-fixed div[mip-semi-fixed-fixedSatus] {
-    position: fixed;
-    z-index: 99;
+.mip-fixedlayer mip-semi-fixed {
+    position: fixed!important;
     width: 100%;
+}
+.mip-fixedlayer div[mip-semi-fixed-fixedStatus],
+mip-semi-fixed div[mip-semi-fixed-fixedStatus] {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
 }

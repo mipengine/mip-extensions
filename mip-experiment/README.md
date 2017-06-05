@@ -1,4 +1,4 @@
-# mip-experiment
+# mip-experiment 前端抽样实验
 
 mip-experiment 组件用于前端抽样实验。  
 可用于按钮，banner，广告等前端可控元素的改版实验，与mip-pix，可配合使用。  

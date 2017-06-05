@@ -1,12 +1,12 @@
-# mip-list
+# mip-list 列表组件
 
-mip-list 列表组件，可以渲染同步数据，或者异步请求数据后渲染
+可以渲染同步数据，或者异步请求数据后渲染。
 
 标题|内容
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-list/mip-list.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-list/mip-list.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
 
 ## 示例
 

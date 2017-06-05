@@ -1,6 +1,6 @@
-# mip-sidebar
+# mip-sidebar 侧边栏
 
-mip-sidebar 侧边栏组件。
+侧边栏组件，点击按钮，侧边栏滑入屏幕。
 
 标题|内容
 ----|----
@@ -15,7 +15,7 @@ mip-sidebar 侧边栏组件。
 ```html
 <header>
     <div id="hamburger" class="mip-button" on="tap:sidebar.open">
-    	<div id="logo" href="/">Open mip-sidebar</div>
+      <div id="logo" href="/">Open mip-sidebar</div>
     </div>
 </header>
 <mip-sidebar 
@@ -24,32 +24,32 @@ mip-sidebar 侧边栏组件。
     class="mip-hidden">
     <ul>
       <li>
-        <a href="/">Home</a>
+        <mip-link href="#">Home</mip-link>
         <button class="mip-button" on="tap:sidebar.close"> X </button>
       </li>
       <li> Nav item 1</li>
       <li>
-        <amp-fit-text width="220"
+        <mip-fit-text width="220"
             height="20"
             layout="responsive"
             max-font-size="24">
-          Nav item 2 - &lt;amp-fit-text&gt;
-        </amp-fit-text>
+          Nav item 2 - &lt;mip-fit-text&gt;
+        </mip-fit-text>
       </li>
       <li>
-        <amp-fit-text width="220"
+        <mip-fit-text width="220"
             height="20"
             layout="responsive"
             max-font-size="24">
-          Nav item 3 - &lt;amp-fit-text&gt; longer text
-        </amp-fit-text>
+          Nav item 3 - &lt;mip-fit-text&gt; longer text
+        </mip-fit-text>
       </li>
       <li> Nav item 4 - Image
-        <amp-img class='amp-sidebar-image'
-            src="/img/favicon.png"
+        <mip-img class='mip-sidebar-image'
+            src="http://placeholder.qiniudn.com/100x50"
             width="20"
             height="20"
-            alt="an image"></amp-img>
+            alt="an image"></mip-img>
       </li>
       <li> Nav item 5</li>
       <li> Nav item 6</li>
@@ -72,32 +72,32 @@ mip-sidebar 侧边栏组件。
     class="mip-hidden">
     <ul>
       <li>
-        <a href="/">Home</a>
+        <mip-link href="#">Home</mip-link>
         <button class="mip-button" on="tap:right-sidebar.close"> X </button>
       </li>
       <li> Nav item 1</li>
       <li>
-        <amp-fit-text width="220"
+        <mip-fit-text width="220"
             height="20"
             layout="responsive"
             max-font-size="24">
-          Nav item 2 - &lt;amp-fit-text&gt;
-        </amp-fit-text>
+          Nav item 2 - &lt;mip-fit-text&gt;
+        </mip-fit-text>
       </li>
       <li>
-        <amp-fit-text width="220"
+        <mip-fit-text width="220"
             height="20"
             layout="responsive"
             max-font-size="24">
-          Nav item 3 - &lt;amp-fit-text&gt; longer text
-        </amp-fit-text>
+          Nav item 3 - &lt;mip-fit-text&gt; longer text
+        </mip-fit-text>
       </li>
       <li> Nav item 4 - Image
-        <amp-img class='amp-sidebar-image'
-            src="/img/favicon.png"
+        <mip-img class='mip-sidebar-image'
+            src="http://placeholder.qiniudn.com/100x50"
             width="20"
             height="20"
-            alt="an image"></amp-img>
+            alt="an image"></mip-img>
       </li>
       <li> Nav item 5</li>
       <li> Nav item 6</li>

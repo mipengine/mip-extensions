@@ -1,10 +1,150 @@
 # 升级日志
 
+#### 2017.05.27
+
+> 核心代码上线 1.0.48
+
+1. 修改 mip-semi-fixed 节点clone策略
+2. 提供向 body 中插入 mip-fixed 占位的接口
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级] 修复重复渲染的bug
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 增加曝光日志和错误日志
+
+#### 2017.05.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[新增][平台]	腾牛个性页面的内容植入和伸缩导航
+[mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[升级][平台]异步加载数据
+[mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
+[mip-fh-ad-plus](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-ad-plus)|[升级][平台]自有业务直销广告组件
+
+#### 2017.05.25
+> 核心代码上线 1.0.47
+
+1. 兼容 pc 下 tap 触发的问题
+2. 轮播组件支持 mip-link PC上支持click 
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-mmbang-flexible](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-mmbang-flexible)|[新增][平台]	妈妈帮移动端适配方案
+[mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[升级][平台]异步加载数据
+[mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
+
+
+#### 2017.05.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[新增][平台]异步加载数据
+[mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[新增][平台]管理页面上的所有广告位
+[mip-39ad](https://github.com/mipengine/mip-extensions/tree/master/mip-39ad)|[升级]在mip-semi-fixed组件下，解决mip-39ad不能加载广告问题
+[mip-gototop](https://github.com/mipengine/mip-extensions/tree/master/mip-gototop)|[升级]支持pc click事件
+[mip-carousel](https://github.com/mipengine/mip-extensions/tree/master/mip-carousel)|[升级]支持pc click事件
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级]支持pc click事件
+
+#### 2017.05.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-sn-shop-floor](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-floor)|[升级][平台]	苏宁o2o定制组件
+
+#### 2017.05.19
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-netease-article-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-article-recommend)|[升级][平台] 升级推荐组件
+[mip-askad](https://github.com/mipengine/mip-extensions/tree/master/mip-askad)|[升级] 修改url
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[升级] 升级组件
+
+#### 2017.05.18
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-netease-article-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-article-recommend)|[升级][平台] 升级推荐组件
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改sf中url问题
+
+#### 2017.05.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改sf中url问题
+
+#### 2017.05.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-netease-tracker](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-tracker)|[新增][平台] 为网易移动站文章页实现了统计功能
+
+#### 2017.05.15
+
+> 核心代码上线
+
+1. 兼容viewer a标签delegate问题
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-tiantis-54kefu](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-54kefu)|[新增][平台] 封装了54kefu
+[mip-netease-article-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-article-recommend)|[新增][平台] 为网易移动站文章页实现了底部相关文章推荐功能
+[mip-tiantis-51la](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-51la)|[新增][平台] 封装了51la统计
+[mip-xiaoniaole](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xiaoniaole)|[新增][平台] 用于xiaoniaole.cn站点投放汇米广告固定位广告的组件
+
+#### 2017.05.12
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-tiantis-jsridg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-jsridg)|[新增][平台] 封装了天体系统的JS逻辑
+
+#### 2017.05.11
+
+> 核心代码上线
+
+1. 支持 mip-semi-fixed 悬浮
+
+> 组件上线
+
+组件名|功能说明
+ ----|---
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改域名限制，调整代码结构
+[mip-global-script](https://github.com/mipengine/mip-extensions/tree/master/mip-global-script)|[升级] 页面逻辑公共脚本 添加编辑统计
+[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级] 修复重复渲染的bug
+
 #### 2017.05.08
 
 > 核心代码上线
 
 1. 通过本地存储，增加 mip 页面的 hash 记录功能
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-bdb-custom-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-bdb-custom-content)|[新增][平台] 本地宝展示文章结尾的自定义内容板块
+
 
 
 #### 2017.05.05

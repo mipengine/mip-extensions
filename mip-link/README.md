@@ -1,6 +1,6 @@
-# mip-link
+# mip-link 跳转链接
 
-mip-link 实现了页面跳转功能，支持 superframe。
+实现了页面跳转功能，解决 iframe 嵌套情况下不能跳出父级的问题。。
 
 标题|内容
 ----|----
@@ -11,7 +11,7 @@ mip-link 实现了页面跳转功能，支持 superframe。
 ## 示例
 
 ```html
-<mip-link href="http://m.baidu.com">链接文字</mip-link>
+<mip-link href="https://www.mipengine.org/doc/00-mip-101.html">链接文字</mip-link>
 ```
 
 ## 属性

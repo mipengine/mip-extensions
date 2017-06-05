@@ -1,6 +1,6 @@
-# mip-app-banner
+# mip-app-banner App 吊起组件
 
-mip-app-banner 组件说明
+用于吊起 App。
 
 标题|内容
 ----|----

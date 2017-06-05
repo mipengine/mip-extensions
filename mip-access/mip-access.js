@@ -19,9 +19,7 @@ define(function (require) {
     var TAG = 'mip-access';
     var CustomStorage = util.customStorage;
     var storage = new CustomStorage(0);
-    var cacheHosts = ['mipcache.bdstatic.com', 'c.mipcdn.com'];
     var reg = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/g;
-    var hosts = window.location.href.match(reg);
 
     /**
      * Access Class
@@ -345,7 +343,6 @@ define(function (require) {
      */
     Access.prototype._bindEvent = function () {
         window.addEventListener('message', function (event) {
-            // warning
             if (event.origin === 'https://mipcache.bdstatic.com'
                 && event.source && event.data
                 && event.data.type === 'refresh') {

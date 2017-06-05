@@ -238,7 +238,6 @@ define(function (require) {
                 if (expr) {
                     on = evaluateAccessExpr(expr, this._authorizationFallback);
                 }
-                // !this._authorizationFallback['fcf']
                 if (!on) {
                     if (this._hideType) {
                         elements[i].classList.add('elide');
@@ -320,7 +319,7 @@ define(function (require) {
         var ele = document.createElement('a');
         ele.href = url;
         return ele.protocol + '//' + ele.host + ele.port + ele.pathname;
-    }
+    };
 
     /**
      * Instead varible

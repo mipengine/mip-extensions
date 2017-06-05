@@ -17,6 +17,7 @@ define(function (require) {
         // this.element 可取到当前实例对应的 dom 元素
         var $element = $(this.element);
         var adSrc = $element.attr('ad-src');
+        var adSrcEnd = $element.attr('ad-src-end');
         var targetSrc = $element.attr('target-src');
         var poster = $element.attr('poster');
 
@@ -52,15 +53,20 @@ define(function (require) {
             video.src = adSrc;
             $element[0].appendChild(domAdTip);
 
-            //  广告播放完毕
+            //  第一个视频播放完毕
             video.onended = function () {
-                // 隐藏广告提示
-                domAdTip.style.display = 'none';
-                video.src = targetSrc;
+                if (video.src === targetSrc && adSrcEnd) {
+                    // 显示广告提示
+                    domAdTip.style.display = 'block';
+                    video.src = adSrcEnd;
+                } else {
+                    // 隐藏广告提示
+                    domAdTip.style.display = 'none';
+                    video.src = targetSrc;
+                }
                 video.autoplay = true;
                 video.setAttribute('autoplay', 'autoplay');
 
-                // video.load();
                 video.play();
             };
         } else {  //  否则直接播放内容

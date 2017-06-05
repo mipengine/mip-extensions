@@ -346,7 +346,7 @@ define(function (require) {
     Access.prototype._bindEvent = function () {
         window.addEventListener('message', function (event) {
             // warning
-            if (event.origin === 'http://localhost:3000'
+            if (event.origin === 'https://mipcache.bdstatic.com'
                 && event.source && event.data
                 && event.data.type === 'refresh') {
                 if (event.source) {

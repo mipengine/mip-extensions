@@ -97,8 +97,7 @@ define(function (require) {
      */
     Login.prototype._splice = function (url) {
         var search = url.split('?');
-        // warning: test, need delete
-        var returnUrl = encodeURIComponent('http://localhost:3000/mip_access/mip-login-done?url=' + encodeURIComponent(this._href));
+        var returnUrl = encodeURIComponent('https://mipcache.bdstatic.com/mip_access/mip-login-done?url=' + encodeURIComponent(this._href));
         if (search && search.length > 1) {
             url += '&returnUrl=' + returnUrl;
         }

@@ -78,7 +78,7 @@ define(function () {
                 info: res.statusText,
                 t: +new Date()
             };
-            if (res.ok) {
+            if (!res.ok) {
                 log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             }
             return res.json();

@@ -11,11 +11,6 @@ mip-login-done 组件说明
 ## 示例
 
 ### 基本用法
-```html
-<mip-login-done>
-    自定义内容，可以嵌套其他组件
-</mip-login-done>
-```
 
 ## 属性
 

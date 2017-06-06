@@ -27,6 +27,7 @@ define(function (require) {
     var regexs = dataProcessor.regexs;
 
     var maxzIndex = 0;
+    var excr = 44;
 
     /**
      * [getCss 获取样式]
@@ -50,13 +51,18 @@ define(function (require) {
      * @param  {DOM} container  装载定制化组件节点的容器
      */
     function moveToFixedLayer(element, customNode, container) {
-        container.remove();
         var type = customNode.getAttribute('mip-fixed');
         var top = customNode.getAttribute('top') || null;
         var bot = customNode.getAttribute('bottom') || null;
         var fixedParent = document.createElement('mip-fixed');
 
-        // 所有悬浮时，设置距离 top/bottom 的距离
+        // 兼容 酷派手机 UC 浏览器
+        if (util.platform.isIos()) {
+            container.remove();
+            excr = 10;
+        }
+
+        // 存在悬浮时，设置距离 top/bottom 的距离
         if (customNode.hasAttribute('top') && top) {
             util.css(fixedParent, {top: top});
         }
@@ -192,7 +198,8 @@ define(function (require) {
 
                 if (zIndex >= maxzIndex) {
                     maxzIndex = zIndex;
-                    fixedElement.setPlaceholder(getCss(res.element, 'height') - 10);
+                    // alert(getCss(res.element, 'height') - 10)
+                    fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
                 }
 
             }

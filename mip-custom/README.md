@@ -29,10 +29,10 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
 ```html
 <mip-custom>
     <script type="application/json">
-    {
-        "accid": "34345345345",
-        "title": "标题"
-    }
+        {
+            "accid": "e2217bab684fbb898dccf04b",
+            "title": "%E8%BF%99%E9%87%8C%E6%98%AF%E6%A0%87%E9%A2%98"
+        }
     </script>
 </mip-custom>
 ```
@@ -55,11 +55,11 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
     <h2>定制化MIP示例页面</h2>
     <p>正文</p>
     <mip-custom>
-        <script type="application/json">
-        {
-            "accid": "34345345345",
-            "title": "定制化MIP示例页面"
-        }
+       <script type="application/json">
+            {
+                "accid": "e2217bab684fbb898dccf04b",
+                "title": "%E8%BF%99%E9%87%8C%E6%98%AF%E6%A0%87%E9%A2%98"
+            }
         </script>
     </mip-custom>
     <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>

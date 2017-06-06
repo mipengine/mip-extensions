@@ -1,0 +1,8 @@
+{
+  "name": "mip-hnr-rem",
+  "version": "1.0.0",
+  "description": "适配不同手机,赋值html根节点不同的rem",
+  "engines": {
+    "mip": ">=1.1.0"
+  }
+}

@@ -10,7 +10,6 @@ define(function (require) {
     var util = require('util');
 
     var data = require('mip-custom/data');
-    var MIP = window.MIP || {};
 
     /**
      * [getHashparams mip连接特殊情况，从 hash 中获取参数
@@ -21,15 +20,13 @@ define(function (require) {
         var params = data.params;
         for (var key in params) {
             if (params.hasOwnProperty(key)) {
-                params[key] = MIP.hash.get(key) || params[key];
+                params[key] = data.getHashData(key) || params[key];
             }
         }
 
         // 修改字段名
-        var ifHash = MIP && MIP.hash && MIP.hash.get;
-        params.query = ifHash ? MIP.hash.get('word') : '';
-        params.logid = ifHash ? MIP.hash.get('lid') : '';
-
+        params.query = data.getHashData('word');
+        params.logid = data.getHashData('lid');
         return params;
     }
 

@@ -3,14 +3,15 @@
 ## 文档信息
 
 - 所属产品项目：定制化MIP
-- 产品版本：v1.0.6
-- 文档版本：v1.0.2
+- 产品版本：v1.0.11
+- 文档版本：v1.0.3
 
 撰写人|修改日期|修改内容|更新版本
 ---|---|---|---
 王培|2017-04-19|创建文档|v1.0.0
 王培|2017-05-02|增加必要属性 title|v1.0.1
 王培|2017-05-03|增加必要脚本说明|v1.0.2
+王培|2017-06-06|修改文档示例|v1.0.3
 
 ## 说明
 
@@ -29,10 +30,10 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
 ```html
 <mip-custom>
     <script type="application/json">
-    {
-        "accid": "34345345345",
-        "title": "标题"
-    }
+        {
+            "accid": "e2217bab684fbb898dccf04b",
+            "title": "%E8%BF%99%E9%87%8C%E6%98%AF%E6%A0%87%E9%A2%98"
+        }
     </script>
 </mip-custom>
 ```
@@ -55,11 +56,11 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
     <h2>定制化MIP示例页面</h2>
     <p>正文</p>
     <mip-custom>
-        <script type="application/json">
-        {
-            "accid": "34345345345",
-            "title": "定制化MIP示例页面"
-        }
+       <script type="application/json">
+            {
+                "accid": "e2217bab684fbb898dccf04b",
+                "title": "%E8%BF%99%E9%87%8C%E6%98%AF%E6%A0%87%E9%A2%98"
+            }
         </script>
     </mip-custom>
     <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>

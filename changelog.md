@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.06.06
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-terms-shield](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-terms-shield)|[新增][平台]  标题关键字屏蔽
+[mip-wkfun-unfold](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-unfold)|[新增][平台] 寻医问药页面功能组件
+
 #### 2017.06.05
 
 > 核心代码上线 1.0.48

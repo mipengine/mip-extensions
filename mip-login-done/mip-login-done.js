@@ -58,16 +58,19 @@ define(function (require) {
                 }
             }
         }
-        if (url) {
-            var ele = document.createElement('a');
-            ele.href = decodeURIComponent(url);
-            var domain = !ele.search ? ele.href
-                    : ele.href.substr(0, ele.href.indexOf(ele.search));
-            if (domain) {
-                self._opener.postMessage({
-                    type: 'refresh'
-                }, domain);
+        if (!url) {
+            return;
+        }
+        if (!self._opener || this._win.opener === this._win) {
+            this._win.location.replace(decodeURIComponent(url));
+        } else {
+            var domain = this._win.location.protocol + '//' + this._win.location.host;
+            if (!domain) {
+                return;
             }
+            self._opener.postMessage({
+                type: 'refresh'
+            }, domain);
         }
     };
 

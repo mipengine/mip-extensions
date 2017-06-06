@@ -64,11 +64,22 @@ define(function (require) {
             return;
         }
         var loginUrl = this._loginMap.login;
-        var winParam = 'toolbar=yes,location=yes,directories=no'
-                        + ',status=no,menubar=yes,scrollbars=yes'
-                        + ',resizable=no,copyhistory=yes,width=400,height=400';
+        var w = Math.floor(Math.min(700, screen.width * 0.9));
+        var h = Math.floor(Math.min(450, screen.height * 0.9));
+        var x = Math.floor((screen.width - w) / 2);
+        var y = Math.floor((screen.height - h) / 2)
+        var winParam = 'width=' + w + ',height=' + h + ',left=' + x + ',top=' + y
+                        + ',resizable=yes,scrollbars=yes';
         loginUrl = this._splice(loginUrl);
-        window.open(loginUrl, '_blank', winParam);
+
+        try {
+            res = window.open(loginUrl, '_blank', winParam);
+        } catch (e) {
+            alert('DOM', 'Failed to open url on target: _blank', e);
+        }
+        if (!res) {
+            res = window.open(loginUrl, '_top');
+        }
     };
 
     /**
@@ -99,10 +110,10 @@ define(function (require) {
         var search = url.split('?');
         var returnUrl = encodeURIComponent('https://mipcache.bdstatic.com/mip_access/mip-login-done?url=' + encodeURIComponent(this._href));
         if (search && search.length > 1) {
-            url += '&returnUrl=' + returnUrl;
+            url += '&returnUrl=' + returnUrl + '&url=' + this._href;
         }
         else {
-            url += '?returnUrl=' + returnUrl;
+            url += '?returnUrl=' + returnUrl + '&url=' + this._href;
         }
         return url;
     };

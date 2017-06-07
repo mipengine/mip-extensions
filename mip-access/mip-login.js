@@ -72,10 +72,11 @@ define(function (require) {
                         + ',resizable=yes,scrollbars=yes';
         loginUrl = this._splice(loginUrl);
 
+        var res;
         try {
             res = window.open(loginUrl, '_blank', winParam);
         } catch (e) {
-            alert('DOM', 'Failed to open url on target: _blank', e);
+            console.error('DOM', 'Failed to open url on target: _blank', e);
         }
         if (!res) {
             res = window.open(loginUrl, '_top');

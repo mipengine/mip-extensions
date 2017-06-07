@@ -1,5 +1,15 @@
 # 升级日志
 
+#### 2017.06.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-sg-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sg-ad)|[新增][平台] 星游广告
+[mip-cloud-tie](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cloud-tie)|[新增][平台]网易云跟帖组件
+[mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
+
 #### 2017.06.06
 
 > 组件上线

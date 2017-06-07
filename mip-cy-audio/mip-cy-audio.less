@@ -1,0 +1,177 @@
+html{
+	font-size: 100px;
+}
+.mip-cy-audio{
+	position: relative;
+	min-width: 1rem;
+	max-width: 2.14rem;
+	height: .38rem;
+	background-color: #fff;
+	border-radius: .04rem;
+	&:before,&:after{
+		content: '';
+		width: 0;
+		height: 0;
+		position: absolute;
+		top: .15rem;
+		border: .06rem solid transparent;
+	}
+	&.left{
+		float: left;
+		border: 1px solid #e5e5e5;
+		&:before{
+			left: -0.12rem;
+			border-right-color: #e5e5e5;
+		}
+		&:after{
+			left: -0.1rem;
+			border-right-color: #fff;
+		}
+		+ .mip-cy-audio-seconds{
+			float: left;
+			margin-left: .08rem;
+		}
+	}
+	&.right{
+		float: right;
+		background-color: #02b7ca;
+		&:after{
+			right: -0.11rem;
+			border-left-color: #02b7ca;
+		}
+		+ .mip-cy-audio-seconds{
+			float: right;
+			margin-right: .08rem;
+		}
+		.mip-cy-audio-icon{
+			float: right;
+			-webkit-transform: rotate(180deg);
+			transform: rotate(180deg);
+		}
+	}
+}
+.mip-cy-audio-icon{
+	margin-left: .08rem;
+	line-height: .38rem;
+	font-size: 0;
+	div{
+		opacity: .3;
+	}
+	&.animate{
+		.middle{
+			animation: show2 1.5s ease-in-out infinite;
+		}
+		.large{
+			animation: show3 1.5s ease-in-out infinite;
+		}
+	}
+	.small {
+		width: .05rem;
+		height: .05rem;
+		border-style: solid;
+		border-top-color: transparent;
+		border-left-color: transparent;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		box-sizing: border-box;
+		vertical-align: middle;
+		display: inline-block;
+		color: #000;
+	}
+
+	.cricleplay {
+		width: 100%;
+	}
+	.middle {
+		width: .2rem;
+		height: .2rem;
+		border-style: solid;
+		border-top-color: transparent;
+		border-left-color: transparent;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		box-sizing: border-box;
+		vertical-align: middle;
+		display: inline-block;
+		margin-left: -0.13rem;
+		opacity: .3;
+		color: #000;
+	}
+
+	.large {
+		width: .3rem;
+		height: .3rem;
+		border-style: solid;
+		border-top-color: transparent;
+		border-left-color: transparent;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		box-sizing: border-box;
+		vertical-align: middle;
+		display: inline-block;
+		margin-left: -0.23rem;
+		opacity: .3;
+		color: #000;
+	}
+}
+
+.mip-cy-audio-seconds{
+	font-size: .13rem;
+	color: #999;
+	margin-top: .15rem;
+}
+@-webkit-keyframes show2 {
+	0% {
+		opacity: 0;
+	}
+
+	30% {
+		opacity: .3;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes show2 {
+	0% {
+		opacity: 0;
+	}
+
+	30% {
+		opacity: .3;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes show3 {
+	0% {
+		opacity: 0;
+	}
+
+	60% {
+		opacity: .3;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes show3 {
+	0% {
+		opacity: 0;
+	}
+
+	60% {
+		opacity: .3;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}

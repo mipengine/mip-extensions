@@ -1,0 +1,13 @@
+{
+    "name": "mip-weiyoubaba-tthead",
+    "version": "1.0.0",
+
+    "author": {
+        "name": "weiyoubaba",
+        "email": "375234944@qq.com"
+    },
+
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "mip-cy-audio",
+    "version": "1.0.0",
+    "author": {
+        "name": "yinpengbo",
+        "email": "17leba@gmail.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

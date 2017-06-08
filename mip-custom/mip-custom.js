@@ -16,12 +16,6 @@ define(function () {
     var viewer = require('viewer');
 
     /**
-     * [fetchJsonp jsonp异步请求库]
-     * @type {Object}
-     */
-    var fetchJsonp = require('fetch-jsonp');
-
-    /**
      * [customElement 组件元素]
      * @type {Object}
      */
@@ -37,13 +31,12 @@ define(function () {
      * 初次进入到视图区执行
      */
     customElement.prototype.firstInviewCallback = function () {
- 
+
         // 曝光日志
         logData.params.t = +new Date();
         log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
      };
   
-
     /**
      * 构造元素
      */
@@ -72,26 +65,35 @@ define(function () {
         dom.proxyLink(element);
 
         self.url = url.get(element);
-   
+
         if (!self.url) {
             element.remove();
             return;
         }
-        fetchJsonp(self.url, {
-            timeout: 10000,
-            jsonpCallback: 'cb'
-        }).then(function (res) {
+
+        // fetchJsonp to fetch
+        fetch(self.url).then(function (res) {
+            errorData = {
+                st: res.status,
+                info: res.statusText,
+                t: +new Date()
+            };
+            if (!res.ok) {
+                log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
+            }
             return res.json();
         }).then(function (data) {
             // 返回数据问题
             if (data && data.errno) {
+
+                // send error log
                 errorData = {
                     info: data.errmsg,
-                    st: 200,
                     t: +new Date()
                 };
-                console.error(data.errmsg);
                 log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
+
+                console.error(data.errmsg);
                 element.remove();
                 return;
             }
@@ -126,6 +128,7 @@ define(function () {
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             element.remove();
+            errorData.en = error;
             console.error(error);
         }).catch(function (evt) {
             console.warn(evt);

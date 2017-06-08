@@ -1,5 +1,51 @@
 # 升级日志
 
+#### 2017.06.08
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-access](https://github.com/mipengine/mip-extensions/tree/master/mip-access)|[新增] 允许发布者对⻚⾯内容进⾏访问权限的控制
+[mip-login-done](https://github.com/mipengine/mip-extensions/tree/master/mip-login-done)|[新增] 登录成功过渡功能组件
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 增加后切片广告 
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改异步请求为 fetch、修改 mip-fixed 占位逻辑
+[mip-sn-shop-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-list)|[升级][平台] 实现了自定义实现了sn获取接口数据后，渲染列表数据的功能
+
+#### 2017.06.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-sg-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sg-ad)|[新增][平台] 星游广告
+[mip-cloud-tie](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cloud-tie)|[新增][平台]网易云跟帖组件
+[mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
+
+#### 2017.06.06
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-terms-shield](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-terms-shield)|[新增][平台]  标题关键字屏蔽
+[mip-wkfun-unfold](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-unfold)|[新增][平台] 寻医问药页面功能组件
+
+#### 2017.06.05
+
+> 核心代码上线 1.0.48
+
+1. 通过扩展 a 来替换 mip-link方案 
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-icms-comment](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-icms-comment)|[新增][平台]  评论组件
+[mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[升级][平台]异步加载数据
+[mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[升级][平台]  腾牛个性页面的内容植入和伸缩导航
+
 #### 2017.05.27
 
 > 核心代码上线 1.0.48

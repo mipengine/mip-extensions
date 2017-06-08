@@ -10,14 +10,6 @@ mip-access 能够允许发布者对页面内容进行访问权限的控制，通
 
 ## 示例
 
-### 正常标签
-```html
-<div class="left">
-    自定义内容
-</div>
-```
-
-### ACCESS标签
 ```html
 <div mip-access='access AND login' mip-access-hide>
     自定义内容

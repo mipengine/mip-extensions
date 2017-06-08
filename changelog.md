@@ -1,5 +1,17 @@
 # 升级日志
 
+#### 2017.06.08
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-access](https://github.com/mipengine/mip-extensions/tree/master/mip-access)|[新增] 允许发布者对⻚⾯内容进⾏访问权限的控制
+[mip-login-done](https://github.com/mipengine/mip-extensions/tree/master/mip-login-done)|[新增] 登录成功过渡功能组件
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 增加后切片广告 
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改异步请求为 fetch、修改 mip-fixed 占位逻辑
+[mip-sn-shop-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-list)|[升级][平台] 实现了自定义实现了sn获取接口数据后，渲染列表数据的功能
+
 #### 2017.06.07
 
 > 组件上线

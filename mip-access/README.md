@@ -5,15 +5,13 @@ mip-access 能够允许发布者对页面内容进行访问权限的控制，通
 标题|内容
 ----|----
 类型|通用
-支持布局|不使用布局
+支持布局|N/S
 所需脚本|http://mipcache.bdstatic.com/static/v1/mip-access/mip-access.js
 
 ## 示例
 
 ```html
-<div mip-access='access AND login' mip-access-hide>
-    自定义内容
-</div>
+<div mip-access='access AND login' mip-access-hide>自定义内容</div>
 ```
 
 ## 属性

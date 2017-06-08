@@ -1,0 +1,14 @@
+{
+    "name": "mip-cloud-tie",
+    "version": "1.0.0",
+    "description": "网易云跟帖组件",
+    "contributors": [
+        {
+            "name": "点点",
+            "email": "sy3tem@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -72,7 +72,9 @@ define(function () {
         }
 
         // fetchJsonp to fetch
-        fetch(self.url).then(function (res) {
+        fetch(self.url, {
+            credentials: 'include'
+        }).then(function (res) {
             errorData = {
                 st: res.status,
                 info: res.statusText,
@@ -99,7 +101,11 @@ define(function () {
             }
 
             // amd 静态文件配置，短期处理
-            if (data && dataProcessor.config) {
+            if (data && data.data && data.data.config) {
+                var config = dataProcessor.addPaths(data.data.config);
+                require.config(config);
+            }
+            else if (data && dataProcessor.config) {
                 var config = dataProcessor.addPaths(dataProcessor.config);
                 require.config(config);
             }

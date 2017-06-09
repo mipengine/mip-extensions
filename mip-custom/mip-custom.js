@@ -66,13 +66,19 @@ define(function () {
 
         self.url = url.get(element);
 
+        // self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/test?query=%E7%B3%96%E5%B0%BF%E7%97%85%E7%9A%84%E7%97%87%E7%8A%B6&originalUrl=xywy.com/fijdsjfidsf&accid=12133&title=test&logid=10421587805058473194';
+        self.url = 'http://cp01-aladdin-product-28.epc.baidu.com:8500/common?query=%E4%B8%B0%E8%83%B8&originalUrl=xywy.com/fijdsjfidsf&accid=e2217bab684fbb898dccf04b&title=test&logid=10421587805058473194';
+        // self.url= 'https://cp01-aladdin-product-28.epc.baidu.com:8001/common?query=%E4%B8%B0%E8%83%B8&originalUrl=xywy.com/fijdsjfidsf&accid=e2217bab684fbb898dccf04b&title=test&logid=10421587805058473194';
+
         if (!self.url) {
             element.remove();
             return;
         }
 
         // fetchJsonp to fetch
-        fetch(self.url).then(function (res) {
+        fetch(self.url, {
+            credentials: 'include'
+        }).then(function (res) {
             errorData = {
                 st: res.status,
                 info: res.statusText,
@@ -99,7 +105,11 @@ define(function () {
             }
 
             // amd 静态文件配置，短期处理
-            if (data && dataProcessor.config) {
+            if (data && data.data && data.data.config) {
+                var config = dataProcessor.addPaths(data.data.config);
+                require.config(config);
+            }
+            else if (data && dataProcessor.config) {
                 var config = dataProcessor.addPaths(dataProcessor.config);
                 require.config(config);
             }

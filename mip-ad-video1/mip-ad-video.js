@@ -36,6 +36,7 @@ define(function (require) {
         //  当播放开始的时候设置为自动播放
         video.onplay = function () {
             video.autoplay = true;
+			$(".video_logo").hide();
         };
 		video.onpause= function () {
             $('.box2').removeClass('hide')

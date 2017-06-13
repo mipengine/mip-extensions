@@ -14,6 +14,7 @@ define(function (require) {
      * @class
      */
     function Login(data) {
+        this._openWin;
         this._loginMap = [];
         this._loginConfig = data;
         this._href = window.location.href;
@@ -72,14 +73,13 @@ define(function (require) {
                         + ',resizable=yes,scrollbars=yes';
         loginUrl = this._splice(loginUrl);
 
-        var res;
         try {
-            res = window.open(loginUrl, '_blank', winParam);
+            this._openWin = window.open(loginUrl, '_blank', winParam);
         } catch (e) {
             console.error('DOM', 'Failed to open url on target: _blank', e);
         }
         if (!res) {
-            res = window.open(loginUrl, '_top');
+            this._openWin = window.open(loginUrl, '_top');
         }
     };
 

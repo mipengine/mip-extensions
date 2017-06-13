@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.06.09
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cloud-tie](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cloud-tie)|[升级][平台]网易云跟帖组件
+[mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改fetch请求家参数，兼容 require 配置
+
 #### 2017.06.08
 
 > 组件上线

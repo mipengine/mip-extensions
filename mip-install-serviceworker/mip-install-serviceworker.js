@@ -34,7 +34,7 @@ define(function (require) {
             }
 
             // 如果 iframe 的 origin 和 mip 原页面 origin 不一样，则不注册
-            if (parseUrl(util.getOriginUrl(window.location.href)).origin !== parseUrl(iframeSrc).origin) {
+            if (parseUrl(util.parseCacheUrl(window.location.href)).origin !== parseUrl(iframeSrc).origin) {
                 return;
             }
 
@@ -44,7 +44,6 @@ define(function (require) {
                 // 注册 iframe
                 me.registerIframe(iframeSrc);
             }, 15000);
-
         }
         else {
             // 不在 mip 环境中，直接注册 sw
@@ -95,10 +94,15 @@ define(function (require) {
             return;
         }
 
-        var iframe = document.createElement('iframe');
-        iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
-        iframe.src = src;
-        this.element.appendChild(iframe);
+        var div = document.createElement('div');
+        div.innerHTML = ''
+            + '<mip-iframe '
+                + 'src="' + src + '" '
+                + 'sandbox="allow-same-origin allow-scripts"'
+                + 'width="0" '
+                + 'height="0">'
+            + '</mip-iframe>';
+        this.element.appendChild(div.children[0]);
     };
 
     /**

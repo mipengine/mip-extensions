@@ -346,7 +346,7 @@ define(function (require) {
             if (event.origin === 'https://mipcache.bdstatic.com'
                 && event.source && event.data
                 && event.data.type === 'refresh') {
-                if (event.source) {
+                if (event.source && event.source === this._login._openWin) {
                     location.reload();
                     event.source.postMessage({
                         type: 'success'

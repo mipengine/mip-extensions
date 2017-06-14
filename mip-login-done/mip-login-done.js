@@ -64,7 +64,10 @@ define(function (require) {
         if (!self._opener || this._win.opener === this._win) {
             this._win.location.replace(decodeURIComponent(url));
         } else {
-            var domain = this._win.location.protocol + '//' + this._win.location.host;
+            var originUrl = decodeURIComponent(url);
+            var ele = document.createElement('a');
+            ele.href = originUrl;
+            var domain = ele.protocol + '//' + ele.host;
             if (!domain) {
                 return;
             }

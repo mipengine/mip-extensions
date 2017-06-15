@@ -35,7 +35,7 @@ position:sticky的js兼容版本。页面元素滑动到顶部时自动贴顶。
 ```html
  <div class="placeholder">我走过山时，山不说话，</div>
  <div class="placeholder">我路过海时，海不说话，</div>
- <mip-semi-fixed id="semi-fixed" threshold="150" fixedClassNames="fixedStyle">
+ <mip-semi-fixed id="semi-fixed" threshold="100" fixedClassNames="fixedStyle">
     <div mip-semi-fixed-container class="absoluteStyle">
         MIP-SEMI-FIXED MIP-SEMI-FIXED
     </div>

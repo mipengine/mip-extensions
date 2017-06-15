@@ -60,10 +60,9 @@ define(function (require) {
         var container = this.container;
         var threshold = this.threshold;
         var fixedClassNames = this.fixedClassNames;
-        var scrollTop = viewport.getScrollTop();
         var offsetTop = util.rect.getElementOffset(element).top;
 
-        if (offsetTop - scrollTop <= threshold) {
+        if (offsetTop <= threshold) {
             if (container.className.indexOf(fixedClassNames) < 0) {
                 container.className += fixedClassNames;
             }
@@ -86,10 +85,9 @@ define(function (require) {
     function onIframeScroll(viewport) {
 
         var element = this.element;
-        var scrollTop = viewport.getScrollTop();
         var offsetTop = util.rect.getElementOffset(element).top;
 
-        if (offsetTop - scrollTop <= this.threshold) {
+        if (offsetTop <= this.threshold) {
             util.css(this.fixedContainer.parentNode, {display: 'block'});
             util.css(this.fixedContainer, {opacity: 1});
             util.css(this.container, {opacity: 0});
@@ -159,7 +157,7 @@ define(function (require) {
         }
 
         // 初始状态为 fixed 时
-        if (!util.platform.isIos() && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
+        if (!util.platform.isIos() && element.offsetTop<= self.threshold) {
             if (self.container.className.indexOf(self.fixedClassNames) < 0) {
                 self.container.className += self.fixedClassNames;
             }

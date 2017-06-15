@@ -93,7 +93,7 @@ define(function (require) {
         }
         var logoutUrl = this._loginMap.logout;
         fetch(logoutUrl, {
-            method: 'POST'
+            credentials: 'include'
         }).then(function (res) {
             if (res.ok) {
                 window.location.reload();

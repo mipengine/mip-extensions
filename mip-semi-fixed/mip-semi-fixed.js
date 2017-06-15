@@ -136,7 +136,7 @@ define(function (require) {
             catch (e) {
                 console.error(e);
             }
-               
+
             viewport.on('scroll', function () {
                 onIframeScroll.call(self, viewport);
             });
@@ -157,7 +157,7 @@ define(function (require) {
         }
 
         // 初始状态为 fixed 时
-        if (!util.platform.isIos() && element.offsetTop<= self.threshold) {
+        if (!util.platform.isIos() && element.offsetTop <= self.threshold) {
             if (self.container.className.indexOf(self.fixedClassNames) < 0) {
                 self.container.className += self.fixedClassNames;
             }

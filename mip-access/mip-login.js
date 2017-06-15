@@ -78,7 +78,7 @@ define(function (require) {
         } catch (e) {
             console.error('DOM', 'Failed to open url on target: _blank', e);
         }
-        if (!res) {
+        if (!this._openWin) {
             this._openWin = window.open(loginUrl, '_top');
         }
     };

@@ -1,52 +1,148 @@
 /**
 * @file 脚本支持
 * @author hejieye
-* @time  2016-12-20
-* @version 1.2.1
+* @time  2017-06-15
+* @version 2.0.0
 */
 define(function (require) {
-
     var $ = require('zepto');
     var customElem = require('customElement').create();
-    // 商业广告
+    var busUid = '';
     var ipLoad = function (callback) {
         var url = 'https://mipp.iask.cn/iplookup/search?format=json&callback=?';
         try {
-            $.getJSON(url,
-            function (data) {
+            $.getJSON(url, function (data) {
                 callback(data);
             });
         }
-        catch (e) {}
+      catch (e) {}
     };
-    // 判断区域投放广告
-    var hideDiv = function (area, div) {
-        try {
-            ipLoad(function (data) {
-                if (area.indexOf(data.province) === -1) {
-                    $(div).remove();
-                }
-            });
+    var hotRecommend = function (url, img, title) {
+        var htmls = '';
+        htmls += '<li>';
+        htmls += '<a href=' + url + ' target=\'_blank\' class=\'href_log\'>';
+        htmls += '<mip-img class=\'mip-img\' src=' + img + '>';
+        htmls += '<p class=\'mip-img-subtitle\'>' + title + '</p>';
+        htmls += '</mip-img>';
+        htmls += '</a></li>';
+        return htmls;
+    };
+    var hotSpot = function (url, title) {
+        var htmls = '';
+        htmls += '<li><a href=' + url + ' target=\'_blank\' class=\'href_log\'>' + title + '</a></li>';
+        return htmls;
+    };
+    var getChannel = function () {
+        var list = {};
+        list['COOPERATE_SOUTHNETWORK'] = 100;  // 南方网通
+        list['COOPERATE_HUASHENG'] = 201;     // 华盛
+        list['COOPERATE_HUASHENG_QA'] = 201;	 // 华盛QA
+        list['COOPERATE_HUASHENG_BY'] = 202;	 // 华盛包月
+        list['COOPERATE_TIANZHU'] = 300;		 // 天助
+        list['"COOPERATE_XINYUHENG'] = 400;    // 新雨恒
+        list['COOPERATE_COMMERCIAL'] = 500;	 // 商业自问自答
+        list['COMMERCIAL_CAD'] = 501;	     // 商业纯广告
+        list['COOPERATE_BRAND'] = 600;	     // 品牌自问自答
+        list['COOPERATE_EFFECT'] = 700;	     // 效果广告
+        return list;
+    };
+    var getUserId = function (source, uid) {
+        if (source === 202 || source === 500 || source === 501
+        || source === 600 || source === 700) {
+            return uid;
         }
-        catch (e) {}
+        return '';
     };
-    // 隐藏len小于等于0的DIV
-    var lenHide = function (len, div, type) {
-        try {
-            if ($(len).length <= 0) {
-                if (type === 'show') {
-                    $(div).show();
-                }
-                else {
-                    $(div).hide();
-                }
+    var advLogInfo = function (sourceType, mode) {
+        var $that = $('.paramDiv');
+        var qid = $that.attr('qid') || '';
+        var materialTag = $that.attr('mainTags') || '';
+        var ip = '';
+        var province = '';
+        var city = '';
+        var qcid = $that.attr('qcid') || '';
+        var cid = $that.attr('cid') || '';
+        var uid = $that.attr('uid') || '';
+        var source = getChannel()[sourceType] || 999;
+        uid = getUserId(sourceType, uid) || busUid;
+        var pv = '';
+        ipLoad(function (data) {
+            ip = data.ip || '';
+            province = data.province || '';
+            city = data.city || '';
+            if (!!materialTag) {
+                materialTag = materialTag.replace('[', '').replace(']', '');
             }
-        }
-        catch (e) {}
+            pv = encodeURI('pv=' + mode + '_' + qid + '_' + ip + '_' + province + '_' + city + '_' + materialTag
+            + '_' + qcid + '_' + cid + '_' + source + '_' + uid + '_');
+            var url = 'https://mipp.iask.cn/advLogInfo?' + pv;
+            $.get(url, function (e) {});
+        });
+    };
+    var advLogInfoClick = function () {
+        var sources = $('.business_source').attr('sources') || $('.business_source_type').attr('sourceType');
+        $('.href_log').click(function () {
+            if (sources === 'COMMERCIAL_ZWZD') {
+                sources = 'COOPERATE_COMMERCIAL';
+            }
+            advLogInfo(sources, 1);
+            var url = $(this).attr('href');
+            window.open(url);
+        });
+    };
+    // 商业广告
+    var busBottomAM = function () {
+        $('.bus_bottom_div').find('div').each(function () {
+            var area = $(this).attr('area');
+            var imgurl = $(this).attr('imgurl');
+            var picurl = $(this).attr('picurl');
+            busUid = $(this).attr('uid');
+            if (area === '') { // 区域为空表示投放全国
+                var html = putMXfAd(imgurl, picurl);
+                $('.mip_as_bottm_div').append(html);
+            }
+            else {
+                ipLoad(function (data) {
+                    if (area.indexOf(data.province) > -1) {
+                        var html = putMXfAd(imgurl, picurl);
+                        $('.mip_as_bottm_div').append(html);
+                    }
+                });
+            }
+        });
+        $('.bus_hot_recommend_div').find('div').each(function () {
+            var area = $(this).attr('area');
+            var url = $(this).attr('texturl');
+            var img = $(this).attr('img');
+            busUid = $(this).attr('uid');
+            var title = $(this).attr('imgtitle');
+            if (area === '') {
+                $('.hot-tui-list').append(hotRecommend(url, img, title));
+            }
+            else {
+                ipLoad(function (data) {
+                    $('.hot-tui-list').append(hotRecommend(url, img, title));
+                });
+            }
+        });
+        $('.bus_hot_spot').find('div').each(function () {
+            var area = $(this).attr('area');
+            var url = $(this).attr('texturl');
+            var title = $(this).attr('imgtitle');
+            busUid = $(this).attr('uid');
+            if (area === '') {
+                $('.hot-point-list').append(hotSpot(url, title));
+            }
+            else {
+                ipLoad(function (data) {
+                    $('.hot-point-list').append(hotSpot(url, title));
+                });
+            }
+        });
+        advLogInfoClick();
     };
     // 移除百度广告
     var removeBaiduAd = function () {
-
         $('.mip_as_haoping_div').remove();
         $('.mip_as_qita_div').remove();
         $('.mip_as_lswt_div').remove();
@@ -56,7 +152,7 @@ define(function (require) {
         $('.mip_as_tbtj').remove();
         $('.mip_dl_tbtj').remove();
         $('.mip_as_djgz').remove();
-        $('.mip_as_bottm_div').remove();
+        $('.mip_as_bottm_div').empty();
     };
 
     var loadAd = function (sources, openId, div) {
@@ -109,32 +205,21 @@ define(function (require) {
                     }
                 }
             }
+            advLogInfoClick();
         });
     };
     // 动态添加 mip-fixed悬浮广告
     var putMXfAd = function (picLink, picLocal) {
         var htmls = '';
-        htmls += '<mip-fixed type=\'bottom\' id=\'customid\' >';
+        htmls += '<mip-fixed type=\'top\' id=\'customid\' >';
         htmls += '<div class=\'mip-adbd\'>';
         htmls += '<div on=\'tap:customid.close\' class=\'mip-adbd-close\'><span>关闭</span></div>';
-        htmls += '<a href=' + picLink + ' target=\'_blank\'>';
+        htmls += '<div href=' + picLink + ' class=\'href_log\'>';
         htmls += '<mip-img class=\'mip-img\' src=' + picLocal + '></mip-img>';
-        htmls += '</a>';
+        htmls += '</div>';
+        htmls += '<span class=\'icon-bai-bottom\'></span>';
         htmls += '</div></mip-fixed>';
         return htmls;
-    };
-    // 南方网通底部悬浮广告
-    var southnetwork = function (sources, openId, div) {
-        var url = 'https://imgv2-ssl.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
-        try {
-            $.getJSON(url,
-            function (data) {
-                var htmls = putMXfAd(data.m[0].link, data.m[0].pic);
-                $(div).empty();
-                $(div).append(htmls);
-            });
-        }
-        catch (e) {}
     };
     var putQiyeInfo = function (companyName, drName, website, picLocal) {
         var htmls = '<div class=\'firms-con\'>';
@@ -146,7 +231,7 @@ define(function (require) {
         htmls += '<p><span class=\'name\'>' + companyName + '</span><span class=\'time\'> 16-09-05</span></p>';
         htmls += '<p>' + drName + '</p>';
         htmls += '</div>';
-        htmls += '<a href=' + website + ' target=\'_blank\' class=\'btn-ask\'>咨询专家</a>';
+        htmls += '<a href=' + website + ' target=\'_blank\' class=\'btn-ask href_log\'>咨询专家</a>';
         htmls += '</div>';
         htmls += '</div>';
         return htmls;
@@ -162,44 +247,45 @@ define(function (require) {
 
             var province = ''; // 省份
             var city = ''; // 城市
+            var ip = '';
             ipLoad(function (data) {
                 province = data.province;
                 city = data.city;
-            });
-            $.get(url,
-            function (data) {
-                var res = $.parseJSON(data);
-                console.log(res);
-                if (res.succ === 'Y') { // 不等于空
-                    var paramsArry = params.split(':');
-                    var cmJsonData = $.parseJSON(res.html);
-                    var lenGood = parseInt(paramsArry[0], 0); // 好评回答数量
-                    var lenOther = parseInt(paramsArry[1], 0); // 普通答案数量
-                    var qSourceType = paramsArry[2]; // 来源
-                    var commercialSource = paramsArry[3]; // 商业广告类型
-                    var qTags = paramsArry[4]; // 标签
-                    var mainTags = paramsArry[5]; // 病种
-                    var nowTime = getSysTime(); // 时间
-                    var qCid = paramsArry[6] || '79';
-                    var bCid = paramsArry[7];
-                    if ('undefined' !== typeof cmJsonData) {
-                        var param = loadInit({
-                            mainTags: mainTags,
-                            province: province,
-                            qCid: qCid,
-                            bCid: bCid,
-                            city: city,
-                            lenGood: lenGood,
-                            lenother: lenOther,
-                            commercialSource: commercialSource,
-                            qSourceType: qSourceType,
-                            qTags: qTags,
-                            nowTime: nowTime
-                        });
-                        loadData(param, cmJsonData);
+                ip = data.ip;
+                $.get(url, function (data) {
+                    var res = $.parseJSON(data);
+                    if (res.succ === 'Y') { // 不等于空
+                        var paramsArry = params.split(':');
+                        var cmJsonData = $.parseJSON(res.html);
+                        var lenGood = parseInt(paramsArry[0], 0); // 好评回答数量
+                        var lenOther = parseInt(paramsArry[1], 0); // 普通答案数量
+                        var qSourceType = paramsArry[2]; // 来源
+                        var commercialSource = paramsArry[3]; // 商业广告类型
+                        var qTags = paramsArry[4]; // 标签
+                        var mainTags = paramsArry[5]; // 病种
+                        var nowTime = getSysTime(); // 时间
+                        var qCid = paramsArry[6] || '79';
+                        var bCid = paramsArry[7];
+                        var sCid = paramsArry[8];
+                        var qid = paramsArry[9];
+                        if ('undefined' !== typeof cmJsonData) {
+                            var param = loadInit({
+                                mainTags: mainTags,
+                                province: province,
+                                qCid: qCid,
+                                bCid: bCid,
+                                city: city,
+                                lenGood: lenGood,
+                                lenother: lenOther,
+                                commercialSource: commercialSource,
+                                qSourceType: qSourceType,
+                                qTags: qTags,
+                                nowTime: nowTime
+                            });
+                            loadData(param, cmJsonData);
+                        }
                     }
-
-                }
+                });
             });
         }
         catch (e) {
@@ -220,15 +306,15 @@ define(function (require) {
     };
 
     var loadData = function (options, cmJsonData) {
+        var iscmBy = false;
         if (options.commercialSource === 'COMMERCIAL_ZWZD' || options.qSourceType === 'COOPERATE_SOUTHNETWORK'
         || options.qSourceType === 'COOPERATE_XINYUHENG' || options.qSourceType === 'COOPERATE_HUASHENG'
         || options.qSourceType === 'COOPERATE_HUASHENG_QA') {
-            return;
+            return iscmBy;
         }
         // 如果ip获取不到城市信息，则根据省份进行广告主病种随机投放
         if (!options.city) {
-            noCityPutAd(options, cmJsonData);
-            return;
+            return noCityPutAd(options, cmJsonData);
         }
         $.each(cmJsonData,
         function (index) {
@@ -260,12 +346,13 @@ define(function (require) {
                     && checkCity(options.city, city, ncity)
                     && checkTag(options.qTags, qTags, options.mainTags, mainTags)) {
                         adPut(val, options);
+                        iscmBy = true;
                     }
                 }
             }
             catch (e) {}
-
         });
+        return iscmBy;
     };
 
     var adPut = function (val, options) {
@@ -317,6 +404,7 @@ define(function (require) {
     };
 
     function noCityPutAd(options, cmJsonData) {
+        var iscmBy = false;
         var arr1 = new Array(0);
         var arr2 = new Array(0);
         var arr3 = new Array(0);
@@ -352,6 +440,7 @@ define(function (require) {
                             if (arry[i] === '3') {
                                 arr3.push(val);
                             }
+                            iscmBy = true;
                         }
 
                     }
@@ -371,6 +460,7 @@ define(function (require) {
             var index3 = fRandomBy(0, arr3.length - 1);
             adPut(arr3[index3], options);
         }
+        return iscmBy;
     }
     var checkTime = function (nowTime, startTime, endTime) {
         if (startTime <= nowTime && nowTime < endTime) {
@@ -444,39 +534,64 @@ define(function (require) {
         + '-' + (day < 10 ? '0' + day : day) + ' ' + (hours < 10 ? '0' + hours : hours)
         + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
     };
+    // 广告
+    var currencyAM = function (sourceType, openId) {
+        loadAd(sourceType, openId, '.mip_as_bottm_div');
+    };
+    // 南方网通底部悬浮广告
+    var southnetwork = function (openId, div) {
+        var url = 'http://imgv2.g3user.com/api/b.php?uid=' + openId + '&type=m&callback=?';
+        try {
+            $.getJSON(url,
+            function (data) {
+                var htmls = putMXfAd(data.m[0].link, data.m[0].pic);
+                $(div).empty();
+                $(div).append(htmls);
+                advLogInfoClick();
+            });
+        }
+        catch (e) {}
+    };
+    var effects = {
+            newLoadAd: function () {
+                var sources = $('.business_source').attr('sources');
+                if (sources === 'COMMERCIAL_IAD' || sources === 'COMMERCIAL_ZWZD' || sources === 'COMMERCIAL_CAD') {
+                    removeBaiduAd();
+                    busBottomAM();
+                    if (sources === 'COMMERCIAL_ZWZD') {
+                        sources = 'COOPERATE_COMMERCIAL';
+                    }
+                    advLogInfo(sources, 0);
+                }
+                else {
+                    var sourceType = $('.business_source_type').attr('sourceType');
+                    var openId = $('.business_source_type').attr('openId');
+                    var tags = $('.business_source_type').attr('tags');
+                    var params = $('.business_source_type').attr('params');
+                    if (sourceType === 'COOPERATE_XINYUHENG' || sourceType === 'COOPERATE_HUASHENG'
+                    || sourceType === 'COOPERATE_HUASHENG_QA') {
+                        removeBaiduAd();
+                        currencyAM(sourceType, openId);
+                    }
+                    else if (sourceType === 'COOPERATE_SOUTHNETWORK') {
+                        removeBaiduAd();
+                        southnetwork(openId, '.mip_as_bottm_div');
+                    }
+                    else if (sourceType !== 'COOPERATE_HUASHENG' && sourceType !== 'COOPERATE_HUASHENG_QA') {
+                        if (tags) {
+                            loadURLJS(tags, params);
+                        }
+                    }
+                    advLogInfo(sourceType, 0);
+                }
+            },
+            init: function () {
+                this.newLoadAd();
+            }
+        };
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
-        var elem = this.element;
-        var div = $(elem).attr('div');
-        var area = $(elem).attr('area');
-        var len = $(elem).attr('len');
-        var type = $(elem).attr('type');
-        var sources = $(elem).attr('sources');
-        var openCorporationId = $(elem).attr('openId');
-        var tags = $(elem).attr('tags');
-        var params = $(elem).attr('params');
-        if (len) {
-            lenHide(len, div, type);
-        }
-        if (area) {
-            hideDiv(area, div);
-        }
-        if (sources === 'COMMERCIAL_IAD' || sources === 'COMMERCIAL_ZWZD' || sources === 'COMMERCIAL_CAD') {
-            removeBaiduAd();
-        }
-        if (sources === 'COOPERATE_HUASHENG' || sources === 'COOPERATE_HUASHENG_QA'
-        || sources === 'COOPERATE_XINYUHENG') {
-            loadAd(sources, openCorporationId, div);
-        }
-        else if (sources === 'COOPERATE_SOUTHNETWORK') {
-            // 南方网通
-            southnetwork(sources, openCorporationId, div);
-        }
-        if (tags) {
-            loadURLJS(tags, params);
-        }
+        effects.init();
     };
-
     return customElem;
 });
-

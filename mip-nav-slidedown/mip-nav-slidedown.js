@@ -52,9 +52,6 @@ define(function (require) {
 
         $(document).on('click', '.navbar-header .navbar-toggle', navClickHandler);
 
-        $('#bs-navbar .navbar-nav li').on('click', function () {
-            $('.navbar-header .navbar-toggle').trigger('click');
-        });
         // 主菜单关闭按钮 touchstart touchend mousedown mouseup变色
         addHoverClass($('#navbar-wise-close-btn'));
         $('#navbar-wise-close-btn').on('touchend', function (e) {
@@ -65,7 +62,6 @@ define(function (require) {
             $('.navbar-header .navbar-toggle').trigger('click');
         });
     }
-
 
     /**
      * 展开关闭菜单效果
@@ -91,6 +87,7 @@ define(function (require) {
             }, 500);
         }
         else {
+            // 打开菜单
             var closeBtnTop = 20;
             $wiseNav = $('#bs-navbar');
 
@@ -117,8 +114,11 @@ define(function (require) {
             }
 
             if (mode === 'resize' && $wiseNav.hasClass('in') || mode === 'open') {
-                $wiseNav.height(window.innerHeight - $('.navbar-header').height());
-                closeBtnTop = window.innerHeight - 50 - ($('.navbar-right .index-body').height() + 20) * 4 - 90;
+                var listNum = $('#bs-navbar li').length;
+                var offsetTop = $('mip-nav-slidedown')[0].getBoundingClientRect().top;
+                var navHeight = window.innerHeight - $('.navbar-header').height() - offsetTop;
+                $wiseNav.height(navHeight);
+                closeBtnTop = navHeight - ($('.navbar-right li').height()) * listNum - 90;
                 if (closeBtnTop > 20) {
                     $('.navbar-wise-close').css('margin-top', closeBtnTop + 'px');
                 }

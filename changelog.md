@@ -1,5 +1,50 @@
 # 升级日志
 
+#### 2017.06.15
+
+> 核心代码上线 1.0.50
+
+1. 增加cache域名解析为原页面URL功能；
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-access](https://github.com/mipengine/mip-extensions/tree/master/mip-access)|[升级]bug fix
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级]
+[mip-shouji-down](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-shouji-down)|[升级][平台] 功能升级
+[mip-xzw-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xzw-list)|[升级][平台] 功能升级
+
+#### 2017.06.14
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-access](https://github.com/mipengine/mip-extensions/tree/master/mip-access)|[升级]修改postmessage域名
+[mip-shouji-down](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-shouji-down)|[新增][平台] 下载站定制组件，主要用于导航切换与下载按钮切换
+[mip-append-video](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-append-video)|[升级][平台] 功能升级
+
+#### 2017.06.13
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-append-video](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-append-video)|[新增][平台] 实现了一个简单的广告（非必填）+视频的播放器
+[mip-bdb-custom-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-bdb-custom-content)|[升级][平台]功能升级
+
+#### 2017.06.12
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cloud-tie](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cloud-tie)|[升级][平台] bug fixed
+[mip-bdb-custom-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-bdb-custom-content)|[升级][平台] 功能升级
+[mip-praise](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-praise)|[新增][平台] 带有参数的点赞功能
+[mip-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-count)|[新增][平台] 有来统计代码
+
 #### 2017.06.09
 
 > 组件上线
@@ -17,7 +62,7 @@
 ---|---
 [mip-access](https://github.com/mipengine/mip-extensions/tree/master/mip-access)|[新增] 允许发布者对⻚⾯内容进⾏访问权限的控制
 [mip-login-done](https://github.com/mipengine/mip-extensions/tree/master/mip-login-done)|[新增] 登录成功过渡功能组件
-[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 增加后切片广告 
+[mip-ad-video](https://github.com/mipengine/mip-extensions/tree/master/mip-ad-video)|[升级] 增加后切片广告
 [mip-custom](https://github.com/mipengine/mip-extensions/tree/master/mip-custom)|[升级] 修改异步请求为 fetch、修改 mip-fixed 占位逻辑
 [mip-sn-shop-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-list)|[升级][平台] 实现了自定义实现了sn获取接口数据后，渲染列表数据的功能
 
@@ -44,7 +89,7 @@
 
 > 核心代码上线 1.0.48
 
-1. 通过扩展 a 来替换 mip-link方案 
+1. 通过扩展 a 来替换 mip-link方案
 
 > 组件上线
 
@@ -84,7 +129,7 @@
 > 核心代码上线 1.0.47
 
 1. 兼容 pc 下 tap 触发的问题
-2. 轮播组件支持 mip-link PC上支持click 
+2. 轮播组件支持 mip-link PC上支持click
 
 > 组件上线
 

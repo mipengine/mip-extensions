@@ -161,7 +161,9 @@ define(function (require) {
      *
      */
     Access.prototype._applyPingback = function () {
-        fetch(this._pingback).then(function (res) {});
+        fetch(this._pingback, {
+            credentials: 'include'
+        }).then(function (res) {});
     };
 
     /**
@@ -208,7 +210,9 @@ define(function (require) {
      */
     Access.prototype._applyAuthorization = function () {
         var self = this;
-        fetch(self._authorization).then(function (res) {
+        fetch(self._authorization, {
+            credentials: 'include'
+        }).then(function (res) {
             if (res.ok) {
                 res.text().then(function (data) {
                     self._authorizationFallback = JSON.parse(data);

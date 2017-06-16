@@ -5,8 +5,10 @@
 
 define(function (require) {
 
-    var util = require('./util');
+    var mipUtil = require('util');
     var viewer = require('viewer');
+
+    var util = require('./util');
     // shortcut
     var parseUrl = util.parseUrl;
 
@@ -34,7 +36,7 @@ define(function (require) {
             }
 
             // 如果 iframe 的 origin 和 mip 原页面 origin 不一样，则不注册
-            if (parseUrl(util.parseCacheUrl(window.location.href)).origin !== parseUrl(iframeSrc).origin) {
+            if (parseUrl(mipUtil.parseCacheUrl(window.location.href)).origin !== parseUrl(iframeSrc).origin) {
                 return;
             }
 
@@ -109,14 +111,15 @@ define(function (require) {
      * 注册 Service Worker
      *
      * @param {string} src Service Worker 的地址
-     * @return {Promise}
      */
     function registerServiceWorker(src) {
-        return window.navigator.serviceWorker.register(src).catch(function (err) {
-            /* eslint-disable no-console */
-            console.error(err);
-            /* eslint-enable no-console */
-        });
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.register(src).catch(function (err) {
+                /* eslint-disable no-console */
+                console.error(err);
+                /* eslint-enable no-console */
+            });
+        }
     }
 
     return customElement;

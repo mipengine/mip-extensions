@@ -13,41 +13,35 @@ position:sticky的js兼容版本。页面元素滑动到顶部时自动贴顶。
 ### 基本用法
 
 ```html
- <div class="placeholder">我走过山时，山不说话，</div>
- <div class="placeholder">我路过海时，海不说话，</div>
- <mip-semi-fixed id="semi-fixed" fixedClassNames="fixedStyle">
+<mip-semi-fixed id="semi-fixed" fixedClassNames="fixedStyle">
     <div mip-semi-fixed-container class="absoluteStyle">
-        MIP-SEMI-FIXED MIP-SEMI-FIXED
+        距离顶部0px时自动贴顶 magic
     </div>
 </mip-semi-fixed>
- <div class="placeholder">小毛驴滴滴答答，</div>
- <div class="placeholder">倚天剑伴我走天涯。 </div>
- <div class="placeholder">大家都说我因为爱着杨过大侠，</div>
- <div class="placeholder">才在峨眉山上出了家， </div>
- <div class="placeholder">其实我只是爱上了峨眉山上的云和霞，</div>
- <div class="placeholder">像极了十六岁那年的烟花。</div>
- 
-
+<!--以下为占位符，仅用于查看组件效果-->
+<div class="placeholder">小毛驴滴滴答答，</div>
+<div class="placeholder">倚天剑伴我走天涯。 </div>
+<div class="placeholder">大家都说我因为爱着杨过大侠，</div>
+<div class="placeholder">才在峨眉山上出了家， </div>
+<div class="placeholder">其实我只是爱上了峨眉山上的云和霞，</div>
+<div class="placeholder">像极了十六岁那年的烟花。</div>
 ```
 
 ### 设置 fixed 时距离页面顶部的阈值
 
 ```html
- <div class="placeholder">我走过山时，山不说话，</div>
- <div class="placeholder">我路过海时，海不说话，</div>
- <mip-semi-fixed id="semi-fixed" threshold="100" fixedClassNames="fixedStyle">
-    <div mip-semi-fixed-container class="absoluteStyle">
-        MIP-SEMI-FIXED MIP-SEMI-FIXED
-    </div>
- </mip-semi-fixed>
- <div class="placeholder">小毛驴滴滴答答，</div>
- <div class="placeholder">倚天剑伴我走天涯。 </div>
- <div class="placeholder">大家都说我因为爱着杨过大侠，</div>
- <div class="placeholder">才在峨眉山上出了家， </div>
- <div class="placeholder">其实我只是爱上了峨眉山上的云和霞，</div>
- <div class="placeholder">像极了十六岁那年的烟花。</div>
- 
-
+<mip-semi-fixed id="semi-fixed2" threshold="100" fixedClassNames="fixedStyle">
+	<div mip-semi-fixed-container class="absoluteStyle">
+	    距离顶部100px时停下
+	</div>
+</mip-semi-fixed>
+<!--以下为占位符，仅用于查看组件效果-->
+<div class="placeholder">小毛驴滴滴答答，</div>
+<div class="placeholder">倚天剑伴我走天涯。 </div>
+<div class="placeholder">大家都说我因为爱着杨过大侠，</div>
+<div class="placeholder">才在峨眉山上出了家， </div>
+<div class="placeholder">其实我只是爱上了峨眉山上的云和霞，</div>
+<div class="placeholder">像极了十六岁那年的烟花。</div>
 ```
 
 ## 属性

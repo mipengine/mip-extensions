@@ -2,8 +2,8 @@
 * 寻医问药mip改造 广告组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2017.03.02
-* @version 1.0.1
+* @time 2017.06.19
+* @version 1.0.2
 */
 define(function (require) {
     var $ = require('zepto');

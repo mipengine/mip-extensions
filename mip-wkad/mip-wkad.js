@@ -73,11 +73,15 @@ define(function (require) {
         var complex = $(elem).attr('complex');
         var subject = parseInt($(elem).attr('subject'), 10);
         var adJson = null;
+        var domain = document.domain;
         if (complex === 'on') {
             adJson = JSON.parse($(elem).attr('adJson'));
             loadAd(elem, elStr, parse(adJson, ua, subject));
         }
         else {
+            if (domain === '3g.xywy.com') {
+                $('mip-fixed[type="top"]').hide();
+            }
             loadAd(elem, elStr, adStr);
         }
     };

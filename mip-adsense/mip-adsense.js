@@ -12,8 +12,8 @@ define(function (require) {
         var adSlot = ele.getAttribute('ad-slot');
         var adFormat = ele.getAttribute('ad-format');
         var insTag = document.createElement('ins');
-        var width = ele.getAttribute('width');
-        var height = ele.getAttribute('height');
+        var width = ele.getAttribute('ad-width');
+        var height = ele.getAttribute('ad-height');
         var scriptTag1 = document.createElement('script');
         scriptTag1.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
             scriptTag1.setAttribute('async', 'true');

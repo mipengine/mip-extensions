@@ -1,5 +1,15 @@
 # 升级日志
 
+#### 2017.06.16
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-access](https://github.com/mipengine/mip-extensions/tree/master/mip-access)|[升级]请求携带cookie
+[mip-semi-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-semi-fixed)|[升级]修复semi-fix滚动定位问题
+[mip-51la](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-51la)|[升级][平台] 51la广告组件
+
 #### 2017.06.15
 
 > 核心代码上线 1.0.50
@@ -11,7 +21,7 @@
 组件名|功能说明
 ---|---
 [mip-access](https://github.com/mipengine/mip-extensions/tree/master/mip-access)|[升级]bug fix
-[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级]
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 功能升级
 [mip-shouji-down](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-shouji-down)|[升级][平台] 功能升级
 [mip-xzw-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xzw-list)|[升级][平台] 功能升级
 

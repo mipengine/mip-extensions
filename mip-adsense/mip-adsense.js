@@ -18,7 +18,7 @@ define(function (require) {
         scriptTag1.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
             scriptTag1.setAttribute('async', 'true');
         var scriptTag2 = document.createElement('script');
-        if (!(adFormat) && !(width)) {
+        if (!(adSlot)) {
             scriptTag2.innerHTML = '(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"'
                 + '' + adClient + '",enable_page_level_ads:true});';
             ele.appendChild(scriptTag1);

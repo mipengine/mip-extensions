@@ -74,6 +74,7 @@ define(function (require) {
         var subject = parseInt($(elem).attr('subject'), 10);
         var adJson = null;
         var domain = document.domain;
+        var url = document.URL;
         if (complex === 'on') {
             adJson = JSON.parse($(elem).attr('adJson'));
             loadAd(elem, elStr, parse(adJson, ua, subject));
@@ -81,6 +82,9 @@ define(function (require) {
         else {
             if (domain === '3g.xywy.com') {
                 $('mip-fixed[type="top"]').hide();
+            }
+            if (url.indexOf('mipcache.bdstatic.com') > -1 && url.indexOf('3g.xywy.com') > -1) {
+                $('mip-fixed[type="bottom"]').hide();
             }
             loadAd(elem, elStr, adStr);
         }

@@ -145,7 +145,7 @@ define(function (require) {
             self.getElementsByTagName('form')[0].submit();
         }
     }
-    // 判断 input 是否聚焦，为了解决 ios 的 UC 浏览器在SF下悬浮头部 fixed 位置混乱问题
+    // 判断 input 是否聚焦，为了解决 ios 的 UC 浏览器在iframe外层文档悬浮头部 fixed 位置混乱问题
     function checkFocus() {
         var inputAll = document.querySelectorAll('input');
         Array.prototype.forEach.call(inputAll, function (item, index) {
@@ -159,7 +159,7 @@ define(function (require) {
         });
     }
 
-    // 在 input focus 或 blur 时向SF发送数据，SF返回设置预览头部为 absolute 
+    // 在 input focus 或 blur 时向iframe外层文档发送数据，iframe外层文档返回设置预览头部为 absolute 
     function sendFormMessage(event) {
             if (windowInIframe) {
                 // mip_video_jump 为写在外层的承接方法

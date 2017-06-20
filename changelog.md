@@ -7,6 +7,7 @@
 
 组件名|功能说明
 ---|---
+[mip-ad-link](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ad-link)|[新增][平台]康网图片增加链接代码
 [mip-wkfun-newslist](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-newslist)|[升级][平台] 底层页功能组件
 
 #### 2017.06.16

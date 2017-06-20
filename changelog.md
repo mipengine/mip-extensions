@@ -1,5 +1,14 @@
 # 升级日志
 
+
+#### 2017.06.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkfun-newslist](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-newslist)|[升级][平台] 底层页功能组件
+
 #### 2017.06.16
 
 > 组件上线

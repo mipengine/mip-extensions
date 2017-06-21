@@ -8,6 +8,7 @@
 ---|---
 [mip-cd-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cd-news)|[新增][平台]两性底部广告有数据时隐藏
 [mip-tanx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tanx)|[新增][平台]阿里妈妈SSP广告组件
+[mip-cd-source](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cd-source)|[新增][平台]全站来源控制
 [mip-wkad](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad)|[升级]增加一个域名判断
 [mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级]谷歌广告组件增强
 [mip-wkfun-newclub](https://github.com/mipengine/mip-extensions-platform/tree/master/[mip-wkfun-newclub)|[升级][平台]寻医问药页面功能组件

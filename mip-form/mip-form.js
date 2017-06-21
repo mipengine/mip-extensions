@@ -146,7 +146,7 @@ define(function (require) {
         }
     }
     // 给 input 绑定事件，向 SF 发送数据，为了解决 ios 的 UC 浏览器在iframe外层文档悬浮头部 fixed 位置混乱问题
-    function addFocus() {
+    function initMessageEvents() {
         var inputAll = document.querySelectorAll('input');
         Array.prototype.forEach.call(inputAll, function (item, index) {
             item.addEventListener('focus', function () {
@@ -239,7 +239,7 @@ define(function (require) {
                 util.css(cross, {display: 'none'});
             }
         }
-        addFocus();
+        initMessageEvents();
     };
     return customElement;
 

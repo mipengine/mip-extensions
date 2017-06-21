@@ -1,0 +1,1 @@
+define("mip-ck-course-detail/js/mediator",["require","zepto"],function(t){return t("zepto")({})});

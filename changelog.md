@@ -11,7 +11,9 @@
 [mip-cd-source](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cd-source)|[新增][平台]全站来源控制
 [mip-wkad](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad)|[升级]增加一个域名判断
 [mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级]谷歌广告组件增强
-[mip-wkfun-newclub](https://github.com/mipengine/mip-extensions-platform/tree/master/[mip-wkfun-newclub)|[升级][平台]寻医问药页面功能组件
+[mip-wkfun-newclub](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-newclub)|[升级][平台]寻医问药页面功能组件
+[mip-terms-shield](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-terms-shield)|[升级][平台]	标题关键字屏蔽
+
 
 #### 2017.06.20
 

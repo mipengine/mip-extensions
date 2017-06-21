@@ -6,6 +6,7 @@
 
 组件名|功能说明
 ---|---
+[mip-cd-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cd-news)|[新增][平台]两性底部广告有数据时隐藏
 [mip-wkad](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad)|[升级]增加一个域名判断
 [mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级]谷歌广告组件增强
 

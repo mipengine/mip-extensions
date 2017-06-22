@@ -1,6 +1,6 @@
 {
     "name": "mip-global-script",
-    "version": "1.0.0",
+    "version": "1.0.1",//2017.06版本
     "author": {
         "name": "Zhou",
         "email": "zhouhappy01@gmail.com",
@@ -8,5 +8,6 @@
     },
     "engines": {
         "mip": ">=1.1.0"
-    }
+    },
+    "contributors":[{"name":"lj","email":"lj@952.com"}]
 }

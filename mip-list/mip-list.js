@@ -70,6 +70,7 @@ define(function (require) {
                 if (data.data.isEnd) {
                     self.isEnd = data.isEnd;
                     self.button.innerHTML = '已经加载完毕';
+                    self.button.removeAttribute('on');
                 }
             }
             else {

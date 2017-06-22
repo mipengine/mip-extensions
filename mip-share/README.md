@@ -74,3 +74,7 @@
 必选项：否  
 类型：字符串  
 取值范围：URL
+
+## 注意事项
+分享到'微信好友'在 Safari Chrome 上不显示的原因是：
+show-more 组件会调用 Safari 和 Chrome 本身的 API 接口。

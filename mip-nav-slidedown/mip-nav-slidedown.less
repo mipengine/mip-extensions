@@ -19,14 +19,17 @@
                 list-style: none;
                 line-height: 50px;
                 &.active a,
-                &.active mip-link {
+                &.active mip-link
+                &.active span {
                     color: black;
                     font-weight: bold;
+
                 }
             }
             mip-link,
             a,
             span {
+                white-space: nowrap;
                 margin: 15px;
                 padding: 10px;
                 color: #666;
@@ -213,10 +216,11 @@
             display: none;
             list-style: none;
             position: absolute;
-            background: #white;
+            background: white;
         }
         li:hover > ul {
             display:inherit;
+            z-index: 10;
         }
     }
 }

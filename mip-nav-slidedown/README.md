@@ -95,7 +95,13 @@
                     <a href="//www.mipengine.org/timeline.html">动态</a>
                 </li>
                 <li>
-                    <a href="http://www.cnblogs.com/mipengine/">博客</a>
+                    <span class="navbar-more">下拉菜单</span>
+                    <ul>
+                        <li> <a href="//www.mipengine.org/">子菜单01</a> </li>
+                        <li> <a href="//www.mipengine.org/">子菜单02</a> </li>
+                        <li> <a href="//www.mipengine.org/">子菜单03</a> </li>
+                        <li> <a href="//www.mipengine.org/">子菜单04</a> </li>
+                    </ul>
                 </li>
                 <li class="navbar-wise-close">
                     <span id="navbar-wise-close-btn"></span>

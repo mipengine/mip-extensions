@@ -29,14 +29,12 @@ define(function (require) {
                 _czc.push(setCustom);
             }
 
-            var html = [
-                '<script src="https://s11.cnzz.com/z_stat.php?id=',
-                token,
-                '&web_id=',
-                token,
-                '" language="JavaScript"></script>'
-            ];
-            $element.append(html.join(''));
+            var cnzzScript = document.createElement('script');
+            var src = 'https://s11.cnzz.com/z_stat.php?id=' + token
+                        + '&web_id=' + token;
+            cnzzScript.setAttribute('language', 'JavaScript');
+            cnzzScript.src = src; 
+            $element.append($(cnzzScript));
             bindEle();
         }
 

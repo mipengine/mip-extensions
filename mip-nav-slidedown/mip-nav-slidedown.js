@@ -115,9 +115,10 @@ define(function (require) {
 
             if (mode === 'resize' && $wiseNav.hasClass('in') || mode === 'open') {
                 var listNum = $('#bs-navbar li').length;
-                var offsetTop = $('mip-nav-slidedown')[0].getBoundingClientRect().top;
+                var offsetTop = $('mip-nav-slidedown')[0] ? $('mip-nav-slidedown')[0].getBoundingClientRect().top : 0;
                 var navHeight = window.innerHeight - $('.navbar-header').height() - offsetTop;
                 $wiseNav.height(navHeight);
+                // 关闭按钮距离底部固定为90px
                 closeBtnTop = navHeight - ($('.navbar-right li').height()) * listNum - 90;
                 if (closeBtnTop > 20) {
                     $('.navbar-wise-close').css('margin-top', closeBtnTop + 'px');

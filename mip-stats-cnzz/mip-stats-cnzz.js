@@ -23,19 +23,18 @@ define(function (require) {
                 token
             ]);
 
-
             // 检测setconfig是否存在
             if (setConfig) {
                 var setCustom = buildArry(decodeURIComponent(setConfig));
                 _czc.push(setCustom);
             }
 
-            var html = [
-                '<script type="text/javascript">',
-                'var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id=\'cnzz_stat_icon_' + token + '\'%3E%3C/span%3E%3Cscript src=\'" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D' + token + '\' type=\'text/javascript\'%3E%3C/script%3E"));',
-                '</script>'
-            ];
-            $element.append(html.join(''));
+            var cnzzScript = document.createElement('script');
+            var src = 'https://s11.cnzz.com/z_stat.php?id=' + token
+                        + '&web_id=' + token;
+            cnzzScript.setAttribute('language', 'JavaScript');
+            cnzzScript.src = src; 
+            $element.append($(cnzzScript));
             bindEle();
         }
 

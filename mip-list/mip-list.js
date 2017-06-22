@@ -36,12 +36,9 @@ define(function (require) {
         htmls.map(function (html) {
             var node = document.createElement('div');
             node.innerHTML = html;
-            var element = node.childNodes[1];
+            node.setAttribute('role', 'listitem');
 
-            if (!element.hasAttribute('role')) {
-                element.setAttribute('role', 'listitem');
-            }
-            self.container.appendChild(element);
+            self.container.appendChild(node);
         });
     }
 

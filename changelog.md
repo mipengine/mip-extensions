@@ -6,6 +6,7 @@
 
 组件名|功能说明
 ---|---
+[mip-mipengine-preview](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-mipengine-preview)|[新增][平台]用于 www.mipengine.org 的预览工具
 [mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[新增][平台]list 插件
 [mip-tiantis-jsridge](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-jsridge)|升级][平台]封装了天梯建站系统的JS逻辑
 [mip-tanx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tanx)|[升级][平台]阿里妈妈SSP广告组件

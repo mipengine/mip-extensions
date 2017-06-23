@@ -106,6 +106,7 @@ define(function (require) {
 
         var self = this;
         var element = self.element;
+        offsetTop = util.rect.getElementOffset(element).top;
         if (fixedElement && fixedElement._fixedLayer && element.parentNode === fixedElement._fixedLayer) {
             return;
         }
@@ -121,7 +122,6 @@ define(function (require) {
 
         // iframe 中
         if (viewer.isIframed && util.platform.isIos()) {
-
             try {
                 var  wrapp = fixedElement._fixedLayer.querySelector('#' + element.id);
                 self.fixedContainer = wrapp.querySelector('div[mip-semi-fixed-container]');
@@ -153,11 +153,10 @@ define(function (require) {
             document.body.addEventListener('touchmove', function (event) {
                 onScroll.call(self, viewport);
             });
-
         }
 
         // 初始状态为 fixed 时
-        if (!util.platform.isIos() && element.offsetTop <= self.threshold) {
+        if (!util.platform.isIos() && offsetTop <= self.threshold) {
             if (self.container.className.indexOf(self.fixedClassNames) < 0) {
                 self.container.className += self.fixedClassNames;
             }
@@ -166,7 +165,7 @@ define(function (require) {
         }
         else if (util.platform.isIos() && viewer.isIframed
 
-                && element.offsetTop - viewport.getScrollTop() <= self.threshold) {
+                && offsetTop <= self.threshold) {
 
             util.css(this.fixedContainer.parentNode, {display: 'block'});
             util.css(this.fixedContainer, {opacity: 1});

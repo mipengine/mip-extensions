@@ -4,6 +4,9 @@
        height:300px;
      border-bottom: 1px solid #aaa;
    }
+   mip-fixed{
+       background-color: lightpink;
+   }
  </style>
 
  

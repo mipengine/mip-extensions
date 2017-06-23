@@ -9,6 +9,7 @@
 [mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[新增][平台]list 插件
 [mip-tiantis-jsridge](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-jsridge)|升级][平台]封装了天梯建站系统的JS逻辑
 [mip-tanx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tanx)|[升级][平台]阿里妈妈SSP广告组件
+[mip-ad-link](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ad-link)|[升级][平台]康网图片增加链接代码
 
 
 #### 2017.06.21

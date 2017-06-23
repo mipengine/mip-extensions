@@ -10,6 +10,8 @@
 [mip-tiantis-jsridge](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-jsridge)|升级][平台]封装了天梯建站系统的JS逻辑
 [mip-tanx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tanx)|[升级][平台]阿里妈妈SSP广告组件
 [mip-ad-link](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ad-link)|[升级][平台]康网图片增加链接代码
+[mip-stats-cnzz](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-cnzz)|[升级]cnzz 投放方式升级，支持 script 用 async 方式加载
+[mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[升级]修复多次发请求的bug，修改dom渲染逻辑
 
 
 #### 2017.06.21

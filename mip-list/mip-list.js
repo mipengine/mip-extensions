@@ -33,13 +33,15 @@ define(function (require) {
      */
     function render(htmls) {
         var self = this;
+        var fragment = document.createDocumentFragment();
         htmls.map(function (html) {
             var node = document.createElement('div');
             node.innerHTML = html;
             node.setAttribute('role', 'listitem');
 
-            self.container.appendChild(node);
+            fragment.appendChild(node);            
         });
+        self.container.appendChild(fragment);
     }
 
     /**

@@ -2,8 +2,8 @@
 * 寻医问药mip改造 广告组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2017.06.19
-* @version 1.0.2
+* @time 2017.06.23
+* @version 1.0.3
 */
 define(function (require) {
     var $ = require('zepto');
@@ -82,9 +82,13 @@ define(function (require) {
         else {
             if (domain === '3g.xywy.com') {
                 $('mip-fixed[type="top"]').hide();
+                $('.hot-news-panel').addClass('none');
+                $('.mobile-ad-rnk1-panel').removeClass('none');
+                $('.mobile-ad-rnk2-panel').removeClass('none');
             }
             if (url.indexOf('mipcache.bdstatic.com') > -1 && url.indexOf('3g.xywy.com') > -1) {
                 $('mip-fixed[type="bottom"]').hide();
+                $('.mobile-ad-rnk3-panel').removeClass('none');
             }
             loadAd(elem, elStr, adStr);
         }

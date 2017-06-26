@@ -7,7 +7,7 @@
 标题|内容
 ----|----
 类型|通用 
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-sample/mip-fn-comment-praise.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-fn-comment-praise/mip-fn-comment-praise.js
 
 ## 属性
 ### praiseId

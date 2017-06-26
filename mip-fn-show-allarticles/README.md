@@ -7,7 +7,7 @@
 标题|内容
 ----|----
 类型|通用 
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-sample/mip-fn-show-allarticles.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-fn-show-allarticles/mip-fn-show-allarticles.js
 
 ## 属性  
 ### dataSrc

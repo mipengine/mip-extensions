@@ -100,17 +100,19 @@ define(function (require) {
         self.open = true;
         util.css(self.element, {display: 'block'});
         openMask.call(self);
-        //判断是否有 autoclose 属性
-        if(self.element.hasAttribute('autoclose')){
-            //取出用户自定义的 time 值
-            var time = Math.abs(self.element.getAttribute('autoclose')); 
-            //延迟关闭弹窗层     
-            setTimeout(function(){
+        // 判断是否有 autoclose 属性
+        if (self.element.hasAttribute('autoclose')) {
+            // 取出用户自定义的 time 值
+            var time = Math.abs(self.element.getAttribute('autoclose'));
+            // 延迟关闭弹窗层
+            setTimeout(function () {
                 self.open = false;
                 closeMask.call(self);
-            },time);
-            
-         }
+                console.log(self);
+                util.css(self.element, {display: 'none'});
+                util.css(document.body, {overflow: 'auto'});
+            }, time);
+        }
     }
 
 

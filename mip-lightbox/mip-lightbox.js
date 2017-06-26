@@ -108,7 +108,6 @@ define(function (require) {
             setTimeout(function () {
                 self.open = false;
                 closeMask.call(self);
-                console.log(self);
                 util.css(self.element, {display: 'none'});
                 util.css(document.body, {overflow: 'auto'});
             }, time);

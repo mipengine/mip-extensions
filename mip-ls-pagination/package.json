@@ -1,0 +1,12 @@
+{
+    "name": "mip-ls-pagination",
+    "version": "1.0.0",
+    "author": {
+        "name": "Keith",
+        "email": "61826293@qq.com",
+        "url": "http://m.zhaopin.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

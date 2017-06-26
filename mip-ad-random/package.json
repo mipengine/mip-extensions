@@ -1,0 +1,12 @@
+{
+    "name": "mip-ad-random",
+    "version": "1.1.2",
+    "author": {
+        "name": "xiejing",
+        "url": "https://www.mipengine.org",
+        "email":"741999251@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -1,0 +1,31 @@
+<style mip-custom>
+header {
+    text-align: center;
+    background-color: #9ca9af;
+}
+ul {
+    padding: 20px 10px;
+    color: #000;
+}
+li {
+    line-height: 40px;
+    font-size: 20px;
+    text-align: left;
+}
+li:first-child {
+    line-height: 80px;
+    font-size: 34px;
+    color: steelblue;
+}
+#logo {
+    font-size: 28px;
+    line-height: 56px;
+    color: #444;
+}
+#close {
+    background: #f5f2f2;
+    padding: 10px;
+    border: 1px solid #d8d5d5;
+    border-radius: 5px;
+}
+</style>

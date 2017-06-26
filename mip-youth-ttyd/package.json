@@ -1,0 +1,13 @@
+{
+    "name": "mip-youth-ttyd",
+    "version": "1.0.1",
+	"description": "article jctj",
+	"author": {
+		"name": "jixiangling",
+		"email": "1334935207@qq.com",
+		"url": "http://www.youth.cn"
+	},
+    "engines": {
+        "mip": ">=1.0.1"
+    }
+}

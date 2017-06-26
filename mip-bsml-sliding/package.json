@@ -1,0 +1,14 @@
+{
+    "name": "mip-bsml-sliding",
+    "version": "1.0.0",
+    "description": "bsml图片滑屏组件",
+    "contributors": [
+        {
+            "name": "qishunli",
+            "email": "shunliqi@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

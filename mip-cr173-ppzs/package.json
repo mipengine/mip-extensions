@@ -1,0 +1,12 @@
+{
+    "name": "mip-cr173-ppzs",
+    "version": "1.0.1",
+	"description": "show ppzs and show content",
+    "author": {
+        "name": "Zhang",
+        "url": "https://www.cr173.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

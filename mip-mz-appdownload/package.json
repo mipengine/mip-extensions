@@ -1,0 +1,14 @@
+{
+    "name": "mip-mz-appdownload",
+    "version": "1.0.0",
+    "description": "app下载组件，在高速下载和直接下载之间切换!",
+    "contributors": [
+        {
+            "name": "pifire",
+            "email": "104460712@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

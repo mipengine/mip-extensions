@@ -7,6 +7,14 @@
    mip-fixed{
        background-color: lightpink;
    }
+   mip-fixed .btn_style{
+   		  width: 30%;
+		     border: 1px solid black;
+		     text-align: center;
+		     background-color: bisque;
+		     box-shadow: 6px 2px 2px #888888;
+
+   }
  </style>
 
  

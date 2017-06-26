@@ -63,7 +63,7 @@
 ```html
 <mip-fixed type="top" id="customid">
   <div>我是顶部的fixed</div>
-  <div on="tap:customid.close">我是关闭按钮</div>
+  <div  class="btn_style" on="tap:customid.close">我是关闭按钮</div>
 </mip-fixed>
 ```
 

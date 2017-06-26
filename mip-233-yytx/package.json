@@ -1,0 +1,10 @@
+{
+    "name": "mip-233-yytx",
+    "version": "1.0.0",
+    "description":"预约提醒插件",
+    "author": {
+        "name": "233预约提醒",
+        "email": "446545975@qq.com",
+        "url": "www.233.com"
+    }
+}

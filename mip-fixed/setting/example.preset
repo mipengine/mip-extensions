@@ -9,6 +9,8 @@
    }
    mip-fixed .btn_style{
       width: 30%; 
+      height:40px;
+      line-height:40px;
        border: 1px solid black;
        text-align: center;
        background-color: bisque;

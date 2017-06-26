@@ -1,19 +1,18 @@
 <style mip-custom>
    .placeholder{
-     width:100%;
-       height:300px;
-     border-bottom: 1px solid #aaa;
+      width:100%;
+      height:300px;
+      border-bottom: 1px solid #aaa;
    }
    mip-fixed{
-       background-color: lightpink;
+      background-color: lightpink;
    }
-   mip-fixed .btn_style{ 
-   		  width: 30%; 
-		     border: 1px solid black;
-		     text-align: center;
-		     background-color: bisque;
-		     box-shadow: 6px 2px 2px #888888;
-
+   mip-fixed .btn_style{
+      width: 30%; 
+       border: 1px solid black;
+       text-align: center;
+       background-color: bisque;
+       box-shadow: 6px 2px 2px #888888;
    }
  </style>
 

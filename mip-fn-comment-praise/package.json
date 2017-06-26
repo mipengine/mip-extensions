@@ -1,0 +1,12 @@
+{
+  "name": "mip-fn-comment-praise",
+  "version": "1.0.0",
+
+  "author": {
+    "name": "fn" 
+  },
+
+  "engines": {
+    "mip": ">=1.1.0"
+  }
+}

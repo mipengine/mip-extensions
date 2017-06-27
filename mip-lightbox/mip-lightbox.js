@@ -131,6 +131,7 @@ define(function (require) {
         autoclose.call(self);
     }
 
+
     /**
      * [close 关闭 sidebar]
      *
@@ -205,7 +206,6 @@ define(function (require) {
             util.css(this.maskElement, {display: 'none'});
         }
     }
-
 
 
     /**

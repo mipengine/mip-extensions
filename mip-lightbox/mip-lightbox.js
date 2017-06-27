@@ -17,7 +17,7 @@ define(function (require) {
      *
      */
     function render() {
-        
+
         var self = this;
         self.open = false;
         self.id = this.element.id;
@@ -113,6 +113,7 @@ define(function (require) {
     function open(event) {
 
         var self = this;
+
         if (self.open) {
             return;
         }
@@ -204,6 +205,7 @@ define(function (require) {
             util.css(this.maskElement, {display: 'none'});
         }
     }
+
 
 
     /**

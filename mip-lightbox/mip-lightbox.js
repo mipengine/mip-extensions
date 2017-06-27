@@ -19,6 +19,7 @@ define(function (require) {
     function render() {
 
         var self = this;
+        // console.log(self);
         self.open = false;
         self.id = this.element.id;
         // bottom 不能为0，不然会覆盖遮盖曾，导致无法关闭lightbox
@@ -45,6 +46,34 @@ define(function (require) {
             toggle.call(self, event);
         });
 
+        // 判断 autoopen 属性是否存在
+        if (self.element.hasAttribute('autoopen')) {
+            var autoopen = self.element.getAttribute('autoopen');
+            // 如果 autoopen 属性值是 true 则自动打开弹层
+            if (autoopen === 'true') {
+                self.open = true;
+                util.css(self.element, {display: 'block'});
+                openMask.call(self);
+                autoclose.call(self);
+            }
+        }
+    }
+
+    // 自动关闭弹层
+    function autoclose() {
+        var self = this;
+        // 判断是否有 autoclose 属性
+        if (self.element.hasAttribute('autoclose')) {
+            // 取出用户自定义的 time 值
+            var time = Math.abs(self.element.getAttribute('autoclose'));
+            // 延迟关闭弹窗层
+            setTimeout(function () {
+                self.open = false;
+                closeMask.call(self);
+                util.css(self.element, {display: 'none'});
+                util.css(document.body, {overflow: 'auto'});
+            }, time);
+        }
     }
 
     function changeParentNode() {
@@ -85,6 +114,7 @@ define(function (require) {
     function open(event) {
 
         var self = this;
+        // console.log(self);
 
         if (self.open) {
             return;
@@ -100,20 +130,8 @@ define(function (require) {
         self.open = true;
         util.css(self.element, {display: 'block'});
         openMask.call(self);
-        // 判断是否有 autoclose 属性
-        if (self.element.hasAttribute('autoclose')) {
-            // 取出用户自定义的 time 值
-            var time = Math.abs(self.element.getAttribute('autoclose'));
-            // 延迟关闭弹窗层
-            setTimeout(function () {
-                self.open = false;
-                closeMask.call(self);
-                util.css(self.element, {display: 'none'});
-                util.css(document.body, {overflow: 'auto'});
-            }, time);
-        }
+        autoclose.call(self);
     }
-
 
     /**
      * [close 关闭 sidebar]

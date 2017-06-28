@@ -12,6 +12,8 @@
         float: right;
         .navbar-nav {
             display: -ms-flexbox;
+            display: -webkit-box;
+            display: -webkit-flex;
             display: flex;
             margin-top: 10px;
             margin-right: -25px;
@@ -86,8 +88,7 @@
                 margin: 0;
                 min-height: 283px;
                 height: 100%;
-                -ms-flex-direction: column;
-                flex-direction: column;
+                display: block;
                 li {
                     padding: 5px 0;
                 }

@@ -40,13 +40,13 @@ define(function (require) {
         var $element = $(element);
         var url = element.getAttribute('url');
         var method = element.getAttribute('method');
-        var form = $([
-            '<form action=' + url + ' method=' + method + ' target="_blank">',
-            '</form>'
-        ].join(''));
-
-        form.append($element.html());
-        $element.html(form);
+        var target = element.getAttribute('target');
+        var form = document.createElement('form');
+        form.action = url;
+        form.method = method ? method : 'GET';
+        form.target = target ? target : '_blank';
+        element.append(form);
+        util.dom.insert(form, element.children);
 
         // 按钮提交
         $element.find('form').on('submit', function (event) {

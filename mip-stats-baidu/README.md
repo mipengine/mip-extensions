@@ -10,13 +10,19 @@
 
 ## 示例
 
-MIP提供百度统计的插件，便于分析页面数据，需要提前到百度统计这边创建站点，会自动生成js代码使用提取工具提取token，并使用MIP提供的插件，代码示例：
+MIP提供百度统计的插件，便于分析页面数据，需要提前到百度统计这边创建站点，在百度统计后台会自动生成js代码。从中找出token后插入到MIP组件的token
+位置。方法为：
 
+``` javascript
+// 例：百度统计代码截取
+hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
+// hm.js? 后为你的统计 token。此例 token="02890d4a309827eb62bc3335b2b28f7f"
+```
 
 百度统计插件引入示例:
 
 ```
-<mip-stats-baidu token="02890d4a309827eb62bc3335b2b28f7f" setconfig="%5B_setAutoPageview%2C%20false%5D"></mip-stats-baidu>
+<mip-stats-baidu token="02890d4a309827eb62bc3335b2b28f7f"></mip-stats-baidu>
 
 ```
 
@@ -32,7 +38,7 @@ MIP提供百度统计的插件，便于分析页面数据，需要提前到百�
 
 ### token
 
-说明：token
+说明：token，从百度统计代码中截取
 
 必填：是
 

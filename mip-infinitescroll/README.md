@@ -134,14 +134,14 @@
 - 异步请求接口需要规范 callback 为 'callback'
 - 接口返回的数据格式需要是如下格式：
 
-```
-{
-    status: 0, 
-    data: { 
-        items: []
-    }
-}
 
-  - status 0 表示请求成功
-  - items: [] 是需要渲染的数据
-```
+    {
+        status: 0, 
+        data: { 
+            items: []
+        }
+    }
+
+- status 0 表示请求成功
+- items: [] 是需要渲染的数据
+

@@ -1,6 +1,6 @@
 /**
- * 侧边栏组件
- * 
+ * @file 侧边栏组件
+ *
  * @author wangpei07@baidu.com
  * @version 1.0
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
@@ -8,123 +8,115 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
-    var Gesture = util.Gesture;
 
     /**
-     * [toggle_ 打开或关闭 sidebar 入口]
-     * 
-     * @return {[type]}
+     * [toggle 打开或关闭 sidebar 入口]
      */
-    function toggle_() {
+    function toggle() {
 
-        isOpen_.call(this) ? close_.call(this) : open_.call(this);
+        isOpen.call(this) ? close.call(this) : open.call(this);
 
     }
 
     /**
-     * [open_ 打开 sidebar]
-     * 
-     * @return
+     * [open 打开 sidebar]
      */
-    function open_() {
+    function open() {
 
-        var _this = this;
+        var self = this;
 
-        if(isOpen_.call(this)) { 
-            return; 
+        if (isOpen.call(this)) {
+            return;
         }
 
-        // pageScroll_.call(_this);
+        // pageScroll_.call(self);
 
-        util.css(_this.element, {'display': 'block'});
-        openMask_.call(_this);
+        util.css(self.element, {display: 'block'});
+        openMask.call(self);
 
-        /* 动画效果 */
-        var openTimer = setTimeout(function() {
+        // 动画效果
+        var openTimer = setTimeout(function () {
 
-            _this.element.setAttribute('open', '');
-            _this.element.setAttribute('aria-hidden', 'false');
+            self.element.setAttribute('open', '');
+            self.element.setAttribute('aria-hidden', 'false');
             clearTimeout(openTimer);
 
-        }, _this.ANIMATION_TIMEOUT);
+        }, self.ANIMATION_TIMEOUT);
 
     }
 
     /**
-     * [close_ 关闭 sidebar]
-     * 
-     * @return
+     * [close 关闭 sidebar]
+     *
+     * @param  {Object} event 点击事件
      */
-    function close_() {
+    function close(event) {
 
-        var _this = this;
+        var self = this;
+        event.preventDefault();
 
-        _this.element.removeAttribute('open');
-        _this.element.setAttribute('aria-hidden', 'true');
+        self.element.removeAttribute('open');
+        self.element.setAttribute('aria-hidden', 'true');
 
-        closeMask_.call(_this);
+        closeMask.call(self);
 
-        /* 动画效果 */
-        var closeTimer = setTimeout(function() {
+        // 动画效果
+        var closeTimer = setTimeout(function () {
 
-            util.css(_this.element, {'display': 'none'});
+            util.css(self.element, {display: 'none'});
             clearTimeout(closeTimer);
 
-        }, _this.ANIMATION_TIMEOUT);
+        }, self.ANIMATION_TIMEOUT);
 
     }
 
     /**
-     * [openMask_ 打开遮盖层]
-     * 
-     * @return
+     * [openMask 打开遮盖层]
      */
-    function openMask_() {
-        
-        var _this = this;
+    function openMask() {
 
-        /* 不存在遮盖层时先创建 */
-        if(!_this.maskElement) {
+        var self = this;
+
+        // 不存在遮盖层时先创建
+        if (!self.maskElement) {
 
             const mask = document.createElement('div');
-            mask.id = 'MIP-' + _this.id_.toUpperCase() + '-MASK';
+            mask.id = 'MIP-' + self.id.toUpperCase() + '-MASK';
             mask.className = 'MIP-SIDEBAR-MASK';
             mask.style.display = 'block';
 
-            /* 与mip-sidebar 同级dom */
-            _this.element.parentNode.appendChild(mask);
-            mask.addEventListener('touchmove', function(evt) {
+            // 与mip-sidebar 同级dom
+            self.element.parentNode.appendChild(mask);
+            mask.addEventListener('touchmove', function (evt) {
                 evt.preventDefault();
             }, false);
 
-            _this.maskElement = mask;
+            self.maskElement = mask;
 
         }
 
-        _this.maskElement.setAttribute('on', 'tap:' + _this.id_ + '.close');
+        self.maskElement.setAttribute('on', 'tap:' + self.id + '.close');
 
-        /* 样式设置 */
-        util.css(_this.maskElement, {'display': 'block'});
+        // 样式设置
+        util.css(self.maskElement, {display: 'block'});
 
     }
 
     /**
-     * [closeMask_ 关闭遮盖层]
-     * 
-     * @return
+     * [closeMask 关闭遮盖层]
      */
-    function closeMask_() {
-        if(this.maskElement) {
-            util.css(this.maskElement, {'display': 'none'});
+    function closeMask() {
+        if (this.maskElement) {
+            util.css(this.maskElement, {display: 'none'});
         }
     }
 
     /**
-     * [isOpen_ sidebar 状态判断]
-     * 
-     * @return
+     * [isOpen sidebar 状态判断]
+     *
+     * @return {boolean}
      */
-    function isOpen_() {
+    function isOpen() {
 
         return this.element.hasAttribute('open');
 
@@ -136,33 +128,40 @@ define(function (require) {
      */
     function build() {
 
-        var _this = this;
-        _this.maskElement = false;
-        _this.id_ = _this.element.id;
-        _this.side_ = _this.element.getAttribute('side');
-        _this.ANIMATION_TIMEOUT = 100; 
+        var self = this;
+        self.maskElement = false;
+        self.id = self.element.id;
+        self.side = self.element.getAttribute('side');
+        self.ANIMATION_TIMEOUT = 100;
 
-        if(_this.side_ != 'left' && _this.side_ != 'right') {
-            _this.side_ = 'left';
-            _this.element.setAttribute('side', _this.side_);
+        if (self.side !== 'left' && self.side !== 'right') {
+            self.side = 'left';
+            self.element.setAttribute('side', self.side);
         }
 
-        if(isOpen_.call(_this)) {
-            open_.call(_this);
-        } else {
-            _this.element.setAttribute('aria-hidden', 'true');
+        if (isOpen.call(self)) {
+            open.call(self);
+        }
+        else {
+            self.element.setAttribute('aria-hidden', 'true');
         }
 
 
-        document.addEventListener('keydown', function(evt) {
-            if(evt.keyCode == 27) {
-                close_.call(_this);
+        document.addEventListener('keydown', function (evt) {
+            if (evt.keyCode === 27) {
+                close.call(self);
             }
         }, false);
 
-        _this.addEventAction('toggle', function() { toggle_.call(_this);});
-        _this.addEventAction('open', function() {open_.call(_this);});
-        _this.addEventAction('close', function() {close_.call(_this);})
+        self.addEventAction('toggle', function () {
+            toggle.call(self);
+        });
+        self.addEventAction('open', function () {
+            open.call(self);
+        });
+        self.addEventAction('close', function (event) {
+            close.call(self, event);
+        });
 
     }
 
@@ -170,7 +169,7 @@ define(function (require) {
     customElement.prototype.prerenderAllowed = function () {
         return true;
     };
-   
+
     return customElement;
 });
 

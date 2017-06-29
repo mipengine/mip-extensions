@@ -3,7 +3,7 @@
     border: 1px solid #f1f1f1;
     border-radius: 5px;
     padding: 10px 20px;
-    margin: 20px auto;
+    margin: 20px 5%;
     width: 90%;
     font-size: 14px;
     background: #fff;

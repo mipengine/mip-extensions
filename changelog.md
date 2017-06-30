@@ -7,6 +7,7 @@
 组件名|功能说明
 ---|---
 [mip-233-newsmore](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-newsmore)|[升级][平台] 分页加载新闻插件
+[mip-nav-slidedown](https://github.com/mipengine/mip-extensions/tree/master/mip-nav-slidedown)|[升级] 兼容低版本安卓
 
 #### 2017.06.29
 

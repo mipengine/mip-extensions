@@ -15,7 +15,7 @@ mip-countdown 用于页面倒计时的功能实现
 
 ### 基本用法
 ```html
-<mip-countdown layout="responsive" width="300" height="100" endTime="1499247000" startTime="1499245200" duration="3600">
+<mip-countdown layout="responsive" width="300" height="100" endTime="1499247000" startTime="1499245200" duration="1800">
     自定义内容，可以嵌套其他组件
     <div class="mip-countdown-not-start">start content</div>
     <div class="mip-countdown-running">

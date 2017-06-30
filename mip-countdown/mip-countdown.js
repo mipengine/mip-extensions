@@ -7,6 +7,7 @@ define(function (require) {
 
     var customElement = require('customElement').create();
     var util = require('util');
+    var setInt; // 定时器
 
     /**
      * 构造元素，只会运行一次
@@ -26,14 +27,14 @@ define(function (require) {
     	else if (endTime < currentDate && endTime > 0) {
     		var end = element.querySelector('.mip-countdown-end')[0];
     		if (end) {
-    			util.css(end, 'display', '');
+    			util.css(end, 'display', 'block');
     		}
     	}
     	// 倒计时还未开始
     	else if (!duration && startTime > currentDate) {
     		var notStart = element.querySelector('.mip-countdown-not-start');
     		if (notStart) {
-    			util.css(notStart, 'display', '');
+    			util.css(notStart, 'display', 'block');
     		}
     	}
     	// duration 优先级高，重写endTime的值，并且将 startTime 置为null。
@@ -55,7 +56,7 @@ define(function (require) {
 
 			getCountdown();
 
-			var setInt = setInterval(function () { getCountdown(); }, 1000);
+			setInt = setInterval(function () { getCountdown(); }, 1000);
 
 			function getCountdown(){
 				var now = new Date().getTime();
@@ -84,6 +85,10 @@ define(function (require) {
 				return (n < 10 ? '0' : '') + n;
 			}
     	}
+    };
+    // 从文档中移出节点回调
+    customElem.prototype.detachedCallback = function () {
+        clearInterval(setInt);
     };
     return customElement;
 });

@@ -44,7 +44,8 @@ define(function (require) {
     		}
     		var running = element.querySelector('.mip-countdown-running');
     		if (running) {
-    			util.css(running, 'display', '');
+    			util.css(running, 'display', 'block');
+    			running.classList.add('mip-countdown-running-active');
     		}
     		var days; // 天数
 	        var hours; // 小时数
@@ -54,12 +55,17 @@ define(function (require) {
 
 			getCountdown();
 
-			setInterval(function () { getCountdown(); }, 1000);
+			var setInt = setInterval(function () { getCountdown(); }, 1000);
 
 			function getCountdown(){
+				var now = new Date().getTime();
 
 				// find the amount of "seconds" between now and target
-				var seconds_left = (endTime - currentDate) / 1000;
+				var seconds_left = (endTime - now) / 1000;
+				if (seconds_left < 0) {
+					clearInterval(setInt);
+					return;
+				}
 
 				days = pad( parseInt(seconds_left / 86400) );
 				seconds_left = seconds_left % 86400;

@@ -87,7 +87,7 @@ define(function (require) {
     	}
     };
     // 从文档中移出节点回调
-    customElem.prototype.detachedCallback = function () {
+    customElement.prototype.detachedCallback = function () {
         clearInterval(setInt);
     };
     return customElement;

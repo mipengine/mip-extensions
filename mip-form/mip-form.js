@@ -159,7 +159,7 @@ define(function (require) {
         });
     }
 
-    // 在 input focus 或 blur 时向iframe外层文档发送数据，iframe外层文档返回设置预览头部为 absolute 
+    // 在 input focus 或 blur 时向iframe外层文档发送数据，iframe外层文档返回设置预览头部为 absolute
     function sendFormMessage(event) {
             if (windowInIframe) {
                 // mip_video_jump 为写在外层的承接方法

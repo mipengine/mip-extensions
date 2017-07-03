@@ -1,5 +1,16 @@
 # 升级日志
 
+#### 2017.07.03
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-czsy-nav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[新增][平台] 导航菜单
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
+[mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
+[mip-233-clickmore](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-clickmore)|[升级][平台]添加233首页点击出现新闻相关列表功能
+
 #### 2017.06.30
 
 > 组件上线

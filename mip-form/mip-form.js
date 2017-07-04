@@ -47,7 +47,7 @@ define(function (require) {
         form.action = url;
         form.method = method ? method : 'GET';
         form.target = target ? target : '_blank';
-        element.append(form);
+        element.appendChild(form);
         util.dom.insert(form, element.children);
 
         // 按钮提交

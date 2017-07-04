@@ -1,0 +1,14 @@
+{
+    "name": "mip-ajax-carousel",
+    "version": "1.0.0",
+    "description": "异步获取数据轮播图",
+    "contributors": [
+        {
+            "name": "yan",
+            "email": "ypx5945@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

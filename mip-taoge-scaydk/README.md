@@ -1,6 +1,6 @@
 # mip-taoge-scaydk
 
-mip-taoge-scaydk 组件说明
+mip-taoge-scaydk 是wap.scaydk.com网业务逻辑组件
 
 标题|内容
 ----|----

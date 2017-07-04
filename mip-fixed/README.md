@@ -13,7 +13,7 @@
 ### 顶部悬浮
 
 ```html
-<mip-fixed type="bottom">
+<mip-fixed type="top">
     自定义内容，可以嵌套其他组件
 </mip-fixed>
 ```

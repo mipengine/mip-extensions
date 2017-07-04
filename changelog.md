@@ -9,7 +9,12 @@
 [mip-czsy-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-slider)|[新增][平台] 头部滑动并显示当前栏目
 [mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
 [mip-233-yytx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-yytx)|[升级][平台]预约提醒插件
-[mip-czsy-nav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]	导航菜单能
+[mip-czsy-nav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]	导航菜单
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]	更换推荐课程
+[mip-233-djs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-djs)|[升级][平台]	倒计时功能
+[mip-ajax-carousel](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ajax-carousel)|[升级][平台]	异步获取数据轮播图
+[mip-233-up2now](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]	将目标时间更新至最新
+
 
 #### 2017.07.03
 

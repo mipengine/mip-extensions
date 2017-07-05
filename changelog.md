@@ -1,5 +1,18 @@
 # 升级日志
 
+#### 2017.07.05
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkad-final](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkad-final)|[新增][平台]寻医问药新版广告展示组件
+[mip-swt](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-swt)|[新增][平台]商务通弹窗
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
+[mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
+[mip-233-lxkf](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-lxkf)|[升级][平台]预约提醒插件
+[mip-czsy-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-slider)|[升级][平台] 头部滑动并显示当前栏目
+
 #### 2017.07.04
 
 > 组件上线

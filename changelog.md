@@ -12,6 +12,7 @@
 [mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
 [mip-233-lxkf](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-lxkf)|[升级][平台]预约提醒插件
 [mip-czsy-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-slider)|[升级][平台] 头部滑动并显示当前栏目
+[mip-qqtn-cnzzcount](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-cnzzcount)|[升级][平台]CNZZ统计
 
 #### 2017.07.04
 

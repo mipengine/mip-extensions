@@ -1,5 +1,151 @@
 # 升级日志
 
+#### 2017.07.06
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
+[mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
+[mip-233-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-slider)|[升级][平台] 头部滑动并显示当前栏目
+
+
+#### 2017.07.05
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wkad-final](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkad-final)|[新增][平台]寻医问药新版广告展示组件
+[mip-swt](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-swt)|[新增][平台]商务通弹窗
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
+[mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
+[mip-233-lxkf](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-lxkf)|[升级][平台]预约提醒插件
+[mip-czsy-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-slider)|[升级][平台] 头部滑动并显示当前栏目
+[mip-qqtn-cnzzcount](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-cnzzcount)|[升级][平台]CNZZ统计
+
+#### 2017.07.04
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-czsy-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-slider)|[新增][平台] 头部滑动并显示当前栏目
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
+[mip-233-yytx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-yytx)|[升级][平台]预约提醒插件
+[mip-czsy-nav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]	导航菜单
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]	更换推荐课程
+[mip-233-djs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-djs)|[升级][平台]	倒计时功能
+[mip-ajax-carousel](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ajax-carousel)|[升级][平台]	异步获取数据轮播图
+[mip-233-up2now](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]	将目标时间更新至最新
+
+
+#### 2017.07.03
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-czsy-nav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[新增][平台] 导航菜单
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
+[mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
+[mip-233-clickmore](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-clickmore)|[升级][平台]添加233首页点击出现新闻相关列表功能
+
+#### 2017.06.30
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-233-newsmore](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-newsmore)|[升级][平台] 分页加载新闻插件
+[mip-nav-slidedown](https://github.com/mipengine/mip-extensions/tree/master/mip-nav-slidedown)|[升级] 兼容低版本安卓
+
+#### 2017.06.29
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-cnzz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-cnzz)|[新增][平台] mip-cr173-cnzz CNZZ统计
+[mip-fn-swiper](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-swiper)|[新增][平台] 蜂鸟网WAP站图片滚动加评论等内容
+[mip-qqtn-cnzzcount](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-cnzzcount)|[新增][平台] mip-qqtn-cnzzcount CNZZ统计
+[mip-fn-comment-post](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-post)|[新增][平台] 蜂鸟网WAP站评论提交组件
+[mip-netease-article-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-netease-article-recommend)|[升级][平台] 为网易移动站文章页实现了底部相关文章推荐功能
+[mip-233-ksbm](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-ksbm)|[新增][平台] 考试报名功能
+[mip-233-newsmore](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-newsmore)|[升级][平台] 分页加载新闻插件
+[mip-233-yytx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-yytx)|[升级][平台] 预约提醒插件
+[mip-ad-link](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ad-link)|[升级][平台] 康网图片增加链接代码
+[mip-clickup](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-clickup)|[新增][平台] 康网链接点击记录
+[mip-copy](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-copy)|[新增][平台] 康网点击换一换
+[mip-fn-comment-reply](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-reply)|[升级][平台] 蜂鸟网WAP站评论内容回复
+[mip-gallery](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-gallery)|[新增][平台] 康网图库链接
+
+#### 2017.06.28
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-lezun](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-lezun)|[新增][平台] mip-lezun 组件
+[mip-233-newsmore](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-newsmore)|[新增][平台] 分页加载新闻插件
+[mip-qqtn-cnzz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-cnzz)|[升级][平台] mip-qqtn-cnzz CNZZ统计
+[mip-233-tongji](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-tongji)|[升级][平台] 添加cnzz统计
+
+#### 2017.06.27
+
+> 核心代码上线 1.0.51
+
+1. 核心代码支持脚本 async 功能；
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fn-comment-praise](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-praise)|[新增][平台] 蜂鸟网WAP站点赞功能组件
+[mip-fn-show-allarticles](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-show-allarticles)|[新增][平台] 蜂鸟网WAP站点击加载更多文章
+[mip-fn-comment-reply](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-reply)|[新增][平台] 蜂鸟网WAP站评论内容回复
+[mip-233-up2now](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-up2now)|[新增][平台] 将目标时间更新至最新
+[mip-233-yytx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-yytx)|[升级][平台] 预约提醒插件
+[mip-233-lxkf](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-lxkf)|[新增][平台] 联系客服插件
+[mip-downlink](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-downlink)|[新增][平台] 下载软件
+[mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[新增][平台] 蜂鸟网公共头
+[mip-qqtn-cnzz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-cnzz)|[新增][平台] mip-qqtn-cnzz CNZZ统计
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[升级][平台] mip-qqtn-count 站内个人统计功能
+[mip-233-change](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-change)|[新增][平台] 新闻详情改变字体大小按钮
+[mip-233-login](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-login)|[新增][平台] 登录插件
+[mip-cambrian](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cambrian)|[升级][平台] 寒武纪组件
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级] 为了解决 ios 的 UC 浏览器在SF悬浮头部 fixed 位置混乱问题
+[mip-fixed](https://github.com/mipengine/mip-extensions/tree/master/mip-fixed)|[升级] MIP-fixed 修改README
+[mip-wkad](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad)|[升级] 增加几个广告条件显示判断
+[mip-infinitescroll](https://github.com/mipengine/mip-extensions/tree/master/mip-infinitescroll)|[升级] 修改mip-link 的readme
+
+#### 2017.06.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ad-link](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ad-link)|[升级][平台] 升级样式
+[mip-233-djs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-djs)|[新增][平台] 倒计时功能
+[mip-233-clickmore](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-clickmore)|[新增][平台] 添加233首页点击出现新闻相关列表功能
+[mip-233-yytx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-yytx)|[新增][平台] 预约提醒插件
+
+#### 2017.06.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-mipengine-preview](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-mipengine-preview)|[新增][平台]用于 www.mipengine.org 的预览工具
+[mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[新增][平台]list 插件
+[mip-tiantis-jsridge](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tiantis-jsridge)|升级][平台]封装了天梯建站系统的JS逻辑
+[mip-tanx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-tanx)|[升级][平台]阿里妈妈SSP广告组件
+[mip-ad-link](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ad-link)|[升级][平台]康网图片增加链接代码
+[mip-stats-cnzz](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-cnzz)|[升级]cnzz 投放方式升级，支持 script 用 async 方式加载
+[mip-list](https://github.com/mipengine/mip-extensions/tree/master/mip-list)|[升级]修复多次发请求的bug，修改dom渲染逻辑
+
+
 #### 2017.06.21
 
 > 组件上线

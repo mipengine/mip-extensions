@@ -12,6 +12,8 @@
         float: right;
         .navbar-nav {
             display: -ms-flexbox;
+            display: -webkit-box;
+            display: -webkit-flex;
             display: flex;
             margin-top: 10px;
             margin-right: -25px;
@@ -19,15 +21,20 @@
                 list-style: none;
                 line-height: 50px;
                 &.active a,
-                &.active mip-link {
+                &.active mip-link
+                &.active span {
                     color: black;
                     font-weight: bold;
+
                 }
             }
             mip-link,
-            a {
+            a,
+            span {
+                white-space: nowrap;
                 margin: 15px;
                 padding: 10px;
+                color: #666;
                 &:hover,
                 &:focus {
                     text-decoration: none;
@@ -44,7 +51,6 @@
         float: none;
         display: inline-block;
         margin: 15px 0 10px;
-        width: 81px;
         height: 41px;
         background-size: 100% auto;
         position: absolute;
@@ -68,10 +74,11 @@
         #bs-navbar {
             height: 0;
             transition: height 0.3s;
-            margin-top: 44px;
             width: 100%;
             left: 0;
             overflow-y: scroll;
+            -webkit-overflow-scrolling : touch;
+            overflow-scrolling : touch;
             z-index: 1000;
             border: 0;
             float: none;
@@ -81,24 +88,25 @@
                 margin: 0;
                 min-height: 283px;
                 height: 100%;
-                -ms-flex-direction: column;
-                flex-direction: column;
+                display: block;
                 li {
                     padding: 5px 0;
                 }
                 a,
-                mip-link {
+                mip-link,
+                span {
                     text-align: center;
                     color: #333;
                     font-size: 18px;
                     padding: 0;
-                    margin: 0;
+                    margin: 0 auto;
                     display: block;
                 }
             }
         }
         .navbar-header {
             float: none;
+            overflow: hidden;
         }
         .container > .navbar-collapse {
             padding: 0;
@@ -113,13 +121,12 @@
         }
         .navbar-brand {
             margin: 5px 0 0;
-            width: 68px;
             height: 33px;
             font-size: 23px;
         }
         .navbar-toggle {
             display: block;
-            margin: 9px 0;
+            margin: 8px 0;
             padding: 5px;
             border: 0;
             background: transparent;
@@ -188,6 +195,35 @@
             overflow: hidden;
             clip: rect(0, 0, 0, 0);
             border: 0;
+        }
+    }
+}
+@media screen and (min-width: 768px) {
+    mip-nav-slidedown #bs-navbar{
+        li{
+            .navbar-more:after {
+                content: '';
+                position: relative;
+                display: inline-block;
+                border: 4px solid;
+                top: 1px;
+                border-color: #666 transparent transparent;
+                left: 3px;
+            }
+            &:hover .navbar-more:after {
+                border-color: transparent transparent #666;
+                top: -3px;
+            }
+        }
+        li > ul {
+            display: none;
+            list-style: none;
+            position: absolute;
+            background: white;
+        }
+        li:hover > ul {
+            display:inherit;
+            z-index: 10;
         }
     }
 }

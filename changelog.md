@@ -7,6 +7,12 @@
 > 组件上线
 支持 cache 的域名升级
 
+组件名|功能说明
+---|---
+[mip-233-hideorshow](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-hideorshow)|[新增][平台]控制客服与广告的显示隐藏组件
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[升级][平台]头部滑动并显示当前栏目
+[mip-cr173-cnzz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-cnzz)|[升级][平台]CNZZ统计
+[mip-fn-comment-praise](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-praise)|[升级][平台]蜂鸟网WAP站点赞
 
 #### 2017.07.06
 > 核心代码上线

@@ -1,5 +1,13 @@
 # 升级日志
 
+#### 2017.07.07
+> 核心代码上线
+支持 cache 的域名升级
+
+> 组件上线
+支持 cache 的域名升级
+
+
 #### 2017.07.06
 > 核心代码上线
 1. mip-pix 支持站长自定义key的功能。
@@ -8,9 +16,8 @@
 
 组件名|功能说明
 ---|---
-
 [mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
-[mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
+[mip-233-list]|(https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
 [mip-233-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-slider)|[升级][平台] 头部滑动并显示当前栏目
 [mip-cr173-cnzz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-cnzz)|[升级][平台] mip-cr173-cnzz CNZZ统计
 [mip-233-djs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-djs)|[升级][平台]	倒计时功能

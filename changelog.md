@@ -1,11 +1,14 @@
 # 升级日志
 
 #### 2017.07.06
+> 核心代码上线
+1. mip-pix 支持站长自定义key的功能。
 
 > 组件上线
 
 组件名|功能说明
 ---|---
+
 [mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
 [mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
 [mip-233-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-slider)|[升级][平台] 头部滑动并显示当前栏目

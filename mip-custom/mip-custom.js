@@ -52,7 +52,7 @@ define(function () {
             return;
         }
 
-        if (!(regexs.domain.test(window.document.referrer) || location.host === 'mipcache.bdstatic.com')) {
+        if (!(regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href)) {
             element.remove();
             return;
         }

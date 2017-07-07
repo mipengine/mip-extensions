@@ -7,6 +7,7 @@
 */
 define(function (require) {
     var $ = require('zepto');
+    var util = require('util');
     var customElem = require('customElement').create();
     var ua = navigator.userAgent;
     var loadAd = function (elem, className, content) {
@@ -86,7 +87,7 @@ define(function (require) {
                 $('.mobile-ad-rnk1-panel').removeClass('none');
                 $('.mobile-ad-rnk2-panel').removeClass('none');
             }
-            if (url.indexOf('mipcache.bdstatic.com') > -1 && url.indexOf('3g.xywy.com') > -1) {
+            if (util.fn.isCacheUrl(url) && url.indexOf('3g.xywy.com') > -1) {
                 $('mip-fixed[type="bottom"]').hide();
                 $('.mobile-ad-rnk3-panel').removeClass('none');
             }

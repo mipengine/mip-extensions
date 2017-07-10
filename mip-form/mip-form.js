@@ -42,7 +42,6 @@ define(function (require) {
         var $element = $(element);
         var url = element.getAttribute('url');
         var method = element.getAttribute('method');
-        var target = element.getAttribute('target');
         var form = document.createElement('form');
         form.action = url;
         form.method = method ? method : 'GET';

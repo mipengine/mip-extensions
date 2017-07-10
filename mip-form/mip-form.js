@@ -46,7 +46,7 @@ define(function (require) {
         var form = document.createElement('form');
         form.action = url;
         form.method = method ? method : 'GET';
-        form.target = target ? target : '_blank';
+        form.target = '_blank';
         element.appendChild(form);
         util.dom.insert(form, element.children);
 
@@ -140,7 +140,8 @@ define(function (require) {
                 }
             };
             window.parent.postMessage(message, '*');
-        } else {
+        }
+        else {
             // https请求 或 post请求 或 非iframe下不做处理
             self.getElementsByTagName('form')[0].submit();
         }

@@ -1,5 +1,18 @@
 # 升级日志
 
+#### 2017.07.11
+> 核心代码上线
+支持移动dom
+
+> 组件上线
+支持移动dom
+
+组件名|功能说明
+---|---
+[mip-233-hideorshow](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-hideorshow)|[升级][平台]控制客服与广告的显示隐藏组件升级
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[升级][平台]将用户名放入页面，修复语法错误
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[新增][平台]mip-kp-list showUrltitle组件
+
 #### 2017.07.07
 > 核心代码上线
 支持 cache 的域名升级

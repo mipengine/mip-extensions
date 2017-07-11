@@ -8,7 +8,7 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
-    
+
     /**
      * build
      *

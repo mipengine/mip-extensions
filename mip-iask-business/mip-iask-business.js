@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author hejieye
-* @time  2017-06-15
-* @version 2.0.0
+* @time  2017-07-11
+* @version 2.0.1
 */
 define(function (require) {
     var $ = require('zepto');
@@ -140,6 +140,60 @@ define(function (require) {
             }
         });
         advLogInfoClick();
+    };
+    var putTestHtml = function () {
+        var html = '<div class=\'m-yy-con  put-test-hh\' pos=\'1\'';
+        html += 'data-stats-baidu-obj=\'%22%7B%22type%22:%22click%22,%22data%22:';
+        html += '%22%5B\'_trackEvent\',%20\'100m\',%20\'0\',%20\'8001m\'%5D%22%7D%22\'>';
+        html += '<h2 class=\'wb2_tt\'>会计新手做账需要准备哪些工具？</h2>';
+        html += '<ul class=\'m-yy-list\'>';
+        html += '<li><span><mip-img src=\'http://pic.iask.cn/fimg/3098454678_153.jpg\'></mip-img></span></li>';
+        html += '<li><span><mip-img src=\'http://pic.iask.cn/fimg/4001054679_153.jpg\'></mip-img></span></li>';
+        html += '<li><span><mip-img src=\'http://pic.iask.cn/fimg/4803654683_153.jpg\'></mip-img></span></li>';
+        html += '</ul>';
+        html += '<p class=\'m-yy-text\'>做账经验干货 票财税一体 一键报税效率提升3倍！</p>';
+        html += '<div class=\'m-yy-info\'>';
+        html += '<div class=\'m-left\'>';
+        html += '<div class=\'m-user-img\'><mip-img src=\'http://pic.iask.cn/fimg/6827554663_120.jpg\'></mip-img></div>';
+        html += '<span class=\'m-user-name\'>畅捷通好会计</span>';
+        html += '<span class=\'time\'>26分钟前</span>';
+        html += '<span class=\'icon-tui\'>广告</span>';
+        html += '</div>';
+        html += '<span class=\'m-yy-link\'>查看详情</span>';
+        html += '</div>';
+        html += '</div>';
+        return html;
+    };
+    var validatePut = function () {
+        var $that = $('.paramDiv');
+        var mmaintags = $that.attr('mainTags');
+        var qcid = $that.attr('qcid') || '';
+        var sources = $that.attr('sources');
+        var version = $that.attr('version');
+        var iscommercial = $that.attr('iscommercial');
+        if ('COOPERATE_BRAND' === sources && version === '2') {
+            return false;
+        }
+        if (iscommercial === 'true' && sources !== 'COOPERATE_COMMERCIAL') {
+            return false;
+        }
+        if (qcid === '82' && (mmaintags.indexOf('财务税务') !== -1 || mmaintags.indexOf('商业工具') !== -1)) {
+            return true;
+        }
+        return false;
+    };
+    var putTestButHtml = function () {
+        var htmls = '';
+        htmls += '<mip-fixed type=\'top\' id=\'customid\' >';
+        htmls += '<div class=\'mip-adbd\'>';
+        htmls += '<div on=\'tap:customid.close\' class=\'mip-adbd-close\'><span>关闭</span></div>';
+        htmls += '<div class=\'put-test-hh\' pos=\'2\' data-stats-baidu-obj=\'%22%7B%22type%22:%22click%22,';
+        htmls += '%22data%22:%22%5B\'_trackEvent\',%20\'100m\',%20\'0\',%20\'8002m\'%5D%22%7D%22\'>';
+        htmls += '<mip-img class=\'mip-img\' src=\'http://pic.iask.cn/fimg/5036459229_400.jpg\'></mip-img>';
+        htmls += '</div>';
+        htmls += '<span class=\'icon-bai-bottom\'></span>';
+        htmls += '</div></mip-fixed>';
+        return htmls;
     };
     // 移除百度广告
     var removeBaiduAd = function () {
@@ -585,8 +639,29 @@ define(function (require) {
                     advLogInfo(sourceType, 0);
                 }
             },
+            commercialLoad: function () {
+                if (validatePut()) {
+                    var nowTime = getSysTime();
+                    var startTime = '2017-07-03 00:00:00';
+                    var endTime   = '2017-07-17 23:59:59';
+                    if (startTime <= nowTime && nowTime < endTime) {
+                        var putUrl = 'http://m.iask.sina.com.cn/html/yongyou/index.html';
+                        var $baidu = $('.mip_stats_baidu_js');
+                        $baidu.append('<mip-stats-baidu token=\'4d053a0029fb3cca4c9d702fea8ac599\'></mip-stats-baidu>');
+                        $baidu.append('<div data-stats-baidu-obj=\'%22%7B%22type%22:%22load%22,%22data%22:');
+                        $baidu.append('%22%5B\'_trackEvent\',%20\'100m\',%20\'0\',%20\'8001m\'%5D%22%7D%22\'></div>');
+                        removeBaiduAd();
+                        $('.mip_as_bottm_div').append(putTestButHtml());
+                        $('.breadcast_middle_commercial').append(putTestHtml());
+                        $('.put-test-hh').click(function () {
+                            window.open(putUrl);
+                        });
+                    }
+                }
+            },
             init: function () {
                 this.newLoadAd();
+                this.commercialLoad();
             }
         };
     // build 方法，元素插入到文档时执行，仅会执行一次

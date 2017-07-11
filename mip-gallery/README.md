@@ -15,25 +15,47 @@ mip-gallery
 <mip-gallery num="5" between="5">
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">1
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">1</a>
             </div>
-            <div class="swiper-slide">2
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">2</a>
             </div>
-            <div class="swiper-slide">3
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">3</a>
             </div>
-            <div class="swiper-slide">4
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">4</a>
             </div>
-            <div class="swiper-slide">5
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">5</a>
             </div>
-            <div class="swiper-slide">6
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">6</a>
             </div>
-            <div class="swiper-slide">7
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#" class="current">7</a>
             </div>
-            <div class="swiper-slide">8
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">8</a>
             </div>
-            <div class="swiper-slide">9
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">9</a>
             </div>
-            <div class="swiper-slide">10
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">10</a>
+            </div>
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">11</a>
+            </div>
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">12</a>
+            </div>
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">13</a>
+            </div>
+            <div class="swiper-slide">
+                <a data-type="mip" data-title="目标页面标题" href="#">14</a>
             </div>
         </div>
     </div>

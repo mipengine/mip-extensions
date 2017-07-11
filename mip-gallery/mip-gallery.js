@@ -16,9 +16,12 @@ define(function(require) {
         var element = this.element;
         var viewNum = +element.getAttribute('num') || 5;
         var between = +element.getAttribute('between') || 5;
+        var current = element.querySelector('.current');
+        var index = $(current).parent().index();
         var mySwiper = new Swiper('.swiper-container', {
             slidesPerView: viewNum,
-            spaceBetween: between
+            spaceBetween: between,
+            initialSlide: index
         });
     };
 

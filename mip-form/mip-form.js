@@ -44,8 +44,7 @@ define(function (require) {
         var method = element.getAttribute('method');
         var form = document.createElement('form');
         form.action = url;
-        form.method = method ? method : 'GET';
-        form.target = '_blank';
+        form.method = method;
         element.appendChild(form);
         util.dom.insert(form, element.children);
 

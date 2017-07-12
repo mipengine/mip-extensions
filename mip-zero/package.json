@@ -1,0 +1,14 @@
+{
+    "name": "mip-zero",
+    "version": "1.0.0",
+    "description": "测试组件",
+    "contributors": [
+        {
+            "name": "dulixia",
+            "email": "dulixia@mail.china.cn"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

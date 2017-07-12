@@ -1,6 +1,6 @@
 # mip-chinacn-gallery
 
-mip-chinacn-gallery
+mip-chinacn-gallery 可滑动的图片列表
 
 标题|内容
 ----|----

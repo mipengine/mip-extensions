@@ -1,6 +1,6 @@
 # mip-chinacn-filter
 
-mip-chinacn-filter 组件说明
+mip-chinacn-filter 根据不同条件过滤产品
 
 标题|内容
 ----|----

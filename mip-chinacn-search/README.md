@@ -1,6 +1,6 @@
 # mip-chinacn-search
 
-mip-chinacn-search 组件说明
+mip-chinacn-search 搜索
 
 标题|内容
 ----|----

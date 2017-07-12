@@ -1,5 +1,5 @@
 /**
- * @file mip-gallery 组件
+ * @file mip-chinacn-gallery 组件
  * @author
  */
 

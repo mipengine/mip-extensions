@@ -1,18 +1,18 @@
-# mip-gallery
+# mip-chinacn-gallery
 
-mip-gallery
+mip-chinacn-gallery
 
 标题|内容
 ----|----
 类型|业务
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-gallery/mip-gallery.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-chinacn-gallery/mip-chinacn-gallery.js
 
 ## 示例
 
 ### 基本用法
 ```html
-<mip-gallery num="5" between="5">
+<mip-chinacn-gallery num="5" between="5">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -59,7 +59,7 @@ mip-gallery
             </div>
         </div>
     </div>
-</mip-gallery>
+</mip-chinacn-gallery>
 ```
 
 ## 属性

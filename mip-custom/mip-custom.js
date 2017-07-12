@@ -52,7 +52,7 @@ define(function () {
             return;
         }
 
-        if (!(regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))） {
+        if (!(regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
             element.remove();
             return;
         }

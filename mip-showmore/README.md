@@ -1,6 +1,6 @@
-# mip-showmore
+# mip-showmore 显示更多
 
-mip-showmore 用来支持显示更多内容
+隐藏过长的文章，点击按钮显示更多内容。
 
 标题|内容
 ----|----
@@ -15,7 +15,7 @@ mip-showmore 用来支持显示更多内容
 ```html
 <mip-showmore maxheight='40' animatetime='.3'>
      <div showmorebox>
-        <div>todo//</div>
+        <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
       </div>
       <p showmorebtn>
           <span class="mip-showmore-btnshow">点击显示</span>
@@ -27,9 +27,9 @@ mip-showmore 用来支持显示更多内容
 ### 设定字数阀值
 
 ```html
-    <mip-showmore maxlen='40'>
+    <mip-showmore maxlen='20'>
         <div showmorebox>
-             <div>todo//</div>
+             <div>MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。</div>
         </div>
         <p showmorebtn>
             <span class="mip-showmore-btnshow">点击显示</span>

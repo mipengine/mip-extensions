@@ -1,4 +1,4 @@
-# mip-filter
+# mip-filter 筛选组件
 
 筛选组件，自适应pc和wise宽度。mipengine.org有引用
 

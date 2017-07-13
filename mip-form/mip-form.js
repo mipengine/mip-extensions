@@ -9,6 +9,8 @@ define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
     var util = require('util');
+    var viewer = require('viewer');
+    var windowInIframe = viewer.isIframed;
 
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
@@ -40,13 +42,11 @@ define(function (require) {
         var $element = $(element);
         var url = element.getAttribute('url');
         var method = element.getAttribute('method');
-        var form = $([
-            '<form action=' + url + ' method=' + method + ' target="_blank">',
-            '</form>'
-        ].join(''));
-
-        form.append($element.html());
-        $element.html(form);
+        var form = document.createElement('form');
+        form.action = url;
+        form.method = method;
+        element.appendChild(form);
+        util.dom.insert(form, element.children);
 
         // 按钮提交
         $element.find('form').on('submit', function (event) {
@@ -95,11 +95,11 @@ define(function (require) {
             var value = item.value;
             var reg;
 
-            if(item.type === 'submit') {
+            if (item.type === 'submit') {
                 return;
             }
             else if (item.type === 'checkbox' || item.type === 'radio') {
-                value = item.checked ? item.value : ''
+                value = item.checked ? item.value : '';
             }
 
             valueJson += '&' + item.name + '=' + value;
@@ -138,11 +138,34 @@ define(function (require) {
                 }
             };
             window.parent.postMessage(message, '*');
-        } else {
+        }
+        else {
             // https请求 或 post请求 或 非iframe下不做处理
             self.getElementsByTagName('form')[0].submit();
         }
     }
+    // 给 input 绑定事件，向 SF 发送数据，为了解决 ios 的 UC 浏览器在iframe外层文档悬浮头部 fixed 位置混乱问题
+    function initMessageEvents() {
+        var inputAll = document.querySelectorAll('input');
+        Array.prototype.forEach.call(inputAll, function (item, index) {
+            item.addEventListener('focus', function () {
+                sendFormMessage('focus');
+            }, false);
+
+            item.addEventListener('blur', function () {
+                sendFormMessage('blur');
+            }, false);
+        });
+    }
+
+    // 在 input focus 或 blur 时向iframe外层文档发送数据，iframe外层文档返回设置预览头部为 absolute
+    function sendFormMessage(event) {
+            if (windowInIframe) {
+                // mip_video_jump 为写在外层的承接方法
+                viewer.sendMessage('input-' + event, {
+                });
+            }
+        }
 
     /**
      * [build build函数]
@@ -151,7 +174,6 @@ define(function (require) {
         var element = this.element;
         var addClearBtn = element.hasAttribute('clear');
         this.cross = null;
-
         if (preProcess(element)) {
             createDom.call(this);
         }
@@ -176,7 +198,7 @@ define(function (require) {
 
             for (var index = 0; index < clearItems.length; index++) {
                 var height = clearItems[index].offsetHeight;
-                clearItems[index].onfocus = function () {
+                clearItems[index].addEventListener('focus', function () {
                     var self = this;
                     cross.setAttribute('name', self.getAttribute('name'));
                     util.css(cross, {
@@ -197,23 +219,27 @@ define(function (require) {
                             util.css(cross, {display: (self.value !== '' ? 'block' : 'none')});
                         };
                     }
-                };
+                }, false);
                 // 点击提交时，如果报错信息展示，则隐藏清空按钮
-                clearItems[index].onblur = function () {
+                clearItems[index].addEventListener('blur', function () {
                     util.css(cross, {display: 'none'});
-                };
+                }, false);
             }
-
-            cross.addEventListener('touchend', clear);
-
+            cross.addEventListener('touchstart', clear, false);
+            cross.addEventListener('mousedown', clear, false);
+            cross.addEventListener('click', clear, false);
             function clear(e) {
+                e.stopPropagation();
+                e.preventDefault();
                 var name = e.target.getAttribute('name');
-                cross.parentNode.querySelector('input[name="' + name + '"]').value = '';
+                var inputSelect = cross.parentNode.querySelector('input[name="' + name + '"]');
+                inputSelect.focus();
+                inputSelect.value = '';
                 util.css(cross, {display: 'none'});
             }
         }
+        initMessageEvents();
     };
-
     return customElement;
 
 });

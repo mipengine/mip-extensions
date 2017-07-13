@@ -1,6 +1,6 @@
-# mip-appdl
+# mip-appdl App 下载
 
-mip-appdl 用来支持在 mip 中app的下载
+App 下载，可区分安卓和 iOS。
 
 描述|提供了一个mip中app的下载容器.
 ----|----
@@ -18,6 +18,7 @@ mip-appdl 用来支持在 mip 中app的下载
 	src="http://ms0.meituan.net/touch/css/i/logo.png" 
 	texttip= "['积分能当钱花了','下载百度浏览器','下载百度浏览器']" 
 	downbtntext="立即使用" 
+	Other-downsrc="http://sqdd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk"
 	Android-downsrc="http://sqdd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk" 
 	Ios-downsrc="itms-apps://itunes.apple.com/app/id452186370" postiontye="fixed"
 ></mip-appdl>
@@ -34,6 +35,7 @@ mip-appdl 用来支持在 mip 中app的下载
 		src="http://ms0.meituan.net/touch/css/i/logo.png" 
 		texttip= "['积分能当钱花了','下载百度浏览器','下载百度浏览器']" 
 		downbtntext="立即使用" 
+		Other-downsrc="http://sqdd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk"
 		Android-downsrc="http://sqdd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk" 
 		Ios-downsrc="itms-apps://itunes.apple.com/app/id452186370" postiontye="fixed"
 	></mip-appdl>
@@ -69,7 +71,7 @@ mip-appdl 用来支持在 mip 中app的下载
 必填：否
 格式：字符串
 取值：url 类型
-使用限制：直接下载需要传递apk直接下载路径否则可传下载页路径.如果对应系统没有下载链接则自动不显示
+使用限制：直接下载需要传递apk直接下载路径否则可传下载页路径.如果对应系统没有下载链接则显示默认链接
 
 ### Ios-downsrc
 
@@ -77,4 +79,12 @@ mip-appdl 用来支持在 mip 中app的下载
 必填：否
 格式：字符串
 取值：url 类型
-使用限制：必须填写appstore下载路径(itms-apps://itunes.apple.com/app/id452186370)或者下载页路径，如果对应系统没有下载链接则自动不显示
+使用限制：必须填写appstore下载路径(itms-apps://itunes.apple.com/app/id452186370)或者下载页路径，如果对应系统没有下载链接则显示默认链接
+
+### Other-downsrc
+
+说明：其他设备下载路径
+必填：否
+格式：字符串
+取值：url 类型
+使用限制：如果对应系统没有下载链接时显示默认链接

@@ -1,6 +1,13 @@
-# 类型: ad-ssp 内容联盟广告
+# mip-ad:ad-ssp 内容联盟广告
 
-内容联盟广告 [ssp媒体服务首页](http://ssp.baidu.com/home)
+mip-ad 的一种类型：内容联盟广告.
+
+标题|内容
+----|----
+类型|通用
+支持布局|fixed-height, fixed
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
+
 
 ## 支持布局
 
@@ -14,21 +21,21 @@
 ```html
 <mip-ad
     type="ad-ssp"
-    data-site-id="xxxxxxxxtodo"
-    data-block-id="xxxx"
+    data-site-id="1118394"
+    data-block-id="2683"
     >
 </mip-ad>
 ```
 
 ### 页面浮动ssp广告
-浮动的ssp广告需使用mip-fixed元素和 fixed-height布局
+浮动的ssp广告需使用mip-fixed元素和 fixed-height[布局](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)。height 请根据广告实际宽高填写。
 
 ```html
 <mip-fixed type="top" >
     <mip-ad
         type="ad-ssp"
-        data-site-id="xxxxxxxxtodo"
-        data-block-id="xxxx"
+        data-site-id="1118394"
+        data-block-id="2684"
         layout="fixed-height"
         height="75px"
         >

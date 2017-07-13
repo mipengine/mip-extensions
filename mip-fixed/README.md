@@ -1,6 +1,6 @@
-# mip-fixed
+# mip-fixed 悬浮布局
 
-支持 mip 中的悬浮元素整体使用方案
+悬浮元素整体使用方案。
 
 标题|内容
 ----|----
@@ -12,26 +12,13 @@
 
 ### 顶部悬浮
 
-规则：宽度默认屏幕100%，高度最多85像素
-
 ```html
-<style mip-custom>
-    .container {
-        height: 2000px;
-        background: linear-gradient(#fff, #000);
-    }
-</style>
-
-<div class="container">
-    <mip-fixed type="bottom">
-        自定义内容，可以嵌套其他组件
-    </mip-fixed>
-</div>
+<mip-fixed type="top">
+    自定义内容，可以嵌套其他组件
+</mip-fixed>
 ```
 
 ### 底部悬浮
-
-规则：宽度默认屏幕100%，高度最多85像素
 
 ```html
 <mip-fixed type="bottom">
@@ -41,7 +28,7 @@
 
 ### 左边悬浮
 
-规则：宽度不超过屏幕10%，高度不超过屏幕25%，属性 bottom 或 top 必须有一个
+规则：属性 bottom 或 top 必须有一个
 
 ```html
 <mip-fixed type="left" bottom="50px">
@@ -49,9 +36,9 @@
 </mip-fixed>
 ```
 
-### 底部悬浮
+### 右边悬浮
 
-规则：宽度不超过屏幕10%，高度不超过屏幕25%，属性 bottom 或 top 必须有一个
+规则：属性 bottom 或 top 必须有一个
 
 ```html
 <mip-fixed type="right" top="50px">
@@ -76,7 +63,7 @@
 ```html
 <mip-fixed type="top" id="customid">
   <div>我是顶部的fixed</div>
-  <div on="tap:customid.close">我是关闭按钮</div>
+  <div  class="btn_style" on="tap:customid.close">我是关闭按钮</div>
 </mip-fixed>
 ```
 
@@ -114,14 +101,3 @@
 - type为 left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
 
 - type为 gototop 类别不需要任何属性。
-
-### fixed 元素个数限制
-
-- `top <= 1`
-
-- `bottom <= 1`
-
-- `left + right <= 1`
-
-- `gototop <= 1`
-

@@ -1,0 +1,14 @@
+<style mip-custom>
+	.placeholder{
+		width:100%;
+		height:150px;
+		border-bottom: 1px solid #aaa;
+	}
+	.absoluteStyle {
+		padding: 20px;
+		background: yellow;
+		box-sizing: border-box;
+	}
+</style>
+<div class="placeholder">我走过山时，山不说话，</div>
+<div class="placeholder">我路过海时，海不说话，</div>

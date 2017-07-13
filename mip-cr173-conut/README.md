@@ -1,19 +1,18 @@
-# mip-cr173-conut
-mip-cr173-conut ÓÃÀ´Ö§³ÖÏÂÔØÏêÇéÒ³Í³¼Æ¹¦ÄÜ
+# mip-cr173-count
+mip-cr173-conut ç”¨æ¥æ”¯æŒä¸‹è½½è¯¦æƒ…é¡µç»Ÿè®¡åŠŸèƒ½
 
-±êÌâ|ÄÚÈİ
+æ ‡é¢˜|å†…å®¹
 ----|----
-ÀàĞÍ|ÒµÎñ
-Ö§³Ö²¼¾Ö|N/S
-ËùĞè½Å±¾|https://mipcache.bdstatic.com/static/v1/mip-showtanceng/mip-cr173-conut.js
+ç±»å‹|ä¸šåŠ¡
+æ”¯æŒå¸ƒå±€|N/S
+æ‰€éœ€è„šæœ¬|https://mipcache.bdstatic.com/static/v1/mip-showtanceng/mip-cr173-conut.js
 
-## Ê¾Àı
+## ç¤ºä¾‹
 
 ```
 <mip-cr173-conut></mip-cr173-conut>
 ```
 
-# ÊôĞÔ
+# å±æ€§
 
-×é¼şÉæ¼°µÄÊôĞÔ×Ö¶Î: Í³¼Æ¹¦ÄÜ
-
+ç»„ä»¶æ¶‰åŠçš„å±æ€§å­—æ®µ: ç»Ÿè®¡åŠŸèƒ½

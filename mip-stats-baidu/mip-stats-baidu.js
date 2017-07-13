@@ -1,12 +1,13 @@
 /**
  * @file 百度统计插件
  *
- * @author menglingjun
+ * @author menglingjun, Jenny_L
  * From: mip-stats-baidu
  */
 
 define(function (require) {
     var $ = require('zepto');
+    var viewer = require('viewer');
 
     var customElement = require('customElement').create();
 
@@ -24,6 +25,11 @@ define(function (require) {
                 '_setAccount',
                 token
             ]);
+
+            // XXX: 解决来自百度搜索，内外域名不一致问题
+            if (viewer.isIframed) {
+                bdSearchCase();
+            }
 
             /**
              * 检测setconfig是否存在
@@ -62,8 +68,9 @@ define(function (require) {
 
             try {
                 statusData = JSON.parse(decodeURIComponent(statusData));
-            } catch(e) {
-                console.warn("事件追踪data-stats-baidu-obj数据不正确");
+            }
+            catch (e) {
+                console.warn('事件追踪data-stats-baidu-obj数据不正确');
                 return;
             }
 
@@ -93,7 +100,7 @@ define(function (require) {
                 _hmt.push(data);
             }
             else {
-                tagBox[index].addEventListener(eventtype, function (event) {
+                tagBox[index].addEventListener(eventtype, function(event) {
                     var tempData = this.getAttribute('data-stats-baidu-obj');
                     if (!tempData) {
                         return;
@@ -101,8 +108,9 @@ define(function (require) {
                     var statusJson;
                     try {
                         statusJson = JSON.parse(decodeURIComponent(tempData));
-                    } catch (e) {
-                        console.warn("事件追踪data-stats-baidu-obj数据不正确");
+                    }
+                    catch (e) {
+                        console.warn('事件追踪data-stats-baidu-obj数据不正确');
                         return;
                     }
                     if (!statusJson.data) {
@@ -135,5 +143,52 @@ define(function (require) {
         return newArray;
     }
 
+    /**
+     * 解决来自百度搜索，内外域名不一致问题
+     */
+    function bdSearchCase() {
+        var referrer = '';
+
+        var bdUrl = document.referrer;
+        var hashWord = MIP.hash.get('word') || '';
+        var hashEqid = MIP.hash.get('eqid') || '';
+        if ((hashWord || hashEqid) && bdUrl) {
+            var hashObj = {};
+            if (hashEqid) {
+                hashObj.url = '';
+                hashObj.eqid = hashEqid;
+            } 
+            else {
+                hashObj.word = hashWord;
+            }
+            referrer = makeReferrer(bdUrl, hashObj);
+            _hmt.push(['_setReferrerOverride', referrer]);
+        }
+
+    }
+
+    /**
+     * 生成百度统计_setReferrerOverride对应的referrer
+     *
+     * @param  {string} url       需要被添加参数的 url
+     * @param  {Object} hashObj   参数对象
+     * @return {string}           拼装后的 url
+     */
+    function makeReferrer(url, hashObj) {
+        var referrer = '';
+        var conjMark = url.indexOf('?') < 0 ? '?' : '&';
+        var urlData = '';
+        for (var key in hashObj) {
+            urlData += '&' + key + '=' + hashObj[key];
+        }
+        urlData = urlData.slice(1);
+        if (url.indexOf('#') < 0) {
+            referrer = url + conjMark + urlData;
+        }
+        else {
+            referrer = url.replace('#', conjMark + urlData + '#');
+        }
+        return referrer;
+    }
     return customElement;
 });

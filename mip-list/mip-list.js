@@ -33,16 +33,15 @@ define(function (require) {
      */
     function render(htmls) {
         var self = this;
+        var fragment = document.createDocumentFragment();
         htmls.map(function (html) {
             var node = document.createElement('div');
             node.innerHTML = html;
-            var element = node.childNodes[1];
+            node.setAttribute('role', 'listitem');
 
-            if (!element.hasAttribute('role')) {
-                element.setAttribute('role', 'listitem');
-            }
-            self.container.appendChild(element);
+            fragment.appendChild(node);            
         });
+        self.container.appendChild(fragment);
     }
 
     /**
@@ -73,6 +72,7 @@ define(function (require) {
                 if (data.data.isEnd) {
                     self.isEnd = data.isEnd;
                     self.button.innerHTML = '已经加载完毕';
+                    self.button.removeAttribute('on');
                 }
             }
             else {
@@ -140,10 +140,11 @@ define(function (require) {
             console.error('mip-list 的 src 属性不能为空');
         }
 
+        self.pnName = element.getAttribute('pnName') || 'pn';
+        self.pn = element.getAttribute('pn') || 1;
+
         // 有查看更多属性的情况
         if (element.hasAttribute('has-more')) {
-            self.pnName = element.getAttribute('pnName') || 'pn';
-            self.pn = element.getAttribute('pn') || 1;
             self.addEventAction('more', function () {
                 pushResult.call(self, src);
             });

@@ -1,9 +1,12 @@
-# 类型: ad-ssprelease ssp直投广告
+# mip-ad:ad-baidussp ssp直投广告
 
-## 支持布局
+mip-ad 的一种类型：ssp直投广告。
 
-- reponsive
-- fixed-height
+标题|内容
+----|----
+类型|通用
+支持布局|reponsive, fixed-height
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
 
 ## 示例
 

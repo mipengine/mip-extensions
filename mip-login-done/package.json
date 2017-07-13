@@ -1,0 +1,14 @@
+{
+    "name": "mip-login-done",
+    "version": "1.0.3",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "Jackson",
+            "email": "smartfutureplayer@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

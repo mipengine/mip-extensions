@@ -1,6 +1,6 @@
-# mip-accordion
+# mip-accordion 折叠节点
 
-mip-accordion 用来支持在 mip折叠隐藏的节点(可记录用户上次行为)
+折叠隐藏节点(可记录用户上次行为)。
 
 标题|内容
 ----|----

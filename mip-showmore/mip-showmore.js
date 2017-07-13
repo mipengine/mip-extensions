@@ -13,13 +13,21 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-
         // 获取点击按钮
         var clickBtn = element.querySelector('[showmorebtn]');
         // 获取内容显示框
         var showBox = element.querySelector('[showmorebox]');
         // 获取动画时间
         var animateTime = element.getAttribute('animatetime') || 0;
+
+        for(var i = 0; i < element.children.length ; i++){
+        	if(element.children[i].hasAttribute('showmorebox')){
+        		showBox = element.children[i]
+        	};
+        	if(element.children[i].hasAttribute('showmorebtn')){
+        		clickBtn = element.children[i]
+        	};
+        }
 
         // 如果动画不是数字
         if (isNaN(animateTime)) {
@@ -66,8 +74,10 @@ define(function (require) {
                     'overflow': 'hidden'
                 });
 
+                
+
                 // 显示更多按钮
-                var showMoreBtn = element.querySelector('.mip-showmore-btnshow');
+                var showMoreBtn = clickBtn.querySelector('.mip-showmore-btnshow');
                 util.css(showMoreBtn, {
                     'display': 'block'
                 });
@@ -75,6 +85,7 @@ define(function (require) {
                 // 绑定显示更多按钮
                 clickBtn.addEventListener('click', function () {
                     // 如果现在为打开状态
+
                     if (this.classList.contains('mip-showmore-boxshow')) {
                         this.classList.remove('mip-showmore-boxshow');
                         util.css(showBox, {
@@ -192,8 +203,8 @@ define(function (require) {
 
         // 按钮文案显示切换
         function changeBtnText(showBtnObj, hideBtnObj) {
-            var btnShow = element.querySelector('.mip-showmore-btnshow');
-            var btnHide = element.querySelector('.mip-showmore-btnhide');
+            var btnShow = clickBtn.querySelector('.mip-showmore-btnshow');
+            var btnHide = clickBtn.querySelector('.mip-showmore-btnhide');
             changeBtnShow(btnShow, showBtnObj);
             changeBtnShow(btnHide, hideBtnObj);
         }

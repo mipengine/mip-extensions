@@ -13,20 +13,20 @@ define(function (require) {
      */
     customElement.prototype.build = function () {
         var element = this.element;
-        // 获取点击按钮
-        var clickBtn = element.querySelector('[showmorebtn]');
-        // 获取内容显示框
-        var showBox = element.querySelector('[showmorebox]');
         // 获取动画时间
         var animateTime = element.getAttribute('animatetime') || 0;
 
-        for(var i = 0; i < element.children.length ; i++){
-        	if(element.children[i].hasAttribute('showmorebox')){
-        		showBox = element.children[i]
-        	};
-        	if(element.children[i].hasAttribute('showmorebtn')){
-        		clickBtn = element.children[i]
-        	};
+        if(element.hasAttribute('type')){
+        	var type =  element.getAttribute('type');
+        	// 获取点击按钮
+        	var clickBtn = element.querySelector('[showmorebtn-'+ type +']');
+        	// 获取内容显示框
+        	var showBox = element.querySelector('[showmorebox-'+ type +']');
+        }else{
+        	// 获取点击按钮
+        	var clickBtn = element.querySelector('[showmorebtn]');
+        	// 获取内容显示框
+        	var showBox = element.querySelector('[showmorebox]');
         }
 
         // 如果动画不是数字

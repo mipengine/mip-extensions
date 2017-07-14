@@ -1,0 +1,14 @@
+{
+    "name": "mip-chinacn-filter",
+    "version": "1.0.0",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "wzh",
+            "email": "wangzheng@mail.china.cn"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "mip-walters-script",
+    "version": "1.0.0",
+    "description": "walters网业务逻辑组件",
+    "contributors": [
+        {
+            "name": "walters",
+            "email": "mip-support@baidu.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

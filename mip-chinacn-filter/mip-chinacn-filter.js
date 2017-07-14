@@ -41,8 +41,6 @@ define(function (require) {
             $selected.length > 0 && $selected.removeClass('current');
         });
 
-        // $mask.on('click',hide);
-
         $(document).on('click','.opacity-layer',hide);
 
         $element.find('.mip-sure').on('click',function(e){
@@ -97,7 +95,7 @@ define(function (require) {
                 }
 
                 data.entType = entType;
-                
+
                 data.forceMobile = true;
 
                 var $sortBy = $('#sort_by');
@@ -105,8 +103,6 @@ define(function (require) {
                     data.sortBy = $sortBy.val();
                 }
             }
-
-            console.log(data);
 
             $.post('//' + document.domain + '/common/search.php', data, function (json) {
                 if (json.url) {

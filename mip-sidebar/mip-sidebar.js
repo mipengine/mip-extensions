@@ -96,7 +96,10 @@ define(function (require) {
         }
 
         self.maskElement.setAttribute('on', 'tap:' + self.id + '.close');
-
+        self.maskElement.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        },false);
         // 样式设置
         util.css(self.maskElement, {display: 'block'});
 

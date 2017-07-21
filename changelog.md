@@ -67,6 +67,47 @@
 [mip-taoge-scaydk](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk)|[升级][平台]wap.scaydk.com网业务逻辑组件
 [mip-taoge-scaydk-loan](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-loan)|[新增][平台]网贷款产品筛选组件
 
+#### 2017.07.15
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-nph](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-nph)|[升级][平台]呼起组件修复bug
+
+[mip-fn-swiper](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-swiper)|[更新][平台]蜂鸟网WAP站图片滚动等功能
+
+[mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[更新][平台]蜂鸟网WAP站公共头
+
+[mip-fn-width](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-width)|[新增][平台]蜂鸟网标签宽度计算
+
+[mip-taoge-scaydk](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk)|[升级][平台]wap.scaydk.com网业务逻辑组件修复bug
+
+[mip-wkfun-mclub](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-mclub)|[新增][平台]寻医问药页面功能组件
+
+[mip-wkfun-unfold](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-unfold)|[新增][平台]寻医问药页面功能组件
+
+#### 2017.07.14
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-nph](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-nph)|[新增][平台]呼起组件
+
+#### 2017.07.13
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-233-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-slider)|[升级][平台]头部滑动并显示当前栏目组件升级
+[mip-365xiazai-header](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-365xiazai-header)|[新增][平台]365xiazai站点header组件
+[mip-365xiazai-tabtap](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-365xiazai-tabtap)|[新增][平台]判断手机系统，搜索关键词后，跳转对应的下载页面
+[mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[新增][平台]用于kp详情页
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[新增][平台]该组件用于kp自身使用
+[mip-taoge-form](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-form)|[新增][平台]scaydk.com表单提交组件
+[mip-taoge-scaydk-index](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-index)|[新增][平台]wap.scaydk.com网业务逻辑组件
+[mip-taoge-scaydk](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk)|[新增][平台]wap.scaydk.com网业务逻辑组件升级
+[mip-taoge-tp](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-tp)|[新增][平台]ThinPHP 系统组件
+
 #### 2017.07.11
 > 核心代码上线
 支持移动dom

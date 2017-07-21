@@ -73,17 +73,11 @@
 组件名|功能说明
 ---|---
 [mip-nph](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-nph)|[升级][平台]呼起组件修复bug
-
 [mip-fn-swiper](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-swiper)|[更新][平台]蜂鸟网WAP站图片滚动等功能
-
 [mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[更新][平台]蜂鸟网WAP站公共头
-
 [mip-fn-width](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-width)|[新增][平台]蜂鸟网标签宽度计算
-
 [mip-taoge-scaydk](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk)|[升级][平台]wap.scaydk.com网业务逻辑组件修复bug
-
 [mip-wkfun-mclub](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-mclub)|[新增][平台]寻医问药页面功能组件
-
 [mip-wkfun-unfold](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-unfold)|[新增][平台]寻医问药页面功能组件
 
 #### 2017.07.14

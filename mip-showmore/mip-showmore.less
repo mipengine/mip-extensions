@@ -3,10 +3,22 @@
  */
 
 mip-showmore {
-    visibility:hidden;
+    visibility: hidden;
     .mip-showmore {
-    	&-originalhtml,&-btnhide,&-btnshow {
-    		display: none;
-    	}
+        &-originalhtml,
+        &-btnhide,
+        &-btnshow {
+            display: none;
+        }
+    }
+}
+
+.mip-showmore-btn {
+    border: 1px solid #ddd;
+    background: #fafafa;
+    display: inline-block;
+    padding: 15px;
+    &:hover, &:active {
+        background: #f0f0f0;
     }
 }

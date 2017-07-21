@@ -55,7 +55,7 @@
     <mip-showmore maxlen='20' animatetime='.3' id="showmore06">
         【内层元素】MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。
     </mip-showmore>
-    <div on="tap:showmore07.toggle" data-closetext="收起内层内容" class="mip-showmore-btn">点击显示内层</div>
+    <div on="tap:showmore06.toggle" data-closetext="收起内层内容" class="mip-showmore-btn">点击显示内层</div>
 </mip-showmore>
 <div on="tap:showmore05.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
 ```

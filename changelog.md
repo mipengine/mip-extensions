@@ -1,4 +1,72 @@
 # 升级日志
+#### 2017.07.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list showUrltitle组件
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[升级][平台] 公司业务需求
+[mip-cnkang-details](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-details)|[升级][平台]康网mip内容化
+[mip-cnkang-pic](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-pic)|[新增][平台]康网添加三张图片
+[mip-fn-comment-post](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-post)|[升级][平台]蜂鸟网WAP站评论提交组件
+[mip-fn-comment-reply](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-reply)|[升级][平台] 蜂鸟网WAP站评论内容回复
+[mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[升级][平台]蜂鸟网公共头
+[mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[升级][平台]mip-kp-detail
+[mip-wkclub-wss](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkclub-wss)|[新增][平台]寻医问药问答搜索分词组件
+[mip-xcy-hf](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-hf)|[新增][平台]ads8hf业务逻辑组件
+[mip-xcy-wz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-wz)|[升级][平台]
+ads8业务逻辑组件
+[mip-zpm-jobdetail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-jobdetail)|[新增][平台]职位业务需求
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]首页需求
+
+#### 2017.07.19
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[升级][平台]蜂鸟网公共头
+[mip-taoge-scaydk-calculator](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-calculator)|[新增][平台]贷款计算器组件
+[mip-taoge-scaydk-qe](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-qe)|[新增][平台]网贷款额度计算组件
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[新增][平台]首页需求
+[mip-xcy-wz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-wz)|[新增][平台]ads8业务逻辑组件
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+[mip-cnkang-details](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-details)|[升级][平台]康网mip内容化
+
+#### 2017.07.18
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[升级][平台]根据不同条件过滤产品
+[mip-taoge-scaydk-adviser](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-adviser)|[新增][平台]贷款顾问自定义组件
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+[mip-ask-pucker](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ask-pucker)|[新增][平台]120ask功能性组件
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip-zpm-sindex 首页需求
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[新增][平台]搜索结果需求
+[mip-qcode](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qcode)|[新增][平台]mip-qcode
+
+#### 2017.07.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cnkang-direct](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-direct)|[新增][平台]康网直投广告
+[mip-233-yytx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-yytx)|[升级][平台]预约提醒插件
+[mip-nph](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-nph)|[升级][平台]mip-nph 组件
+[mip-cy-script](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cy-script)|[升级][平台]mip-cy-script 组件
+[mip-wkfun-article](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-article)|[新增][平台]mip-cy-script 组件
+[mip-wkad-final](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkad-final)|[升级][平台]寻医问药新版广告组件
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[新增][平台]根据不同条件过滤产品
+[mip-chinacn-gallery](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-gallery)|[新增][平台]根据不同条件过滤产品
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-search)|[新增][平台]mip-chinacn-search 搜索
+[mip-cnkang-details](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-details)|[新增][平台]康网mip内容化
+[mip-taoge-scaydk](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk)|[升级][平台]wap.scaydk.com网业务逻辑组件
+[mip-taoge-scaydk-loan](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-loan)|[新增][平台]网贷款产品筛选组件
 
 #### 2017.07.11
 > 核心代码上线

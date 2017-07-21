@@ -15,8 +15,7 @@
 [mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[升级][平台]mip-kp-detail
 [mip-wkclub-wss](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkclub-wss)|[新增][平台]寻医问药问答搜索分词组件
 [mip-xcy-hf](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-hf)|[新增][平台]ads8hf业务逻辑组件
-[mip-xcy-wz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-wz)|[升级][平台]
-ads8业务逻辑组件
+[mip-xcy-wz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-wz)|[升级][平台]ads8业务逻辑组件
 [mip-zpm-jobdetail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-jobdetail)|[新增][平台]职位业务需求
 [mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]首页需求
 

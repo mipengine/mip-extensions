@@ -96,7 +96,11 @@ define(function (require) {
         }
 
         self.maskElement.setAttribute('on', 'tap:' + self.id + '.close');
-
+        //侧边栏调出来后页面主体部分禁止滚动
+        self.maskElement.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        },false);
         // 样式设置
         util.css(self.maskElement, {display: 'block'});
 

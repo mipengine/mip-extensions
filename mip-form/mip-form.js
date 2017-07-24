@@ -42,9 +42,12 @@ define(function (require) {
         var $element = $(element);
         var url = element.getAttribute('url');
         var method = element.getAttribute('method');
+        var target = element.getAttribute('target');
         var form = document.createElement('form');
         form.action = url;
         form.method = method;
+        target = target ? target : '_blank';
+        form.target = viewer.isIframed && target !== '_blank' ? '_top' : target;
         element.appendChild(form);
         util.dom.insert(form, element.children);
 

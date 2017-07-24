@@ -8,6 +8,16 @@
 [mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list 更改异步请求方式为fetchJsonp
 [mip-sidebar](https://github.com/mipengine/mip-extensions/tree/master/mip-sidebar)|[升级][官方] 组件移动端禁止滚动
 
+#### 2017.07.21
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cnkang-sex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-sex)|[新增][平台]康网两性文章mip化
+[mip-stats-google](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-stats-google)|[新增][平台]谷歌分析
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+
 #### 2017.07.20
 
 > 组件上线
@@ -37,7 +47,7 @@
 [mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[升级][平台]蜂鸟网公共头
 [mip-taoge-scaydk-calculator](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-calculator)|[新增][平台]贷款计算器组件
 [mip-taoge-scaydk-qe](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-qe)|[新增][平台]网贷款额度计算组件
-[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[新增][平台]首页需求
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]首页需求
 [mip-xcy-wz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-wz)|[新增][平台]ads8业务逻辑组件
 [mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
 [mip-cnkang-details](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-details)|[升级][平台]康网mip内容化

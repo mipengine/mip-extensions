@@ -1,4 +1,11 @@
 # 升级日志
+#### 2017.07.24
+
+> 组件上线
+组件名|功能说明
+---|---
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list 更改异步请求方式为fetchJsonp
+
 #### 2017.07.20
 
 > 组件上线

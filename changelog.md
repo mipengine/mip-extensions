@@ -1,12 +1,12 @@
 # 升级日志
 #### 2017.07.24
 
-> 核心代码上线：mip-sidebar 组件移动端禁止滚动
 > 组件上线
 
 组件名|功能说明
 ---|---
 [mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list 更改异步请求方式为fetchJsonp
+[mip-sidebar](https://github.com/mipengine/mip-extensions/tree/master/mip-sidebar)|[升级][官方] 组件移动端禁止滚动
 
 #### 2017.07.20
 

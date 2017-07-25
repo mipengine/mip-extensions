@@ -39,7 +39,7 @@ define(function (require) {
                 return $2 === 's' ? 'https://' : 'http://';
             });
         } else if (/mipcdn.com\./g.test(url)) {
-            url = url.replace(/^http(s?)\:\/\/.*.mipcdn.com\/c\/(s?)/g, function ($0, $1, $2) {
+            url = url.replace(/^http(s?)\:\/\/.*\.mipcdn\.com\/c\/(s?)/g, function ($0, $1, $2) {
                 return $2 === 's' ? 'https://' : 'http://';
             });
         }

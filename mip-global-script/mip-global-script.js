@@ -65,14 +65,14 @@ define(function (require) {
                             hmToken = '934bb6a05ccea7b642b9e35bb798c1c9';
                             break;
                         case 'caoch':
-							hmToken = 'a8ab61dc4bb98855125bcca18c1125a8';
-							break;
+			    hmToken = 'a8ab61dc4bb98855125bcca18c1125a8';
+			    break;
                         case 'guoqian':
                             hmToken = 'e20ff59a84ded600cecd51eac7776549';
                             break;
                         case 'yangting':
-							hmToken = 'c3ee7441928ffc7129fed0cb62651c1d';
-							break;
+			    hmToken = 'c3ee7441928ffc7129fed0cb62651c1d';
+			    break;
                         case 'chenyang':
                             hmToken = '24c19e56533b8eebf5e470064847cc4d';
                             break;
@@ -162,6 +162,9 @@ define(function (require) {
                             break;
                         case 'wangchao':
                             hmToken = 'f1ff8cd3f72dde3f4f2dbd1fff2cb81b';
+                            break;
+		        case 'tongyao':
+                            hmToken = 'a50b5814c2446ed7db273554c97b4b29';
                             break;
                     }
                     if (hmToken !== '') {

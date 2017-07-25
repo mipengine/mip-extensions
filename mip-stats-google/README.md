@@ -6,7 +6,7 @@ mip-stats-google 组件说明
 ----|----
 类型|通用
 布局|N/S
-引用脚本|https://mipcache.bdstatic.com/static/v1/mip-stats-google/mip-stats-google.js
+引用脚本|https://mipcache.bdstatic.com/extensions/platform/v1/mip-stats-google/mip-stats-google.js
 
 ## 示例
 

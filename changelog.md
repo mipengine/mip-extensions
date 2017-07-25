@@ -1,4 +1,14 @@
 # 升级日志
+#### 2017.07.25
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list 升级回调逻辑
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-search)|[升级][官方] 更改异步请求地址为绝对路径
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[新增][官方] 触发元素ajax异步加载视频阅读量和更新文章阅读量
+
 #### 2017.07.24
 
 > 组件上线

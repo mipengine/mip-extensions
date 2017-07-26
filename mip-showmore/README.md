@@ -103,9 +103,13 @@
 ## maxheightbaseviewport
 
 说明：基于屏幕可视区域的高度阈值，如果元素高度超出阈值，隐藏超出部分，显示"显示更多按钮"
+
 必选项：否
+
 类型：数字
+
 计算方式：`maxheightbaseviewport * 可视区域高度`；例如：`maxheightbaseviewport = 0.5`，实际折叠高度为：0.5屏
+
 备注:  `maxheightbaseviewport、maxheight、maxheight`只能存在一个，优先级：`maxheightbaseviewport > maxheight > maxheight`
 
 ## maxheight
@@ -152,12 +156,17 @@
 ## bottomshadow
 
 说明：折叠边界是否渐变
+
 取值：只能为'0'或'1'
+
 必选项：否  
 
 ## shadowcolor
 
 说明：折叠边界渐变颜色
+
 取值：16进制、rgb、css颜色保留值(如：red)
+
 必选项：否  
+
 备注:  只有与maxheight一起使用时生效

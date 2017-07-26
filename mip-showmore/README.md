@@ -11,8 +11,9 @@
 ## 示例
 
 ### 设定像素单位的高度阈值
-在按钮中增加`on`属性，注意on属性中需要填写对应 mip-showmore 的id。
-比如本例中，mip-showmore id="showmore01"，`on`属性需要写成on="tap:showmore01.toggle"
+
+- 在按钮中增加`on`属性，注意on属性中需要填写对应 mip-showmore 的id。
+- 比如本例中，mip-showmore id="showmore01"，`on`属性需要写成on="tap:showmore01.toggle"
 
 ```html
 <mip-showmore maxheight='40' animatetime='.3' id="showmore01">
@@ -22,8 +23,9 @@
 ```
 
 ### 设定基于viewport的高度阈值
-[notice] `maxheightbaseviewport`可设置基于屏幕可视区域的高度阈值。
-[notice] 在按钮中增加`on`属性，注意on属性中需要填写对应 mip-showmore 的id。比如本例中，mip-showmore id="showmore01"，`on`属性需要写成on="tap:showmore01.toggle"
+
+- `maxheightbaseviewport`可设置基于屏幕可视区域的高度阈值。
+- 在按钮中增加`on`属性，注意on属性中需要填写对应 mip-showmore 的id。比如本例中，mip-showmore id="showmore01"，`on`属性需要写成on="tap:showmore01.toggle"
 
 ```html
 <mip-showmore maxheightbaseviewport='.5' maxheight='40' animatetime='.3' id="showmore01">
@@ -33,7 +35,8 @@
 ```
 
 ### 嵌套使用-高度阈值
-[notice] 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+
+- 嵌套使用时，注意 on 和 mip-showmore id 的对应。
 
 ```html
 <mip-showmore maxheight='40' animatetime='.3' id="showmore02">
@@ -57,7 +60,7 @@
 
 ### 嵌套使用-字数
 
-[notice] 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+- 嵌套使用时，注意 on 和 mip-showmore id 的对应。
 
 ```html
 <mip-showmore maxlen='20' animatetime='.3' id="showmore05">
@@ -71,8 +74,10 @@
 ```
 
 ### 设定折叠边界是否渐变
-[notice] `bottomshadow`设置折叠边界是否透明渐变
-[notice] 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+
+- `bottomshadow`设置折叠边界是否透明渐变
+- 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+
 ```html
 <mip-showmore bottomshadow='1' maxlen='20' id="showmore04">
         MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
@@ -81,9 +86,11 @@
 ```
 
 ### 设定折叠边界渐变颜色
-[notice] `shadowcolor`设置折叠边界渐变颜色。
-[notice] `shadowcolor`属性必须在设置`bottomshadow='1'`时生效。
-[notice] 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+
+- `shadowcolor`设置折叠边界渐变颜色。
+- `shadowcolor`属性必须在设置`bottomshadow='1'`时生效。
+- 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+
 ```html
 <mip-showmore bottomshadow='1' shadowcolor='#fff' maxlen='20' id="showmore04">
         MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
@@ -110,7 +117,7 @@
 
 ##  maxheight
 
-说明：  内容字符串超出限制长度则会截断显示省略号，显示"显示更多按钮"。内容截断显示不包括图片显示。  
+说明：内容字符串超出限制长度则会截断显示省略号，显示"显示更多按钮"。内容截断显示不包括图片显示。  
 必选项：否       
 类型：数字  
 备注:  `maxheightbaseviewport、maxheight、maxheight`只能存在一个，优先级：`maxheightbaseviewport > maxheight > maxheight`

@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author hejieye
-* @time  2017-06-15
-* @version 2.0.0
+* @time  2017-07-21
+* @version 2.0.1
 */
 define(function (require) {
     var $ = require('zepto');
@@ -17,10 +17,10 @@ define(function (require) {
         }
       catch (e) {}
     };
-    var hotRecommend = function (url, img, title) {
+    var hotRecommend = function (url, img, title, statsBaid) {
         var htmls = '';
         htmls += '<li>';
-        htmls += '<a href=' + url + ' target=\'_blank\' class=\'href_log\'>';
+        htmls += '<a href=' + url + ' target=\'_blank\' class=\'href_log\'' + statsBaid + '>';
         htmls += '<mip-img class=\'mip-img\' src=' + img + '>';
         htmls += '<p class=\'mip-img-subtitle\'>' + title + '</p>';
         htmls += '</mip-img>';
@@ -44,12 +44,16 @@ define(function (require) {
         list['COMMERCIAL_CAD'] = 501;	     // 商业纯广告
         list['COOPERATE_BRAND'] = 600;	     // 品牌自问自答
         list['COOPERATE_EFFECT'] = 700;	     // 效果广告
+        list['COOPERATE_YOULAI'] = 1000;     // 有来
         return list;
     };
-    var getUserId = function (source, uid) {
+    var getUserId = function (source, uid, adOwnerId) {
         if (source === 202 || source === 500 || source === 501
         || source === 600 || source === 700) {
             return uid;
+        }
+        else if (source === 1000) {
+            return adOwnerId;
         }
         return '';
     };
@@ -63,8 +67,9 @@ define(function (require) {
         var qcid = $that.attr('qcid') || '';
         var cid = $that.attr('cid') || '';
         var uid = $that.attr('uid') || '';
+        var adOwnerId = $that.attr('adOwnerId') || '';
         var source = getChannel()[sourceType] || 999;
-        uid = getUserId(sourceType, uid) || busUid;
+        uid = getUserId(sourceType, uid, adOwnerId) || busUid;
         var pv = '';
         ipLoad(function (data) {
             ip = data.ip || '';
@@ -90,6 +95,35 @@ define(function (require) {
             window.open(url);
         });
     };
+ // 动态添加 mip-fixed悬浮广告
+    var putMXfAd = function (picLink, picLocal, statsBaidu) {
+        var htmls = '';
+        htmls += '<mip-fixed type=\'top\' id=\'customid\' >';
+        htmls += '<div class=\'mip-adbd\'>';
+        htmls += '<div on=\'tap:customid.close\' class=\'mip-adbd-close\'><span>关闭</span></div>';
+        htmls += '<div href=' + picLink + ' class=\'href_log\' ' + statsBaidu + '>';
+        htmls += '<mip-img class=\'mip-img bottom-img\' src=' + picLocal + '></mip-img>';
+        htmls += '</div>';
+        htmls += '<span class=\'icon-bai-bottom\'></span>';
+        htmls += '</div></mip-fixed>';
+        return htmls;
+    };
+    var putQiyeInfo = function (companyName, drName, website, picLocal, statsBaidu) {
+        var htmls = '<div class=\'firms-con\'>';
+        htmls += '<div class=\'firms-pic\'>';
+        htmls += '<mip-img class=\'mip-img\' src=' + picLocal + '></mip-img>';
+        htmls += '<span class=\'icon-v\'></span>';
+        htmls += '</div>';
+        htmls += '<div class=\'firms-text\'>';
+        htmls += '<p><span class=\'name\'>' + companyName + '</span>';
+        htmls += '<span class=\'time\'> 1小时前</span><span class=\'icon-tui\'>广告</span></p>';
+        htmls += '<p>' + drName + '</p>';
+        htmls += '</div>';
+        htmls += '<a href=' + website + ' target=\'_blank\' class=\'btn-ask href_log\' ' + statsBaidu + '>咨询专家</a>';
+        htmls += '</div>';
+        htmls += '</div>';
+        return htmls;
+    };
     // 商业广告
     var busBottomAM = function () {
         $('.bus_bottom_div').find('div').each(function () {
@@ -98,13 +132,13 @@ define(function (require) {
             var picurl = $(this).attr('picurl');
             busUid = $(this).attr('uid');
             if (area === '') { // 区域为空表示投放全国
-                var html = putMXfAd(imgurl, picurl);
+                var html = putMXfAd(imgurl, picurl, '');
                 $('.mip_as_bottm_div').append(html);
             }
             else {
                 ipLoad(function (data) {
                     if (area.indexOf(data.province) > -1) {
-                        var html = putMXfAd(imgurl, picurl);
+                        var html = putMXfAd(imgurl, picurl, '');
                         $('.mip_as_bottm_div').append(html);
                     }
                 });
@@ -117,11 +151,13 @@ define(function (require) {
             busUid = $(this).attr('uid');
             var title = $(this).attr('imgtitle');
             if (area === '') {
-                $('.hot-tui-list').append(hotRecommend(url, img, title));
+                $('.hot-tui-list').append(hotRecommend(url, img, title, ''));
+                $('.hot_recomd_div').show();
             }
             else {
                 ipLoad(function (data) {
-                    $('.hot-tui-list').append(hotRecommend(url, img, title));
+                    $('.hot-tui-list').append(hotRecommend(url, img, title, ''));
+                    $('.hot_recomd_div').show();
                 });
             }
         });
@@ -141,6 +177,31 @@ define(function (require) {
         });
         advLogInfoClick();
     };
+    var validatePut = function () {
+        var $that = $('.paramDiv');
+        var mmaintags = $that.attr('mainTags');
+        var qcid = $that.attr('qcid') || '';
+        var sources = $that.attr('sources');
+        var version = $that.attr('version');
+        var iscommercial = $that.attr('iscommercial');
+        if ('COOPERATE_BRAND' === sources && version === '2') {
+            return false;
+        }
+        if (iscommercial === 'true' && sources !== 'COOPERATE_COMMERCIAL') {    // 过滤掉第三合作广告
+            return false;
+        }
+        if (qcid === '82' && (mmaintags.indexOf('财务税务') !== -1 || mmaintags.indexOf('商业工具') !== -1)) {
+            return true;
+        }
+        return false;
+    };
+    var putTestButHtml = function () {
+        var putUrl = 'https://mipp.iask.cn/html/yongyou/index.html';
+        var picUrl = 'http://pic.iask.cn/fimg/5036459229_400.jpg';
+        var statsBaidu = 'data-stats-baidu-obj="%20%7B%22type%22:%22click%22,'
+        + '%22data%22:%22%5B\'_trackEvent\',%20\'100m,%20\'0\',%20\'8002m\'%5D%22%7D"';
+        return putMXfAd(putUrl, picUrl, statsBaidu);
+    };
     // 移除百度广告
     var removeBaiduAd = function () {
         $('.mip_as_haoping_div').remove();
@@ -152,7 +213,78 @@ define(function (require) {
         $('.mip_as_tbtj').remove();
         $('.mip_dl_tbtj').remove();
         $('.mip_as_djgz').remove();
+        $('.mip_as_wzss').remove();
         $('.mip_as_bottm_div').empty();
+    };
+    var youLai = function (data) {
+        var json = data.adList;
+        for (var key in json) {
+            if (json[key].type === '4') {
+                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B_trackEvent,'
+                + '%20%22M_commercial_youlai%22,%20%22M_commercial_youlai_skip%22,'
+                + '%20%22M_commercial_youlai_skip_top_xuanfu%22%5D%22%7D"';
+                $('.mip_as_bottm_div').empty();
+                $('.mip_as_bottm_div').append(putMXfAd(json[key].picLink, json[key].picUrl, statsBaidu));
+            }
+            else if (json[key].type === '3') {  // 企业信息
+                var obj = json[key];
+                var companyName = obj.companyName || '';
+                var drName   = obj.drName  || '';
+                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,'
+                + '%22data%22:%22%5B_trackEvent,%20%22M_commercial_youlai%22,%20%22M_commercial_youlai_skip%22'
+                + ',%20%22M_commercial_youlai_skip_qiye_info%22%5D%22%7D"';
+                var html1 = putQiyeInfo(drName, companyName, data.website, obj.picUrl, statsBaidu);
+                if ($('.qs_bar').length > 0) {
+                    $('.qs_bar').eq(0).empty();
+                    $('.qs_bar').eq(0).append(html1);
+                }
+                else {
+                    $('.mip_as_other_qiye_div').eq(0).empty();
+//                    $('.mip_as_other_qiye_div').eq(0).prev().prev().remove();
+                    $('.mip_as_other_qiye_div').eq(0).append(html1);
+                }
+            }
+            else if (json[key].type === '5') {
+                var obj2 = {};
+                for (var k in json) {
+                    if (json[k].type === '3') {
+                        obj2 = json[k];
+                    }
+                }
+                var obj = json[key];
+                var picList = obj.picList;
+                var statsBaidu = '%7B%22type%22:%22click%22,%22data%22:%22%5B_trackEvent,'
+                + '%20%22M_commercial_youlai%22,%20%22M_commercial_youlai_skip%22,'
+                + '%20%22M_commercial_youlai_skip_feed%22%5D%22%7D';
+                var i = 0;
+                var obj2PicUrl = '<mip-img class="mip-img" src="' + obj2.picUrl + '"></mip-img>';
+                $('.youlai_feed_div .youlai_feed_title').text(obj.title);
+                $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
+                $('.youlai_feed_div .youlai_feed_use_name').html(obj2.companyName);
+                $('.youlai_feed_div .youlai_feed_txt').text(obj.describe);
+                $('.youlai_feed_div a').attr('src', obj.picLink);
+                $('.youlai_feed_div a').attr('data-stats-baidu-obj', statsBaidu);
+                $('.youlai_feed_div .youlai_feed').each(function () {
+                    $(this).append('<mip-img class="mip-img" src="' + picList[i++] + '"></mip-img>');
+                });
+                $('.youlai_feed_div').show();
+            }
+            else if (json[key].type === '6') {
+                var obj = json[key];
+                var picList = obj.adDetailList;
+                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,'
+                + '%22data%22:%22%5B_trackEvent,%20%22M_commercial_youlai%22,%20%22M_commercial_youlai_skip%22,'
+                + '%20%22M_commercial_youlai_skip_quantu%22%5D%22%7D"';
+                for (var pic in picList) {
+                    var picLink = obj.picLink;
+                    var picUrl = picList[pic].picUrl;
+                    var describe = picList[pic].describe;
+                    $('.hot-tui-list').append(hotRecommend(picLink, picUrl, describe, statsBaidu));
+                    $('.hot_recomd_div').show();
+                }
+            }
+        }
+        advLogInfoClick();
     };
 
     var loadAd = function (sources, openId, div) {
@@ -166,7 +298,10 @@ define(function (require) {
         else if (sources === 'COOPERATE_XINYUHENG') {
             type = 'XYH';
         }
-        if (type === '') {
+        else if (sources === 'COOPERATE_YOULAI') {
+            type = 'YL';
+        }
+        else if (type === '') {
             return;
         }
         var url = 'https://mipp.iask.cn/t/wlsh?openCorporationId=' + openId + '&type=' + type;
@@ -178,6 +313,10 @@ define(function (require) {
                 var isHuasheng = true;
                 var htmls = '';
                 var html1 = '';
+                if (type === 'YL') {
+                    youLai(json);
+                    return;
+                }
                 if (type === 'XYH') {
                     isHuasheng = false;
                     htmls = putMXfAd(json.pics[1].picLink, json.pics[1].picLocal);
@@ -189,7 +328,7 @@ define(function (require) {
                     var drName = json.drName || '';
                     var website = json.website || '';
                     var pic = json.pics[0] || '';
-                    html1 = putQiyeInfo(companyName, drName, website, pic.picLocal);
+                    html1 = putQiyeInfo(companyName, drName, website, pic.picLocal, '');
                 }
                 $(div).empty();
                 $(div).append(htmls);
@@ -208,43 +347,14 @@ define(function (require) {
             advLogInfoClick();
         });
     };
-    // 动态添加 mip-fixed悬浮广告
-    var putMXfAd = function (picLink, picLocal) {
-        var htmls = '';
-        htmls += '<mip-fixed type=\'top\' id=\'customid\' >';
-        htmls += '<div class=\'mip-adbd\'>';
-        htmls += '<div on=\'tap:customid.close\' class=\'mip-adbd-close\'><span>关闭</span></div>';
-        htmls += '<div href=' + picLink + ' class=\'href_log\'>';
-        htmls += '<mip-img class=\'mip-img\' src=' + picLocal + '></mip-img>';
-        htmls += '</div>';
-        htmls += '<span class=\'icon-bai-bottom\'></span>';
-        htmls += '</div></mip-fixed>';
-        return htmls;
-    };
-    var putQiyeInfo = function (companyName, drName, website, picLocal) {
-        var htmls = '<div class=\'firms-con\'>';
-        htmls += '<div class=\'firms-pic\'>';
-        htmls += '<mip-img class=\'mip-img\' src=' + picLocal + '></mip-img>';
-        htmls += '<span class=\'icon-v\'></span>';
-        htmls += '</div>';
-        htmls += '<div class=\'firms-text\'>';
-        htmls += '<p><span class=\'name\'>' + companyName + '</span><span class=\'time\'> 16-09-05</span></p>';
-        htmls += '<p>' + drName + '</p>';
-        htmls += '</div>';
-        htmls += '<a href=' + website + ' target=\'_blank\' class=\'btn-ask href_log\'>咨询专家</a>';
-        htmls += '</div>';
-        htmls += '</div>';
-        return htmls;
-    };
     // 加载url中的js
     var loadURLJS = function (tags, params) {
-        var url = 'https://mipp.iask.cn/mib/tag/';
+        var url = 'http://m.iask.sina.com.cn/mib/tag/';
         var arry = tags.split(':');
         for (var i = 0; i < arry.length; i++) {
             url = url + arry[i];
         }
         try {
-
             var province = ''; // 省份
             var city = ''; // 城市
             var ip = '';
@@ -252,39 +362,42 @@ define(function (require) {
                 province = data.province;
                 city = data.city;
                 ip = data.ip;
-                $.get(url, function (data) {
-                    var res = $.parseJSON(data);
-                    if (res.succ === 'Y') { // 不等于空
-                        var paramsArry = params.split(':');
-                        var cmJsonData = $.parseJSON(res.html);
-                        var lenGood = parseInt(paramsArry[0], 0); // 好评回答数量
-                        var lenOther = parseInt(paramsArry[1], 0); // 普通答案数量
-                        var qSourceType = paramsArry[2]; // 来源
-                        var commercialSource = paramsArry[3]; // 商业广告类型
-                        var qTags = paramsArry[4]; // 标签
-                        var mainTags = paramsArry[5]; // 病种
-                        var nowTime = getSysTime(); // 时间
-                        var qCid = paramsArry[6] || '79';
-                        var bCid = paramsArry[7];
-                        var sCid = paramsArry[8];
-                        var qid = paramsArry[9];
-                        if ('undefined' !== typeof cmJsonData) {
-                            var param = loadInit({
-                                mainTags: mainTags,
-                                province: province,
-                                qCid: qCid,
-                                bCid: bCid,
-                                city: city,
-                                lenGood: lenGood,
-                                lenother: lenOther,
-                                commercialSource: commercialSource,
-                                qSourceType: qSourceType,
-                                qTags: qTags,
-                                nowTime: nowTime
-                            });
-                            loadData(param, cmJsonData);
+                $.get(url, function (datas) {
+                    var res = '';
+                    try {
+                        res = $.parseJSON(datas);
+                        if (res.succ === 'Y') { // 不等于空
+                            var paramsArry = params.split(':');
+                            var cmJsonData = $.parseJSON(res.html);
+                            var lenGood = parseInt(paramsArry[0], 0); // 好评回答数量
+                            var lenOther = parseInt(paramsArry[1], 0); // 普通答案数量
+                            var qSourceType = paramsArry[2]; // 来源
+                            var commercialSource = paramsArry[3]; // 商业广告类型
+                            var qTags = paramsArry[4]; // 标签
+                            var mainTags = paramsArry[5]; // 病种
+                            var nowTime = getSysTime(); // 时间
+                            var qCid = paramsArry[6] || '79';
+                            var bCid = paramsArry[7];
+                            var sCid = paramsArry[8];
+                            var qid = paramsArry[9];
+                            if ('undefined' !== typeof cmJsonData) {
+                                var param = loadInit({
+                                    mainTags: mainTags,
+                                    province: province,
+                                    qCid: qCid,
+                                    bCid: bCid,
+                                    city: city,
+                                    lenGood: lenGood,
+                                    lenother: lenOther,
+                                    commercialSource: commercialSource,
+                                    qSourceType: qSourceType,
+                                    qTags: qTags,
+                                    nowTime: nowTime
+                                });
+                                loadData(param, cmJsonData);
+                            }
                         }
-                    }
+                    } catch (e) {}
                 });
             });
         }
@@ -393,14 +506,14 @@ define(function (require) {
         }
     };
     var put1 = function (val, options) {
-        putAppend(1, options, putQiyeInfo(val.hospitalName, val.contacts, val.url, val.logo));
+        putAppend(1, options, putQiyeInfo(val.hospitalName, val.contacts, val.url, val.logo, ''));
     };
     var put2 = function (val, options) {
-        putAppend(2, options, putQiyeInfo(val.hospitalName, val.contacts, val.url, val.logo));
+        putAppend(2, options, putQiyeInfo(val.hospitalName, val.contacts, val.url, val.logo, ''));
     };
     var put3 = function (val, options) {
         $('.mip_as_bottm_div').empty();
-        $('.mip_as_bottm_div').append(putMXfAd(val.url, val.mSuspensionImage));
+        $('.mip_as_bottm_div').append(putMXfAd(val.url, val.mSuspensionImage, ''));
     };
 
     function noCityPutAd(options, cmJsonData) {
@@ -544,7 +657,7 @@ define(function (require) {
         try {
             $.getJSON(url,
             function (data) {
-                var htmls = putMXfAd(data.m[0].link, data.m[0].pic);
+                var htmls = putMXfAd(data.m[0].link, data.m[0].pic, '');
                 $(div).empty();
                 $(div).append(htmls);
                 advLogInfoClick();
@@ -569,7 +682,7 @@ define(function (require) {
                     var tags = $('.business_source_type').attr('tags');
                     var params = $('.business_source_type').attr('params');
                     if (sourceType === 'COOPERATE_XINYUHENG' || sourceType === 'COOPERATE_HUASHENG'
-                    || sourceType === 'COOPERATE_HUASHENG_QA') {
+                    || sourceType === 'COOPERATE_HUASHENG_QA' || sourceType === 'COOPERATE_YOULAI') {
                         removeBaiduAd();
                         currencyAM(sourceType, openId);
                     }
@@ -585,8 +698,37 @@ define(function (require) {
                     advLogInfo(sourceType, 0);
                 }
             },
+            commercialLoad: function () {
+                if (validatePut()) {
+                    var nowTime = getSysTime();
+                    var startTime = '2017-07-03 00:00:00';
+                    var endTime   = '2017-07-19 23:59:59';
+                    if (startTime <= nowTime && nowTime < endTime) {
+                        var putUrl = 'http://m.iask.sina.com.cn/html/yongyou/index.html';
+                        // 删除百度广告
+                        removeBaiduAd();
+                        $('.mip_as_bottm_div').append(putTestButHtml());
+                        var urlr = 'http://m.iask.sina.com.cn/t/mipdf?t=yongyou';
+                        $.ajax({
+                            type: 'GET',
+                            url: urlr,
+                            dataType: 'html',
+                            success: function (data) {
+                                if (!!data) {
+                                    $('.breadcast_middle_commercial').empty();
+                                    $('.breadcast_middle_commercial').append(data);
+                                }
+                            }
+                        });
+                        $('.put-test-hh').click(function () {
+                            window.open(putUrl);
+                        });
+                    }
+                }
+            },
             init: function () {
                 this.newLoadAd();
+                this.commercialLoad();
             }
         };
     // build 方法，元素插入到文档时执行，仅会执行一次

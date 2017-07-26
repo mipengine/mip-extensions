@@ -108,19 +108,16 @@ define(function(require) {
                 this._toggleClickBtn(clickBtn, 'showOpen');
             } else {
                 // 显示超出高度的内容
+                var aniTime = this.animateTime || 0.3;
+                var showBox = this.showBox;
                 classList.add('mip-showmore-boxshow');
-                util.css(this.showBox, {
-                    height: 'auto',
-                    transition: 'height ' + this.animateTime + 's'
-                });
-                var runtime = this.animateTime * 1000;
-                setTimeout(function() {
-                    // 防止内部出现懒加载元素导致高度计算不对
-                    util.css(this.showBox, {
-                        'transition': 'height 0s',
-                        height: 'auto'
-                    });
-                }, runtime);
+                util.fn.unfoldHeight(showBox, aniTime + 's');
+
+                // var runtime = this.animateTime * 1000;
+                // setTimeout(function() {
+                //     // 防止内部出现懒加载元素导致高度计算不对
+                //     util.fn.unfoldHeight(showBox, aniTime + 's');
+                // }, runtime);
 
                 this._toggleClickBtn(clickBtn, 'showClose');
             }

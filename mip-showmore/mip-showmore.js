@@ -7,6 +7,7 @@
 define(function(require) {
     var customElement = require('customElement').create();
     var util = require('util');
+    var viewport = require('viewport');
 
     var Showmore = function(ele) {
         this.ele = ele;
@@ -34,9 +35,24 @@ define(function(require) {
         // 获取字数阈值
         this.maxLen = this.ele.getAttribute('maxlen');
 
+        // 获取高度屏幕比例阈值
+        this.maxHeightBaseViewport = this.ele.getAttribute('maxheightbaseviewport');
+        // 获取是否需要bottom渐变
+        this.bottomShadow = this.ele.getAttribute('bottomshadow') === '1';
+        // bottom渐变边框className
+        this.bottomShadowClassName = 'linear-gradient';
+        // 获取高度屏幕比例阈值
+        this.shadowColor = this.ele.getAttribute('shadowcolor');
+        // 获showmoreid
+        this.id = this.ele.getAttribute('id');
+
         // 获取显示框显示对象
         // 处理阈值高度(高度优先于字体长度,不允许两个同时存在)
-        if (this.maxHeight && !isNaN(this.maxHeight)) {
+        if (this.maxHeightBaseViewport && !isNaN(this.maxHeightBaseViewport)) {
+            this.showType = 'HEIGHTSCREEN';
+            this.maxHeight = viewport.getHeight() * this.maxHeightBaseViewport;
+            this._initHeight();
+        } else if (this.maxHeight && !isNaN(this.maxHeight)) {
             this.showType = 'HEIGHT';
             this._initHeight();
         } else if (this.maxLen && !isNaN(this.maxLen)) {
@@ -46,6 +62,10 @@ define(function(require) {
             this.maxHeight = 0;
             this._initHeight();
         }
+
+        // 设置渐变颜色
+        this.shadowColor && this._setShadowColor();
+
         this._bindClick();
         // 避免初始加载闪现
         util.css(this.ele, {
@@ -68,6 +88,49 @@ define(function(require) {
             util.css(showMoreBtn, {
                 display: 'block'
             });
+            //处理bottom渐变
+            this.bottomShadow && this.showBox.classList.toggle(this.bottomShadowClassName);
+        }
+    };
+
+    // 字数控制
+    Showmore.prototype._maxLenFn = function() {
+        // 存储原始html对象
+        this.originalHtml = this.showBox.innerHTML;
+
+        // 获取剪切后的字符串
+        this.cutOffText = this._cutHtmlStr(this.maxLen);
+
+        // 如果长度大于阀值
+        if (this.originalHtml.length !== this.cutOffText.length) {
+            // 显示展开更多按钮
+            var showBtnMore = this.ele.querySelector('.mip-showmore-btnshow');
+            util.css(showBtnMore, {
+                display: 'block'
+            });
+
+            //处理bottom渐变
+            this.bottomShadow && this.showBox.classList.toggle(this.bottomShadowClassName);
+
+            this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
+            this.showBox.innerHTML = this.cutOffText;
+        }
+    };
+
+    // 设置渐变区域颜色
+    Showmore.prototype._setShadowColor = function() {
+        var linearGradientStyle = [
+            'mip-showmore[id="' + this.id + '"].linear-gradient:after {',
+                'background: -moz-linear-gradient(to bottom, rgba(255, 255, 255, 0), ' + this.shadowColor + ');',
+                'background: -webkit-linear-gradient(to bottom, rgba(255, 255, 255, 0), ' + this.shadowColor + ');',
+                'background: linear-gradient(to bottom, rgba(255, 255, 255, 0), ' + this.shadowColor + ');',
+            '}'
+        ].join('');
+        var customStyleDom = document.querySelector('style[mip-extension="mip-showmore"]');
+        if (customStyleDom) {
+            customStyleDom.append(linearGradientStyle);
+        } else {
+
         }
     };
 
@@ -85,6 +148,7 @@ define(function(require) {
     Showmore.prototype.toggle = function(event) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
+        this.bottomShadow && this.showBox.classList.toggle(this.bottomShadowClassName);
 
         if (this.showType == 'LENGTH') {
             if (classList.contains('mip-showmore-boxshow')) {
@@ -98,7 +162,7 @@ define(function(require) {
                 classList.add('mip-showmore-boxshow');
                 this._toggleClickBtn(clickBtn, 'showClose');
             }
-        } else if (this.showType == 'HEIGHT') {
+        } else if (this.showType === 'HEIGHT' || this.showType === 'HEIGHTSCREEN') {
             if (classList.contains('mip-showmore-boxshow')) {
                 // 隐藏超出高度的内容
                 classList.remove('mip-showmore-boxshow');
@@ -159,27 +223,6 @@ define(function(require) {
             });
         }
     }
-
-    // 字数控制
-    Showmore.prototype._maxLenFn = function() {
-        // 存储原始html对象
-        this.originalHtml = this.showBox.innerHTML;
-
-        // 获取剪切后的字符串
-        this.cutOffText = this._cutHtmlStr(this.maxLen);
-
-        // 如果长度大于阀值
-        if (this.originalHtml.length !== this.cutOffText.length) {
-            // 显示展开更多按钮
-            var showBtnMore = this.ele.querySelector('.mip-showmore-btnshow');
-            util.css(showBtnMore, {
-                display: 'block'
-            });
-
-            this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
-            this.showBox.innerHTML = this.cutOffText;
-        }
-    };
 
     // 剪切字符串
     Showmore.prototype._cutHtmlStr = function(maxLen) {

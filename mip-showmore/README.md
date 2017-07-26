@@ -10,13 +10,23 @@
 
 ## 示例
 
-
-### 设定高度阈值
+### 设定像素单位的高度阈值
 在按钮中增加`on`属性，注意on属性中需要填写对应 mip-showmore 的id。
 比如本例中，mip-showmore id="showmore01"，`on`属性需要写成on="tap:showmore01.toggle"
 
 ```html
 <mip-showmore maxheight='40' animatetime='.3' id="showmore01">
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+</mip-showmore>
+<div on="tap:showmore01.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
+```
+
+### 设定基于viewport的高度阈值
+[notice] `maxheightbaseviewport`可设置基于屏幕可视区域的高度阈值。
+[notice] 在按钮中增加`on`属性，注意on属性中需要填写对应 mip-showmore 的id。比如本例中，mip-showmore id="showmore01"，`on`属性需要写成on="tap:showmore01.toggle"
+
+```html
+<mip-showmore maxheightbaseviewport='.5' maxheight='40' animatetime='.3' id="showmore01">
     <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
 </mip-showmore>
 <div on="tap:showmore01.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
@@ -60,21 +70,50 @@
 <div on="tap:showmore05.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
 ```
 
+### 设定折叠边界是否渐变
+[notice] `bottomshadow`设置折叠边界是否透明渐变
+[notice] 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+```html
+<mip-showmore bottomshadow='1' maxlen='20' id="showmore04">
+        MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
+</mip-showmore>
+<div on="tap:showmore04.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
+```
+
+### 设定折叠边界渐变颜色
+[notice] `shadowcolor`设置折叠边界渐变颜色。
+[notice] `shadowcolor`属性必须在设置`bottomshadow='1'`时生效。
+[notice] 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+```html
+<mip-showmore bottomshadow='1' shadowcolor='#fff' maxlen='20' id="showmore04">
+        MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
+</mip-showmore>
+<div on="tap:showmore04.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
+```
+
 ## 属性
+
+## maxheightbaseviewport
+
+说明：基于屏幕可视区域的高度阈值，如果元素高度超出阈值，隐藏超出部分，显示"显示更多按钮"
+必选项：否
+类型：数字
+计算方式：`maxheightbaseviewport * 可视区域高度`；例如：`maxheightbaseviewport = 0.5`，实际折叠高度为：0.5屏
+备注:  `maxheightbaseviewport、maxheight、maxheight`只能存在一个，优先级：`maxheightbaseviewport > maxheight > maxheight`
 
 ## maxheight
 
 说明：高度阈值,单位为像素。如果元素高度超出阈值，隐藏超出部分，显示"显示更多按钮"
 必选项：否  
 类型：数字
-备注:  以maxlen不可同时使用，maxheight优先级大于maxlen
+备注:  `maxheightbaseviewport、maxheight、maxheight`只能存在一个，优先级：`maxheightbaseviewport > maxheight > maxheight`
 
-##  maxlen
+##  maxheight
 
 说明：  内容字符串超出限制长度则会截断显示省略号，显示"显示更多按钮"。内容截断显示不包括图片显示。  
 必选项：否       
 类型：数字  
-备注:  以maxheight不可同时使用，maxheight优先级大于maxlen  
+备注:  `maxheightbaseviewport、maxheight、maxheight`只能存在一个，优先级：`maxheightbaseviewport > maxheight > maxheight`
 
 
 ## animatetime
@@ -102,3 +141,16 @@
 说明：显示更多按钮dom  
 必选项：否  
 备注:  一个mip-showmore内只允许出现一个 showmorebtn
+
+## bottomshadow
+
+说明：折叠边界是否渐变
+取值：只能为'0'或'1'
+必选项：否  
+
+## shadowcolor
+
+说明：折叠边界渐变颜色
+取值：16进制、rgb、css颜色保留值(如：red)
+必选项：否  
+备注:  只有与maxheight一起使用时生效

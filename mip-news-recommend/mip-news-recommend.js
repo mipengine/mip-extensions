@@ -6,6 +6,7 @@
 
 define(function (require) {
     var $ = require('zepto');
+    var util = require('util');
     var viewer = require('viewer');
     var RecommendElement = require('customElement').create();
     var recommend;

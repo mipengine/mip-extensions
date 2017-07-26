@@ -29,8 +29,8 @@ mip-wygx-classtab 用于多按钮，多样式绑定切换
     <span toggle-class="square">square</span>
 </mip-wygx-classtab>
 <mip-wygx-classtab bind-to=".box1">
- 	<span toggle-class="yellow">yellow</span>
-    <span toggle-class="green">green</span>
+     <span toggle-class="yellow">yellow</span>
+     <span toggle-class="green">green</span>
 </mip-wygx-classtab>
 <div class="box1"></div>
 <div class="box1"></div>
@@ -41,13 +41,19 @@ mip-wygx-classtab 用于多按钮，多样式绑定切换
 ## 属性
 
 ### bind-to
-说明：绑定元素的选择器(css选择器) 
+
+说明：绑定元素的选择器(css选择器)
+
 必选项：是
+
 类型：string
 
 ### toggle-class
+
 说明： 需要指定切换的类名
+
 必选项：是
+
 类型：string
 
 ## 注意事项

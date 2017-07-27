@@ -1,4 +1,19 @@
 # 升级日志
+#### 2017.07.27
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]增加touch时间监听
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[升级][平台] 根据不同条件过滤产品
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-search)|[升级][平台] fetch地址由相对路径改为https下的绝对路径
+[mip-ajax-carousel](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ajax-carousel)|[升级][平台] 异步获取轮播逻辑更新
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台] 触发元素ajax异步加载视频阅读量和更新文章阅读量
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台] 升级locatorage逻辑
+[mip-ask-closed](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ask-closed)|新增][平台] 120ask关闭组件
+
+
 #### 2017.07.25
 
 > 组件上线

@@ -85,19 +85,6 @@
 <div on="tap:showmore04.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
 ```
 
-### 设定折叠边界渐变颜色
-
-- `shadowcolor`设置折叠边界渐变颜色。
-- `shadowcolor`属性必须在设置`bottomshadow='1'`时生效。
-- 嵌套使用时，注意 on 和 mip-showmore id 的对应。
-
-```html
-<mip-showmore bottomshadow='1' shadowcolor='#fff' maxlen='20' id="showmore04">
-        MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
-</mip-showmore>
-<div on="tap:showmore04.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
-```
-
 ## 属性
 
 ## maxheightbaseviewport
@@ -154,10 +141,3 @@
 - 说明：折叠边界是否渐变
 - 取值：只能为'0'或'1'
 - 必选项：否
-
-## shadowcolor
-
-- 说明：折叠边界渐变颜色
-- 取值：16进制、rgb、css颜色保留值(如：red)
-- 必选项：否
-- 备注:  只有与maxheight一起使用时生效

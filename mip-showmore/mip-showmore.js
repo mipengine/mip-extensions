@@ -41,8 +41,6 @@ define(function(require) {
         this.bottomShadow = this.ele.getAttribute('bottomshadow') === '1';
         // bottom渐变边框className
         this.bottomShadowClassName = 'linear-gradient';
-        // 获取高度屏幕比例阈值
-        this.shadowColor = this.ele.getAttribute('shadowcolor');
         // 获showmoreid
         this.id = this.ele.getAttribute('id');
 
@@ -62,9 +60,6 @@ define(function(require) {
             this.maxHeight = 0;
             this._initHeight();
         }
-
-        // 设置渐变颜色
-        this.shadowColor && this._setShadowColor();
 
         this._bindClick();
         // 避免初始加载闪现
@@ -114,23 +109,6 @@ define(function(require) {
 
             this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
             this.showBox.innerHTML = this.cutOffText;
-        }
-    };
-
-    // 设置渐变区域颜色
-    Showmore.prototype._setShadowColor = function() {
-        var linearGradientStyle = [
-            'mip-showmore[id="' + this.id + '"].linear-gradient:after {',
-                'background: -moz-linear-gradient(to bottom, rgba(255, 255, 255, 0), ' + this.shadowColor + ');',
-                'background: -webkit-linear-gradient(to bottom, rgba(255, 255, 255, 0), ' + this.shadowColor + ');',
-                'background: linear-gradient(to bottom, rgba(255, 255, 255, 0), ' + this.shadowColor + ');',
-            '}'
-        ].join('');
-        var customStyleDom = document.querySelector('style[mip-extension="mip-showmore"]');
-        if (customStyleDom) {
-            customStyleDom.append(linearGradientStyle);
-        } else {
-
         }
     };
 

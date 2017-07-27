@@ -46,7 +46,7 @@ navigator.serviceWorker.register(src)
 ```html
 <script>
 if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/service-worker.js');
+    navigator.serviceWorker.register('/sw.js');
 }
 </script>
 ```

@@ -1,11 +1,15 @@
 {
     "name": "mip-showmore",
-    "version": "1.0.0",
-    "description": "mip点击显示更多组件",
+    "version": "1.1.1",
+    "description": "mip点击显示更多组件:新增加按屏折叠，折叠边界渐变",
     "contributors": [
         {
             "name": "fengchuantao",
             "email": "fengchuantao@baidu.com"
+        },
+        {
+            "name": "liangjiaying",
+            "email": "jiaojiaomao220@163.com"
         }
     ],
     "engines": {

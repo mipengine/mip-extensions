@@ -85,43 +85,68 @@ define(function(require) {
     Showmore.prototype.toggle = function(event) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
+        var aniTime = this.animateTime || 0.3;
 
         if (this.showType == 'LENGTH') {
+            var oriHeight = getComputedStyle(this.showBox).height;
             if (classList.contains('mip-showmore-boxshow')) {
                 // 隐藏超出字数的内容
                 this.showBox.innerHTML = this.cutOffText;
-                classList.remove('mip-showmore-boxshow');
-                this._toggleClickBtn(clickBtn, 'showOpen');
+                var tarHeight = getComputedStyle(this.showBox).height;
+                this.showBox.innerHTML = this.originalHtml;
+
+                util.fn.heightAni({
+                    ele: this.showBox,
+                    type: 'fold',
+                    transitionTime: aniTime,
+                    tarHeight: tarHeight,
+                    oriHeight: oriHeight,
+                    cbFun: function(showmore) {
+                        showmore.showBox.innerHTML = showmore.cutOffText;
+                        showmore._toggleClickBtn(clickBtn, 'showOpen');
+                        classList.remove('mip-showmore-boxshow');
+                    }.bind(undefined, this)
+                });
             } else {
                 // 显示超出字数的内容
-                this.showBox.innerHTML = this.originalHtml;
                 classList.add('mip-showmore-boxshow');
-                this._toggleClickBtn(clickBtn, 'showClose');
+                this.showBox.innerHTML = this.originalHtml;
+
+                util.fn.heightAni({
+                    ele: this.showBox,
+                    type: 'unfold',
+                    oriHeight: oriHeight,
+                    transitionTime: aniTime,
+                    cbFun: function(showmore) {
+                        showmore._toggleClickBtn(clickBtn, 'showClose');
+                    }.bind(undefined, this)
+                });
             }
         } else if (this.showType == 'HEIGHT') {
             if (classList.contains('mip-showmore-boxshow')) {
                 // 隐藏超出高度的内容
                 classList.remove('mip-showmore-boxshow');
-                util.css(this.showBox, {
-                    height: this.maxHeight + 'px'
+                util.fn.heightAni({
+                    ele: this.showBox,
+                    type: 'fold',
+                    transitionTime: aniTime,
+                    tarHeight: this.maxHeight + 'px',
+                    cbFun: function(showmore, clickBtn) {
+                        showmore._toggleClickBtn(clickBtn, 'showOpen');
+                    }.bind(undefined, this, clickBtn)
                 });
-                this._toggleClickBtn(clickBtn, 'showOpen');
             } else {
                 // 显示超出高度的内容
-                var aniTime = this.animateTime || 0.3;
-                var showBox = this.showBox;
                 classList.add('mip-showmore-boxshow');
-                util.fn.unfoldHeight(showBox, aniTime + 's');
-
-                // var runtime = this.animateTime * 1000;
-                // setTimeout(function() {
-                //     // 防止内部出现懒加载元素导致高度计算不对
-                //     util.fn.unfoldHeight(showBox, aniTime + 's');
-                // }, runtime);
-
-                this._toggleClickBtn(clickBtn, 'showClose');
+                util.fn.heightAni({
+                    ele: this.showBox,
+                    type: 'unfold',
+                    transitionTime: aniTime,
+                    cbFun: function(showmore, clickBtn) {
+                        showmore._toggleClickBtn(clickBtn, 'showClose');
+                    }.bind(undefined, this, clickBtn)
+                });
             }
-
         }
     };
 
@@ -131,8 +156,8 @@ define(function(require) {
         }
         if (status == 'showOpen') {
             // v1.1.0 显示“展开”按钮
-            if(clickBtn) {
-                clickBtn.innerText = clickBtn.dataset.opentext;  
+            if (clickBtn) {
+                clickBtn.innerText = clickBtn.dataset.opentext;
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
@@ -142,12 +167,12 @@ define(function(require) {
             });
         } else {
             // v1.1.0显示“收起”按钮
-            if(clickBtn) {
+            if (clickBtn) {
                 var opentext = clickBtn.innerText;
                 clickBtn.innerText = clickBtn.dataset.closetext || '收起';
                 clickBtn.dataset.opentext = opentext;
             }
-                
+
             // v1.0.0 显示“收起”按钮
             this._changeBtnText({
                 display: 'none'

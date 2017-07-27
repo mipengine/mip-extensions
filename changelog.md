@@ -1,11 +1,166 @@
 # 升级日志
+#### 2017.07.27
+  
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]增加touch时间监听
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[升级][平台] 根据不同条件过滤产品
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-search)|[升级][平台] fetch地址由相对路径改为https下的绝对路径
+[mip-ajax-carousel](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ajax-carousel)|[升级][平台] 异步获取轮播逻辑更新
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台] 触发元素ajax异步加载视频阅读量和更新文章阅读量
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台] 升级locatorage逻辑
+[mip-ask-closed](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ask-closed)|新增][平台] 120ask关闭组件
+
+#### 2017.07.26
+
+>核心代码上线：解析cache url正则修改
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[升级][官方]解析cache api兼容修改
+
+#### 2017.07.25
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[新增][官方] 兼容cache api解析
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list 升级回调逻辑
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-search)|[升级][官方] 更改异步请求地址为绝对路径
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[新增][平台] 触发元素ajax异步加载视频阅读量和更新文章阅读量
+
+#### 2017.07.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list 更改异步请求方式为fetchJsonp
+[mip-sidebar](https://github.com/mipengine/mip-extensions/tree/master/mip-sidebar)|[升级][官方] 组件移动端禁止滚动
+
+#### 2017.07.21
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cnkang-sex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-sex)|[新增][平台]康网两性文章mip化
+[mip-stats-google](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-stats-google)|[新增][平台]谷歌分析
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+
+#### 2017.07.20
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list showUrltitle组件
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[升级][平台] 公司业务需求
+[mip-cnkang-details](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-details)|[升级][平台]康网mip内容化
+[mip-cnkang-pic](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-pic)|[新增][平台]康网添加三张图片
+[mip-fn-comment-post](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-post)|[升级][平台]蜂鸟网WAP站评论提交组件
+[mip-fn-comment-reply](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-comment-reply)|[升级][平台] 蜂鸟网WAP站评论内容回复
+[mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[升级][平台]蜂鸟网公共头
+[mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[升级][平台]mip-kp-detail
+[mip-wkclub-wss](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkclub-wss)|[新增][平台]寻医问药问答搜索分词组件
+[mip-xcy-hf](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-hf)|[新增][平台]ads8hf业务逻辑组件
+[mip-xcy-wz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-wz)|[升级][平台]ads8业务逻辑组件
+[mip-zpm-jobdetail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-jobdetail)|[新增][平台]职位业务需求
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]首页需求
+
+#### 2017.07.19
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[升级][平台]蜂鸟网公共头
+[mip-taoge-scaydk-calculator](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-calculator)|[新增][平台]贷款计算器组件
+[mip-taoge-scaydk-qe](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-qe)|[新增][平台]网贷款额度计算组件
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]首页需求
+[mip-xcy-wz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xcy-wz)|[新增][平台]ads8业务逻辑组件
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+[mip-cnkang-details](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-details)|[升级][平台]康网mip内容化
+
+#### 2017.07.18
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[升级][平台]根据不同条件过滤产品
+[mip-taoge-scaydk-adviser](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-adviser)|[新增][平台]贷款顾问自定义组件
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+[mip-ask-pucker](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ask-pucker)|[新增][平台]120ask功能性组件
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip-zpm-sindex 首页需求
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[新增][平台]搜索结果需求
+[mip-qcode](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qcode)|[新增][平台]mip-qcode
+
+#### 2017.07.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cnkang-direct](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-direct)|[新增][平台]康网直投广告
+[mip-233-yytx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-yytx)|[升级][平台]预约提醒插件
+[mip-nph](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-nph)|[升级][平台]mip-nph 组件
+[mip-cy-script](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cy-script)|[升级][平台]mip-cy-script 组件
+[mip-wkfun-article](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-article)|[新增][平台]mip-cy-script 组件
+[mip-wkad-final](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkad-final)|[升级][平台]寻医问药新版广告组件
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[新增][平台]根据不同条件过滤产品
+[mip-chinacn-gallery](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-gallery)|[新增][平台]根据不同条件过滤产品
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-search)|[新增][平台]mip-chinacn-search 搜索
+[mip-cnkang-details](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-details)|[新增][平台]康网mip内容化
+[mip-taoge-scaydk](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk)|[升级][平台]wap.scaydk.com网业务逻辑组件
+[mip-taoge-scaydk-loan](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-loan)|[新增][平台]网贷款产品筛选组件
+
+#### 2017.07.15
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-nph](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-nph)|[升级][平台]呼起组件修复bug
+[mip-fn-swiper](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-swiper)|[更新][平台]蜂鸟网WAP站图片滚动等功能
+[mip-fn-wapheader](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-wapheader)|[更新][平台]蜂鸟网WAP站公共头
+[mip-fn-width](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-width)|[新增][平台]蜂鸟网标签宽度计算
+[mip-taoge-scaydk](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk)|[升级][平台]wap.scaydk.com网业务逻辑组件修复bug
+[mip-wkfun-mclub](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-mclub)|[新增][平台]寻医问药页面功能组件
+[mip-wkfun-unfold](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-unfold)|[新增][平台]寻医问药页面功能组件
+
+#### 2017.07.14
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-nph](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-nph)|[新增][平台]呼起组件
+
+#### 2017.07.13
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-233-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-slider)|[升级][平台]头部滑动并显示当前栏目组件升级
+[mip-365xiazai-header](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-365xiazai-header)|[新增][平台]365xiazai站点header组件
+[mip-365xiazai-tabtap](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-365xiazai-tabtap)|[新增][平台]判断手机系统，搜索关键词后，跳转对应的下载页面
+[mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[新增][平台]用于kp详情页
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[新增][平台]该组件用于kp自身使用
+[mip-taoge-form](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-form)|[新增][平台]scaydk.com表单提交组件
+[mip-taoge-scaydk-index](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk-index)|[新增][平台]wap.scaydk.com网业务逻辑组件
+[mip-taoge-scaydk](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-scaydk)|[新增][平台]wap.scaydk.com网业务逻辑组件升级
+[mip-taoge-tp](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-taoge-tp)|[新增][平台]ThinPHP 系统组件
 
 #### 2017.07.11
 > 核心代码上线
 支持移动dom
 
 > 组件上线
-支持移动dom
 
 组件名|功能说明
 ---|---

@@ -47,15 +47,15 @@ define(function () {
         var regexs = dataProcessor.regexs;
 
         // 非结果页进入不展现定制化内容
-        if (!viewer.isIframed) {
-            element.remove();
-            return;
-        }
+        // if (!viewer.isIframed) {
+        //     element.remove();
+        //     return;
+        // }
 
-        if (!(regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
-            element.remove();
-            return;
-        }
+        // if (!(regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
+        //     element.remove();
+        //     return;
+        // }
 
         var commonData = {};
         var template = {};
@@ -65,6 +65,7 @@ define(function () {
         dom.proxyLink(element);
 
         self.url = url.get(element);
+        // self.url = 'http://nj03-wise-ronghe28.nj03.baidu.com:8707/common?query=%E4%B8%B0%E8%83%B8&originalUrl=xywy.com/fijdsjfidsf&accid=e2217bab684fbb898dccf04b&title=test&logid=10421587805058473194';
 
         if (!self.url) {
             element.remove();

@@ -34,10 +34,8 @@ define(function (require) {
 
     function getOriginUrl() {
         var url = location.href;
-
         url = util.parseCacheUrl(url);
         url = url.replace(/\#.*$/g, '');
-
         return url;
     }
 

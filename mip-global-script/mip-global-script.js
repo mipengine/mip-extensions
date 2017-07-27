@@ -166,6 +166,12 @@ define(function (require) {
 		        case 'tongyao':
                             hmToken = 'a50b5814c2446ed7db273554c97b4b29';
                             break;
+		        case 'xiaolj':
+                            hmToken = '87756184628d153714c3d7e087b9dbb3';
+                            break;
+			case 'xiaozq':
+                            hmToken = 'e89c3a7bcca9d2b77d9d7073cb36fa0a';
+                            break;
                     }
                     if (hmToken !== '') {
                         $('body').append('<mip-stats-baidu token="' + hmToken + '">');

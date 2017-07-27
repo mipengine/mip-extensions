@@ -48,14 +48,14 @@ define(function () {
 
         // 非结果页进入不展现定制化内容
         if (!viewer.isIframed) {
-             element.remove();
-             return;
-         }
+            element.remove();
+            return;
+        }
 
-         if (!(regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
-             element.remove();
-             return;
-         }
+        if (!(regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
+            element.remove();
+            return;
+        }
 
         var commonData = {};
         var template = {};
@@ -65,7 +65,6 @@ define(function () {
         dom.proxyLink(element);
 
         self.url = url.get(element);
-
         if (!self.url) {
             element.remove();
             return;

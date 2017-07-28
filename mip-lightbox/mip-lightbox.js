@@ -44,9 +44,30 @@ define(function (require) {
         self.addEventAction('toggle', function (event) {
             toggle.call(self, event);
         });
-
     }
-
+     // 自动关闭弹层
+    function autoClose() {
+        var self = this;
+        // 判断是否有 autoclose 属性
+        var count = self.element.getAttribute('autoclose');
+        if (Number(count)) {
+            // 取出用户自定义的 time 值
+            var time = Math.abs(count);
+            var seconds = document.getElementsByClassName('seconds')[0];
+            // 倒计时
+            seconds.innerHTML = time;
+            this.interval = setInterval(function () {
+                time -= 1;
+                seconds.innerHTML = time;
+                if (time === 0) {
+                    self.open = false;
+                    closeMask.call(self);
+                    util.css(self.element, {display: 'none'});
+                    util.css(document.body, {overflow: 'auto'});
+                }
+            }, 1000);
+        }
+    }
     function changeParentNode() {
         var self = this;
         var nodes = [];
@@ -100,6 +121,7 @@ define(function (require) {
         self.open = true;
         util.css(self.element, {display: 'block'});
         openMask.call(self);
+        autoClose.call(self);
     }
 
 
@@ -175,6 +197,7 @@ define(function (require) {
     function closeMask() {
         if (this.maskElement) {
             util.css(this.maskElement, {display: 'none'});
+            clearInterval(this.interval);
         }
     }
 
@@ -186,3 +209,4 @@ define(function (require) {
     customElement.prototype.build = render;
     return customElement;
 });
+

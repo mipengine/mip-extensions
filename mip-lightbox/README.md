@@ -10,6 +10,8 @@
 
 ## 示例
 
+### 基本使用
+
 ```html
 <button on="tap:my-lightbox.toggle" id="btn-open" role="button" tabindex="0">
     Open lightbox
@@ -22,6 +24,25 @@
     <div class="lightbox">
         <h1>Hello, World!</h1>
         <p> this is the lightbox</p>
+    </div>
+</mip-lightbox>
+```
+### 自动关闭
+
+```html
+<button on="tap:my-lightbox.toggle" id="btn-open" role="button" tabindex="0">
+    Open lightbox
+</button>
+
+<mip-lightbox
+	autoclose="5"
+    id="my-lightbox"
+    layout="nodisplay"
+    class="mip-hidden">
+    <div class="lightbox">
+        <h1>Hello, World!</h1>
+        <p> this is the lightbox</p>
+        <div class="countdown">倒计时<span class="seconds"></span>秒关闭</div>
     </div>
 </mip-lightbox>
 ```
@@ -40,6 +61,14 @@
 必选项：是    
 类型：字符串    
 取值：nodisplay 
+
+### autoclose
+
+说明：显示倒计时，自动关闭  
+必选项：否    
+类型：字符串    
+取值：数字，单位秒
+
 
 ## 注意事项
 

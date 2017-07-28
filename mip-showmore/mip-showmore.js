@@ -58,14 +58,13 @@ define(function (require) {
                     case 'screen':
                         this.showType = 'HEIGHTSCREEN';
                         this.maxHeight = viewport.getHeight() * value;
+                        this._initHeight();
                         break;
                     case 'heightpx':
                         this.showType = 'HEIGHT';
-                        break;
-                    default:
+                        this._initHeight();
                         break;
                 }
-                this._initHeight();
             }
         }
         else if (this.maxHeight && !isNaN(this.maxHeight)) {
@@ -104,7 +103,7 @@ define(function (require) {
                 display: 'block'
             });
             // 处理bottom渐变
-            this.bottomShadow && this.showBox.classList.toggle(this.bottomShadowClassName);
+            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
         }
     };
 
@@ -125,7 +124,7 @@ define(function (require) {
             });
 
             // 处理bottom渐变
-            this.bottomShadow && this.showBox.classList.toggle(this.bottomShadowClassName);
+            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
 
             this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
             this.showBox.innerHTML = this.cutOffText;
@@ -178,6 +177,7 @@ define(function (require) {
         }
         else if (this.showType === 'HEIGHT' || this.showType === 'HEIGHTSCREEN') {
             if (classList.contains('mip-showmore-boxshow')) {
+                this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 // 隐藏超出高度的内容
                 classList.remove('mip-showmore-boxshow');
                 opt.type = 'fold';
@@ -188,6 +188,7 @@ define(function (require) {
             }
             else {
                 // 显示超出高度的内容
+                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
                 opt.type = 'unfold';
                 opt.cbFun = function(showmore, clickBtn) {

@@ -7,7 +7,7 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var $ = require('zepto');
-    var util = require('util')
+    var util = require('util');
     var localurl = location.href;
 
     // 恢复用户上次选择
@@ -49,18 +49,17 @@ define(function (require) {
                     ele: $targetdom[0],
                     type: 'fold',
                     transitionTime: aniTime,
-                    cbFun: function($dom) {
+                    cbFun: function ($dom) {
                         $dom.attr('aria-expanded', 'close');
                     }.bind(undefined, $targetdom)
                 });
 
-                
                 $(this).parents('section').removeAttr('expanded');
                 if (!!$showMore.length && !!$showLess.length) {
                     $showMore.css('display', 'block');
                     $showLess.css('display', 'none');
                 }
-                
+
                 setSession(element, targetId, false);
             }
             else {

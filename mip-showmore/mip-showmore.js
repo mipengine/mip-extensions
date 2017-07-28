@@ -94,7 +94,7 @@ define(function(require) {
                 display: 'block'
             });
             //处理bottom渐变
-            this.bottomShadow && this.showBox.classList.toggle(this.bottomShadowClassName);
+            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
         }
     };
 
@@ -115,7 +115,7 @@ define(function(require) {
             });
 
             //处理bottom渐变
-            this.bottomShadow && this.showBox.classList.toggle(this.bottomShadowClassName);
+            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
 
             this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
             this.showBox.innerHTML = this.cutOffText;

@@ -1,12 +1,13 @@
 /**
  * @accordion
- * @author fengchuantao
+ * @author fengchuantao, liangjiaying
  * @file mip-accordion
- * @time 2016.08.12
+ * @time 2017.07
  */
 define(function (require) {
     var customElement = require('customElement').create();
     var $ = require('zepto');
+    var util = require('util')
     var localurl = location.href;
 
     // 恢复用户上次选择
@@ -33,6 +34,8 @@ define(function (require) {
     // 绑定事件
     function bindEven(element) {
         var $element = $(element);
+        var aniTime = $(element).attr('animatetime') || 0.3;
+
         $element.on('click', '.mip-accordion-header', function () {
             var targetId = $(this).attr('aria-controls');
             var $targetdom = $('#' + targetId);
@@ -41,23 +44,31 @@ define(function (require) {
             var $showLess = $(this).parents('section').find('.show-less');
 
             if (expanded === 'open') {
-                $targetdom.attr('aria-expanded', 'close');
+                // 收起内容区域
+                util.fn.heightAni({
+                    ele: $targetdom[0],
+                    type: 'fold',
+                    transitionTime: aniTime,
+                    cbFun: function($dom) {
+                        $dom.attr('aria-expanded', 'close');
+                    }.bind(undefined, $targetdom)
+                });
+
+                
                 $(this).parents('section').removeAttr('expanded');
                 if (!!$showMore.length && !!$showLess.length) {
                     $showMore.css('display', 'block');
                     $showLess.css('display', 'none');
                 }
-
+                
                 setSession(element, targetId, false);
             }
             else {
-
                 // 同时只能展开一个节点
 
                 if (element.hasAttribute('expaned-limit')) {
                     var sections = element.querySelectorAll('section');
                     for (var i = 0; i < sections.length; i++) {
-
                         var cont = sections[i].querySelector('.mip-accordion-content');
                         var header = sections[i].querySelector('.mip-accordion-header');
                         var id = header.getAttribute('aria-controls');
@@ -65,6 +76,12 @@ define(function (require) {
                         sections[i].removeAttribute('expanded');
                         cont.removeAttribute('aria-expanded');
                         setSession(element, id, false);
+                        // fold animation
+                        util.fn.heightAni({
+                            ele: cont,
+                            type: 'fold',
+                            transitionTime: aniTime
+                        });
                     }
                 }
 
@@ -75,7 +92,16 @@ define(function (require) {
                     $showMore.css('display', 'none');
                 }
 
+                // unfold animation
+                util.fn.heightAni({
+                    ele: $targetdom[0],
+                    type: 'unfold',
+                    oriHeight: 0,
+                    transitionTime: aniTime
+                });
+
                 setSession(element, targetId, true);
+
             }
         });
     }

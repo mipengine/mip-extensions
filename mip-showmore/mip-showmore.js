@@ -55,8 +55,6 @@ define(function(require) {
                     case 'heightpx':
                         this.showType = 'HEIGHT';
                         break;
-                    default:
-                      break;
                 }
                 this._initHeight();
             }

@@ -34,22 +34,32 @@ define(function(require) {
         this.maxHeight = this.ele.getAttribute('maxheight');
         // 获取字数阈值
         this.maxLen = this.ele.getAttribute('maxlen');
-
-        // 获取高度屏幕比例阈值
-        this.maxHeightBaseViewport = this.ele.getAttribute('maxheightbaseviewport');
         // 获取是否需要bottom渐变
         this.bottomShadow = this.ele.getAttribute('bottomshadow') === '1';
-        // bottom渐变边框className
+        //渐变className
         this.bottomShadowClassName = 'linear-gradient';
-        // 获showmoreid
-        this.id = this.ele.getAttribute('id');
-
         // 获取显示框显示对象
         // 处理阈值高度(高度优先于字体长度,不允许两个同时存在)
-        if (this.maxHeightBaseViewport && !isNaN(this.maxHeightBaseViewport)) {
-            this.showType = 'HEIGHTSCREEN';
-            this.maxHeight = viewport.getHeight() * this.maxHeightBaseViewport;
-            this._initHeight();
+        if (this.maxHeight && isNaN(this.maxHeight)) {
+            var maxHeightArr = this.maxHeight.split(':');
+            var key, value;
+            if (maxHeightArr.length > 1) {
+                key = maxHeightArr[0].trim();
+                value = maxHeightArr[1].trim();
+
+                switch (key) {
+                    case 'screen':
+                        this.showType = 'HEIGHTSCREEN';
+                        this.maxHeight = viewport.getHeight() * value;
+                        break;
+                    case 'heightpx':
+                        this.showType = 'HEIGHT';
+                        break;
+                    default:
+                      break;
+                }
+                this._initHeight();
+            }
         } else if (this.maxHeight && !isNaN(this.maxHeight)) {
             this.showType = 'HEIGHT';
             this._initHeight();
@@ -126,47 +136,72 @@ define(function(require) {
     Showmore.prototype.toggle = function(event) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
-        this.bottomShadow && this.showBox.classList.toggle(this.bottomShadowClassName);
+        var aniTime = this.animateTime || 0.3;
 
         if (this.showType == 'LENGTH') {
+            var oriHeight = getComputedStyle(this.showBox).height;
             if (classList.contains('mip-showmore-boxshow')) {
+                this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 // 隐藏超出字数的内容
                 this.showBox.innerHTML = this.cutOffText;
-                classList.remove('mip-showmore-boxshow');
-                this._toggleClickBtn(clickBtn, 'showOpen');
-            } else {
-                // 显示超出字数的内容
+                var tarHeight = getComputedStyle(this.showBox).height;
                 this.showBox.innerHTML = this.originalHtml;
+
+                util.fn.heightAni({
+                    ele: this.showBox,
+                    type: 'fold',
+                    transitionTime: aniTime,
+                    tarHeight: tarHeight,
+                    oriHeight: oriHeight,
+                    cbFun: function(showmore) {
+                        showmore.showBox.innerHTML = showmore.cutOffText;
+                        showmore._toggleClickBtn(clickBtn, 'showOpen');
+                        classList.remove('mip-showmore-boxshow');
+                    }.bind(undefined, this)
+                });
+            } else {
+                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
+                // 显示超出字数的内容
                 classList.add('mip-showmore-boxshow');
-                this._toggleClickBtn(clickBtn, 'showClose');
+                this.showBox.innerHTML = this.originalHtml;
+
+                util.fn.heightAni({
+                    ele: this.showBox,
+                    type: 'unfold',
+                    oriHeight: oriHeight,
+                    transitionTime: aniTime,
+                    cbFun: function(showmore) {
+                        showmore._toggleClickBtn(clickBtn, 'showClose');
+                    }.bind(undefined, this)
+                });
             }
         } else if (this.showType === 'HEIGHT' || this.showType === 'HEIGHTSCREEN') {
             if (classList.contains('mip-showmore-boxshow')) {
+                this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 // 隐藏超出高度的内容
                 classList.remove('mip-showmore-boxshow');
-                util.css(this.showBox, {
-                    height: this.maxHeight + 'px'
+                util.fn.heightAni({
+                    ele: this.showBox,
+                    type: 'fold',
+                    transitionTime: aniTime,
+                    tarHeight: this.maxHeight + 'px',
+                    cbFun: function(showmore, clickBtn) {
+                        showmore._toggleClickBtn(clickBtn, 'showOpen');
+                    }.bind(undefined, this, clickBtn)
                 });
-                this._toggleClickBtn(clickBtn, 'showOpen');
             } else {
+                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 // 显示超出高度的内容
                 classList.add('mip-showmore-boxshow');
-                util.css(this.showBox, {
-                    height: 'auto',
-                    transition: 'height ' + this.animateTime + 's'
+                util.fn.heightAni({
+                    ele: this.showBox,
+                    type: 'unfold',
+                    transitionTime: aniTime,
+                    cbFun: function(showmore, clickBtn) {
+                        showmore._toggleClickBtn(clickBtn, 'showClose');
+                    }.bind(undefined, this, clickBtn)
                 });
-                var runtime = this.animateTime * 1000;
-                setTimeout(function() {
-                    // 防止内部出现懒加载元素导致高度计算不对
-                    util.css(this.showBox, {
-                        'transition': 'height 0s',
-                        height: 'auto'
-                    });
-                }, runtime);
-
-                this._toggleClickBtn(clickBtn, 'showClose');
             }
-
         }
     };
 
@@ -176,8 +211,8 @@ define(function(require) {
         }
         if (status == 'showOpen') {
             // v1.1.0 显示“展开”按钮
-            if(clickBtn) {
-                clickBtn.innerText = clickBtn.dataset.opentext;  
+            if (clickBtn) {
+                clickBtn.innerText = clickBtn.dataset.opentext;
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
@@ -187,12 +222,12 @@ define(function(require) {
             });
         } else {
             // v1.1.0显示“收起”按钮
-            if(clickBtn) {
+            if (clickBtn) {
                 var opentext = clickBtn.innerText;
                 clickBtn.innerText = clickBtn.dataset.closetext || '收起';
                 clickBtn.dataset.opentext = opentext;
             }
-                
+
             // v1.0.0 显示“收起”按钮
             this._changeBtnText({
                 display: 'none'

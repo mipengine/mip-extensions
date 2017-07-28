@@ -65,6 +65,7 @@ define(function () {
         dom.proxyLink(element);
 
         self.url = url.get(element);
+
         if (!self.url) {
             element.remove();
             return;

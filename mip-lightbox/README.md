@@ -35,7 +35,7 @@
 </button>
 
 <mip-lightbox
-	autoclose="5"
+    autoclose="5"
     id="my-lightbox"
     layout="nodisplay"
     class="mip-hidden">

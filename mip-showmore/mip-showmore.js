@@ -148,76 +148,61 @@ define(function (require) {
     Showmore.prototype.toggle = function (event) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
-        var aniTime = this.animateTime || 0.3;
+        var opt = {};
+        opt.aniTime = this.animateTime || 0.3;
 
         if (this.showType === 'LENGTH') {
-            var oriHeight = getComputedStyle(this.showBox).height;
+            opt.oriHeight = getComputedStyle(this.showBox).height;
             if (classList.contains('mip-showmore-boxshow')) {
-                this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 // 隐藏超出字数的内容
                 this.showBox.innerHTML = this.cutOffText;
-                var tarHeight = getComputedStyle(this.showBox).height;
+                opt.tarHeight = getComputedStyle(this.showBox).height;
                 this.showBox.innerHTML = this.originalHtml;
-
-                util.fn.heightAni({
-                    ele: this.showBox,
-                    type: 'fold',
-                    transitionTime: aniTime,
-                    tarHeight: tarHeight,
-                    oriHeight: oriHeight,
-                    cbFun: function (showmore) {
-                        showmore.showBox.innerHTML = showmore.cutOffText;
-                        showmore._toggleClickBtn(clickBtn, 'showOpen');
-                        classList.remove('mip-showmore-boxshow');
-                    }.bind(undefined, this)
-                });
+                
+                opt.type = 'fold';
+                opt.cbFun = function(showmore) {
+                    showmore.showBox.innerHTML = showmore.cutOffText;
+                    showmore._toggleClickBtn(clickBtn, 'showOpen');
+                    classList.remove('mip-showmore-boxshow');
+                }.bind(undefined, this);
             }
             else {
-                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 // 显示超出字数的内容
                 classList.add('mip-showmore-boxshow');
                 this.showBox.innerHTML = this.originalHtml;
-
-                util.fn.heightAni({
-                    ele: this.showBox,
-                    type: 'unfold',
-                    oriHeight: oriHeight,
-                    transitionTime: aniTime,
-                    cbFun: function (showmore) {
-                        showmore._toggleClickBtn(clickBtn, 'showClose');
-                    }.bind(undefined, this)
-                });
+                opt.type = 'unfold';
+                opt.cbFun = function(showmore) {
+                    showmore._toggleClickBtn(clickBtn, 'showClose');
+                }.bind(undefined, this);
             }
         }
         else if (this.showType === 'HEIGHT' || this.showType === 'HEIGHTSCREEN') {
             if (classList.contains('mip-showmore-boxshow')) {
-                this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 // 隐藏超出高度的内容
                 classList.remove('mip-showmore-boxshow');
-                util.fn.heightAni({
-                    ele: this.showBox,
-                    type: 'fold',
-                    transitionTime: aniTime,
-                    tarHeight: this.maxHeight + 'px',
-                    cbFun: function (showmore, clickBtn) {
-                        showmore._toggleClickBtn(clickBtn, 'showOpen');
-                    }.bind(undefined, this, clickBtn)
-                });
+                opt.type = 'fold';
+                opt.tarHeight = this.maxHeight + 'px',
+                opt.cbFun = function(showmore, clickBtn) {
+                    showmore._toggleClickBtn(clickBtn, 'showOpen');
+                }.bind(undefined, this, clickBtn);
             }
             else {
-                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 // 显示超出高度的内容
                 classList.add('mip-showmore-boxshow');
-                util.fn.heightAni({
-                    ele: this.showBox,
-                    type: 'unfold',
-                    transitionTime: aniTime,
-                    cbFun: function (showmore, clickBtn) {
-                        showmore._toggleClickBtn(clickBtn, 'showClose');
-                    }.bind(undefined, this, clickBtn)
-                });
+                opt.type = 'unfold';
+                opt.cbFun = function(showmore, clickBtn) {
+                    showmore._toggleClickBtn(clickBtn, 'showClose');
+                }.bind(undefined, this, clickBtn)
             }
         }
+        util.fn.heightAni({
+            ele: this.showBox,
+            type: opt.type,
+            transitionTime: opt.aniTime,
+            tarHeight: opt.tarHeight,
+            oriHeight: opt.oriHeight,
+            cbFun: opt.cbFun
+        });
     };
 
     Showmore.prototype._toggleClickBtn = function (clickBtn, status) {

@@ -52,7 +52,7 @@ define(function (require) {
         var count = self.element.getAttribute('autoclose');
         if (Number(count)) {
             // 取出用户自定义的 time 值
-            var time = Math.abs(Math.floor(count));
+            var time = Math.abs(Math.ceil(count));
             var seconds = document.getElementsByClassName('seconds')[0];
             // 显示倒计时
             seconds.innerHTML = time;

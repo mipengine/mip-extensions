@@ -1,4 +1,32 @@
 # 升级日志
+
+#### 2017.07.31
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wygx-classtab](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wygx-classtab)|[新增][平台]我要个性网--点击按钮进行样式切换
+
+#### 2017.07.29
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[升级][平台]根据不同条件过滤产品升级逻辑
+[mip-close-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-close-ad)|[升级][平台] 120ask关闭组件升级
+[mip-kp-list ](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list )|[升级][平台] remove ajax
+
+#### 2017.07.28
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-trilobite-scroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-scroll)|[新增][平台]三叶虫下拉滚动功能
+[mip-trilobite-fontsize](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-fontsize)|[新增][平台]三叶虫字体适配
+
 #### 2017.07.27
 
 > 组件上线

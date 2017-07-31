@@ -1,0 +1,14 @@
+{
+    "name": "mip-install-serviceworker",
+    "version": "1.0.0",
+    "description": "安装 Service Worker",
+    "contributors": [
+        {
+            "name": "sekiyika",
+            "email": "px.pengxing@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -35,9 +35,9 @@ mip-ad 具有多种类型（type），type 取值由广告分类和投放配置�
 [Feeds联盟广告](https://ssp.baidu.com/)| [type="ad-ssp"](//www.mipengine.org/examples/mip-ad/mip-ad-ssp.html)
 余下投放方式 | [type="ad-baidu"](//www.mipengine.org/examples/mip-ad/mip-ad-baidu.html)
 
-### 4. 图+ 
+### 4. 百度图+ 
 投放官网：[http://imageplus.baidu.com/](http://imageplus.baidu.com/)
 
 广告产品页面|对应 MIP 组件
 ----|----
-[图+广告](http://imageplus.baidu.com/) | [type="ad-baiduaap"](//www.mipengine.org/examples/mip-ad/mip-ad-baidussp.html)
+[百度图+广告](http://imageplus.baidu.com/) | [type="ad-baiduaap"](//www.mipengine.org/examples/mip-ad/mip-ad-baidussp.html)

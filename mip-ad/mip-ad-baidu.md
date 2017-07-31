@@ -1,4 +1,4 @@
-# mip-ad:ad-baidu 网盟推广合作
+# mip-ad:ad-baidu 百度网盟推广合作
 
 mip-ad 的一种类型：网盟推广合作。  
 产品介绍：http://union.baidu.com/product/prod-cpro.html

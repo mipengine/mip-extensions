@@ -1,6 +1,6 @@
 # mip-ad:baidu-wm-ext 百度联盟广告反屏蔽
 
-mip-ad 的一种类型：百度联盟广告反屏蔽。
+mip-ad 的一种类型：百度联盟广告反屏蔽。  
 产品介绍：http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=4&classId=13484&knowledgeId=15198
 
 标题|内容

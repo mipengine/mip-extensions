@@ -54,7 +54,7 @@ define(function (require) {
             // 取出用户自定义的 time 值
             var time = Math.abs(Math.floor(count));
             var seconds = document.getElementsByClassName('seconds')[0];
-            // 倒计时
+            // 显示倒计时
             seconds.innerHTML = time;
             this.interval = setInterval(function () {
                 time -= 1;

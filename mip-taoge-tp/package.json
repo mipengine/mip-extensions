@@ -1,0 +1,14 @@
+{
+    "name": "mip-taoge-tp",
+    "version": "1.0.0",
+    "description": "ThinPHP 系统组件",
+    "contributors": [
+        {
+            "name": "taoge",
+            "email": "liangtao.gz@foxmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

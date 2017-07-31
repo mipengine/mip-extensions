@@ -49,7 +49,7 @@ define(function (require) {
      // 自动关闭弹层
     function autoClose() {
         var self = this;
-        var count = self.element.getAttribute('autoclose');
+        var count = self.element.getAttribute('autoclosetime');
         var seconds = self.element.querySelector('.mip-lightbox-seconds');
         // 判断是否有 autoclose 和 seconds
         if (Number(count) && seconds) {

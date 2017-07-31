@@ -1,4 +1,4 @@
-# mip-ad:ad-ssp Feeds联盟广告
+# mip-ad:ad-ssp 百度Feeds联盟广告
 
 mip-ad 的一种类型：Feeds联盟广告。  
 在 https://ssp.baidu.com/ 后台选择资源管理/feeds联盟接入。

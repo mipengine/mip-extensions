@@ -44,12 +44,13 @@ define(function (require) {
         self.addEventAction('toggle', function (event) {
             toggle.call(self, event);
         });
+
     }
      // 自动关闭弹层
     function autoClose() {
         var self = this;
         var count = self.element.getAttribute('autoclose');
-        var seconds = self.element.querySelector('.seconds');
+        var seconds = self.element.querySelector('.mip-lightbox-seconds');
         // 判断是否有 autoclose 和 seconds
         if (Number(count) && seconds) {
             // 取出用户自定义的 time 值
@@ -63,7 +64,6 @@ define(function (require) {
                     self.open = false;
                     closeMask.call(self);
                     util.css(self.element, {display: 'none'});
-                    util.css(document.body, {overflow: 'auto'});
                 }
             }, 1000);
         }
@@ -207,6 +207,8 @@ define(function (require) {
      *
      */
     customElement.prototype.build = render;
+    customElement.prototype.detachedCallback = function () {
+        clearInterval(this.interval);
+    };
     return customElement;
 });
-

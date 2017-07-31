@@ -42,7 +42,7 @@
     <div class="lightbox">
         <h1>Hello, World!</h1>
         <p> this is the lightbox</p>
-        <div class="countdown">倒计时<span class="seconds"></span>秒关闭</div>
+        <div class="mip-lightbox-countdown">倒计时<span class="mip-lightbox-seconds"></span>秒关闭</div>
     </div>
 </mip-lightbox>
 ```

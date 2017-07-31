@@ -7,6 +7,7 @@
 组件名|功能说明
 ---|---
 [mip-wygx-classtab](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wygx-classtab)|[新增][平台]我要个性网--点击按钮进行样式切换
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]kw—ajax请求
 
 #### 2017.07.29
 

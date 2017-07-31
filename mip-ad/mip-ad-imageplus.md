@@ -1,4 +1,4 @@
-# mip-ad:ad-imageplus 图+广告
+# mip-ad:ad-imageplus 百度图+广告
 
 mip-ad 的一种类型: 图+广告。  
 产品介绍：http://imageplus.baidu.com/

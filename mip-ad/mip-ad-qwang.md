@@ -1,6 +1,6 @@
-# mip-ad:ad-qwang 全网推荐
+# mip-ad:ad-qwang 搜索推广合作
 
-mip-ad 的一种类型：全网推荐。
+mip-ad 的一种类型：搜索推广合作。产品介绍：http://union.baidu.com/product/prod-search.html
 
 标题|内容
 ----|----

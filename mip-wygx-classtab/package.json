@@ -1,0 +1,15 @@
+{
+    "name": "mip-wygx-classtab",
+    "version": "1.0.0",
+    "description": "我要个性网--点击按钮进行样式切换",
+    "contributors": [
+        {
+            "name": "wygx developer",
+            "email": "east_qiu@gmail.com",
+            "url": "https://www.mipengine.org"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -40,4 +40,4 @@ mip-ad 具有多种类型（type），type 取值由广告分类和投放配置�
 
 广告产品页面|对应 MIP 组件
 ----|----
-[百度图+广告](http://imageplus.baidu.com/) | [type="ad-baiduaap"](//www.mipengine.org/examples/mip-ad/mip-ad-baidussp.html)
+[百度图+广告](http://imageplus.baidu.com/) | [type="ad-imageplus"](//www.mipengine.org/examples/mip-ad/mip-ad-imageplus.html)

@@ -29,13 +29,15 @@
 ```
 ### 自动关闭
 
+[notice] 此属性与 class 为 `mip-lightbox-seconds` 的标签配套使用
+
 ```html
 <button on="tap:my-lightbox.toggle" id="btn-open" role="button" tabindex="0">
     Open lightbox
 </button>
 
 <mip-lightbox
-    autoclose="5"
+    autoclosetime="5"
     id="my-lightbox"
     layout="nodisplay"
     class="mip-hidden">
@@ -64,7 +66,7 @@
 
 ### autoclose
 
-说明：显示倒计时，自动关闭  
+说明：自定义倒计时，自动关闭，需要与`class="mip-lightbox-seconds"`的标签配套使用
 必选项：否    
 类型：字符串    
 取值：数字，单位秒

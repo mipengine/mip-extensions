@@ -45,6 +45,34 @@ define(function (require) {
             toggle.call(self, event);
         });
 
+        // 判断 autoopen 属性是否存在
+        if (self.element.hasAttribute('autoopen')) {
+            var autoopen = self.element.getAttribute('autoopen');
+            // 如果 autoopen 属性值是 true 则自动打开弹层
+            if (autoopen === 'true') {
+                self.open = true;
+                util.css(self.element, {display: 'block'});
+                openMask.call(self);
+                autoclose.call(self);
+            }
+        }
+    }
+
+    // 自动关闭弹层
+    function autoclose() {
+        var self = this;
+        // 判断是否有 autoclose 属性
+        if (self.element.hasAttribute('autoclose')) {
+            // 取出用户自定义的 time 值
+            var time = Math.abs(self.element.getAttribute('autoclose'));
+            // 延迟关闭弹窗层
+            setTimeout(function () {
+                self.open = false;
+                closeMask.call(self);
+                util.css(self.element, {display: 'none'});
+                util.css(document.body, {overflow: 'auto'});
+            }, time);
+        }
     }
 
     function changeParentNode() {
@@ -100,6 +128,7 @@ define(function (require) {
         self.open = true;
         util.css(self.element, {display: 'block'});
         openMask.call(self);
+        autoclose.call(self);
     }
 
 

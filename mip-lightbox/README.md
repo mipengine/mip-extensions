@@ -66,7 +66,8 @@
 
 ### autoclose
 
-说明：自定义倒计时，自动关闭，需要与`class="mip-lightbox-seconds"`的标签配套使用
+说明：自定义倒计时，自动关闭，需要与`class="mip-lightbox-seconds"`的标签配套使用,
+      `class="mip-lightbox-countdown"`的标签可自定义倒计时样式及文字内容
 必选项：否    
 类型：字符串    
 取值：数字，单位秒

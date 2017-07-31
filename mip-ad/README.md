@@ -15,7 +15,9 @@ mip-ad 具有多种类型（type），type 取值由广告分类和投放配置�
 ### 1. 通用广告-图文链接形式
 直接使用[通用广告 ad-comm](//www.mipengine.org/examples/mip-ad/mip-ad-comm.html)即可。
 
-### 2. 百度联盟 [http://union.baidu.com](http://union.baidu.com)  
+### 2. 百度联盟 
+
+投放官网：[http://union.baidu.com](http://union.baidu.com)  
 
 广告产品页面|对应 MIP 组件
 ----|----
@@ -23,7 +25,9 @@ mip-ad 具有多种类型（type），type 取值由广告分类和投放配置�
 [网盟推广合作](http://union.baidu.com/product/prod-cpro.html) | [type="ad-baidu"](//www.mipengine.org/examples/mip-ad/mip-ad-baidu.html)
 [百度联盟广告反屏蔽](http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=4&classId=13484&knowledgeId=15198) | [type="ad-baidu-ext"](//www.mipengine.org/examples/mip-ad/mip-baidu-wm-ext.html)
 
-### 3. 百度 SSP 媒体服务 [http://ssp.baidu.com](http://ssp.baidu.com)
+### 3. 百度 SSP 媒体服务
+
+投放官网：[http://ssp.baidu.com](http://ssp.baidu.com)
 
 广告产品页面|对应 MIP 组件
 ----|----
@@ -31,7 +35,8 @@ mip-ad 具有多种类型（type），type 取值由广告分类和投放配置�
 [Feeds联盟广告](https://ssp.baidu.com/)| [type="ad-ssp"](//www.mipengine.org/examples/mip-ad/mip-ad-ssp.html)
 余下投放方式 | [type="ad-baidu"](//www.mipengine.org/examples/mip-ad/mip-ad-baidu.html)
 
-### 4. 图+ [http://imageplus.baidu.com/](http://imageplus.baidu.com/)
+### 4. 图+ 
+投放官网：[http://imageplus.baidu.com/](http://imageplus.baidu.com/)
 
 广告产品页面|对应 MIP 组件
 ----|----

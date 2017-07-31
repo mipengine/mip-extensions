@@ -53,13 +53,13 @@ define(function (require) {
         if (Number(count)) {
             // 取出用户自定义的 time 值
             var time = Math.abs(Math.ceil(count));
-            var seconds = document.getElementsByClassName('seconds')[0];
-            // 显示倒计时
+            var seconds = self.element.getElementsByClassName('seconds')[0];
+            // 倒计时
             seconds.innerHTML = time;
             this.interval = setInterval(function () {
                 time -= 1;
                 seconds.innerHTML = time;
-                if (time === 0) {
+                if (time <= 0) {
                     self.open = false;
                     closeMask.call(self);
                     util.css(self.element, {display: 'none'});

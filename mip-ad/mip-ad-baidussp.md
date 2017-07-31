@@ -1,4 +1,4 @@
-# mip-ad:ad-baidussp 直投广告
+# mip-ad:ad-baidussp 百度ssp直投广告
 
 mip-ad 的一种类型：直投广告。  
 产品介绍：http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=24&classId=14547&knowledgeId=14745

@@ -1,0 +1,13 @@
+{
+    "name": "mip-stats-google",
+    "version": "1.0.0",
+    "description": "Google statistics component",
+    "author": {
+        "name": "houjinlong",
+        "email": "1844041598@qq.com",
+        "url": "https://houjinlong.github.io/home/index.html"      
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

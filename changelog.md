@@ -1,5 +1,18 @@
 # 升级日志
 
+#### 2017.08.01
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fdad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fdad)|[新增][平台]家庭医生在线广告组件
+[mip-kp-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-search)|[新增][平台]kp搜索专用
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]kw—ajax请求
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fdad)|[升级][平台]根据不同条件过滤产品
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]搜索
+
+
 #### 2017.07.31
 
 > 组件上线

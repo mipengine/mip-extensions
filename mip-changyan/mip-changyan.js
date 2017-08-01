@@ -21,6 +21,7 @@ define(function (require) {
         d.type = 'text/javascript';
         d.src = 'https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='
         + appid + '&conf=' + conf;
+        e.appendChild(d);
     };
     return customElement;
 });

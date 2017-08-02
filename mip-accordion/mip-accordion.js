@@ -4,7 +4,7 @@
  * @file mip-accordion
  * @time 2017.07
  */
-define(function(require) {
+define(function (require) {
     var customElement = require('customElement').create();
     var $ = require('zepto');
     var localurl = location.href;
@@ -35,7 +35,7 @@ define(function(require) {
         var $element = $(element);
         var aniTime = $(element).attr('animatetime') || 0.3;
 
-        $element.on('click', '.mip-accordion-header', function() {
+        $element.on('click', '.mip-accordion-header', function () {
             var targetId = $(this).attr('aria-controls');
             var $targetdom = $('#' + targetId);
             var expanded = $targetdom.attr('aria-expanded');
@@ -49,7 +49,7 @@ define(function(require) {
                     ele: $targetdom[0],
                     type: 'fold',
                     transitionTime: aniTime,
-                    cbFun: function($dom) {
+                    cbFun: function ($dom) {
                         $dom.attr('aria-expanded', 'close');
                     }.bind(undefined, $targetdom)
                 });
@@ -61,7 +61,8 @@ define(function(require) {
                 }
 
                 setSession(element, targetId, false);
-            } else {
+            }
+            else {
                 // 同时只能展开一个节点
 
                 if (element.hasAttribute('expaned-limit')) {
@@ -99,11 +100,9 @@ define(function(require) {
                 });
 
                 setSession(element, targetId, true);
-
             }
         });
     }
-
 
     // 设置session storage
     function setSession(element, obj, expand) {
@@ -123,10 +122,10 @@ define(function(require) {
     /**
      * Make height transiton for element that has unknown height.
      * height transiton from 0px/40px to whatever height element will be.
-     * 
+     *
      * author&maintainer liangjiaying<jiaojiaomao220@163.com>
      *
-     * @param  {Object} opt
+     * @param  {Object} opt options
      * @example
      * {
      *     "ele": document.getElementById('id1'), // target DOM
@@ -147,16 +146,17 @@ define(function(require) {
 
         var transitionTime = opt.transitionTime || 0.3;
         // use ?: to make sure oriHeight won't be rewrite when opt.oriHeight is set to 0
-        var oriHeight = (opt.oriHeight != undefined ? opt.oriHeight : getComputedStyle(element).height);
+        var oriHeight = (opt.oriHeight !== undefined ? opt.oriHeight : getComputedStyle(element).height);
         var tarHeight;
         var cbFun = opt.cbFun || function () {};
 
         if (type === 'unfold') {
-            
+
             // make sure tarHeight won't be rewrite when opt.tarHeight is set to 0
-            if (opt.tarHeight != undefined) {
+            if (opt.tarHeight !== undefined) {
                 tarHeight = opt.tarHeight;
-            } else {
+            }
+            else {
                 // before set height to auto, remove animation.
                 // or bad animation happens in iphone 4s
                 element.style.transition = 'height 0s';
@@ -176,7 +176,7 @@ define(function(require) {
         else if (type === 'fold') {
             tarHeight = opt.tarHeight || 0;
         }
-        
+
         element.style.height = oriHeight;
         // now start the animation
         setTimeout(function () {
@@ -191,7 +191,7 @@ define(function(require) {
     }
 
     // 初始化
-    customElement.prototype.build = function() {
+    customElement.prototype.build = function () {
         var self = this;
         var element = this.element;
 
@@ -200,7 +200,7 @@ define(function(require) {
         this.id = $(element).attr('sessions-key');
         this.element.setAttribute('role', 'tablist');
         this.currentState = getSession.call(this);
-        this.sections.map(function(index, section) {
+        this.sections.map(function (index, section) {
             var header = $(section).find('[accordionbtn]');
             var content = $(section).find('[accordionbox]');
 
@@ -224,7 +224,8 @@ define(function(require) {
             // tab 状态[展开|收起]判断
             if (self.currentState[id]) {
                 section.attr('expanded', '');
-            } else if (self.currentState[id] === false) {
+            }
+            else if (self.currentState[id] === false) {
                 section.removeAttribute('expanded');
             }
 
@@ -232,7 +233,8 @@ define(function(require) {
             if (self.type === 'manual' && section.hasAttribute('expanded')) {
                 content.attr('aria-expanded', 'open');
                 setSession(element, $(element).attr('aria-controls'), true);
-            } else if (self.type === 'automatic') {
+            }
+            else if (self.type === 'automatic') {
                 content.attr('aria-expanded', section.hasAttribute('expanded').toString());
             }
 

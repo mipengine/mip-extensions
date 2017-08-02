@@ -1,6 +1,6 @@
 /**
  * @author: Qi
- * @date: 2016-12-01
+ * @date: 2017-08-02
  * @file: mip-html-ajax.js
  */
 
@@ -381,6 +381,16 @@ define(function (require) {
         return strTemp;
     }
 
+    // decodeURI解码
+    function jsonDecode(str) {
+        try {
+            str = decodeURI(str);
+        }
+        catch (err) {
+        }
+        return str;
+    }
+
     // 替换标签
     function tempView(str, arr, data) {
         str = str.replace(/{thisid}/gi, data.theID);
@@ -388,7 +398,12 @@ define(function (require) {
         if (sArr) {
             for (var i = 0; i < sArr.length; i++) {
                 var sQrr = sArr[i].match(/{(\w+)}/i);
-                str = str.replace(sArr[i], arr[sQrr[1]]);
+                if (typeof (arr[sQrr[1]]) === 'string') {
+                    str = str.replace(sArr[i], jsonDecode(arr[sQrr[1]]));
+                }
+                else {
+                    str = str.replace(sArr[i], arr[sQrr[1]]);
+                }
             }
         }
         return str;

@@ -12,10 +12,12 @@
 
 ### 标题加内容形式
 
-[info]默认隐藏的节点，需要添加 class="mip-accordion-content"
+section 的第一个子节点为按钮，第二个子节点为隐藏目标节点。
+
+[info]页面加载初默认隐藏的节点，需要添加 class="mip-accordion-content"。
 
 ```html
-<mip-accordion sessions-key="mip_1" animatetime='0.3'>
+<mip-accordion sessions-key="mip_1" animatetime='0.24'>
     <section>
         <h4>下拉第一个</h4>
         <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
@@ -34,7 +36,7 @@
 ### 标题加内容形式-手动
 
 ```html
-<mip-accordion sessions-key="mip_1" type="manual">
+<mip-accordion sessions-key="mip_1" type="manual" animatetime='0.24'>
     <section>
         <h4>下拉第一个</h4>
         <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
@@ -53,7 +55,7 @@
 ### 标题切换形式
 
 ```html
-<mip-accordion sessions-key="mip_2">
+<mip-accordion sessions-key="mip_2" animatetime='0.24'>
     <section>
         <h4>
           <span class="show-more">显示更多</span>
@@ -161,8 +163,8 @@
 默认值：无
 
 ### animatetime
-说明：展开收起动画时间   
+说明：展开收起动画时间，最大为1秒。建议为 0.24 秒   
 必选项：否   
 类型：数字（小数）  
 单位：秒  
-默认值：0.3
+默认值：0.24

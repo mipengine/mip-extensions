@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.08.02
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级][官方]mip-accordion正佳动画
+[mip-lightbox](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级][官方]mip-lightbox升级和BUG修复
+
 #### 2017.08.01
 
 > 组件上线

@@ -12,11 +12,15 @@
 
 ### 标题加内容形式
 
+section 的第一个子节点为按钮，第二个子节点为隐藏目标节点。
+
+[info]页面加载初默认隐藏的节点，需要添加 class="mip-accordion-content"。
+
 ```html
-<mip-accordion sessions-key="mip_1">
+<mip-accordion sessions-key="mip_1" animatetime='0.24'>
     <section>
         <h4>下拉第一个</h4>
-        <p>我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
+        <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
     </section>
     <section  expanded="open">
         <h4>下拉第二个</h4>
@@ -24,7 +28,7 @@
     </section>
     <section>
         <h4>下拉第三个</h4>
-        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg"></mip-img>
+        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg" class="mip-accordion-content"></mip-img>
     </section>
 </mip-accordion>
 ```
@@ -32,10 +36,10 @@
 ### 标题加内容形式-手动
 
 ```html
-<mip-accordion sessions-key="mip_1" type="manual">
+<mip-accordion sessions-key="mip_1" type="manual" animatetime='0.24'>
     <section>
         <h4>下拉第一个</h4>
-        <p>我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
+        <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
     </section>
     <section  expanded="open">
         <h4>下拉第二个</h4>
@@ -43,7 +47,7 @@
     </section>
     <section>
         <h4>下拉第三个</h4>
-        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg"></mip-img>
+        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg" class="mip-accordion-content"></mip-img>
     </section>
 </mip-accordion>
 ```
@@ -51,13 +55,13 @@
 ### 标题切换形式
 
 ```html
-<mip-accordion sessions-key="mip_2">
+<mip-accordion sessions-key="mip_2" animatetime='0.24'>
     <section>
         <h4>
           <span class="show-more">显示更多</span>
           <span class="show-less">收起</span>
           </h4>
-        <p>显示显示收起收起显示显示收起收起显示显示收起收起显示显示收起收起</p>
+        <p class="mip-accordion-content">显示显示收起收起显示显示收起收起显示显示收起收起显示显示收起收起</p>
       </section>
   </mip-accordion>
 ```
@@ -68,7 +72,7 @@
 <mip-accordion sessions-key="mip_1" expaned-limit>
     <section>
         <h4>下拉第一个</h4>
-        <p>我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
+        <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
     </section>
     <section  expanded>
         <h4>下拉第二个</h4>
@@ -80,7 +84,7 @@
             layout="responsive"
             width="400"
             height="200"
-            src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg">
+            src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg" class="mip-accordion-content">
         </mip-img>
     </section>
   </mip-accordion>
@@ -157,3 +161,10 @@
 单位：无   
 取值：无   
 默认值：无
+
+### animatetime
+说明：展开收起动画时间，最大为1秒。建议为 0.24 秒   
+必选项：否   
+类型：数字（小数）  
+单位：秒  
+默认值：0.24

@@ -1,11 +1,16 @@
 {
     "name": "mip-accordion",
-    "version": "1.0.3",
-    "author": {
-        "name": "MIP authors",
-        "email": "mip-support@baidu.com",
-        "url": "https://www.mipengine.org"
-    },
+    "version": "1.0.4",
+    "contributers": [
+        {
+            "name": "MIP authors",
+            "email": "mip-support@baidu.com",
+            "url": "https://www.mipengine.org"
+        },{
+            "name": "liangjiaying",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
     "engines": {
         "mip": ">=1.1.0"
     }

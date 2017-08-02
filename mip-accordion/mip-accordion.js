@@ -33,7 +33,17 @@ define(function (require) {
     // 绑定事件
     function bindEven(element) {
         var $element = $(element);
-        var aniTime = $(element).attr('animatetime') || 0.3;
+        var aniTime = $(element).attr('animatetime');
+
+        if (aniTime === undefined || isNaN(aniTime)) {
+            // if transition time is not set, set into 0.24s
+            aniTime = 0.24;
+        }
+        else {
+            // '0.2s' -> 0.2, 20 -> 1, -0.5 -> 0.5
+            aniTime = Math.min(parseFloat(aniTime), 1);
+        }
+
 
         $element.on('click', '.mip-accordion-header', function () {
             var targetId = $(this).attr('aria-controls');
@@ -139,12 +149,21 @@ define(function (require) {
     function heightAni(opt) {
         var element = opt.ele;
         var type = opt.type;
+        var transitionTime;
 
         if (!type || !element) {
             return;
         }
 
-        var transitionTime = opt.transitionTime || 0.3;
+        if (opt.transitionTime === undefined || isNaN(opt.transitionTime)) {
+            // if transition time is not set, set into 0.24s
+            transitionTime = 0.24;
+        }
+        else {
+            // '0.2s' -> 0.2, 20 -> 1, -0.5 -> 0.5
+            transitionTime = Math.min(parseFloat(opt.transitionTime), 1);
+        }
+
         // use ?: to make sure oriHeight won't be rewrite when opt.oriHeight is set to 0
         var oriHeight = (opt.oriHeight !== undefined ? opt.oriHeight : getComputedStyle(element).height);
         var tarHeight;
@@ -190,8 +209,9 @@ define(function (require) {
         }, transitionTime * 1000);
     }
 
+
     // 初始化
-    customElement.prototype.build = function () {
+    customElement.prototype.firstInviewCallback = function () {
         var self = this;
         var element = this.element;
 

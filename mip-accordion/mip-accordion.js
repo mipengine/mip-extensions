@@ -4,10 +4,9 @@
  * @file mip-accordion
  * @time 2017.07
  */
-define(function (require) {
+define(function(require) {
     var customElement = require('customElement').create();
     var $ = require('zepto');
-    var util = require('util');
     var localurl = location.href;
 
     // 恢复用户上次选择
@@ -36,7 +35,7 @@ define(function (require) {
         var $element = $(element);
         var aniTime = $(element).attr('animatetime') || 0.3;
 
-        $element.on('click', '.mip-accordion-header', function () {
+        $element.on('click', '.mip-accordion-header', function() {
             var targetId = $(this).attr('aria-controls');
             var $targetdom = $('#' + targetId);
             var expanded = $targetdom.attr('aria-expanded');
@@ -45,11 +44,12 @@ define(function (require) {
 
             if (expanded === 'open') {
                 // 收起内容区域
-                util.fn.heightAni({
+                // fold animation
+                heightAni({
                     ele: $targetdom[0],
                     type: 'fold',
                     transitionTime: aniTime,
-                    cbFun: function ($dom) {
+                    cbFun: function($dom) {
                         $dom.attr('aria-expanded', 'close');
                     }.bind(undefined, $targetdom)
                 });
@@ -61,8 +61,7 @@ define(function (require) {
                 }
 
                 setSession(element, targetId, false);
-            }
-            else {
+            } else {
                 // 同时只能展开一个节点
 
                 if (element.hasAttribute('expaned-limit')) {
@@ -76,7 +75,7 @@ define(function (require) {
                         cont.removeAttribute('aria-expanded');
                         setSession(element, id, false);
                         // fold animation
-                        util.fn.heightAni({
+                        heightAni({
                             ele: cont,
                             type: 'fold',
                             transitionTime: aniTime
@@ -92,7 +91,7 @@ define(function (require) {
                 }
 
                 // unfold animation
-                util.fn.heightAni({
+                heightAni({
                     ele: $targetdom[0],
                     type: 'unfold',
                     oriHeight: 0,
@@ -121,8 +120,78 @@ define(function (require) {
         return data ? JSON.parse(data) : {};
     }
 
+    /**
+     * Make height transiton for element that has unknown height.
+     * height transiton from 0px/40px to whatever height element will be.
+     * 
+     * author&maintainer liangjiaying<jiaojiaomao220@163.com>
+     *
+     * @param  {Object} opt
+     * @example
+     * {
+     *     "ele": document.getElementById('id1'), // target DOM
+     *     "type": "fold",                  // "fold" or "unfold"
+     *     "transitionTime": "0.3",         // seconds, animation time
+     *     "tarHeight": "140px",            // DOM height when animation ends
+     *     "oriHeight": "20px",             // DOM height when animation begins
+     *     "cbFun": function() {}.bind()    //callback, exec after animation
+     * }
+     */
+    function heightAni(opt) {
+        var element = opt.ele;
+        var type = opt.type;
+
+        if (!type || !element) {
+            return;
+        }
+
+        var transitionTime = opt.transitionTime || 0.3;
+        // use ?: to make sure oriHeight won't be rewrite when opt.oriHeight is set to 0
+        var oriHeight = (opt.oriHeight != undefined ? opt.oriHeight : getComputedStyle(element).height);
+        var tarHeight;
+        var cbFun = opt.cbFun || function () {};
+
+        if (type === 'unfold') {
+            
+            // make sure tarHeight won't be rewrite when opt.tarHeight is set to 0
+            if (opt.tarHeight != undefined) {
+                tarHeight = opt.tarHeight;
+            } else {
+                // before set height to auto, remove animation.
+                // or bad animation happens in iphone 4s
+                element.style.transition = 'height 0s';
+                element.style.height = 'auto';
+                tarHeight = getComputedStyle(element).height;
+            }
+
+            // set height to auto after transition,
+            // in case of height change of inside element later.
+            setTimeout(function () {
+                // before set height to auto, remove animation.
+                // or bad animation happens in iphone 4s
+                element.style.transition = 'height 0s';
+                element.style.height = 'auto';
+            }, transitionTime * 1000);
+        }
+        else if (type === 'fold') {
+            tarHeight = opt.tarHeight || 0;
+        }
+        
+        element.style.height = oriHeight;
+        // now start the animation
+        setTimeout(function () {
+            element.style.transition = 'height ' + transitionTime + 's';
+            // XXX: in setTimeout, or there won't be any animation
+            element.style.height = tarHeight;
+        }, 10);
+        // after transition, exec callback functions
+        setTimeout(function () {
+            cbFun();
+        }, transitionTime * 1000);
+    }
+
     // 初始化
-    customElement.prototype.build = function () {
+    customElement.prototype.build = function() {
         var self = this;
         var element = this.element;
 
@@ -131,7 +200,7 @@ define(function (require) {
         this.id = $(element).attr('sessions-key');
         this.element.setAttribute('role', 'tablist');
         this.currentState = getSession.call(this);
-        this.sections.map(function (index, section) {
+        this.sections.map(function(index, section) {
             var header = $(section).find('[accordionbtn]');
             var content = $(section).find('[accordionbox]');
 
@@ -155,8 +224,7 @@ define(function (require) {
             // tab 状态[展开|收起]判断
             if (self.currentState[id]) {
                 section.attr('expanded', '');
-            }
-            else if (self.currentState[id] === false) {
+            } else if (self.currentState[id] === false) {
                 section.removeAttribute('expanded');
             }
 
@@ -164,8 +232,7 @@ define(function (require) {
             if (self.type === 'manual' && section.hasAttribute('expanded')) {
                 content.attr('aria-expanded', 'open');
                 setSession(element, $(element).attr('aria-controls'), true);
-            }
-            else if (self.type === 'automatic') {
+            } else if (self.type === 'automatic') {
                 content.attr('aria-expanded', section.hasAttribute('expanded').toString());
             }
 

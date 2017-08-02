@@ -1,6 +1,7 @@
 {
     "name": "mip-appdl",
     "version": "1.0.4",
+    "description": "App 下载，可区分安卓和 iOS。",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

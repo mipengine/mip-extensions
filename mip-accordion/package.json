@@ -1,7 +1,8 @@
 {
     "name": "mip-accordion",
     "version": "1.0.4",
-    "contributers": [
+    "description": "折叠隐藏节点(可记录用户上次行为)。",
+    "contributors": [
         {
             "name": "MIP authors",
             "email": "mip-support@baidu.com",

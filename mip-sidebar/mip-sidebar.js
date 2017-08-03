@@ -29,11 +29,10 @@ define(function (require) {
             return;
         }
 
-        // pageScroll_.call(self);
-
         util.css(self.element, {display: 'block'});
         openMask.call(self);
-        document.body.style.overflow = "hidden";
+
+        self.bodyOverflow = getComputedStyle(document.body).overflow;
 
         // 动画效果
         var openTimer = setTimeout(function () {
@@ -43,7 +42,6 @@ define(function (require) {
             clearTimeout(openTimer);
 
         }, self.ANIMATION_TIMEOUT);
-
     }
 
     /**
@@ -60,7 +58,8 @@ define(function (require) {
         self.element.setAttribute('aria-hidden', 'true');
 
         closeMask.call(self);
-        document.body.style.overflow = "";
+
+        document.body.style.overflow = self.bodyOverflow;
 
         // 动画效果
         var closeTimer = setTimeout(function () {

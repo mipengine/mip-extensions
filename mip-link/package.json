@@ -1,6 +1,7 @@
 {
     "name": "mip-link",
     "version": "1.1.3",
+    "description":"实现两个 MIP 页面之间互相跳转的功能。",
     "contributors": [
         {
             "name": "MIP authors",

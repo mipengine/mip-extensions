@@ -32,7 +32,9 @@ define(function (require) {
         util.css(self.element, {display: 'block'});
         openMask.call(self);
 
+
         self.bodyOverflow = getComputedStyle(document.body).overflow;
+        document.body.style.overflow = "hidden";
 
         // 动画效果
         var openTimer = setTimeout(function () {
@@ -42,6 +44,7 @@ define(function (require) {
             clearTimeout(openTimer);
 
         }, self.ANIMATION_TIMEOUT);
+
     }
 
     /**

@@ -1,30 +1,27 @@
 /**
- * @file
- * 畅言插件
- * @author smileU
- * @version 1.0.1
-*/
+ * @file mip-changyan 组件
+ * @author 点点
+ */
+
 define(function (require) {
+
     var customElement = require('customElement').create();
-    customElement.prototype.createdCallback = function () {
-        var ele = this.element;
-        var appid = ele.getAttribute('appid');
-        var conf = ele.getAttribute('conf');
-        var criWidth = ele.getAttribute('critical-width');
-        var viewport = require('viewport');
-        var width = viewport.getWidth();
-        var scriptTag = document.createElement('script');
-        scriptTag.setAttribute('type', 'text/javascript');
-        scriptTag.setAttribute('charset', 'UTF-8');
-        if (width < criWidth) {
-            scriptTag.id = 'changyan_mobile_js';
-            scriptTag.setAttribute('src', 'https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf);
-        }
-        else {
-            scriptTag.src = 'https://changyan.sohu.com/upload/changyan.js?client_id=' + appid + '&conf=' + conf;
-        }
-        ele.appendChild(scriptTag);
+
+    /**
+     * 构造元素，只会运行一次
+     */
+    customElement.prototype.firstInviewCallback = function () {
+        // TODO
+        var e = this.element;
+        var appid = e.getAttribute('appid');
+        var conf = e.getAttribute('conf');
+        var d = document.createElement('script');
+        d.charset = 'utf-8';
+        d.id = 'changyan_mobile_js';
+        d.type = 'text/javascript';
+        d.src = 'https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='
+        + appid + '&conf=' + conf;
+        e.appendChild(d);
     };
     return customElement;
 });
-

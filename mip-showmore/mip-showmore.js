@@ -8,7 +8,14 @@ define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
     var viewport = require('viewport');
+    var timeoutArray = [];
 
+    /**
+     * define a showmore class based on
+     *
+     * @class Showmore
+     * @param {Object} ele dom element
+    */
     var Showmore = function (ele) {
         this.ele = ele;
         // 获取点击按钮，v1.0.0 方法
@@ -52,12 +59,13 @@ define(function (require) {
                     case 'screen':
                         this.showType = 'HEIGHTSCREEN';
                         this.maxHeight = viewport.getHeight() * value;
+                        this._initHeight();
                         break;
                     case 'heightpx':
                         this.showType = 'HEIGHT';
+                        this._initHeight();
                         break;
                 }
-                this._initHeight();
             }
         }
         else if (this.maxHeight && !isNaN(this.maxHeight)) {
@@ -143,15 +151,15 @@ define(function (require) {
     Showmore.prototype.toggle = function (event) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
-        var aniTime = this.animateTime || 0.3;
+        var opt = {};
+        opt.aniTime = this.animateTime || 0.3;
 
-        if (this.showType == 'LENGTH') {
-            var oriHeight = getComputedStyle(this.showBox).height;
+        if (this.showType === 'LENGTH') {
+            opt.oriHeight = getComputedStyle(this.showBox).height;
             if (classList.contains('mip-showmore-boxshow')) {
-                this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 // 隐藏超出字数的内容
                 this.showBox.innerHTML = this.cutOffText;
-                var tarHeight = getComputedStyle(this.showBox).height;
+                opt.tarHeight = getComputedStyle(this.showBox).height;
                 this.showBox.innerHTML = this.originalHtml;
 
                 util.fn.heightAni({
@@ -202,6 +210,7 @@ define(function (require) {
             else {
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 // 显示超出高度的内容
+                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
                 util.fn.heightAni({
                     ele: this.showBox,
@@ -221,7 +230,7 @@ define(function (require) {
             return;
         }
 
-        if (status == 'showOpen') {
+        if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {
                 clickBtn.innerText = clickBtn.dataset.opentext;
@@ -299,6 +308,93 @@ define(function (require) {
         util.css(obj, cssObj);
     };
 
+     /**
+     * Make height transiton for element that has unknown height.
+     * height transiton from 0px/40px to whatever height element will be.
+     *
+     * author&maintainer liangjiaying<jiaojiaomao220@163.com>
+     *
+     * @param  {Object} opt options
+     * @example
+     * {
+     *     "ele": document.getElementById('id1'), // target DOM
+     *     "type": "fold",                  // "fold" or "unfold"
+     *     "transitionTime": "0.3",         // seconds, animation time
+     *     "tarHeight": "140px",            // DOM height when animation ends
+     *     "oriHeight": "20px",             // DOM height when animation begins
+     *     "cbFun": function() {}.bind()    //callback, exec after animation
+     * }
+     */
+    function heightAni(opt) {
+        var element = opt.ele;
+        var type = opt.type;
+        var transitionTime;
+        var timeoutArr = timeoutArray || [];
+
+        if (!type || !element) {
+            return;
+        }
+
+        if (opt.transitionTime === undefined || isNaN(opt.transitionTime)) {
+            // if transition time is not set, set into 0.24s
+            transitionTime = 0.24;
+        }
+        else {
+            // '0.2s' -> 0.2, 20 -> 1, -0.5 -> 0.5
+            transitionTime = Math.min(parseFloat(opt.transitionTime), 1);
+        }
+
+        // use ?: to make sure oriHeight won't be rewrite when opt.oriHeight is set to 0
+        var oriHeight = (opt.oriHeight !== undefined ? opt.oriHeight : getComputedStyle(element).height);
+        var tarHeight;
+        var cbFun = opt.cbFun || function () {};
+
+        if (type === 'unfold') {
+
+            // make sure tarHeight won't be rewrite when opt.tarHeight is set to 0
+            if (opt.tarHeight !== undefined) {
+                tarHeight = opt.tarHeight;
+            }
+            else {
+                // before set height to auto, remove animation.
+                // or bad animation happens in iphone 4s
+                element.style.transition = 'height 0s';
+                element.style.height = 'auto';
+                tarHeight = getComputedStyle(element).height;
+            }
+
+            // set height to auto after transition,
+            // in case of height change of inside element later.
+            var timeout1 = setTimeout(function () {
+                // before set height to auto, remove animation.
+                // or bad animation happens in iphone 4s
+                element.style.transition = 'height 0s';
+                element.style.height = 'auto';
+            }, transitionTime * 1000);
+            timeoutArr.push(timeout1);
+        }
+        else if (type === 'fold') {
+            tarHeight = opt.tarHeight || 0;
+        }
+
+        element.style.height = oriHeight;
+        // now start the animation
+        var timeout2 = setTimeout(function () {
+            element.style.transition = 'height ' + transitionTime + 's';
+            // XXX: in setTimeout, or there won't be any animation
+            element.style.height = tarHeight;
+        }, 10);
+        // after transition, exec callback functions
+        var timeout3 = setTimeout(function () {
+            cbFun();
+        }, transitionTime * 1000);
+
+        // save timeout, for later clearTimeout
+        timeoutArr.push(timeout2);
+        timeoutArr.push(timeout3);
+    }
+
+
     /**
      * 构造元素，只会运行一次
      */
@@ -310,7 +406,13 @@ define(function (require) {
         this.addEventAction('toggle', function (event) {
             showmoreObj.toggle(event);
         });
-
+    };
+    
+    // when remove node, clear timeout
+    customElement.prototype.detachedCallback = function () {
+        for(var i = 0; i < timeoutArray.length; i++) {
+            window.clearTimeout(timeoutArray[i]);
+        }
     };
     return customElement;
 });

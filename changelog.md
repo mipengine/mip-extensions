@@ -1,5 +1,36 @@
 # 升级日志
 
+
+#### 2017.08.03
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-trilobite-scroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-scroll)|[升级]三叶虫下拉滚动功能
+
+#### 2017.08.02
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级][官方]mip-accordion增加动画
+[mip-lightbox](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级][官方]mip-lightbox升级和BUG修复
+
+#### 2017.08.01
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fdad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fdad)|[新增][平台]家庭医生在线广告组件
+[mip-kp-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-search)|[新增][平台]kp搜索专用
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]kw—ajax请求
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fdad)|[升级][平台]根据不同条件过滤产品
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]搜索
+
+
 #### 2017.07.31
 
 > 组件上线
@@ -7,6 +38,7 @@
 组件名|功能说明
 ---|---
 [mip-wygx-classtab](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wygx-classtab)|[新增][平台]我要个性网--点击按钮进行样式切换
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]kw—ajax请求
 
 #### 2017.07.29
 

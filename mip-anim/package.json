@@ -1,6 +1,7 @@
 {
     "name": "mip-anim",
     "version": "1.0.1",
+    "description": "用来支持在 MIP 页中 gif 图的使用。",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

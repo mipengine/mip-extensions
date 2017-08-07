@@ -1,6 +1,7 @@
 {
     "name": "mip-share",
     "version": "1.0.4",
+    "description":"提供页面内分享按钮功能，默认分享当前网址。",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

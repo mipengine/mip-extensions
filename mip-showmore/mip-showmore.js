@@ -25,6 +25,9 @@ define(function (require) {
         // 获取动画时间
         this.animateTime = this.ele.getAttribute('animatetime') || 0;
 
+        //折叠高度类型
+        this.heightType = ['HEIGHTSCREEN', 'HEIGHT', 'LENGTH'];
+
         // 获取内容显示框，v1.1.0 方法
         if (!this.showBox) {
             this.showBox = this.ele;
@@ -57,23 +60,25 @@ define(function (require) {
                 value = maxHeightArr[1].trim();
                 switch (key) {
                     case 'screen':
-                        this.showType = 'HEIGHTSCREEN';
+                        this.showType = this.heightType[0];
                         this.maxHeight = viewport.getHeight() * value;
                         this._initHeight();
                         break;
                     case 'heightpx':
-                        this.showType = 'HEIGHT';
+                        this.showType = this.heightType[1];
                         this._initHeight();
+                        break;
+                    default:
                         break;
                 }
             }
         }
         else if (this.maxHeight && !isNaN(this.maxHeight)) {
-            this.showType = 'HEIGHT';
+            this.showType = this.heightType[1];
             this._initHeight();
         }
         else if (this.maxLen && !isNaN(this.maxLen)) {
-            this.showType = 'LENGTH';
+            this.showType = this.heightType[2];
             this._maxLenFn();
         }
         else {
@@ -154,7 +159,7 @@ define(function (require) {
         var opt = {};
         opt.aniTime = this.animateTime || 0.3;
 
-        if (this.showType === 'LENGTH') {
+        if (this.showType === this.heightType[2]) {
             opt.oriHeight = getComputedStyle(this.showBox).height;
             if (classList.contains('mip-showmore-boxshow')) {
                 // 隐藏超出字数的内容
@@ -165,9 +170,9 @@ define(function (require) {
                 util.fn.heightAni({
                     ele: this.showBox,
                     type: 'fold',
-                    transitionTime: aniTime,
-                    tarHeight: tarHeight,
-                    oriHeight: oriHeight,
+                    transitionTime: opt.aniTime,
+                    tarHeight: opt.tarHeight,
+                    oriHeight: opt.oriHeight,
                     cbFun: function (showmore) {
                         showmore.showBox.innerHTML = showmore.cutOffText;
                         showmore._toggleClickBtn(clickBtn, 'showOpen');
@@ -184,15 +189,15 @@ define(function (require) {
                 util.fn.heightAni({
                     ele: this.showBox,
                     type: 'unfold',
-                    oriHeight: oriHeight,
-                    transitionTime: aniTime,
+                    oriHeight: opt.oriHeight,
+                    transitionTime: opt.aniTime,
                     cbFun: function (showmore) {
                         showmore._toggleClickBtn(clickBtn, 'showClose');
                     }.bind(undefined, this)
                 });
             }
         }
-        else if (this.showType === 'HEIGHT' || this.showType === 'HEIGHTSCREEN') {
+        else if (this.showType === this.heightType[1] || this.showType === this.heightType[0]) {
             if (classList.contains('mip-showmore-boxshow')) {
                 this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 // 隐藏超出高度的内容
@@ -200,7 +205,7 @@ define(function (require) {
                 util.fn.heightAni({
                     ele: this.showBox,
                     type: 'fold',
-                    transitionTime: aniTime,
+                    transitionTime: opt.aniTime,
                     tarHeight: this.maxHeight + 'px',
                     cbFun: function (showmore, clickBtn) {
                         showmore._toggleClickBtn(clickBtn, 'showOpen');
@@ -215,7 +220,7 @@ define(function (require) {
                 util.fn.heightAni({
                     ele: this.showBox,
                     type: 'unfold',
-                    transitionTime: aniTime,
+                    transitionTime: opt.aniTime,
                     cbFun: function (showmore, clickBtn) {
                         showmore._toggleClickBtn(clickBtn, 'showClose');
                     }.bind(undefined, this, clickBtn)

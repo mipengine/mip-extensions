@@ -355,7 +355,7 @@ define(function (require) {
                 element.style.transition = 'height 0s';
                 element.style.height = 'auto';
             }, transitionTime * 1000);
-            timeoutArr.push(timeout1);
+            timeoutArr[0] = timeout1;
         }
         else if (type === 'fold') {
             tarHeight = opt.tarHeight || 0;
@@ -374,8 +374,8 @@ define(function (require) {
         }, transitionTime * 1000);
 
         // save timeout, for later clearTimeout
-        timeoutArr.push(timeout2);
-        timeoutArr.push(timeout3);
+        timeoutArr[1] = timeout2;
+        timeoutArr[2] = timeout3;
     }
 
 

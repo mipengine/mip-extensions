@@ -129,7 +129,7 @@
 - 取值：`maxheight='40'`表示40px处折叠；`maxheight='screen:0.6'`表示0.6屏(0.6 * window.screen.height)处折叠；
 - 必选项：否       
 - 类型：数字或键值对
-- 备注:  `maxheightbaseviewport、maxheight、maxheight`只能存在一个，优先级：`maxheightbaseviewport > maxheight > maxheight`
+- 备注:  `maxheight、maxlen`只能存在一个，优先级：`maxheight > maxlen`
 
 
 ## animatetime

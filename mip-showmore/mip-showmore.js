@@ -8,6 +8,7 @@ define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
     var viewport = require('viewport');
+    var timeoutArray = [];
 
     /**
      * define a showmore class based on
@@ -308,6 +309,7 @@ define(function (require) {
         var element = opt.ele;
         var type = opt.type;
         var transitionTime;
+        var timeoutArr = timeoutArray || [];
 
         if (!type || !element) {
             return;
@@ -343,12 +345,13 @@ define(function (require) {
 
             // set height to auto after transition,
             // in case of height change of inside element later.
-            setTimeout(function () {
+            var timeout1 = setTimeout(function () {
                 // before set height to auto, remove animation.
                 // or bad animation happens in iphone 4s
                 element.style.transition = 'height 0s';
                 element.style.height = 'auto';
             }, transitionTime * 1000);
+            timeoutArr.push(timeout1);
         }
         else if (type === 'fold') {
             tarHeight = opt.tarHeight || 0;
@@ -356,15 +359,19 @@ define(function (require) {
 
         element.style.height = oriHeight;
         // now start the animation
-        setTimeout(function () {
+        var timeout2 = setTimeout(function () {
             element.style.transition = 'height ' + transitionTime + 's';
             // XXX: in setTimeout, or there won't be any animation
             element.style.height = tarHeight;
         }, 10);
         // after transition, exec callback functions
-        setTimeout(function () {
+        var timeout3 = setTimeout(function () {
             cbFun();
         }, transitionTime * 1000);
+
+        // save timeout, for later clearTimeout
+        timeoutArr.push(timeout2);
+        timeoutArr.push(timeout3);
     }
 
 
@@ -379,7 +386,13 @@ define(function (require) {
         this.addEventAction('toggle', function (event) {
             showmoreObj.toggle(event);
         });
-
+    };
+    
+    // when remove node, clear timeout
+    customElement.prototype.detachedCallback = function () {
+        for(var i = 0; i < timeoutArray.length; i++) {
+            window.clearTimeout(timeoutArray[i]);
+        }
     };
     return customElement;
 });

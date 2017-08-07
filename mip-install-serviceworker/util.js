@@ -128,4 +128,18 @@ define(function (require, exports) {
         return info;
     }
 
+    /**
+     * Returns the URL without fragment. If URL doesn't contain fragment, the same string is returned.
+     *
+     * @param {string} url source url
+     * @return {string}
+     */
+    exports.removeFragment = function (url) {
+        const index = url.indexOf('#');
+        if (index === -1) {
+            return url;
+        }
+        return url.substring(0, index);
+    };
+
 });

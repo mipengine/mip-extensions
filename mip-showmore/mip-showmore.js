@@ -24,15 +24,12 @@ define(function (require) {
         this.showBox = this.ele.querySelector('[showmorebox]');
         // 获取动画时间
         this.animateTime = this.ele.getAttribute('animatetime') || 0;
-
         //折叠高度类型
         this.heightType = ['HEIGHTSCREEN', 'HEIGHT', 'LENGTH'];
-
         // 获取内容显示框，v1.1.0 方法
         if (!this.showBox) {
             this.showBox = this.ele;
         }
-
     };
 
     Showmore.prototype.init = function () {
@@ -58,6 +55,7 @@ define(function (require) {
             if (maxHeightArr.length > 1) {
                 key = maxHeightArr[0].trim();
                 value = maxHeightArr[1].trim();
+
                 switch (key) {
                     case 'screen':
                         this.showType = this.heightType[0];
@@ -111,7 +109,6 @@ define(function (require) {
             // 处理bottom渐变
             this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
         }
-
     };
 
     // 字数控制
@@ -136,7 +133,6 @@ define(function (require) {
             this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
             this.showBox.innerHTML = this.cutOffText;
         }
-
     };
 
     // 绑定显示更多按钮
@@ -145,7 +141,6 @@ define(function (require) {
         if (!this.clickBtn) {
             return;
         }
-
         var showmore = this;
         this.clickBtn.addEventListener('click', function (event) {
             showmore.toggle.apply(showmore);
@@ -166,35 +161,23 @@ define(function (require) {
                 this.showBox.innerHTML = this.cutOffText;
                 opt.tarHeight = getComputedStyle(this.showBox).height;
                 this.showBox.innerHTML = this.originalHtml;
-
-                util.fn.heightAni({
-                    ele: this.showBox,
-                    type: 'fold',
-                    transitionTime: opt.aniTime,
-                    tarHeight: opt.tarHeight,
-                    oriHeight: opt.oriHeight,
-                    cbFun: function (showmore) {
-                        showmore.showBox.innerHTML = showmore.cutOffText;
-                        showmore._toggleClickBtn(clickBtn, 'showOpen');
-                        classList.remove('mip-showmore-boxshow');
-                    }.bind(undefined, this)
-                });
+                this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
+                opt.type = 'fold';
+                opt.cbFun = function(showmore) {
+                    showmore.showBox.innerHTML = showmore.cutOffText;
+                    showmore._toggleClickBtn(clickBtn, 'showOpen');
+                    classList.remove('mip-showmore-boxshow');
+                }.bind(undefined, this);
             }
             else {
-                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 // 显示超出字数的内容
+                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
                 this.showBox.innerHTML = this.originalHtml;
-
-                util.fn.heightAni({
-                    ele: this.showBox,
-                    type: 'unfold',
-                    oriHeight: opt.oriHeight,
-                    transitionTime: opt.aniTime,
-                    cbFun: function (showmore) {
-                        showmore._toggleClickBtn(clickBtn, 'showClose');
-                    }.bind(undefined, this)
-                });
+                opt.type = 'unfold';
+                opt.cbFun = function(showmore) {
+                    showmore._toggleClickBtn(clickBtn, 'showClose');
+                }.bind(undefined, this);
             }
         }
         else if (this.showType === this.heightType[1] || this.showType === this.heightType[0]) {
@@ -202,45 +185,41 @@ define(function (require) {
                 this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 // 隐藏超出高度的内容
                 classList.remove('mip-showmore-boxshow');
-                util.fn.heightAni({
-                    ele: this.showBox,
-                    type: 'fold',
-                    transitionTime: opt.aniTime,
-                    tarHeight: this.maxHeight + 'px',
-                    cbFun: function (showmore, clickBtn) {
-                        showmore._toggleClickBtn(clickBtn, 'showOpen');
-                    }.bind(undefined, this, clickBtn)
-                });
+                opt.type = 'fold';
+                opt.tarHeight = this.maxHeight + 'px',
+                opt.cbFun = function(showmore, clickBtn) {
+                    showmore._toggleClickBtn(clickBtn, 'showOpen');
+                }.bind(undefined, this, clickBtn);
             }
             else {
-                this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 // 显示超出高度的内容
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
-                util.fn.heightAni({
-                    ele: this.showBox,
-                    type: 'unfold',
-                    transitionTime: opt.aniTime,
-                    cbFun: function (showmore, clickBtn) {
-                        showmore._toggleClickBtn(clickBtn, 'showClose');
-                    }.bind(undefined, this, clickBtn)
-                });
+                opt.type = 'unfold';
+                opt.cbFun = function(showmore, clickBtn) {
+                    showmore._toggleClickBtn(clickBtn, 'showClose');
+                }.bind(undefined, this, clickBtn)
             }
         }
-
+        heightAni({
+            ele: this.showBox,
+            type: opt.type,
+            transitionTime: opt.aniTime,
+            tarHeight: opt.tarHeight,
+            oriHeight: opt.oriHeight,
+            cbFun: opt.cbFun
+        });
     };
 
     Showmore.prototype._toggleClickBtn = function (clickBtn, status) {
         if (!status) {
             return;
         }
-
         if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {
                 clickBtn.innerText = clickBtn.dataset.opentext;
             }
-
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
                 display: 'block'

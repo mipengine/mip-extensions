@@ -1,13 +1,98 @@
 # 升级日志
+
+
+#### 2017.08.03
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-trilobite-scroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-scroll)|[升级]三叶虫下拉滚动功能
+
+#### 2017.08.02
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级][官方]mip-accordion增加动画
+[mip-lightbox](https://github.com/mipengine/mip-extensions/tree/master/mip-lightbox)|[升级][官方]mip-lightbox升级和BUG修复
+
+#### 2017.08.01
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fdad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fdad)|[新增][平台]家庭医生在线广告组件
+[mip-kp-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-search)|[新增][平台]kp搜索专用
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]kw—ajax请求
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fdad)|[升级][平台]根据不同条件过滤产品
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]搜索
+
+
+#### 2017.07.31
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-wygx-classtab](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wygx-classtab)|[新增][平台]我要个性网--点击按钮进行样式切换
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台]kw—ajax请求
+
+#### 2017.07.29
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[升级][平台]根据不同条件过滤产品升级逻辑
+[mip-close-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-close-ad)|[升级][平台] 120ask关闭组件升级
+[mip-kp-list ](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list )|[升级][平台] remove ajax
+
+#### 2017.07.28
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-trilobite-scroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-scroll)|[新增][平台]三叶虫下拉滚动功能
+[mip-trilobite-fontsize](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-fontsize)|[新增][平台]三叶虫字体适配
+
+#### 2017.07.27
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]增加touch时间监听
+[mip-chinacn-filter](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-filter)|[升级][平台] 根据不同条件过滤产品
+[mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-search)|[升级][平台] fetch地址由相对路径改为https下的绝对路径
+[mip-ajax-carousel](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ajax-carousel)|[升级][平台] 异步获取轮播逻辑更新
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[升级][平台] 触发元素ajax异步加载视频阅读量和更新文章阅读量
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台] 升级locatorage逻辑
+[mip-ask-closed](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ask-closed)|新增][平台] 120ask关闭组件
+
+#### 2017.07.26
+
+>核心代码上线：解析cache url正则修改
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[升级][官方]解析cache api兼容修改
+
 #### 2017.07.25
 
 > 组件上线
 
 组件名|功能说明
 ---|---
+[mip-news-recommend](https://github.com/mipengine/mip-extensions/tree/master/mip-news-recommend)|[新增][官方] 兼容cache api解析
 [mip-kp-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-list)|[升级][平台]mip-kp-list 升级回调逻辑
 [mip-chinacn-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-chinacn-search)|[升级][官方] 更改异步请求地址为绝对路径
-[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[新增][官方] 触发元素ajax异步加载视频阅读量和更新文章阅读量
+[mip-kw-ajax](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kw-ajax)|[新增][平台] 触发元素ajax异步加载视频阅读量和更新文章阅读量
 
 #### 2017.07.24
 

@@ -71,8 +71,8 @@ define(function (require) {
         // if url hash is set, get group from URL
         var groupFromUrl = this._getExpGroupFromUrl();
         if (this.needConsole) {
-            console.log('实验名: ' + this.expName);
-            console.log('URL hash分组生效: ' + groupFromUrl);
+            console.warn('实验名: ' + this.expName);
+            console.warn('URL hash分组生效: ' + groupFromUrl);
         }
 
         // if history is set, get group from localstorage
@@ -80,7 +80,7 @@ define(function (require) {
         if (this.isSticky && !groupFromUrl) {
             groupFromStorage = this._getExpGroupFromStorage();
             if (this.needConsole) {
-                console.log('历史分组生效: ' + groupFromStorage);
+                console.warn('历史分组生效: ' + groupFromStorage);
             }
         }
 
@@ -88,13 +88,13 @@ define(function (require) {
         if (!groupFromStorage && !groupFromUrl) {
             var groupNew = this._getExpGroupNew();
             if (this.needConsole) {
-                console.log('重新分组: ' + groupNew);
+                console.warn('重新分组: ' + groupNew);
             }
         }
 
         var finalGroup = groupFromUrl || groupFromStorage || groupNew;
         if (this.needConsole) {
-            console.log('最终分组: ' + finalGroup + '\n\n');
+            console.warn('最终分组: ' + finalGroup + '\n\n');
         }
         return finalGroup;
     };

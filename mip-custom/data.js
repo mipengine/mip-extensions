@@ -44,7 +44,7 @@ define(function (require) {
         },
         exposure: {
             fm: 'view',
-            data: encodeURIComponent('[{"type": "w", "action": "show"}]') 
+            data: encodeURIComponent('[{"type": "w", "action": "show"}]')
         },
         error: {
             fm: 'ex',
@@ -68,24 +68,8 @@ define(function (require) {
      * @return {string}     value
      */
     function getHashData(key) {
-        var val = '';
         var MIP = window.MIP || {};
-        if (MIP && MIP.hash && MIP.hash.get) {
-            var mp = MIP.hash.get('mipparams');
-            if (!mp) {
-                return;
-            }
-            mp = decodeURIComponent(mp);
-            var hs = mp.split('&');
-            for (var i = 0; i < hs.length; i++) {
-                var item = hs[i].split('=');
-                if (item.length >= 2 && item[0] === key) {
-                    val = item[1];
-                    break;
-                }
-            }
-        }
-        return val;
+        return MIP && MIP.hash && MIP.hash.get ? MIP.hash.get(key) : '';
     }
 
     function addPaths(config) {

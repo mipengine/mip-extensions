@@ -135,7 +135,7 @@ define(function (require, exports) {
      * @return {string}
      */
     exports.removeFragment = function (url) {
-        const index = url.indexOf('#');
+        var index = url.indexOf('#');
         if (index === -1) {
             return url;
         }

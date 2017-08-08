@@ -22,7 +22,7 @@
 <div on="tap:showmore01.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
 ```
 
-### 设定基于可是区域的高度阈值
+### 设定基于可视区域的高度阈值
 
 - `maxheight='screen:0.5'`可设置基于屏幕可视区域的高度阈值。
 - 在按钮中增加`on`属性，注意on属性中需要填写对应 mip-showmore 的id。比如本例中，mip-showmore id="showmore01"，`on`属性需要写成on="tap:showmore01.toggle"

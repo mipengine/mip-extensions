@@ -123,7 +123,7 @@
 
 ## 属性
 
-##  maxheight
+###  maxheight
 
 - 说明：内容字符串超出限制长度则会截断显示省略号，显示"显示更多按钮"。内容截断显示不包括图片显示。
 - 取值：`maxheight='40'`表示40px处折叠；`maxheight='screen:0.6'`表示0.6屏(0.6 * window.screen.height)处折叠；
@@ -132,33 +132,33 @@
 - 备注:  `maxheight、maxlen`只能存在一个，优先级：`maxheight > maxlen`
 
 
-## animatetime
+### animatetime
 
 - 说明：展开收起动画时间  
 - 必选项：否    
 - 类型：数字  
 - 备注:  只有与maxheight一起使用时生效  
 
-## data-closetext
+### data-closetext
 
 - 说明：用于展开收起按钮文字配置。
 - 必选项：否   
 - 类型：字符串  
 - 默认值： “收起”
 
-## showmorebox (已弃用)
+### showmorebox (已弃用)
 
 - 说明：内容显示框，即需要隐藏显示的dom  
 - 必选项：否  
 - 备注:  一个mip-showmore内只允许出现一个showmorebox
 
-## showmorebtn (已弃用)
+### showmorebtn (已弃用)
 
 - 说明：显示更多按钮dom  
 - 必选项：否  
 - 备注:  一个mip-showmore内只允许出现一个 showmorebtn
 
-## bottomshadow
+### bottomshadow
 
 - 说明：折叠边界是否渐变
 - 取值：只能为'0'或'1'

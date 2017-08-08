@@ -20,7 +20,7 @@ define(function (require) {
     customElement.prototype.build = function () {
 
         // 如果 Service Worker 不支持，可以通过浏览器缓存来实现 shell 效果
-        if (window.navigator.serviceWorker) {
+        if (!window.navigator.serviceWorker) {
             this.maybeInstallUrlRewrite();
             return;
         }
@@ -100,16 +100,24 @@ define(function (require) {
             return;
         }
 
-        var div = document.createElement('div');
-        div.innerHTML = ''
-            + '<mip-iframe '
-                + 'src="' + src + (type ? ('#' + type) : '') + '" '
-                + 'sandbox="allow-same-origin allow-scripts"'
-                + 'width="0" '
-                + 'height="0">'
-            + '</mip-iframe>';
+        var iframe = document.createElement('iframe');
 
-        var iframe = div.children[0];
+        iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+        iframe.src = src + (type ? ('#' + type) : '');
+
+        // TODO@zoumiaojiang: 由于 mip-iframe 组件暂时没支持 onload 机制，先使用原声的 iframe, 后续再改过来
+
+        // var div = document.createElement('div');
+        // div.innerHTML = ''
+        //     + '<mip-iframe '
+        //         + 'src="' + src + (type ? ('#' + type) : '') + '" '
+        //         + 'sandbox="allow-same-origin allow-scripts"'
+        //         + 'width="0" '
+        //         + 'height="0">'
+        //     + '</mip-iframe>';
+
+        // var iframe = div.children[0];
+
         iframe.style.display = 'none';
 
         // 一旦 iframe 加载完成就将 iframe 的 dom 删除掉

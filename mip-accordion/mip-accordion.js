@@ -97,7 +97,7 @@ define(function (require) {
     }
 
     // 初始化
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.build = function () {
         var self = this;
         var element = this.element;
 

@@ -7,7 +7,7 @@ define(function (require) {
 
     var mipUtil = require('util');
     var viewer = require('viewer');
-
+    var UrlRewriter = require('./urlRewriter');
     var util = require('./util');
     // shortcut
     var parseUrl = util.parseUrl;
@@ -18,8 +18,10 @@ define(function (require) {
      * 构造元素，只会运行一次
      */
     customElement.prototype.build = function () {
-        // 如果 Service Worker 不支持，那就没必要继续往下了
+
+        // 如果 Service Worker 不支持，可以通过浏览器缓存来实现 shell 效果
         if (!window.navigator.serviceWorker) {
+            this.maybeInstallUrlRewrite();
             return;
         }
 
@@ -83,28 +85,47 @@ define(function (require) {
      */
     customElement.prototype.detachedCallback = function () {
         clearTimeout(this._iframeTimer);
+        clearTimeout(this._preloadTimer);
     };
 
     /**
      * 插入 iframe
      *
      * @param {string} src iframe 链接
+     * @param {string} type iframe 的类型
      */
-    customElement.prototype.registerIframe = function (src) {
+    customElement.prototype.registerIframe = function (src, type) {
         // 如果当前页面不在可视区，不插入 iframe
         if (!this.isInView) {
             return;
         }
 
-        var div = document.createElement('div');
-        div.innerHTML = ''
-            + '<mip-iframe '
-                + 'src="' + src + '" '
-                + 'sandbox="allow-same-origin allow-scripts"'
-                + 'width="0" '
-                + 'height="0">'
-            + '</mip-iframe>';
-        this.element.appendChild(div.children[0]);
+        var iframe = document.createElement('iframe');
+
+        iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+        iframe.src = src + (type ? ('#' + type) : '');
+
+        // TODO@zoumiaojiang: 由于 mip-iframe 组件暂时没支持 onload 机制，先使用原声的 iframe, 后续再改过来
+
+        // var div = document.createElement('div');
+        // div.innerHTML = ''
+        //     + '<mip-iframe '
+        //         + 'src="' + src + (type ? ('#' + type) : '') + '" '
+        //         + 'sandbox="allow-same-origin allow-scripts"'
+        //         + 'width="0" '
+        //         + 'height="0">'
+        //     + '</mip-iframe>';
+
+        // var iframe = div.children[0];
+
+        iframe.style.display = 'none';
+
+        // 一旦 iframe 加载完成就将 iframe 的 dom 删除掉
+        iframe.onload = function () {
+            iframe.parentElement.removeChild(iframe);
+        };
+
+        this.element.appendChild(iframe);
     };
 
     /**
@@ -121,6 +142,41 @@ define(function (require) {
             });
         }
     }
+
+    /**
+     * 如果当前环境不支持 service worker 的话，可以安装 url rewrite
+     */
+    customElement.prototype.maybeInstallUrlRewrite = function () {
+        var me = this;
+        var element = me.element;
+
+        // 读取 url-rewrite 的配置
+        var urlMatch = element.getAttribute('data-no-service-worker-fallback-url-match');
+        var shellUrl = element.getAttribute('data-no-service-worker-fallback-shell-url');
+
+        if (!urlMatch && !shellUrl) {
+            return;
+        }
+
+        shellUrl = util.removeFragment(shellUrl);
+
+        if (shellUrl && util.isSecureUrl(shellUrl)) {
+            var urlMatchExpr;
+
+            try {
+                urlMatchExpr = new RegExp(urlMatch);
+            }
+            catch (e) {
+                throw new Error('Invalid "data-no-service-worker-fallback-url-match" expression', e);
+            }
+
+            // 安装 URL rewriter.
+            new UrlRewriter(viewer, urlMatchExpr, shellUrl);
+            me._preloadTimer = setTimeout(function () {
+                me.registerIframe(shellUrl, 'preload');
+            });
+        }
+    };
 
     return customElement;
 });

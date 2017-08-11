@@ -54,7 +54,6 @@ define(function (require) {
         ].join('');
 
         var node = document.createElement("a");
-        node.setAttribute('target', '_top');
         node.setAttribute('href', url);
         node.classList.add('c-urljump');
         node.innerHTML = html;
@@ -86,7 +85,6 @@ define(function (require) {
         ].join('');
 
         var node = document.createElement("a");
-        node.setAttribute('target', '_top');
         node.setAttribute('href', url);
         node.className += 'c-blocka c-urljump mip-ad-box';
         node.innerHTML = html;
@@ -125,7 +123,6 @@ define(function (require) {
         ].join(''); 
 
         var node = document.createElement("a");
-        node.setAttribute('target', '_top');
         node.setAttribute('href', url);
         node.className += 'c-blocka c-urljump mip-ad-box';
         node.innerHTML = html;
@@ -181,7 +178,6 @@ define(function (require) {
             ].join('');
 
             var node = document.createElement("a");
-            node.setAttribute('target', '_top');
             node.setAttribute('href', url);
             node.className += 'c-blocka c-urljump mip-ad-box';
             node.innerHTML = html;

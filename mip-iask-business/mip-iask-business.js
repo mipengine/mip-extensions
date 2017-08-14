@@ -349,7 +349,7 @@ define(function (require) {
     };
     // 加载url中的js
     var loadURLJS = function (tags, params) {
-        var url = 'http://m.iask.sina.com.cn/mib/tag/';
+        var url = 'https://mipp.iask.cn/mib/tag/';
         var arry = tags.split(':');
         for (var i = 0; i < arry.length; i++) {
             url = url + arry[i];

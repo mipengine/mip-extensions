@@ -6,7 +6,7 @@
 
 组件名|功能说明
 ---|---
-[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[新增][平台]cnkang区分cnkang两性和非两性
+[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[新增][平台]cnkang区分两性和非两性
 [mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[升级][平台]用于kp详情页DOM操作升级
 
 #### 2017.08.03

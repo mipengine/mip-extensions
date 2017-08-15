@@ -1,0 +1,17 @@
+{
+    "name": "mip-cir",
+    "version": "1.0.0",
+    "description": "百度智荐推荐位",
+    "engines": {
+		"mip": ">=1.1.0"
+    },
+    "keywords": [
+        "mip",
+        "cir"
+    ],
+    "author": {
+        "name": "PacoIrene",
+        "email": "chuzhenyang@baidu.com"
+    },
+    "license": "ISC"
+}

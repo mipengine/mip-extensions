@@ -8,7 +8,7 @@
         define('mip-down-script/mip-down-script', ['require', 'zepto', 'customElement'], function (t) {
             var e = t('zepto');
             var i = t('customElement').create();
-            var n = {versions: function () {
+            var n = {versions: (function () {
                         var t = navigator.userAgent;
                         return {
                             ios: !!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
@@ -20,7 +20,7 @@
                             UCBrowser: t.indexOf('UCBrowser') > -1,
                             Safari: t.indexOf('Safari') > -1
                         };
-                }(), language: (navigator.browserLanguage || navigator.language).toLowerCase()};
+                    }()), language: (navigator.browserLanguage || navigator.language).toLowerCase()};
             var r = {
                     webInfoId: e('#down-href').attr('downid'),
                     webInfoCid: e('#down-href').attr('cid'),
@@ -44,9 +44,8 @@
                         function t(t, e, r) {
                             for (var o = 0; o < t.length; o++) {
                                 if (n.indexOf(t[o]) > 0) {
-                                    i.html(e).attr('href', r), c.html(e).attr('href', r)
+                                    i.html(e).attr('href', r), c.html(e).attr('href', r);
                                 }
-                                ;
                             }
                         }
                         var i = e('#cataName');
@@ -65,7 +64,7 @@
                                     i.each(function () {
                                         $(this).children('div').eq(e).show().siblings().remove();
                                     });
-                                    k.tips_more(e);
+                                    k.tipsmore(e);
                                     k.rank();
                                     num++;
                                 }
@@ -73,20 +72,20 @@
                         }
                         var i = e('.dif');
                         var id = e('body').attr('cid');
-                        ang = [634, 695, 594, 696, 697, 712, 598, 592, 596, 593, 595, 637, 713, 638, 636, 842];
-                        anr = [588, 589, 584, 582, 583, 585, 586, 587, 590, 600, 703, 704, 708, 709, 875, 786, 877, 878, 879, 880, 881, 628, 705, 706, 627, 599];
-                        ig = [797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810];
-                        ir = [776, 777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795];
+                        var ang = [634, 695, 594, 696, 697, 712, 598, 592, 596, 593, 595, 637, 713, 638, 636, 842];
+                        var anr = [588, 589, 584, 582, 583, 585, 586, 587, 590, 600, 703, 704, 708, 709, 875, 786, 877, 878, 879, 880, 881, 628, 705, 706, 627, 599];
+                        var ig = [797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810];
+                        var ir = [776, 777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795];
                         t(ang, 0), t(anr, 1), t(ig, 2), t(ir, 3);
                         return num;
                     },
-                    tips_more: function (index) {
+                    tipsmore: function (index) {
                         var i = e('#dcatetory');
                         var html = [
-                                '<a href="/x/Catalogid/634/2/">角色扮演</a><a href="/x/Catalogid/695/2/">动作游戏</a><a href="/x/Catalogid/594/2/">益智休闲</a><a href="/x/Catalogid/696/2/">卡牌游戏</a><a href="/x/Catalogid/697/2/">策略塔防</a><a href="/x/Catalogid/712/2/">冒险解谜</a><a href="/x/Catalogid/598/2/">模拟经营</a><a href="/x/Catalogid/592/2/">飞行射击</a><a href="/x/Catalogid/596/2/">赛车游戏</a><a href="/x/Catalogid/593/2/">体育竞技</a><a href="/x/Catalogid/595/2/">棋牌游戏</a><a href="/x/Catalogid/713/2/">儿童教育</a><a href="/x/Catalogid/637/2/">音乐游戏</a><a href="/x/Catalogid/638/2/">修改版游戏</a><a href="/x/Catalogid/636/2/">其它网游</a><a href="/x/Catalogid/842/2/">即将发布</a>',
-                                '<a href="/x/Catalogid/589/2/">即时聊天</a><a href="/x/Catalogid/588/2/">图片拍照</a><a href="/x/Catalogid/584/2/">影音播放</a><a href="/x/Catalogid/585/2/">生活服务</a><a href="/x/Catalogid/583/2/">网络通讯</a><a href="/x/Catalogid/590/2/">手机qq</a><a href="/x/Catalogid/709/2/">健康美食</a><a href="/x/Catalogid/589/2/">社交社区</a><a href="/x/Catalogid/582/2/">系统工具</a><a href="/x/Catalogid/586/2/">安全防护</a><a href="/x/Catalogid/587/2/">资讯阅读</a><a href="/x/Catalogid/600/2/">地图出行</a><a href="/x/Catalogid/703/2/">学习理财</a><a href="/x/Catalogid/599/2/">美女壁纸</a><a href="/x/Catalogid/704/2/">商务办公</a><a href="/x/Catalogid/627/2/">动态壁纸</a><a href="/x/Catalogid/628/2/">趣味娱乐</a><a href="/x/Catalogid/705/2/">主题美化</a><a href="/x/Catalogid/706/2/">桌面扩展</a><a href="/x/Catalogid/708/2/">游戏辅助</a>',
-                                '<a href="/x/Catalogid/797/2/">角色扮演</a><a href="/x/Catalogid/798/2/">动作游戏</a><a href="/x/Catalogid/799/2/">射击游戏</a><a href="/x/Catalogid/800/2/">策略游戏</a><a href="/x/Catalogid/801/2/">模拟经营</a><a href="/x/Catalogid/806/2/">格斗游戏</a><a href="/x/Catalogid/802/2/">竞速游戏</a><a href="/x/Catalogid/803/2/">体育游戏</a><a href="/x/Catalogid/804/2/">棋牌游戏</a><a href="/x/Catalogid/805/2/">冒险解谜</a><a href="/x/Catalogid/807/2/">益智游戏</a><a href="/x/Catalogid/808/2/">情景游戏</a><a href="/x/Catalogid/809/2/">儿童游戏</a><a href="/x/Catalogid/810/2/">休闲游戏</a>',
-                                '<a href="/x/Catalogid/776/2/">社交应用</a><a href="/x/Catalogid/777/2/">音乐软件</a><a href="/x/Catalogid/778/2/">影音娱乐</a><a href="/x/Catalogid/779/2/">商务软件</a><a href="/x/Catalogid/780/2/">生活软件</a><a href="/x/Catalogid/781/2/">工具软件</a><a href="/x/Catalogid/782/2/">效率软件</a><a href="/x/Catalogid/783/2/">导航软件</a><a href="/x/Catalogid/784/2/">健身软件</a><a href="/x/Catalogid/785/2/">摄影录像</a><a href="/x/Catalogid/786/2/">体育软件</a><a href="/x/Catalogid/787/2/">美食佳饮</a><a href="/x/Catalogid/788/2/">报刊杂志</a><a href="/x/Catalogid/789/2/">图书阅读</a><a href="/x/Catalogid/790/2/">财务软件</a><a href="/x/Catalogid/791/2/">辅助软件</a><a href="/x/Catalogid/792/2/">医学软件</a><a href="/x/Catalogid/793/2/">儿童教育</a><a href="/x/Catalogid/794/2/">旅行出游</a><a href="/x/Catalogid/795/2/">新闻软件</a>'
+                            '<a href="/x/Catalogid/634/2/">角色扮演</a><a href="/x/Catalogid/695/2/">动作游戏</a><a href="/x/Catalogid/594/2/">益智休闲</a><a href="/x/Catalogid/696/2/">卡牌游戏</a><a href="/x/Catalogid/697/2/">策略塔防</a><a href="/x/Catalogid/712/2/">冒险解谜</a><a href="/x/Catalogid/598/2/">模拟经营</a><a href="/x/Catalogid/592/2/">飞行射击</a><a href="/x/Catalogid/596/2/">赛车游戏</a><a href="/x/Catalogid/593/2/">体育竞技</a><a href="/x/Catalogid/595/2/">棋牌游戏</a><a href="/x/Catalogid/713/2/">儿童教育</a><a href="/x/Catalogid/637/2/">音乐游戏</a><a href="/x/Catalogid/638/2/">修改版游戏</a><a href="/x/Catalogid/636/2/">其它网游</a><a href="/x/Catalogid/842/2/">即将发布</a>',
+                            '<a href="/x/Catalogid/589/2/">即时聊天</a><a href="/x/Catalogid/588/2/">图片拍照</a><a href="/x/Catalogid/584/2/">影音播放</a><a href="/x/Catalogid/585/2/">生活服务</a><a href="/x/Catalogid/583/2/">网络通讯</a><a href="/x/Catalogid/590/2/">手机qq</a><a href="/x/Catalogid/709/2/">健康美食</a><a href="/x/Catalogid/589/2/">社交社区</a><a href="/x/Catalogid/582/2/">系统工具</a><a href="/x/Catalogid/586/2/">安全防护</a><a href="/x/Catalogid/587/2/">资讯阅读</a><a href="/x/Catalogid/600/2/">地图出行</a><a href="/x/Catalogid/703/2/">学习理财</a><a href="/x/Catalogid/599/2/">美女壁纸</a><a href="/x/Catalogid/704/2/">商务办公</a><a href="/x/Catalogid/627/2/">动态壁纸</a><a href="/x/Catalogid/628/2/">趣味娱乐</a><a href="/x/Catalogid/705/2/">主题美化</a><a href="/x/Catalogid/706/2/">桌面扩展</a><a href="/x/Catalogid/708/2/">游戏辅助</a>',
+                            '<a href="/x/Catalogid/797/2/">角色扮演</a><a href="/x/Catalogid/798/2/">动作游戏</a><a href="/x/Catalogid/799/2/">射击游戏</a><a href="/x/Catalogid/800/2/">策略游戏</a><a href="/x/Catalogid/801/2/">模拟经营</a><a href="/x/Catalogid/806/2/">格斗游戏</a><a href="/x/Catalogid/802/2/">竞速游戏</a><a href="/x/Catalogid/803/2/">体育游戏</a><a href="/x/Catalogid/804/2/">棋牌游戏</a><a href="/x/Catalogid/805/2/">冒险解谜</a><a href="/x/Catalogid/807/2/">益智游戏</a><a href="/x/Catalogid/808/2/">情景游戏</a><a href="/x/Catalogid/809/2/">儿童游戏</a><a href="/x/Catalogid/810/2/">休闲游戏</a>',
+                            '<a href="/x/Catalogid/776/2/">社交应用</a><a href="/x/Catalogid/777/2/">音乐软件</a><a href="/x/Catalogid/778/2/">影音娱乐</a><a href="/x/Catalogid/779/2/">商务软件</a><a href="/x/Catalogid/780/2/">生活软件</a><a href="/x/Catalogid/781/2/">工具软件</a><a href="/x/Catalogid/782/2/">效率软件</a><a href="/x/Catalogid/783/2/">导航软件</a><a href="/x/Catalogid/784/2/">健身软件</a><a href="/x/Catalogid/785/2/">摄影录像</a><a href="/x/Catalogid/786/2/">体育软件</a><a href="/x/Catalogid/787/2/">美食佳饮</a><a href="/x/Catalogid/788/2/">报刊杂志</a><a href="/x/Catalogid/789/2/">图书阅读</a><a href="/x/Catalogid/790/2/">财务软件</a><a href="/x/Catalogid/791/2/">辅助软件</a><a href="/x/Catalogid/792/2/">医学软件</a><a href="/x/Catalogid/793/2/">儿童教育</a><a href="/x/Catalogid/794/2/">旅行出游</a><a href="/x/Catalogid/795/2/">新闻软件</a>'
                             ];
                         i.html(html[index]);
                     },
@@ -124,10 +123,8 @@
                             }
                             if (e('#ResSystem').html(this.platAndroidResSystem), ',110974,110451,121665,115094,55819,49251,62433,140386,'.indexOf(',' + this.webInfoId + ',') < 0) {
                                 if (e('body.dnb').length < 1) {
-                                    e('#info .name').html('<h1>' + this.platAndroidResName + '</h1>' + this.platAndroidResVer)
+                                    e('#info .name').html('<h1>' + this.platAndroidResName + '</h1>' + this.platAndroidResVer);
                                 }
-
-                                ;
                             }
                         }
                         else if (n.versions.ios && void 0 !== this.platIPhoneAddress) {
@@ -139,10 +136,8 @@
                             }
                             if (e('#ResSystem').html(this.platIPhoneResSystem), ',110974,110451,121665,115094,55819,49251,62433,140386,'.indexOf(',' + this.webInfoId + ',') < 0) {
                                 if (e('body.dnb').length < 1) {
-                                    e('#info .name').html('<h1>' + this.platIPhoneResName + '</h1>' + this.platIPhoneResVer)
+                                    e('#info .name').html('<h1>' + this.platIPhoneResName + '</h1>' + this.platIPhoneResVer);
                                 }
-
-                                ;
                             }
                         }
 
@@ -169,30 +164,6 @@
                     },
                     touchSlide: function (oclass) {
                         oclass = (oclass) ? oclass : '.guess';
-                        function t(t) {
-                            if ('left' === t) {
-                                u >= o.length - 1 ? o.length : u++, r.animate({
-                                    '-webkit-transform': 'translate3d(' + -l * u + 'px, 0px, 0px)'
-                                });
-                            }
-                            else if ('reset' === t) {
-                                r.animate({
-                                    '-webkit-transform': 'translate3d(' + -l * u + 'px, 0px, 0px)'
-                                });
-                            }
-                            else if ('right' === t) {
-                                u <= 0 ? u = 0 : u--, r.animate({
-                                    '-webkit-transform': 'translate3d(' + -l * u + 'px, 0px, 0px)'
-                                });
-                            }
-
-                            i(), e(oclass).find('.pagenum span').eq(u).addClass('active').siblings().removeClass('active'), e('.guess-nav li').eq(u).addClass('active').siblings().removeClass('active');
-                        }
-                        function i() {
-                            setTimeout(function () {
-                                e('body').scrollTop(e('body').scrollTop() + 1).scrollTop(e('body').scrollTop() - 1);
-                            }, 150);
-                        }
                         var n = e(oclass);
                         if (0 !== n.length) {
                             var r = n.find('.tags-main-ul');
@@ -213,7 +184,7 @@
                                         '-webkit-transform': 'translate3d(' + -l * t + 'px, 0px, 0px)'
                                     });
                                 }), r[0].addEventListener('touchstart', function (t) {
-                                    c.s[0] = t.targetTouches[0].pageX, c.s[1] = t.targetTouches[0].pageY, c.s[2] = (new Date).getTime();
+                                    c.s[0] = t.targetTouches[0].pageX, c.s[1] = t.targetTouches[0].pageY, c.s[2] = (new Date()).getTime();
                                 }, !1), r[0].addEventListener('touchmove', function (t) {
                                     if (Math.abs(t.targetTouches[0].pageX - c.s[0]) >= Math.abs(t.targetTouches[0].pageY - c.s[1]) && '' === c.d) {
                                         c.d = 1;
@@ -230,7 +201,7 @@
 
                                 }, !1), r[0].addEventListener('touchend', function (e) {
                                     if (1 === c.d) {
-                                        if ((new Date).getTime() - c.s[2] > 700) {
+                                        if ((new Date()).getTime() - c.s[2] > 700) {
                                             if (e.changedTouches[0].pageX - c.s[0] > l / 3) {
                                                 t('right');
                                             }
@@ -263,7 +234,30 @@
                                 }, !1);
                             }
                         }
+                        function t(t) {
+                            if ('left' === t) {
+                                u >= o.length - 1 ? o.length : u++, r.animate({
+                                    '-webkit-transform': 'translate3d(' + -l * u + 'px, 0px, 0px)'
+                                });
+                            }
+                            else if ('reset' === t) {
+                                r.animate({
+                                    '-webkit-transform': 'translate3d(' + -l * u + 'px, 0px, 0px)'
+                                });
+                            }
+                            else if ('right' === t) {
+                                u <= 0 ? u = 0 : u--, r.animate({
+                                    '-webkit-transform': 'translate3d(' + -l * u + 'px, 0px, 0px)'
+                                });
+                            }
 
+                            i(), e(oclass).find('.pagenum span').eq(u).addClass('active').siblings().removeClass('active'), e('.guess-nav li').eq(u).addClass('active').siblings().removeClass('active');
+                        }
+                        function i() {
+                            setTimeout(function () {
+                                e('body').scrollTop(e('body').scrollTop() + 1).scrollTop(e('body').scrollTop() - 1);
+                            }, 150);
+                        }
                     },
                     hotRec: function () {
                         var t = [];
@@ -312,8 +306,8 @@
 
                                         }
                                         else if (1 === i) {
-                                            for (var o = 0; o < n.length; ++o) {
-                                                r += '<li><a href="http://m.pc6.com/mipd/' + n[o].ID + '.html" target="_blank"><mip-img src="' + n[o].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian' + (o + 1) + '\',\'' + n[o].ResName + '\'])"></mip-img>' + n[o].ResName + '</a></li>';
+                                            for (var b = 0; b < n.length; ++b) {
+                                                r += '<li><a href="http://m.pc6.com/mipd/' + n[b].ID + '.html" target="_blank"><mip-img src="' + n[b].SmallImg + '" onclick="_czc.push([\'_trackEvent\',\'tuijian\',\'tuijian' + (o + 1) + '\',\'' + n[b].ResName + '\'])"></mip-img>' + n[b].ResName + '</a></li>';
                                             }
 
                                         }
@@ -327,19 +321,19 @@
 
                     },
                     show: function () {
-                        if (e('#historyver p').length == 0) {
+                        if (e('#historyver p').length === 0) {
                             e('#historyver').remove();
                         }
 
-                        if (e('#tcsyy li').length == 0) {
+                        if (e('#tcsyy li').length === 0) {
                             e('#tcsyy').remove();
                         }
 
-                        if (e('#dcatetory a').length == 0) {
+                        if (e('#dcatetory a').length === 0) {
                             e('.tips_more').remove();
                         }
 
-                        if (this.dif() == 0) {
+                        if (this.dif() === 0) {
                             e('.hot_gamerec,.rank').remove();
                         }
 
@@ -368,9 +362,9 @@
                     tcsyy: function () {
                         if (e('#tcsyy').length > 0) {
                             var li = e('#tcsyy .tags-main-ul > li');
-                            len = li.length,
-                            page = Math.ceil(len / 8);
-                            if (len == 0) {
+                            var len = li.length;
+                            var page = Math.ceil(len / 8);
+                            if (len === 0) {
                                 e('#tcsyy').remove();
                             }
                             else {
@@ -390,8 +384,8 @@
                     },
                     h5: function () {
                         var li = e('.h5online .tags-main-ul > li');
-                        len = li.length,
-                        page = Math.ceil(len / 8);
+                        var len = li.length;
+                        var page = Math.ceil(len / 8);
                         for (var i = 0; i < page; i++) {
                             e('.h5online .tags-main-ul > li').slice(0, 8).wrapAll('<div class="tags-main-box"><ul class="tags-box-ul"></ul></div>');
                         }
@@ -399,11 +393,11 @@
                             this.touchSlide('#h5online');
                         }
                     },
-                    rela_down: function () {
+                    reladown: function () {
                         e('.rela_down').addClass('pictxt').removeClass('list');
                         var li = e('.rela_down .tags-main-ul > li');
-                        len = li.length,
-                        page = Math.ceil(len / 8);
+                        var len = li.length;
+                        var page = Math.ceil(len / 8);
                         for (var i = 0; i < page; i++) {
                             e('.rela_down .tags-main-ul > li').slice(0, 8).wrapAll('<div class="tags-main-box"><ul class="tags-box-ul"></ul></div>');
                         }
@@ -413,6 +407,7 @@
                     },
                     rank: function () {
                         if (e('.rank').length > 0) {
+                            var k = this;
                             e('.rank .list').each(function () {
                                 e(this).find('li').hide().slice(0, 4).show();
                             });
@@ -420,33 +415,32 @@
                             e('.tab-panel ul li').click(function () {
                                 e(this).parents('section').children('.tab-content').hide().eq(e(this).index()).show();
                                 e(this).addClass('active').siblings().removeClass('active');
-                                loadmore();
+                                k.loadmore();
                             });
-                            loadmore();
-                            function loadmore() {
-                                e('.rank .tab-content').eq(e('.rank .tab-panel li.active').index()).find('.lookmore').click(function () {
-                                    var hnum = 0;
-                                    var vnum = 0;
-                                    for (var i = 0; i < e(this).prev().find('li').length; i++) {
-                                        if (e(this).prev().find('li').eq(i).css('display') == 'none') {
-                                            hnum++;
-                                        }
-                                        else {
-                                            vnum++;
-                                        }
-                                    }
-                                    if (hnum == 0) {
-                                        e(this).remove();
-                                    }
-                                    else {
-                                        e(this).prev().find('li').slice(0, vnum + 4).show();
-                                    }
-                                });
-                            }
+                            k.loadmore();
                         }
-
                     },
-                    focus_we: function () {
+                    loadmore: function () {
+                        e('.rank .tab-content').eq(e('.rank .tab-panel li.active').index()).find('.lookmore').click(function () {
+                            var hnum = 0;
+                            var vnum = 0;
+                            for (var i = 0; i < e(this).prev().find('li').length; i++) {
+                                if (e(this).prev().find('li').eq(i).css('display') === 'none') {
+                                    hnum++;
+                                }
+                                else {
+                                    vnum++;
+                                }
+                            }
+                            if (hnum === 0) {
+                                e(this).remove();
+                            }
+                            else {
+                                e(this).prev().find('li').slice(0, vnum + 4).show();
+                            }
+                        });
+                    },
+                    focuswe: function () {
                         if (e('.wefocus').length > 0) {
                             e('body').append('<div class="wefocus_a"><div class="wefocus_a_head"><img src="../public/img/w_pc6.png" alt=""><p><b>PC6手游网</b>随时找攻略，尽情下游戏！</p></div><div class="wefocus_a_way"><b>关注方法</b><dl><dt><i>1</i>打开微信首页点【搜索】</dt><dd><img src="../public/img/u310.png" alt=""></dd></dl><dl><dt><i>2</i>搜索【PC6手游网】即可关注</dt><dd><img src="../public/img/u312.png" alt=""></dd></dl></div><div class="wefocus_btn"><a href="weixin://">打开微信</a></div><div class="wefocus_clo"></div></div><div class="wefocus_bg"></div>');
                             e('.wefocus').click(function () {
@@ -477,7 +471,7 @@
                         });
                     },
                     init: function () {
-                        this.mrtit(), this.xfNav(), this.titTab(), this.downHref(), this.footer(), this.hotRec(), this.touchSlide(), this.show(), this.historyver(), this.tcsyy(), this.rela_down(), this.h5(), this.focus_we(), this.dif();
+                        this.mrtit(), this.xfNav(), this.titTab(), this.downHref(), this.footer(), this.hotRec(), this.touchSlide(), this.show(), this.historyver(), this.tcsyy(), this.reladown(), this.h5(), this.focuswe(), this.dif();
                     }
                 };
             return i.prototype.build = function () {
@@ -485,7 +479,7 @@
                 }, i;
         }), define('mip-down-script', ['mip-down-script/mip-down-script'], function (t) {
             return t;
-        }), function () {
+        }), (function () {
             function t(t, e) {
                 t.registerMipElement('mip-down-script', e);
             }
@@ -497,6 +491,6 @@
             else {
                 require(['mip', 'mip-down-script'], t);
             }
-        }();
+        }());
     }
 });

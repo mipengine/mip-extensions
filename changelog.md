@@ -1,5 +1,15 @@
 # 升级日志
 
+#### 2017.08.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip-zpm-sindex 首页需求
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[升级][平台]区分cnkang两性和非两性
+
 #### 2017.08.15
 
 > 组件上线

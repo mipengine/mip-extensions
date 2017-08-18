@@ -101,7 +101,7 @@ define(function (require) {
                 overflow: 'hidden'
             });
             // 显示更多按钮
-            var showMoreBtn = document.querySelector('.mip-showmore-btnshow');
+            var showMoreBtn = this.ele.querySelector('.mip-showmore-btnshow');
             util.css(showMoreBtn, {
                 display: 'inline-block'
             });
@@ -126,7 +126,7 @@ define(function (require) {
         // 如果长度大于阀值
         if (this.originalHtml.length !== this.cutOffText.length) {
             // 显示展开更多按钮
-            var showBtnMore = document.querySelector('.mip-showmore-btnshow');
+            var showBtnMore = this.ele.querySelector('.mip-showmore-btnshow');
             util.css(showBtnMore, {
                 display: 'inline-block'
             });

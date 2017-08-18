@@ -90,7 +90,24 @@ define(function (require) {
             visibility: 'visible'
         });
     };
+    // 改变按钮的样式值
+    Showmore.prototype.changebtnStyle = function () {
+        // 显示更多按钮
+        var showMoreBtn = this.ele.querySelector('.mip-showmore-btnshow');
 
+        // 选中 showmore的div
+        var showMoreBtn2 = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+
+        util.css(showMoreBtn, {
+            display: 'inline-block'
+        });
+        util.css(showMoreBtn2, {
+            display: 'inline-block'
+        });
+        // 处理bottom渐变
+        this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
+
+    };
     Showmore.prototype._initHeight = function () {
         // 获取页面元素高度
         this.showBoxHei = util.rect.getElementOffset(this.showBox).height;
@@ -100,18 +117,7 @@ define(function (require) {
                 height: this.maxHeight + 'px',
                 overflow: 'hidden'
             });
-            // 显示更多按钮
-            var showMoreBtn = this.ele.querySelector('.mip-showmore-btnshow');
-            util.css(showMoreBtn, {
-                display: 'inline-block'
-            });
-            // 选中 showmore的div
-            var showMoreBtn2 = document.querySelector('div[on="tap:' + this.ele.id + '.toggle"]');
-            util.css(showMoreBtn2, {
-                display: 'inline-block'
-            });
-            // 处理bottom渐变
-            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
+            this.changebtnStyle();
         }
     };
 
@@ -125,18 +131,7 @@ define(function (require) {
 
         // 如果长度大于阀值
         if (this.originalHtml.length !== this.cutOffText.length) {
-            // 显示展开更多按钮
-            var showBtnMore = this.ele.querySelector('.mip-showmore-btnshow');
-            util.css(showBtnMore, {
-                display: 'inline-block'
-            });
-            var showBtnMore2 = document.querySelector('div[on="tap:' + this.ele.id + '.toggle"]');
-            util.css(showBtnMore2, {
-                display: 'inline-block'
-            });
-            // 处理bottom渐变
-            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
-
+            this.changebtnStyle();
             this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
             this.showBox.innerHTML = this.cutOffText;
         }
@@ -153,14 +148,18 @@ define(function (require) {
             showmore.toggle.apply(showmore);
         });
     };
-
+    // 点击时按钮添加class
+    Showmore.prototype.addbtnClass = function () {
+        var btnShowmore  =  document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+        $(btnShowmore).addClass(' mip-showmore-btn-hide');
+    };
     // 高度阈值控制
     Showmore.prototype.toggle = function (event) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
         var opt = {};
-        var btnShowmore  =  document.querySelector('div[on="tap:' + this.ele.id + '.toggle"]');
         opt.aniTime = this.animateTime || 0.3;
+        this.addbtnClass();
         if (this.showType === this.heightType[2]) {
             opt.oriHeight = getComputedStyle(this.showBox).height;
             if (classList.contains('mip-showmore-boxshow')) {
@@ -170,7 +169,6 @@ define(function (require) {
                 this.showBox.innerHTML = this.originalHtml;
                 this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 opt.type = 'fold';
-                $(btnShowmore).addClass(' mip-showmore-btn-hide');
                 opt.cbFun = function (showmore) {
                     showmore.showBox.innerHTML = showmore.cutOffText;
                     showmore._toggleClickBtn(clickBtn, 'showOpen');
@@ -183,7 +181,6 @@ define(function (require) {
                 classList.add('mip-showmore-boxshow');
                 this.showBox.innerHTML = this.originalHtml;
                 opt.type = 'unfold';
-                $(btnShowmore).addClass(' mip-showmore-btn-hide');
                 opt.cbFun = function (showmore) {
                     showmore._toggleClickBtn(clickBtn, 'showClose');
                 }.bind(undefined, this);
@@ -196,7 +193,6 @@ define(function (require) {
                 classList.remove('mip-showmore-boxshow');
                 opt.type = 'fold';
                 opt.tarHeight = this.maxHeight + 'px',
-                $(btnShowmore).addClass(' mip-showmore-btn-hide');
                 opt.cbFun = function (showmore, clickBtn) {
                     showmore._toggleClickBtn(clickBtn, 'showOpen');
                 }.bind(undefined, this, clickBtn);
@@ -206,7 +202,6 @@ define(function (require) {
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
                 opt.type = 'unfold';
-                $(btnShowmore).addClass(' mip-showmore-btn-hide');
                 opt.cbFun = function (showmore, clickBtn) {
                     showmore._toggleClickBtn(clickBtn, 'showClose');
                 }.bind(undefined, this, clickBtn);

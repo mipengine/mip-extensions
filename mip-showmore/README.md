@@ -91,6 +91,24 @@
 <div on="tap:showmore08.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
 ```
 
+### 点击后按钮可隐藏
+
+- 需要在 css 中添加`mip-showmore-btn-hide`类名的样式，示例中设置的是点击后按钮消失的样式
+
+[notice] 在设置`display`属性时，需要加`!important`。
+
+```html
+<style>
+.mip-showmore-btn-hide{
+    display: none!important
+}
+</style>
+<mip-showmore maxheight='40' animatetime='.3' id="showmore01">
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+</mip-showmore>
+<div on="tap:showmore01.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
+```
+
 <!--
 虽然如下方法已弃用，但是2017-07之前有存量。组件升级需要兼容
 

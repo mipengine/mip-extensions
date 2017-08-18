@@ -106,7 +106,7 @@ define(function (require) {
                 display: 'inline-block'
             });
             // 选中 showmore的div
-            var showMoreBtn2 = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+            var showMoreBtn2 = document.querySelector('div[on="tap:' + this.ele.id + '.toggle"]');
             util.css(showMoreBtn2, {
                 display: 'inline-block'
             });
@@ -130,7 +130,7 @@ define(function (require) {
             util.css(showBtnMore, {
                 display: 'inline-block'
             });
-            var showBtnMore2 = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+            var showBtnMore2 = document.querySelector('div[on="tap:' + this.ele.id + '.toggle"]');
             util.css(showBtnMore2, {
                 display: 'inline-block'
             });
@@ -159,7 +159,7 @@ define(function (require) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
         var opt = {};
-        var btnShowmore  =  document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+        var btnShowmore  =  document.querySelector('div[on="tap:' + this.ele.id + '.toggle"]');
         opt.aniTime = this.animateTime || 0.3;
         if (this.showType === this.heightType[2]) {
             opt.oriHeight = getComputedStyle(this.showBox).height;

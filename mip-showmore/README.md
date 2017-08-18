@@ -95,7 +95,7 @@
 
 - 需要在 css 中添加`mip-showmore-btn-hide`类名的样式，示例中设置的是点击后按钮消失的样式
 
-[notice] 在设置`display`属性时，需要加`!important`。
+[notice] 在设置`display`属性时，需要加`!important`。    
 
 ```html
 <style>

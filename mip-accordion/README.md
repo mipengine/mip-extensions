@@ -28,7 +28,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
     </section>
     <section>
         <h4>下拉第三个</h4>
-        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg" class="mip-accordion-content"></mip-img>
+        <mip-img layout="responsive" width="400" height="200" src="https://www.mipengine.org/static/img/sample_01.jpg" class="mip-accordion-content"></mip-img>
     </section>
 </mip-accordion>
 ```
@@ -47,7 +47,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
     </section>
     <section>
         <h4>下拉第三个</h4>
-        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg" class="mip-accordion-content"></mip-img>
+        <mip-img layout="responsive" width="400" height="200" src="https://www.mipengine.org/static/img/sample_01.jpg" class="mip-accordion-content"></mip-img>
     </section>
 </mip-accordion>
 ```
@@ -84,7 +84,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
             layout="responsive"
             width="400"
             height="200"
-            src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg" class="mip-accordion-content">
+            src="https://www.mipengine.org/static/img/sample_01.jpg" class="mip-accordion-content">
         </mip-img>
     </section>
   </mip-accordion>
@@ -122,7 +122,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
     </section>
     <section>
         <h2>下拉第三个</h2>
-        <mip-img layout="responsive" width="400" height="200" src="http://a2.att.hudong.com/71/04/300224654811132504044925945_950.jpg"></mip-img>
+        <mip-img layout="responsive" width="400" height="200" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
     </section>
 </mip-accordion>
 ```

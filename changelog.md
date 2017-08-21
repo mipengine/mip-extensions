@@ -6,7 +6,7 @@
 
 组件名|功能说明
 ---|---
-[mip-fontsize]((https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fontsize)|[新增][平台]根据屏幕宽度设置html元素的font-size，从而实现rem布局
+[mip-fontsize](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fontsize)|[新增][平台]根据屏幕宽度设置html元素的font-size，从而实现rem布局
 
 #### 2017.08.17
 

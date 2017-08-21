@@ -7,6 +7,8 @@
 组件名|功能说明
 ---|---
 [mip-fontsize](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fontsize)|[新增][平台]根据屏幕宽度设置html元素的font-size，从而实现rem布局
+[mip-smart-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-smart-recommend)|[新增][平台]百度智荐推荐位
+[mip-so-ssp](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-so-ssp)|[升级][平台]360搜索广告联盟组件
 
 #### 2017.08.17
 

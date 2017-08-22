@@ -1,5 +1,13 @@
 # 升级日志
 
+#### 2017.08.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-smart-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-smart-recommend)|[升级][平台]百度智荐推荐位
+
 #### 2017.08.21
 
 > 组件上线

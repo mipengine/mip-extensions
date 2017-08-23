@@ -40,7 +40,7 @@ define(function (require) {
             }
 
             var hm = document.createElement('script');
-            hm.src = '//hm.baidu.com/hm.js?' + token;
+            hm.src = 'https://hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
             hm.onload = function () {
                 bindEle();

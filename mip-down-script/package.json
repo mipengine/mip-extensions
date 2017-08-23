@@ -1,6 +1,6 @@
 {
     "name": "mip-down-script",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": {
         "name": "Zhou",
         "email": "zhouhappy01@gmail.com",
@@ -8,5 +8,6 @@
     },
     "engines": {
         "mip": ">=1.1.0"
-    }
+    },
+    "contributors":[{"name":"fl","email":"fangle@jf.com"}]
 }

@@ -47,7 +47,7 @@
 ---|---
 [mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip-zpm-sindex 首页需求
 [mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
-[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[升级][平台]cnkang区分cnkang两性和非两性
+[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[升级][平台]区分cnkang两性和非两性
 
 #### 2017.08.15
 
@@ -55,7 +55,7 @@
 
 组件名|功能说明
 ---|---
-[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[新增][平台]cnkang区分两性和非两性
+[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[新增][平台]cnkang区分cnkang两性和非两性
 [mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[升级][平台]用于kp详情页DOM操作升级
 
 #### 2017.08.11
@@ -364,7 +364,7 @@
 [mip-233-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-list)|[升级][平台]list 插件
 [mip-233-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-slider)|[升级][平台] 头部滑动并显示当前栏目
 [mip-cr173-cnzz](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-cnzz)|[升级][平台] mip-cr173-cnzz CNZZ统计
-[mip-233-djs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-djs)|[升级][平台]	倒计时功能
+[mip-233-djs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-djs)|[升级][平台]    倒计时功能
 
 #### 2017.07.05
 
@@ -389,11 +389,11 @@
 [mip-czsy-slider](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-slider)|[新增][平台] 头部滑动并显示当前栏目
 [mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]更换推荐课程
 [mip-233-yytx](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-yytx)|[升级][平台]预约提醒插件
-[mip-czsy-nav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]	导航菜单
-[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]	更换推荐课程
-[mip-233-djs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-djs)|[升级][平台]	倒计时功能
-[mip-ajax-carousel](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ajax-carousel)|[升级][平台]	异步获取数据轮播图
-[mip-233-up2now](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]	将目标时间更新至最新
+[mip-czsy-nav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]  导航菜单
+[mip-233-changekc](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-changekc)|[升级][平台]  更换推荐课程
+[mip-233-djs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-233-djs)|[升级][平台]    倒计时功能
+[mip-ajax-carousel](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ajax-carousel)|[升级][平台]    异步获取数据轮播图
+[mip-233-up2now](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-czsy-nav)|[升级][平台]    将目标时间更新至最新
 
 
 #### 2017.07.03
@@ -513,7 +513,7 @@
 [mip-wkad](https://github.com/mipengine/mip-extensions/tree/master/mip-wkad)|[升级]增加一个域名判断
 [mip-adsense](https://github.com/mipengine/mip-extensions/tree/master/mip-adsense)|[升级]谷歌广告组件增强
 [mip-wkfun-newclub](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-wkfun-newclub)|[升级][平台]寻医问药页面功能组件
-[mip-terms-shield](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-terms-shield)|[升级][平台]	标题关键字屏蔽
+[mip-terms-shield](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-terms-shield)|[升级][平台]  标题关键字屏蔽
 
 
 #### 2017.06.20
@@ -655,7 +655,7 @@
 
 组件名|功能说明
 ---|---
-[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[新增][平台]	腾牛个性页面的内容植入和伸缩导航
+[mip-qqtngx-shrinknav](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtngx-shrinknav)|[新增][平台]  腾牛个性页面的内容植入和伸缩导航
 [mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[升级][平台]异步加载数据
 [mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
 [mip-fh-ad-plus](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fh-ad-plus)|[升级][平台]自有业务直销广告组件
@@ -670,7 +670,7 @@
 
 组件名|功能说明
 ---|---
-[mip-mmbang-flexible](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-mmbang-flexible)|[新增][平台]	妈妈帮移动端适配方案
+[mip-mmbang-flexible](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-mmbang-flexible)|[新增][平台]    妈妈帮移动端适配方案
 [mip-ys137-loaddata](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-loaddata)|[升级][平台]异步加载数据
 [mip-ys137-ad](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ys137-ad)|[升级][平台]管理页面上的所有广告位
 
@@ -694,7 +694,7 @@
 
 组件名|功能说明
 ---|---
-[mip-sn-shop-floor](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-floor)|[升级][平台]	苏宁o2o定制组件
+[mip-sn-shop-floor](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-sn-shop-floor)|[升级][平台]    苏宁o2o定制组件
 
 #### 2017.05.19
 

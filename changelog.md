@@ -1,5 +1,14 @@
 # 升级日志
 
+#### 2017.08.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pc6-touchslide](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-touchslide)|[升级][平台]多屏轮播
+[mip-pc6-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-news)|[升级][平台]文章页面逻
+
 #### 2017.08.23
 
 > 组件上线

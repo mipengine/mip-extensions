@@ -1,5 +1,44 @@
 # 升级日志
 
+#### 2017.08.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pc6-touchslide](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-touchslide)|[升级][平台]多屏轮播
+[mip-pc6-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-news)|[升级][平台]文章页面逻
+
+#### 2017.08.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pc6-slide](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-slide)|[新增][平台]多屏轮播
+[mip-pc6-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-news)|[新增][平台]文章页面逻辑
+[mip-pc6-dif](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-dif)|[新增][平台]软件、手游区分
+[mip-trilobite-scroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-scroll)|[升级][平台]三叶虫下拉滚动功能
+
+
+#### 2017.08.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-smart-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-smart-recommend)|[升级][平台]百度智荐推荐位
+
+#### 2017.08.21
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fontsize](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fontsize)|[新增][平台]根据屏幕宽度设置html元素的font-size，从而实现rem布局
+[mip-smart-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-smart-recommend)|[新增][平台]百度智荐推荐位
+[mip-so-ssp](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-so-ssp)|[升级][平台]360搜索广告联盟组件
+
 #### 2017.08.17
 
 > 组件上线

@@ -83,7 +83,7 @@ define(function (require) {
                 hash = window.location.hash;
             }
             if(hash) {
-                filter = hash.replace('#','');
+                filter = hash.replace('#', '').replace('=', '');
             } else {
                 filter = 'all';
             }

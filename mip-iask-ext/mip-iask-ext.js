@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author  hejieye
-* @time  20170106
-* @version 1.3.2
+* @time  20170824
+* @version 1.3.3
 */
 define(function (require) {
     var $ = require('zepto');
@@ -62,7 +62,7 @@ define(function (require) {
                 });
             });
         },
-         // 展开 or 收起
+        // 展开 or 收起
         openOrStop: function () {
             $('.os-click').on('click',
             function (event) {
@@ -139,7 +139,7 @@ define(function (require) {
                             var questionId = $('.report_id').text();
                             var type = $('.report_type').text();
                             var typeId = $('.report_typeId').text();
-                            $.post('http://m.iask.sina.com.cn/question/reportnew', {
+                            $.post('https://mipp.iask.cn/question/reportnew', {
                                 'reportList': reportList,
                                 'questionId': questionId,
                                 'type': type,
@@ -155,7 +155,7 @@ define(function (require) {
                 }
             });
         },
-         // 问题搜索
+        // 问题搜索
         btnSearch: function () {
             $('.btn-search').click(function () {
                 var content = $('.search-input').val();
@@ -163,7 +163,7 @@ define(function (require) {
                     alert('关键字必须大于等于2个字!');
                     return;
                 }
-                window.location.href = 'http://m.iask.sina.com.cn/search/1.html?content=' + content;
+                window.location.href = 'https://mipp.iask.cn/search/1.html?content=' + content;
             });
         },
         // 提问
@@ -173,7 +173,7 @@ define(function (require) {
                     event.preventDefault();
                     var content = $('.search-input').val();
                     console.log(content);
-                    window.location.href = 'http://m.iask.sina.com.cn/ask?content=' + content;
+                    window.location.href = 'https://mipp.iask.cn/ask?content=' + content;
                 });
             }
             catch (e) {}
@@ -187,6 +187,8 @@ define(function (require) {
             function (e) {
                 if (e === null || e === 'null') {
                     $('.icon-ency-login').attr('href', 'https://mipp.iask.cn/login?source=' + thisHref);
+                    $('.login-user').attr('href', 'https://mipp.iask.cn/login?source=' + thisHref);
+                    $('.login-user').text('登录');
                     btnUser.click(function (event) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -194,6 +196,8 @@ define(function (require) {
                     });
                 }
                 else {
+                    $('.login-user').attr('href', 'https://mipp.iask.cn/logout?source=' + thisHref);
+                    $('.login-user').text('退出');
                     btnUser.click(function (event) {
                         event.preventDefault();
                         event.stopPropagation();
@@ -216,7 +220,8 @@ define(function (require) {
             if (status !== null) {
                 url += '&status=1';
             }
-            $('body').append('<mip-pix src=\'' + url + '\' ></mip-pix>');
+            var sendUrl = 'https://mipp.iask.cn/mib/tag/test?u=' + url;
+            $.get(sendUrl);
         },
         // 数据上报
         checkData: function () {
@@ -234,6 +239,11 @@ define(function (require) {
                 });
             }, 100);
         },
+        getLoginPV: function () {
+            var pv = $('.mip_checklog_pv').text();
+            return pv;
+        },
+        // 折叠
         accordion: function () {
             $('.iask-show-more').click(function () {
                 $(this).parent().siblings('.iask-accordion').each(function () {
@@ -252,35 +262,31 @@ define(function (require) {
         },
         // 好万家导流
         guideData: function () {
-            var urlf = 'https://mipp.iask.cn/t/mipdf?t=fous';
-            var urlr = 'https://mipp.iask.cn/t/mipdf?t=recom';
-            try {
-                $.ajax({
-                    type: 'GET',
-                    url: urlf,
-                    dataType: 'html',
-                    success: function (data) {
-                        if (!!data) {
-                            $('.load_today_focus').empty();
-                            $('.load_today_focus').append(data);
-                        }
+            var categoryId = $('.parent-CategoryId').attr('categoryId');
+            var urlf = 'https://mipp.iask.cn/t/mipdf?t=fous&categoryId=' + categoryId;
+            var urlr = 'https://mipp.iask.cn/t/mipdf?t=recom&categoryId=' + categoryId;
+            $.ajax({
+                type: 'GET',
+                url: urlf,
+                dataType: 'html',
+                success: function (data) {
+                    if (!!data) {
+                        $('.load_today_focus').empty();
+                        $('.load_today_focus').append(data);
                     }
-                });
-                $.ajax({
-                    type: 'GET',
-                    url: urlr,
-                    dataType: 'html',
-                    success: function (data) {
-                        if (!!data) {
-                            $('.load_recom_red').empty();
-                            $('.load_recom_red').append(data);
-                        }
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: urlr,
+                dataType: 'html',
+                success: function (data) {
+                    if (!!data) {
+                        $('.load_recom_red').empty();
+                        $('.load_recom_red').append(data);
                     }
-                });
-            }
-            catch (e) {
-                console.log(e);
-            }
+                }
+            });
         },
         init: function () {
             this.switchBlock();
@@ -293,7 +299,7 @@ define(function (require) {
             this.btnSend();
             this.checkLogin();
             this.userInfoHide();
-            // this.checkData();
+            this.checkData();
             this.accordion();
             this.guideData();
             this.kownlegMore();

@@ -2,7 +2,7 @@
 * @file 脚本支持
 * @author hejieye
 * @time  2017-08-24
-* @version 2.0.2
+* @version 2.0.1
 */
 define(function (require) {
     var $ = require('zepto');

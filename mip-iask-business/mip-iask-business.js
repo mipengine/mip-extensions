@@ -393,7 +393,7 @@ define(function (require) {
         var url = 'https://mipp.iask.cn/mib/tag/';
         var arry = tags.split(':');
         for (var i = 0; i < arry.length; i++) {
-            url = url + arry[i];
+            url = url + arry[i].replace('[', '').replace(']', '');
         }
         try {
             var province = ''; // 省份

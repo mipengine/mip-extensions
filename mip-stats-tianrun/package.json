@@ -1,6 +1,7 @@
 {
     "name": "mip-stats-tianrun",
     "version": "1.1.2",
+    "description": "添加天润统计。",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

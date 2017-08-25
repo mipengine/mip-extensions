@@ -1,5 +1,114 @@
 # 升级日志
 
+#### 2017.08.24
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pc6-touchslide](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-touchslide)|[升级][平台]多屏轮播
+[mip-pc6-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-news)|[升级][平台]文章页面逻
+
+#### 2017.08.23
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pc6-slide](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-slide)|[新增][平台]多屏轮播
+[mip-pc6-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-news)|[新增][平台]文章页面逻辑
+[mip-pc6-dif](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-dif)|[新增][平台]软件、手游区分
+[mip-trilobite-scroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-scroll)|[升级][平台]三叶虫下拉滚动功能
+
+
+#### 2017.08.22
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-smart-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-smart-recommend)|[升级][平台]百度智荐推荐位
+
+#### 2017.08.21
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-fontsize](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fontsize)|[新增][平台]根据屏幕宽度设置html元素的font-size，从而实现rem布局
+[mip-smart-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-smart-recommend)|[新增][平台]百度智荐推荐位
+[mip-so-ssp](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-so-ssp)|[升级][平台]360搜索广告联盟组件
+
+#### 2017.08.17
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip-zpm-sindex 首页需求
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]搜索结果需求
+[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[升级][平台]区分cnkang两性和非两性
+
+#### 2017.08.15
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cnkang-content](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-content)|[新增][平台]cnkang区分cnkang两性和非两性
+[mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[升级][平台]用于kp详情页DOM操作升级
+
+#### 2017.08.11
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-commonga](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-commonga)|[新增][平台]mip-zpm-commonga 统计需求
+[mip-qqtn-count](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-count)|[升级][平台]站内个人统计功能
+[mip-install-serviceworker](https://github.com/mipengine/mip-extensions/tree/master/mip-install-serviceworker)|[升级]支持无sw功能下的回退功能
+[mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/mip-accordion)|[升级][官方]生命周期改为build
+
+#### 2017.08.10
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-kp-detail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-detail)|[升级][平台]mip-kp-detail
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级] 功能升级
+[mip-showmore](https://github.com/mipengine/mip-extensions/tree/master/mip-showmore)|[新增][官方] mip-showmore 文档升级
+
+#### 2017.08.09
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-shouji56-code](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-shouji56-code)|[新增][平台]mip-shouji56-code 组件
+
+#### 2017.08.08
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-mipengine-preview](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-mipengine-preview)|[升级][平台]用于 www.mipengine.org 的预览工具
+
+#### 2017.08.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-ajax-carousel](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-ajax-carousel)|[升级][平台] 异步获取轮播逻辑更新
+[mip-fn-thread-post](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-fn-thread-post)|[新增][平台] 蜂鸟网WAP站论坛回帖组件
+[mip-kp-search](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-kp-search)|[升级][平台]kp搜索专用
+[mip-so-ssp](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-so-ssp)|[新增][平台] mip-so-ssp 组件
+[mip-zpm-globalza](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-globalza)|[新增][平台] mip-zpm-globalza 统计需求
+[mip-zpm-jobdetail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-jobdetail)|[升级][平台]职位业务需求
+[mip-sidebar](https://github.com/mipengine/mip-extensions/tree/master/mip-sidebar)|[升级][官方] 修复sidebar弹出后，背景主体可以滚动的bug
+[mip-showmore](https://github.com/mipengine/mip-extensions/tree/master/mip-showmore)|[新增][官方] mip-showmore 升级
 
 #### 2017.08.03
 
@@ -58,6 +167,7 @@
 ---|---
 [mip-trilobite-scroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-scroll)|[新增][平台]三叶虫下拉滚动功能
 [mip-trilobite-fontsize](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-trilobite-fontsize)|[新增][平台]三叶虫字体适配
+[mip-install-serviceworker](https://github.com/mipengine/mip-extensions/tree/master/mip-install-serviceworker)|[升级]支持service worker功能
 
 #### 2017.07.27
 

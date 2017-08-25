@@ -1,6 +1,7 @@
 {
     "name": "mip-stats-baidu",
     "version": "1.0.8",
+    "description": "百度统计组件，用于统计页面数据",
     "author": {
         "name": "menglingjun",
         "email": "menglingjun@baidu.com",

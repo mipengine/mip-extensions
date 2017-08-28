@@ -201,9 +201,7 @@ define(function (require) {
         }
         return false;
     };
-    var putTestButHtml = function () {
-        var putUrl = 'http://m.iask.sina.com.cn/html/yongyou/index.html';
-        var picUrl = 'http://pic.iask.cn/fimg/5036459229_400.jpg';
+    var putTestButHtml = function (putUrl, picUrl) {
         var statsBaidu = 'data-stats-baidu-obj="%20%7B%22type%22:%22click%22,'
         + '%22data%22:%22%5B\'_trackEvent\',%20\'100m,%20\'0\',%20\'8002m\'%5D%22%7D"';
         return putMXfAd(putUrl, picUrl, statsBaidu);
@@ -850,10 +848,11 @@ define(function (require) {
                     var startTime = $('.yongyouStartTime').text();
                     var endTime   = $('.yongyouEndTime').text();
                     if (startTime <= nowTime && nowTime < endTime) {
-                        var putUrl = 'https://mipp.iask.cn/html/yongyou/index.html';
                         // 删除百度广告
                         removeBaiduAd();
-                        $('.mip_as_bottm_div').append(putTestButHtml());
+                        var putUrl = $('.yongyouPutUrl').text();
+                        var picUrl = $('.yongyouPicUrl').text();
+                        $('.mip_as_bottm_div').append(putTestButHtml(putUrl, picUrl));
                         var urlr = 'http://m.iask.sina.com.cn/t/mipdf?t=yongyou';
                         $.ajax({
                             type: 'GET',
@@ -863,11 +862,12 @@ define(function (require) {
                                 if (!!data) {
                                     $('.breadcast_middle_commercial').empty();
                                     $('.breadcast_middle_commercial').append(data);
+                                    advLogInfoClick();
+                                    var $that = $('.paramDiv');
+                                    var sources = $that.attr('sources');
+                                    advLogInfo(sources, 0);
                                 }
                             }
-                        });
-                        $('.put-test-hh').click(function () {
-                            window.open(putUrl);
                         });
                     }
                 }

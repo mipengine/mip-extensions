@@ -91,11 +91,12 @@
 <div on="tap:showmore08.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
 ```
 
-### 点击后按钮可隐藏
+### 展开内容后不再收起
 
-- 需要在 css 中添加`mip-showmore-btn-hide`类名的样式，示例中设置的是点击后按钮消失的样式
+- 要实现展开后不再收起，可以在展开后将隐藏按钮设置为不可见。如下示例，为`mip-showmore-btn-hide`类添加特殊样式，。
 
-[notice] 在设置`display`属性时，需要加`!important`。    
+[notice] 1. 在设置`display`属性时，需要加`!important`。
+2. 样式需要写在页面唯一的`<style mip-custom>`中。
 
 ```html
 <style>

@@ -90,19 +90,19 @@ define(function (require) {
             visibility: 'visible'
         });
     };
-    // 改变按钮的样式值
-    Showmore.prototype.changebtnStyle = function () {
-        // 显示更多按钮
+    // 改变按钮的样式值 - 改为隐藏状态
+    Showmore.prototype.changeBtnStyle = function () {
+        // v1.0.0显示更多按钮
         var showMoreBtn = this.ele.querySelector('.mip-showmore-btnshow');
 
-        // 选中 showmore的div
+        // v1.1.0选中 showmore的div
         var showMoreBtn2 = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
 
         util.css(showMoreBtn, {
-            display: 'inline-block'
+            display: 'inherit'
         });
         util.css(showMoreBtn2, {
-            display: 'inline-block'
+            display: 'inherit'
         });
         // 处理bottom渐变
         this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
@@ -117,7 +117,8 @@ define(function (require) {
                 height: this.maxHeight + 'px',
                 overflow: 'hidden'
             });
-            this.changebtnStyle();
+            // 改变按钮的样式值 - 改为隐藏状态
+            this.changeBtnStyle();
         }
     };
 
@@ -131,7 +132,8 @@ define(function (require) {
 
         // 如果长度大于阀值
         if (this.originalHtml.length !== this.cutOffText.length) {
-            this.changebtnStyle();
+            // 改变按钮的样式值 - 改为隐藏状态
+            this.changeBtnStyle();
             this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
             this.showBox.innerHTML = this.cutOffText;
         }
@@ -149,9 +151,9 @@ define(function (require) {
         });
     };
     // 点击时按钮添加class
-    Showmore.prototype.addbtnClass = function () {
+    Showmore.prototype.addClassWhenUnfold = function () {
         var btnShowmore  =  document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
-        $(btnShowmore).addClass(' mip-showmore-btn-hide');
+        btnShowmore ? btnShowmore.classList.add('mip-showmore-btn-hide') : '';
     };
     // 高度阈值控制
     Showmore.prototype.toggle = function (event) {
@@ -159,8 +161,8 @@ define(function (require) {
         var clickBtn = event ? event.target : null;
         var opt = {};
         opt.aniTime = this.animateTime || 0.3;
-        this.addbtnClass();
         if (this.showType === this.heightType[2]) {
+            // 高度限制
             opt.oriHeight = getComputedStyle(this.showBox).height;
             if (classList.contains('mip-showmore-boxshow')) {
                 // 隐藏超出字数的内容
@@ -177,6 +179,7 @@ define(function (require) {
             }
             else {
                 // 显示超出字数的内容
+                this.addClassWhenUnfold();
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
                 this.showBox.innerHTML = this.originalHtml;
@@ -199,6 +202,7 @@ define(function (require) {
             }
             else {
                 // 显示超出高度的内容
+                this.addClassWhenUnfold();
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
                 opt.type = 'unfold';

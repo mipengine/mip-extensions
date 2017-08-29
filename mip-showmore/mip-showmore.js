@@ -26,6 +26,9 @@ define(function (require) {
         this.animateTime = this.ele.getAttribute('animatetime') || 0;
         // 折叠高度类型
         this.heightType = ['HEIGHTSCREEN', 'HEIGHT', 'LENGTH'];
+        // 对应的收起按钮
+        this.btn = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+        
         // 获取内容显示框，v1.1.0 方法
         if (!this.showBox) {
             this.showBox = this.ele;
@@ -89,21 +92,19 @@ define(function (require) {
         util.css(this.ele, {
             visibility: 'visible'
         });
+
+        this.btnDisplay = this.btn ? getComputedStyle(this.btn).display : getComputedStyle(this.clickBtn).display;
     };
-    // 改变按钮的样式值 - 改为隐藏状态
+
+    // 改变按钮的样式值 - showmore改为隐藏状态, 按钮为“收起”
     Showmore.prototype.changeBtnStyle = function () {
         // v1.0.0显示更多按钮
         var showMoreBtn = this.ele.querySelector('.mip-showmore-btnshow');
 
         // v1.1.0选中 showmore的div
-        var showMoreBtn2 = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+        var showMoreBtn2 = this.btn || showMoreBtn;
 
-        util.css(showMoreBtn, {
-            display: 'inherit'
-        });
-        util.css(showMoreBtn2, {
-            display: 'inherit'
-        });
+        util.css(showMoreBtn2, 'display', 'inline-block');
         // 处理bottom渐变
         this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
 
@@ -152,7 +153,7 @@ define(function (require) {
     };
     // 点击时按钮添加class
     Showmore.prototype.addClassWhenUnfold = function () {
-        var btnShowmore  =  document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+        var btnShowmore = this.btn;
         btnShowmore ? btnShowmore.classList.add('mip-showmore-btn-hide') : '';
     };
     // 高度阈值控制
@@ -232,7 +233,7 @@ define(function (require) {
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
-                display: 'block'
+                display: this.btnDisplay
             }, {
                 display: 'none'
             });
@@ -249,7 +250,7 @@ define(function (require) {
             this._changeBtnText({
                 display: 'none'
             }, {
-                display: 'block'
+                display: this.btnDisplay
             });
         }
     };
@@ -388,7 +389,6 @@ define(function (require) {
         timeoutArr[2] = timeout3;
     }
 
-
     /**
      * 构造元素，只会运行一次
      */
@@ -396,6 +396,7 @@ define(function (require) {
         var ele = this.element;
         var showmoreObj = new Showmore(ele);
         showmoreObj.init();
+
 
         this.addEventAction('toggle', function (event) {
             showmoreObj.toggle(event);

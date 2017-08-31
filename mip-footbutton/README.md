@@ -2,12 +2,11 @@
 
 mip-footbutton 组件说明
 
-|描述|地方领导留言板官方号，底部按钮效果|
-|---|---|
-|类型|按钮|
-|支持布局|N/S|
-|所需脚本|https://mipcache.bdstatic.com/static/v1/mip-footbutton/mip-footbutton.js|
-
+地方领导留言板官方号|底部按钮效果
+----|----
+类型|通用
+支持布局|N/S
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-footbutton/mip-footbutton.js
 
 ## 示例
 ![](img/footbutton.gif)

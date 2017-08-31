@@ -101,7 +101,10 @@ define(function (require) {
 
     return {
         domain: 'https://mipengine.baidu.com/',
+        // 通用定制化接口
         ajaxUrl: 'https://mipengine.baidu.com/common?',
+        // 医疗TAG标记接口
+        medtagUrl: 'https://mipengine.baidu.com/rec/medtag?',
         regexs: regexs,
         params: params,
         config: config,

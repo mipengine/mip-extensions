@@ -1,0 +1,14 @@
+{
+    "name": "mip-footbutton",
+    "version": "1.0.0",
+    "description": "地方领导留言板官方号，底部按钮效果",
+    "contributors": [
+        {
+            "name": "王其征",
+            "email": "jenkey2011@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

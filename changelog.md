@@ -1,5 +1,22 @@
 # 升级日志
 
+#### 2017.09.1
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-footbutton](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-footbutton)|[新增][平台]mip-footbutton 组件
+
+#### 2017.08.31
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级]修改广告渲染逻辑
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级]资源图片修改
+
 #### 2017.08.24
 
 > 组件上线

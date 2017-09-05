@@ -38,7 +38,6 @@ define(function (require) {
         if (!this.showBox) {
             this.showBox = this.ele;
         }
-        this.status = 'unchanged';
     };
 
     Showmore.prototype.init = function () {
@@ -92,7 +91,6 @@ define(function (require) {
             this._initHeight();
         }
 
-        this._bindClick();
         // 避免初始加载闪现
         util.css(this.ele, {
             visibility: 'visible'
@@ -108,15 +106,19 @@ define(function (require) {
     Showmore.prototype.changeBtnStyle = function (type) {
         // v1.0.0显示更多按钮
         var showMoreBtn = this.ele.querySelector('.mip-showmore-btnshow');
+        var showMoreBtnHide = this.ele.querySelector('.mip-showmore-btnhide');
 
         // v1.1.0选中 showmore的div
         var showMoreBtn2 = this.btn || showMoreBtn;
         if (type === 'fold') {
             util.css(showMoreBtn2, 'display', 'inline-block');
+            showMoreBtnHide && util.css(showMoreBtnHide, 'display', 'none');
             // 处理bottom渐变
             this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
         } else if ((type === 'unfold')) {
             util.css(showMoreBtn2, 'display', 'none');
+            // showMoreBtnHide && util.css(showMoreBtnHide, 'display', 'inline-block');
+
             // 处理bottom渐变
             this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
         }
@@ -125,10 +127,10 @@ define(function (require) {
     Showmore.prototype._initHeight = function () {
         // 获取页面元素高度
         var height;
-        if (this.ele.style.height && this.ele.style.height.match('px')) {
-            height = getHeightUnfold(this.ele);
+        if (this.showBox.style.height && this.showBox.style.height.match('px')) {
+            height = getHeightUnfold(this.showBox);
         } else {
-            height = util.rect.getElementOffset(this.ele).height;
+            height = util.rect.getElementOffset(this.showBox).height;
         }
         
         // 如果高度大于阈值
@@ -187,9 +189,11 @@ define(function (require) {
             return;
         }
         var showmore = this;
-        this.clickBtn.addEventListener('click', function (event) {
+        this.clickBtn.addEventListener('click', function () {
             showmore.toggle.apply(showmore);
-        });
+        }, false);
+
+        
     };
     // 点击时按钮添加class
     Showmore.prototype.addClassWhenUnfold = function () {
@@ -198,7 +202,6 @@ define(function (require) {
     };
     // 高度阈值控制
     Showmore.prototype.toggle = function (event) {
-        this.status = 'changed';
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
         var opt = {};
@@ -246,7 +249,7 @@ define(function (require) {
                 // 隐藏超出高度的内容
                 classList.remove('mip-showmore-boxshow');
                 opt.type = 'fold';
-                opt.tarHeight = this.maxHeight + 'px',
+                opt.tarHeight = this.maxHeight + 'px';
                 opt.cbFun = function (showmore, clickBtn) {
                     showmore._toggleClickBtn(clickBtn, 'showOpen');
                 }.bind(undefined, this, clickBtn);
@@ -476,15 +479,14 @@ define(function (require) {
         var ele = this.element;
         var showmoreObj = new Showmore(ele);
         showmoreObj.init();
+        showmoreObj._bindClick();
 
         this.addEventAction('toggle', function (event) {
             showmoreObj.toggle(event);
         });
 
         window.addEventListener('orientationchange', function() {
-            // if(showmoreObj.status == 'unchanged') {
-                showmoreObj.init();
-            // }
+            showmoreObj.init();
         }, false);
     };
 

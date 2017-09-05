@@ -1,0 +1,42 @@
+mip-video-repeat {
+	width: 100%;
+	position: relative;
+	.iconfont{
+		font-family:"iconfont" !important;
+		font-size:16px;font-style:normal;
+		-webkit-font-smoothing: antialiased;
+		-webkit-text-stroke-width: 0.2px;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	video {
+	display: block;
+	background-color: rgb(0, 0, 0);
+	}
+	.video-mask {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background: rgba(0, 0, 0, .3);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.video-replay-button {
+			width: 50px;
+			height: 50px;
+			background: #fff;
+			.iconfont {
+				position: relative;
+				line-height: 50px;
+				width: 50px; 
+				height: 50px;
+				left: 13px;
+				font-size: 24px;
+				color: #000;
+				text-align: center;
+			}
+		}
+	}
+
+}

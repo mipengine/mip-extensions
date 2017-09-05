@@ -48,7 +48,7 @@ define(function (require) {
             whichShouldPlay()
         };
 
-        //  如果有广告并且非IOS上的QQ浏览器 则播放广告
+        //  如果有片头并且非IOS上的QQ浏览器 则播放片头
         if (adSrc && ! (platform.isIos() && platform.isQQ()) ) {
             video.src = adSrc;
             curIndex = 1;
@@ -57,7 +57,7 @@ define(function (require) {
             curIndex = 2;
         }
 
-        //判断是否连续播放，到片尾广告结束停止
+        //判断是否连续播放，到片尾结束停止
         function whichShouldPlay(){
             switch(curIndex) {
                 case 1:
@@ -105,7 +105,7 @@ define(function (require) {
         function eventListener(){
             $(replayButton).on('click', function(){
                 $(videoMask).hide()
-                //  如果有广告并且非IOS上的QQ浏览器 则播放广告
+                //  如果有片头并且非IOS上的QQ浏览器 则播放片头
                 if (adSrc && ! (platform.isIos() && platform.isQQ()) ) {
                     video.src = adSrc;
                     curIndex = 1;

@@ -5,7 +5,7 @@ mip-video-repeat 实现了带片头片尾和重播功能的视频组件
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-video-repeat/mip-video-repeat.js
+所需脚本|https://mipcache.bdstatic.com/extensions/platform/v1/mip-video-repeat/mip-video-repeat.js
 
 ## 示例
 
@@ -20,12 +20,12 @@ mip-video-repeat 实现了带片头片尾和重播功能的视频组件
 ## 属性
 
 ### ad-src
-说明：广告视频的url地址  
+说明：片头视频的url地址  
 必选项：是
 类型：string
 
 ### ad-src-end
-说明：目标视频播放完毕之后的广告url地址
+说明：目标视频播放完毕之后的片头url地址
 必选项：否
 类型：string
 

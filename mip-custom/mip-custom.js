@@ -45,7 +45,7 @@ define(function () {
         var self = this;
         var element = self.element;
         var regexs = dataProcessor.regexs;
-        var customType = self.element.getAttribute('custom-type') || '';
+        var customUrl = self.element.getAttribute('custom-url') || '';
 
         // 非结果页进入不展现定制化内容
         if (!viewer.isIframed) {
@@ -67,7 +67,7 @@ define(function () {
 
         // 通用定制化请求common接口；医疗TAG标记，请求/rec/medtag接口，因此需要传标记区分。
 
-        self.url = url.get(element, customType);
+        self.url = url.get(element, customUrl);
 
         if (!self.url) {
             element.remove();

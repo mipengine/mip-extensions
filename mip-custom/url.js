@@ -34,10 +34,9 @@ define(function (require) {
      * [getUserParams 获取页面上用户设置的参数]
      *
      * @param  {DOM}    element    mip-custom 组件节点
-     * @param  {Object}    customType mip-custom 请求的类型，医疗TAG专用
      * @return {Object} userParams 用户设置的参数对象
      */
-    function getUserParams(element, customType) {
+    function getUserParams(element) {
         var userParams = null;
 
         // 获取用户设置参数，获取不到则报错并返回
@@ -45,7 +44,7 @@ define(function (require) {
             var script = element.querySelector('script[type="application/json"]');
             if (script) {
                 userParams = JSON.parse(script.textContent);
-                if (!userParams.accid && !customType) {
+                if (!userParams.accid) {
                     console.warn('mip-custom 缺少 accid 参数');
                     return;
                 }
@@ -74,11 +73,10 @@ define(function (require) {
      * [getUrlParams 集合异步请求所需要的所有参数]
      *
      * @param  {DOM}    element mip-custom 组件节点
-     * @param  {Object}    customType mip-custom 请求的类型，医疗TAG专用
      * @return {Object}         异步请求所需要的参数对象
      */
-    function getUrlParams(element, customType) {
-        var userParams = getUserParams(element, customType);
+    function getUrlParams(element) {
+        var userParams = getUserParams(element);
         if (!userParams) {
             return null;
         }
@@ -90,21 +88,15 @@ define(function (require) {
      * [getUrl url 拼接函数]
      *
      * @param  {DOM}    element mip-custom 组件节点
-     * @param  {Object}    customType mip-custom 请求的类型，医疗TAG专用
      * @return {string} url     拼接后的url
      */
-    function getUrl(element, customType) {
+    function getUrl(element) {
         var firstKey = true;
         var url = data.ajaxUrl;
-        var urlParams = getUrlParams(element, customType);
+        var urlParams = getUrlParams(element);
 
         if (!urlParams) {
             return;
-        }
-
-        // 定制化医疗TAG请求/rec/medtag接口
-        if (customType && customType === 'medtag') {
-            url = data.medtagUrl;
         }
 
         for (var key in urlParams) {
@@ -115,6 +107,10 @@ define(function (require) {
         }
 
         return url;
+    }
+
+    function getPath(customType) {
+
     }
 
     return {

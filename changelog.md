@@ -1,4 +1,14 @@
 # 升级日志
+#### 2017.09.06
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pc6-down](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-down)|[升级][平台]PC6站点修改下载逻辑
+[mip-pc6-dif](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-dif)|[升级][平台]PC6站点内容页软件和手游进行区分
+[mip-9ht-bdzs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-9ht-bdzs)|[新增][平台]迁入百度站搜索提交辅助控件
+
 
 #### 2017.09.1
 

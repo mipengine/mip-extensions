@@ -65,8 +65,6 @@ define(function () {
         // 监听 a 标签点击事件
         dom.proxyLink(element);
 
-        // 通用定制化请求common接口；医疗TAG标记，请求/rec/medtag接口，因此需要传标记区分。
-
         self.url = url.get(element, customUrl);
 
         if (!self.url) {

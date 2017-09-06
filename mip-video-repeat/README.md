@@ -1,4 +1,4 @@
-# mip-ad-video
+# mip-video-repeat
 mip-video-repeat 实现了带片头片尾和重播功能的视频组件
 
 标题|内容
@@ -11,22 +11,23 @@ mip-video-repeat 实现了带片头片尾和重播功能的视频组件
 
 ### 带广告的播放
 ```html
-<mip-video-repeat ad-src="http://img.vodjk.com/templates/vodjk/images/ad-shipin/ad-pc-qfk.mp4"
-    ad-src-end="http://img.vodjk.com/templates/vodjk/images/ad-shipin/ad-pc-qfk.mp4"
-    target-src="http://dianbo.vodjk.com/vod/xinma/jbl/wgk/2016/04/20/499DBA6FFCD74fc195C4C59859BDA08C.mp4">
+<mip-video-repeat v-src="http://img.vodjk.com/templates/vodjk/images/ad-shipin/ad-pc-qfk.mp4"
+    v-src-end="http://img.vodjk.com/templates/vodjk/images/ad-shipin/ad-pc-qfk.mp4"
+    target-src="http://dianbo.vodjk.com/vod/xinma/jbl/wgk/2016/04/20/499DBA6FFCD74fc195C4C59859BDA08C.mp4"
+    >
 </mip-video-repeat>
 ``` 
 
 ## 属性
 
-### ad-src
+### v-src
 说明：片头视频的url地址  
 必选项：是
 类型：string
 
-### ad-src-end
+### v-src-end
 说明：目标视频播放完毕之后的片头url地址
-必选项：否
+必选项：是
 类型：string
 
 ### target-src

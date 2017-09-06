@@ -1,0 +1,14 @@
+{
+    "name": "mip-voicerecipe",
+    "version": "1.0.0",
+    "description": "语音智能菜谱入口",
+    "contributors": [
+        {
+            "name": "cxtom",
+            "email": "cxtom2008@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

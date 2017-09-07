@@ -42,7 +42,7 @@
 
 ### 嵌套使用-高度阈值
 
-- 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+[info]嵌套使用时，注意 on 和 mip-showmore id 的对应。
 
 ```html
 <mip-showmore maxheight='40' animatetime='.3' id="showmore03">
@@ -66,7 +66,7 @@
 
 ### 嵌套使用-字数
 
-- 嵌套使用时，注意 on 和 mip-showmore id 的对应。
+嵌套使用时，注意 on 和 mip-showmore id 的对应。
 
 ```html
 <mip-showmore maxlen='20' animatetime='.3' id="showmore06">
@@ -89,6 +89,25 @@
         MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
 </mip-showmore>
 <div on="tap:showmore08.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
+```
+
+### 展开内容后不再收起
+
+要实现展开后不再收起，可以在展开后将隐藏按钮设置为不可见。如下示例，为`mip-showmore-btn-hide`类添加特殊样式，。
+
+[notice] 在设置`display`属性时，需要加`!important`。样式需要写在页面唯一的`<style mip-custom>`中。
+
+```html
+<style>
+.mip-showmore-btn-hide{
+    display: none!important
+}
+</style>
+<mip-showmore maxheight='40' animatetime='.3' id="showmore01">
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+</mip-showmore>
+<!--当 '点击显示' 按钮处于展开状态，按钮会存在 'mip-showmore-btn-hide' 类-->
+<div on="tap:showmore01.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
 ```
 
 <!--

@@ -20,12 +20,20 @@ define(function (require) {
         this.ele = ele;
         // 获取点击按钮，v1.0.0 方法
         this.clickBtn = ele.querySelector('[showmorebtn]');
+        this.clickBtnSpan = this.clickBtn && this.clickBtn.querySelector('.mip-showmore-btnshow');
         // 获取内容显示框，v1.0.0 方法
         this.showBox = this.ele.querySelector('[showmorebox]');
-        // 获取动画时间
-        this.animateTime = this.ele.getAttribute('animatetime') || 0;
-        //折叠高度类型
+        // 获取动画时间, 默认为0.24，兼容0的写法
+        this.animateTime = this.ele.getAttribute('animatetime');
+        if (this.animateTime === null || isNaN(this.animateTime)) {
+            // if transition time is not set, set into 0.24s
+            this.animateTime = 0.24;
+        }
+        // 折叠高度类型
         this.heightType = ['HEIGHTSCREEN', 'HEIGHT', 'LENGTH'];
+        // 对应的收起按钮
+        this.btn = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+        this.eleid = ele.id;
         // 获取内容显示框，v1.1.0 方法
         if (!this.showBox) {
             this.showBox = this.ele;
@@ -46,7 +54,6 @@ define(function (require) {
         this.bottomShadow = this.ele.getAttribute('bottomshadow') === '1';
         // 渐变className
         this.bottomShadowClassName = 'linear-gradient';
-        // 获取显示框显示对象
         // 处理阈值高度(高度优先于字体长度,不允许两个同时存在)
         if (this.maxHeight && isNaN(this.maxHeight)) {
             var maxHeightArr = this.maxHeight.split(':');
@@ -77,61 +84,101 @@ define(function (require) {
         }
         else if (this.maxLen && !isNaN(this.maxLen)) {
             this.showType = this.heightType[2];
-            this._maxLenFn();
+            this._initTextLength();
         }
         else {
             this.maxHeight = 0;
             this._initHeight();
         }
 
-        this._bindClick();
         // 避免初始加载闪现
         util.css(this.ele, {
             visibility: 'visible'
         });
+
+        // 保存点击按钮当前display状态，兼容v1.0.0和v1.1.0
+        var display = this.clickBtnSpan && getComputedStyle(this.clickBtnSpan).display;
+        var displayNew = this.btn && getComputedStyle(this.btn).display
+        this.btnDisplay = displayNew || display;
+    };
+
+    // 改变按钮的样式值 - showmore改为隐藏状态, 按钮为“收起”
+    Showmore.prototype.changeBtnStyle = function (type) {
+        // v1.0.0显示更多按钮
+        var showMoreBtn = this.ele.querySelector('.mip-showmore-btnshow');
+        var showMoreBtnHide = this.ele.querySelector('.mip-showmore-btnhide');
+
+        // v1.1.0选中 showmore的div
+        var showMoreBtn2 = this.btn || showMoreBtn;
+        if (type === 'fold') {
+            util.css(showMoreBtn2, 'display', 'inline-block');
+            showMoreBtnHide && util.css(showMoreBtnHide, 'display', 'none');
+            // 处理bottom渐变
+            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
+        } else if ((type === 'unfold')) {
+            util.css(showMoreBtn2, 'display', 'none');
+            // showMoreBtnHide && util.css(showMoreBtnHide, 'display', 'inline-block');
+
+            // 处理bottom渐变
+            this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
+        }
     };
 
     Showmore.prototype._initHeight = function () {
         // 获取页面元素高度
-        this.showBoxHei = util.rect.getElementOffset(this.showBox).height;
-        // 如果高度大于阀值
-        if (this.showBoxHei > this.maxHeight) {
+        var height;
+        if (this.showBox.style.height && this.showBox.style.height.match('px')) {
+            height = getHeightUnfold(this.showBox);
+        } else {
+            height = util.rect.getElementOffset(this.showBox).height;
+        }
+        
+        // 如果高度大于阈值
+        if (height > this.maxHeight) {
             util.css(this.showBox, {
                 height: this.maxHeight + 'px',
                 overflow: 'hidden'
             });
-
-            // 显示更多按钮
-            var showMoreBtn = this.ele.querySelector('.mip-showmore-btnshow');
-            util.css(showMoreBtn, {
-                display: 'block'
-            });
-            // 处理bottom渐变
-            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
+            // 改变按钮的样式值 - 改为隐藏状态
+            this.changeBtnStyle('fold');
+        } else {
+            util.css(this.showBox, height, 'auto');
+            this.changeBtnStyle('unfold');
         }
     };
 
     // 字数控制
-    Showmore.prototype._maxLenFn = function () {
-        // 存储原始html对象
-        this.originalHtml = this.showBox.innerHTML;
+    Showmore.prototype._initTextLength = function () {
+        // 防止重复初始化
+        if(this.oriDiv) {
+            return
+        }
+        // 存储原始html文字 & NODE
+        var originalHtml = this.showBox.innerHTML;
 
         // 获取剪切后的字符串
-        this.cutOffText = this._cutHtmlStr(this.maxLen);
+        var cutOffText = this._cutHtmlStr(this.maxLen);
 
-        // 如果长度大于阀值
-        if (this.originalHtml.length !== this.cutOffText.length) {
-            // 显示展开更多按钮
-            var showBtnMore = this.ele.querySelector('.mip-showmore-btnshow');
-            util.css(showBtnMore, {
-                display: 'block'
-            });
+        // 如果长度大于阈值，复制修改前内容到.mip-showmore-originText,
+        // 剪切后的内容保存在.mip-showmore-abstract，未来修改内容，
+        // 只需要针对这两个DOM做展示/隐藏处理
+        if (originalHtml.length !== cutOffText.length) {
+            // 改变按钮的样式值 - 改为隐藏状态
+            this.changeBtnStyle('fold');
 
-            // 处理bottom渐变
-            this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
+            // 清除被_cutHtmlStr处理之后的原始内容
+            this.showBox.innerHTML = '';
+            // 保存剪切前 dom，插入文档
+            this.oriDiv = document.createElement('div');
+            this.oriDiv.setAttribute('class', 'mip-showmore-originText mip-showmore-nodisplay');
+            this.oriDiv.innerHTML = originalHtml;
+            this.showBox.appendChild(this.oriDiv);
 
-            this.cutOffText = '<p class=\'mip-showmore-abstract\'>' + this.cutOffText + '...' + '</p>';
-            this.showBox.innerHTML = this.cutOffText;
+            // 创建剪切后 dom, 插入文档
+            this.cutDiv = document.createElement('div');
+            this.cutDiv.setAttribute('class', 'mip-showmore-abstract');
+            this.cutDiv.innerHTML = '<p>' + cutOffText + '...' + '</p>';
+            this.showBox.appendChild(this.cutDiv);
         }
     };
 
@@ -142,41 +189,57 @@ define(function (require) {
             return;
         }
         var showmore = this;
-        this.clickBtn.addEventListener('click', function (event) {
+        this.clickBtn.addEventListener('click', function () {
             showmore.toggle.apply(showmore);
-        });
-    };
+        }, false);
 
+        
+    };
+    // 点击时按钮添加class
+    Showmore.prototype.addClassWhenUnfold = function () {
+        var btnShowmore = this.btn;
+        btnShowmore ? btnShowmore.classList.add('mip-showmore-btn-hide') : '';
+    };
     // 高度阈值控制
     Showmore.prototype.toggle = function (event) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
         var opt = {};
-        opt.aniTime = this.animateTime || 0.3;
-
+        opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {
-            opt.oriHeight = getComputedStyle(this.showBox).height;
+            // 高度限制
+            opt.oriHeight = util.rect.getElementOffset(this.showBox).height + 'px';
+            var originDom = this.oriDiv;
+            var cutDom = this.cutDiv;
+
             if (classList.contains('mip-showmore-boxshow')) {
                 // 隐藏超出字数的内容
-                this.showBox.innerHTML = this.cutOffText;
-                opt.tarHeight = getComputedStyle(this.showBox).height;
-                this.showBox.innerHTML = this.originalHtml;
+                originDom.classList.add('mip-showmore-nodisplay');
+                cutDom.classList.remove('mip-showmore-nodisplay');
+                opt.tarHeight = util.rect.getElementOffset(this.showBox).height + 'px';
+                originDom.classList.remove('mip-showmore-nodisplay');
+                cutDom.classList.add('mip-showmore-nodisplay');
                 this.bottomShadow && this.showBox.classList.add(this.bottomShadowClassName);
                 opt.type = 'fold';
-                opt.cbFun = function(showmore) {
-                    showmore.showBox.innerHTML = showmore.cutOffText;
+                opt.cbFun = function (showmore) {
                     showmore._toggleClickBtn(clickBtn, 'showOpen');
                     classList.remove('mip-showmore-boxshow');
+                    originDom.classList.add('mip-showmore-nodisplay');
+                    cutDom.classList.remove('mip-showmore-nodisplay');
                 }.bind(undefined, this);
             }
             else {
                 // 显示超出字数的内容
+                this.addClassWhenUnfold();
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
-                classList.add('mip-showmore-boxshow');
-                this.showBox.innerHTML = this.originalHtml;
                 opt.type = 'unfold';
-                opt.cbFun = function(showmore) {
+                originDom.classList.remove('mip-showmore-nodisplay');
+                cutDom.classList.add('mip-showmore-nodisplay');
+                opt.tarHeight = getHeightUnfold(this.showBox) + 'px';
+                this.showBox.style.height = this.maxHeight + 'px';
+                opt.cbFun = function (showmore) {
                     showmore._toggleClickBtn(clickBtn, 'showClose');
+                    classList.add('mip-showmore-boxshow');
                 }.bind(undefined, this);
             }
         }
@@ -186,19 +249,21 @@ define(function (require) {
                 // 隐藏超出高度的内容
                 classList.remove('mip-showmore-boxshow');
                 opt.type = 'fold';
-                opt.tarHeight = this.maxHeight + 'px',
-                opt.cbFun = function(showmore, clickBtn) {
+                opt.tarHeight = this.maxHeight + 'px';
+                opt.cbFun = function (showmore, clickBtn) {
                     showmore._toggleClickBtn(clickBtn, 'showOpen');
                 }.bind(undefined, this, clickBtn);
             }
             else {
                 // 显示超出高度的内容
+                this.addClassWhenUnfold();
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
                 opt.type = 'unfold';
-                opt.cbFun = function(showmore, clickBtn) {
+                opt.cbFun = function (showmore, clickBtn) {
                     showmore._toggleClickBtn(clickBtn, 'showClose');
-                }.bind(undefined, this, clickBtn)
+                    showmore.ele.style.height = 'auto';
+                }.bind(undefined, this, clickBtn);
             }
         }
         heightAni({
@@ -222,7 +287,7 @@ define(function (require) {
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
-                display: 'block'
+                display: this.btnDisplay
             }, {
                 display: 'none'
             });
@@ -239,7 +304,7 @@ define(function (require) {
             this._changeBtnText({
                 display: 'none'
             }, {
-                display: 'block'
+                display: this.btnDisplay
             });
         }
     };
@@ -293,21 +358,21 @@ define(function (require) {
     };
 
      /**
-     * Make height transiton for element that has unknown height.
-     * height transiton from 0px/40px to whatever height element will be.
-     *
-     * author&maintainer liangjiaying<jiaojiaomao220@163.com>
-     *
-     * @param  {Object} opt options
-     * @example
-     * {
-     *     "ele": document.getElementById('id1'), // target DOM
-     *     "type": "fold",                  // "fold" or "unfold"
-     *     "transitionTime": "0.3",         // seconds, animation time
-     *     "tarHeight": "140px",            // DOM height when animation ends
-     *     "oriHeight": "20px",             // DOM height when animation begins
-     *     "cbFun": function() {}.bind()    //callback, exec after animation
-     * }
+         * Make height transiton for element that has unknown height.
+         * height transiton from 0px/40px to whatever height element will be.
+         *
+         * author&maintainer liangjiaying<jiaojiaomao220@163.com>
+         *
+         * @param  {Object} opt options
+         * @example
+         * {
+         *     "ele": document.getElementById('id1'), // target DOM
+         *     "type": "fold",                  // "fold" or "unfold"
+         *     "transitionTime": "0.3",         // seconds, animation time
+         *     "tarHeight": "140px",            // DOM height when animation ends
+         *     "oriHeight": "20px",             // DOM height when animation begins
+         *     "cbFun": function() {}.bind()    //callback, exec after animation
+         * }
      */
     function heightAni(opt) {
         var element = opt.ele;
@@ -374,29 +439,65 @@ define(function (require) {
         }, transitionTime * 1000);
 
         // save timeout, for later clearTimeout
-        timeoutArr[1] = timeout2;
-        timeoutArr[2] = timeout3;
+        timeoutArr[element.id] = timeoutArr[element.id] || [];
+        timeoutArr[element.id][1] = timeout2;
+        timeoutArr[element.id][2] = timeout3;
     }
 
+    /**
+     * get real height of DOM without height restrictions
+     *
+     * @param  {Object} dom some dom
+     * @return {number}     height
+     */
+    function getHeightUnfold (dom) {
+        var fakeNode = document.createElement('div');
+        var style = getComputedStyle(dom);
+        fakeNode.innerHTML = dom.innerHTML;
+
+        fakeNode.style.padding = style.padding;
+        fakeNode.style.margin = style.margin;
+        fakeNode.style.border = style.border;
+
+        fakeNode.style.position = 'absolute';
+        // 先插入再改样式，以防元素属性在createdCallback中被添加覆盖
+        dom.parentNode.insertBefore(fakeNode, dom);
+        fakeNode.style.height = 'auto';
+        fakeNode.style.visibility = 'hidden';
+
+        var height = util.rect.getElementOffset(fakeNode).height;
+        dom.parentNode.removeChild(fakeNode);
+
+        return height;
+    }
 
     /**
      * 构造元素，只会运行一次
      */
     customElement.prototype.build = function () {
+        var me = this;
         var ele = this.element;
         var showmoreObj = new Showmore(ele);
         showmoreObj.init();
+        showmoreObj._bindClick();
 
         this.addEventAction('toggle', function (event) {
             showmoreObj.toggle(event);
         });
+
+        window.addEventListener('orientationchange', function() {
+            showmoreObj.init();
+        }, false);
     };
-    
+
     // when remove node, clear timeout
     customElement.prototype.detachedCallback = function () {
-        for(var i = 0; i < timeoutArray.length; i++) {
-            window.clearTimeout(timeoutArray[i]);
+        var tArr = timeoutArray && timeoutArray[this.element.id] || [];
+        for (var i = 0; i < tArr.length; i++) {
+            window.clearTimeout(tArr[i]);
         }
     };
+
+
     return customElement;
 });

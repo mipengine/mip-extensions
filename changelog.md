@@ -1,4 +1,13 @@
 # 升级日志
+#### 2017.09.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-eject](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-eject)|[升级][平台]新增了地区判断，增加了url过滤
+[mip-cook-voicerecipe](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cook-voicerecipe)|[新增][平台]实现了一个语音智能菜谱入口的功能。
+
 #### 2017.09.06
 
 > 组件上线

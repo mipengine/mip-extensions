@@ -1,0 +1,193 @@
+/**
+ * @file mip-voicerecipe 样式文件
+ */
+
+mip-voicerecipe {
+
+    position: fixed !important;
+    height: 0;
+    left: -10000px;
+    bottom: 0;
+    right: 0;
+
+    .mip-voicerecipe-tips {
+        position: absolute;
+        bottom: 65px;
+        left: 50%;
+        display: inline-block;
+        -webkit-transform: translate3d(-50%, 0, 0);
+        transform: translate3d(-50%, 0, 0);
+        white-space: nowrap;
+        font-size: 16px;
+        line-height: 26px;
+        padding: 7px 12px;
+        background-color: rgba(0, 0, 0, .8);
+        color: #fff;
+        border-radius: 4px;
+
+        &:after {
+            content: '';
+            position: absolute;
+            -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
+            left: 50%;
+            top: 100%;
+            width: 0;
+            height: 0;
+            border-top: 6px solid rgba(0, 0, 0, .8);
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+        }
+    }
+
+    .mip-voicerecipe-wrapper {
+        background-color: #fff;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 10px 17px;
+        border-top: 1px solid #f1f1f1;
+
+        > button {
+            display: inline-block;
+            width: 100%;
+            border: 1px solid #555;
+            outline: none;
+            background-color: #fff;
+            color: #000;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            border-radius: 3px;
+            box-sizing: content-box;
+        }
+    }
+
+    .mip-voicerecipe-dialog {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+
+        &-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, .65);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        &-body {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            background-color: #fff;
+            z-index: 1;
+            border-radius: 4px;
+            padding: 23px 0 0 0;
+            width: 80%;
+            max-height: 60%;
+
+            h1 {
+                text-align: center;
+                font-size: 24px;
+                line-height: 34px;
+                color: #333;
+                font-weight: 300;
+            }
+
+            p {
+                font-size: 16px;
+                padding: 0 37px;
+                line-height: 24px;
+                color: #999;
+                margin-top: 15px;
+                margin-bottom: 27px;
+            }
+        }
+
+        &-actions {
+            @bordercolor: #e0e0e0;
+            border-top: 1px solid @bordercolor;
+
+            @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+                border: none;
+                background-image: -webkit-linear-gradient(270deg, @bordercolor, @bordercolor 50%, transparent 50%);
+                background-image: linear-gradient(180deg, @bordercolor, @bordercolor 50%, transparent 50%);
+                background-size: 100% 1px;
+                background-repeat: no-repeat;
+                background-position: top;
+            }
+
+            @media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {
+                border: none;
+                background-image: -webkit-linear-gradient(270deg, @bordercolor, @bordercolor 33.3333%, transparent 33.3333%);
+                background-image: linear-gradient(180deg, @bordercolor, @bordercolor 33.3333%, transparent 33.3333%);
+                background-size: 100% 1px;
+                background-repeat: no-repeat;
+                background-position: top;
+            }
+
+            display: -webkit-box;
+            display: -webkit-flex;
+            width: auto;
+            -webkit-align-content: flex-start;
+            -webkit-align-items: stretch;
+            -webkit-box-align: stretch;
+            -webkit-box-direction: normal;
+            -webkit-box-lines: single;
+            -webkit-box-orient: horizontal;
+            -webkit-box-pack: justify;
+            -webkit-flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+            -webkit-justify-content: space-between;
+
+            > button {
+                display: block;
+                -webkit-box-flex: 1;
+                -webkit-flex: 1 1 50%;
+                font-size: 18px;
+                line-height: 25px;
+                padding: 10px 0;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                color: #000;
+                position: relative;
+
+                &:first-child {
+                    @bordercolor: #e0e0e0;
+                    border-right: 1px solid @bordercolor;
+
+                    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+                        border: none;
+                        background-image: -webkit-linear-gradient(180deg, @bordercolor, @bordercolor 50%, transparent 50%);
+                        background-image: linear-gradient(270deg, @bordercolor, @bordercolor 50%, transparent 50%);
+                        background-size: 1px 100%;
+                        background-repeat: no-repeat;
+                        background-position: right top;
+                    }
+
+                    @media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {
+                        border: none;
+                        background-image: -webkit-linear-gradient(180deg, @bordercolor, @bordercolor 33.3%, transparent 33.3%);
+                        background-image: linear-gradient(270deg, @bordercolor, @bordercolor 33.3%, transparent 33.3%);
+                        background-size: 1px 100%;
+                        background-repeat: no-repeat;
+                        background-position: right top;
+                    }
+                }
+
+                &:last-child {
+                    color: #3c76ff;
+                }
+            }
+        }
+    }
+}

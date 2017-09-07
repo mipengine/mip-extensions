@@ -21,7 +21,7 @@ define(function (require) {
         var targetSrc = $element.attr('target-src');
         var videoMask = document.createElement('div');
         var curIndex;
-        
+
         //  初始化播放器
         var video = document.createElement('video');
 
@@ -34,12 +34,12 @@ define(function (require) {
         });
 
         //  初始化video的尺寸大小
-        $(video).css('width', window.innerWidth + 'px');
+        $(video).css('width',window.innerWidth + 'px');
 
         $element[0].appendChild(video);
         
         showReplayPageWithRecommend()
-        //showReplayPage()
+        // showReplayPage()
         //  当前视频播放完毕
         video.onended = function () {
             curIndex += 1;
@@ -82,12 +82,7 @@ define(function (require) {
         
         function showWhichReplayPage(){
             //判断是否有data-recommend属性
-            if($element.attr('data-recommend')){
-                var data_recommend = $element.attr('data-recommend');
-                var dataRecommend = JSON.parse(data_recommend);
-                var recSrc = dataRecommend.recSrc;
-                var recTitle = dataRecommend.recTitle;
-                var recPoster = dataRecommend.recPoster;
+            if($element.attr('rec-video')){
                 //显示带有推荐视频和重播的遮罩层
                 showReplayPageWithRecommend()
             }else{
@@ -99,78 +94,63 @@ define(function (require) {
         function showReplayPage(){
             //创建只有重播的DOM
             createDocumentFragment()
-            $(videoMask).show()
+            $('video-mask').show()
             //监听事件
-            eventListener()
+            replayEvent()
         }
         function showReplayPageWithRecommend(){
             //创建有推荐视频和重播的DOM
             createDocumentFragmentWithRecommend()
             $('.rec-video-wrapper').show()
-            eventListener()
             //获取推荐视频信息
-            // getData()
+            getRecVideoData()
+            replayEvent()
+            bindClickNewVideo()
         }
 
         function createDocumentFragmentWithRecommend(){
             var html = `<div class="rec-video-wrapper">
                             <div class="left-container">
                                 <div class="rec-video-container">
-                                    <div class="rec-video">
-                                        <div class="video-poster">
-                                            <img src="https://i2.hdslb.com/bfs/archive/c76dc118dd8bac3c0b5f1837972f55e12b01b245.jpg@160w_100h.webp" alt="">
+                                    <a class="rec-video" href="#">
+                                        <div class="video-thumb">
+                                            <img src="" alt="">
                                         </div>
-                                        <p class="video-title">视频标题</p>
-                                        <div class="play-button">
-                                            <i class="play-icon">&#8634;</i>
-                                        </div>
-                                        <div class="video-mask"></div>
-                                    </div>
+                                        <p class="video-title"></p>
+                                    </a>
                                 </div>
                                 <div class="rec-video-container">
-                                    <div class="rec-video">
-                                        <div class="video-poster">
-                                            <img src="https://i2.hdslb.com/bfs/archive/c76dc118dd8bac3c0b5f1837972f55e12b01b245.jpg@160w_100h.webp" alt="">
+                                    <a class="rec-video" href="#">
+                                        <div class="video-thumb">
+                                            <img src="" alt="">
                                         </div>
-                                        <p class="video-title">视频标题</p>
-                                        <div class="play-button">
-                                            <i class="play-icon">&#8634;</i>
-                                        </div>
-                                        <div class="video-mask"></div>
-                                    </div>
+                                        <p class="video-title"></p>
+                                    </a>
                                 </div>
                             </div>
                             <div class="right-container">
-                                <div class="replay-button">
-                                    <i class="replay-icon">&#8634;</i>
+                                <div class="video-replay-button">
+                                    <span class="replay-icon">&#8634;</span>
+                                    <span class="title">重播</span>
                                 </div>
                             </div>
-                            <div class="rec-video-wrap-mask"></div>
                         </div>`
-            $element.append(html);
-            $('.rec-video-wrapper').css('width', window.innerWidth + 'px');
-            
-        }
-        function createDocumentFragment(){
-            var fragment = new DocumentFragment();
-            var replayButton = document.createElement('div');
-            var replayIcon = document.createElement('i');
-            //设置class和属性
-            $(videoMask).addClass('video-mask');
-            $(replayButton).addClass('video-replay-button');
-            $(replayIcon).addClass('iconfont');
-            $(replayIcon).html('&#8634;');
-            $(videoMask).css('width', window.innerWidth + 'px');
-            //添加节点
-            replayButton.appendChild(replayIcon);
-            videoMask.appendChild(replayButton);
-            fragment.appendChild(videoMask);
-            $element[0].appendChild(fragment);
+            $element.append(html); 
         }
 
-        function eventListener(){
+        function createDocumentFragment(){
+            var html = `<div class="video-mask">
+                            <div class="video-replay-button">
+                                <span class="iconfont">&#8634;</span>
+                            </div>
+                        </div>`
+            $element.append(html);
+        }
+
+        function replayEvent(){
             $('.video-replay-button').on('click', function(){
-                $(videoMask).hide()
+                $('.rec-video-wrapper').hide()
+                $('.video-mask').hide()
                 //  如果有片头并且非IOS上的QQ浏览器 则播放片头
                 if (vSrc && ! (platform.isIos() && platform.isQQ()) ) {
                     video.src = vSrc;
@@ -179,12 +159,47 @@ define(function (require) {
                     video.src = targetSrc;
                     curIndex = 2;
                 }
+                removeNode('.rec-video-wrapper')
+                removeNode('.video-mask')
                 video.play();
             })
         }
 
-        function getData(){
+        function getRecVideoData(){
+            var recVideoData = JSON.parse($element.attr('rec-video'));
 
+            for (var i = 0; i < recVideoData.length; i++) {
+                var title = recVideoData[i].recTitle;
+                var thumb = recVideoData[i].recThumb;
+                var url  = recVideoData[i].recUrl;
+                var recVideo = $('.rec-video');
+                recVideo.eq(i).find('img').attr('src',thumb);
+                recVideo.eq(i).find('.video-title').text(title);
+                recVideo.eq(i).attr('href',url);
+            }
+        }
+
+        function bindClickNewVideo(){
+            $('.rec-video').on('click',function(e){
+                event.preventDefault()
+                var newUrl = $(e.currentTarget).attr('href');
+                targetSrc = newUrl
+                $element.attr('target-src',targetSrc)
+                //  如果有片头并且非IOS上的QQ浏览器 则播放片头
+                if (vSrc && ! (platform.isIos() && platform.isQQ()) ) {
+                    video.src = vSrc;
+                    curIndex = 1;
+                } else {  //  否则直接播放内容
+                    video.src = targetSrc;
+                    curIndex = 2;
+                }
+                $('.rec-video-wrapper').hide()
+                removeNode('.rec-video-wrapper')
+                video.play();
+            })
+        }
+        function removeNode(node){
+            $(node).remove()
         }
     };
 

@@ -1,18 +1,12 @@
+
 mip-video-repeat {
 	width: 100%;
 	position: relative;
-	.iconfont{
-		font-family:"iconfont" !important;
-		font-size:16px;font-style:normal;
-		-webkit-font-smoothing: antialiased;
-		-webkit-text-stroke-width: 0.2px;
-		-moz-osx-font-smoothing: grayscale;
-	}
 	video {
 	display: block;
 	background-color: rgb(0, 0, 0);
 	}
-	>.video-mask {
+	.video-mask {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -23,16 +17,17 @@ mip-video-repeat {
 		justify-content: center;
 		align-items: center;
 		.video-replay-button {
-			width: 50px;
-			height: 50px;
+			width: 100/98rem;
+			height: 100/98rem;
 			background: rgba(0,0,0,0.4);
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			.iconfont {
-				position: relative;
-				line-height: 50px;
-				width: 50px; 
-				height: 50px;
-				left: 15px;
-				font-size: 26px;
+				line-height: 100/98rem;
+				width: 100/98rem;
+				height: 100/98rem;
+				font-size: 48/98rem;
 				color: rgba(255,255,255,0.7);
 				text-align: center;
 			}
@@ -44,43 +39,82 @@ mip-video-repeat {
 		left: 0;
 		bottom: 0;
 		right: 0;
-		background: rgba(0, 0, 0, .3);
+		background: rgba(0, 0, 0, .9);
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		.left-container {
-			width: 270px;
-			height: 200px;
+			width: 680/98rem;
+			margin-left: 30/98rem;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			align-content: center;
+			z-index: 1;
 			.rec-video-container {
-				width: 170px;
-				height: 100px;
+				width: 680/98rem;
+				height: 230/98rem;
 				.rec-video {
 					position: relative;
-					.video-poster {
-						width: 170px;
+					width: 680/98rem;
+					height: 200/98rem;
+					overflow: hidden;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					.video-thumb {
+						width: 340/98rem;
+						height: 200/98rem;
 						overflow: hidden;
+						img {
+							height: 200/98rem;
+						}
 					}
 					.video-title {
-						position: absolute;
-						bottom: 0;
-						left: 0;
-						line-height: 20px;
-						font-size: 16px;
-						height: 20px;
+						display: inline-block;
+						width: 340/98rem;
+						text-align: left;
+						line-height: 1.4;
+						font-size: 32/98rem;
+						height: 200/98rem;
+						color: rgba(255, 255, 255, .9);
+						margin-left: 10/98rem;
+						letter-spacing: 2px;
 					}
 				}
 			}
 		}
 		.right-container {
-			flex-grow: 1;
-			height: 200px;
+			width: 300/98rem;
+			height: 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			.video-replay-button {
+				width: 160/98rem;
+				height: 200/98rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				border: 2px solid rgba(135,187,33,0.7);
+				border-radius: 50px;
+				.title {
+					color: rgba(135,187,33,0.8);
+					font-size: 32/98rem;
+					margin-top: 10/98rem;
+					color: rgba(255,255,255,.8);
+					letter-spacing: 2px;
+				}
+				.replay-icon {
+					text-align: center;
+					width: 50/98rem; 
+					height: 50/98rem;					
+					font-size: 48/98rem;
+					margin-top: -20/98rem;
+					color: rgba(255,255,255,.8);
+				}
+			}
 		}
 	}
 

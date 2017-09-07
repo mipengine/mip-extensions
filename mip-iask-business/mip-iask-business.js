@@ -2,7 +2,7 @@
 * @file 脚本支持
 * @author hejieye
 * @time  2017-08-24
-* @version 2.0.2
+* @version 2.0.3
 */
 define(function (require) {
     var $ = require('zepto');
@@ -112,6 +112,9 @@ define(function (require) {
         return htmls;
     };
     var putQiyeInfo = function (companyName, drName, website, picLocal, statsBaidu) {
+        if (companyName === undefined) {
+            return '';
+        }
         if (companyName.length > 9) {
             companyName = companyName.substring(0, 9);
         }
@@ -224,9 +227,8 @@ define(function (require) {
         var json = data.adList;
         for (var key in json) {
             if (json[key].type === '4') {
-                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B_trackEvent,'
-                + '%20%22M_commercial_youlai%22,%20%22M_commercial_youlai_skip%22,'
-                + '%20%22M_commercial_youlai_skip_top_xuanfu%22%5D%22%7D"';
+                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B';
+                statsBaidu += '_trackEvent\',%20\'M_AD_1000\',%20\'skip\',%20\'M_AD_1000_top\'%5D%22%7D"';
                 $('.mip_as_bottm_div').empty();
                 $('.mip_as_bottm_div').append(putMXfAd(json[key].picLink, json[key].picUrl, statsBaidu));
             }
@@ -234,9 +236,8 @@ define(function (require) {
                 var obj = json[key];
                 var companyName = obj.companyName || '';
                 var drName   = obj.drName  || '';
-                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,'
-                + '%22data%22:%22%5B_trackEvent,%20%22M_commercial_youlai%22,%20%22M_commercial_youlai_skip%22'
-                + ',%20%22M_commercial_youlai_skip_qiye_info%22%5D%22%7D"';
+                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B';
+                statsBaidu += '_trackEvent\',%20\'M_AD_1000\',%20\'skip\',%20\'M_AD_1000_qy\'%5D%22%7D"';
                 var html1 = putQiyeInfo(drName, companyName, data.website, obj.picUrl, statsBaidu);
                 if ($('.qs_bar').length > 0) {
                     $('.qs_bar').eq(0).empty();
@@ -257,9 +258,8 @@ define(function (require) {
                 }
                 var obj = json[key];
                 var picList = obj.picList;
-                var statsBaidu = '%7B%22type%22:%22click%22,%22data%22:%22%5B_trackEvent,'
-                + '%20%22M_commercial_youlai%22,%20%22M_commercial_youlai_skip%22,'
-                + '%20%22M_commercial_youlai_skip_feed%22%5D%22%7D';
+                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B';
+                statsBaidu += '_trackEvent\',%20\'M_AD_1000\',%20\'skip\',%20\'M_AD_1000_feed\'%5D%22%7D"';
                 var i = 0;
                 var obj2PicUrl = '<mip-img class="mip-img" src="' + obj2.picUrl + '"></mip-img>';
                 $('.youlai_feed_div .youlai_feed_title').text(obj.title);
@@ -276,9 +276,8 @@ define(function (require) {
             else if (json[key].type === '6') {
                 var obj = json[key];
                 var picList = obj.adDetailList;
-                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,'
-                + '%22data%22:%22%5B_trackEvent,%20%22M_commercial_youlai%22,%20%22M_commercial_youlai_skip%22,'
-                + '%20%22M_commercial_youlai_skip_quantu%22%5D%22%7D"';
+                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B';
+                statsBaidu += '_trackEvent\',%20\'M_AD_1000\',%20\'skip\',%20\'M_AD_1000_mpic\'%5D%22%7D"';
                 for (var pic in picList) {
                     var picLink = obj.picLink;
                     var picUrl = picList[pic].picUrl;
@@ -291,19 +290,23 @@ define(function (require) {
         advLogInfoClick();
     };
     var tianZhu = function (data) {
+        var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B';
+        statsBaidu += '_trackEvent\',%20\'M_AD_300\',%20\'skip\',%20\'M_AD_300_ad\'%5D%22%7D"';
         $('.mip_as_bottm_div').empty();
-        $('.mip_as_bottm_div').append(putMXfAd(data.pics[3].picLink, data.pics[3].picLocal, ''));
+        $('.mip_as_bottm_div').append(putMXfAd(data.pics[3].picLink, data.pics[3].picLocal, statsBaidu));
         advLogInfoClick();
     };
     // 商业广告标准版企业信息
     var commercialSqc  = function (divData, commercialStandardHover) {
+        var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C';
+        baiduObj += '_trackEvent%5C\',%20%5C\'M_AD_600_2%5C\',%20%5C\'skip%5C\',%20%5C\'M_AD_600_2_qy%5C\'%5D%22%7D';
         var imgsrc = divData.attr('imgsrc');
         var tp = divData.attr('tp');
         var brandname = divData.attr('brandname');
         var link = divData.attr('link');
         var uid = divData.attr('uid');
         var introduce = divData.attr('introduce');
-        var html1 = putQiyeInfo(brandname, introduce, link, imgsrc, '');
+        var html1 = putQiyeInfo(brandname, introduce, link, imgsrc, baiduObj);
         if ($('.qs_bar').length > 0) {
             $('.qs_bar').eq(0).empty();
             $('.qs_bar').eq(0).append(html1);
@@ -316,7 +319,9 @@ define(function (require) {
         var tLink = commercialStandardHover.attr('link');
         var tUid = commercialStandardHover.attr('uid');
         $('.mip_as_bottm_div').empty();
-        $('.mip_as_bottm_div').append(putMXfAd(tLink, tImgSrc, ''));
+        var baiduTop = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C';
+        baiduTop += '_trackEvent%5C\',%20%5C\'M_AD_600_2%5C\',%20%5C\'skip%5C\',%20%5C\'M_AD_600_2_top%5C\'%5D%22%7D';
+        $('.mip_as_bottm_div').append(putMXfAd(tLink, tImgSrc, baiduTop));
         advLogInfoClick();
     };
     var loadAd = function (sources, openId, div) {
@@ -697,7 +702,10 @@ define(function (require) {
         try {
             $.getJSON(url,
             function (data) {
-                var htmls = putMXfAd(data.m[0].link, data.m[0].pic, '');
+                var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C';
+                baiduObj += '_trackEvent%5C\',%20%5C\'M_AD_100%5C\',%20%5C\'skip%5C';
+                baiduObj += ',%20%5C\'M_AD_100_ad%5C\'%5D%22%7D';
+                var htmls = putMXfAd(data.m[0].link, data.m[0].pic, baiduObj);
                 $(div).empty();
                 $(div).append(htmls);
                 advLogInfoClick();
@@ -741,9 +749,10 @@ define(function (require) {
         advLogInfoClick();
     };
     var showEffectAdv = function (json, tp) {
-        var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:';
-        baiduObj += '%22%5B\'_trackEvent\',%20\'M_effect_adv\',%20\'M_effect_adv_skip\',%20\'M_effect_adv\'%5D%22%7D';
         if (json.adType === '3') {
+            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C';
+            baiduObj += '_trackEvent%5C\',%20%5C\'M_AD_700_' + tp + '%5C\',%20%5C';
+            baiduObj += 'skip%5C\',%20%5C\'M_AD_700_' + tp + '_qiye%5C\'%5D%22%7D';
             removeBaiduAd();
             var html1 = putQiyeInfo(json.brandName, json.shortIntroduce, json.materialLink, json.materialImg, baiduObj);
             if ($('.qs_bar').length > 0) {
@@ -759,23 +768,54 @@ define(function (require) {
         if (json.adType === '2') {
             return;
         }
+        // 旗舰版feed
+        if (json.adType === '5') {
+            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C';
+            baiduObj += '_trackEvent%5C\',%20%5C\'M_AD_700_1%5C\',%20%5C\'skip%5C';
+            baiduObj += ',%20%5C\'M_AD_700_1_feed%5C\'%5D%22%7D';
+            var materialImg = json.materialImg;
+            var picList = materialImg.split(',');
+            var i = 0;
+            var obj2PicUrl = '<mip-img class="mip-img" src="http://tp2.sinaimg.cn/1169181841/50/0/1"></mip-img>';
+            $('.youlai_feed_div .youlai_feed_title').text(json.shortIntroduce);
+            $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
+            $('.youlai_feed_div .youlai_feed_use_name').html(json.brandName);
+            $('.youlai_feed_div .youlai_feed_txt').text(json.materialIntroduce);
+            $('.youlai_feed_div a').attr('src', json.materialLink);
+            $('.youlai_feed_div a').attr('data-stats-baidu-obj', baiduObj);
+            $('.youlai_feed_div .youlai_feed').each(function () {
+                $(this).append('<mip-img class="mip-img" src="' + picList[i++] + '"></mip-img>');
+            });
+            $('.youlai_feed_div').show();
+            return;
+        }
+        // 旗舰版-顶部悬浮
         if (json.materialType === '5' && tp === 1) {
             removeBaiduAd();
+            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C';
+            baiduObj += '_trackEvent%5C\',%20%5C\'M_AD_700_1%5C\',%20%5C\'skip%5C';
+            baiduObj += ',%20%5C\'M_AD_700_1_top%5C\'%5D%22%7D';
             var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj);
             $('.mip_as_bottm_div').empty();
             $('.mip_as_bottm_div').append(htmls);
             return;
         }
+        // 标准版顶部悬浮
         if (json.materialType === '5' && tp === 2) {
-            removeBaiduAd();
-            var html = '<div href=' + json.materialLink + ' class=\'href_log\'><mip-img ';
-            html += 'src=' + json.materialImg + '></mip-img></div>';
-            $('.effect_avertisement_div').empty();
-            $('.effect_avertisement_div').append(html);
+            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C';
+            baiduObj += '_trackEvent%5C\',%20%5C\'M_AD_700_2%5C\',%20%5C\'skip%5C';
+            baiduObj += ',%20%5C\'M_AD_700_2_top%5C\'%5D%22%7D';
+            var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj);
+            $('.mip_as_bottm_div').empty();
+            $('.mip_as_bottm_div').append(htmls);
             return;
         }
+        // 专业版-顶部悬浮
         if (json.materialType === '5' && tp === 3) {
             removeBaiduAd();
+            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C';
+            baiduObj += '_trackEvent%5C\',%20%5C\'M_AD_700_3%5C\',%20%5C\'skip%5C';
+            baiduObj += ',%20%5C\'M_AD_700_3_top%5C\'%5D%22%7D';
             var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj);
             $('.mip_as_bottm_div').empty();
             $('.mip_as_bottm_div').append(htmls);

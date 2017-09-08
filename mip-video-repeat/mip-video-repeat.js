@@ -38,7 +38,7 @@ define(function (require) {
 
         $element[0].appendChild(video);
         
-        showReplayPageWithRecommend()
+        // showReplayPageWithRecommend()
         // showReplayPage()
         //  当前视频播放完毕
         video.onended = function () {

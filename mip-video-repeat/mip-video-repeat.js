@@ -4,6 +4,40 @@
  */
 
 define(function (require) {
+    //先设置动态rem适配
+    (function (win, doc) {
+        var docEl = doc.documentElement;
+       
+        function setRemUnit () {
+          var docWidth = docEl.clientWidth;
+          var rem = docWidth / 10;
+          docEl.style.fontSize = rem + 'px';
+        }
+       
+        win.addEventListener('resize', function () {
+          setRemUnit();
+        }, false);
+        win.addEventListener('pageshow', function (e) {
+          if (e.persisted) {
+            setRemUnit();
+          }
+        }, false);
+       
+        setRemUnit();
+       
+        if (win.devicePixelRatio && win.devicePixelRatio >= 2) {
+          var testEl = doc.createElement('div');
+          var fakeBody = doc.createElement('body');
+          testEl.style.border = '0.5px solid transparent';
+          fakeBody.appendChild(testEl);
+          docEl.appendChild(fakeBody);
+          if (testEl.offsetHeight === 1) {
+            docEl.classList.add('hairlines');
+          }
+          docEl.removeChild(fakeBody);
+        }
+    }) (window, document);
+
     var $ = require('jquery');
     var util = require('util');
     var platform = util.platform;
@@ -38,8 +72,6 @@ define(function (require) {
 
         $element[0].appendChild(video);
         
-        // showReplayPageWithRecommend()
-        // showReplayPage()
         //  当前视频播放完毕
         video.onended = function () {
             curIndex += 1;
@@ -151,11 +183,11 @@ define(function (require) {
             $('.video-replay-button').on('click', function(){
                 $('.rec-video-wrapper').hide()
                 $('.video-mask').hide()
-                //  如果有片头并且非IOS上的QQ浏览器 则播放片头
+
                 if (vSrc && ! (platform.isIos() && platform.isQQ()) ) {
                     video.src = vSrc;
                     curIndex = 1;
-                } else {  //  否则直接播放内容
+                } else {
                     video.src = targetSrc;
                     curIndex = 2;
                 }
@@ -185,11 +217,11 @@ define(function (require) {
                 var newUrl = $(e.currentTarget).attr('href');
                 targetSrc = newUrl
                 $element.attr('target-src',targetSrc)
-                //  如果有片头并且非IOS上的QQ浏览器 则播放片头
+
                 if (vSrc && ! (platform.isIos() && platform.isQQ()) ) {
                     video.src = vSrc;
                     curIndex = 1;
-                } else {  //  否则直接播放内容
+                } else {
                     video.src = targetSrc;
                     curIndex = 2;
                 }

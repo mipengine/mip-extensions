@@ -10,7 +10,7 @@ define(function (require) {
     /**
      * 构造元素，只会运行一次
      */
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.createdCallback = function () {
         // TODO
         var e = this.element;
         var appid = e.getAttribute('appid');

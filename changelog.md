@@ -1,4 +1,17 @@
 # 升级日志
+#### 2017.09.08
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-smart-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-smart-recommend)|[升级][平台]百度智荐的组件，修改异步地址
+[mip-iwanvi-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-iwanvi-list)|[新增][平台]主要扩展异步请求添加headers头部信息，主要包含cookie（完美结合开发接口无用户信息时，接口返回及接口传输）来控制访问用户唯一性。
+[mip-iwanvi-infinitescroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-iwanvi-infinitescroll)|[新增][平台]和mip-iwanvi-list组件为同一个功能服务。
+[mip-game-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-game-recommend)|[新增][平台]游戏下载组件：游戏下载列表。
+[mip-cr173-mg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-mg)|[新增][平台]新增个人统计逻辑
+
+
 #### 2017.09.07
 
 > 组件上线

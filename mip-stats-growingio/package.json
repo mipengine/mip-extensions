@@ -1,0 +1,14 @@
+{
+    "name": "mip-stats-growingio",
+    "version": "1.0.0",
+    "description": "mip growingio 统计插件",
+    "contributors": [
+        {
+            "name": "Uncle Zheng",
+            "email": "zhengyongbo0128@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -8,9 +8,9 @@ define(function (require) {
     var customElement = require('customElement').create();
     customElement.prototype.createdCallback = function () {
         var el = this.element;
-        var adtype = el.getAttribute('type');//协议类型
-        var gid = el.getAttribute('gid');//广告位id
-        var idomain = el.getAttribute('idomain');//广告域名
+        var adtype = el.getAttribute('type');
+        var gid = el.getAttribute('gid');
+        var idomain = el.getAttribute('idomain');
         var scriptTag1 = document.createElement('script');
         	scriptTag1.src = type+'://'+idomain+'/img/'+gid,
         	scriptTag1.setAttribute('async', 'true');

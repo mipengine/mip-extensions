@@ -1,4 +1,12 @@
 # 升级日志
+#### 2017.09.12
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-sindex ](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip-zpm-sindex 首页需求
+
 #### 2017.09.08
 
 > 组件上线

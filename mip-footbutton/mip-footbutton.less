@@ -1,0 +1,69 @@
+/**
+ * @file mip-footbutton样式文件
+ */
+mip-footbutton {
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  background: #fff;
+  font-size: 14px;
+  position: fixed !important;
+  left: 0;
+  bottom: 0;
+
+  .btn {
+    width: 32%;
+    display: inline-block;
+    color: #333;
+    position: relative;
+
+    &:nth-child(2) {
+      border-left: 1px solid #f5f5f5;
+      border-right: 1px solid #f5f5f5;
+    }
+    &.activeBtn {
+      .hot-list {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .hot-list {
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      margin-left: -50%;
+      bottom: 52px;
+      background: #fff;
+      -webkit-box-shadow: 0 0 10px #ddd;
+      box-shadow: 0 0 10px #ddd;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.3s;
+
+      li {
+        list-style: none;
+        position: relative;
+        height: 44px;
+        line-height: 44px;
+        text-align: center;
+        border-bottom: 1px solid #f1f1f1;
+
+        &:last-child::after {
+          content: "";
+          display: block;
+          width: 0;
+          height: 0;
+          position: absolute;
+          left: 50%;
+          top: 44px;
+          margin-left: -0.09375rem;
+          border-style: solid;
+          border-width: 6px 6px 0 6px;
+          border-color: #ffffff transparent transparent transparent;
+        }
+      }
+    }
+  }
+}

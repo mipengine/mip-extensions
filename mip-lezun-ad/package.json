@@ -1,0 +1,13 @@
+{
+    "name": "mip-lezun-ad",
+    "version": "1.0.0",
+
+    "author": {
+        "name": "nj",
+        "email": "125664674@qq.com"
+    },
+
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

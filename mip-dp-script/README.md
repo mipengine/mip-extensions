@@ -6,7 +6,7 @@ mip-dp-script 用来支持www.lz55.cn业务交互和广告显示
 |---|---|
 |类型|广告|
 |支持布局|N/S|
-|所需脚本|https://mipcache.bdstatic.com/static/v1/mip-dp-script/mip-dp-script.js|
+|所需脚本|https://c.mipcdn.com/static/v1/mip-dp-script/mip-dp-script.js|
 
 ## 示例
 

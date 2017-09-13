@@ -6,7 +6,7 @@
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-list/mip-list.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-list/mip-list.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
 
 ## 示例
 

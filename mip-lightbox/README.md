@@ -6,7 +6,7 @@
 ----|----
 类型|通用
 支持布局|N/A
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-lightbox/mip-lightbox.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-lightbox/mip-lightbox.js
 
 ## 示例
 

@@ -6,7 +6,7 @@ mip-xueyou-ad 用来支持淘宝，谷歌广告联盟
 ----|----
 类型|通用
 支持布局|container
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-xueyou-ad/mip-xueyou-ad.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-xueyou-ad/mip-xueyou-ad.js
 
 ## 示例
 

@@ -6,7 +6,7 @@ mip-xem-review 自用获取随机评论组件。
 ----|----
 类型|业务
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-xem-review/mip-xem-review.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-xem-review/mip-xem-review.js
 
 ## 示例
 

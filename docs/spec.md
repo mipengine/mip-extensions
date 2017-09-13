@@ -57,11 +57,16 @@ MIP 开发小组在审核扩展组件时，将首先检查组件结构是否符�
 
 目前线上的文件地址不会使用小版本，即组件上线后，线上在用的组件会立即更新
 
-格式 https://mipcache.bdstatic.com/static/v[mip主版本]/[组件名]/[组件名].js
+mip-extensions库组件格式：
+https://c.mipcdn.com/static/v[mip主版本]/[组件名]/[组件名].js
+
+mip-extensions-platform 库组件格式：
+https://c.mipcdn.com/extensions/platform/v[mip主版本]/[组件名]/[组件名].js
 
 示例
 ```
-https://mipcache.bdstatic.com/static/v1/mip-sample/mip-sample.js
+https://c.mipcdn.com/static/v1/mip-sample/mip-sample.js
+https://c.mipcdn.com/extensions/platform/v1/mip-sample/mip-sample.js
 ```
 
 #### 对于mip版本的说明  

@@ -1,4 +1,61 @@
 # 升级日志
+#### 2017.09.12
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-sindex ](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip-zpm-sindex 首页需求
+
+#### 2017.09.08
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-smart-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-smart-recommend)|[升级][平台]百度智荐的组件，修改异步地址
+[mip-iwanvi-list](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-iwanvi-list)|[新增][平台]主要扩展异步请求添加headers头部信息，主要包含cookie（完美结合开发接口无用户信息时，接口返回及接口传输）来控制访问用户唯一性。
+[mip-iwanvi-infinitescroll](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-iwanvi-infinitescroll)|[新增][平台]和mip-iwanvi-list组件为同一个功能服务。
+[mip-game-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-game-recommend)|[新增][平台]游戏下载组件：游戏下载列表。
+[mip-cr173-mg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-mg)|[新增][平台]新增个人统计逻辑
+
+
+#### 2017.09.07
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-eject](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-eject)|[升级][平台]新增了地区判断，增加了url过滤
+[mip-cook-voicerecipe](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cook-voicerecipe)|[新增][平台]实现了一个语音智能菜谱入口的功能。
+
+#### 2017.09.06
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pc6-down](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-down)|[升级][平台]PC6站点修改下载逻辑
+[mip-pc6-dif](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pc6-dif)|[升级][平台]PC6站点内容页软件和手游进行区分
+[mip-9ht-bdzs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-9ht-bdzs)|[新增][平台]迁入百度站搜索提交辅助控件
+
+
+#### 2017.09.1
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-footbutton](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-footbutton)|[新增][平台]mip-footbutton 组件
+
+#### 2017.08.31
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-iask-business](https://github.com/mipengine/mip-extensions/tree/master/mip-iask-business)|[升级]修改广告渲染逻辑
+[mip-360doc-script](https://github.com/mipengine/mip-extensions/tree/master/mip-360doc-script)|[升级]资源图片修改
 
 #### 2017.08.24
 

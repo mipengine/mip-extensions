@@ -1,4 +1,22 @@
 # 升级日志
+
+#### 2017.09.13
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cr173-eject](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-eject)|[升级][平台]新增了地区判断，增加了url过滤
+[mip-cnkang-data](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cnkang-data)|[升级][平台]康网直投广告组件
+
+#### 2017.09.12
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-sindex ](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip-zpm-sindex 首页需求
+
 #### 2017.09.08
 
 > 组件上线

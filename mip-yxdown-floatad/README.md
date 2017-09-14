@@ -6,7 +6,7 @@ mip-yxdown-floatad 第三方广告投放插件
 ----|----
 类型|广告
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-yxdown-floatad/mip-yxdown-floatad.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-yxdown-floatad/mip-yxdown-floatad.js
 
 ## 示例
 

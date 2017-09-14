@@ -7,7 +7,7 @@ mip-experiment 组件用于前端抽样实验。
 ----|----
 类型|通用
 支持布局|nodisplay
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-experiment/mip-experiment.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-experiment/mip-experiment.js
 
 ## 示例
 
@@ -284,7 +284,7 @@ body[mip-x-button-color=grey] #btn01 {
     <p>每次刷新重新分组</p>
     <button id="btn01">修改背景色</button>
 </mip-experiment>
-<script src="https://mipcache.bdstatic.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
+<script src="https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
 ```
 最后数据的产生格式为：  
 

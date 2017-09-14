@@ -5,7 +5,7 @@ mip-ad-video 实现了一个简单的广告+视频的播放器
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-ad-video/mip-ad-video.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-ad-video/mip-ad-video.js
 
 ## 示例
 

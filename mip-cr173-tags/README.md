@@ -5,7 +5,7 @@ mip-cr173-tags 用来支持下载详情页显示tags内容
 ----|----
 类型|业务
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-showtanceng/mip-cr173-tags.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-showtanceng/mip-cr173-tags.js
 
 ## 示例
 

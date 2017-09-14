@@ -6,7 +6,7 @@ mip-down-hideshow 用来支持文章详情页的显示隐藏切换
 ----|----
 类型|业务
 支持布局|N/S
-所需脚本|https://c.mipcdn.com/static/v1/mip-down-hideshow/mip-down-hideshow.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-down-hideshow/mip-down-hideshow.js
 
 ## 示例
 

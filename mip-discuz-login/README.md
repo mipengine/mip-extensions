@@ -5,7 +5,7 @@ mip-discuz-login discuz手机页面登陆功能组件
 标题|内容
 ----|----
 类型|通用
-所需脚本|https://c.mipcdn.com/static/v1/mip-discuz-login/mip-discuz-login.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-discuz-login/mip-discuz-login.js
 
 ## 示例
 

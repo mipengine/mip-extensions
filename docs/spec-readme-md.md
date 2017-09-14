@@ -42,7 +42,7 @@ mip-sample 实现了一个简单的卡牌元素，手指滑过卡牌时可向滑
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-sample/mip-sample.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-sample/mip-sample.js
 ```
 
 ### 类型

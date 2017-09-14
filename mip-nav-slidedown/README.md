@@ -6,7 +6,7 @@
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-nav-slidedown/mip-nav-slidedown.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-nav-slidedown/mip-nav-slidedown.js
 
 ## 示例
 ### 基本使用

@@ -6,7 +6,7 @@ mip-fh-ad-plus 用来支持整站页面的直投广告显示
 |---|---|
 |类型|广告|
 |支持布局|N/S|
-|所需脚本|https://c.mipcdn.com/static/v1/mip-fh-ad-plus/mip-fh-ad-plus.js|
+|所需脚本|https://mipcache.bdstatic.com/static/v1/mip-fh-ad-plus/mip-fh-ad-plus.js|
 
 ## 示例
 

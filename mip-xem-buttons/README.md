@@ -6,7 +6,7 @@ mip-xem-buttons 自用buttons组件。
 ----|----
 类型|业务
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-xem-buttons/mip-xem-buttons.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-xem-buttons/mip-xem-buttons.js
 
 ## 示例
 

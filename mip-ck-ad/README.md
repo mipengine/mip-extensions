@@ -6,7 +6,7 @@ mip-ck-ad 是康网的问答详情页面的直投广告组件
 ----|----
 类型|业务,广告
 支持布局|N/S
-所需脚本|https://c.mipcdn.com/static/v1/mip-ck-ad/mip-ck-ad.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ck-ad/mip-ck-ad.js
 
 ## 示例
 

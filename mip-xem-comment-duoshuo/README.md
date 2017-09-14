@@ -6,7 +6,7 @@ mip-xem-comment-duoshuo 多说评论框通用代码稳定版组件。
 ----|----
 类型|通用,评论框
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-xem-comment-duoshuo/mip-xem-comment-duoshuo.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-xem-comment-duoshuo/mip-xem-comment-duoshuo.js
 
 ## 示例
 

@@ -47,7 +47,7 @@
 
 ### mip-link 标签使用的方式(不推荐)
 
-1、引入脚本：https://c.mipcdn.com/static/v1/mip-link/mip-link.js
+1、引入脚本：https://mipcache.bdstatic.com/static/v1/mip-link/mip-link.js
 
 2、添加代码:
 ```html

@@ -5,7 +5,7 @@ mip-mz-appdownload app下载组件，在高速下载和直接下载之间切换!
 标题|内容
 ----|----
 类型|通用
-所需脚本|https://c.mipcdn.com/static/v1/mip-mz-appdownload/mip-mz-appdownload.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-mz-appdownload/mip-mz-appdownload.js
 
 ## 示例
 

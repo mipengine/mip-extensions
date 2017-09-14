@@ -6,7 +6,7 @@ mip-youth-tb360 青网移动适配页头部360广告
 ----|----
 类型|通用，定制
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-youth-tb360/mip-youth-tb360.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-youth-tb360/mip-youth-tb360.js
 
 ## 示例
 

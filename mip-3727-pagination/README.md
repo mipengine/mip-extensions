@@ -6,7 +6,7 @@
 ----|----
 类型|定制
 支持布局| N/S
-所需脚本|https://c.mipcdn.com/static/v1/mip-3727-pagination/mip-3727-pagination.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-3727-pagination/mip-3727-pagination.js
 
 ## 示例
 

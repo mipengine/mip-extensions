@@ -6,7 +6,7 @@ mip-ad 用于在MIP页中引入广告脚本，投放广告。
 ----|----
 类型|通用
 支持布局|多种 [文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)
-所需脚本|https://c.mipcdn.com/static/v1/mip-ad/mip-ad.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
 
 ## 广告类型选择
 

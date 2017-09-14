@@ -5,7 +5,7 @@ mip-mz-addonapp 推荐app下载!
 标题|内容
 ----|----
 类型|通用
-所需脚本|https://c.mipcdn.com/static/v1/mip-mz-addonapp/mip-mz-addonapp.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-mz-addonapp/mip-mz-addonapp.js
 
 ## 示例
 

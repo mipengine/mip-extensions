@@ -6,7 +6,7 @@ mip-ls-pagination 用来实现招聘信息列表的分页功能
 ----|----
 类型|业务
 支持布局|N/S
-所需脚本|https://c.mipcdn.com/static/v1/mip-ls-pagination/mip-ls-pagination.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ls-pagination/mip-ls-pagination.js
 
 ## 示例
 ```

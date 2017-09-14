@@ -7,7 +7,7 @@ mip-ad 的一种类型：百度联盟广告反屏蔽。
 ----|----
 类型|通用
 支持布局|fixed-height, fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-ad/mip-ad.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
 
 
 网盟扩展广告，接入要求反屏蔽域名支持https，接入说明：[说明文档](http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=4&classId=13484&knowledgeId=15198)  

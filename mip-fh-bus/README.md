@@ -6,7 +6,7 @@ mip-fh-bus 用于改造两性详情页面的脚本代码
 |---|---|
 |类型|脚本|
 |支持布局|N/S|
-|所需脚本|https://c.mipcdn.com/static/v1/mip-fh-bus/mip-fh-bus.js|
+|所需脚本|https://mipcache.bdstatic.com/static/v1/mip-fh-bus/mip-fh-bus.js|
 
 ## 示例
 

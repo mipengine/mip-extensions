@@ -5,7 +5,7 @@ mip-dad-appdownload app下载组件，在皮皮助手高速下载和直接下载
 标题|内容
 ----|----
 类型|通用
-所需脚本|https://c.mipcdn.com/static/v1/mip-dad-appdownload/mip-dad-appdownload.js
+所需脚本|http://mipcache.bdstatic.com/static/v1/mip-dad-appdownload/mip-dad-appdownload.js
 
 ## 示例
 

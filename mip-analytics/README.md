@@ -6,7 +6,7 @@
 ----|----
 类型|通用
 支持事件|click,touchend,[disp,scroll],timer
-所需脚本|https://c.mipcdn.com/static/v1/mip-analytics/mip-analytics.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-analytics/mip-analytics.js
 
 ## 示例
 

@@ -6,7 +6,7 @@ mip-iask-report 打开举报div
 ----|----
 类型|通用
 支持布局|N,S|
-所需脚本|https://c.mipcdn.com/static/v1/mip-iask-report/mip-iask-report.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-iask-report/mip-iask-report.js
 
 ## 示例
 

@@ -6,7 +6,7 @@ mip-39appgad 用来支持39.net相关页面的特殊客户广告显示
 ----|----
 类型|广告
 支持布局| N/S
-所需脚本|https://c.mipcdn.com/static/v1.2/mip-39appgad.js.js
+所需脚本|https://mipcache.bdstatic.com/static/v1.2/mip-39appgad.js.js
 
 ## 示例
 

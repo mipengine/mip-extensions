@@ -6,7 +6,7 @@ mip-news-iframe-interface 资讯下iframe双向通信接口
 ----|----
 类型|通用
 支持布局|N/A
-所需脚本|https://c.mipcdn.com/static/v1/mip-news-iframe-interface/mip-news-iframe-interface.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-news-iframe-interface/mip-news-iframe-interface.js
 
 ## 示例
 

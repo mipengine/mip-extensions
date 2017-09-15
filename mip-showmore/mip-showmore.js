@@ -202,6 +202,7 @@ define(function (require) {
     };
     // 高度阈值控制
     Showmore.prototype.toggle = function (event) {
+        var me = this;
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
         var opt = {};
@@ -230,7 +231,6 @@ define(function (require) {
             }
             else {
                 // 显示超出字数的内容
-                this.addClassWhenUnfold();
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 opt.type = 'unfold';
                 originDom.classList.remove('mip-showmore-nodisplay');
@@ -240,6 +240,7 @@ define(function (require) {
                 opt.cbFun = function (showmore) {
                     showmore._toggleClickBtn(clickBtn, 'showClose');
                     classList.add('mip-showmore-boxshow');
+                    me.addClassWhenUnfold();
                 }.bind(undefined, this);
             }
         }
@@ -256,13 +257,13 @@ define(function (require) {
             }
             else {
                 // 显示超出高度的内容
-                this.addClassWhenUnfold();
                 this.bottomShadow && this.showBox.classList.remove(this.bottomShadowClassName);
                 classList.add('mip-showmore-boxshow');
                 opt.type = 'unfold';
                 opt.cbFun = function (showmore, clickBtn) {
                     showmore._toggleClickBtn(clickBtn, 'showClose');
                     showmore.ele.style.height = 'auto';
+                    me.addClassWhenUnfold();
                 }.bind(undefined, this, clickBtn);
             }
         }

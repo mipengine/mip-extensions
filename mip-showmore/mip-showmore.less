@@ -27,10 +27,17 @@ mip-showmore {
     [showmorebox] {
         overflow: hidden;
     }
+    .mip-showmore-originText {
+        width: 100%;
+        transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0,0,0);
+        word-wrap: break-word;
+        word-break: break-all;
+    }
 }
 
 .mip-showmore-btn {
-    display: inline-block;
+    display: none;
     padding: 15px;
     border: 1px solid #ddd;
     background: #fafafa;
@@ -38,4 +45,8 @@ mip-showmore {
     &:active {
         background: #f0f0f0;
     }
+}
+
+.mip-showmore-nodisplay {
+    display: none;
 }

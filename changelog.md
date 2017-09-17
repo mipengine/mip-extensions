@@ -1,5 +1,17 @@
 # 升级日志
 
+#### 2017.09.14
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cook-voicerecipe](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cook-voicerecipe)|[升级][平台]语音智能菜谱入口
+[mip-diy-adsense](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-diy-adsense)|[升级][平台]完美支持adsense广告插件
+[mip-game-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-game-recommend)|[升级][平台]游戏下载组件：游戏下载列表插件
+[mip-cr173-mg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-mg)|[升级][平台]组件介绍
+
+
 #### 2017.09.13
 
 > 组件上线

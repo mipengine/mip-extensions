@@ -1,7 +1,7 @@
 /**
  * @file 百度统计插件
  *
- * @author menglingjun, Jenny_L
+ * @author menglingjun, Jenny_L, dongshihao
  * From: mip-stats-baidu
  */
 
@@ -13,8 +13,8 @@ define(function (require) {
 
     customElement.prototype.createdCallback = function () {
         var elem = this.element;
-        var token = elem.getAttribute('token');
-        var setConfig = elem.getAttribute('setconfig');
+        var config = this.getConfig();
+        var token = config.token;
 
         /**
          * 检测token是否存在
@@ -30,25 +30,70 @@ define(function (require) {
             if (viewer.isIframed) {
                 bdSearchCase();
             }
-
-            /**
-             * 检测setconfig是否存在
-             */
-            if (setConfig) {
-                var setCustom = buildArry(decodeURIComponent(setConfig));
-                _hmt.push(setCustom);
+            if (config.conf && config.conf.length) {
+                var conf = config.conf;
+                var cLen = conf.length;
+                for (var i = 0; i < cLen; i++) {
+                    _hmt.push(conf[i]);
+                }
             }
-
             var hm = document.createElement('script');
             hm.src = 'https://hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
             hm.onload = function () {
                 bindEle();
             };
+        } else {
+            console.warn('token is unavailable'); // eslint-disable-line
         }
 
     };
+    /**
+     * get config from script has type="application/json"
+     *
+     * @return {Obj} config  return stats config
+     */
+    customElement.prototype.getConfig = function () {
+        var config = {};
+        var setconfig = this.element.getAttribute('setconfig');
+        try {
+            var script = this.element.querySelector('script[type="application/json"]');
+            if (script) {
+                var textContent = JSON.parse(script.textContent);
+                config.token = textContent.token;
+                delete textContent.token;
+                if (JSON.stringify(textContent) !== '{}') {
+                    config.conf = this.objToArray(textContent);
+                }
+                return config;
+            }
+        }
+        catch (e) {
+            console.warn('json is illegal'); // eslint-disable-line
+            console.warn(e); // eslint-disable-line
+        }
+        return {
+            'token': this.element.getAttribute('token'),
+            'conf': setconfig ? new Array(buildArry(decodeURIComponent(setconfig))) : null
+        };
+    };
 
+     /**
+     * JSON object to Array
+     * @param {Obj} configObj   configObj from script has type="application/json"
+     * @return {Obj} outConfigArray  return stats array
+     */
+    customElement.prototype.objToArray = function (configObj) {
+        var outConfigArray = [];
+        if (!configObj) {
+            return;
+        }
+        for (var key in configObj) {
+            configObj[key].unshift(key);
+            outConfigArray.push(configObj[key]);
+        }
+        return outConfigArray;
+    };
 
     // 绑定事件追踪
     function bindEle() {

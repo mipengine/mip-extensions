@@ -26,6 +26,32 @@ mip-video-repeat 实现了带片头片尾和重播功能的视频组件
                     "recThumb":"https://www.idongde.com/upload/content/images/1504694419262569.jpg"
                    }
                ]'>
+    <div class="rec-video-wrapper">
+        <div class="left-container">
+            <div class="rec-video-container">
+                <a class="rec-video" href="">
+                    <div class="video-thumb"><mip-img layout="responsive" width="150" height="100" alt="推荐视频" src="https://www.idongde.com/upload/content/images/1504694419262569.jpg"></mip-img></div>
+                    <p class="video-title"></p>
+                </a>
+            </div>
+            <div class="rec-video-container">
+                <a class="rec-video" href="">
+                    <div class="video-thumb"><mip-img layout="responsive" width="150" height="100" alt="推荐视频" src="https://www.idongde.com/upload/content/images/1504694419262569.jpg"></mip-img></div>
+                    <p class="video-title"></p>
+                </a>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="video-replay-button">
+                <span class="replay-icon">&#8634;</span><span class="title">重播</span>
+            </div>
+        </div>
+    </div>
+    <div class="video-mask">
+        <div class="video-replay-button">
+            <span class="iconfont">&#8634;</span>
+        </div>
+    </div>
 </mip-video-repeat>
 ``` 
 
@@ -66,6 +92,8 @@ mip-video-repeat 实现了带片头片尾和重播功能的视频组件
 ## 注意事项  
 - 仅支持移动端，强行使用pc端打开可能会有布局混乱的风险
 - 在组件中基本实现了rem适配
-- 如果不添加rec-video属性，则只会显示重播按钮
+- mip-video-repeat标签如果不添加rec-video属性，则只会显示重播按钮
+- class="rec-video-wrapper"标签包含相关视频和重播
+- class="video-mask"标签只包含重播
 - 视频播放顺序为 片头 => 正片 => 片尾 => 显示相关功能界面
 - 若想使用基本功能的视频播放组件请使用 mip-video 组件

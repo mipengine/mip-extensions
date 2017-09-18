@@ -43,6 +43,25 @@
  </mip-form>
 ```
 
+### 页面数据刷新
+
+```html
+<mip-form fetch-url="http://172.24.143.87:8910/getData">
+     <input type="text" name="name" placeholder="姓名">
+       <div submit-success>
+         <template type="mip-mustache">
+           Success! Thanks for {{name}} trying the mip demo.
+         </template>
+       </div>
+       <div submit-error>
+         <template type="mip-mustache">
+           Error! Thanks for  {{name}}  trying the mip demo.
+         </template>
+       </div>
+     <input type="submit" value="提交">
+ </mip-form>
+```
+
 ## 属性
 
 ### method

@@ -23,8 +23,12 @@ define(function (require) {
             'title': element.getAttribute('title')
         };
         var vSrc = videoData.video_url;
-        var notHttps = (location.protocol === 'http:' && vSrc.indexOf('//') === 0)
-            || vSrc.indexOf('http://') === 0;
+        // 视频的 url 安当前页面的 protocol 不全 http 协议头
+        if (vSrc.indexOf('//') === 0) {
+            vSrc = location.protocol + vSrc;
+        }
+        videoData.video_url = vSrc;
+        var notHttps = vSrc.indexOf('http://') === 0;
         if (notHttps) {
             fetch(that._makeUrl(server, videoData), {
                 credentials: 'include'

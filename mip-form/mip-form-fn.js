@@ -40,14 +40,31 @@ define(function (require) {
                 }
             }
             fetch(url, fetchData).then(function (res) {
-                return res.json();
-            }).then(function (data) {
-                util.css(me.successEle, {display: 'block'});
-                me.renderTpl(me.successEle, data);
+                if (res.ok) {
+                    res.json().then(function (data) {
+                        util.css(me.successEle, {display: 'block'});
+                        me.renderTpl(me.successEle, data);
+                    }).catch(function (err) {
+                        me.fetchReject(err);
+                    });
+                }
+                else {
+                    me.fetchReject({});
+                }
             }).catch(function (err) {
-                util.css(me.errorEle, {display: 'block'});
-                me.renderTpl(me.errorEle, err);
+                me.fetchReject(err);
             });
+        },
+
+        /**
+         * fetch出错逻辑处理
+         *
+         * @param {Object} err 错误对象
+         * */
+        fetchReject: function (err) {
+            var me = this;
+            util.css(me.errorEle, {display: 'block'});
+            me.renderTpl(me.errorEle, err);
         },
 
         /**

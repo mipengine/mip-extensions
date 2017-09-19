@@ -27,7 +27,8 @@ define(function (require) {
         if (vSrc.indexOf('//') === 0) {
             vSrc = location.protocol + vSrc;
         }
-        videoData.video_url = vSrc;
+        var key = 'video_url';
+        videoData[key] = vSrc;
         var notHttps = vSrc.indexOf('http://') === 0;
         if (notHttps) {
             fetch(that._makeUrl(server, videoData), {

@@ -80,7 +80,7 @@ define(function () {
          * @param {HTMLElement} element 组件节点
          * @return {undefined} undefined
          * */
-        init: function (element) {
+        fetchInit: function (element) {
             if (!(element instanceof HTMLElement)) {
                 throw new TypeError('Element must be a HTMLElement');
             }

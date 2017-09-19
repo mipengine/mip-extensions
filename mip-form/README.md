@@ -95,10 +95,16 @@
 
 ### fetch-url
 
-说明: 有次属性则可以异步请求数据并根据`submit-success`，`submit-error`刷新局部信息，当且仅当返回数据状态为成功时才会显示`submit-success`块，其他状态或报错会显示`submit-error`块。
+说明: 有此属性则可以开启异步请求数据逻辑，组件会并根据数据返回状态来按`submit-success`，`submit-error`块中的模板刷新局部信息。
+需要注意的几个点：
+
+- 方法支持
+- 请求结果请返回json对象。
+- 数据状态只有在成功(2xx)的时候触发`submit-success`的逻辑，其他的均触发`submit-error`逻辑。
 
 必选项：否  
 
 ## 注意事项
 
 1. 表单提交方法如果为post，应使用https地址。避免 MIP-Cache https环境提交到http，导致浏览器报错。
+2. 使用fetch功能时，请求使用cors时不能配置为*.

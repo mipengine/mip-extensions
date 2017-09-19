@@ -46,7 +46,7 @@
 ### 页面数据刷新
 
 ```html
-<mip-form fetch-url="http://172.24.143.87:8910/getData">
+<mip-form fetch-url="http://yourdomain.com/path">
      <input type="text" name="name" placeholder="姓名">
        <div submit-success>
          <template type="mip-mustache">
@@ -55,7 +55,7 @@
        </div>
        <div submit-error>
          <template type="mip-mustache">
-           Error! Thanks for  {{name}}  trying the mip demo.
+           Error!.
          </template>
        </div>
      <input type="submit" value="提交">
@@ -91,7 +91,12 @@
 
 ### clear
 
-说明: 表单中input清空按钮开关 
+说明: 表单中input清空按钮开关
+
+### fetch-url
+
+说明: 有次属性则可以异步请求数据并根据`submit-success`，`submit-error`刷新局部信息，当且仅当返回数据状态为成功时才会显示`submit-success`块，其他状态或报错会显示`submit-error`块。
+
 必选项：否  
 
 ## 注意事项

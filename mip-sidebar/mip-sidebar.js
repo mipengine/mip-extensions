@@ -1,7 +1,7 @@
 /**
  * @file 侧边栏组件
  *
- * @author wangpei07@baidu.com
+ * @author wangpei07@baidu.com, liangjiaying
  * @version 1.0
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
  */
@@ -29,10 +29,12 @@ define(function (require) {
             return;
         }
 
-        // pageScroll_.call(self);
-
         util.css(self.element, {display: 'block'});
         openMask.call(self);
+
+
+        self.bodyOverflow = getComputedStyle(document.body).overflow;
+        document.body.style.overflow = "hidden";
 
         // 动画效果
         var openTimer = setTimeout(function () {
@@ -59,6 +61,8 @@ define(function (require) {
         self.element.setAttribute('aria-hidden', 'true');
 
         closeMask.call(self);
+
+        document.body.style.overflow = self.bodyOverflow;
 
         // 动画效果
         var closeTimer = setTimeout(function () {

@@ -12,8 +12,10 @@
 
 ### 基本用法
 
+[info]jsonp 异步请求的接口需要遵循规范 callback 为 'callback'。
+
 ```html
-<mip-list src="https://xxx">
+<mip-list src="https://xxx" preLoad>
     <template type="mip-mustache">
         <div>
             <li>name: {{name}}</li>
@@ -26,7 +28,7 @@
 ### 定制模板
 
 ```html
-<mip-list template="mip-template-id" src="https://xxx">
+<mip-list template="mip-template-id" src="https://xxx" preLoad>
     <template type="mip-mustache" id="mip-template-id">
         <div>
             <li>name: {{name}}</li>
@@ -67,8 +69,17 @@
 
 ### 点击加载更多
 
+[info]有has-more 属性时，mip-list标签必须要有id属性，同时需要有点击按钮的dom节点，并且此节点有on属性，属性值为：tap:你的mip-list的id.more
+
 ```html
-<mip-list template="mip-template-id" src="http://xxx?a=a&b=b" id="mip-list" has-more pnName="pageNum" pn=2>
+<mip-list 
+    template="mip-template-id"
+    src="http://xxx?a=a&b=b"
+    id="mip-list"
+    has-more
+    pnName="pageNum"
+    pn=2
+    preLoad>
     <template type="mip-mustache" id="mip-template-id">
         <div>
             <li>{{key}}: {{value}}</li>
@@ -134,10 +145,13 @@
 单位：无    
 默认值：1 
 
+### preLoad
+
+说明：异步加载数据，如果添加'preLoad'参数，则在初始化时加载第一页内容     
+必选项：否    
+
 ## 注意事项
 
-- 异步请求的接口需要规范 callback 为 'callback'
-- 有has-more 属性时，mip-list标签，必须要有id属性，同时需要有点击按钮的dom节点，并且此节点有on属性，属性值为：tap:你的mip-list的id.more
 - 接口返回的数据格式需要是如下格式：
 
 ```

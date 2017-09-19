@@ -1,6 +1,7 @@
 {
     "name": "mip-form",
-    "version": "1.0.3",
+    "version": "1.0.5",
+    "description":"表单提交。",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

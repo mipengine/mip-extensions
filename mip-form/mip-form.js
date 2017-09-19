@@ -42,13 +42,14 @@ define(function (require) {
         var $element = $(element);
         var url = element.getAttribute('url');
         var method = element.getAttribute('method');
-        var form = $([
-            '<form action=' + url + ' method=' + method + ' target="_blank">',
-            '</form>'
-        ].join(''));
-
-        form.append($element.html());
-        $element.html(form);
+        var target = element.getAttribute('target');
+        var form = document.createElement('form');
+        form.action = url;
+        form.method = method;
+        target = target ? target : '_blank';
+        form.target = viewer.isIframed && target !== '_blank' ? '_top' : target;
+        element.appendChild(form);
+        util.dom.insert(form, element.children);
 
         // 按钮提交
         $element.find('form').on('submit', function (event) {
@@ -140,7 +141,8 @@ define(function (require) {
                 }
             };
             window.parent.postMessage(message, '*');
-        } else {
+        }
+        else {
             // https请求 或 post请求 或 非iframe下不做处理
             self.getElementsByTagName('form')[0].submit();
         }

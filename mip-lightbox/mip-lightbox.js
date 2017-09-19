@@ -46,7 +46,28 @@ define(function (require) {
         });
 
     }
-
+     // 自动关闭弹层
+    function autoClose() {
+        var self = this;
+        var count = self.element.getAttribute('autoclosetime');
+        var seconds = self.element.querySelector('.mip-lightbox-seconds');
+        // 判断是否有 autoclose 和 seconds
+        if (Number(count) && seconds) {
+            // 取出用户自定义的 time 值
+            var time = Math.abs(Math.ceil(count));
+            // 倒计时
+            seconds.innerHTML = time;
+            this.interval = setInterval(function () {
+                time -= 1;
+                seconds.innerHTML = time;
+                if (time <= 0) {
+                    self.open = false;
+                    closeMask.call(self);
+                    util.css(self.element, {display: 'none'});
+                }
+            }, 1000);
+        }
+    }
     function changeParentNode() {
         var self = this;
         var nodes = [];
@@ -100,6 +121,7 @@ define(function (require) {
         self.open = true;
         util.css(self.element, {display: 'block'});
         openMask.call(self);
+        autoClose.call(self);
     }
 
 
@@ -175,6 +197,7 @@ define(function (require) {
     function closeMask() {
         if (this.maskElement) {
             util.css(this.maskElement, {display: 'none'});
+            clearInterval(this.interval);
         }
     }
 
@@ -184,5 +207,8 @@ define(function (require) {
      *
      */
     customElement.prototype.build = render;
+    customElement.prototype.detachedCallback = function () {
+        clearInterval(this.interval);
+    };
     return customElement;
 });

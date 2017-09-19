@@ -1,12 +1,13 @@
 {
     "name": "mip-global-script",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": {
-        "name": "Zhou",
-        "email": "zhouhappy01@gmail.com",
+        "name": "lj",
+        "email": "lj@952.com",
         "url": "https://www.pc6.com"
     },
     "engines": {
         "mip": ">=1.1.0"
-    }
+    },
+    "contributors":[{"name":"Zhou","email":"zhouhappy01@gmail.com"}]
 }

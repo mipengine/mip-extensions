@@ -1,6 +1,6 @@
 /**
  * @author: Qi
- * @date: 2016-12-19
+ * @date: 2017-8-23
  * @file: mip-wangxia-down.js
  */
 
@@ -116,19 +116,12 @@ define(function (require) {
 
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
+        var data = {};
         var thisObj = this.element;
         var theElem = qi(thisObj);
         var elemUrl = theElem.attr('Qi-url') || '';
-        var elemArr = theElem.attr('Qi-arr') || '';
-        if (elemUrl === '' && elemArr === '') {
+        if (elemUrl === '') {
             console.error('Mip-WangXia-Down', 'Config Err');
-            return false;
-        }
-        try {
-            var data = JSON.parse(elemArr);
-        }
-        catch (e) {
-            console.error('Mip-WangXia-Down', 'Array Err');
             return false;
         }
         if (qi('.topdown a').length < 1) {

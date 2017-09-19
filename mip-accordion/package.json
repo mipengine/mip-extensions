@@ -1,11 +1,17 @@
 {
     "name": "mip-accordion",
-    "version": "1.0.3",
-    "author": {
-        "name": "MIP authors",
-        "email": "mip-support@baidu.com",
-        "url": "https://www.mipengine.org"
-    },
+    "version": "1.0.5",
+    "description": "折叠隐藏节点(可记录用户上次行为)。",
+    "contributors": [
+        {
+            "name": "MIP authors",
+            "email": "mip-support@baidu.com",
+            "url": "https://www.mipengine.org"
+        },{
+            "name": "liangjiaying",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
     "engines": {
         "mip": ">=1.1.0"
     }

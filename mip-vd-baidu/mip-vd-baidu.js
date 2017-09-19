@@ -26,13 +26,18 @@ define(function (require) {
         var notHttps = (location.protocol === 'http:' && vSrc.indexOf('//') === 0)
             || vSrc.indexOf('http://') === 0;
         if (notHttps) {
-            fetch(that._makeUrl(server, videoData)).then(function (res) {
-                return res.text();
-            }).then(function (text) {
-                if (text.status && text.status === 1) {
+            fetch(that._makeUrl(server, videoData), {
+                credentials: 'include'
+            }).then(function (res) {
+                if (!res.ok) {
+                    that._useMipVideo(videoData);
+                }
+                return res.json();
+            }).then(function (data) {
+                if (data.status && data.status === 1) {
                     // 如果成功，替换成新的视频 url
                     var key = 'video_url';
-                    videoData[key] = text.url;
+                    videoData[key] = data.url;
                 }
                 that._useMipVideo(videoData);
             }).catch(function (e) {

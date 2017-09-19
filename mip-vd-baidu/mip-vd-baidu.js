@@ -19,22 +19,12 @@ define(function (require) {
         var videoData = {
             'src_url': util.parseCacheUrl(location.href),
             'video_url': element.getAttribute('src'),
-            'poster': element.getAttribute('poster'),
+            'poster': util.parseCacheUrl(element.getAttribute('poster')),
             'title': element.getAttribute('title')
         };
         var vSrc = videoData.video_url;
         var notHttps = (location.protocol === 'http:' && vSrc.indexOf('//') === 0)
             || vSrc.indexOf('http://') === 0;
-        // 处理 poster 被改写的情况，还原 url
-        if (videoData.poster && videoData.poster.indexOf('/i/') === 0) {
-            var prefixLen = 3;
-            var protocol = 'http://';
-            if (videoData.poster.indexOf('/i/s/') === 0) {
-                prefixLen = 5;
-                protocol = 'https://';
-            }
-            videoData.poster = protocol + videoData.poster.substring(prefixLen);
-        }
         if (notHttps) {
             fetch(that._makeUrl(server, videoData)).then(function (res) {
                 return res.text();
@@ -79,9 +69,9 @@ define(function (require) {
         }
         var vd = document.createElement('mip-video');
         // 继承 mip-vd-baidu 的 layout
-        vd.setAttribute('layout', this.element.getAttribute('layout'));
-        vd.setAttribute('width', this.element.getAttribute('width'));
-        vd.setAttribute('height', this.element.getAttribute('height'));
+        vd.setAttribute('layout', this.element.getAttribute('layout') || '');
+        vd.setAttribute('width', this.element.getAttribute('width') || '');
+        vd.setAttribute('height', this.element.getAttribute('height') || '');
         // 设置组件需要的参数
         vd.setAttribute('src', urlParams.video_url);
         vd.setAttribute('poster', urlParams.poster);

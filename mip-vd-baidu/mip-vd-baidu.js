@@ -36,7 +36,7 @@ define(function (require) {
             }).then(function (res) {
                 return res.json();
             }).then(function (data) {
-                if (data && data.status && data.status === 1) {
+                if (data && data.status === 0) {
                     // 如果成功，替换成新的视频 url
                     var key = 'video_url';
                     videoData[key] = data.url;

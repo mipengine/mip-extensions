@@ -83,11 +83,6 @@ define(function (require) {
             }
         }
 
-        var fetchUrl = element.getAttribute('fetch-url');
-        if (fetchUrl) {
-            form.fetchInit(element);
-        }
-
         form.initMessageEvents(element);
     };
     return customElement;

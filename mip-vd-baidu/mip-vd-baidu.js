@@ -29,12 +29,9 @@ define(function (require) {
             fetch(that._makeUrl(server, videoData), {
                 credentials: 'include'
             }).then(function (res) {
-                if (!res.ok) {
-                    that._useMipVideo(videoData);
-                }
                 return res.json();
             }).then(function (data) {
-                if (data.status && data.status === 1) {
+                if (data && data.status && data.status === 1) {
                     // 如果成功，替换成新的视频 url
                     var key = 'video_url';
                     videoData[key] = data.url;

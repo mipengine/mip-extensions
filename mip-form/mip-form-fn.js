@@ -2,7 +2,7 @@
  * @file mip-form-fn.js
  * @description mip-form函数
  * @author miper
- * */
+ */
 
 define(function (require) {
     var templates = require('templates');
@@ -22,7 +22,7 @@ define(function (require) {
          * 处理fetch请求逻辑
          *
          * @param {string} url 请求url
-         * */
+         */
         fetchUrl: function (url) {
             var me = this;
             util.css([me.successEle, me.errorEle], {display: 'none'});
@@ -60,7 +60,7 @@ define(function (require) {
          * fetch出错逻辑处理
          *
          * @param {Object} err 错误对象
-         * */
+         */
         fetchReject: function (err) {
             var me = this;
             util.css(me.errorEle, {display: 'block'});
@@ -72,7 +72,7 @@ define(function (require) {
          *
          * @param {HTMLElement} ele 模板父节点
          * @param {Object} data 模板渲染数据
-         * */
+         */
         renderTpl: function (ele, data) {
             var me = this;
             templates.render(ele, data).then(function (html) {
@@ -86,7 +86,8 @@ define(function (require) {
          *
          * @param {HTMLElement} ele 渲染后模板父节点
          * @return {HTMLElement} target 新建DOM节点
-         * */
+         */
+
         tempHTML: function (ele) {
             ele = ele || document;
             var target = ele.querySelector('[mip-mustache-rendered]');
@@ -151,7 +152,7 @@ define(function (require) {
          * 事件发送处理
          *
          * @description 给 input 绑定事件，向 SF 发送数据，为了解决 ios 的 UC 浏览器在iframe外层文档悬浮头部 fixed 位置混乱问题
-         * @param  {HTMLElement} element [mip 组件标签]
+         * @param  {HTMLElement} element mip 组件标签
          */
         initMessageEvents: function (element) {
             var me = this;
@@ -168,10 +169,10 @@ define(function (require) {
         },
 
         /**
-         * preProcess description
+         * 判断是否包含密码框与文件框
          *
-         * @param  {Object} element [mip 组件标签]
-         * @return {boolean}
+         * @param  {Object} element mip 组件标签
+         * @return {boolean} 是否符合mip-form使用条件
          */
         preProcess: function (element) {
             var flag = element.querySelector('input[type="password"],input[type="file"]');
@@ -186,8 +187,8 @@ define(function (require) {
         /**
          * 文案格式验证
          *
-         * @param  {string} type [验证类型]
-         * @param  {string} value [需要验证的文案]
+         * @param  {string} type 验证类型
+         * @param  {string} value 需要验证的文案
          * @return {boolean}
          */
         verification: function (type, value) {

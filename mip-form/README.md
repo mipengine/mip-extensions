@@ -47,18 +47,18 @@
 
 ```html
 <mip-form fetch-url="http://yourdomain.com/path">
-     <input type="text" name="name" placeholder="姓名">
-       <div submit-success>
-         <template type="mip-mustache">
-           Success! Thanks for {{name}} trying the mip demo.
-         </template>
-       </div>
-       <div submit-error>
-         <template type="mip-mustache">
-           Error!.
-         </template>
-       </div>
-     <input type="submit" value="提交">
+    <input type="text" name="name" placeholder="姓名">
+    <div submit-success>
+        <template type="mip-mustache">
+            Success! Thanks for {{name}} trying the mip demo.
+        </template>
+    </div>
+    <div submit-error>
+        <template type="mip-mustache">
+            Error!.
+        </template>
+    </div>
+    <input type="submit" value="提交">
  </mip-form>
 ```
 

@@ -39,6 +39,7 @@ define(function (require) {
                     });
                 }
             }
+            // 数据请求处理
             fetch(url, fetchData).then(function (res) {
                 if (res.ok) {
                     res.json().then(function (data) {
@@ -189,7 +190,7 @@ define(function (require) {
          *
          * @param  {string} type 验证类型
          * @param  {string} value 需要验证的文案
-         * @return {boolean}
+         * @return {boolean} 是否符合自定义校验
          */
         verification: function (type, value) {
             return (type === 'must') ? !(value === '') : REGS[type.toUpperCase()].test(value);

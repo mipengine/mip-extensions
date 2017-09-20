@@ -136,7 +136,7 @@ define(function (require) {
         // 如果高度大于阈值
         if (height > this.maxHeight) {
             util.css(this.showBox, {
-                'max-height': this.maxHeight + 'px',
+                'height': this.maxHeight + 'px',
                 'overflow': 'hidden'
             });
             // 改变按钮的样式值 - 改为隐藏状态

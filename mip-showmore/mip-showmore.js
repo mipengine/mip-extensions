@@ -132,12 +132,12 @@ define(function (require) {
         } else {
             height = util.rect.getElementOffset(this.showBox).height;
         }
-        
+
         // 如果高度大于阈值
         if (height > this.maxHeight) {
             util.css(this.showBox, {
-                height: this.maxHeight + 'px',
-                overflow: 'hidden'
+                'height': this.maxHeight + 'px',
+                'overflow': 'hidden'
             });
             // 改变按钮的样式值 - 改为隐藏状态
             this.changeBtnStyle('fold');
@@ -193,7 +193,7 @@ define(function (require) {
             showmore.toggle.apply(showmore);
         }, false);
 
-        
+
     };
     // 点击时按钮添加class
     Showmore.prototype.addClassWhenUnfold = function () {

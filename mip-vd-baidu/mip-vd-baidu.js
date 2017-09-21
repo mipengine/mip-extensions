@@ -62,7 +62,7 @@ define(function (require) {
         var firstKey = true;
         for (var key in urlParams) {
             if (urlParams.hasOwnProperty(key)) {
-                server += (!firstKey ? '&' : '') + key + '=' + encodeURIComponent(urlParams[key]);
+                server += (!firstKey ? '&' : '?') + key + '=' + encodeURIComponent(urlParams[key]);
                 firstKey = false;
             }
         }

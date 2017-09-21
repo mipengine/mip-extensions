@@ -170,7 +170,7 @@ define(function (require) {
     /**
      * to determine whether from the results page 
      *
-     * @param  {originalUrl} referrer from mipService      
+     * @param  {string} originalUrl  referrer from mipService      
      * @return {Boolean}     return whether from the results page
      */
     function isFromBdSearch (originalUrl) {

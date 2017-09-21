@@ -1,5 +1,5 @@
 /**
- * @file mip-bind 观察者模块
+ * @file mip-bind Observer Module
  * @author
  */
 
@@ -11,11 +11,8 @@ define(function (require) {
      * Observer Class
      *
      * @class
-     * @param {Object} vm 'this' varible of bind module
-     * @param {Object} data value data
      */
-    var Observer = function (vm, data) {
-        this.vm = vm;
+    var Observer = function () {
     };
 
     /**

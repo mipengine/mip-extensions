@@ -13,20 +13,18 @@ define(function (require) {
      * Compile Class
      *
      * @class
-     * @param {Object} vm varible of bind module
-     * @param {Object} data datasource
      */
-    var Compile = function (vm, data) {
-        this.vm = vm;
-        this.data = data;
+    var Compile = function () {
         this.el = document.body;
     };
 
     /**
      * Compile module entry function
      *
+     * @param {Object} data datasource
      */
-    Compile.prototype.start = function () {
+    Compile.prototype.start = function (data) {
+        this.data = data;
         this._fragment = this.cloneNode();
         this.compileElement(this._fragment);
         this.el.appendChild(this._fragment);
@@ -100,10 +98,8 @@ define(function (require) {
             if (!me.isDirective(attr.name)) {
                 return;
             }
-            me.compileDirective(node, attr.name.slice(2), attr.value, function (data) {
-                if (data) {
-                    node.removeAttribute(attr.name);
-                }
+            me.compileDirective(node, attr.name.slice(2), attr.value, function () {
+                node.removeAttribute(attr.name);
             });
         });
     };
@@ -122,10 +118,10 @@ define(function (require) {
         if (/^bind:/.test(directive)) {
             fnName = 'bind';
         }
-        var data = me.getVMVal(expression);
-        data && cb && cb(data);
+        var data = me.getMVal(expression);
         me[fnName] && me[fnName](node, directive, data);
         var watcher = new Watcher(me.data, directive, expression, function (dir, newVal, oldVal) {
+            cb && cb();
             me[fnName] && me[fnName](node, dir, newVal);
         });
         Deps.addWatcher(expression, watcher);
@@ -163,7 +159,7 @@ define(function (require) {
      * @param {string} exp value of directive
      * @return {string} data value
      */
-    Compile.prototype.getVMVal = function (exp) {
+    Compile.prototype.getMVal = function (exp) {
         var val = this.data;
         exp = exp.split('.');
         exp.forEach(function (k) {

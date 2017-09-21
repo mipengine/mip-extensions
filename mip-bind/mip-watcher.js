@@ -9,13 +9,13 @@ define(function (require) {
      * Watcher Class
      *
      * @class
-     * @param {Object} vm 'this' variable belong to mip bind module
+     * @param {Object} data value
      * @param {string} dir directive
      * @param {string} exp expression
      * @param {Function} cb callback
      */
-    var Watcher = function (vm, dir, exp, cb) {
-        this.vm = vm;
+    var Watcher = function (data, dir, exp, cb) {
+        this.data = data;
         this.dir = dir;
         this.exp = exp;
         if (typeof exp === 'function') {
@@ -38,15 +38,15 @@ define(function (require) {
         if (/[^\w.$]/.test(exp)) {
             return;
         }
-        return function (vm) {
+        return function (data) {
             var exps = exp.split('.');
             for (var i = 0, len = exps.length; i < len; i++) {
-                if (!vm) {
+                if (!data) {
                     return;
                 }
-                vm = vm[exps[i]];
+                data = data[exps[i]];
             }
-            return vm;
+            return data;
         };
     };
 
@@ -60,7 +60,7 @@ define(function (require) {
         var oldVal = this.value;
         if (newVal !== oldVal) {
             this.value = newVal;
-            this.cb.call(this.vm, this.dir, newVal, oldVal);
+            this.cb.call(this.data, this.dir, newVal, oldVal);
         }
     };
 
@@ -70,7 +70,7 @@ define(function (require) {
      * @return {string} data value
      */
     Watcher.prototype.get = function () {
-        return this.getter.call(this.vm, this.vm);
+        return this.getter.call(this.data, this.data);
     };
 
     return Watcher;

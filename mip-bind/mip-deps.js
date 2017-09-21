@@ -42,7 +42,7 @@ define(function (require) {
             else {
                 for (var key in this.subs) {
                     if (this.subs.hasOwnProperty(key)) {
-                        this.update(this.subs.hasOwnProperty(key));
+                        this.update(this.subs[key]);
                     }
                 }
             }

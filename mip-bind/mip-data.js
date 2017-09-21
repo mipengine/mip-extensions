@@ -49,14 +49,14 @@ define(function (require) {
     };
 
     /**
-     * Merge data to window vm
+     * Merge data to window m
      *
      * @param {Object} data data value
      */
     customElement.prototype.merge = function (data) {
-        Object.assign(window.vm, data);
+        Object.assign(window.m, data);
         var observer = new Observer();
-        observer.start(window.vm);
+        observer.start(window.m);
         Deps.notify();
     };
 

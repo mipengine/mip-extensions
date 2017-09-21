@@ -16,14 +16,13 @@ define(function (require) {
      */
     var Bind = function () {
         this.dataSource = {
-            vm: window.vm ? window.vm : {}
+            m: window.m ? window.m : {}
         };
-        window.vm = {};
+        window.m = {};
         this.win = window;
-        this._vm = this.win.vm;
         // require mip data extension runtime
-        this._compile = new Compile(window, this.dataSource.vm);
-        this._observer = new Observer(window, this.dataSource.vm);
+        this._compile = new Compile();
+        this._observer = new Observer();
     };
 
     /**
@@ -34,15 +33,15 @@ define(function (require) {
         // Data delegate
         this._proxy();
         // Data observer
-        this._observer.start(this.dataSource.vm);
-        // // Dom compile
-        this._compile.start();
+        this._observer.start(this.dataSource.m);
+        // Dom compile
+        this._compile.start(this.dataSource.m);
         // require mip data extension runtime
         require('./mip-data');
     };
 
     /**
-     * Traversal data and proxy it on window varible vm
+     * Traversal data and proxy it on window varible m
      *
      */
     Bind.prototype._proxy = function () {
@@ -53,7 +52,7 @@ define(function (require) {
     };
 
     /**
-     * Proxy data via varible vm
+     * Proxy data via varible m
      *
      * @param {string} key the key of the data
      */

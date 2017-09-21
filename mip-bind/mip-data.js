@@ -17,13 +17,13 @@ define(function (require) {
         var src = this.element.getAttribute('src');
         var ele = this.element.querySelector('script[type="application/json"]');
         if (src) {
-            this.getData(src);
+            this._getData(src);
         }
         else if (ele) {
             var data = ele.textContent.toString();
-            var result = this.parse(data);
+            var result = this._parse(data);
             if (result) {
-                this.merge(result);
+                this._merge(result);
             }
         }
     };
@@ -34,7 +34,7 @@ define(function (require) {
      * @param {Object} data data value
      * @return {Object} pased data
      */
-    customElement.prototype.parse = function (data) {
+    customElement.prototype._parse = function (data) {
         var result = {};
         if (!data) {
             return result;
@@ -53,7 +53,7 @@ define(function (require) {
      *
      * @param {Object} data data value
      */
-    customElement.prototype.merge = function (data) {
+    customElement.prototype._merge = function (data) {
         Object.assign(window.m, data);
         var observer = new Observer();
         observer.start(window.m);
@@ -65,7 +65,7 @@ define(function (require) {
      *
      * @param {string} url fetch url
      */
-    customElement.prototype.getData = function (url) {
+    customElement.prototype._getData = function (url) {
         if (!url) {
             return;
         }
@@ -73,7 +73,7 @@ define(function (require) {
         fetch(url).then(function (res) {
             if (res.ok) {
                 res.json().then(function (data) {
-                    me.merge(data);
+                    me._merge(data);
                 });
             }
             else {

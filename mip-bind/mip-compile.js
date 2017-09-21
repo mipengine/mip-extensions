@@ -15,7 +15,7 @@ define(function (require) {
      * @class
      */
     var Compile = function () {
-        this.el = document.body;
+        this._el = document.body;
     };
 
     /**
@@ -25,9 +25,9 @@ define(function (require) {
      */
     Compile.prototype.start = function (data) {
         this.data = data;
-        this._fragment = this.cloneNode();
-        this.compileElement(this._fragment);
-        this.el.appendChild(this._fragment);
+        this._fragment = this._cloneNode();
+        this._compileElement(this._fragment);
+        this._el.appendChild(this._fragment);
     };
 
     /**
@@ -35,10 +35,10 @@ define(function (require) {
      *
      * @return {HTMLElement} cloned nodes
      */
-    Compile.prototype.cloneNode = function () {
+    Compile.prototype._cloneNode = function () {
         var child;
         var fragment = document.createDocumentFragment();
-        while (child = this.el.firstChild) {
+        while (child = this._el.firstChild) {
             fragment.appendChild(child);
         }
         return fragment;
@@ -49,16 +49,16 @@ define(function (require) {
      *
      * @param {HTMLElement} el compiled html element
      */
-    Compile.prototype.compileElement = function (el) {
+    Compile.prototype._compileElement = function (el) {
         var me = this;
         var nodes = el.childNodes;
         [].slice.call(nodes).forEach(function (node) {
-            if (!me.isElementNode(node)) {
+            if (!me._isElementNode(node)) {
                 return;
             }
-            me.compileAttributes(node);
+            me._compileAttributes(node);
             if (node.childNodes && node.childNodes.length) {
-                me.compileElement(node);
+                me._compileElement(node);
             }
         });
     };
@@ -69,7 +69,7 @@ define(function (require) {
      * @param {string} attr element's attribute
      * @return {boolean} whether result is directive
      */
-    Compile.prototype.isDirective = function (attr) {
+    Compile.prototype._isDirective = function (attr) {
         return attr.indexOf('m-') === 0;
     };
 
@@ -79,7 +79,7 @@ define(function (require) {
      * @param {Object} node data form mip data extension
      * @return {boolean} whether result is node type
      */
-    Compile.prototype.isElementNode = function (node) {
+    Compile.prototype._isElementNode = function (node) {
         return node.nodeType === 1;
     };
 
@@ -88,17 +88,17 @@ define(function (require) {
      *
      * @param {HTMLElement} node compiled html element
      */
-    Compile.prototype.compileAttributes = function (node) {
+    Compile.prototype._compileAttributes = function (node) {
         var me = this;
         if (!node) {
             return;
         }
         var attrs = node.attributes;
         [].slice.call(attrs).forEach(function (attr) {
-            if (!me.isDirective(attr.name)) {
+            if (!me._isDirective(attr.name)) {
                 return;
             }
-            me.compileDirective(node, attr.name.slice(2), attr.value, function () {
+            me._compileDirective(node, attr.name.slice(2), attr.value, function () {
                 node.removeAttribute(attr.name);
             });
         });
@@ -112,13 +112,13 @@ define(function (require) {
      * @param {string} expression value of directive
      * @param {Function} cb callback in order to remove directive attributes
      */
-    Compile.prototype.compileDirective = function (node, directive, expression, cb) {
+    Compile.prototype._compileDirective = function (node, directive, expression, cb) {
         var me = this;
         var fnName = directive;
         if (/^bind:/.test(directive)) {
             fnName = 'bind';
         }
-        var data = me.getMVal(expression);
+        var data = me._getMVal(expression);
         me[fnName] && me[fnName](node, directive, data);
         var watcher = new Watcher(me.data, directive, expression, function (dir, newVal, oldVal) {
             cb && cb();
@@ -159,7 +159,7 @@ define(function (require) {
      * @param {string} exp value of directive
      * @return {string} data value
      */
-    Compile.prototype.getMVal = function (exp) {
+    Compile.prototype._getMVal = function (exp) {
         var val = this.data;
         exp = exp.split('.');
         exp.forEach(function (k) {

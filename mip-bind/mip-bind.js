@@ -15,11 +15,11 @@ define(function (require) {
      * @class
      */
     var Bind = function () {
-        this.dataSource = {
+        this._dataSource = {
             m: window.m ? window.m : {}
         };
         window.m = {};
-        this.win = window;
+        this._win = window;
         // require mip data extension runtime
         this._compile = new Compile();
         this._observer = new Observer();
@@ -33,9 +33,9 @@ define(function (require) {
         // Data delegate
         this._proxy();
         // Data observer
-        this._observer.start(this.dataSource.m);
+        this._observer.start(this._dataSource.m);
         // Dom compile
-        this._compile.start(this.dataSource.m);
+        this._compile.start(this._dataSource.m);
         // require mip data extension runtime
         require('./mip-data');
     };
@@ -46,7 +46,7 @@ define(function (require) {
      */
     Bind.prototype._proxy = function () {
         var me = this;
-        Object.keys(this.dataSource).forEach(function (key) {
+        Object.keys(this._dataSource).forEach(function (key) {
             me._proxyData(key);
         });
     };
@@ -58,14 +58,14 @@ define(function (require) {
      */
     Bind.prototype._proxyData = function (key) {
         var me = this;
-        Object.defineProperty(this.win, key, {
+        Object.defineProperty(this._win, key, {
             configurable: false,
             enumerable: true,
             get: function () {
-                return me.dataSource[key];
+                return me._dataSource[key];
             },
             set: function (newVal) {
-                me.dataSource[key] = newVal;
+                me._dataSource[key] = newVal;
             }
         });
     };

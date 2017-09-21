@@ -20,14 +20,14 @@ define(function (require) {
      *
      * @param {Object} data the data of publisher
      */
-    Observer.prototype.walk = function (data) {
+    Observer.prototype._walk = function (data) {
         if (!data || typeof data !== 'object') {
             return;
         }
 
         var me = this;
         Object.keys(data).forEach(function (key) {
-            me.define(data, key, data[key]);
+            me._define(data, key, data[key]);
         });
     };
 
@@ -38,7 +38,7 @@ define(function (require) {
      * @param {Object} key the key of single data
      * @param {Object} value the value of single data
      */
-    Observer.prototype.define = function (data, key, value) {
+    Observer.prototype._define = function (data, key, value) {
         var me = this;
         if (value && typeof value === 'object') {
             this.start(value);
@@ -54,7 +54,7 @@ define(function (require) {
                     return;
                 }
                 value = newVal;
-                me.walk(newVal);
+                me._walk(newVal);
                 Deps.notify(key);
             }
         });
@@ -66,7 +66,7 @@ define(function (require) {
      * @param {Object} data the value of data
      */
     Observer.prototype.start = function (data) {
-        this.walk(data);
+        this._walk(data);
     };
 
     return Observer;

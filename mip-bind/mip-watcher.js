@@ -15,17 +15,16 @@ define(function (require) {
      * @param {Function} cb callback
      */
     var Watcher = function (data, dir, exp, cb) {
-        this.data = data;
-        this.dir = dir;
-        this.exp = exp;
+        this._data = data;
+        this._dir = dir;
         if (typeof exp === 'function') {
-            this.getter = exp;
+            this._getter = exp;
         }
         else {
-            this.getter = this.parseGetter(exp);
+            this._getter = this._parseGetter(exp);
         }
-        this.cb = cb;
-        this.value = this.get();
+        this._cb = cb;
+        this._value = this._get();
     };
 
     /**
@@ -34,7 +33,7 @@ define(function (require) {
      * @param {string} exp expression
      * @return {string} data value
      */
-    Watcher.prototype.parseGetter = function (exp) {
+    Watcher.prototype._parseGetter = function (exp) {
         if (/[^\w.$]/.test(exp)) {
             return;
         }
@@ -56,11 +55,11 @@ define(function (require) {
      * @param {Object} value the value of single data
      */
     Watcher.prototype.update = function () {
-        var newVal = this.get();
-        var oldVal = this.value;
+        var newVal = this._get();
+        var oldVal = this._value;
         if (newVal !== oldVal) {
-            this.value = newVal;
-            this.cb.call(this.data, this.dir, newVal, oldVal);
+            this._value = newVal;
+            this._cb.call(this._data, this._dir, newVal, oldVal);
         }
     };
 
@@ -69,8 +68,8 @@ define(function (require) {
      *
      * @return {string} data value
      */
-    Watcher.prototype.get = function () {
-        return this.getter.call(this.data, this.data);
+    Watcher.prototype._get = function () {
+        return this._getter.call(this._data, this._data);
     };
 
     return Watcher;

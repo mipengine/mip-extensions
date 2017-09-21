@@ -152,9 +152,10 @@ define(function (require) {
         var bdUrl = document.referrer;
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
+        var originalUrl = decodeURIComponent(MIP.hash.get('originalUrl') || '');
         if ((hashWord || hashEqid) && bdUrl) {
             var hashObj = {};
-            if (hashEqid) {
+            if (hashEqid && isFromBdSearch(originalUrl)) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
             } 
@@ -166,7 +167,19 @@ define(function (require) {
         }
 
     }
-
+    /**
+     * to determine whether from the results page 
+     *
+     * @param  {originalUrl} referrer from mipService      
+     * @return {Boolean}     return whether from the results page
+     */
+    function isFromBdSearch (originalUrl) {
+        if (originalUrl && originalUrl.match(/.*\/s\?/)) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
     /**
      * 生成百度统计_setReferrerOverride对应的referrer
      *

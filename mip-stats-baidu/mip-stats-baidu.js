@@ -152,10 +152,10 @@ define(function (require) {
         var bdUrl = document.referrer;
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
-        var sourcePage = MIP.hash.get('sourcePage') || '';
+        var from = MIP.hash.get('from') || '';
         if ((hashWord || hashEqid) && bdUrl) {
             var hashObj = {};
-            if (hashEqid && isFromBdSearch(sourcePage)) {
+            if (hashEqid && isFrom(from, 'result')) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
             } 
@@ -168,13 +168,14 @@ define(function (require) {
 
     }
     /**
-     * to determine whether from the results page 
+     * to determine whether from the targetFrom
      *
-     * @param  {string} sourcePage  referrer from mipService      
+     * @param  {string} from  referrer from mipService
+     * @param  {string} targetFrom  the target that `from` need to match.
      * @return {boolean}     return whether from the results page
      */
-    function isFromBdSearch (sourcePage) {
-        if (sourcePage && sourcePage === 'result') {
+    function isFrom (from, targetFrom) {
+        if (from && targetFrom && from === targetFrom) {
             return true;
         } else {
             return false;

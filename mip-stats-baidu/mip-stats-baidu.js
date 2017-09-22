@@ -152,10 +152,10 @@ define(function (require) {
         var bdUrl = document.referrer;
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
-        var originalUrl = decodeURIComponent(MIP.hash.get('originalUrl') || '');
+        var sourcePage = MIP.hash.get('sourcePage') || '';
         if ((hashWord || hashEqid) && bdUrl) {
             var hashObj = {};
-            if (hashEqid && isFromBdSearch(originalUrl)) {
+            if (hashEqid && isFromBdSearch(sourcePage)) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
             } 
@@ -170,11 +170,11 @@ define(function (require) {
     /**
      * to determine whether from the results page 
      *
-     * @param  {string} originalUrl  referrer from mipService      
-     * @return {Boolean}     return whether from the results page
+     * @param  {string} sourcePage  referrer from mipService      
+     * @return {boolean}     return whether from the results page
      */
-    function isFromBdSearch (originalUrl) {
-        if (originalUrl && originalUrl.match(/.*\/s\?/)) {
+    function isFromBdSearch (sourcePage) {
+        if (sourcePage && sourcePage === 'result') {
             return true;
         } else {
             return false;

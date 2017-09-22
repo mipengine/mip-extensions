@@ -155,7 +155,7 @@ define(function (require) {
         var from = MIP.hash.get('from') || '';
         if ((hashWord || hashEqid) && bdUrl) {
             var hashObj = {};
-            if (hashEqid && isFrom(from, 'result')) {
+            if (hashEqid && isMatch(from, 'result')) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
             } 
@@ -174,7 +174,7 @@ define(function (require) {
      * @param  {string} targetFrom  the target that `from` need to match.
      * @return {boolean}     return whether from the results page
      */
-    function isFrom (from, targetFrom) {
+    function isMatch (from, targetFrom) {
         if (from && targetFrom && from === targetFrom) {
             return true;
         } else {

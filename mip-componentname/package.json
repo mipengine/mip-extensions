@@ -1,0 +1,13 @@
+{
+    "name": "mip-sample",
+    "version": "1.0.0",
+
+    "author": {
+        "name": "author",
+        "email": "author@email.com"
+    },
+
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

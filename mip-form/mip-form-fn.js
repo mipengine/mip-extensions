@@ -34,7 +34,7 @@ define(function (require) {
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');
                 if (formD) {
-                    fetchData = Object.assign({}, fetchData, {
+                    fetchData = util.fn.extend({}, fetchData, {
                         body: new FormData(formD)
                     });
                 }

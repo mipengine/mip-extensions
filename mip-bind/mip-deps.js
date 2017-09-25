@@ -6,57 +6,41 @@
 
 define(function (require) {
 
-    /**
-     * Deps Module
-     *
-     */
-    var Deps = {
+    var Deps = function () {
+
         /**
          * Watcher array
          *
          */
-        subs: {},
+        this.subs = [];
+    }
 
-        /**
-         * Add watcher to subs
-         *
-         * @param {string} pth data path
-         * @param {Object} watcher html element watcher
-         */
-        addWatcher: function (pth, watcher) {
-            if (!watcher) {
-                return;
-            }
-            this.subs[pth] = watcher;
-        },
+    /**
+     * Add watcher to subs
+     *
+     */
+    Deps.prototype.addWatcher = function () {
+        Deps.target && Deps.target.addWatcher(this);
+    },
 
-        /**
-         * Notify deps and update html element
-         *
-         * @param {string} pth data path
-         */
-        notify: function (pth) {
-            if (pth) {
-                this.update(this.subs[pth]);
-            }
-            else {
-                for (var key in this.subs) {
-                    if (this.subs.hasOwnProperty(key)) {
-                        this.update(this.subs[key]);
-                    }
-                }
-            }
-        },
+    /**
+     * Notify deps and update html element
+     *
+     */
+    Deps.prototype.notify = function () {
+        this.subs.forEach(function(sub) {
+            sub.update();
+        });
+    },
 
-        /**
-         * Trigger watcher update
-         *
-         * @param {Object} watcher html element watcher
-         */
-        update: function (watcher) {
-            watcher && watcher.update && watcher.update();
-        }
-    };
+    /**
+     * Trigger watcher update
+     *
+     * @param {Object} watcher html element watcher
+     */
+    Deps.prototype.update = function (watcher) {
+        watcher && watcher.update && watcher.update();
+    }
 
     return Deps;
 });

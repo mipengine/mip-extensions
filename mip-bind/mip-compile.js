@@ -8,6 +8,7 @@ define(function (require) {
 
     var Watcher = require('./mip-watcher');
     var Deps = require('./mip-deps');
+    var Observer = require('./mip-observer');
 
      /**
      * Compile Class
@@ -124,7 +125,6 @@ define(function (require) {
             cb && cb();
             me[fnName] && me[fnName](node, dir, newVal);
         });
-        Deps.addWatcher(expression, watcher);
     };
 
     /**
@@ -135,7 +135,7 @@ define(function (require) {
      * @param {string} newVal new value
      */
     Compile.prototype.text = function (node, directive, newVal) {
-        node.textContent = newVal;
+        node.textContent = newVal ? newVal : '';
     };
 
     /**
@@ -160,13 +160,45 @@ define(function (require) {
      * @return {string} data value
      */
     Compile.prototype._getMVal = function (exp) {
-        var val = this.data;
-        exp = exp.split('.');
-        exp.forEach(function (k) {
-            val = val[k];
-        });
-        return val;
+        if (!exp) {
+            return;
+        }
+        var fn = this.getWithResult(exp);
+        return fn.call(this.data);
     };
+
+    /**
+     * Simplified variable writing, such as m.name.firstName, we can write as name.firstName
+     *
+     * @param {string} exp value of directive
+     * @return {string} anonymous funtion which change runtime scope and return expression
+     */
+    Compile.prototype.getWithResult = function (exp) {
+        return new Function((""
+            + "with(this){"
+            +   "try {"
+            +       "return " + exp
+            +   "} catch (e) {"
+            +       "console.error(e)"
+            +   "}"
+            + "}"
+        ));
+    }
+
+    /**
+     * Parse array and get value
+     *
+     * @param {Object} value
+     */
+    Compile.prototype._dependArray = function (value) {
+        for (var e, i = 0; i < value.length; i++) {
+            e = value[i];
+            e && e.__ob__ && e.__ob__.dep.depend();
+            if (Array.isArray(e)) {
+                dependArray(e);
+            }
+        }
+    }
 
     return Compile;
 });

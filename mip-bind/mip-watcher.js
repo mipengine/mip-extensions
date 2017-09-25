@@ -5,6 +5,8 @@
 
 define(function (require) {
 
+    var Deps = require('./mip-deps');
+
     /**
      * Watcher Class
      *
@@ -21,32 +23,29 @@ define(function (require) {
             this._getter = exp;
         }
         else {
-            this._getter = this._parseGetter(exp);
+            var fn = this.getWithResult.bind(this, exp);
+            this._getter = fn.call(this._data);
         }
         this._cb = cb;
         this._value = this._get();
     };
 
     /**
-     * Parse get function
+     * Simplified variable writing, such as m.name.firstName, we can write as name.firstName
      *
-     * @param {string} exp expression
-     * @return {string} data value
+     * @param {string} exp value of directive
+     * @return {string} anonymous funtion which change runtime scope and return expression
      */
-    Watcher.prototype._parseGetter = function (exp) {
-        if (/[^\w.$]/.test(exp)) {
-            return;
-        }
-        return function (data) {
-            var exps = exp.split('.');
-            for (var i = 0, len = exps.length; i < len; i++) {
-                if (!data) {
-                    return;
-                }
-                data = data[exps[i]];
-            }
-            return data;
-        };
+    Watcher.prototype.getWithResult = function (exp) {
+        return new Function((""
+            + "with(this){"
+            +   "try {"
+            +       "debugger;return " + exp
+            +   "} catch (e) {"
+            +       "console.error(e)"
+            +   "}"
+            + "}"
+        ));
     };
 
     /**
@@ -69,8 +68,18 @@ define(function (require) {
      * @return {string} data value
      */
     Watcher.prototype._get = function () {
-        return this._getter.call(this._data, this._data);
+        var value;
+        Deps.target = this;
+        if (this._getter) {
+            value = this._getter.call(this._data, this._data);
+        }
+        Deps.target = null;
+        return value;
     };
+
+    Watcher.prototype.addWatcher = function (dep) {
+        dep.subs.push(this);
+    }
 
     return Watcher;
 });

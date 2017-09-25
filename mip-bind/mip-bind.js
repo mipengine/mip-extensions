@@ -15,14 +15,6 @@ define(function (require) {
      * @class
      */
     var Bind = function () {
-        this._dataSource = {
-            m: window.m ? window.m : {}
-        };
-        window.m = {};
-        this._win = window;
-        // require mip data extension runtime
-        this._compile = new Compile();
-        this._observer = new Observer();
     };
 
     /**
@@ -30,14 +22,15 @@ define(function (require) {
      *
      */
     Bind.prototype.start = function () {
-        // Data delegate
-        this._proxy();
-        // Data observer
-        this._observer.start(this._dataSource.m);
-        // Dom compile
-        this._compile.start(this._dataSource.m);
         // require mip data extension runtime
         require('./mip-data');
+        this._dataSource = {
+            m: window.m ? window.m : {}
+        }
+        // require mip data extension runtime
+        this._compile = new Compile();
+        // Dom compile
+        this._compile.start(this._dataSource.m);
     };
 
     /**

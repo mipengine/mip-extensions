@@ -43,19 +43,39 @@ define(function (require) {
         if (value && typeof value === 'object') {
             this.start(value);
         }
+        var property = Object.getOwnPropertyDescriptor(data, key)
+        if (property && property.configurable === false) {
+            return;
+        }
+        var getter = property && property.get;
+        var setter = property && property.set;
+
+        var deps = new Deps();
+
         Object.defineProperty(data, key, {
             enumerable: true,
             configurable: true,
-            get: function () {
+            get: function reactiveGetter () {
+                value = getter ? getter.call(data) : value;
+                if (Deps.target) {
+                    deps.addWatcher();
+                }
                 return value;
             },
-            set: function (newVal) {
+            set: function reactiveSetter (newVal) {
+                debugger;
+                value = getter ? getter.call(data) : value;
                 if (newVal === value) {
                     return;
                 }
                 value = newVal;
-                me._walk(newVal);
-                Deps.notify(key);
+                if (setter) {
+                    setter.call(data, newVal);
+                } else {
+                    val = newVal;
+                    me._walk(newVal);
+                    deps.notify();
+                }
             }
         });
     };

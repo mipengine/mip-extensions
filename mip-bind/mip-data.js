@@ -54,10 +54,10 @@ define(function (require) {
      * @param {Object} data data value
      */
     customElement.prototype._merge = function (data) {
+        window.m = window.m ? window.m : {};
         Object.assign(window.m, data);
         var observer = new Observer();
         observer.start(window.m);
-        Deps.notify();
     };
 
     /**

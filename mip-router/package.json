@@ -1,0 +1,14 @@
+{
+    "name": "mip-router",
+    "version": "1.0.0",
+    "description": "启动服务的组件",
+    "contributors": [
+        {
+            "name": "diydyq",
+            "email": "diydyq@126.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

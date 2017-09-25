@@ -7,8 +7,6 @@
 define(function (require) {
 
     var Watcher = require('./mip-watcher');
-    var Deps = require('./mip-deps');
-    var Observer = require('./mip-observer');
 
      /**
      * Compile Class
@@ -99,9 +97,7 @@ define(function (require) {
             if (!me._isDirective(attr.name)) {
                 return;
             }
-            me._compileDirective(node, attr.name.slice(2), attr.value, function () {
-                node.removeAttribute(attr.name);
-            });
+            me._compileDirective(node, attr, attr.value);
         });
     };
 
@@ -111,18 +107,17 @@ define(function (require) {
      * @param {HTMLElement} node html element
      * @param {string} directive mip directive, such as m-*
      * @param {string} expression value of directive
-     * @param {Function} cb callback in order to remove directive attributes
      */
-    Compile.prototype._compileDirective = function (node, directive, expression, cb) {
+    Compile.prototype._compileDirective = function (node, directive, expression) {
         var me = this;
-        var fnName = directive;
-        if (/^bind:/.test(directive)) {
+        var fnName = directive.name.slice(2);
+        var attrName = directive.name;
+        if (/^bind:/.test(fnName)) {
             fnName = 'bind';
         }
-        var data = me._getMVal(expression);
-        me[fnName] && me[fnName](node, directive, data);
-        var watcher = new Watcher(me.data, directive, expression, function (dir, newVal, oldVal) {
-            cb && cb();
+        var data = me._getMVal(node, attrName, expression);
+        me[fnName] && me[fnName](node, attrName, data);
+        new Watcher(node, me.data, attrName, expression, function (dir, newVal, oldVal) {
             me[fnName] && me[fnName](node, dir, newVal);
         });
     };
@@ -156,15 +151,25 @@ define(function (require) {
     /**
      * Handle expression value
      *
+     * @param {HTMLElement} node dom
+     * @param {string} attrName attribute name
      * @param {string} exp value of directive
      * @return {string} data value
      */
-    Compile.prototype._getMVal = function (exp) {
+    Compile.prototype._getMVal = function (node, attrName, exp) {
         if (!exp) {
             return;
         }
-        var fn = this.getWithResult(exp);
-        return fn.call(this.data);
+        var value;
+        try {
+            var fn = this.getWithResult(exp);
+            value = fn.call(this.data);
+            node.removeAttribute(attrName);
+        }
+        catch (e) {
+            console.warn(e);
+        }
+        return value;
     };
 
     /**
@@ -174,31 +179,16 @@ define(function (require) {
      * @return {string} anonymous funtion which change runtime scope and return expression
      */
     Compile.prototype.getWithResult = function (exp) {
-        return new Function((""
-            + "with(this){"
-            +   "try {"
-            +       "return " + exp
-            +   "} catch (e) {"
-            +       "console.error(e)"
-            +   "}"
-            + "}"
+        return new Function((''
+            + 'with(this){'
+            +   'try {'
+            +       'return ' + exp
+            +   '} catch (e) {'
+            +       'throw e'
+            +   '}'
+            + '}'
         ));
-    }
-
-    /**
-     * Parse array and get value
-     *
-     * @param {Object} value
-     */
-    Compile.prototype._dependArray = function (value) {
-        for (var e, i = 0; i < value.length; i++) {
-            e = value[i];
-            e && e.__ob__ && e.__ob__.dep.depend();
-            if (Array.isArray(e)) {
-                dependArray(e);
-            }
-        }
-    }
+    };
 
     return Compile;
 });

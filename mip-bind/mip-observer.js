@@ -39,11 +39,18 @@ define(function (require) {
      * @param {Object} value the value of single data
      */
     Observer.prototype._define = function (data, key, value) {
+        // if value has observed, stop it
+        if (value.__ob__) {
+            return;
+        }
+
+        // if value is object, define it's value
         var me = this;
         if (value && typeof value === 'object') {
             this.start(value);
         }
-        var property = Object.getOwnPropertyDescriptor(data, key)
+
+        var property = Object.getOwnPropertyDescriptor(data, key);
         if (property && property.configurable === false) {
             return;
         }
@@ -51,19 +58,17 @@ define(function (require) {
         var setter = property && property.set;
 
         var deps = new Deps();
-
         Object.defineProperty(data, key, {
             enumerable: true,
             configurable: true,
-            get: function reactiveGetter () {
+            get: function () {
                 value = getter ? getter.call(data) : value;
                 if (Deps.target) {
                     deps.addWatcher();
                 }
                 return value;
             },
-            set: function reactiveSetter (newVal) {
-                debugger;
+            set: function (newVal) {
                 value = getter ? getter.call(data) : value;
                 if (newVal === value) {
                     return;
@@ -71,13 +76,14 @@ define(function (require) {
                 value = newVal;
                 if (setter) {
                     setter.call(data, newVal);
-                } else {
-                    val = newVal;
+                }
+                else {
                     me._walk(newVal);
                     deps.notify();
                 }
             }
         });
+        value.__ob__ = this;
     };
 
     /**

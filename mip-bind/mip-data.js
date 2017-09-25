@@ -7,7 +7,7 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var Observer = require('./mip-observer');
-    var Deps = require('./mip-deps');
+    var fn = require('util').fn;
 
     /**
      * Build Constructor
@@ -16,6 +16,7 @@ define(function (require) {
     customElement.prototype.build = function () {
         var src = this.element.getAttribute('src');
         var ele = this.element.querySelector('script[type="application/json"]');
+        this._win = window;
         if (src) {
             this._getData(src);
         }
@@ -55,7 +56,7 @@ define(function (require) {
      */
     customElement.prototype._merge = function (data) {
         window.m = window.m ? window.m : {};
-        Object.assign(window.m, data);
+        fn.extend(window.m, data);
         var observer = new Observer();
         observer.start(window.m);
     };
@@ -73,6 +74,9 @@ define(function (require) {
         fetch(url).then(function (res) {
             if (res.ok) {
                 res.json().then(function (data) {
+                    var loc = me._win.location;
+                    var domain = loc.protocol + '//' + loc.host;
+                    me._win.postMessage({type: 'bind'}, domain);
                     me._merge(data);
                 });
             }
@@ -84,7 +88,7 @@ define(function (require) {
         });
     };
 
-    // alias mip data extension and register
+    /* eslint-disable */
     MIP.registerMipElement('mip-data', customElement);
 
     return customElement;

@@ -7,7 +7,6 @@
 define(function (require) {
 
     var Compile = require('./mip-compile');
-    var Observer = require('./mip-observer');
 
     /**
      * Bind Class
@@ -15,6 +14,26 @@ define(function (require) {
      * @class
      */
     var Bind = function () {
+        this._win = window;
+        this._bindEvent();
+    };
+
+    /**
+     * Bind event for post message when fetch data returned, then compile dom again
+     *
+     */
+    Bind.prototype._bindEvent = function () {
+        var me = this;
+        window.addEventListener('message', function (event) {
+            var loc = me._win.location;
+            var domain = loc.protocol + '//' + loc.host;
+            if (event.origin === domain
+                && event.source && event.data
+                && event.data.type === 'bind'
+                && event.source === me._win) {
+                me._compile.start(me._win.m);
+            }
+        });
     };
 
     /**
@@ -26,7 +45,7 @@ define(function (require) {
         require('./mip-data');
         this._dataSource = {
             m: window.m ? window.m : {}
-        }
+        };
         // require mip data extension runtime
         this._compile = new Compile();
         // Dom compile

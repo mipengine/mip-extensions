@@ -6,6 +6,14 @@
 
 define(function (require) {
 
+    // Record watcher id, avoid add repeatly
+    var uid = 0;
+
+     /**
+     * Deps entry
+     *
+     * @class
+     */
     var Deps = function () {
 
         /**
@@ -13,25 +21,26 @@ define(function (require) {
          *
          */
         this.subs = [];
-    }
+        this.id = uid++;
+    };
 
     /**
      * Add watcher to subs
      *
      */
     Deps.prototype.addWatcher = function () {
-        Deps.target && Deps.target.addWatcher(this);
-    },
+        Deps.target.addWatcher(this);
+    };
 
     /**
      * Notify deps and update html element
      *
      */
     Deps.prototype.notify = function () {
-        this.subs.forEach(function(sub) {
+        this.subs.forEach(function (sub) {
             sub.update();
         });
-    },
+    };
 
     /**
      * Trigger watcher update
@@ -40,7 +49,7 @@ define(function (require) {
      */
     Deps.prototype.update = function (watcher) {
         watcher && watcher.update && watcher.update();
-    }
+    };
 
     return Deps;
 });

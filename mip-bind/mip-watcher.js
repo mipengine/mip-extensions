@@ -11,14 +11,18 @@ define(function (require) {
      * Watcher Class
      *
      * @class
+     * @param {HTMLElement} node html element
      * @param {Object} data value
      * @param {string} dir directive
      * @param {string} exp expression
      * @param {Function} cb callback
      */
-    var Watcher = function (data, dir, exp, cb) {
+    var Watcher = function (node, data, dir, exp, cb) {
         this._data = data;
         this._dir = dir;
+        this._exp = exp;
+        this._node = node;
+        this._depIds = {};
         if (typeof exp === 'function') {
             this._getter = exp;
         }
@@ -37,14 +41,14 @@ define(function (require) {
      * @return {string} anonymous funtion which change runtime scope and return expression
      */
     Watcher.prototype.getWithResult = function (exp) {
-        return new Function((""
-            + "with(this){"
-            +   "try {"
-            +       "debugger;return " + exp
-            +   "} catch (e) {"
-            +       "console.error(e)"
-            +   "}"
-            + "}"
+        return new Function((''
+            + 'with(this){'
+            +   'try {'
+            +       'return ' + exp
+            +   '} catch (e) {'
+            +       'console.warn(e)'
+            +   '}'
+            + '}'
         ));
     };
 
@@ -77,9 +81,17 @@ define(function (require) {
         return value;
     };
 
+    /**
+     * Add watcher to deps, if watcher existed, ignore it
+     *
+     * @param {Object} dep Dep module
+     */
     Watcher.prototype.addWatcher = function (dep) {
-        dep.subs.push(this);
-    }
+        if (!this._depIds.hasOwnProperty(dep.id)) {
+            dep.subs.push(this);
+            this._depIds[dep.id] = dep;
+        }
+    };
 
     return Watcher;
 });

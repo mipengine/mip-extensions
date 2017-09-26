@@ -1,5 +1,13 @@
 # 升级日志
 
+#### 2017.09.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtn-cnzzcount](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-cnzzcount)|[升级][平台]CNZZ统计，针对没有该ID号的情况加了一个判断
+
 #### 2017.09.14
 
 > 组件上线

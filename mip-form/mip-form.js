@@ -28,7 +28,7 @@ define(function (require) {
                 clearList += ',input[type=' + clearArr[i] + ']';
             }
             clearList = clearList.slice(1);
-            // XXX: clearItems为类数组对象
+            // clearItems为类数组对象
             var clearItems = element.querySelectorAll(clearList);
 
             if (!clearItems.length) {

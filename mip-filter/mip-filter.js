@@ -15,7 +15,8 @@ define(function (require) {
         var filter = new Filter({
             filterWrap: element.querySelector(element.getAttribute('mip-filter-filterWrap')),
             itemWrap: element.querySelector(element.getAttribute('mip-filter-itemWrap')),
-            enableHash: element.getAttribute('mip-filter-enableHash')
+            enableHash: element.getAttribute('mip-filter-enableHash'),
+            filterText: element.getAttribute('mip-filter-filterText') || ""
         });
 
         filter.init();
@@ -59,6 +60,7 @@ define(function (require) {
     * opt.itemWrap: mandatory. dom wrapper of item
     * opt.mobileWidth: maximum width to show wise layout
     * opt.enableHash: weather use window hash.
+    * opt.filterText: text shown when filter is activated.
     */
     function Filter(opt) {
         var _this = this;
@@ -105,7 +107,7 @@ define(function (require) {
             if (text === '查看全部') {
                 text = '无';
             }
-            opt.filterWrap.querySelector('.filter-result').innerText = '筛选：' + text;
+            opt.filterWrap.querySelector('.filter-result').innerText = opt.filterText + text;
             // in wise, when select, collapse filter
             if (window.innerWidth <= opt.mobileWidth && oldEle) {
                 _this.toggleFilter();

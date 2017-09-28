@@ -1,6 +1,7 @@
 {
     "name": "mip-gototop",
     "version": "1.0.2",
+    "description":"添加快速回顶按钮，点击回到页面顶部。",
     "contributors": [
         {
             "name": "MIP authors",

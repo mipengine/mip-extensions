@@ -44,7 +44,7 @@ define(function (require) {
         },
         exposure: {
             fm: 'view',
-            data: encodeURIComponent('[{"type": "w", "action": "show"}]') 
+            data: encodeURIComponent('[{"type": "w", "action": "show"}]')
         },
         error: {
             fm: 'ex',

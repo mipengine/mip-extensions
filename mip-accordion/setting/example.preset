@@ -1,0 +1,14 @@
+<style mip-custom>
+   h2{
+        background-color: lightpink;
+        margin:10px;
+    }
+    h3{
+        background-color: lightskyblue;
+        margin:10px;
+    }
+    h4{
+         background-color: lightgreen;
+        margin:10px;
+    }
+ </style>

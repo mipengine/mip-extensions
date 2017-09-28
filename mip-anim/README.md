@@ -13,15 +13,15 @@
 ### 带placeholder的加载方式
 
 ```html
-<mip-anim layout="fixed" width=210 height=210 src="https://raw.githubusercontent.com/mipengine/mip-blog/master/img/mip-anim.gif" alt="an animation">
-   <mip-img class="background" layout="fixed-height" width=210 height=210 src="https://www.mipengine.org/static/img/mip_logo_white_8c902ec.png"></mip-img>
+<mip-anim layout="fixed" width=210 height=210 src="https://www.mipengine.org/static/img/sample_gif.gif" alt="an animation">
+   <mip-img class="background" layout="fixed-height" width=210 height=210 src="https://www.mipengine.org/static/img/sample_mip_logo.png"></mip-img>
 </mip-anim>
 ```
 
 ### 只有gif图
 
 ```html
-<mip-anim layout="fixed" width=210 height=210 src="https://raw.githubusercontent.com/mipengine/mip-blog/master/img/mip-anim.gif" alt="an animation"></mip-anim>
+<mip-anim layout="fixed" width=210 height=210 src="https://www.mipengine.org/static/img/sample_gif.gif" alt="an animation"></mip-anim>
 ```
 
 ## 属性

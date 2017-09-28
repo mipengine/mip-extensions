@@ -86,7 +86,7 @@ define(function (require) {
                 }).then(function (res) {
                     return res.json();
                 }).then(function (data) {
-                    if (data && !data.status && data.data) {
+                    if (data && parseInt(data.status, 10) === 0 && data.data) {
                         if (rn > self.params.rn || !data.data.items) {
                             defer.resolve('NULL');
                         }

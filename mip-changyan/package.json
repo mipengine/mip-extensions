@@ -1,11 +1,13 @@
 {
     "name": "mip-changyan",
     "version": "1.0.0",
-    "description": "sample component",
-    "author": {
-        "name": "smileU",
-        "email": "1484249625@qq.com"
-    },
+    "description": "畅言第三方评论插件",
+    "contributors": [
+        {
+            "name": "点点",
+            "email": "sy3tem@qq.com"
+        }
+    ],
     "engines": {
         "mip": ">=1.1.0"
     }

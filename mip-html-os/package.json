@@ -1,6 +1,7 @@
 {
     "name": "mip-html-os",
     "version": "1.1.2",
+    "description":"元素区分操作系统显示内容，支持 Andriod 和 iOS。",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

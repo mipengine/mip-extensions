@@ -1,57 +1,59 @@
-.filter {
-    display: inline-block;
-    width: 250px;
-    float: left;
-    ul {
-        list-style: none;
-    }
-}
-.filter-result {
-    display: none;
-}
-.filter-link{
-    display: block;
-    padding: 0 25px;
-    color: #333;
-    line-height: 50px;
-    border-top: 1px dotted #e6e6e6;
-    &:hover{
-        background: #f8f8f8;
-        text-decoration: none;
-    }
-    &.active {
-        background: #88a0ec;
-        color: white;
-        font-weight: normal;
-    }
-    &:last-child {
-        border-bottom: 1px dotted #e6e6e6;
-    }
-}
-.filter-num {
-    float: right;
-}
-
-.filter-emptytip {
-    padding-left: 10px;
-}
-@media screen and (max-width: 767px) {
+mip-filter{
     .filter {
-        display: block;
-        float: none;
-        width: 100%;
+        display: inline-block;
+        width: 250px;
+        float: left;
+        ul {
+            list-style: none;
+        }
     }
     .filter-result {
+        display: none;
+    }
+    .filter-link{
         display: block;
-        padding: 0 10px;
+        padding: 0 25px;
+        color: #333;
         line-height: 50px;
+        border-top: 1px dotted #e6e6e6;
+        &:hover{
+            background: #f8f8f8;
+            text-decoration: none;
+        }
+        &.active {
+            background: #88a0ec;
+            color: white;
+            font-weight: normal;
+        }
+        &:last-child {
+            border-bottom: 1px dotted #e6e6e6;
+        }
     }
-    .filter-link {
-        padding: 0 10px;
-    }
-    .filter-list {
-        height: 0;
-        overflow: hidden;
+    .filter-num {
+        float: right;
     }
 
+    .filter-emptytip {
+        padding-left: 10px;
+    }
+    @media screen and (max-width: 767px) {
+        .filter {
+            display: block;
+            float: none;
+            width: 100%;
+        }
+        .filter-result {
+            display: block;
+            padding: 0 10px;
+            line-height: 50px;
+        }
+        .filter-link {
+            padding: 0 10px;
+        }
+        .filter-list {
+            height: 0;
+            overflow: hidden;
+        }
+
+    }
 }

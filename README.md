@@ -2,9 +2,7 @@
 
 MIP 组件包括官方组件和开发者自定义组件，是用于定制站点需求的必备功能。
 
-## 官方组件
-
-### 使用方式
+## 脚本引用
 
 使用组件前，需在页面中引入对应脚本，引用脚本格式如下：
 
@@ -12,15 +10,15 @@ mip-extensions 仓库：`https://mipcache.bdstatic.com/static/v1/{组件名}/{�
 
 mip-extension-platform 仓库：`https://mipcache.bdstatic.com/extensions/platform/v1/{组件名}/{组件名}.js`
 
-### 示例
+## 示例
 
 ```
 <script async src="https://mipcache.bdstatic.com/static/v1/mip-form/mip-form.js"></script>
 ```
 
-### 官方组件库列表
+## 官方组件库列表
 
-#### 1. 内置组件
+### 1. 内置组件
 
 内置组件是包含在 mip.js 中的组件，可直接使用，无需另外引入js脚本。
 
@@ -32,7 +30,7 @@ mip-extension-platform 仓库：`https://mipcache.bdstatic.com/extensions/platfo
 | [`mip-pix`](https://github.com/mipengine/mip/blob/master/src/components/mip-pix.js) | 将 mip-pix 组件直接引入，可发送带有自定义参数的请求，用于统计页面访问情况。这些参数主要包括页面打开时间点，页面title和当面页面地址 |
 | [`mip-video`](https://github.com/mipengine/mip/blob/master/src/components/mip-video.js) | mip-video 用来支持在 mip 中增加视频内容，是HTML `<video>`的直接包装。功能与兼容性与HTML5`<video>`一致 |
 
-#### 2. 个性化组件
+### 2. 个性化组件
 
 个性化组件是满足于特定需求的组件，包括交互，统计等需求。需要引入对应的 js 脚本。
 
@@ -64,9 +62,9 @@ mip-extension-platform 仓库：`https://mipcache.bdstatic.com/extensions/platfo
 | [`mip-stats-tianrun`](https://github.com/mipengine/mip-extensions/tree/master/mip-stats-tianrun) | mip-stats-tianrun添加天润统计 |
 | [`mip-vd-tabs`](https://github.com/mipengine/mip-extensions/tree/master/mip-vd-tabs) | mip-vd-tabs在网页中显示标签。标签页内元素较多时不建议使用,会影响页面性能 |
 
-#### 3. 广告组件
+### 3. 广告组件
 
-广告组件主要满足各类广告的投放，需要引入对应的 js 脚本。阅读[广告文档](//www.mipengine.org/examples/mip-ad/mip-ad.html)来确定 MIP 广告类型.
+广告组件主要满足各类广告的投放，需要引入对应的 js 脚本。阅读[广告文档](//www.mipengine.org/examples/mip-ad/mip-ad.html)来确定 MIP 广告类型。
 
 | 广告组件 | 描述 |
 | --------- | ----------- |

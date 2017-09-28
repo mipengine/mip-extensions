@@ -9,15 +9,16 @@ MIP 组件包括官方组件和开发者自定义组件，是用于定制站点�
 使用组件前，需在页面中引入对应脚本，引用地址如下：
 
 mip-extensions 仓库：https://mipcache.bdstatic.com/static/v1/{组件名}/{组件名}.js
+
 mip-extension-platform 仓库：https://mipcache.bdstatic.com/extensions/platform/v1/{组件名}/{组件名}.js
 
-示例
+### 示例
 
 ```
 <script async src="https://mipcache.bdstatic.com/static/v1/mip-form/mip-form.js"></script>
 ```
 
-其中官方组件库列表如下：
+### 官方组件库列表
 
 #### 1. 内置组件
 

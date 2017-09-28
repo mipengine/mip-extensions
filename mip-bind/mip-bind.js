@@ -7,6 +7,11 @@
 define(function (require) {
 
     var Compile = require('./mip-compile');
+    var viewer = require('viewer');
+    var util = require('util');
+    var fn = util.fn;
+    var Observer = require('./mip-observer');
+
 
     /**
      * Bind Class
@@ -15,7 +20,26 @@ define(function (require) {
      */
     var Bind = function () {
         this._win = window;
+        this._observer = new Observer();
         this._bindEvent();
+        MIP.setData = this._bindTarget.bind(this);
+    };
+
+    /**
+     * Bind target
+     *
+     */
+    Bind.prototype._bindTarget = function (data) {
+        var toObj = new Function('return ' + data);
+        var data = toObj();
+        if (typeof data === "object") {
+            fn.extend(window.m, data);
+            this._observer.start(this._win.m);
+            this._compile.start(this._win.m);
+        }
+        else {
+            console.error('setData method must accept an object!');
+        }
     };
 
     /**

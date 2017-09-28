@@ -25,7 +25,7 @@ mip-extension-platform 仓库：`https://mipcache.bdstatic.com/extensions/platfo
 内置组件是包含在 mip.js 中的组件，可直接使用，无需另外引入js脚本。
 
 <span class="minw-125">内置组件</span>|描述
-----|----|----
+----|----
 <a href=https://github.com/mipengine/mip/blob/master/src/components/mip-carousel.js>mip-carousel</a>|mip-carousel 用来支持 mip 中图片的一种展示方式，支出多图轮播
 <a href=https://github.com/mipengine/mip/blob/master/src/components/mip-iframe.js>mip-iframe</a>|mip-iframe 是用来支持在 mip 中嵌入第三方内容的一种方式，需要注意的是：所嵌入的内容强制是符合https协议的
 <a href=https://github.com/mipengine/mip/blob/master/src/components/mip-img.js>mip-img</a>|mip-img 用来支持在 mip 中增加图片内容
@@ -37,7 +37,7 @@ mip-extension-platform 仓库：`https://mipcache.bdstatic.com/extensions/platfo
 个性化组件是满足于特定需求的组件，包括交互，统计等需求。需要引入对应的 js 脚本。
 
 <span class="minw-125">个性化组件</span>|描述
-----|----|----
+----|----
 <a href=https://github.com/mipengine/mip-extensions/tree/master/mip-accordion>mip-accordion</a>|折叠隐藏节点(可记录用户上次行为)
 <a href=https://github.com/mipengine/mip-extensions/tree/master/mip-analytics>mip-analytics</a>|提供统计发送接口，由使用方决定在什么时候发送什么参数，到什么地方
 <a href=https://github.com/mipengine/mip-extensions/tree/master/mip-anim>mip-anim</a>|用来支持在 MIP 页中 gif 图的使用
@@ -68,8 +68,8 @@ mip-extension-platform 仓库：`https://mipcache.bdstatic.com/extensions/platfo
 
 广告组件主要满足各类广告的投放，需要引入对应的 js 脚本。阅读[广告文档](//www.mipengine.org/examples/mip-ad/mip-ad.html)来确定 MIP 广告类型.
 
-<span class="minw-125">广告组件</span>|<span class="minw-60">中文</span>|描述
-----|----|----
+<span class="minw-125">广告组件</span>|描述
+----|----
 <a href=https://github.com/mipengine/mip-extensions/tree/master/mip-ad>mip-ad</a>|mip-ad 用于在MIP页中引入广告脚本，投放广告
 <a href=https://github.com/mipengine/mip-extensions/tree/master/mip-ad-comm>mip-ad-comm</a>|mip-ad 的一种类型：通用广告
 <a href=https://github.com/mipengine/mip-extensions/tree/master/mip-ad-baidu>mip-ad-baidu</a>|mip-ad 的一种类型：网盟广告

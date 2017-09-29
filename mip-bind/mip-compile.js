@@ -116,7 +116,9 @@ define(function (require) {
             fnName = 'bind';
         }
         var data = me._getMVal(node, attrName, expression);
-        me[fnName] && me[fnName](node, attrName, data);
+        if (data) {
+            me[fnName] && me[fnName](node, attrName, data);
+        }
         new Watcher(node, me.data, attrName, expression, function (dir, newVal, oldVal) {
             me[fnName] && me[fnName](node, dir, newVal);
         });

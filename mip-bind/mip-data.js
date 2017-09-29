@@ -5,9 +5,8 @@
  */
 
 define(function (require) {
-    var customElement = require('customElement').create();
-    var Observer = require('./mip-observer');
     var fn = require('util').fn;
+    var customElement = require('customElement').create();
 
     /**
      * Build Constructor
@@ -24,10 +23,14 @@ define(function (require) {
             var data = ele.textContent.toString();
             var result = this._parse(data);
             if (result) {
-                this._merge(result);
+                this._postMessage(result);
             }
         }
     };
+
+    customElement.prototype.prerenderAllowed = function () {
+        return true;
+    }
 
     /**
      * Bild Constructor
@@ -50,15 +53,18 @@ define(function (require) {
     };
 
     /**
-     * Merge data to window m
+     * Post Message to bind module
      *
      * @param {Object} data data value
      */
-    customElement.prototype._merge = function (data) {
+    customElement.prototype._postMessage = function (data) {
         window.m = window.m ? window.m : {};
-        fn.extend(window.m, data);
-        var observer = new Observer();
-        observer.start(window.m);
+        var loc = this._win.location;
+        var domain = loc.protocol + '//' + loc.host;
+        this._win.postMessage({
+            type: 'bind',
+            m: data
+        }, domain);
     };
 
     /**
@@ -74,10 +80,7 @@ define(function (require) {
         fetch(url).then(function (res) {
             if (res.ok) {
                 res.json().then(function (data) {
-                    var loc = me._win.location;
-                    var domain = loc.protocol + '//' + loc.host;
-                    me._win.postMessage({type: 'bind'}, domain);
-                    me._merge(data);
+                    me._postMessage(data);
                 });
             }
             else {

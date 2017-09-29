@@ -19,23 +19,34 @@ define(function (require) {
      * @class
      */
     var Bind = function () {
+        var me = this;
         this._win = window;
+        // require mip data extension runtime
+        this._compile = new Compile();
         this._observer = new Observer();
         this._bindEvent();
-        MIP.setData = this._bindTarget.bind(this);
+        MIP.setData = function (data) {
+            me._bindTarget(false, data);
+        };
+        MIP.setDataAndCompile = function (data) {
+            me._bindTarget(true, data);
+        }
     };
 
     /**
      * Bind target
      *
      */
-    Bind.prototype._bindTarget = function (data) {
-        var toObj = new Function('return ' + data);
-        var data = toObj();
+    Bind.prototype._bindTarget = function (compile, data) {
+        if (typeof data === "string") {
+            data = (new Function('return ' + data))();
+        }
         if (typeof data === "object") {
             fn.extend(window.m, data);
-            this._observer.start(this._win.m);
-            this._compile.start(this._win.m);
+            if (compile) {
+                this._observer.start(this._win.m);
+                this._compile.start(this._win.m);
+            }
         }
         else {
             console.error('setData method must accept an object!');
@@ -55,7 +66,7 @@ define(function (require) {
                 && event.source && event.data
                 && event.data.type === 'bind'
                 && event.source === me._win) {
-                me._compile.start(me._win.m);
+                MIP.setDataAndCompile(event.data.m);
             }
         });
     };
@@ -70,10 +81,7 @@ define(function (require) {
         this._dataSource = {
             m: window.m ? window.m : {}
         };
-        // require mip data extension runtime
-        this._compile = new Compile();
-        // Dom compile
-        this._compile.start(this._dataSource.m);
+        MIP.setDataAndCompile(this._dataSource.m);
     };
 
     /**

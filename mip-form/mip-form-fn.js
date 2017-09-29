@@ -9,7 +9,6 @@ define(function (require) {
     var util = require('util');
     var viewer = require('viewer');
     var windowInIframe = viewer.isIframed;
-
     var evt;
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
@@ -34,7 +33,7 @@ define(function (require) {
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');
                 if (formD) {
-                    fetchData = Object.assign({}, fetchData, {
+                    fetchData = util.fn.extend({}, fetchData, {
                         body: new FormData(formD)
                     });
                 }

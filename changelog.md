@@ -1,5 +1,15 @@
 # 升级日志
 
+#### 2017.09.30
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-next-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-next-news)|[新增][平台]用来给文章内容页增加相关新闻第一篇的效果
+[mip-xiaomi-router](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xiaomi-router)|[新增][平台]用于小米公司移动端网站等的规划；主要用于通过JSONP的方式发起地址请求，不涉及布局的事情；
+
+
 #### 2017.09.29
 
 > 组件上线

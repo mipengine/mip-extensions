@@ -13,7 +13,7 @@ mip-vd-baidu http 视频源播放的百度解决方案
 ### 基本用法
 ```html
 <div>test</div>
-<mip-vd-baidu layout="responsive" width="640" height="360" title="主播炸了赛事篇：虎大将军横刀立马" src="//gss0.bdstatic.com/-b1Caiqa0d9Bmcmop9aC2jh9h2w8e4_h7sED0YQ_t9iCPK/mda-gjkt21pkrsd8ae5y/mda-gjkt21pkrsd8ae5y.mp4" poster="http://vimg.dwstatic.com/1735/8523701/9-220x124.jpg">
+<mip-vd-baidu layout="responsive" width="640" height="360" title="儿童哮喘有哪些治疗方法？" src="http://gslb.miaopai.com/stream/dEST-EionCIPggTpYl485A__.mp4" poster="http://file.youlai.cn/cnkfile1/M00/01/73/ooYBAFhJCDSANm1IAADJf4ZphbA62.jpeg">
 </mip-vd-baidu>
 ```
 

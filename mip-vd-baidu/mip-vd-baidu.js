@@ -7,7 +7,7 @@ define(function (require) {
 
     var customElement = require('customElement').create();
     var util = require('util');
-    var server = 'http://nj03-mip-data.nj03.baidu.com:8003/getvideo';
+    var server = 'https://mipvideo.baidu.com/getvideo';
 
     /**
      * 构造元素，只会运行一次

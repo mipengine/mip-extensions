@@ -1,0 +1,14 @@
+{
+    "name": "mip-vd-baidu",
+    "version": "1.0.0",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "lilangbo",
+            "email": "lilangbo111@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

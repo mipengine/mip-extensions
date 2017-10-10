@@ -8,6 +8,7 @@
 define(function (require) {
     var $ = require('zepto');
     var viewer = require('viewer');
+    var util = require('util');
 
     var customElement = require('customElement').create();
 
@@ -30,10 +31,9 @@ define(function (require) {
             if (viewer.isIframed) {
                 bdSearchCase();
             }
-            if (config.conf && config.conf.length) {
+            if (config && Array.isArray(config.conf) && config.conf.length) {
                 var conf = config.conf;
-                var cLen = conf.length;
-                for (var i = 0; i < cLen; i++) {
+                for (var i = 0; i < conf.length; i++) {
                     _hmt.push(conf[i]);
                 }
             }
@@ -48,10 +48,11 @@ define(function (require) {
         }
 
     };
+
     /**
      * get config from script has type="application/json"
      *
-     * @return {Obj} config  return stats config
+     * @return {Object} config  return stats config
      */
     customElement.prototype.getConfig = function () {
         var config = {};
@@ -60,9 +61,9 @@ define(function (require) {
             var script = this.element.querySelector('script[type="application/json"]');
             if (script) {
                 var textContent = JSON.parse(script.textContent);
-                config.token = textContent.token;
-                delete textContent.token;
                 if (JSON.stringify(textContent) !== '{}') {
+                    config.token = textContent.token;
+                    util.fn.del(textContent, 'token');
                     config.conf = this.objToArray(textContent);
                 }
                 return config;
@@ -78,10 +79,11 @@ define(function (require) {
         };
     };
 
-     /**
+    /**
      * JSON object to Array
-     * @param {Obj} configObj   configObj from script has type="application/json"
-     * @return {Obj} outConfigArray  return stats array
+     *
+     * @param {Object} configObj configObj from script has type="application/json"
+     * @return {Object} outConfigArray return stats array
      */
     customElement.prototype.objToArray = function (configObj) {
         var outConfigArray = [];
@@ -89,8 +91,10 @@ define(function (require) {
             return;
         }
         for (var key in configObj) {
-            configObj[key].unshift(key);
-            outConfigArray.push(configObj[key]);
+            if (configObj.hasOwnProperty(key) && Array.isArray(configObj[key])) {
+                configObj[key].unshift(key);
+                outConfigArray.push(configObj[key]);
+            }
         }
         return outConfigArray;
     };
@@ -203,7 +207,7 @@ define(function (require) {
             if (hashEqid && isMatch(from, 'result')) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
-            } 
+            }
             else {
                 hashObj.word = hashWord;
             }
@@ -212,6 +216,7 @@ define(function (require) {
         }
 
     }
+
     /**
      * to determine whether from the targetFrom
      *
@@ -219,13 +224,14 @@ define(function (require) {
      * @param  {string} targetFrom  the target that `from` need to match.
      * @return {boolean}     return whether from the results page
      */
-    function isMatch (from, targetFrom) {
+    function isMatch(from, targetFrom) {
         if (from && targetFrom && from === targetFrom) {
             return true;
         } else {
             return false;
-        } 
+        }
     }
+
     /**
      * 生成百度统计_setReferrerOverride对应的referrer
      *

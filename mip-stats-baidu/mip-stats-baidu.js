@@ -197,9 +197,10 @@ define(function (require) {
         var bdUrl = document.referrer;
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
+        var from = MIP.hash.get('from') || '';
         if ((hashWord || hashEqid) && bdUrl) {
             var hashObj = {};
-            if (hashEqid) {
+            if (hashEqid && isMatch(from, 'result')) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
             } 
@@ -211,7 +212,20 @@ define(function (require) {
         }
 
     }
-
+    /**
+     * to determine whether from the targetFrom
+     *
+     * @param  {string} from  referrer from mipService
+     * @param  {string} targetFrom  the target that `from` need to match.
+     * @return {boolean}     return whether from the results page
+     */
+    function isMatch (from, targetFrom) {
+        if (from && targetFrom && from === targetFrom) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
     /**
      * 生成百度统计_setReferrerOverride对应的referrer
      *

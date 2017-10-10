@@ -1,5 +1,44 @@
 # 升级日志
 
+#### 2017.09.30
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-next-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-next-news)|[新增][平台]用来给文章内容页增加相关新闻第一篇的效果
+[mip-xiaomi-router](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xiaomi-router)|[新增][平台]用于小米公司移动端网站等的规划；主要用于通过JSONP的方式发起地址请求，不涉及布局的事情；
+
+
+#### 2017.09.29
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]mip.zhaopin.com更改跳转和异步请求地址
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[升级][平台]mip.zhaopin.com更改跳转和异步请求地址
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip.zhaopin.com更改跳转和异步请求地址
+[mip-zpm-jobdetail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-jobdetail)|[升级][平台]mip.zhaopin.com更改跳转和异步请求地址
+[mip-pingao-icon](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pingao-icon)|[新增][平台]品告推广连接，品告展示在网页的图片和连接进行推广用
+
+#### 2017.09.27
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-lnxyw-switch](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-lnxyw-switch)|[新增][平台]站点:m.lnxyw.com,组件功能:实现文字单行垂直切换
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级][官方]mip-form组件支持异步fetch
+
+#### 2017.09.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtn-cnzzcount](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-cnzzcount)|[升级][平台]CNZZ统计，针对没有该ID号的情况加了一个判断
+
 #### 2017.09.14
 
 > 组件上线

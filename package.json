@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/mipengine/mip-extensions#readme",
   "dependencies": {
-    "github-release-notes": "^0.10.0",
+    "github-release-notes": "0.9.0",
     "mip-extension-optimizer": "^1.1.3"
   }
 }

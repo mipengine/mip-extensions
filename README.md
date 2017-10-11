@@ -2,7 +2,7 @@
 
 MIP 组件包括官方组件和开发者自定义组件，是用于定制站点页面功能的利器。
 
-## 使用
+## 工具使用
 
 - 安装依赖
 
@@ -10,16 +10,16 @@ MIP 组件包括官方组件和开发者自定义组件，是用于定制站点�
 npm install
 ```
 
-编译组件可以使用 npm script 方式处理，如
+- 编译组件可以使用 npm script 方式处理，如
 
 ```
 npm run build
 ```
 
-如果需要指定参数，以 -- 分割，如指定输出目录和需编译的个别组件：
+- 如果需要指定参数，以 `--` 分割，如指定输出目录和需编译的个别组件：
 
 ```
-npm run build -- --o output mip-form
+npm run build -- --o output mip-form mip-access
 ```
 
 ## 脚本引用

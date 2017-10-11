@@ -13,11 +13,11 @@
 ```html
 <div class="mip-nav-wrapper">
     <mip-nav-slidedown
-        data-id="bs-navbar1"
+        data-id="bs-navbar"
         class="mip-element-sidebar container"
         data-showbrand="1"
         data-brandname="MIP官网">
-        <nav id="bs-navbar1" class="navbar-collapse collapse navbar navbar-static-top">
+        <nav id="bs-navbar" class="navbar-collapse collapse navbar navbar-static-top">
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="//www.mipengine.org/">首页</a>
@@ -138,4 +138,4 @@
 默认：'/'
 
 ## 注意事项
-1. 一个页面内，只能存在一个下拉菜单。
+1. 一个页面内，只能存在一个下拉菜单，data-id="bs-navbar"

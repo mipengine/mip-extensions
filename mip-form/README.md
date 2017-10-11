@@ -43,6 +43,25 @@
  </mip-form>
 ```
 
+### 页面数据刷新
+
+```html
+<mip-form fetch-url="http://yourdomain.com/path">
+    <input type="text" name="name" placeholder="姓名">
+    <div submit-success>
+        <template type="mip-mustache">
+            Success! Thanks for {{name}} trying the mip demo.
+        </template>
+    </div>
+    <div submit-error>
+        <template type="mip-mustache">
+            Error!.
+        </template>
+    </div>
+    <input type="submit" value="提交">
+ </mip-form>
+```
+
 ## 属性
 
 ### method
@@ -72,9 +91,20 @@
 
 ### clear
 
-说明: 表单中input清空按钮开关 
+说明: 表单中input清空按钮开关
+
+### fetch-url
+
+说明: 有此属性则可以开启异步请求数据逻辑，组件会并根据数据返回状态来按`submit-success`，`submit-error`块中的模板刷新局部信息。
+需要注意的几个点：
+
+- 方法支持
+- 请求结果请返回json对象。
+- 数据状态只有在成功(2xx)的时候触发`submit-success`的逻辑，其他的均触发`submit-error`逻辑。
+
 必选项：否  
 
 ## 注意事项
 
 1. 表单提交方法如果为post，应使用https地址。避免 MIP-Cache https环境提交到http，导致浏览器报错。
+2. 使用fetch功能时，请求使用cors时不能配置为*.

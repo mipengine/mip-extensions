@@ -22,7 +22,7 @@ layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/d
     tpl="onlyImg" 
     href="//m.baidu.com/s?word=百度" 
     data-size="1242 180" 
-    src="//m.baidu.com/static/search/ala/ad_1.png">
+    src="https://www.mipengine.org/static/img/sample_01.jpg">
 </mip-ad>
 ```
 
@@ -50,7 +50,7 @@ layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/d
     tpl="oneImg" 
     href="//m.baidu.com/s?word=百度" 
     data-size="1242 180" 
-    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2357051511,2286288825&fm=11&gp=0.jpg" 
+    src="https://www.mipengine.org/static/img/sample_02.jpg" 
     data-title="广告标题">
 </mip-ad>
 ```
@@ -63,7 +63,7 @@ layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/d
     tpl="moreImg" 
     href="//m.baidu.com/s?word=百度" 
     data-size="1242 180" 
-    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4009078664,3186400936&fm=111&gp=0.jpg;https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=521986262,2379149184&fm=21&gp=0.jpg;https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=195400779,4163278668&fm=21&gp=0.jpg" 
+    src="https://www.mipengine.org/static/img/sample_01.jpg;https://www.mipengine.org/static/img/sample_02.jpg;https://www.mipengine.org/static/img/sample_03.jpg" 
     data-ads="这里是广告摘要;这里是广告摘要" 
     data-txt="这里是图片标题;这里是图片标题;这里是图片标题啊啊啊"
     data-title="这里是广告标题这里是广告标题标">

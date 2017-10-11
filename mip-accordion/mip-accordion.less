@@ -1,23 +1,26 @@
-.mip-accordion-content {
-	display: none !important;
-}
+mip-accordion{
+	.mip-accordion-content {
+		display: none !important;
+		overflow: hidden;
+	}
 
-.mip-accordion-content[aria-expanded="open"]{
-	display: block !important;
-}
+	.mip-accordion-content[aria-expanded="open"]{
+		display: block !important;
+	}
+	
+	section[expanded=open] .show-more {
+		display: none !important;
+	}
 
-mip-accordion section[expanded=open] .show-more {
-	display: none !important;
-}
+	section .show-more {
+		display: block;
+	}
 
-mip-accordion section .show-more {
-	display: block;
-}
+	section .show-less {
+		display: none;
+	}
 
-mip-accordion section .show-less {
-	display: none;
-}
-
-mip-accordion section[expanded=open] .show-less {
-	display: block;
+	section[expanded=open] .show-less {
+		display: block;
+	}
 }

@@ -8,7 +8,7 @@ define(function (require) {
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
         if ($('.mip-360doc-script-wxggalink') !== null) {
-            $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/zhaishou.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/xiazai.png\'  class=\'pic2\'/></span>');
+            $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/zhaishou2.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/xiazai2.png\'  class=\'pic2\'/></span>');
             var picn = $('.mip-360doc-script-pic').length;
             if (picn > 1) {
                 $('.mip-360doc-script-pic').eq(0).css('display', 'inline').siblings('.mip-360doc-script-pic').hide();
@@ -199,5 +199,5 @@ define(function (require) {
         }
         catch (e) { }
     }
-    return customElem;
+    return customElem; 
 });

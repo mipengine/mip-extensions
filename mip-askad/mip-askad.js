@@ -5,6 +5,7 @@
  */
 define(function (require) {
     var $ = require('jquery');
+    var util = require('util');
     var customElement = require('customElement').create();
 
     var newYWBD;
@@ -117,7 +118,7 @@ define(function (require) {
         //重写YWBD原型方法以实现标签替换
         YWBD.prototype.YWBD_WRITE =  function(backdata,OBJ,EXCEPTION,NONE) {
             var code = backdata.code;
-            if(location.href.indexOf('mipcache.bdstatic.com') >= 0 ) { //如果是mip页
+            if(util.fn.isCacheUrl(location.href)) { //如果是mip页
                 code = code.replace(/http:\/\/cdn.120askimages.com/g,"/i/cdn.120askimages.com") //替换img为src代理路径
             }
             OBJ.append(code);

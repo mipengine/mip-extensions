@@ -90,9 +90,9 @@ define(function (require) {
      * @param  {DOM}    element mip-custom 组件节点
      * @return {string} url     拼接后的url
      */
-    function getUrl(element) {
+    function getUrl(element, customUrl) {
         var firstKey = true;
-        var url = data.ajaxUrl;
+        var url = customUrl || data.ajaxUrl;
         var urlParams = getUrlParams(element);
 
         if (!urlParams) {

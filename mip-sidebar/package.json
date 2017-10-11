@@ -1,11 +1,17 @@
 {
     "name": "mip-sidebar",
-    "version": "1.1.3",
-    "author": {
-        "name": "wangpei07",
-        "email": "wangpei07@baidu.com",
-        "url": "https://www.mipengine.org"
-    },
+    "version": "1.1.5",
+    "description": "侧边栏组件，点击按钮，侧边栏滑入屏幕。",
+    "contributors": [
+        {
+            "name": "wangpei07",
+            "email": "wangpei07@baidu.com",
+            "url": "https://www.mipengine.org"
+        },{
+            "name": "Jenny_L",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
     "engines": {
         "mip": ">=1.1.0"
     }

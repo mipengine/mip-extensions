@@ -11,7 +11,7 @@ mip-wangxia-down 下载站定制高速下载组件
 
 ### 标签使用示例
 ```html
-<mip-wangxia-down Qi-url="//www.***.com/ajax/" Qi-arr='{"id":"123"}'></mip-wangxia-down>
+<mip-wangxia-down Qi-url="//www.***.com/ajax/"></mip-wangxia-down>
 ```
 
 ## 属性
@@ -19,9 +19,4 @@ mip-wangxia-down 下载站定制高速下载组件
 ### Qi-url
 
 说明：AJAX请求URL  
-必选项：是  
-
-### Qi-arr
-
-说明：配置数组  
 必选项：是  

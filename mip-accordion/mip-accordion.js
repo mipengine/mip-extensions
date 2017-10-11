@@ -1,8 +1,8 @@
 /**
  * @accordion
- * @author fengchuantao
+ * @author fengchuantao, liangjiaying
  * @file mip-accordion
- * @time 2016.08.12
+ * @time 2017.07
  */
 define(function (require) {
     var customElement = require('customElement').create();
@@ -33,6 +33,18 @@ define(function (require) {
     // 绑定事件
     function bindEven(element) {
         var $element = $(element);
+        var aniTime = $(element).attr('animatetime');
+
+        if (aniTime === undefined || isNaN(aniTime)) {
+            // if transition time is not set, set into 0.24s
+            aniTime = 0.24;
+        }
+        else {
+            // '0.2s' -> 0.2, 20 -> 1, -0.5 -> 0.5
+            aniTime = Math.min(parseFloat(aniTime), 1);
+        }
+
+
         $element.on('click', '.mip-accordion-header', function () {
             var targetId = $(this).attr('aria-controls');
             var $targetdom = $('#' + targetId);
@@ -41,7 +53,17 @@ define(function (require) {
             var $showLess = $(this).parents('section').find('.show-less');
 
             if (expanded === 'open') {
-                $targetdom.attr('aria-expanded', 'close');
+                // 收起内容区域
+                // fold animation
+                heightAni({
+                    ele: $targetdom[0],
+                    type: 'fold',
+                    transitionTime: aniTime,
+                    cbFun: function ($dom) {
+                        $dom.attr('aria-expanded', 'close');
+                    }.bind(undefined, $targetdom)
+                });
+
                 $(this).parents('section').removeAttr('expanded');
                 if (!!$showMore.length && !!$showLess.length) {
                     $showMore.css('display', 'block');
@@ -51,13 +73,11 @@ define(function (require) {
                 setSession(element, targetId, false);
             }
             else {
-
                 // 同时只能展开一个节点
 
                 if (element.hasAttribute('expaned-limit')) {
                     var sections = element.querySelectorAll('section');
                     for (var i = 0; i < sections.length; i++) {
-
                         var cont = sections[i].querySelector('.mip-accordion-content');
                         var header = sections[i].querySelector('.mip-accordion-header');
                         var id = header.getAttribute('aria-controls');
@@ -65,6 +85,12 @@ define(function (require) {
                         sections[i].removeAttribute('expanded');
                         cont.removeAttribute('aria-expanded');
                         setSession(element, id, false);
+                        // fold animation
+                        heightAni({
+                            ele: cont,
+                            type: 'fold',
+                            transitionTime: aniTime
+                        });
                     }
                 }
 
@@ -75,11 +101,18 @@ define(function (require) {
                     $showMore.css('display', 'none');
                 }
 
+                // unfold animation
+                heightAni({
+                    ele: $targetdom[0],
+                    type: 'unfold',
+                    oriHeight: 0,
+                    transitionTime: aniTime
+                });
+
                 setSession(element, targetId, true);
             }
         });
     }
-
 
     // 设置session storage
     function setSession(element, obj, expand) {
@@ -96,8 +129,89 @@ define(function (require) {
         return data ? JSON.parse(data) : {};
     }
 
+    /**
+     * Make height transiton for element that has unknown height.
+     * height transiton from 0px/40px to whatever height element will be.
+     *
+     * author&maintainer liangjiaying<jiaojiaomao220@163.com>
+     *
+     * @param  {Object} opt options
+     * @example
+     * {
+     *     "ele": document.getElementById('id1'), // target DOM
+     *     "type": "fold",                  // "fold" or "unfold"
+     *     "transitionTime": "0.3",         // seconds, animation time
+     *     "tarHeight": "140px",            // DOM height when animation ends
+     *     "oriHeight": "20px",             // DOM height when animation begins
+     *     "cbFun": function() {}.bind()    //callback, exec after animation
+     * }
+     */
+    function heightAni(opt) {
+        var element = opt.ele;
+        var type = opt.type;
+        var transitionTime;
+
+        if (!type || !element) {
+            return;
+        }
+
+        if (opt.transitionTime === undefined || isNaN(opt.transitionTime)) {
+            // if transition time is not set, set into 0.24s
+            transitionTime = 0.24;
+        }
+        else {
+            // '0.2s' -> 0.2, 20 -> 1, -0.5 -> 0.5
+            transitionTime = Math.min(parseFloat(opt.transitionTime), 1);
+        }
+
+        // use ?: to make sure oriHeight won't be rewrite when opt.oriHeight is set to 0
+        var oriHeight = (opt.oriHeight !== undefined ? opt.oriHeight : getComputedStyle(element).height);
+        var tarHeight;
+        var cbFun = opt.cbFun || function () {};
+
+        if (type === 'unfold') {
+
+            // make sure tarHeight won't be rewrite when opt.tarHeight is set to 0
+            if (opt.tarHeight !== undefined) {
+                tarHeight = opt.tarHeight;
+            }
+            else {
+                // before set height to auto, remove animation.
+                // or bad animation happens in iphone 4s
+                element.style.transition = 'height 0s';
+                element.style.height = 'auto';
+                tarHeight = getComputedStyle(element).height;
+            }
+
+            // set height to auto after transition,
+            // in case of height change of inside element later.
+            setTimeout(function () {
+                // before set height to auto, remove animation.
+                // or bad animation happens in iphone 4s
+                element.style.transition = 'height 0s';
+                element.style.height = 'auto';
+            }, transitionTime * 1000);
+        }
+        else if (type === 'fold') {
+            tarHeight = opt.tarHeight || 0;
+        }
+
+        element.style.height = oriHeight;
+        // now start the animation
+        setTimeout(function () {
+            element.style.transition = 'height ' + transitionTime + 's';
+            // XXX: in setTimeout, or there won't be any animation
+            element.style.height = tarHeight;
+        }, 10);
+        // after transition, exec callback functions
+        setTimeout(function () {
+            cbFun();
+        }, transitionTime * 1000);
+    }
+
+
     // 初始化
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.build = function () {
         var self = this;
         var element = this.element;
 

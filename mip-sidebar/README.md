@@ -53,7 +53,7 @@
       </li>
       <li> Nav item 5</li>
       <li> Nav item 6</li>
-      </ul>
+    </ul>
 </mip-sidebar>
 ```
 
@@ -101,6 +101,7 @@
       </li>
       <li> Nav item 5</li>
       <li> Nav item 6</li>
+    </ul>
 </mip-sidebar>
 ```
 

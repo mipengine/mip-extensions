@@ -6,6 +6,7 @@
 
 define(function (require) {
     var $ = require('zepto');
+    var util = require('util');
     var viewer = require('viewer');
     var RecommendElement = require('customElement').create();
     var recommend;
@@ -33,14 +34,8 @@ define(function (require) {
 
     function getOriginUrl() {
         var url = location.href;
-
-        if (/mipcache\./g.test(url)) {
-            url = url.replace(/^http(s?)\:\/\/mipcache.bdstatic.com\/c\/(s?)/g, function ($0, $1, $2) {
-                return $2 === 's' ? 'https://' : 'http://';
-            });
-        }
+        url = util.parseCacheUrl(url);
         url = url.replace(/\#.*$/g, '');
-
         return url;
     }
 

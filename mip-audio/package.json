@@ -1,6 +1,7 @@
 {
     "name": "mip-audio",
     "version": "1.0.1",
+    "description": "提供了一个音频播放组件",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

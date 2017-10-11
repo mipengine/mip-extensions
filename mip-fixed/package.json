@@ -1,6 +1,7 @@
 {
     "name": "mip-fixed",
     "version": "1.0.1",
+    "description":"悬浮元素整体使用方案。",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

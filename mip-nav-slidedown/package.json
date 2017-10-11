@@ -1,6 +1,7 @@
 {
     "name": "mip-nav-slidedown",
     "version": "1.1.4",
+    "description":"响应式菜单，在mip官网有引用。",   
     "contributors": [
         {
             "name": "liangjiaying",

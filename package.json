@@ -9,7 +9,7 @@
   "scripts": {
     "prebuild": "echo Hi Miper, Welcome to start compile!",
     "build": "mip-extension-optimise ./",
-    "release": "gren release --tags=all --override --token=4f6b0395f016816a194c3b38042e27b7e4e0a78d",
+    "release": "gren release --override --token=4f6b0395f016816a194c3b38042e27b7e4e0a78d",
     "postbuild": "echo Compile over, Have a nice day!"
   },
   "repository": {

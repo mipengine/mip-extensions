@@ -1,20 +1,21 @@
 /**
  * @file 百度统计插件
  *
- * @author menglingjun, Jenny_L
+ * @author menglingjun, Jenny_L, dongshihao
  * From: mip-stats-baidu
  */
 
 define(function (require) {
     var $ = require('zepto');
     var viewer = require('viewer');
+    var util = require('util');
 
     var customElement = require('customElement').create();
 
     customElement.prototype.createdCallback = function () {
         var elem = this.element;
-        var token = elem.getAttribute('token');
-        var setConfig = elem.getAttribute('setconfig');
+        var config = this.getConfig();
+        var token = config.token;
 
         /**
          * 检测token是否存在
@@ -30,25 +31,73 @@ define(function (require) {
             if (viewer.isIframed) {
                 bdSearchCase();
             }
-
-            /**
-             * 检测setconfig是否存在
-             */
-            if (setConfig) {
-                var setCustom = buildArry(decodeURIComponent(setConfig));
-                _hmt.push(setCustom);
+            if (config && Array.isArray(config.conf) && config.conf.length) {
+                var conf = config.conf;
+                for (var i = 0; i < conf.length; i++) {
+                    _hmt.push(conf[i]);
+                }
             }
-
             var hm = document.createElement('script');
             hm.src = 'https://hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
             hm.onload = function () {
                 bindEle();
             };
+        } else {
+            console.warn('token is unavailable'); // eslint-disable-line
         }
 
     };
 
+    /**
+     * get config from script has type="application/json"
+     *
+     * @return {Object} config  return stats config
+     */
+    customElement.prototype.getConfig = function () {
+        var config = {};
+        var setconfig = this.element.getAttribute('setconfig');
+        try {
+            var script = this.element.querySelector('script[type="application/json"]');
+            if (script) {
+                var textContent = JSON.parse(script.textContent);
+                if (JSON.stringify(textContent) !== '{}') {
+                    config.token = textContent.token;
+                    util.fn.del(textContent, 'token');
+                    config.conf = this.objToArray(textContent);
+                }
+                return config;
+            }
+        }
+        catch (e) {
+            console.warn('json is illegal'); // eslint-disable-line
+            console.warn(e); // eslint-disable-line
+        }
+        return {
+            'token': this.element.getAttribute('token'),
+            'conf': setconfig ? new Array(buildArry(decodeURIComponent(setconfig))) : null
+        };
+    };
+
+    /**
+     * JSON object to Array
+     *
+     * @param {Object} configObj configObj from script has type="application/json"
+     * @return {Object} outConfigArray return stats array
+     */
+    customElement.prototype.objToArray = function (configObj) {
+        var outConfigArray = [];
+        if (!configObj) {
+            return;
+        }
+        for (var key in configObj) {
+            if (configObj.hasOwnProperty(key) && Array.isArray(configObj[key])) {
+                configObj[key].unshift(key);
+                outConfigArray.push(configObj[key]);
+            }
+        }
+        return outConfigArray;
+    };
 
     // 绑定事件追踪
     function bindEle() {
@@ -158,7 +207,7 @@ define(function (require) {
             if (hashEqid && isMatch(from, 'result')) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
-            } 
+            }
             else {
                 hashObj.word = hashWord;
             }
@@ -167,6 +216,7 @@ define(function (require) {
         }
 
     }
+
     /**
      * to determine whether from the targetFrom
      *
@@ -174,13 +224,14 @@ define(function (require) {
      * @param  {string} targetFrom  the target that `from` need to match.
      * @return {boolean}     return whether from the results page
      */
-    function isMatch (from, targetFrom) {
+    function isMatch(from, targetFrom) {
         if (from && targetFrom && from === targetFrom) {
             return true;
         } else {
             return false;
-        } 
+        }
     }
+
     /**
      * 生成百度统计_setReferrerOverride对应的referrer
      *

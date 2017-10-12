@@ -61,6 +61,25 @@ define(function (require) {
     }
 
     /**
+     * [isAncestors 针对判断是否是祖先节点]
+     * @param  {[type]}  childNode [子节点]
+     * @param  {[type]}  Ancestors [祖先节点]
+     * @return {Boolean}           
+     */
+    function isAncestors (childNode, Ancestors) {
+        while(childNode && Ancestors) {
+            if (childNode.parentNode && childNode.parentNode === Ancestors) {
+                return true;
+            }
+            childNode = childNode.parentNode;
+            if (childNode && childNode.tagName.toUpperCase() === 'BODY') {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    /**
      * [initadbaidu 广告组件初始化]
      * 
      * @param  {Object} $elemID mip对象
@@ -88,7 +107,7 @@ define(function (require) {
                 var elem = window.getComputedStyle(child, null);
                 var pos = elem && elem.getPropertyValue('position') ? 
                           elem.getPropertyValue('position') : '';
-                if(layer && layer.querySelector('#'+s)){
+                if(layer && isAncestors(child, layer)){
                   return;
                 }
                 if(pos == 'fixed') {

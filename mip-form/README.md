@@ -66,27 +66,27 @@
 
 ### method
 
-说明：表单提交方法
-必选项：是
+说明：表单提交方法  
+必选项：是  
 
 ### url
 
-说明：表单提交url，建议填写https地址
-必选项: 是
+说明：表单提交url，建议填写https地址   
+必选项: 是  
 
 ### validatetarget
 
-说明:  验证提示对应tag,用于对应错误时的提示显示元素的查找
-必选项：否
+说明:  验证提示对应tag,用于对应错误时的提示显示元素的查找    
+必选项：否   
 
 ### validatetype
 
-说明：验证类型, 用于支持简单的验证。目前提供email、phone、idcar、custom。当为custom时则需要填写validatereg
-必选项：否
+说明：验证类型, 用于支持简单的验证。目前提供email、phone、idcar、custom。当为custom时则需要填写validatereg    
+必选项：否   
 
 ### validatereg
 
-说明: 自定义验证，补充站长个性化的验证规则。如果validatetype为custom时需填写相应验证规则
+说明: 自定义验证，补充站长个性化的验证规则。如果validatetype为custom时需填写相应验证规则  
 必选项：否
 
 ### clear
@@ -102,7 +102,7 @@
 - 请求结果请返回json对象。
 - 数据状态只有在成功(2xx)的时候触发`submit-success`的逻辑，其他的均触发`submit-error`逻辑。
 
-必选项：否
+必选项：否  
 
 ## 注意事项
 

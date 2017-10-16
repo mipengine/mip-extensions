@@ -28,7 +28,7 @@ define(function (require) {
         MIP.setData = function (data) {
             me._bindTarget(false, data);
         };
-        MIP.setDataAndCompile = function (data) {
+        MIP.$set = function (data) {
             me._bindTarget(true, data);
         }
     };
@@ -66,7 +66,7 @@ define(function (require) {
                 && event.source && event.data
                 && event.data.type === 'bind'
                 && event.source === me._win) {
-                MIP.setDataAndCompile(event.data.m);
+                MIP.$set(event.data.m);
             }
         });
     };
@@ -81,7 +81,7 @@ define(function (require) {
         this._dataSource = {
             m: window.m ? window.m : {}
         };
-        MIP.setDataAndCompile(this._dataSource.m);
+        MIP.$set(this._dataSource.m);
     };
 
     /**

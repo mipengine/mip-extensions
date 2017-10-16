@@ -120,7 +120,9 @@ define(function (require) {
             me[fnName] && me[fnName](node, attrName, data);
         }
         new Watcher(node, me.data, attrName, expression, function (dir, newVal, oldVal) {
-            me[fnName] && me[fnName](node, dir, newVal);
+            if (typeof me[fnName] === 'function') {
+                me[fnName](node, dir, newVal);
+            }
         });
     };
 

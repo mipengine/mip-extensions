@@ -36,7 +36,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
 ### 标题加内容形式-手动
 
 ```html
-<mip-accordion sessions-key="mip_1" type="manual" animatetime='0.24'>
+<mip-accordion sessions-key="mip_2" type="manual" animatetime='0.24'>
     <section>
         <h4>下拉第一个</h4>
         <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
@@ -55,7 +55,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
 ### 标题切换形式
 
 ```html
-<mip-accordion sessions-key="mip_2" animatetime='0.24'>
+<mip-accordion sessions-key="mip_3" animatetime='0.24'>
     <section>
         <h4>
           <span class="show-more">显示更多</span>
@@ -69,7 +69,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
 ### 配置只展开一个节点
 
 ```html
-<mip-accordion sessions-key="mip_1" expaned-limit>
+<mip-accordion sessions-key="mip_4" expaned-limit>
     <section>
         <h4>下拉第一个</h4>
         <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
@@ -93,7 +93,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
 ### 进行嵌套
 
 ```html
-<mip-accordion sessions-key="mip_1">
+<mip-accordion sessions-key="mip_5">
     <section>
         <h2>下拉第一个</h2>
         <div>我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，

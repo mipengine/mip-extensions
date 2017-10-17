@@ -5,7 +5,7 @@
 
 组件名|功能说明
 ---|---
-[mip-cehome-bbsinfo](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-bbsinfo)|[新增][平台]论坛M站帖子详情 站点：https://m.cehome.com/bbs/ 组件用途：帖子详情MIP页改造展示
+[mip-cehome-bbsinfo](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-bbsinfo)|[新增][平台]论坛M站帖子详情 站点：`https://m.cehome.com/bbs/` 组件用途：帖子详情MIP页改造展示
 [mip-cehome-sellso](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-sellso)|[新增][平台]论坛M站二手机出售帖子列表需求
 [mip-cehome-threadlist](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-threadlist)|[新增][平台]论坛M站帖子列表需求
 [mip-cehome-common](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-common)|[新增][平台]论坛M站mip公共方法

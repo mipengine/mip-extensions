@@ -1,0 +1,14 @@
+{
+    "name": "mip-bind",
+    "version": "1.0.0",
+    "description": "数据驱动，拥有双向绑定功能",
+    "contributors": [
+        {
+            "name": "Jackson",
+            "email": "smartfutureplayer@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

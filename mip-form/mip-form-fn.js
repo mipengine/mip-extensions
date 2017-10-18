@@ -9,7 +9,7 @@ define(function (require) {
     var util = require('util');
     var viewer = require('viewer');
     var windowInIframe = viewer.isIframed;
-
+    var evt;
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
         PHONE: /^1\d{10}$/,
@@ -30,7 +30,6 @@ define(function (require) {
                 method: me.method,
                 credentials: 'include'
             };
-
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');
                 if (formD) {
@@ -42,6 +41,7 @@ define(function (require) {
             // 数据请求处理
             fetch(url, fetchData).then(function (res) {
                 if (res.ok) {
+                    me.submitSuccessHandle();
                     res.json().then(function (data) {
                         util.css(me.successEle, {display: 'block'});
                         me.renderTpl(me.successEle, data);
@@ -50,9 +50,11 @@ define(function (require) {
                     });
                 }
                 else {
+                    me.submitErrorHandle();
                     me.fetchReject({});
                 }
             }).catch(function (err) {
+                me.submitErrorHandle();
                 me.fetchReject(err);
             });
         },
@@ -122,7 +124,8 @@ define(function (require) {
             Array.prototype.forEach.call(curEles, function (item) {
                 item.addEventListener('submit', function (event) {
                     event.preventDefault();
-                    me.onSubmit(element);
+                    evt = event;
+                    me.onSubmit(element, event);
                 });
             });
 
@@ -130,6 +133,7 @@ define(function (require) {
             element.addEventListener('keydown', function (event) {
                 if (event.keyCode === 13) {
                     // 为了使余下浏览器不多次触发submit, 使用prevent
+                    evt = event;
                     event.preventDefault();
                     me.onSubmit(this);
                 }
@@ -216,7 +220,8 @@ define(function (require) {
             this.ele = element;
             this.successEle = element.querySelector('[submit-success]');
             this.errorEle = element.querySelector('[submit-error]');
-
+            // 执行提交句柄
+            me.submitHandle();
             // 校验输入内容是否合法
             Array.prototype.forEach.call(inputs, function (item) {
                 var type = item.getAttribute('validatetype');
@@ -277,6 +282,35 @@ define(function (require) {
                 // https请求 或 post请求 或 非iframe下不做处理
                 element.getElementsByTagName('form')[0].submit();
             }
+        },
+
+        /**
+         * 提交时的事件
+         *
+         * @param  {HTMLElement} element form节点
+         */
+        submitHandle: function () {
+            viewer.eventAction.execute('submit', evt.target, evt);
+        },
+
+        /**
+         * 提交成功调用的在html on里使用的事件
+         *
+         * @param  {HTMLElement} element form节点
+         */
+        submitSuccessHandle: function () {
+            if (!evt) {return};
+            viewer.eventAction.execute('submitSuccess', evt.target, evt);
+        },
+
+        /**
+         * 提交失败调用的在html on里使用的事件
+         *
+         * @param  {HTMLElement} element form节点
+         */
+        submitErrorHandle: function () {
+            if (!evt) {return};
+            viewer.eventAction.execute('submitError', evt.target, evt);
         }
     };
 });

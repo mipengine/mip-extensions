@@ -71,6 +71,20 @@
         </li>
         <li>Nav item 5</li>
         <li>Nav item 6</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
     </ul>
 </mip-sidebar>
 ```

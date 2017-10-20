@@ -20,6 +20,14 @@ define(function () {
     var logData = dataProcessor.logData;
 
     /**
+     * prerenderAllowed钩子,优先加载
+     *
+     */
+    customElement.prototype.prerenderAllowed = function () {
+        return true;
+    };
+
+    /**
      * build钩子, 定制化渲染的主流程：分区请求+渲染
      *
      */
@@ -40,13 +48,13 @@ define(function () {
         /**
          * AB区分处理
          */
-        if (me.getPosition() && me.getPosition().current === 'top') {
+        if (me.getPosition() === 'top') {
             if (me.getTagNum(me.element).current === 0) {
                 me.initQueue();
                 me.fetchData(url.get(me.element, 'top'), me.renderQueue.bind(me));
             }
-            var tempData = window.MIP && window.MIP.custom && window.MIP.custom && window.MIP.custom.tempData;
-            var templateData = me.getMatchData(me.element, tempData);
+            var queue = me.getQueue();
+            var templateData = me.getMatchData(me.element, queue && queue.tempData);
             if (templateData && templateData.template.length > 0) {
                 me.render(templateData, me.element);
             } else {
@@ -87,60 +95,47 @@ define(function () {
      */
     customElement.prototype.isShowCustom = function () {
         var me = this;
+        var isShowCustom = true;
         // 非结果页进入不展现定制化内容
         if (!viewer.isIframed) {
             me.element.remove();
-            return false;
+            isShowCustom = false;
         }
         // 非百度、cache不展现定制化内容
         if (!(me.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
             me.element.remove();
-            return false;
+            isShowCustom = false;
         }
         // 无异步url不展现定制化内容
         if (!me.commonUrl) {
             me.element.remove();
-            return false;
+           isShowCustom = false;
         }
-        return true;
+        return isShowCustom;
     };
 
     /**
      * 获取标签所在的位置
      *
      * @return {Object} position 标签位置
-     * @return {string} position.current 当前标签位置
      */
     customElement.prototype.getPosition = function () {
-        var me = this;
-        return {
-            current: me.position === 'top' ? 'top' : 'bottom'
-        };
+        return this.position === 'top' ? 'top' : 'bottom';
     };
 
     /**
      * 初始化
      *
-     * @param {HTMLElement} element mip-custom元素
+     * @param {HTMLElement} el mip-custom元素
      * @return {Object} tagNum 返回标签数量信息
-     * @return {string} tagNum.total 标签总部数量
+     * @return {string} tagNum.total 标签总数量
      * @return {string} tagNum.current 当前标签序号
      */
-    customElement.prototype.getTagNum = function (element) {
-        var total = 0;
-        var current;
-        var customs = document.querySelectorAll('mip-custom[position=top]');
-        if (customs && customs.length) {
-            total = customs.length;
-            for (var i = 0; i < total; i++) {
-                if (customs[i] === element) {
-                    current = i;
-                }
-            }
-        }
+    customElement.prototype.getTagNum = function (el) {
+        var element = [].slice.call(document.querySelectorAll('mip-custom[position=top]'));
         return {
-            total: total,
-            current: current
+            total: element.length,
+            current: element.indexOf(el)
         };
     };
 
@@ -156,22 +151,22 @@ define(function () {
         if (!data || !element) {
             return;
         }
-        if (data && data.config) {
+        if (data.config) {
             var config = dataProcessor.addPaths(data.config);
             require.config(config);
         }
-        else if (data && dataProcessor.config) {
+        else if (dataProcessor.config) {
             var config = dataProcessor.addPaths(dataProcessor.config);
             require.config(config);
         }
 
         // common 数据缓存
-        if (data && data && data.common) {
+        if (data.common) {
             commonData = data.common;
         }
 
         // 模板数据缓存
-        if (data && data && data.template) {
+        if (data.template) {
             template = data.template;
         }
 
@@ -220,13 +215,15 @@ define(function () {
         if (tLen && tLen > 0) {
             for (var i = 0; i < tLen; i++) {
                 var singleTempData = template[i];
-                if (singleTempData && singleTempData.length > 0) {
-                    var singleRid = singleTempData[0] && singleTempData[0].rid;
-                    if (singleRid && singleRid === sourceType) {
-                        matchTempData.template.push(singleTempData);
-                        break;
-                    }
+                if (!singleTempData || !singleTempData.length) {
+                    break;
                 }
+                var singleRid = singleTempData[0] && singleTempData[0].rid;
+                if (singleRid && singleRid === sourceType) {
+                    matchTempData.template.push(singleTempData);
+                    break;
+                }
+                
             }
         }
 
@@ -293,11 +290,12 @@ define(function () {
      */
     customElement.prototype.storeData = function (data) {
         var me = this;
-        if (!data) {
+        var queue = me.getQueue();
+        if (!data || !queue) {
             return;
         }
-        if (window.MIP && window.MIP.custom && window.MIP.custom && window.MIP.custom.tempData) {
-            window.MIP.custom.tempData = data;
+        if (queue.tempData) {
+            queue.tempData = data;
         }
     };
 
@@ -308,9 +306,9 @@ define(function () {
     customElement.prototype.initQueue = function () {
         var me = this;
         window.MIP = window.MIP || {};
-        window.MIP.custom = window.MIP.custom || {};
-        window.MIP.custom.tempQueue = [];
-        window.MIP.custom.tempData = {};
+        MIP.custom = MIP.custom || {};
+        MIP.custom.tempQueue = [];
+        MIP.custom.tempData = {};
     };
 
     /**
@@ -319,12 +317,24 @@ define(function () {
      * @param {HTMLElement} temp 入队列元素
      */
     customElement.prototype.pushQueue = function (temp) {
-        if (!temp) {
+        var me = this;
+        var queue = me.getQueue();
+        if (!temp || !queue) {
             return;
         }
-        if (window.MIP && window.MIP.custom && window.MIP.custom && window.MIP.custom.tempQueue) {
-            window.MIP.custom.tempQueue.push(temp);
-        }
+        queue.tempQueue && queue.tempQueue.push(temp);
+    };
+
+    /**
+     * 获取模板队列和缓存数据状态
+     *
+     * @return {} 
+     */
+    customElement.prototype.getQueue = function () {
+        return window.MIP && MIP.custom && {
+                tempQueue: MIP.custom.tempQueue,
+                tempData: MIP.custom.tempData
+            };
     };
 
     /**
@@ -334,12 +344,12 @@ define(function () {
      */
     customElement.prototype.renderQueue = function (data) {
         var me = this;
+        var queue = me.getQueue();
+        var tempQueue = queue && queue.tempQueue;
         if (!data) {
             return;
         }
-        /* eslint-disable */
-        if (window.MIP && window.MIP.custom && window.MIP.custom && window.MIP.custom.tempQueue && window.MIP.custom.tempQueue.length > 0) {
-            var tempQueue = window.MIP.custom.tempQueue;
+        if (tempQueue && tempQueue.length > 0) {
             var tLen = tempQueue.length;
             for (var i = 0; i < tLen; i++) {
                 var element = tempQueue[i];

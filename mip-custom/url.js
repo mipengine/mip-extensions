@@ -122,8 +122,9 @@ define(function (require) {
         var cLen = customs.length;
         if (customs && cLen > 0) {
             for (var i = 0; i < cLen; i++) {
-                /* eslint-disable */
-                customs[i] && customs[i].getAttribute('source-type') && sourceIdArr.push(customs[i].getAttribute('source-type'));
+                var singleCustom = customs[i];
+                var sourceId = singleCustom && singleCustom.getAttribute('source-type');
+                sourceId && sourceIdArr.push(sourceId);
             }
         }
         return sourceIdArr.join(',');

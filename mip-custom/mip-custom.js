@@ -39,8 +39,6 @@ define(function () {
 
         /**
          * AB区分处理
-         * A区所有<mip-custom>合并为一个请求发出，并在第一个标签加载时初始化模板队列、发出ajax请求；A区每个标签加载都会在缓存data里匹配数据，匹配成功进行渲染，否则push进模板队列。
-         * B区直接发请求，数据返回后render即可
          */
         if (me.getPosition() && me.getPosition().current === 'top') {
             if (me.getTagNum(me.element).current === 0) {

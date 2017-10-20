@@ -102,6 +102,7 @@ define(function (require) {
     return {
         domain: 'https://mipengine.baidu.com/',
         ajaxUrl: 'https://mipengine.baidu.com/common?',
+        topAjaxUrl: 'https://mipengine.baidu.com/common?',
         regexs: regexs,
         params: params,
         config: config,

@@ -116,12 +116,13 @@ define(function (require) {
 
         return url;
     }
-    function getSourceId () {
+    function getSourceId() {
         var customs = document.querySelectorAll('mip-custom[position=top]');
         var sourceIdArr = [];
         var cLen = customs.length;
         if (customs && cLen > 0) {
             for (var i = 0; i < cLen; i++) {
+                /* eslint-disable */
                 customs[i] && customs[i].getAttribute('source-type') && sourceIdArr.push(customs[i].getAttribute('source-type'));
             }
         }

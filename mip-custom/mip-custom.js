@@ -28,7 +28,7 @@ define(function () {
 
         // 初始化
         me.initBuild();
-        
+
         // 异常情况下不展示定制化MIP
         if (!me.isShowCustom()) {
             return;
@@ -54,11 +54,12 @@ define(function () {
             } else {
                 me.pushQueue(me.element);
             }
-          
+
         } else {
             me.fetchData(me.commonUrl, me.render.bind(me), me.element);
         }
     };
+
     /**
      * firstInviewCallback钩子，发送曝光日志
      *
@@ -68,6 +69,7 @@ define(function () {
         logData.params.t = +new Date();
         log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
     };
+
     /**
      * 初始化参数
      *
@@ -79,6 +81,7 @@ define(function () {
         me.sourceType = me.element.getAttribute('source-type') || '';
         me.commonUrl = url.get(me.element);
     };
+
     /**
      * 判断是否展示定制化MIP
      *
@@ -103,6 +106,7 @@ define(function () {
         }
         return true;
     };
+
     /**
      * 获取标签所在的位置
      *
@@ -113,8 +117,9 @@ define(function () {
         var me = this;
         return {
             current: me.position === 'top' ? 'top' : 'bottom'
-        }
+        };
     };
+
     /**
      * 初始化
      *
@@ -124,13 +129,12 @@ define(function () {
      * @return {string} tagNum.current 当前标签序号
      */
     customElement.prototype.getTagNum = function (element) {
-        var me = this;
         var total = 0;
         var current;
         var customs = document.querySelectorAll('mip-custom[position=top]');
         if (customs && customs.length) {
             total = customs.length;
-            for (var i = 0; i<total; i++) {
+            for (var i = 0; i < total; i++) {
                 if (customs[i] === element) {
                     current = i;
                 }
@@ -139,8 +143,9 @@ define(function () {
         return {
             total: total,
             current: current
-        }
+        };
     };
+
     /**
      * 渲染
      *
@@ -148,7 +153,6 @@ define(function () {
      * @param {HTMLElement} element 需要渲染的element
      */
     customElement.prototype.render = function (data, element) {
-        var me = this;
         var commonData = {};
         var template = {};
         if (!data || !element) {
@@ -185,6 +189,7 @@ define(function () {
             dom.render(element, tplData, container);
         }
     };
+
     /**
      * 获取标签匹配的数据
      *
@@ -193,7 +198,7 @@ define(function () {
      * @return {Object} matchTempData 返回element匹配的数据
      * @return {Object} matchTempData.common common数据信息
      * @return {Object} matchTempData.config 配置
-     * @return {array} matchTempData.template 模板
+     * @return {Array} matchTempData.template 模板
      */
     customElement.prototype.getMatchData = function (element, data) {
         var me = this;
@@ -213,7 +218,7 @@ define(function () {
             template: []
         };
 
-        var tLen = template && template.length;        
+        var tLen = template && template.length;
         if (tLen && tLen > 0) {
             for (var i = 0; i < tLen; i++) {
                 var singleTempData = template[i];
@@ -229,6 +234,7 @@ define(function () {
 
         return matchTempData;
     };
+
     /**
      * 异步获取数据
      *
@@ -237,6 +243,7 @@ define(function () {
      * @param {HTMLElement} element 数据返回后需要渲染的element
      */
     customElement.prototype.fetchData = function (url, callback, element) {
+        var me = this;
         if (!url) {
             return;
         }
@@ -280,6 +287,7 @@ define(function () {
             console.warn(evt);
         });
     };
+
     /**
      * 缓存异步数据
      *
@@ -294,6 +302,7 @@ define(function () {
             window.MIP.custom.tempData = data;
         }
     };
+
     /**
      * 初始化模板、数据队列
      *
@@ -305,6 +314,7 @@ define(function () {
         window.MIP.custom.tempQueue = [];
         window.MIP.custom.tempData = {};
     };
+
     /**
      * 模板入队列
      *
@@ -318,6 +328,7 @@ define(function () {
             window.MIP.custom.tempQueue.push(temp);
         }
     };
+
     /**
      * 渲染模板的等待队列
      *
@@ -328,10 +339,11 @@ define(function () {
         if (!data) {
             return;
         }
+        /* eslint-disable */
         if (window.MIP && window.MIP.custom && window.MIP.custom && window.MIP.custom.tempQueue && window.MIP.custom.tempQueue.length > 0) {
             var tempQueue = window.MIP.custom.tempQueue;
             var tLen = tempQueue.length;
-            for (var i = 0; i<tLen; i++) {
+            for (var i = 0; i < tLen; i++) {
                 var element = tempQueue[i];
                 var elementData = me.getMatchData(element, data);
                 me.render(elementData, element);

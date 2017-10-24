@@ -1,0 +1,13 @@
+{
+    "name": "mip-video-repeat",
+    "version": "1.0.0",
+    "description": "带片头片尾和重播功能的视频组件",
+    "author": {
+        "name": "idongde",
+        "url": "http://m.idongde.com",
+        "email": "751718620@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -98,12 +98,7 @@ define(function (require) {
                             if (_RET_IP && _RET_IP.status === 0 && _RET_IP.message
                                 && _RET_IP.message[0] && _RET_IP.message[0].ip && _RET_IP.message[0].id) {
                                 callback();
-                            } else {
-                                var image = new Image();
-                                var logurl = '//m.120ask.com/jhg.php?from=baidu&time=' + new Date().getTime() 
-                                            + '&msg=' + encodeURIComponent(location.href); 
-                                image.src = logurl;
-                            }
+                            } 
                         }, 20);
                     }
                 }

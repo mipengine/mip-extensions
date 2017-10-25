@@ -1,5 +1,12 @@
 # 升级日志
 
+#### 2017.10.25
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pop-video](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pop-video)|[升级][平台]	江苏民福康,视频播放组件,播放结束后弹出窗口
+
 #### 2017.10.24
 > 组件上线
 

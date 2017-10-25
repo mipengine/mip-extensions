@@ -1,0 +1,15 @@
+{
+    "name": "mip-xinshijue-script",
+    "version": "1.0.0",
+    "author":"Jason",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "Jason",
+            "email": "498064771@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

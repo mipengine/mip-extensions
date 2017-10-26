@@ -103,7 +103,7 @@ define(function (require) {
             }
             util.addClass(target, 'active');
 
-            var text = newEle.textContent.replace(newEle.querySelector('.filter-num').textContent, '');
+            var text = newEle.textContent;
             if (text === '查看全部') {
                 text = '无';
             }

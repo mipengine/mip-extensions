@@ -103,7 +103,7 @@ define(function (require) {
             }
             util.addClass(target, 'active');
 
-            var text = newEle.textContent;
+            var text = this.getText(newEle);
             if (text === '查看全部') {
                 text = '无';
             }
@@ -114,6 +114,23 @@ define(function (require) {
             }
             _this.applyFilter(newEle.dataset.filtertype);
         };
+
+        /**
+         * Get Node Text
+         *
+         * @param {Object} node HTML Element
+         * @return {String} node Text
+         */
+        this.getText = function (node) {
+            var output = '';
+            var childs = node.childNodes || [];
+            [].slice.call(childs).forEach(function (node) {
+                if (node.nodeType === 3) {
+                    output = output.concat(node.textContent);
+                }
+            });
+            return output;
+        }
 
         /**
         * shoot: on mobile when filter btn is clicked.

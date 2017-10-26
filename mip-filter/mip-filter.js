@@ -119,7 +119,7 @@ define(function (require) {
          * Get Node Text
          *
          * @param {Object} node HTML Element
-         * @return {String} node Text
+         * @return {string} node Text
          */
         this.getText = function (node) {
             var output = '';
@@ -130,7 +130,7 @@ define(function (require) {
                 }
             });
             return output;
-        }
+        };
 
         /**
         * shoot: on mobile when filter btn is clicked.

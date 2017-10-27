@@ -1,0 +1,34 @@
+{
+  "name": "mip-extensions",
+  "version": "1.0.0",
+  "description": "MIP 组件包括官方组件和开发者自定义组件，是用于定制站点页面功能的利器。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "prebuild": "echo Hi Miper, Welcome to start compile!",
+    "build": "mip-extension-optimise ./",
+    "release": "gren release",
+    "postbuild": "echo Compile over, Have a nice day!"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mipengine/mip-extensions.git"
+  },
+  "keywords": [
+    "MIP",
+    "Extensions"
+  ],
+  "author": "Jackson <smartfutureplayer@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mipengine/mip-extensions/issues"
+  },
+  "homepage": "https://github.com/mipengine/mip-extensions#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "github-release-notes": "^0.11.0",
+    "mip-extension-optimizer": "^1.1.3"
+  }
+}

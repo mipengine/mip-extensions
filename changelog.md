@@ -1,5 +1,89 @@
 # 升级日志
 
+#### 2017.10.25
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pop-video](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pop-video)|[升级][平台]	江苏民福康,视频播放组件,播放结束后弹出窗口
+
+#### 2017.10.24
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xzw-rem](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xzw-rem)|[升级][平台]	星座屋自适应组件
+
+#### 2017.10.23
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xzw-rem](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xzw-rem)|[新增][平台]	星座屋自适应组件
+
+#### 2017.10.17
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cehome-bbsinfo](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-bbsinfo)|[新增][平台]论坛M站帖子详情 站点：`https://m.cehome.com/bbs/` 组件用途：帖子详情MIP页改造展示
+[mip-cehome-sellso](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-sellso)|[新增][平台]论坛M站二手机出售帖子列表需求
+[mip-cehome-threadlist](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-threadlist)|[新增][平台]论坛M站帖子列表需求
+[mip-cehome-common](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-common)|[新增][平台]论坛M站mip公共方法
+[mip-cehome-forumlist](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cehome-forumlist)|[新增][平台]论坛M站板块列表需求
+[mip-pop-video](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pop-video)|[新增][平台]江苏民福康,视频播放组件,播放结束后弹出窗口
+
+#### 2017.09.30
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-next-news](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-next-news)|[新增][平台]用来给文章内容页增加相关新闻第一篇的效果
+[mip-xiaomi-router](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xiaomi-router)|[新增][平台]用于小米公司移动端网站等的规划；主要用于通过JSONP的方式发起地址请求，不涉及布局的事情；
+
+
+#### 2017.09.29
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-zpm-searchjobs](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-searchjobs)|[升级][平台]mip.zhaopin.com更改跳转和异步请求地址
+[mip-zpm-company](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-company)|[升级][平台]mip.zhaopin.com更改跳转和异步请求地址
+[mip-zpm-sindex](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-sindex)|[升级][平台]mip.zhaopin.com更改跳转和异步请求地址
+[mip-zpm-jobdetail](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-zpm-jobdetail)|[升级][平台]mip.zhaopin.com更改跳转和异步请求地址
+[mip-pingao-icon](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pingao-icon)|[新增][平台]品告推广连接，品告展示在网页的图片和连接进行推广用
+
+#### 2017.09.27
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-lnxyw-switch](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-lnxyw-switch)|[新增][平台]站点:m.lnxyw.com,组件功能:实现文字单行垂直切换
+[mip-form](https://github.com/mipengine/mip-extensions/tree/master/mip-form)|[升级][官方]mip-form组件支持异步fetch
+
+#### 2017.09.26
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-qqtn-cnzzcount](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-qqtn-cnzzcount)|[升级][平台]CNZZ统计，针对没有该ID号的情况加了一个判断
+
+#### 2017.09.14
+
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-cook-voicerecipe](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cook-voicerecipe)|[升级][平台]语音智能菜谱入口
+[mip-diy-adsense](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-diy-adsense)|[升级][平台]完美支持adsense广告插件
+[mip-game-recommend](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-game-recommend)|[升级][平台]游戏下载组件：游戏下载列表插件
+[mip-cr173-mg](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-cr173-mg)|[升级][平台]组件介绍
+
+
 #### 2017.09.13
 
 > 组件上线

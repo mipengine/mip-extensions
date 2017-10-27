@@ -33,6 +33,9 @@ mip-form {
         padding-right: 30px;
 
     }
+    form {
+        position: relative;
+    }
     input[type='radio'] {
         display: inline
     }
@@ -46,11 +49,17 @@ mip-form {
         text-align: left;
         padding: 0 10% 0 3%
     }
+    div[mip-mustache-rendered] {
+        display: block;
+    }
     input[type='submit'] {
         border: 1px solid #f1f1f1;
         border-radius: 5px;
         color: #333;
         background-color: #d8d7d7
+    }
+    [submit-success], [submit-error] {
+        display: none;
     }
 }
 

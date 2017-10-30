@@ -1,11 +1,11 @@
 {
-    "name": "mip-history",
+    "name": "mip-vd-baidu",
     "version": "1.0.0",
     "description": "组件介绍",
     "contributors": [
         {
-            "name": "Jenny_L",
-            "email": "jiaojiaomao220@163.com"
+            "name": "lilangbo",
+            "email": "lilangbo111@163.com"
         }
     ],
     "engines": {

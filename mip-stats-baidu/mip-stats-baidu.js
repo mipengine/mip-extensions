@@ -112,7 +112,7 @@ define(function (require) {
              * 检测statusData是否存在
              */
             if (!statusData) {
-                return;
+                continue;
             }
 
             try {
@@ -120,7 +120,7 @@ define(function (require) {
             }
             catch (e) {
                 console.warn('事件追踪data-stats-baidu-obj数据不正确');
-                return;
+                continue;
             }
 
             var eventtype = statusData.type;
@@ -129,18 +129,18 @@ define(function (require) {
              * 检测传递数据是否存在
              */
             if (!statusData.data) {
-                return;
+                continue;
             }
 
             var data = buildArry(statusData.data);
 
             if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
                 // 事件限制到click,mouseup,load(直接触发)
-                return;
+                continue;
             }
 
             if ($(tagBox[index]).hasClass('mip-stats-eventload')) {
-                return;
+                continue;
             }
 
             $(tagBox[index]).addClass('mip-stats-eventload');

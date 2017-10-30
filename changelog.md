@@ -1,11 +1,25 @@
 # 升级日志
 
+#### 2017.10.25
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-pop-video](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-pop-video)|[升级][平台]	江苏民福康,视频播放组件,播放结束后弹出窗口
+
+#### 2017.10.24
+> 组件上线
+
+组件名|功能说明
+---|---
+[mip-xzw-rem](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xzw-rem)|[升级][平台]	星座屋自适应组件
+
 #### 2017.10.23
 > 组件上线
 
 组件名|功能说明
 ---|---
-[mip-5h-cnzzcount](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-5h-cnzzcount)|[新增][平台]	星座屋自适应组件
+[mip-xzw-rem](https://github.com/mipengine/mip-extensions-platform/tree/master/mip-xzw-rem)|[新增][平台]	星座屋自适应组件
 
 #### 2017.10.17
 > 组件上线

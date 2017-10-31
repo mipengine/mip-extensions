@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prebuild": "echo Hi Miper, Welcome to start compile!",
-    "build": "mip-extension-optimise ./",
+    "build": "mip-extension-optimise ./src/ -o ./dist",
     "release": "gren release",
     "postbuild": "echo Compile over, Have a nice day!"
   },

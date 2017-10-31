@@ -56,7 +56,70 @@ $ [sudo] npm install -g mip-cli --registry=https://registry.npm.taobao.org
 
 `说明`: 组件的预览页面是 mip-cli 工具根据组件 [README.md](./spec-readme-md.md) 中的示例章节抽取和生成的。mip-cli 工具为示例代码创建了页面，引入了相应的 MIP 环境。
 
+### 调试MIP组件
 
+调试项目 `mip-project` 目录结构如下：
+
+```
+.
+├── mip-sidebar
+│   ├── README.md
+│   ├── mip-sidebar.js
+│   ├── mip-sidebar.less
+│   ├── package.json
+├── mip-sidebar.html
+└── mip.config
+```
+
+`mip-sidebar` 为你开发的组件目录，`mip-sidebar.html` 为使用组件的html文件，内容如下：
+
+```html
+<!DOCTYPE html>
+<html mip>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <title>
+    <!-- 标题 -->
+  </title>
+  <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+  <link rel="canonical" href="对应的原页面地址">
+  <style mip-custom>
+    /* 自定义样式 */
+  </style>
+</head>
+<body>
+  <!-- 正文 -->
+  <header>
+    <div id="logo" on="tap:sidebar.open">Open mip-sidebar</div>
+  </header>
+  <mip-sidebar id="sidebar" layout="nodisplay" class="mip-hidden">
+    <ul>
+      <li>
+        <a data-type="mip" href="https://www.mipengine.org/">MIP官网</a>
+        <button on="tap:sidebar.close"> X </button>
+      </li>
+      <li>Nav item 1</li>
+      <li>Nav item 2</li>
+      <li>Nav item 3</li>
+      <li>
+        Nav item 4 - Image
+        <mip-img src="https://www.mipengine.org/favicon.ico" width="32" height="32" alt="mipengine ico"></mip-img>
+      </li>
+      <li>Nav item 5</li>
+      <li>Nav item 6</li>
+    </ul>
+  </mip-sidebar>
+  <!-- 引入js -->
+  <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
+  <script src="https://mipcache.bdstatic.com/static/v1/mip-sidebar/mip-sidebar.js"></script>
+</body>
+</html>
+```
+
+修改 `mip.config` 文件中的配置 `extensionsDir` 值为 `./`，注意是 `./` 不是 `/`。
+
+运行 `mip server` 命令，启动调试，访问 `mip-sidebar.html`。
 
 ### 关于 mip-cli
 

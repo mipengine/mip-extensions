@@ -13,6 +13,7 @@
 王培|2017-05-03|增加必要脚本说明|v1.0.2
 王培|2017-06-06|修改文档示例|v1.0.3
 董士浩|2017-09-08|引入`mipserver`字体文件|v1.0.16
+董士浩|2017-10-20|定制化 MIP 支持A区渲染定制化内容|v1.2.0
 
 ## 说明
 
@@ -55,7 +56,17 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
 </head>
 <body>
     <h2>定制化MIP示例页面</h2>
+    <!-- 顶部定制化内容区域，可自由放置 -->
+    <mip-custom position="top" source-type="med_tag">
+       <script type="application/json">
+            {
+                "accid": "e2217bab684fbb898dccf04b",
+                "title": "%E8%BF%99%E9%87%8C%E6%98%AF%E6%A0%87%E9%A2%98"
+            }
+        </script>
+    </mip-custom>
     <p>正文</p>
+     <!-- 底部定制化内容区域，必须放在内容的下方、`script`标签的上方 -->
     <mip-custom>
        <script type="application/json">
             {
@@ -73,6 +84,24 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
 ```
 
 ## 属性
+
+### position
+
+说明：标识定制化分区，目前分为两个区域 
+必选项：否 
+类型：字符串  
+取值范围：`top`：顶部区域，**必须和`source-type`配合使用才能正确渲染内容**。
+单位：无   
+默认值：`bottom`  
+
+### source-type
+
+说明：声明请求的资源 
+必选项：否 
+类型：字符串  
+取值范围：百度官方给出的资源号，**必须和`position`配合使用才能正确渲染内容**。
+单位：无   
+默认值：空  
 
 ### accid
 

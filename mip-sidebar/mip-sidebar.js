@@ -12,9 +12,9 @@ define(function (require) {
     /**
      * [toggle 打开或关闭 sidebar 入口]
      */
-    function toggle() {
+    function toggle(event) {
 
-        isOpen.call(this) ? close.call(this) : open.call(this);
+        isOpen.call(this) ? close.call(this, event) : open.call(this);
 
     }
 
@@ -151,14 +151,14 @@ define(function (require) {
         }
 
 
-        document.addEventListener('keydown', function (evt) {
+        document.addEventListener('keydown', function (event) {
             if (evt.keyCode === 27) {
-                close.call(self);
+                close.call(self, event);
             }
         }, false);
 
-        self.addEventAction('toggle', function () {
-            toggle.call(self);
+        self.addEventAction('toggle', function (event) {
+            toggle.call(self, event);
         });
         self.addEventAction('open', function () {
             open.call(self);

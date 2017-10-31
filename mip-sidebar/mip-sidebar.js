@@ -152,7 +152,7 @@ define(function (require) {
 
 
         document.addEventListener('keydown', function (event) {
-            if (evt.keyCode === 27) {
+            if (event.keyCode === 27) {
                 close.call(self, event);
             }
         }, false);

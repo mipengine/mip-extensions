@@ -1,5 +1,8 @@
 <style mip-custom>
-#btn-open {
+mip-lightbox {
+	padding: 10px;
+}
+#btn-open, .lightbox-close {
     border: 1px solid #f1f1f1;
     border-radius: 5px;
     padding: 10px 20px;
@@ -7,5 +10,13 @@
     width: 90%;
     font-size: 14px;
     background: #fff;
+}
+
+.lightbox {
+	padding: 10px;
+	background: white;
+}
+.lightbox p {
+	margin: 20px 0;
 }
 </style>

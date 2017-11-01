@@ -33,8 +33,8 @@
      */
     customElement.prototype.build = function () {
         var self = this;
-        var element = this.element;
-        var scriptUrl = JSON.parse($(element).attr('mip-script-url').replace(/'/g, '"'));
+        var element = self.element;
+        var scriptUrl = ($(element).attr('mip-script-url');
         appendScriptEven(params);
     };
 

@@ -34,7 +34,7 @@
     customElement.prototype.build = function () {
         var self = this;
         var scriptUrl = self.element.getAttribute('mip-script-url');
-        appendScriptEven(params);
+        appendScriptEven(scriptUrl);
     };
 
     return customElement;

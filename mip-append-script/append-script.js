@@ -34,7 +34,7 @@
     customElement.prototype.build = function () {
         var self = this;
         var element = self.element;
-        var scriptUrl = ($(element).attr('mip-script-url');
+        var scriptUrl = self.element.getAttribute('mip-script-url');
         appendScriptEven(params);
     };
 

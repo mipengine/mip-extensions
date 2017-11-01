@@ -1,10 +1,12 @@
  define(function (require) { 
+	console.info("111111111111111");
     var customElement = require('customElement').create();  
 	
     /** [appendScriptEven 绑定事件] 
      * @param {Object} scriptUrl [mip-script-url元素]
      */
     function appendScriptEven(scriptUrl) {
+	    console.info("222222222222222222");
 		//根据js的路径请求js并添加到页面中
 		var i = !1,
 		o = document.createElement("script"),
@@ -32,6 +34,7 @@
      *
      */
     customElement.prototype.build = function () {
+	    console.info("333333333333");
         var self = this;
         var scriptUrl = self.element.getAttribute('mip-script-url');
         appendScriptEven(scriptUrl);

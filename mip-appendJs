@@ -1,0 +1,23 @@
+//根据js的路径请求js并添加到页面中
+function t(t, e, n, r) {
+   var i = !1,
+       o = document.createElement("script"),
+       a = document.getElementsByTagName("script")[0],
+       s = document.head || document.getElementsByTagName("head")[0] || document.documentElement,
+       l = s.getElementsByTagName("base")[0];
+       o.charset = r || "utf-8",
+       o.src = t,
+       o.async = !0,
+       o.onload = o.onreadystatechange = function() {   //请求js的回掉函数
+           i || o.readyState && !/loaded|complete/.test(String(o.readyState)) || 
+           (i = !0, o.onload = o.onreadystatechange = o.onerror = null, o.parentNode.removeChild(o), 
+           o = null, "function" == typeof e && e())
+       },
+       o.onerror = function() {   //请求js发生错误的时候的函数
+           o.onload = o.onreadystatechange = o.onerror = null,
+               o.parentNode.removeChild(o),
+               o = null,
+           "function" == typeof n && n()
+       },
+       a.parentNode ? a.parentNode.insertBefore(o, a) : l ? s.insertBefore(o, l) : s.appendChild(o)   //将js添加到页面中
+}  

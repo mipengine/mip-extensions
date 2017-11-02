@@ -1,0 +1,11 @@
+{
+    "name": "mip-script-url",
+    "version": "1.0.0",
+    "author": {
+        "name": "mip-script-url",
+        "email": "812002343@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.0.0"
+    }
+}

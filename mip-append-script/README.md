@@ -12,13 +12,13 @@ mip-script-url用于添加第三方js的js脚本代码
 
 
 ```html
-<mip-script-url mip-script-url="https://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js"></mip-script-url>
+<mip-script-url url="https://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js"></mip-script-url>
 ```
 
 ## 属性
 
-### mip-script-url
+### url
 
-说明：需要添加的js的url 
-必选项：是  
-类型：字符串   
+说明：需要添加的js的url
+必选项：是
+类型：字符串 

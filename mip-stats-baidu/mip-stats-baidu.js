@@ -37,12 +37,12 @@ define(function (require) {
                     _hmt.push(conf[i]);
                 }
             }
+
+            bindEle();
+            
             var hm = document.createElement('script');
             hm.src = 'https://hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
-            hm.onload = function () {
-                bindEle();
-            };
         } else {
             console.warn('token is unavailable'); // eslint-disable-line
         }
@@ -198,7 +198,7 @@ define(function (require) {
     function bdSearchCase() {
         var originUrl = '';
         var hashObj = {};
-        
+
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
         var from = MIP.hash.get('from') || '';

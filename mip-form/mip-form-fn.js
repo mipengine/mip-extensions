@@ -174,22 +174,6 @@ define(function (require) {
         },
 
         /**
-         * 判断是否包含密码框与文件框
-         *
-         * @param  {Object} element mip 组件标签
-         * @return {boolean} 是否符合mip-form使用条件
-         */
-        preProcess: function (element) {
-            var flag = element.querySelector('input[type="password"],input[type="file"]');
-
-            if (flag) {
-                console.error('禁止使用密码框与文件框');
-                return false;
-            }
-            return true;
-        },
-
-        /**
          * 文案格式验证
          *
          * @param  {string} type 验证类型

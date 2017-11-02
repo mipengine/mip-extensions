@@ -17,9 +17,7 @@ define(function (require) {
     customElement.prototype.build = function () {
         var element = this.element;
         var addClearBtn = element.hasAttribute('clear');
-        if (form.preProcess(element)) {
-            form.createDom(element);
-        }
+        form.createDom(element);
 
         if (addClearBtn) {
             var clearArr = ['text', 'input', 'datetime', 'email', 'number', 'search', 'tel', 'url'];

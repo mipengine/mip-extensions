@@ -31,19 +31,18 @@ define(function (require) {
             if (viewer.isIframed) {
                 bdSearchCase();
             }
-
             if (config && Array.isArray(config.conf) && config.conf.length) {
                 var conf = config.conf;
                 for (var i = 0; i < conf.length; i++) {
                     _hmt.push(conf[i]);
                 }
             }
-
-            bindEle();
-
             var hm = document.createElement('script');
             hm.src = 'https://hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
+            hm.onload = function () {
+                bindEle();
+            };
         } else {
             console.warn('token is unavailable'); // eslint-disable-line
         }
@@ -198,23 +197,24 @@ define(function (require) {
      */
     function bdSearchCase() {
         var originUrl = '';
-        var mipCacheUrl = location.origin + location.pathname + location.search;
+        var hashObj = {};
+        
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
         var from = MIP.hash.get('from') || '';
-        if ((hashWord || hashEqid) && (mipCacheUrl || document.referrer)) {
-            var hashObj = {};
-            if (hashEqid && isMatch(from, 'result')) {
+
+        if (isMatch(from, 'result')) {
+            if ((hashWord || hashEqid) && document.referrer) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
                 hashObj.word = hashWord;
                 originUrl = document.referrer;
-            } else {
-                originUrl = mipCacheUrl;
             }
-            _hmt.push(['_setReferrerOverride', makeReferrer(originUrl, hashObj)]);
+        } else {
+            hashObj.url = '';
+            originUrl = location.origin + location.pathname + location.search;
         }
-
+        _hmt.push(['_setReferrerOverride', makeReferrer(originUrl, hashObj)]);
     }
 
     /**

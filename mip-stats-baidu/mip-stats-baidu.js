@@ -31,18 +31,19 @@ define(function (require) {
             if (viewer.isIframed) {
                 bdSearchCase();
             }
+
             if (config && Array.isArray(config.conf) && config.conf.length) {
                 var conf = config.conf;
                 for (var i = 0; i < conf.length; i++) {
                     _hmt.push(conf[i]);
                 }
             }
+
+            bindEle();
+
             var hm = document.createElement('script');
             hm.src = 'https://hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
-            hm.onload = function () {
-                bindEle();
-            };
         } else {
             console.warn('token is unavailable'); // eslint-disable-line
         }

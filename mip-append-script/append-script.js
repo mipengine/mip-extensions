@@ -39,11 +39,11 @@
 				var element = this.element;
 				var scriptUrl = JSON.parse($(element).attr('mip-script-url').replace(/'/g, '"'));
 				appendScriptEven(params);
-			};
-
+			}
 		}
-	)
-	 function() {
+	 ),
+	 function(){
+		console.info(123123);
 		function i(i, c) {
 			i.registerMipElement("mip-script-url", c)
 		}
@@ -52,6 +52,6 @@
 			i(window.MIP, c)
 		});
 		else require(["mip", "mip-script-url"], i)
-		} () 
-	}
+	}() 
+  }
 });

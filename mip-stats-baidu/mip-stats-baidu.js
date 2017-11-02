@@ -196,23 +196,22 @@ define(function (require) {
      * 解决来自百度搜索，内外域名不一致问题
      */
     function bdSearchCase() {
-        var referrer = '';
-
-        var bdUrl = document.referrer;
+        var originUrl = '';
+        var mipCacheUrl = location.origin + location.pathname + location.search;
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
         var from = MIP.hash.get('from') || '';
-        if ((hashWord || hashEqid) && bdUrl) {
+        if ((hashWord || hashEqid) && (mipCacheUrl || document.referrer)) {
             var hashObj = {};
             if (hashEqid && isMatch(from, 'result')) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
-            }
-            else {
                 hashObj.word = hashWord;
+                originUrl = document.referrer;
+            } else {
+                originUrl = mipCacheUrl;
             }
-            referrer = makeReferrer(bdUrl, hashObj);
-            _hmt.push(['_setReferrerOverride', referrer]);
+            _hmt.push(['_setReferrerOverride', makeReferrer(originUrl, hashObj)]);
         }
 
     }
@@ -247,7 +246,7 @@ define(function (require) {
             urlData += '&' + key + '=' + hashObj[key];
         }
         urlData = urlData.slice(1);
-        if (url.indexOf('#') < 0) {
+        if (url.indexOf('#') < 0 && urlData) {
             referrer = url + conjMark + urlData;
         }
         else {

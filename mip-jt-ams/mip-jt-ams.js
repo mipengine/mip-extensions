@@ -10,5 +10,5 @@ define(function (require) {
         node.setAttribute('src', js);
         document.body.appendChild(node);
     }
-    re('../../jtams.js');
+    re('https://res.cngoldres.com/libs/jtams/1.0.0/jtams.js');
 });

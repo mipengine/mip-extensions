@@ -122,8 +122,10 @@ define(function (require) {
 
         self.open = true;
         util.css(self.element, {display: 'block'});
+        util.css(document.body, {overflow: 'hidden'});
         openMask.call(self);
         autoClose.call(self);
+
     }
 
 
@@ -212,6 +214,7 @@ define(function (require) {
     customElement.prototype.build = render;
     customElement.prototype.detachedCallback = function () {
         clearInterval(this.interval);
+        util.css(document.body, {overflow: 'auto'});
     };
     return customElement;
 });

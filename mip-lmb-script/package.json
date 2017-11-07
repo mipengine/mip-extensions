@@ -1,0 +1,14 @@
+{
+    "name": "mip-lmb-script",
+    "version": "1.0.0",
+    "description": "辣妈帮MIP改造组件",
+    "contributors": [
+        {
+            "name": "hzh",
+            "email": "981993907@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

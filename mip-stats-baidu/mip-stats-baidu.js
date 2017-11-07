@@ -37,12 +37,12 @@ define(function (require) {
                     _hmt.push(conf[i]);
                 }
             }
+
+            bindEle();
+            
             var hm = document.createElement('script');
             hm.src = 'https://hm.baidu.com/hm.js?' + token;
             $(elem).append(hm);
-            hm.onload = function () {
-                bindEle();
-            };
         } else {
             console.warn('token is unavailable'); // eslint-disable-line
         }
@@ -196,25 +196,25 @@ define(function (require) {
      * 解决来自百度搜索，内外域名不一致问题
      */
     function bdSearchCase() {
-        var referrer = '';
+        var originUrl = '';
+        var hashObj = {};
 
-        var bdUrl = document.referrer;
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
         var from = MIP.hash.get('from') || '';
-        if ((hashWord || hashEqid) && bdUrl) {
-            var hashObj = {};
-            if (hashEqid && isMatch(from, 'result')) {
+
+        if (isMatch(from, 'result')) {
+            if ((hashWord || hashEqid) && document.referrer) {
                 hashObj.url = '';
                 hashObj.eqid = hashEqid;
-            }
-            else {
                 hashObj.word = hashWord;
+                originUrl = document.referrer;
             }
-            referrer = makeReferrer(bdUrl, hashObj);
-            _hmt.push(['_setReferrerOverride', referrer]);
+        } else {
+            hashObj.url = '';
+            originUrl = location.origin + location.pathname + location.search;
         }
-
+        _hmt.push(['_setReferrerOverride', makeReferrer(originUrl, hashObj)]);
     }
 
     /**
@@ -247,7 +247,7 @@ define(function (require) {
             urlData += '&' + key + '=' + hashObj[key];
         }
         urlData = urlData.slice(1);
-        if (url.indexOf('#') < 0) {
+        if (url.indexOf('#') < 0 && urlData) {
             referrer = url + conjMark + urlData;
         }
         else {

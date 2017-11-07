@@ -197,7 +197,8 @@ define(function (require) {
                 }
             }
             if (opt.enableHash) {
-                window.location.hash = filter;
+                var items = location.href.split('#');
+                window.location.replace(items[0] + '#' + filter);
             }
             window.scrollTo(0,0);
         };

@@ -122,7 +122,7 @@ define(function (require) {
 
         self.open = true;
         util.css(self.element, {display: 'block'});
-        util.css(document.body, {overflow: 'hidden'});
+        bodyScroll('lock');
         openMask.call(self);
         autoClose.call(self);
 
@@ -148,7 +148,7 @@ define(function (require) {
 
         closeMask.call(self);
         util.css(self.element, {display: 'none'});
-        util.css(document.body, {overflow: 'auto'});
+        bodyScroll('unlock');
 
     }
 
@@ -206,6 +206,31 @@ define(function (require) {
         }
     }
 
+    function bodyScroll(move) {
+        var origin = {
+            bodyOverflow: util.css(document.body, 'overflow'),
+            bodyHeight: util.css(document.body, 'height'),
+            htmlHeight: util.css(document.body.parentElement, 'height')
+        }
+        if(move == 'lock') {
+            util.css(document.body, {
+                overflow: 'hidden',
+                height: '100%'
+            });
+            util.css(document.body.parentElement, {
+                height: '100%'
+            });
+        } else if(move == 'unlock') {
+            util.css(document.body, {
+                overflow: origin.bodyOverflow,
+                height: origin.bodyHeight
+            });
+            util.css(document.body.parentElement, {
+                height: origin.htmlHeight
+            });
+        }
+    }
+
 
     /**
      * 初始化
@@ -214,7 +239,7 @@ define(function (require) {
     customElement.prototype.build = render;
     customElement.prototype.detachedCallback = function () {
         clearInterval(this.interval);
-        util.css(document.body, {overflow: 'auto'});
+        bodyScroll('unlock');
     };
     return customElement;
 });

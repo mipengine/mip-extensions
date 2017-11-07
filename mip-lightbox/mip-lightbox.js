@@ -114,7 +114,7 @@ define(function (require) {
         fixedElement.hideFixedLayer(fixedElement._fixedLayer);
         event.preventDefault();
 
-        if(!self.scroll) {
+        if (!self.scroll) {
             new Gesture(self.element, {
                 preventY: true
             });
@@ -181,7 +181,7 @@ define(function (require) {
 
             // 与mip-lightbox 同级dom
             self.element.parentNode.appendChild(mask);
-            if(!self.scroll) {
+            if (!self.scroll) {
                 mask.addEventListener('touchmove', function (evt) {
                     evt.preventDefault();
                 }, false);
@@ -211,8 +211,8 @@ define(function (require) {
             bodyOverflow: util.css(document.body, 'overflow'),
             bodyHeight: util.css(document.body, 'height'),
             htmlHeight: util.css(document.body.parentElement, 'height')
-        }
-        if(move == 'lock') {
+        };
+        if (move === 'lock') {
             util.css(document.body, {
                 overflow: 'hidden',
                 height: '100%'
@@ -220,7 +220,7 @@ define(function (require) {
             util.css(document.body.parentElement, {
                 height: '100%'
             });
-        } else if(move == 'unlock') {
+        } else if (move === 'unlock') {
             util.css(document.body, {
                 overflow: origin.bodyOverflow,
                 height: origin.bodyHeight

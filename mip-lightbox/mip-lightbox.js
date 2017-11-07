@@ -11,7 +11,6 @@ define(function (require) {
     var util = require('util');
     var Gesture = util.Gesture;
 
-
     /**
      * render
      *
@@ -21,6 +20,7 @@ define(function (require) {
         var self = this;
         self.open = false;
         self.id = this.element.id;
+        self.scroll = this.element.hasAttribute('content-scroll');
         // bottom 不能为0，不然会覆盖遮盖曾，导致无法关闭lightbox
         util.css(self.element, {
             'position': 'fixed',
@@ -114,14 +114,19 @@ define(function (require) {
         fixedElement.hideFixedLayer(fixedElement._fixedLayer);
         event.preventDefault();
 
-        new Gesture(self.element, {
-            preventY: true
-        });
+        if (!self.scroll) {
+            new Gesture(self.element, {
+                preventY: true
+            });
+        }
 
         self.open = true;
         util.css(self.element, {display: 'block'});
+        document.documentElement.classList.add('mip-no-scroll');
+        
         openMask.call(self);
         autoClose.call(self);
+
     }
 
 
@@ -144,7 +149,7 @@ define(function (require) {
 
         closeMask.call(self);
         util.css(self.element, {display: 'none'});
-        util.css(document.body, {overflow: 'auto'});
+        document.documentElement.classList.remove('mip-no-scroll');
 
     }
 
@@ -177,10 +182,11 @@ define(function (require) {
 
             // 与mip-lightbox 同级dom
             self.element.parentNode.appendChild(mask);
-            mask.addEventListener('touchmove', function (evt) {
-                evt.preventDefault();
-            }, false);
-
+            if (!self.scroll) {
+                mask.addEventListener('touchmove', function (evt) {
+                    evt.preventDefault();
+                }, false);
+            }
             self.maskElement = mask;
 
         }
@@ -201,7 +207,6 @@ define(function (require) {
         }
     }
 
-
     /**
      * 初始化
      *
@@ -209,6 +214,7 @@ define(function (require) {
     customElement.prototype.build = render;
     customElement.prototype.detachedCallback = function () {
         clearInterval(this.interval);
+        document.documentElement.classList.remove('mip-no-scroll');
     };
     return customElement;
 });

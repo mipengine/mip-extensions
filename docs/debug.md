@@ -28,7 +28,7 @@ npm run build -- -o output mip-form mip-access
 
 `https://c.mipcdn.com/static/v1/{组件名}/{组件名}.js`
 
-## 预览
+## 组件预览
 
 组件的预览支持两种方式，具体如下：
 

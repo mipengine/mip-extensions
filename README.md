@@ -34,11 +34,11 @@ npm run build -- -o output mip-form mip-access
 
 - 页面预览
 
-将当前开发的脚本引用到示例页面，并通过 mip cli 开启本地服务，预览页面功能，该方法需要开发者构建预览所需的 MIP 页面。具体可以参考官方博客中的[MIP-CLI工具调试组件](http://www.cnblogs.com/mipengine/p/mip_cli_3_extension.html)文档。
+将当前开发的脚本引用到示例页面，并通过 mip cli 开启本地服务，预览页面功能。该方法需要开发者构建预览所需的 MIP 页面。具体可以参考官方博客中的[MIP-CLI工具调试组件](http://www.cnblogs.com/mipengine/p/mip_cli_3_extension.html)文档。
 
 - README 预览
 
-通过在 README 中书写 html，并借助 mip cli 来预览效果，该方法会抓取 README 中预览所需 html 来达成预览效果。具体细节可参考[调试 MIP 扩展组件](https://github.com/mipengine/mip-extensions/blob/master/docs/debug.md)文档。
+通过在 README 中书写 html，并借助 mip cli 来预览效果。该方法会抓取 README 中预览所需 html 来达成预览效果。具体细节可参考[调试 MIP 扩展组件](https://github.com/mipengine/mip-extensions/blob/master/docs/debug.md)文档。
 
 ## 示例
 

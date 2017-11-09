@@ -32,13 +32,13 @@ npm run build -- -o output mip-form mip-access
 
 组件的预览支持两种方式，具体如下：
 
-- 页面校验引用
+- 页面预览
 
-将当前开发的脚本引用到示例页面，具体可以参考官方博客中[MIP-CLI工具调试组件](http://www.cnblogs.com/mipengine/p/mip_cli_3_extension.html)文档；
+将当前开发的脚本引用到示例页面，并通过工具开发本地服务，预览页面功能，此方法需要开发者构建预览所需的 MIP 页面。具体可以参考官方博客中[MIP-CLI工具调试组件](http://www.cnblogs.com/mipengine/p/mip_cli_3_extension.html)文档。
 
-- README 预览方式
+- README 预览
 
-通过在 README 中书写 html 来实时做到预览效果，具体开发细节可参考[调试 MIP 扩展组件](https://github.com/mipengine/mip-extensions/blob/master/docs/debug.md)文档
+通过在 README 中书写 html，并借助 mip cli 工具来实时做到预览效果，此方法会抓取 README 中预览所需 html 来做到预览效果。具体开发细节可参考[调试 MIP 扩展组件](https://github.com/mipengine/mip-extensions/blob/master/docs/debug.md)文档。
 
 ## 示例
 

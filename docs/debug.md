@@ -56,7 +56,7 @@ $ [sudo] npm install -g mip-cli --registry=https://registry.npm.taobao.org
 
 `说明`: 组件的预览页面是 mip-cli 工具根据组件 [README.md](./spec-readme-md.md) 中的示例章节抽取和生成的。mip-cli 工具为示例代码创建了页面，引入了相应的 MIP 环境。
 
-其中**需要注意的是**，如果需要书写额外 CSS 样式时，官方提供了一种机制，可以支持在组件目录中的 setting 文件夹下，生成 example.preset 的文件，并将样式写在其中，此时再通过工具调试时就会将样式自动加入到预览页面中，如 [mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/src/mip-accordion/setting) 组件。
+其中**需要注意的是**，如果需要书写额外 CSS 样式时，官方提供了一种机制，可以允许开发者在组件目录中下构建 setting 文件夹，并生成 example.preset 的文件，同时将样式写入其中，在这些工作完成后通过工具开启本地预览服务就可以将样式自动加入到预览页面中，如 [mip-accordion](https://github.com/mipengine/mip-extensions/tree/master/src/mip-accordion/setting) 组件。
 
 
 ### 关于 mip-cli

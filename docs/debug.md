@@ -30,7 +30,17 @@ MIP 组件包括官方组件和开发者自定义组件，是用于定制站点�
 
 使用该仓库下的组件前，需在页面中引入对应脚本，引用格式如下：
 
-`https://c.mipcdn.com/static/v1/{组件名}/{组件名}.js`
+- 格式
+
+	```
+	https://c.mipcdn.com/static/v1/{组件名}/{组件名}.js
+	```
+
+- 示例
+
+	```
+	<script async src="https://c.mipcdn.com/static/v1/mip-form/mip-form.js"></script>
+	```
 
 ## 组件预览
 
@@ -43,12 +53,6 @@ MIP 组件包括官方组件和开发者自定义组件，是用于定制站点�
 - README 预览
 
 	通过在 README 中书写 html，并借助 mip cli 来预览效果。该方法会抓取 README 中预览所需 html 来达成预览效果。具体细节可参考[调试 MIP 扩展组件](https://github.com/mipengine/mip-extensions/blob/master/docs/debug.md)文档。
-
-## 示例
-
-```
-<script async src="https://c.mipcdn.com/static/v1/mip-form/mip-form.js"></script>
-```
 
 ## 组件相关资料
 

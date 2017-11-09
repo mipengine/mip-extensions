@@ -12,7 +12,7 @@ MIP 组件包括官方组件和开发者自定义组件，是用于定制站点�
 
 - 执行编译
 
-	组件编译集成了 [mip-extension-optimizer](https://github.com/mipengine/mip-extension-optimizer) 工具，并通过 npm script 命令提供出来，如
+	组件编译集成了 [mip-extension-optimizer](https://github.com/mipengine/mip-extension-optimizer) 工具，并通过 npm script 命令提供出来，如：
 
 	```
 	npm run build

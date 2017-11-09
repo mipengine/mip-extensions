@@ -28,6 +28,18 @@ npm run build -- -o output mip-form mip-access
 
 `https://c.mipcdn.com/static/v1/{组件名}/{组件名}.js`
 
+## 预览
+
+组件的预览支持两种方式，具体如下：
+
+- 页面校验引用
+
+将当前开发的脚本引用到示例页面，具体可以参考官方博客中[MIP-CLI工具调试组件](http://www.cnblogs.com/mipengine/p/mip_cli_3_extension.html)文档；
+
+- README 预览方式
+
+通过在 README 中书写 html 来实时做到预览效果，具体开发细节可参考[调试 MIP 扩展组件](https://github.com/mipengine/mip-extensions/blob/master/docs/debug.md)文档
+
 ## 示例
 
 ```

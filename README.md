@@ -19,7 +19,7 @@ npm run build
 - 如果需要指定参数，以 `--` 分割，如指定输出目录和需编译的个别组件：
 
 ```
-npm run build -- --o output mip-form mip-access
+npm run build -- -o output mip-form mip-access
 ```
 
 ## 脚本引用

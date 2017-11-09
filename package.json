@@ -1,6 +1,6 @@
 {
   "name": "mip-extensions",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "MIP 组件包括官方组件和开发者自定义组件，是用于定制站点页面功能的利器。",
   "main": "index.js",
   "directories": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prebuild": "echo Hi Miper, Welcome to start compile!",
-    "build": "mip-extension-optimise ./",
+    "build": "mip-extension-optimise ./src",
     "release": "gren release",
     "postbuild": "echo Compile over, Have a nice day!"
   },

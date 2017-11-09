@@ -39,6 +39,6 @@ MIP 扩展组件开发手册
 示例
 ----
 
-[sample](https://github.com/mipengine/mip-extensions/tree/master/mip-sample) 是 MIP 扩展组件的示例项目。当然，你可以在 [MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions) 中找到其他开发完成的扩展组件，它们都可以作为开发 MIP 扩展组件的参考。
+[sample](https://github.com/mipengine/mip-extensions/tree/master/src/mip-sample) 是 MIP 扩展组件的示例项目。当然，你可以在 [MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions) 中找到其他开发完成的扩展组件，它们都可以作为开发 MIP 扩展组件的参考。
 
 

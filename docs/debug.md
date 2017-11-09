@@ -20,7 +20,7 @@ MIP 组件包括官方组件和开发者自定义组件，是用于定制站点�
 
 - 指定参数
 
-	如果需要指定参数（参数使用与 mip-extension-optimizer 一致），以 `--` 分割，如指定输出目录和需编译的个别组件：
+	如果需要指定编译参数（参数使用与 mip-extension-optimizer 一致），以 `--` 分割，如指定输出目录和需编译的个别组件：
 
 	```
 	npm run build -- -o output mip-form mip-access

@@ -6,21 +6,25 @@ MIP 组件包括官方组件和开发者自定义组件，是用于定制站点�
 
 - 安装依赖
 
-```
-npm install
-```
+	```
+	npm install
+	```
 
-- 组件编译集成了 [mip-extension-optimizer](https://github.com/mipengine/mip-extension-optimizer) 工具，并通过 npm script 命令提供出来，如
+- 执行编译
 
-```
-npm run build
-```
+	组件编译集成了 [mip-extension-optimizer](https://github.com/mipengine/mip-extension-optimizer) 工具，并通过 npm script 命令提供出来，如
 
-- 如果需要指定参数（参数使用与 mip-extension-optimizer 一致），以 `--` 分割，如指定输出目录和需编译的个别组件：
+	```
+	npm run build
+	```
 
-```
-npm run build -- -o output mip-form mip-access
-```
+- 指定参数
+
+	如果需要指定参数（参数使用与 mip-extension-optimizer 一致），以 `--` 分割，如指定输出目录和需编译的个别组件：
+
+	```
+	npm run build -- -o output mip-form mip-access
+	```
 
 ## 脚本引用
 

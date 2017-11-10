@@ -171,7 +171,6 @@ define(function (require) {
             node.removeAttribute(attrName);
         }
         catch (e) {
-            console.warn(e);
         }
         return value;
     };

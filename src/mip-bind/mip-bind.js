@@ -25,11 +25,13 @@ define(function (require) {
         this._compile = new Compile();
         this._observer = new Observer();
         this._bindEvent();
-        MIP.setData = function (data) {
-            me._bindTarget(false, data);
+        // form=0 called by html attributes
+        // form=1 refers the method called by mip.js
+        MIP.setData = function (action, from) {
+            me._bindTarget(false, action, from);
         };
-        MIP.$set = function (data) {
-            me._bindTarget(true, data);
+        MIP.$set = function (action, from) {
+            me._bindTarget(true, action, from);
         }
     };
 
@@ -37,9 +39,11 @@ define(function (require) {
      * Bind target
      *
      */
-    Bind.prototype._bindTarget = function (compile, data) {
+    Bind.prototype._bindTarget = function (compile, action, from) {
+        var data = from ? action.arg : action;
+        var evt = from ? action.event.target: {};
         if (typeof data === "string") {
-            data = (new Function('return ' + data))();
+            data = (new Function('event', 'return ' + data))(evt);
         }
         if (typeof data === "object") {
             fn.extend(window.m, data);

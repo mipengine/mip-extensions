@@ -35,14 +35,14 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 - 异步数据
 
-    如果需要异步数据，则需指定 src 地址，请求回来的数据会自动 merge 到数据表里，如：
+    如果需要异步数据，则需指定 src 地址，请求回来的数据会自动合并到数据表里，如：
 
     ```
     <mip-data src="https://www.example.org/data">
     </mip-data>
     ```
 
-    当使用这种方式获取异步请求时，**请注意：需要使用 cors 跨站访问，即需要后端配置 Response header 中的 Access-Control-Allow-origin，允许当前域名访问后端服务。**
+    当使用这种方式获取异步数据时，**请注意：需要开发者服务端配置 cors 跨站访问，即需要后端在 Response header 中配置 Access-Control-Allow-origin，允许当前域名访问后端服务。**
 
 ### 绑定指令
 
@@ -50,7 +50,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 - m-bind
 
-    绑定元素属性信息。具体格式为 m-bind:attrs=value，即：将 attrs 属性值设置为 value，其中 value 为数据源中指定的数据属性名，多层数据可以以 `.` 连接，如：
+    绑定元素属性信息。具体格式为 `m-bind:attrs=value`，即：将 attrs 属性值设置为 value，其中 value 为数据源中指定的数据属性名，多层数据可以以 `.` 连接，如：
 
     ```
     <p m-bind:title="name">姓名</p>
@@ -67,11 +67,11 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 ### 修改数据
 
-设置数据也是通过在 html 元素中加入事件来完成，方式是在元素中加入 on 属性来完成。
+设置数据也是通过在 html 元素中加入事件来完成，方式是在元素中加入 on 属性。
 
 - 书写格式
 
-    事件绑定形式如下，可支持多个事件同时定义，以空格分隔。
+    事件数据修改的绑定形式如下，可支持多个事件同时定义，以空格分隔。
 
     ```
     on="事件:MIP.setData({}) 事件:MIP.setData({}) 事件:MIP.setData({})"
@@ -105,9 +105,9 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
     - 修改方式
 
-        - setdata
+        - MIP.setdata(data)
 
-            该方法会将新增数据加入到数据源中，重复数据会进行覆盖，如：
+            该方法会将新增数据加入到数据源中，重复数据会进行覆盖。
 
         - 变量赋值
 
@@ -204,7 +204,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 ```
 var viewer = require('viewer');
-viewer.eventAction.execute(自定义事件名, 触发时机元素, 事件);
+viewer.eventAction.execute(自定义事件名, 事件元素, 事件);
 ```
 
 如：

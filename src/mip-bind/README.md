@@ -42,6 +42,8 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
     </mip-data>
     ```
 
+    当使用这种方式获取异步请求时，**请注意：需要使用 cors 跨站访问，即需要后端配置 Response header 中的 Access-Control-Allow-origin，运行当前域名访问**，
+
 ### 绑定指令
 
 目前绑定数据只支持两种功能：
@@ -67,7 +69,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 设置数据也是通过在 html 元素中加入事件来完成，方式是在元素中加入 on 属性来完成。
 
-- 具体格式
+- 书写格式
 
     事件绑定形式如下，可支持多个事件同时定义，以空格分隔。
 
@@ -99,9 +101,9 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
         submitSuccess|提交成功后触发的事件
         submitError|提交失败后触发的事件
 
-- 修改数据
+- 具体操作
 
-    - API
+    - 修改方式
 
         - setdata
 
@@ -181,19 +183,19 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
         - 支持运算表达式解析，如
 
-        ```
-        <div on="tap:MIP.setData({number:'3*2'})"></div>
-        <div on="tap:MIP.setData({number:'3*m.count'})"></div>
-        ```
+            ```
+            <div on="tap:MIP.setData({number:'3*2'})"></div>
+            <div on="tap:MIP.setData({number:'3*m.count'})"></div>
+            ```
 
         - 支持 dom 元素解析
 
-        mip bind 支持 dom 元素解析，在设置的数据中，可通过 DOM 变量来表示当前事件触发的源 dom 元素，并可通过其获取元素上的属性值等，如：
+            mip bind 支持 dom 元素解析，在设置的数据中，可通过 DOM 变量来表示当前事件触发的源 dom 元素，并可通过其获取元素上的属性值等，如：
 
-        ```
-        // change 事件出发后 num 的值被设置为2
-        <input on="change:MIP.setData({num:'DOM.value'})" value=2>
-        ```
+            ```
+            // change 事件出发后 num 的值被设置为2
+            <input on="change:MIP.setData({num:'DOM.value'})" value=2>
+            ```
 
 
 ### 自定义事件

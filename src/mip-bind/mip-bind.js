@@ -43,7 +43,7 @@ define(function (require) {
         var data = from ? action.arg : action;
         var evt = from ? action.event.target: {};
         if (typeof data === "string") {
-            data = (new Function('event', 'return ' + data))(evt);
+            data = (new Function('DOM', 'return ' + data))(evt);
         }
         if (typeof data === "object") {
             fn.extend(window.m, data);

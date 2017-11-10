@@ -42,7 +42,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
     </mip-data>
     ```
 
-    当使用这种方式获取异步请求时，**请注意：需要使用 cors 跨站访问，即需要后端配置 Response header 中的 Access-Control-Allow-origin，运行当前域名访问**，
+    当使用这种方式获取异步请求时，**请注意：需要使用 cors 跨站访问，即需要后端配置 Response header 中的 Access-Control-Allow-origin，允许当前域名访问后端服务。**
 
 ### 绑定指令
 

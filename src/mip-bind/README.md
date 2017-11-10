@@ -20,9 +20,14 @@ mip-bind 数据驱动组件，可以允许开发者在页面中动态操作数�
 	}
 	</script>
 </mip-data>
-<div on="tap:MIP.setstate({age: 25})"></div>
+<div m-text="name"></div>
+<mip-data src="https://www.example.com"></mip-data>
+<div on="tap:MIP.setData({age:25}) swip:MIP.setData({name:'Jack'})"></div>
 ```
 
 ## 属性
 
-## 注意事项
+其中 mip-data 为绑定数据的组件，属性如下：
+
+### src
+用于通过异步请求获取数据

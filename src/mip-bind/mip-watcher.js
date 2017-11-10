@@ -46,7 +46,6 @@ define(function (require) {
             +   'try {'
             +       'return ' + exp
             +   '} catch (e) {'
-            +       'console.warn(e)'
             +   '}'
             + '}'
         ));

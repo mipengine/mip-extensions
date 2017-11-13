@@ -77,7 +77,7 @@ on="事件:MIP.setData({}) 事件:MIP.setData({}) 事件:MIP.setData({})"
 
 #### 事件类型
 
-**针对所有元素**
+针对所有元素
 
 事件|描述
 ---|---
@@ -85,13 +85,13 @@ tap|单击事件
 doubletap|双击事件
 swip|滑动事件
 
-**input 元素**
+input 元素
 
 事件|描述
 ---|---
 change|输入框内容发生变化时候触发的事件
 
-**mip-form 元素**
+mip-form 元素
 
 事件|描述
 ---|---

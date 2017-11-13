@@ -41,7 +41,26 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 <mip-data src="https://www.example.org/data"></mip-data>
 ```
 
-当使用这种方式获取异步数据时，**请注意：需要开发者服务端配置 cors 跨站访问，即需要后端在 Response header 中配置 Access-Control-Allow-origin，允许当前域名访问后端服务。**
+当使用这种方式获取异步数据时，请注意：需要开发者服务端配置 cors 跨站访问，具体步骤如下：
+
+- 接收到请求后，判断请求头中的 origin 是否是我们所指定的，其中包括 `https://mipcache.bdstatic.com`, `https://站点域名转换的字符串.mipcdn.com` 和开发者站点域名；
+- 如果在指定的列表中则设置 response header 中的 `Access-Control-Allow-origin` 为请求接收到的 origin，以 Nodejs 举例，如下所示：
+
+    ```
+    var origins = {
+        'https://mipcache.bdstatic.com': 1,
+        'https://www-mipengine-org.mipcdn.com': 1,
+        'https://www.mipengine.org': 1
+    }
+    app.get('/bind', function (req, res) {
+        var ori = req.headers.origin;
+        if (origins[ori]) {
+            res.header('Access-Control-Allow-Origin', ori);
+            res.json({});
+        }
+    });
+
+    ```
 
 ### 绑定指令
 

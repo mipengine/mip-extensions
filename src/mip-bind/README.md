@@ -74,15 +74,17 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 <mip-data>
     <script type="application/json">
     {
-        "style": "width:100%;height:20px;background:red"
+        "placeholder": "请输入内容"
     }
     </script>
 </mip-data>
-<p m-bind:style="style">改变背景颜色</p>
+<mip-form url="https://www.mipengine.org/">
+    <input m-bind:placeholder="placeholder">
+</mip-form>
 ```
 
 #### m-text
-绑定元素 textContent。具体格式为 m-text=value，即：将元素的 textContent 设置为 value 的值，同样 value 为数据源中的属性名，其中 value 为数据源中指定的数据属性名，多层数据可以以 `.` 连接，如：
+绑定元素 textContent。具体格式为 m-text=value，即：将元素的 textContent 设置为 value 的值，同样 value 为数据源中的属性名，多层数据可以以 `.` 连接，如：
 
 ```html
 <mip-data>
@@ -158,7 +160,6 @@ submitError|提交失败后触发的事件
         </mip-data>
 
         <script type="text/javascript">
-            // 打印：张三
             document.body.textContent = m.name;
         </script>
         ```

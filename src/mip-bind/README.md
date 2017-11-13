@@ -35,15 +35,15 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 #### 异步数据
 
-如果需要异步数据，则需指定 src 地址（注：src 需要是 https 或 // 协议开头，否则在 https 环境下会出现问题），请求回来的数据会自动合并到数据表里，如：
+如果需要异步数据，则需指定 src 地址（**注：src 需要是 https 或 // 协议开头，否则在 https 环境下会出现问题**），请求回来的数据会自动合并到数据表里，如：
 
 ```
 <mip-data src="https://www.example.org/data"></mip-data>
 ```
 
-当使用这种方式获取异步数据时，请注意：需要开发者服务端配置 cors 跨站访问，具体步骤如下：
+当使用这种方式获取异步数据时，**请注意：需要开发者服务端配置 cors 跨站访问，具体步骤如下**：
 
-- 接收到请求后，判断请求头中的 origin 是否是我们所指定的，其中包括 `https://mipcache.bdstatic.com`, `https://站点域名转换的字符串.mipcdn.com` 和开发者站点域名；
+- 接收到请求后，判断请求头中的 origin 是否是允许的，其中允许的包括 `https://mipcache.bdstatic.com`, `https://站点域名转换的字符串.mipcdn.com` 和开发者站点域名；
 - 如果在指定的列表中则设置 response header 中的 `Access-Control-Allow-origin` 为请求接收到的 origin，以 Nodejs 举例，如下所示：
 
     ```

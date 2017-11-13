@@ -8,6 +8,7 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
+    var naboo = util.naboo;
 
     /**
      * [toggle 打开或关闭 sidebar 入口]
@@ -24,6 +25,10 @@ define(function (require) {
     function open() {
 
         var self = this;
+        if (self.runing) {
+            return;
+        }
+        self.runing = true;
 
         if (isOpen.call(this)) {
             return;
@@ -55,6 +60,10 @@ define(function (require) {
     function close(event) {
 
         var self = this;
+        if (self.runing) {
+            return;
+        }
+        self.runing = true;
         event.preventDefault();
 
         self.element.removeAttribute('open');
@@ -102,16 +111,31 @@ define(function (require) {
         self.maskElement.setAttribute('on', 'tap:' + self.id + '.close');
 
         // 样式设置
-        util.css(self.maskElement, {display: 'block'});
+        self.maskElement.style.display = 'block';
 
+        naboo.animate(self.maskElement, {
+            opacity: 0.2
+        }, {
+            duration: 500
+        }).start(function () {
+            self.runing = false;
+        });
     }
 
     /**
      * [closeMask 关闭遮盖层]
      */
     function closeMask() {
-        if (this.maskElement) {
-            util.css(this.maskElement, {display: 'none'});
+        var self = this;
+        if (self.maskElement) {
+            naboo.animate(self.maskElement, {
+                opacity: 0
+            }, {
+                duration: 500
+            }).start(function () {
+                self.maskElement.style.display = 'none';
+                self.runing = false;
+            });
         }
     }
 

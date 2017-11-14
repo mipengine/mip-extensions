@@ -247,7 +247,7 @@ submitError|提交失败后触发的事件
         </mip-data>
         <div m-text="price"></div>
         <mip-form url="https://www.mipengine.org/">
-            <input type='text' on="change:MIP.setData({price:DOM.event*m.price})">
+            <input type='text' on="change:MIP.setData({price:DOM.value*m.price})">
         </mip-form>
         ```
 

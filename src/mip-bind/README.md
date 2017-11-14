@@ -161,7 +161,9 @@ submitError|提交失败后触发的事件
 
         // 以下为组件中使用的示例代码
         <script type="text/javascript">
-            alert(m.name);
+            setTimeout(function () {
+                alert(m.name);
+            }, 1000);
         </script>
         ```
 - 数据源

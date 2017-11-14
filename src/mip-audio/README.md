@@ -10,11 +10,10 @@
 
 ## 示例
 
-```
+``` html
 <mip-audio 
-	src="https://www.mipengine.org/static/RonaldJenkees-GuitarSound.mp3"
+    src="https://www.mipengine.org/static/RonaldJenkees-GuitarSound.mp3"
 ></mip-audio>
-	
 ```
 
 ## 属性

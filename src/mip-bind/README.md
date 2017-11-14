@@ -149,7 +149,7 @@ submitError|提交失败后触发的事件
 
         数据源中所有数据，都可以通过 `m.` 的形式获取到，可直接在组件中通过 js 来进行操作，如：
 
-        ```html
+        ```
         <mip-data>
             <script type="application/json">
             {
@@ -161,9 +161,8 @@ submitError|提交失败后触发的事件
 
         // 以下为组件中使用的示例代码
         <script type="text/javascript">
-            setTimeout(function () {
-                alert(m.name);
-            }, 1000);
+            // 打印 “张三”
+            console.log(m.name);
         </script>
         ```
 - 数据源

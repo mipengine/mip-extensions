@@ -198,11 +198,28 @@ define(function (require) {
         var btnShowmore = this.btn;
         btnShowmore ? btnShowmore.classList.add('mip-showmore-btn-hide') : '';
     };
+
+    // 获取源按钮元素
+    Showmore.prototype.getTarget = function (id, target) {
+        if (!target || !id) {
+            return;
+        }
+        while (target.parentNode) {
+            var attrs = target.getAttribute('on');
+            if (attrs && attrs.indexOf("tap:" + id) === 0) {
+                return target;
+            }
+            target = target.parentNode
+        }
+        return target;
+    }
+
     // 高度阈值控制
     Showmore.prototype.toggle = function (event) {
         var me = this;
         var classList = this.ele.classList;
-        var clickBtn = event ? event.target : null;
+        var clickBtn = this.getTarget(this.ele.id, event.target);
+
         var opt = {};
         opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {

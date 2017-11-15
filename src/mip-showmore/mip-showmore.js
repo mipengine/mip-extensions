@@ -198,13 +198,11 @@ define(function (require) {
         var btnShowmore = this.btn;
         btnShowmore ? btnShowmore.classList.add('mip-showmore-btn-hide') : '';
     };
-
     // 高度阈值控制
     Showmore.prototype.toggle = function (event) {
         var me = this;
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
-
         var opt = {};
         opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {
@@ -281,10 +279,12 @@ define(function (require) {
         if (!status) {
             return;
         }
+        var openStyle = clickBtn.dataset.closestyle;
         if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {
                 clickBtn.innerText = clickBtn.dataset.opentext;
+                openStyle && clickBtn.classList.remove(openStyle);
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
@@ -300,6 +300,7 @@ define(function (require) {
                 clickBtn.innerText = clickBtn.dataset.closetext || '收起';
                 clickBtn.dataset.opentext = opentext;
                 clickBtn.classList.add('mip-showmore-open');
+                openStyle && clickBtn.classList.add(openStyle);
             }
 
             // v1.0.0 显示“收起”按钮

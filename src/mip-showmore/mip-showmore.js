@@ -130,7 +130,7 @@ define(function (require) {
         if (this.showBox.style.height && this.showBox.style.height.match('px')) {
             height = getHeightUnfold(this.showBox);
         } else {
-            height = util.rect.getElementOffset(this.showBox).height;
+            height = getComputedStyle(this.showBox).height;
         }
         // 如果高度大于阈值
         if (height > this.maxHeight) {

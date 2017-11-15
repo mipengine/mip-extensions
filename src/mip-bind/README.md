@@ -246,7 +246,9 @@ submitError|提交失败后触发的事件
             }
             </script>
         </mip-data>
-        <div m-text="price"></div>
+        <div>
+            DOM.value*m.price = <span m-text="price"></span>
+        </div>
         <mip-form url="https://www.mipengine.org/">
             <input type='text' on="change:MIP.setData({price:DOM.value*m.price})">
         </mip-form>
@@ -262,14 +264,6 @@ viewer.eventAction.execute(自定义事件名, 事件元素, 事件);
 ```
 
 如：
-
-```
-// 以下为组件中的示例代码
-btn.addEventListener('blur', function (event) {
-    viewer.eventAction.execute('blur', event.target, event);
-});
-```
-此时就可以在 DOM 中通过改事件进行数据的设置
 
 ```
 <mip-data>

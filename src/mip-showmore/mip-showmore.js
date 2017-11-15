@@ -132,7 +132,7 @@ define(function (require) {
         } else {
             height = util.rect.getElementOffset(this.showBox).height;
         }
-        
+
         // 如果高度大于阈值
         if (height > this.maxHeight) {
             util.css(this.showBox, {
@@ -193,7 +193,7 @@ define(function (require) {
             showmore.toggle.apply(showmore);
         }, false);
 
-        
+
     };
     // 点击时按钮添加class
     Showmore.prototype.addClassWhenUnfold = function () {
@@ -284,7 +284,8 @@ define(function (require) {
         if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {
-                clickBtn.innerText = clickBtn.dataset.opentext;
+                clickBtn.firstChild.textContent = clickBtn.dataset.opentext;
+                clickBtn.classList.remove('mip-showmore-open');
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
@@ -296,9 +297,10 @@ define(function (require) {
         else {
             // v1.1.0显示“收起”按钮
             if (clickBtn) {
-                var opentext = clickBtn.innerText;
-                clickBtn.innerText = clickBtn.dataset.closetext || '收起';
+                var opentext = clickBtn.firstChild.textContent;
+                clickBtn.firstChild.textContent = clickBtn.dataset.closetext || '收起';
                 clickBtn.dataset.opentext = opentext;
+                clickBtn.classList.add('mip-showmore-open');
             }
 
             // v1.0.0 显示“收起”按钮

@@ -6,7 +6,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 ----|----
 类型|通用
 支持布局|N/S
-所需脚本|https://c.mipcdn.com/static/v1/mip-bind/mip-bind.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-bind/mip-bind.js
 
 ## 使用方法
 
@@ -121,7 +121,7 @@ on="事件:MIP.setData({}) 事件:MIP.setData({}) 事件:MIP.setData({})"
 ---|---
 tap|单击事件
 doubletap|双击事件
-swip|滑动事件
+swipe|滑动事件
 
 input 元素
 
@@ -149,7 +149,7 @@ submitError|提交失败后触发的事件
 
         数据源中所有数据，都可以通过 `m.` 的形式获取到，可直接在组件中通过 js 来进行操作，如：
 
-        ```html
+        ```
         <mip-data>
             <script type="application/json">
             {
@@ -159,8 +159,10 @@ submitError|提交失败后触发的事件
             </script>
         </mip-data>
 
+        // 以下为组件中使用的示例代码
         <script type="text/javascript">
-            document.body.textContent = m.name;
+            // 打印 “张三”
+            console.log(m.name);
         </script>
         ```
 - 数据源
@@ -171,15 +173,15 @@ submitError|提交失败后触发的事件
     <mip-data>
         <script type="application/json">
         {
-            name: '张三',
-            age: '25'
+            "name": "张三",
+            "age": 25
         }
         </script>
     </mip-data>
     <mip-data>
         <script type="application/json">
         {
-            home: '北京'
+            "home": "北京"
         }
         </script>
     </mip-data>
@@ -187,11 +189,11 @@ submitError|提交失败后触发的事件
 
     此时页面维护的数据源为
 
-    ```
+    ```json
     {
-        name: '张三',
-        age: '25',
-        home: '北京'
+        "name": "张三",
+        "age": 25,
+        "home": "北京"
     }
     ```
 
@@ -204,12 +206,12 @@ submitError|提交失败后触发的事件
 
     此时数据源将变为
 
-    ```
+    ```json
     {
-        name: '张三',
-        age: '25',
-        home: '上海',
-        job: '互联网从业者'
+        "name": "张三",
+        "age": 25,
+        "home": "上海",
+        "job": "互联网从业者"
     }
     ```
 
@@ -244,9 +246,11 @@ submitError|提交失败后触发的事件
             }
             </script>
         </mip-data>
-        <div m-text="price"></div>
+        <div>
+            DOM.value*m.price = <span m-text="price"></span>
+        </div>
         <mip-form url="https://www.mipengine.org/">
-            <input type='text' on="change:MIP.setData({price:DOM.event*m.price})">
+            <input type='text' on="change:MIP.setData({price:DOM.value*m.price})">
         </mip-form>
         ```
 
@@ -262,13 +266,6 @@ viewer.eventAction.execute(自定义事件名, 事件元素, 事件);
 如：
 
 ```
-btn.addEventListener('blur', function (event) {
-    viewer.eventAction.execute('blur', event.target, event);
-}
-```
-此时就可以在 DOM 中通过改事件进行数据的设置
-
-```
 <mip-data>
     <script type="application/json">
     {
@@ -280,6 +277,7 @@ btn.addEventListener('blur', function (event) {
 <mip-form url="https://www.mipengine.org/">
     <input id="price" type='text'>
 </mip-form>
+// 以下为组件中使用的示例代码
 <script type="text/javascript">
     var viewer = require('viewer');
     var ele = document.querySelector('#price');

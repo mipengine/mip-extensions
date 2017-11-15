@@ -199,26 +199,11 @@ define(function (require) {
         btnShowmore ? btnShowmore.classList.add('mip-showmore-btn-hide') : '';
     };
 
-    // 获取源按钮元素
-    Showmore.prototype.getTarget = function (id, target) {
-        if (!target || !id) {
-            return;
-        }
-        while (target.parentNode) {
-            var attrs = target.getAttribute('on');
-            if (attrs && attrs.indexOf("tap:" + id) === 0) {
-                return target;
-            }
-            target = target.parentNode
-        }
-        return target;
-    }
-
     // 高度阈值控制
     Showmore.prototype.toggle = function (event) {
         var me = this;
         var classList = this.ele.classList;
-        var clickBtn = this.getTarget(this.ele.id, event.target);
+        var clickBtn = event ? event.target : null;
 
         var opt = {};
         opt.aniTime = this.animateTime;
@@ -299,8 +284,7 @@ define(function (require) {
         if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {
-                clickBtn.firstChild.textContent = clickBtn.dataset.opentext;
-                clickBtn.classList.remove('mip-showmore-open');
+                clickBtn.innerText = clickBtn.dataset.opentext;
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
@@ -312,8 +296,8 @@ define(function (require) {
         else {
             // v1.1.0显示“收起”按钮
             if (clickBtn) {
-                var opentext = clickBtn.firstChild.textContent;
-                clickBtn.firstChild.textContent = clickBtn.dataset.closetext || '收起';
+                var opentext = clickBtn.innerText;
+                clickBtn.innerText = clickBtn.dataset.closetext || '收起';
                 clickBtn.dataset.opentext = opentext;
                 clickBtn.classList.add('mip-showmore-open');
             }

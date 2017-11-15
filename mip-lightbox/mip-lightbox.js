@@ -10,11 +10,6 @@ define(function (require) {
     var fixedElement = require('fixed-element');
     var util = require('util');
     var Gesture = util.Gesture;
-    var scrollTop = {
-        body: 0,
-        documentElement: 0,
-        offset: 0
-    };
 
     /**
      * render
@@ -66,7 +61,9 @@ define(function (require) {
                 time -= 1;
                 seconds.innerHTML = time;
                 if (time <= 0) {
-                    close.call(self);
+                    self.open = false;
+                    closeMask.call(self);
+                    util.css(self.element, {display: 'none'});
                 }
             }, 1000);
         }
@@ -125,12 +122,8 @@ define(function (require) {
 
         self.open = true;
         util.css(self.element, {display: 'block'});
-        // 保存页面当前滚动状态，因为设置overflow:hidden后页面会滚动到顶部
-        scrollTop.body = document.body.scrollTop;
-        scrollTop.documentElement = document.documentElement.scrollTop;
-        scrollTop.offset = window.pageYOffset;
         document.documentElement.classList.add('mip-no-scroll');
-
+        
         openMask.call(self);
         autoClose.call(self);
 
@@ -143,15 +136,14 @@ define(function (require) {
      * @param  {Object} event [事件对象]
      */
     function close(event) {
+
         var self = this;
 
         if (!self.open) {
             return;
         }
         fixedElement.showFixedLayer(fixedElement._fixedLayer);
-        if (event) {
-            event.preventDefault();
-        }
+        event.preventDefault();
 
         self.open = false;
 
@@ -159,16 +151,6 @@ define(function (require) {
         util.css(self.element, {display: 'none'});
         document.documentElement.classList.remove('mip-no-scroll');
 
-        // 恢复页面滚动状态到lightbox打开之前
-        if (typeof (document.body.scrollTo) === 'function') {
-            // 先判断存在，因为safari浏览器没有document.body.scrollTo方法
-            document.body.scrollTo(0, scrollTop.body);
-        }
-        if (typeof (document.documentElement.scrollTo) === 'function') {
-            // 先判断存在，因为safari浏览器没有document.documentElement.scrollTo方法
-            document.documentElement.scrollTo(0, scrollTop.documentElement);
-        }
-        window.scrollTo(0, scrollTop.offset);
     }
 
     /**

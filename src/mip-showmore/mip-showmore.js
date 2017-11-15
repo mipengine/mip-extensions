@@ -299,7 +299,6 @@ define(function (require) {
                 var opentext = clickBtn.innerText;
                 clickBtn.innerText = clickBtn.dataset.closetext || '收起';
                 clickBtn.dataset.opentext = opentext;
-                clickBtn.classList.add('mip-showmore-open');
                 openStyle && clickBtn.classList.add(openStyle);
             }
 

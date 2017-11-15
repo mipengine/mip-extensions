@@ -1,0 +1,9 @@
+<style>
+input, mip-openweb-search {
+	padding: 10px;
+	border: 1px solid #aaa;
+	margin: 10px;
+	display: inline-block;
+	width: 300px;
+}
+</style>

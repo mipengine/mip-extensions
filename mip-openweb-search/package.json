@@ -1,0 +1,14 @@
+{
+    "name": "mip-openweb-search",
+    "version": "1.0.1",
+    "description": "配置ghost rss搜索, 处理事件绑定弹层逻辑",
+    "contributors": [
+        {
+            "name": "JennyL",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

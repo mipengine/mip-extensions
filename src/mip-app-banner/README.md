@@ -41,16 +41,14 @@
 单位：无  
 默认值：nodisplay  
 
-## 子节点
-
-### &lt;button open-button&gt;
+### 子节点 [open-button]
 
 说明：调起 app 的按钮，必须带有 open-button 属性  
 必选项：是  
 类型：html 节点  
 取值范围：无  
 单位：无  
-默认值：&lt;button open-button&gt;  
+默认值：`<button open-button>`
 
 ## 浏览器兼容性
 

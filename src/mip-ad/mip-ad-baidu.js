@@ -13,6 +13,7 @@ define(function (require) {
     var render = function (that, me) {
 
         var $this = $(that);
+        var MIP = window.MIP || {};
         var sample = MIP.hash.get('sample');
         if (sample === 'mip_wm_sample') {
             exps = '113004';

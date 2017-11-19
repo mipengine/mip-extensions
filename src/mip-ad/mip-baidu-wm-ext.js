@@ -12,7 +12,7 @@ define(function (require) {
         var domain = self.getAttribute('domain');
         var token = self.getAttribute('token');
         var exps = '113002';
-
+        var MIP = window.MIP || {};
         var sample = MIP.hash.get('sample');
         if (sample === 'mip_wm_sample') {
             exps = '113004';
@@ -32,7 +32,7 @@ define(function (require) {
             else {
                 window['_' + token] = {
                     exps: exps
-                }
+                };
                 var script = document.createElement('script');
                 script.src = document.location.protocol + '//' + domain + '/' + token + '.js';
                 document.body.appendChild(script);

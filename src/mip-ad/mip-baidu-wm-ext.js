@@ -14,14 +14,14 @@ define(function (require) {
         var exps = '113002';
 
         var sample = MIP.hash.get('sample');
-        if (sample === 'wm-ad-sam') {
+        if (sample === 'mip_wm_sample') {
             exps = '113004';
         }
 
         if (domain && token) {
             // 判断 preload 逻辑
             var scripts = document.querySelector('script[mip-preload="mip-script-wm"]');
-            if (scripts) {
+            if (scripts && sample === 'mip_wm_sample') {
                 var apiStr = '__container_api_';
                 (window[apiStr] = window[apiStr] || []).push({
                     containerId: token,

@@ -14,7 +14,7 @@ define(function (require) {
 
         var $this = $(that);
         var sample = MIP.hash.get('sample');
-        if (sample === 'wm-ad-sam') {
+        if (sample === 'mip_wm_sample') {
             exps = '113004';
         }
         var cproID = that.getAttribute('cproid');
@@ -26,7 +26,7 @@ define(function (require) {
 
         // 判断 preload 逻辑
         var scripts = document.querySelector('script[mip-preload="mip-script-wm"]');
-        if (scripts && !elem) {
+        if (scripts && !elem && sample === 'mip_wm_sample') {
             var s = '_' + Math.random().toString(36).slice(2);
             var html = '<div style="" id="' + s + '"></div>';
             $this.append(html);

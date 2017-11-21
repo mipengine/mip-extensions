@@ -1,0 +1,14 @@
+{
+    "name": "mip-stats-baidu-developer",
+    "version": "1.0.0",
+    "description": "百度开发者中心自定义数据统计组件，用于统计页面链接点击情况",
+    "contributors": [
+        {
+            "name": "tanyiming",
+            "email": "tanyiming@baidu.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

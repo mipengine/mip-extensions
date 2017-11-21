@@ -1,11 +1,11 @@
 {
     "name": "mip-map",
     "version": "1.0.0",
-    "description": "组件介绍",
+    "description": "百度地图组件，目前支持定位、控件加载、marker 定位点弹窗定制等功能！",
     "contributors": [
         {
-            "name": "",
-            "email": ""
+            "name": "Jackson",
+            "email": "smartfutureplayer@gmail.com"
         }
     ],
     "engines": {

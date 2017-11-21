@@ -1,7 +1,7 @@
 {
     "name": "mip-map",
     "version": "1.0.0",
-    "description": "百度地图组件，目前支持定位、控件加载、marker 定位点弹窗定制等功能！",
+    "description": "mip-map 组件集成了百度地图的服务，目前支持具体位置定位、地图控件加载、marker 定位点弹窗信息定制等功能！",
     "contributors": [
         {
             "name": "Jackson",

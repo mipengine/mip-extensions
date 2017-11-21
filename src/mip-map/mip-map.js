@@ -6,8 +6,8 @@
 
 define(function (require) {
     var customElement = require('customElement').create();
-    var MAPURL = 'http://api.map.baidu.com/api?';
-    var type = 'script[type="application/json"]';
+    var MAPURL = 'https://api.map.baidu.com/api?';
+    var TYPE = 'script[type="application/json"]';
 
     /**
      * 地图类
@@ -197,7 +197,7 @@ define(function (require) {
      *
      */
     customElement.prototype.firstInviewCallback = function () {
-        var ele = this.element.querySelector(type);
+        var ele = this.element.querySelector(TYPE);
         var cfg = this.jsonParse(ele.textContent);
         cfg && new BaiduMap(cfg).show();
     };

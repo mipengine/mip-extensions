@@ -1,0 +1,14 @@
+{
+    "name": "mip-map",
+    "version": "1.0.0",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -10,6 +10,18 @@ define(function (require) {
     var viewport = require('viewport');
     var timeoutArray = [];
 
+    // 匹配节点是否在按钮中
+    function matchOriginTarget (id, node) {
+        while (node.parentNode) {
+            var attr = node.getAttribute('on');
+            if (attr && attr.indexOf('tap:' + id) === 0) {
+                return node;
+            }
+            node = node.parentNode;
+        }
+        return node;
+    }
+
     /**
      * define a showmore class based on
      *
@@ -202,7 +214,7 @@ define(function (require) {
     Showmore.prototype.toggle = function (event) {
         var me = this;
         var classList = this.ele.classList;
-        var clickBtn = this.matchOriginTarget(this.ele.id.trim(), event.target);
+        var clickBtn = matchOriginTarget(this.ele.id.trim(), event.target);
         var opt = {};
         opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {
@@ -279,12 +291,12 @@ define(function (require) {
         if (!status) {
             return;
         }
-        var closestyle = clickBtn.dataset.closestyle;
+        var closeclass = clickBtn.dataset.closeclass;
         if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {
-                if (closestyle) {
-                    clickBtn.classList.remove(closestyle);
+                if (closeclass) {
+                    clickBtn.classList.remove(closeclass);
                 } else {
                     clickBtn.innerText = clickBtn.dataset.opentext;
                 }
@@ -299,8 +311,8 @@ define(function (require) {
         else {
             // v1.1.0显示“收起”按钮
             if (clickBtn) {
-                if (closestyle) {
-                    clickBtn.classList.add(closestyle)
+                if (closeclass) {
+                    clickBtn.classList.add(closeclass)
                 } else {
                     var opentext = clickBtn.innerText;
                     clickBtn.innerText = clickBtn.dataset.closetext || '收起';
@@ -315,18 +327,6 @@ define(function (require) {
             });
         }
     };
-
-    // 匹配节点是否在按钮中
-    Showmore.prototype.matchOriginTarget = function (id, node) {
-        while (node.parentNode) {
-            var attr = node.getAttribute('on');
-            if (attr && attr.indexOf('tap:' + id) === 0) {
-                return node;
-            }
-            node = node.parentNode;
-        }
-        return node;
-    }
 
     // 剪切字符串
     Showmore.prototype._cutHtmlStr = function (maxLen) {

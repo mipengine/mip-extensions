@@ -320,7 +320,7 @@ define(function (require) {
     Showmore.prototype.matchOriginTarget = function (id, node) {
         while (node.parentNode) {
             var attr = node.getAttribute('on');
-            if (attr && attr.match('tap:' + id)) {
+            if (attr && attr.indexOf('tap:' + id) === 0) {
                 return node;
             }
             node = node.parentNode;

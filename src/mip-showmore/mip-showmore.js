@@ -202,7 +202,7 @@ define(function (require) {
     Showmore.prototype.toggle = function (event) {
         var me = this;
         var classList = this.ele.classList;
-        var clickBtn = event ? event.target : null;
+        var clickBtn = this.matchOriginTarget(this.ele.id.trim(), event.target);
         var opt = {};
         opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {
@@ -279,12 +279,15 @@ define(function (require) {
         if (!status) {
             return;
         }
-        var openStyle = clickBtn.dataset.closestyle;
+        var closestyle = clickBtn.dataset.closestyle;
         if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {
-                clickBtn.innerText = clickBtn.dataset.opentext;
-                openStyle && clickBtn.classList.remove(openStyle);
+                if (closestyle) {
+                    clickBtn.classList.remove(closestyle);
+                } else {
+                    clickBtn.innerText = clickBtn.dataset.opentext;
+                }
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
@@ -296,12 +299,14 @@ define(function (require) {
         else {
             // v1.1.0显示“收起”按钮
             if (clickBtn) {
-                var opentext = clickBtn.innerText;
-                clickBtn.innerText = clickBtn.dataset.closetext || '收起';
-                clickBtn.dataset.opentext = opentext;
-                openStyle && clickBtn.classList.add(openStyle);
+                if (closestyle) {
+                    clickBtn.classList.add(closestyle)
+                } else {
+                    var opentext = clickBtn.innerText;
+                    clickBtn.innerText = clickBtn.dataset.closetext || '收起';
+                    clickBtn.dataset.opentext = opentext;
+                }
             }
-
             // v1.0.0 显示“收起”按钮
             this._changeBtnText({
                 display: 'none'
@@ -310,6 +315,18 @@ define(function (require) {
             });
         }
     };
+
+    // 匹配节点是否在按钮中
+    Showmore.prototype.matchOriginTarget = function (id, node) {
+        while (node.parentNode) {
+            var attr = node.getAttribute('on');
+            if (attr && attr.match('tap:' + id)) {
+                return node;
+            }
+            node = node.parentNode;
+        }
+        return node;
+    }
 
     // 剪切字符串
     Showmore.prototype._cutHtmlStr = function (maxLen) {

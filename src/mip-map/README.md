@@ -89,4 +89,4 @@ mip-map 组件集成了百度地图的服务，目前支持具体位置定位、
 
 ### info
 
-地图定位后，点击定位点会出现具体弹层，弹层的各个参数都是可配置的，弹层内容可以通过 content 参数来设置，content 的值为 html 类型，其他参数可参考[百度地图提供的弹层文档](http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a3b8).
+地图定位后，点击定位点会出现具体弹层，弹层的各个参数都是可配置的，弹层内容可以通过 content 参数来设置，content 的值为 html 类型，其他参数可参考百度地图提供的[弹层文档](http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a3b8).

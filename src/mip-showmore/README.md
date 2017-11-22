@@ -156,7 +156,7 @@ MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部�
     </div>
     <p showmorebtn>
         <span class="mip-showmore-btnshow mip-showmore-btn">点击显示</span>
-        <span class="mip-showmore-btnhide mip-showmore-btxn">收起</span>
+        <span class="mip-showmore-btnhide mip-showmore-btn">收起</span>
     </p>
 </mip-showmore>
 ```

@@ -6,7 +6,7 @@
 
 define(function (require) {
     var customElem = require('customElement').create();
-    var qi = require('zepto');
+    var $ = require('zepto');
     var viewPort = require('viewport');
     var util = require('util');
     var platform = util.platform;
@@ -25,15 +25,15 @@ define(function (require) {
         g103: 'bad请求出错'
     };
 
-    function setHtmlAjax(data, the) {
+    function setHtmlAjax(data, that) {
         if (typeof (data.set) === 'undefined') {
             return false;
         }
-        var obj = qi(the);
+        var obj = $(that);
 		// 替换标签
         obj.find('val-input, val-textarea, val-select,val-option').each(function () {
-            var thisHtml = qi(this).prop('outerHTML');
-            qi(this).prop('outerHTML', thisHtml.replace(/<(\/?)val-/ig, '<$1'));
+            var thisHtml = $(this).prop('outerHTML');
+            $(this).prop('outerHTML', thisHtml.replace(/<(\/?)val-/ig, '<$1'));
         });
 		// 按钮事件
         obj.find(data.set.btn).click(function () {
@@ -41,7 +41,7 @@ define(function (require) {
             return false;
         });
         // 回车事件
-        the.addEventListener('keydown', function (event) {
+        that.addEventListener('keydown', function (event) {
             if (event.keyCode === 13) {
                 getHtmlVal(data, obj);
                 return false;
@@ -88,7 +88,7 @@ define(function (require) {
         if (getUrl !== '') {
             var getCall = typeof (data.add.call) !== 'undefined' ? data.add.call : '';
             getUrl = getUrl.replace('{sid}', data.id).replace('{os}', theOs);
-            qi.ajax({
+            $.ajax({
                 url: getUrl,
                 type: 'get',
                 dataType: 'jsonp',
@@ -115,8 +115,8 @@ define(function (require) {
                     }
 					else {
                         var dataTmp = typeof (data.tmp) !== 'undefined' ? 1 : 0;
-                        var dataNta = dataTmp === 1 ? qi(data.tmp.nta).html() : htmlDecode(data.nta);
-                        var dataNtr = dataTmp === 1 ? qi(data.tmp.ntr).html() : htmlDecode(data.ntr);
+                        var dataNta = dataTmp === 1 ? $(data.tmp.nta).html() : htmlDecode(data.nta);
+                        var dataNtr = dataTmp === 1 ? $(data.tmp.ntr).html() : htmlDecode(data.ntr);
                         var isretext = obj.find(data.res.upval).val();
                         obj.find('[empty=true]').val('');
                         if (jsondb.msg !== '') {
@@ -143,10 +143,10 @@ define(function (require) {
     }
 
 	// 获取数据
-    function getJsonData(data, the) {
+    function getJsonData(data, that) {
         data.page = typeof (data.page) !== 'undefined' ? data.page : 1;
         var getUrl = data.get.url;
-        var obj = qi(the);
+        var obj = $(that);
         if (getUrl !== '') {
             var getCall = typeof (data.get.call) !== 'undefined' ? data.get.call : '';
             getUrl = getUrl.replace('{id}', data.id).replace('{page}', data.page).replace('{os}', theOs);
@@ -177,7 +177,7 @@ define(function (require) {
                     iMore.remove();
                 }
             };
-            qi.ajax({
+            $.ajax({
                 url: getUrl,
                 type: 'get',
                 dataType: 'jsonp',
@@ -204,8 +204,8 @@ define(function (require) {
                             var arrLength = arrData.length;
                             if (arrLength > 0) {
                                 var dataTmp = typeof (data.tmp) !== 'undefined' ? 1 : 0;
-                                var dataHta = dataTmp === 1 ? qi(data.tmp.hta).html() : htmlDecode(data.hta);
-                                var dataHtr = dataTmp === 1 ? qi(data.tmp.htr).html() : htmlDecode(data.htr);
+                                var dataHta = dataTmp === 1 ? $(data.tmp.hta).html() : htmlDecode(data.hta);
+                                var dataHtr = dataTmp === 1 ? $(data.tmp.htr).html() : htmlDecode(data.htr);
                                 var dataList = '';
                                 if (typeof (data.obj.arrs) !== 'undefined') {
                                     arrData = randomArray(arrData);
@@ -257,8 +257,8 @@ define(function (require) {
     }
 
     // on点击事件
-    function setHtmlClick(data, object, the) {
-        var obj = qi(the);
+    function setHtmlClick(data, object, that) {
+        var obj = $(that);
         object.addEventAction('Qres', function (event, str) {
             obj.find(data.res.show).show().find(data.res.upint).text(str);
             viewPort.setScrollTop(obj.find(data.set.txt).offset().top);
@@ -287,7 +287,7 @@ define(function (require) {
             if (getUrl !== '') {
                 var getCall = typeof (data.dig.call) !== 'undefined' ? data.dig.call : '';
                 getUrl = getUrl.replace('{sid}', str).replace('{os}', theOs);
-                qi.ajax({
+                $.ajax({
                     url: getUrl,
                     type: 'get',
                     dataType: 'jsonp',
@@ -305,14 +305,14 @@ define(function (require) {
                         }
 						else {
                             if (data.dig.tip === '1') {
-                                qi(event.target).prepend('<i class="Qdig">+1</i>');
-                                qi(event.target).find('.Qdig').fadeOut(800, function () {
-                                    qi(this).remove();
+                                $(event.target).prepend('<i class="Qdig">+1</i>');
+                                $(event.target).find('.Qdig').fadeOut(800, function () {
+                                    $(this).remove();
                                 });
-                                qi(event.target).find('em').text(jsondb.dig);
+                                $(event.target).find('em').text(jsondb.dig);
                             }
                         }
-                        qi(event.target).removeAttr('on');
+                        $(event.target).removeAttr('on');
                     }
                 });
             }
@@ -322,7 +322,7 @@ define(function (require) {
             if (getUrl !== '') {
                 var getCall = typeof (data.bad.call) !== 'undefined' ? data.bad.call : '';
                 getUrl = getUrl.replace('{sid}', str).replace('{os}', theOs);
-                qi.ajax({
+                $.ajax({
                     url: getUrl,
                     type: 'get',
                     dataType: 'jsonp',
@@ -340,14 +340,14 @@ define(function (require) {
                         }
 						else {
                             if (data.bad.tip === '1') {
-                                qi(event.target).prepend('<i class="Qbad">+1</i>');
-                                qi(event.target).find('.Qbad').fadeOut(800, function () {
-                                    qi(this).remove();
+                                $(event.target).prepend('<i class="Qbad">+1</i>');
+                                $(event.target).find('.Qbad').fadeOut(800, function () {
+                                    $(this).remove();
                                 });
-                                qi(event.target).find('em').text(jsondb.bad);
+                                $(event.target).find('em').text(jsondb.bad);
                             }
                         }
-                        qi(event.target).removeAttr('on');
+                        $(event.target).removeAttr('on');
                     }
                 });
             }
@@ -355,7 +355,7 @@ define(function (require) {
         if (typeof (data.obj.auto) !== 'undefined') {
             if (data.obj.auto === '1') {
                 var autoFoot = typeof (data.obj.autofoot) !== 'undefined' ? data.obj.autofoot : 50;
-                qi(window).scroll(function () {
+                $(window).scroll(function () {
                     var dotHeight = viewPort.getScrollHeight();
                     var winHeight = viewPort.getHeight();
                     var winScroll = viewPort.getScrollTop();
@@ -436,13 +436,13 @@ define(function (require) {
     // 弹出提示层
     function qAlert(msg, ms) {
         ms = ms || 1600;
-        if (qi('.mip-html-ajax-tip').length > 0) {
-            qi('.mip-html-ajax-tip').remove();
+        if ($('.mip-html-ajax-tip').length > 0) {
+            $('.mip-html-ajax-tip').remove();
         }
-        qi('body').append('<div class="mip-html-ajax-tip">' + msg + '</div>');
+        $('body').append('<div class="mip-html-ajax-tip">' + msg + '</div>');
         var msgOut = setTimeout(function () {
-            qi('.mip-html-ajax-tip').fadeOut(100, function () {
-                qi(this).remove();
+            $('.mip-html-ajax-tip').fadeOut(100, function () {
+                $(this).remove();
             });
             clearTimeout(msgOut);
         }, ms);

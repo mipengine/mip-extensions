@@ -293,7 +293,10 @@ define(function (require) {
         if (!status) {
             return;
         }
-        var closeclass = clickBtn.dataset.closeclass;
+        var closeclass;
+        if (clickBtn && clickBtn.dataset && clickBtn.dataset.closeclass) {
+            closeclass = clickBtn.dataset.closeclass;
+        }
         if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {

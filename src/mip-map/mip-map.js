@@ -13,10 +13,12 @@ define(function (require) {
      * 地图类
      *
      * @class
+     * @param {HTMLElement} element 地图组件元素
      * @param {Object} config 地图参数
      */
-    function BaiduMap(config) {
+    function BaiduMap(element, config) {
         this.config = config;
+        this.ele = element;
     }
 
     /**
@@ -65,7 +67,7 @@ define(function (require) {
      */
     BaiduMap.prototype.handleResult = function () {
         /* global BMap */
-        this.map = new BMap.Map('container');
+        this.map = new BMap.Map(this.ele);
         this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
         // 创建地址解析器实例
         var cfg = this.config;
@@ -171,6 +173,10 @@ define(function (require) {
      *
      */
     BaiduMap.prototype.append = function () {
+        if (!this.config.ak) {
+            console.error('请配置服务密钥（ak）');
+            return;
+        }
         var ele = document.createElement('script');
         ele.src = this.mapUrl;
         document.body.appendChild(ele);
@@ -199,7 +205,7 @@ define(function (require) {
     customElement.prototype.firstInviewCallback = function () {
         var ele = this.element.querySelector(TYPE);
         var cfg = this.jsonParse(ele.textContent);
-        cfg && new BaiduMap(cfg).show();
+        cfg && new BaiduMap(this.element, cfg).show();
     };
 
     return customElement;

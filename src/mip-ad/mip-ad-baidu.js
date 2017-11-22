@@ -1,6 +1,5 @@
 /**
- * 网盟插件
- * 
+ * @file 网盟插件
  * @author fengchuantao@baidu.com
  * @version 1.0
  * @copyright 2016 Baidu.com, Inc. All Rights Reserved
@@ -9,52 +8,70 @@ define(function (require) {
     var $ = require('zepto');
     var jsSrc = '//dup.baidustatic.com/js/dm.js';
     var scriptId = 'MIP_DUP_JS';
-    
-    var render = function(_this, me) {
+    var exps = '113002';
 
-        var $this = $(_this);
-        var cproID = _this.getAttribute("cproid");
-        if(!cproID) {
+    var render = function (that, me) {
+
+        var $this = $(that);
+        var MIP = window.MIP || {};
+        var sample = MIP.hash.get('sample');
+        if (sample === 'mip_wm_sample') {
+            exps = '113004';
+        }
+        var cproID = that.getAttribute('cproid');
+        if (!cproID) {
             return;
         }
         // 定制化 特殊处理
-        var elem = _this.querySelector('script') || null; 
+        var elem = that.querySelector('script') || null;
 
-        if(elem) {
-
-            if(isJsonScriptTag(elem)) {
-                jsSrc = '//cpro.baidustatic.com/cpro/ui/c.js';
-                scriptId = 'MIP_DUP_JS_EXT';
-                var obj = JSON.parse(elem.textContent.toString());
-                (window.cproArray = window.cproArray || []).push({
-                    id: cproID  
-                });
-
-                (window["cproStyleApi"]=window["cproStyleApi"] || {})[cproID] = obj;
-
-            }
-
+        // 判断 preload 逻辑
+        var scripts = document.querySelector('script[mip-preload="mip-script-wm"]');
+        if (scripts && !elem && sample === 'mip_wm_sample') {
+            var s = '_' + Math.random().toString(36).slice(2);
+            var html = '<div style="" id="' + s + '"></div>';
+            $this.append(html);
+            var apiStr = '__container_api_';
+            (window[apiStr] = window[apiStr] || []).push({
+                containerId: s,
+                exps: exps,
+                slotId: cproID
+            });
         }
-        
-        var script = initJs();
-        if (!elem) {
-            initadbaidu($this, cproID, me, script);
+        else {
+            if (elem) {
+                if (isJsonScriptTag(elem)) {
+                    jsSrc = '//cpro.baidustatic.com/cpro/ui/c.js';
+                    scriptId = 'MIP_DUP_JS_EXT';
+                    var obj = JSON.parse(elem.textContent.toString());
+                    (window.cproArray = window.cproArray || []).push({
+                        id: cproID
+                    });
+                    (window.cproStyleApi = window.cproStyleApi || {})[cproID] = obj;
+                }
+            }
+            var script = initJs();
+            if (!elem) {
+                initadbaidu($this, cproID, me, script);
+            }
         }
     };
 
     /**
      * [initJs JS初始化函数]
-     * 
-     * @return
+     *
+     * @return {Object}
      */
     function initJs() {
         var MIPDUPJS = document.getElementById(scriptId);
-        if(MIPDUPJS) return MIPDUPJS;
+        if (MIPDUPJS) {
+            return MIPDUPJS;
+        }
 
         var script = document.createElement('script');
         script.src = jsSrc;
         script.id = scriptId;
-        document.body.appendChild(script);  
+        document.body.appendChild(script);
 
         return script;
 
@@ -62,47 +79,50 @@ define(function (require) {
 
     /**
      * [initadbaidu 广告组件初始化]
-     * 
+     *
      * @param  {Object} $elemID mip对象
-     * @param  {String} cproID  广告id
-     * @return
+     * @param  {string} cproID  广告id
+     * @param  {Object} me dom对象
+     * @param  {Object} script  script对象
+     *
      */
     function initadbaidu($elemID, cproID, me, script) {
 
-        var s = "_" + Math.random().toString(36).slice(2);
+        var s = '_' + Math.random().toString(36).slice(2);
         var html = '<div style="" id="' + s + '"></div>';
         $elemID.append(html);
 
-        (window.slotbydup=window.slotbydup || []).push({
+        (window.slotbydup = window.slotbydup || []).push({
             id: cproID,
             container: s,
             display: 'inlay-fix',
+            exps: exps,
             async: true
         });
 
-        if(script) {
+        if (script) {
             var fixedElement = require('fixed-element');
             var layer = fixedElement._fixedLayer;
             var child = document.getElementById(s);
-            child.addEventListener("DOMSubtreeModified", function(e) {
+            child.addEventListener('DOMSubtreeModified', function (e) {
                 var elem = window.getComputedStyle(child, null);
-                var pos = elem && elem.getPropertyValue('position') ? 
-                          elem.getPropertyValue('position') : '';
-                if(layer && layer.querySelector('#'+s)){
-                  return;
+                var pos = elem && elem.getPropertyValue('position')
+                    ? elem.getPropertyValue('position') : '';
+                if (layer && layer.querySelector('#' + s)) {
+                    return;
                 }
-                if(pos == 'fixed') {
+                if (pos === 'fixed') {
                     $elemID.append(document.getElementById(s));
-                    if(layer) {
-                      var idx = document.querySelectorAll('mip-fixed').length;
-                      var data = {
-                        element: child.parentElement,
-                        id: 'Fixed'+ idx
-                      };
-                      fixedElement.moveToFixedLayer(data, parseInt(idx));
+                    if (layer) {
+                        var idx = document.querySelectorAll('mip-fixed').length;
+                        var data = {
+                            element: child.parentElement,
+                            id: 'Fixed' + idx
+                        };
+                        fixedElement.moveToFixedLayer(data, parseInt(idx, 10));
                     }
                 }
-            },false);
+            }, false);
         }
 
         me.applyFillContent(document.getElementById(s), true);
@@ -112,24 +132,20 @@ define(function (require) {
 
     /**
      * [isJsonScriptTag 判断是否是定制化script标签]
-     * 
-     * @param  {Object}  element 节点对象
-     * @return {Boolean} 
+     *
+     * @param {Object} element 节点对象
+     *
+     * @return {boolean}
      */
-    function isJsonScriptTag(element){
+    function isJsonScriptTag(element) {
 
-        return element.tagName == 'SCRIPT' && 
-
-               element.getAttribute('type') &&
-
-               element.getAttribute('type').toUpperCase() == 'APPLICATION/JSON';
-
+        return element.tagName === 'SCRIPT'
+            && element.getAttribute('type')
+            && element.getAttribute('type').toUpperCase() === 'APPLICATION/JSON';
     }
 
 
     return {
         render: render
-    }
+    };
 });
-
-

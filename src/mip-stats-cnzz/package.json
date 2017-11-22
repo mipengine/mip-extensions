@@ -1,13 +1,11 @@
 {
     "name": "mip-stats-cnzz",
     "version": "1.0.8",
-    "description": "组件介绍",
-    "contributors": [
-        {
-            "name": "",
-            "email": ""
-        }
-    ],
+    "author": {
+        "name": "MIP authors",
+        "email": "mip-support@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
     "engines": {
         "mip": ">=1.1.0"
     }

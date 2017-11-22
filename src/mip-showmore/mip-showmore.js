@@ -214,7 +214,9 @@ define(function (require) {
     Showmore.prototype.toggle = function (event) {
         var me = this;
         var classList = this.ele.classList;
-        var clickBtn = matchOriginTarget(this.ele.id.trim(), event.target);
+        var clickBtn = event && event.target
+            ? matchOriginTarget(this.ele.id.trim(), event.target)
+            : null;
         var opt = {};
         opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {
@@ -297,7 +299,8 @@ define(function (require) {
             if (clickBtn) {
                 if (closeclass) {
                     clickBtn.classList.remove(closeclass);
-                } else {
+                }
+                else {
                     clickBtn.innerText = clickBtn.dataset.opentext;
                 }
             }
@@ -312,8 +315,9 @@ define(function (require) {
             // v1.1.0显示“收起”按钮
             if (clickBtn) {
                 if (closeclass) {
-                    clickBtn.classList.add(closeclass)
-                } else {
+                    clickBtn.classList.add(closeclass);
+                }
+                else {
                     var opentext = clickBtn.innerText;
                     clickBtn.innerText = clickBtn.dataset.closetext || '收起';
                     clickBtn.dataset.opentext = opentext;

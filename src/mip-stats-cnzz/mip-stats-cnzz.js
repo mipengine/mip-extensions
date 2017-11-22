@@ -8,36 +8,36 @@
 
 define(function (require) {
     var $ = require('zepto');
-
     var customElement = require('customElement').create();
+    var CNZZNODES = 'https://s11.cnzz.com/z_stat.php';
+
     customElement.prototype.build = function () {
         var element = this.element;
         var $element = $(element);
         var token = element.getAttribute('token');
         var setConfig = element.getAttribute('setconfig');
-
+        var baseUrl = element.getAttribute('src') || CNZZNODES;
         if (token) {
             window._czc = window._czc || [];
             _czc.push([
                 '_setAccount',
                 token
             ]);
-
             // 检测setconfig是否存在
             if (setConfig) {
                 var setCustom = buildArry(decodeURIComponent(setConfig));
                 _czc.push(setCustom);
             }
-
             var cnzzScript = document.createElement('script');
-            var src = 'https://s11.cnzz.com/z_stat.php?id=' + token
-                        + '&web_id=' + token;
+            var src = baseUrl + '?id=' + token + '&web_id=' + token;
             cnzzScript.setAttribute('language', 'JavaScript');
-            cnzzScript.src = src; 
+            cnzzScript.src = src;
             $element.append($(cnzzScript));
             bindEle();
         }
-
+        else {
+            console.error('请配置统计所需 token');
+        }
     };
 
 
@@ -59,7 +59,7 @@ define(function (require) {
                 console.warn("事件追踪data-stats-cnzz-obj数据不正确");
                 return;
             }
-            
+
             var eventtype = statusData.type;
             if (!statusData.data) {
                 return;

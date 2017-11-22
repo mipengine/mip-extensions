@@ -117,7 +117,7 @@
 <mip-showmore bottomshadow='1' maxheight='100' id="showmore">
 MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
 </mip-showmore>
-<div on="tap:showmore.toggle" data-closeclass="mip-showmore-open" data-closetext="收起内容" class="mip-showmore-btn mip-showmore-btn">
+<div on="tap:showmore.toggle" data-closeclass="mip-showmore-open" data-closetext="收起内容" class="mip-showmore-btn">
     <span class="show">展开</span>
     <span class="hidden">收起</span>
 </div>

@@ -1,0 +1,13 @@
+{
+  "name": "mip-fj-countdown",
+  "version": "1.0.0",
+  "description":"倒计时组件",
+  "author": {
+    "name": "Jason FJ",
+    "email": "824676495@qq.com",
+    "url": "http://www.jasonfj.com"
+  },
+  "engines": {
+    "mip": ">=1.1.0"
+  }
+}

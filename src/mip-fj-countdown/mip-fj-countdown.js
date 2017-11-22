@@ -24,8 +24,8 @@ define(function (require) {
             if (element.children.length === 0) {
                 element.innerHTML = day + '天 ' + hour + '时 ' + minute + '分 ' + second + '秒';
             } else {
-                setValue(element, 'countdown-left-day',    day);
-                setValue(element, 'countdown-left-hour',   hour);
+                setValue(element, 'countdown-left-day', day);
+                setValue(element, 'countdown-left-hour', hour);
                 setValue(element, 'countdown-left-minute', minute);
                 setValue(element, 'countdown-left-second', second);
             }
@@ -35,7 +35,8 @@ define(function (require) {
                 countdown(element, endTime, endTip);
             }, 1000);
 
-        } else {
+        }
+        else {
             // 已结束
             element.innerHTML = endTip;
         }
@@ -60,16 +61,19 @@ define(function (require) {
 
             // 获取Y-m-d H:i:s格式结束时间
             var param = element.getAttribute('endtime');
+            // 将年月日时分秒每一位都隔开
+            var p = param.replace(/\d+(?=-[^-]+$)/, function (a) {
+                return parseInt(a, 10) - 1;
+            }).match(/\d+/g);
 
             // 传入了特定时期的Date对象
-            var endDate = eval('new Date(' + param.replace(/\d+(?=-[^-]+$)/, function (a) {
-                return parseInt(a, 10) - 1;
-            }).match(/\d+/g) + ')');
+            var endDate = new Date(p[0],p[1],p[2],p[3],p[4],p[5]);
 
             // 返回1970年1月1日至今的毫秒数
             endTime = endDate.getTime();
 
-        } else if (element.hasAttribute('unixendtime')) {
+        }
+        else if (element.hasAttribute('unixendtime')) {
 
             // 获取时间戳结束时间
             param = element.getAttribute('unixendtime');

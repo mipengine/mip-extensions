@@ -23,7 +23,8 @@ define(function (require) {
             // 设置对应的时间，没有任何子元素的话会直接将数据输出
             if (element.children.length === 0) {
                 element.innerHTML = day + '天 ' + hour + '时 ' + minute + '分 ' + second + '秒';
-            } else {
+            }
+            else {
                 setValue(element, 'countdown-left-day', day);
                 setValue(element, 'countdown-left-hour', hour);
                 setValue(element, 'countdown-left-minute', minute);
@@ -67,7 +68,7 @@ define(function (require) {
             }).match(/\d+/g);
 
             // 传入了特定时期的Date对象
-            var endDate = new Date(p[0],p[1],p[2],p[3],p[4],p[5]);
+            var endDate = new Date(p[0], p[1], p[2], p[3], p[4], p[5]);
 
             // 返回1970年1月1日至今的毫秒数
             endTime = endDate.getTime();

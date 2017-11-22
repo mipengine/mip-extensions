@@ -92,21 +92,33 @@ define(function (require) {
         if (!address || !loc.city) {
             return;
         }
-        // 将地址解析结果显示在地图上，并调整地图视野
-        myGeo.getPoint(address, function (point) {
-            if (!point) {
-                return;
+        var local = new BMap.LocalSearch(map, {
+            renderOptions:{map: map}
+        });
+        var options = {
+            onSearchComplete: function(results){
+                if (local.getStatus() !== BMAP_STATUS_SUCCESS) {
+                    return;
+                }
+                var firstResult = results.getPoi(0);
+                var point = firstResult.point;
+                if (!firstResult || !point) {
+                    return;
+                }
+                var marker = new BMap.Marker(point);
+                map.addOverlay(marker);
+                map.centerAndZoom(point, 16);
+                self.handleSyncOption({
+                    cfg: cfg,
+                    map: map,
+                    point: point,
+                    marker: marker
+                });
             }
-            var marker = new BMap.Marker(point);
-            map.addOverlay(marker);
-            map.centerAndZoom(point, 16);
-            self.handleSyncOption({
-                cfg: cfg,
-                map: map,
-                point: point,
-                marker: marker
-            });
-        }, loc.city);
+         };
+        var local = new BMap.LocalSearch(map, options);
+        local.search(address);
+
     };
 
     /**

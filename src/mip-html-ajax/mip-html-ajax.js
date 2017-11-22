@@ -1,6 +1,6 @@
 /**
  * @author: Qi
- * @date: 2017-08-02
+ * @date: 2017-11-22
  * @file: mip-html-ajax.js
  */
 
@@ -25,10 +25,11 @@ define(function (require) {
         g103: 'bad请求出错'
     };
 
-    function setHtmlAjax(data, the, obj) {
+    function setHtmlAjax(data, the) {
         if (typeof (data.set) === 'undefined') {
             return false;
         }
+        var obj = qi(the);
 		// 替换标签
         obj.find('val-input, val-textarea, val-select,val-option').each(function () {
             var thisHtml = qi(this).prop('outerHTML');
@@ -142,9 +143,10 @@ define(function (require) {
     }
 
 	// 获取数据
-    function getJsonData(data, obj) {
+    function getJsonData(data, the) {
         data.page = typeof (data.page) !== 'undefined' ? data.page : 1;
         var getUrl = data.get.url;
+        var obj = qi(the);
         if (getUrl !== '') {
             var getCall = typeof (data.get.call) !== 'undefined' ? data.get.call : '';
             getUrl = getUrl.replace('{id}', data.id).replace('{page}', data.page).replace('{os}', theOs);
@@ -255,7 +257,8 @@ define(function (require) {
     }
 
     // on点击事件
-    function setHtmlClick(data, object, obj) {
+    function setHtmlClick(data, object, the) {
+        var obj = qi(the);
         object.addEventAction('Qres', function (event, str) {
             obj.find(data.res.show).show().find(data.res.upint).text(str);
             viewPort.setScrollTop(obj.find(data.set.txt).offset().top);
@@ -448,32 +451,33 @@ define(function (require) {
     // build 方法，元素插入到文档时执行，仅会执行一次
     customElem.prototype.build = function () {
         var thisObj = this.element;
-        var theElem = qi(thisObj);
-        var elemObj = theElem.find('script[type$=json]');
-        var elemIds = theElem.attr('id');
+        var elemObj = thisObj.querySelector('script[type="application/json"]');
+        var elemIds = thisObj.getAttribute('id');
         if (elemIds) {
             theID = elemIds;
         }
 		else {
-            theElem.attr('id', theID);
+            thisObj.setAttribute('id', theID);
         }
-        if (elemObj.length === 0) {
-            theElem.html(errMsg.r100);
+        if (!elemObj) {
+            console.error(errMsg.r100);
+            thisObj.innerHTML = '';
             return false;
         }
         try {
-            var data = JSON.parse(elemObj.text());
+            var data = JSON.parse(elemObj.textContent.toString());
             data.theID = theID;
             data.isLoad = isLoad;
             data.isMore = isMore;
         }
         catch (e) {
-            theElem.html(errMsg.r101);
+            console.error(errMsg.r101);
+            thisObj.innerHTML = '';
             return false;
         }
-        getJsonData(data, theElem);
-        setHtmlAjax(data, thisObj, theElem);
-        setHtmlClick(data, this, theElem);
+        setHtmlAjax(data, thisObj);
+        setHtmlClick(data, this, thisObj);
+        getJsonData(data, thisObj);
     };
     return customElem;
 });

@@ -6,7 +6,7 @@ mip-stats-cnzz 用于友盟（CNZZ）统计投放。
 ----|----
 类型|通用
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-stats-general/mip-stats-general.js
+所需脚本|https://mipcache.bdstatic.com/static/v1/mip-stats-cnzz/mip-stats-cnzz.js
 
 ## 示例
 
@@ -22,7 +22,7 @@ token 为站长的站点在友盟（CNZZ）上接入申请的唯一 ID。
 
 ### nodes
 
-CNZZ 组件中，官方提供了 s1-10 等 10 个不同节点随机供开发者使用，但如果这些节点不能满足需求时，开发者可以通过该参数自行配置节点，以节点号书写，多个节点之间通过逗号分隔，统计时将随机选择节点。
+CNZZ 组件中，官方提供了 s1-10 等 10 个不同节点随机供开发者使用，但如果这些节点不能满足需求时，开发者可以通过该参数自行配置节点，以节点号书写，多个节点之间通过逗号分隔，统计时将随机选择配置的节点。
 
 ### setconfig
 

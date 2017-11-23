@@ -39,7 +39,7 @@ define(function (require) {
         }
     };
 
-    // 获取0-10之间的随机数
+    // 获取 CNZZ 0-10 之间的随机节点
     function getRandomNode () {
         var random = Math.random() * 10;
         return 'https://s' + Math.ceil(random) + '.cnzz.com/z_stat.php';

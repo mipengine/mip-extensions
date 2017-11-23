@@ -15,7 +15,7 @@ define(function (require) {
         var $element = $(element);
         var token = element.getAttribute('token');
         var setConfig = element.getAttribute('setconfig');
-        var baseUrl = getCustomNode(element.getAttribute('src'));
+        var baseUrl = getBaseUrl(element.getAttribute('src'));
         if (token) {
             window._czc = window._czc || [];
             _czc.push([
@@ -39,7 +39,7 @@ define(function (require) {
         }
     };
 
-    function getCustomNode (src) {
+    function getBaseUrl (src) {
         if (!src) {
             return getDefaultNode();
         }

@@ -11,7 +11,7 @@ mip-stats-cnzz 用于友盟（CNZZ）统计投放。
 ## 示例
 
 ```html
-<mip-stats-cnzz nodes="4,6,7,8,10" token="2423211" setconfig="[_setAutoPageview, true]"></mip-stats-cnzz>
+<mip-stats-cnzz nodes="4,6,7,8,10" token="2423211" setconfig="%5B_setAutoPageview%2C%20true%5D"></mip-stats-cnzz>
 ```
 
 ## 属性
@@ -22,7 +22,7 @@ token 为站长的站点在友盟（CNZZ）上接入申请的唯一 ID。
 
 ### nodes
 
-CNZZ 组件中，官方提供了 s1-10 等 10 个不同节点随机供开发者使用，但如果这些节点不能满足需求时，开发者可以通过该参数自行配置节点，以节点号书写，多个节点之间通过逗号分隔。
+CNZZ 组件中，官方提供了 s1-10 等 10 个不同节点随机供开发者使用，但如果这些节点不能满足需求时，开发者可以通过该参数自行配置节点，以节点号书写，多个节点之间通过逗号分隔，统计时将随机选择节点。
 
 ### setconfig
 

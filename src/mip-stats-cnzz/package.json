@@ -1,7 +1,7 @@
 {
     "name": "mip-stats-cnzz",
     "version": "1.0.9",
-    "description":"提供页面内分享按钮功能，默认分享当前网址。",
+    "description":"mip-stats-cnzz 用于友盟（CNZZ）统计投放。",
     "author": {
         "name": "MIP authors",
         "email": "mip-support@baidu.com",

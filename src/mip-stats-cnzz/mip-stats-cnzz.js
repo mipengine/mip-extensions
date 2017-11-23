@@ -15,7 +15,7 @@ define(function (require) {
         var $element = $(element);
         var token = element.getAttribute('token');
         var setConfig = element.getAttribute('setconfig');
-        var baseUrl = getBaseUrl(element.getAttribute('src'));
+        var baseUrl = getBaseUrl(element.getAttribute('nodes'));
         if (token) {
             window._czc = window._czc || [];
             _czc.push([
@@ -129,7 +129,6 @@ define(function (require) {
         if (!arrayStr) {
             return;
         }
-
         var strArr = arrayStr.slice(1, arrayStr.length - 1).split(',');
         var newArray = [];
 
@@ -143,6 +142,5 @@ define(function (require) {
         }
         return newArray;
     }
-
     return customElement;
 });

@@ -15,7 +15,7 @@ define(function (require) {
         var $element = $(element);
         var token = element.getAttribute('token');
         var setConfig = element.getAttribute('setconfig');
-        var baseUrl = element.getAttribute('src') || getRandomNode();
+        var baseUrl = getCustomNode(element.getAttribute('src'));
         if (token) {
             window._czc = window._czc || [];
             _czc.push([
@@ -39,10 +39,26 @@ define(function (require) {
         }
     };
 
-    // 获取 CNZZ 0-10 之间的随机节点
-    function getRandomNode () {
-        var random = Math.random() * 10;
-        return 'https://s' + Math.ceil(random) + '.cnzz.com/z_stat.php';
+    function getCustomNode (src) {
+        if (!src) {
+            return getDefaultNode();
+        }
+        var nodes = src.split(',');
+        var num = getRandomNode(0, nodes.length - 1);
+        var name = nodes[num];
+        return 'https://s' + name + '.cnzz.com/z_stat.php';
+    }
+
+    function getDefaultNode () {
+        return 'https://s' + getRandomNode(1, 10) + '.cnzz.com/z_stat.php';
+    }
+
+    // 获取 min-max 之间的随机数
+    function getRandomNode (max, min) {
+        var range = max - min;
+        var rand = Math.random();
+        var num = min + Math.round(rand * range);
+        return num;
     }
 
     // 绑定事件

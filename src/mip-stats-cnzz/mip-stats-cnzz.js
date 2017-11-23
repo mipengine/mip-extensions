@@ -39,6 +39,7 @@ define(function (require) {
         }
     };
 
+    // 获取 cnzz 统计的 URL
     function getBaseUrl (src) {
         if (!src) {
             return getDefaultNode();
@@ -49,6 +50,7 @@ define(function (require) {
         return 'https://s' + name + '.cnzz.com/z_stat.php';
     }
 
+    // 获取默认 1-10 的 cnzz 节点
     function getDefaultNode () {
         return 'https://s' + getRandomNode(1, 10) + '.cnzz.com/z_stat.php';
     }

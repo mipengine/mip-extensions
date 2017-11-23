@@ -89,7 +89,7 @@ define(function (require) {
         var loc = cfg.location;
         var myGeo = new BMap.Geocoder();
         var address = self.traverseAndConcat(cfg.location);
-        if (!address || !loc.city) {
+        if (!address) {
             return;
         }
         var local = new BMap.LocalSearch(map, {

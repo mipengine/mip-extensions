@@ -9,14 +9,13 @@
 define(function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
-    var CNZZNODES = 'https://s11.cnzz.com/z_stat.php';
 
     customElement.prototype.build = function () {
         var element = this.element;
         var $element = $(element);
         var token = element.getAttribute('token');
         var setConfig = element.getAttribute('setconfig');
-        var baseUrl = element.getAttribute('src') || CNZZNODES;
+        var baseUrl = element.getAttribute('src') || getRandomNode();
         if (token) {
             window._czc = window._czc || [];
             _czc.push([
@@ -40,6 +39,11 @@ define(function (require) {
         }
     };
 
+    // 获取0-10之间的随机数
+    function getRandomNode () {
+        var random = Math.random() * 10;
+        return 'https://s' + Math.ceil(random) + '.cnzz.com/z_stat.php';
+    }
 
     // 绑定事件
     function bindEle() {

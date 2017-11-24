@@ -39,7 +39,7 @@ define(function (require) {
             node.innerHTML = html;
             node.setAttribute('role', 'listitem');
 
-            fragment.appendChild(node);            
+            fragment.appendChild(node);
         });
         self.container.appendChild(fragment);
     }
@@ -62,7 +62,8 @@ define(function (require) {
         var url = getUrl(src, self.pnName, self.pn++);
 
         fetchJsonp(url, {
-            jsonpCallback: 'callback'
+            jsonpCallback: 'callback',
+            timeout: self.timeout
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
@@ -143,6 +144,9 @@ define(function (require) {
         self.pnName = element.getAttribute('pnName') || 'pn';
         self.pn = element.getAttribute('pn') || 1;
 
+        // fetch-jsonp timeout 请求时长
+        self.timeout = element.getAttribute('timeout') || 5000;
+
         // 有查看更多属性的情况
         if (element.hasAttribute('has-more')) {
             self.addEventAction('more', function () {
@@ -153,7 +157,8 @@ define(function (require) {
         if (element.hasAttribute('preLoad')) {
             url = getUrl(src, self.pnName, self.pn++);
             fetchJsonp(url, {
-                jsonpCallback: 'callback'
+                jsonpCallback: 'callback',
+                timeout: self.timeout
             }).then(function (res) {
                 return res.json();
             }).then(function (data) {

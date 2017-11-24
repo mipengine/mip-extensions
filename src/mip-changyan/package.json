@@ -1,0 +1,14 @@
+{
+    "name": "mip-changyan",
+    "version": "1.0.0",
+    "description": "畅言第三方评论插件",
+    "contributors": [
+        {
+            "name": "点点",
+            "email": "sy3tem@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

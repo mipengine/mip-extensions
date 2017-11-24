@@ -1,0 +1,12 @@
+{
+    "name": "mip-askad",
+    "version": "1.1.4",
+    "author": {
+        "name": "MIP authors",
+        "email": "mip-support@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

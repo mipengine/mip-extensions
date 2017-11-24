@@ -1,0 +1,14 @@
+{
+    "name": "mip-iask-ext",
+    "version": "1.3.2",
+    "description": "业务插件",
+    "contributors": [
+        {
+            "name": "hejieye",
+            "email": "jieye.he@iask.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

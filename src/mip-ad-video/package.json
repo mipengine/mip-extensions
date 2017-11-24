@@ -1,0 +1,14 @@
+{
+  "name": "mip-ad-video",
+  "version": "1.4.0",
+
+  "author": {
+    "name": "vodjk",
+    "email": "1196847324@qq.com",
+    "url":"http://www.vodjk.com"
+  },
+
+  "engines": {
+    "mip": ">=1.1.2"
+  }
+}

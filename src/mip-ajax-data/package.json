@@ -1,0 +1,14 @@
+{
+    "name": "mip-ajax-data",
+    "version": "1.0.0",
+    "description": "来触发元素ajax异步加载数据到指定容器，也可以下拉加载",
+    "contributors": [
+        {
+            "name": "Jobs Fan",
+            "email": "289047960@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "mip-hk-feed",
+    "version": "1.0.1",
+    "author": {
+        "name": "liujunqiu",
+        "email": "liujunqiu@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.2"
+    }
+}

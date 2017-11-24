@@ -1,0 +1,11 @@
+{
+    "name": "mip-nine-download",
+    "version": "1.0.0",
+    "author": {
+        "name": "Zhou",
+        "email": "zhouhappy01@gmail.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

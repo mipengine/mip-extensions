@@ -1,0 +1,14 @@
+{
+    "name": "mip-iask-business",
+    "version": "2.0.3",
+    "description": "商业广告组件",
+    "contributors": [
+        {
+            "name": "hejieye",
+            "email": "jieye.he@iask.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

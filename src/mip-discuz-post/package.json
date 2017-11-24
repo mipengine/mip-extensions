@@ -1,0 +1,14 @@
+{
+    "name": "mip-discuz-post",
+    "version": "1.0.0",
+    "description": "discuz 发布功能组件",
+    "contributors": [
+        {
+            "name": "pifire",
+            "email": "104460712@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

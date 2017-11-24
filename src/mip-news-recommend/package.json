@@ -1,0 +1,11 @@
+{
+    "name": "mip-news-recommend",
+    "version": "1.0.4",
+    "author": {
+        "name": "chenrui09",
+        "email": "chenrui09@baidu.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

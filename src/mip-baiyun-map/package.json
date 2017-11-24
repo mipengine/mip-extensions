@@ -1,0 +1,14 @@
+{
+    "name": "mip-baiyun-map",
+    "version": "1.0.0",
+    "description": "Baidu地图基础组件",
+    "contributors": [
+        {
+            "name": "unofficial",
+            "email": "cangku@unofficial.cn"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

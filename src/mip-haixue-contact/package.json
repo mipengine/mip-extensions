@@ -1,0 +1,14 @@
+{
+    "name": "mip-haixue-contact",
+    "version": "1.0.0",
+    "description": "用来支持嗨学网咨询功能",
+    "contributors": [
+        {
+            "name": "qishunli",
+            "email": "shunliqi@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

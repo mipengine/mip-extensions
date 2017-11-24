@@ -1,0 +1,10 @@
+{
+    "name": "mip-fh-ad",
+    "version": "1.1.2",
+    "author": {
+        "name": "laoono"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

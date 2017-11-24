@@ -1,0 +1,13 @@
+{
+    "name": "mip-wangxia-down",
+    "version": "1.0.1",
+
+    "author": {
+        "name": "Qi",
+        "email": "335994677@qq.com"
+    },
+
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

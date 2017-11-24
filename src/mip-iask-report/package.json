@@ -1,0 +1,14 @@
+{
+    "name": "mip-iask-report",
+    "version": "1.0.2",
+    "description": "问题回答举报",
+    "contributors": [
+        {
+            "name": "hejieye",
+            "email": "jieye.he@iask.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

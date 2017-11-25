@@ -62,6 +62,19 @@
  </mip-form>
 ```
 
+### 通过其他元素触发表单提交
+
+```html
+<mip-form method="get" url="https://www.mipengine.org?we=123" id="test_form">
+    <input type="text" name="username" validatetarget="username" validatetype="must" placeholder="姓名">
+    <div target="username">姓名不能为空</div>
+    <input type="number" name="age" validatetarget="age" validatetype="must" placeholder="年龄">
+    <div target="age">年龄不能为空</div>
+    <input type="submit" value="提交">
+</mip-form>
+<input type="checkbox" on="change:test_form.event_submit_form">
+```
+
 ## 属性
 
 ### method

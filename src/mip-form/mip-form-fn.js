@@ -140,6 +140,23 @@ define(function (require) {
             }, false);
         },
 
+       /**
+        * 绑定触发表单提交的事件
+        *
+        * @description 通过其他元素出发表单提交
+        * @param {Object} obj 整体对象
+        */
+        addEventSubmit: function (obj) {
+            var me = this;
+
+            // 绑定事件，其它元素可通过 on="xxx" 触发表单提交
+            obj.addEventAction("event_submit_form", function (event) {
+                event.preventDefault();
+                evt = event;
+                me.onSubmit(obj.element);
+            });
+        },
+
         /**
          * 事件通信
          *

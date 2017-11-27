@@ -47,7 +47,7 @@ define(function (require) {
         var nodes = src.split(',');
         var num = getRandomNode(0, nodes.length - 1);
         var name = nodes[num];
-        return 'https://s' + name + '.cnzz.com/z_stat.php';
+        return 'https://s11.cnzz.com/z_stat.php';
     }
 
     // 获取默认 1-10 的 cnzz 节点

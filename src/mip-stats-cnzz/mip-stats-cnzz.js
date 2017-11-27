@@ -44,12 +44,15 @@ define(function (require) {
         if (!src) {
             return getDefaultNode();
         }
-        return 'https://s11.cnzz.com/z_stat.php';
+        var nodes = src.split(',');
+        var num = getRandomNode(0, nodes.length - 1);
+        var name = nodes[num];
+        return 'https://s' + name + '.cnzz.com/z_stat.php';
     }
 
     // 获取默认 1-10 的 cnzz 节点
     function getDefaultNode () {
-        return 'https://s' + getRandomNode(1, 10) + '.cnzz.com/z_stat.php';
+        return 'https://s11.cnzz.com/z_stat.php';
     }
 
     // 获取 min-max 之间的随机数

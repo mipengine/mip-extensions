@@ -16,10 +16,6 @@ define(function (require) {
         var token = element.getAttribute('token');
         var setConfig = element.getAttribute('setconfig');
         var baseUrl = getBaseUrl(element.getAttribute('nodes'));
-        
-        var ele = document.querySelector('#req');
-        ele.innerHTML += baseUrl + '<br>';
-        
         if (token) {
             window._czc = window._czc || [];
             _czc.push([

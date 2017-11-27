@@ -16,6 +16,10 @@ define(function (require) {
         var token = element.getAttribute('token');
         var setConfig = element.getAttribute('setconfig');
         var baseUrl = getBaseUrl(element.getAttribute('nodes'));
+        
+        var ele = document.querySelector('#req');
+        ele.innerHTML += baseUrl + '<br>';
+        
         if (token) {
             window._czc = window._czc || [];
             _czc.push([
@@ -44,9 +48,6 @@ define(function (require) {
         if (!src) {
             return getDefaultNode();
         }
-        var nodes = src.split(',');
-        var num = getRandomNode(0, nodes.length - 1);
-        var name = nodes[num];
         return 'https://s11.cnzz.com/z_stat.php';
     }
 

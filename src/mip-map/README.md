@@ -1,6 +1,6 @@
 # mip-map
 
-mip-map 组件集成了百度地图的服务，目前支持具体位置定位、地图控件加载、marker 定位点弹窗信息定制等功能！
+mip-map 组件集成了百度地图的服务，目前支持定位、地图控件加载、定位点弹窗信息定制等功能！
 
 标题|内容
 ----|----
@@ -12,15 +12,15 @@ mip-map 组件集成了百度地图的服务，目前支持具体位置定位、
 
 ### 基本用法
 ```html
-<mip-map>
+<mip-map height="300">
     <script type="application/json">
     {
-        "ak": "hKhuzfFBrcL6zGm4s9b371NaxaUrhFal",
+        "ak": "hKhuzfFBrcL6zGm4s6b371NDxaUrhFPl",
         "location": {
             "province": "北京",
             "city": "北京市",
             "district": "海淀区",
-            "street": "西北旺东路10号院"
+            "street": "西北旺东路10号院百度科技园1号楼"
         },
         "controls": {
             "NavigationControl": {
@@ -31,8 +31,7 @@ mip-map 组件集成了百度地图的服务，目前支持具体位置定位、
         "info": {
             "width" : 250,
             "height": 100,
-            "title" : "Hello",
-            "content": "<h4>百度科技园1号楼</h4><img style='float:right;' id='imgDemo' width='139' height='104' title='天安门'/><p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>百度科技园1号楼坐落于北京北京市海淀区西北旺东路10号院</p></div>"
+            "content": "<h4>百度科技园1号楼</h4><p style='line-height:1.5;font-size:13px;'>百度科技园1号楼坐落于北京北京市海淀区西北旺东路10号院</p></div>"
         }
     }
     </script>
@@ -73,11 +72,11 @@ mip-map 组件集成了百度地图的服务，目前支持具体位置定位、
         },
         "controls": {
             "NavigationControl": {
-            	"showZoomInfo": true,
-            	"enableGeolocation": true
+                "showZoomInfo": true,
+                "enableGeolocation": true
             },
             "MapTypeControl": {
-            	"type": BMAP_MAPTYPE_CONTROL_HORIZONTAL
+                "type": BMAP_MAPTYPE_CONTROL_HORIZONTAL
             }
         }
     }

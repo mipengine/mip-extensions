@@ -19,6 +19,8 @@ define(function (require) {
         var addClearBtn = element.hasAttribute('clear');
         form.createDom(element);
 
+        form.addEventSubmit(this);
+
         if (addClearBtn) {
             var clearArr = ['text', 'input', 'datetime', 'email', 'number', 'search', 'tel', 'url'];
             var clearList = '';

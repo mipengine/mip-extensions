@@ -33,33 +33,17 @@ define(function () {
      */
     customElement.prototype.build = function () {
         var me = this;
-        var promise = new Promise(function (resolve, reject) {
-                var script = dom.getConfigScriptElement(me.element);
-                if (script) {
-                    resolve();
-                } else {
-                    reject();
-                }
-            });
-        var deferred = new Promise(function (res, rej) {
-                window.requestAnimationFrame(function () {
-                    var script = dom.getConfigScriptElement(me.element);
-                    if (script) {
-                        res();
-                    } else {
-                        rej();
-                    }
-                });
-            });
-        promise.then(function () {
-            me.initCustom();
-        }, function () {
-            deferred.then(function () {
+        var checkElement = function () {
+            if (dom.getConfigScriptElement(me.element)) {
                 me.initCustom();
-            }, function () {
-                console.warn('json is illegal');
-            });
-        });
+                return true;
+            }
+            return false;
+        };
+
+        if (!checkElement()) {
+            window.requestAnimationFrame(checkElement);
+        }
     };
 
     /**

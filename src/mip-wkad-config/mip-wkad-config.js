@@ -1,9 +1,9 @@
 /**
-* Ñ°Ò½ÎÊÒ©mip¸ÄÔì ¹ã¸æÅäÖÃ×é¼ş
-* @file ½Å±¾Ö§³Ö
+* å¯»åŒ»é—®è¯mipæ”¹é€  å¹¿å‘Šé…ç½®ç»„ä»¶
+* @file è„šæœ¬æ”¯æŒ
 * @author jqthink@gmail.com
-* @time 2017.11.27
-* @version 1.0.6
+* @time 2017.11.28
+* @version 1.0.7
 */
 define(function (require) {
     var $ = require('zepto');
@@ -50,7 +50,7 @@ define(function (require) {
                             ggArr['ad_key'] = string.substr(1);
                             ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
-                            mobileAd.getParseWordInp();
+                            //mobileAd.getParseWordInp();
                         });
                     }
                     else if (channel === 'club') {
@@ -77,7 +77,7 @@ define(function (require) {
                             ggArr['department'] = department;
                             ggArr['charset'] = 'utf8';
                             mobileAd.getAd(ggArr);
-                            mobileAd.getParseWordInp();
+                            //mobileAd.getParseWordInp();
                         });
                     }
                     else if (channel === 'medicine') {

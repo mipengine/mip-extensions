@@ -285,9 +285,26 @@ define(function (require) {
         });
     }
 
+
+    /**
+     * [getConfigScriptElement 获取页面配置的content内容]
+     * 不在此做解析
+     *
+     * @param  {HTMLElement} elem     mip-custom element 节点
+     * @return {HTMLScriptElement}    返回`application/json`的script配置节点
+     */
+    function getConfigScriptElement(elem) {
+        if (!elem) {
+            return;  
+        }
+        return elem.querySelector('script[type="application/json"]');
+    }
+
+
     return {
         render: render,
-        proxyLink: proxyLink
+        proxyLink: proxyLink,
+        getConfigScriptElement: getConfigScriptElement
     };
 
 });

@@ -28,10 +28,45 @@ define(function () {
     };
 
     /**
-     * build钩子, 定制化渲染的主流程：分区请求+渲染
+     * build钩子，触发渲染
      *
      */
     customElement.prototype.build = function () {
+        var me = this;
+        var promise = new Promise(function (resolve, reject) {
+                var script = dom.getConfigScriptElement(me.element);
+                if (script) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            });
+        var deferred = new Promise(function (res, rej) {
+                window.requestAnimationFrame(function () {
+                    var script = dom.getConfigScriptElement(me.element);
+                    if (script) {
+                        res();
+                    } else {
+                        rej();
+                    }
+                });
+            });
+        promise.then(function () {
+            me.initCustom();
+        }, function () {
+            deferred.then(function () {
+                me.initCustom();
+            }, function () {
+                console.warn('json is illegal');
+            });
+        });
+    };
+
+    /**
+     * 定制化渲染的主流程：分区请求+渲染
+     *
+     */
+    customElement.prototype.initCustom = function () {
         var me = this;
 
         // 初始化

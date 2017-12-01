@@ -37,7 +37,7 @@ define(function (require) {
             audioAttrs: audioAttrs,
             audioContent: audioContent,
             audioContainer: ele,
-            audioCustomCtr: audioAttrs.customControls || ''
+            audioCustomCtr: audioAttrs.customcontrols || null
         });
         audio.init();
     };
@@ -76,8 +76,7 @@ define(function (require) {
         // 内层元素，如source及audio失效提示
         this.content = config.audioContent;
         // 保存用户自定义交互控件
-        this.customControls = document.querySelector(config.customControls) || '';
-
+        this.customControls = config.audioContainer.querySelector(config.audioCustomCtr) || '';
         this.volume = 2; // ?
         this.dragBoolen = true; // ?
     }
@@ -92,12 +91,12 @@ define(function (require) {
             $(this.audioTag).append($(this.content));
 
             // 当<mip-audio>存在controls属性，创建交互控件，绑定事件
-            if (this.audioAttrs.hasOwnProperty('controls')) {
+            if (this.audioAttrs.controls !== 'no') {
                 // 如果不存在用户自定义DOM，新建交互控件
-                if (!this.customControls.length) {
+                if (!this.customControls) {
                     this.customControls = this._createDefaultController();
-                    $(this.container).append($(this.customControls));
                 }
+                $(this.container).append($(this.customControls));
 
                 // 事件绑定：获取总播放时长，更新DOM
                 $(this.audioTag).on('canplay', me._applyTotalTime.bind(this));
@@ -140,11 +139,11 @@ define(function (require) {
         _createDefaultController: function () {
             var audioDom = ''
                 + '<div class="mip-audio-controller">'
-                + '<i class="mip-audio-play-pause mip-audio-stopped-icon"></i>'
+                +    '<i class="mip-audio-play-pause mip-audio-stopped-icon"></i>'
                 + '<div class="mip-audio-time-current">00:00</div>'
                 + '<div class="mip-audio-seekbar">'
-                + '<div class="mip-audio-seekbar-fill"></div>'
-                + '<div class="mip-audio-seekbar-btn"></div>'
+                +    '<div class="mip-audio-seekbar-fill"></div>'
+                +    '<div class="mip-audio-seekbar-btn"></div>'
                 + '</div>'
                 + '<div class="mip-audio-time-total">--:--</div>'
                 + '</div>';

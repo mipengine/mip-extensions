@@ -261,7 +261,7 @@ define(function (require) {
                 var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B';
                 statsBaidu += '_trackEvent\',%20\'M_AD_1000\',%20\'skip\',%20\'M_AD_1000_feed\'%5D%22%7D"';
                 var i = 0;
-                var obj2PicUrl = '<mip-img class="mip-img" src="' + obj2.picUrl + '"></mip-img>';
+                var obj2PicUrl = '<mip-img class="mip-img"  src="' + obj2.picUrl + '"></mip-img>';
                 $('.youlai_feed_div .youlai_feed_title').text(obj.title);
                 $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
                 $('.youlai_feed_div .youlai_feed_use_name').html(obj2.companyName);

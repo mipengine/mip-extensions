@@ -1,39 +1,55 @@
 mip-audio{
 	min-height: 40px;
+	font-size: 0;
+	width: 100%;
+	max-width: 500px;
+	min-width: 180px;
+	-webkit-tap-highlight-color: transparent;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none; 
+	user-select: none; 
+
 	.mip-audio-controller {
-		max-width: 100%;
 		background-color: #434343;
 		border-radius: 5px;
 		padding: 10px 15px;
 		box-sizing: border-box;
 		position: relative;
+		display: -webkit-flex;
+  		display: flex;
+  		align-items: center;
 	}
 	.mip-audio-play-pause {
 		width: 20px;
 		height: 20px;
-		display: inline-block;
+		box-sizing: content-box;
+		padding: 10px;
+		margin: -10px;
 		vertical-align: top;
+		background-size: 42px 20px;
+	    background-clip: content-box;
+	    flex: 0 0 auto;
 	}
 	.mip-audio-play-pause.mip-audio-stopped-icon {
-			background: url("https://mipcache.bdstatic.com/static/static/auido/audioimg.png") no-repeat;
-			background-size: cover;
+		background-image: url('https://mipcache.bdstatic.com/static/static/auido/audioimg.png');
+	    background-position: 9px 11px;
 	}
 	.mip-audio-play-pause.mip-audio-playing-icon {
-			background:url("https://mipcache.bdstatic.com/static/static/auido/audioimg.png") no-repeat;
-			background-size: cover;
-			background-position:  -20px 0;
+		background-image: url('https://mipcache.bdstatic.com/static/static/auido/audioimg.png');
+    	background-position: -13px 11px;
 	}
 	.mip-audio-seekbar {
-		width : 130px;
-		height: 6px;
-		display: inline-block;
+		width : 120px;
+		height: 8px;
+		box-sizing: border-box;
 		background-color: #818181;
 		border: 1px solid #989898;
 		margin-left: 15px;
 		margin-top: 1px;
 		position: relative;
 		border-radius: 8px;
-		vertical-align: middle;
+		flex-grow: 2;
 	}
 	.mip-audio-seekbar-fill {
 		height: 6px;
@@ -54,21 +70,13 @@ mip-audio{
 		margin-top: -10px;
 		margin-left: -10px
 	}
-	.mip-audio-timeshow{
-		width: 32px;
-		height: 20px;
-		display: inline-block;
-		margin-left: 18px;
-		position: relative;
-	}
 	.mip-audio-time-current,
 	.mip-audio-time-total {
 		font-size: 13px;
 		color: #fff;
-		display: inline-block;
 		margin-left: 10px;
-		min-width: 35px;
-		vertical-align: middle;
+		min-width: 37px;
+		flex: 0 0;
 	}
 	.mip-audio-time-total {
 		margin: 0 0 0 20px;

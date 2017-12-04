@@ -6,6 +6,7 @@
 
 define(function (require) {
     var $ = require('zepto');
+    var util = require('util');
     var customElement = require('customElement').create();
 
     // 属性来自 https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio
@@ -27,6 +28,14 @@ define(function (require) {
         if (ele.rendered) {
             return;
         }
+
+        // Issue#246: https://github.com/mipengine/mip/issues/246
+        // FIXME: mip.js内置函数导致audio组件不使用layout时宽高过小
+        // 后遗症：下方代码的使用，util.css，导致 layout 直接不生效
+        util.css(ele, {
+            width: '',
+            height: ''
+        });
 
         ele.rendered = true;
 
@@ -99,7 +108,7 @@ define(function (require) {
                 $(this.container).append($(this.customControls));
 
                 // 事件绑定：获取总播放时长，更新DOM
-                $(this.audioTag).on('canplay', me._applyTotalTime.bind(this));
+                $(this.audioTag).on('loadedmetadata', me._applyTotalTime.bind(this));
 
                 // 事件绑定：点击播放暂停按钮，播放&暂停音频
                 $(this.container).on('click', '.mip-audio-play-pause', me._playOrPause.bind(this));
@@ -109,6 +118,9 @@ define(function (require) {
 
                 // 事件绑定：拖动进度条事件
                 this._bindSeekEvent();
+
+                // 事件绑定：音频播放完毕，显示停止DOM
+                $(this.audioTag).on('ended', me._playEnded.bind(this));
             }
         },
 
@@ -153,18 +165,11 @@ define(function (require) {
         /**
          * 开始&停止播放音频
          *
+         * @param {string} action 如为'pause'，强制暂停
          * @private
          */
-        _playOrPause: function () {
-            if (this.audioTag.paused) {
-                // 开始播放
-                this.audioTag.play();
-                $(this.container)
-                    .find('.mip-audio-play-pause')
-                    .removeClass('mip-audio-stopped-icon')
-                    .addClass('mip-audio-playing-icon');
-            }
-            else {
+        _playOrPause: function (action) {
+            if (!this.audioTag.paused || action === 'pause') {
                 // 暂停播放
                 this.audioTag.pause();
                 $(this.container)
@@ -172,6 +177,23 @@ define(function (require) {
                     .removeClass('mip-audio-playing-icon')
                     .addClass('mip-audio-stopped-icon');
             }
+            else {
+                // 开始播放
+                this.audioTag.play();
+                $(this.container)
+                    .find('.mip-audio-play-pause')
+                    .removeClass('mip-audio-stopped-icon')
+                    .addClass('mip-audio-playing-icon');
+            }
+        },
+
+        /**
+         * 音频播放到结尾，强制转为暂停
+         *
+         * @private
+         */
+        _playEnded: function () {
+            this._playOrPause('pause');
         },
 
         /**
@@ -230,12 +252,13 @@ define(function (require) {
          */
         _bindSeekEvent: function () {
             var $btn = $(this.container).find('.mip-audio-seekbar-btn');
-            var $seekbar = $(this.container).find('.mip-audio-seekbar');
+            var seekbar = $(this.container).find('.mip-audio-seekbar')[0];
+            var seekbarProp = seekbar.getBoundingClientRect();
 
             var seekbarProperty = {
-                left: $seekbar.position().left,
-                width: $seekbar.width(),
-                right: $seekbar.position().left + $seekbar.width()
+                left: seekbarProp.left,
+                width: seekbarProp.width,
+                right: seekbarProp.right
             };
             var me = this;
 
@@ -290,7 +313,8 @@ define(function (require) {
 
             });
 
-            $(this.container).on(pointer === 'touch' ? 'touchend' : 'mouseup', function (event) {
+            // 结束拖动时，回复之前的播放状态
+            $btn.on(pointer === 'touch' ? 'touchend' : 'mouseup', function (event) {
                 isSeeking = false;
                 if (status === 'playing') {
                     me.audioTag.play();

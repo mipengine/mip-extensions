@@ -1,0 +1,15 @@
+<style>
+.color-gray {
+	color: #666!important;
+}
+.bg-color-pink {
+	background-color: #edd1d1!important;
+}
+.bg-color-pink2 {
+	background-color: #f0a6b2!important;
+}
+.bg-color-pink3 {
+	background-color: #e29daa!important;
+	border: 1px inset white;
+}
+</style>

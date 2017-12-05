@@ -71,6 +71,3 @@ if (navigator.serviceWorker) {
 }
 </script>
 ```
-
-## 注意事项
-

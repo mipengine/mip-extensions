@@ -12,7 +12,7 @@ mip-install-serviceworker 组件说明
 
 ### 基本用法
 
-```html
+```
 <mip-install-serviceworker src="/sw.js"
     data-iframe-src="https://mipexample.org/sw.html"
     layout="nodisplay"

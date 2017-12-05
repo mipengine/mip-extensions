@@ -14,7 +14,7 @@ mip-access 能够允许发布者对页面内容进行访问权限的控制，通
 <div mip-access='access AND login' mip-access-hide>自定义内容</div>
 ```
 
-### 使用方式
+## 使用方式
 - 开发者实现接口：所有接口的请求都依据[cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)方案，包括 Authorization 接口(返回解析 DOM 元素展示与否的数据)、Pingback接口，登陆登出接口。
 - 引入 mip 脚本。
 

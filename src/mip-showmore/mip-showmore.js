@@ -142,7 +142,8 @@ define(function (require) {
         if (this.showBox.style.height && this.showBox.style.height.match('px')) {
             height = getHeightUnfold(this.showBox);
         } else {
-            height = util.rect.getElementOffset(this.showBox).height;
+            var h = parseInt(getComputedStyle(this.showBox).height, 10);
+            height = isNaN(h) ? 0 : h;
         }
         // 如果高度大于阈值
         if (height > this.maxHeight) {

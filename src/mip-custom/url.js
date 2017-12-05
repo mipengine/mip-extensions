@@ -8,7 +8,7 @@ define(function (require) {
      * @type {Object}
      */
     var util = require('util');
-
+    var dom = require('mip-custom/dom');
     var data = require('mip-custom/data');
 
     /**
@@ -41,7 +41,7 @@ define(function (require) {
 
         // 获取用户设置参数，获取不到则报错并返回
         try {
-            var script = element.querySelector('script[type="application/json"]');
+            var script = dom.getConfigScriptElement(element);
             if (script) {
                 userParams = JSON.parse(script.textContent);
                 if (!userParams.accid) {

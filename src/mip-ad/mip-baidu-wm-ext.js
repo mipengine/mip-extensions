@@ -11,11 +11,11 @@ define(function (require) {
         var self = that;
         var domain = self.getAttribute('domain');
         var token = self.getAttribute('token');
-        var exps = '113002';
+        var exps = '112002';
         var MIP = window.MIP || {};
         var sample = MIP.hash.get('sample');
         if (sample === 'mip_wm_sample') {
-            exps = '113004';
+            exps = '113006';
         }
 
         if (domain && token) {

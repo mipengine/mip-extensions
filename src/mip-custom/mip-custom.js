@@ -28,10 +28,29 @@ define(function () {
     };
 
     /**
-     * build钩子, 定制化渲染的主流程：分区请求+渲染
+     * build钩子，触发渲染
      *
      */
     customElement.prototype.build = function () {
+        var me = this;
+        var checkElement = function () {
+            if (dom.getConfigScriptElement(me.element)) {
+                me.initCustom();
+                return true;
+            }
+            return false;
+        };
+
+        if (!checkElement()) {
+            window.requestAnimationFrame(checkElement);
+        }
+    };
+
+    /**
+     * 定制化渲染的主流程：分区请求+渲染
+     *
+     */
+    customElement.prototype.initCustom = function () {
         var me = this;
 
         // 初始化

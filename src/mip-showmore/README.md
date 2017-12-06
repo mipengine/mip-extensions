@@ -110,6 +110,41 @@
 <div on="tap:showmore01.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
 ```
 
+### 按钮展开样式定制
+为了能够让按钮在展开和收起状态下能够有不同样式和内容的切换，如修改按钮文案，添加按钮 icon，可以通过在 `data-closeclass=""` 属性中设置样式 class 名来解决，组件展开时会将此样式加入到按钮中元素上，收起会删除，设置 data-closeclass 后按钮内部 html **不会被替换**，从而就可以根据该样式来定制按钮内容。例如变动按钮中的文案，就可以通过如下方式书写：
+
+```html
+<mip-showmore bottomshadow='1' maxheight='100' id="showmore">
+MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
+</mip-showmore>
+<div on="tap:showmore.toggle" data-closeclass="mip-showmore-open" data-closetext="收起内容" class="mip-showmore-btn">
+    <span class="show">展开</span>
+    <span class="hidden">收起</span>
+</div>
+
+<style>
+.mip-showmore-btn {
+    position: relative;
+}
+
+.show {
+    display: none;
+}
+
+.hidden {
+    display: block;
+}
+
+.mip-showmore-open .show {
+    display: block;
+}
+
+.mip-showmore-open .hidden {
+    display: none;
+}
+</style>
+```
+
 <!--
 虽然如下方法已弃用，但是2017-07之前有存量。组件升级需要兼容
 
@@ -146,15 +181,15 @@
 
 - 说明：内容字符串超出限制长度则会截断显示省略号，显示"显示更多按钮"。内容截断显示不包括图片显示。
 - 取值：`maxheight='40'`表示40px处折叠；`maxheight='screen:0.6'`表示0.6屏(0.6 * window.screen.height)处折叠；
-- 必选项：否       
+- 必选项：否
 - 类型：数字或键值对
 - 备注:  `maxheight、maxlen`只能存在一个，优先级：`maxheight > maxlen`
 
 
 ### animatetime
 
-- 说明：展开收起动画时间。数字单位为秒，'animatetime=0.3'为0.3秒  
-- 必选项：否    
+- 说明：展开收起动画时间。数字单位为秒，'animatetime=0.3'为0.3秒
+- 必选项：否
 - 类型：数字（0-1之间）  
 - 默认值： 0.3
 - 备注: 如果不需要动画，填写'animatetime=0'  
@@ -162,20 +197,26 @@
 ### data-closetext
 
 - 说明：用于展开收起按钮文字配置。
-- 必选项：否   
-- 类型：字符串  
+- 必选项：否
+- 类型：字符串
 - 默认值： “收起”
+
+### data-closeclass
+
+- 说明：设置展开后按钮样式
+- 必选项：否
+- 取值：字符串
 
 ### showmorebox (已弃用)
 
-- 说明：内容显示框，即需要隐藏显示的dom  
-- 必选项：否  
+- 说明：内容显示框，即需要隐藏显示的dom
+- 必选项：否
 - 备注:  一个mip-showmore内只允许出现一个showmorebox
 
 ### showmorebtn (已弃用)
 
-- 说明：显示更多按钮dom  
-- 必选项：否  
+- 说明：显示更多按钮dom
+- 必选项：否
 - 备注:  一个mip-showmore内只允许出现一个 showmorebtn
 
 ### bottomshadow

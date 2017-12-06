@@ -10,6 +10,18 @@ define(function (require) {
     var viewport = require('viewport');
     var timeoutArray = [];
 
+    // 匹配节点是否在按钮中
+    function matchOriginTarget (id, node) {
+        while (node.parentNode) {
+            var attr = node.getAttribute('on');
+            if (attr && attr.indexOf('tap:' + id) === 0) {
+                return node;
+            }
+            node = node.parentNode;
+        }
+        return node;
+    }
+
     /**
      * define a showmore class based on
      *
@@ -132,7 +144,6 @@ define(function (require) {
         } else {
             height = util.rect.getElementOffset(this.showBox).height;
         }
-        
         // 如果高度大于阈值
         if (height > this.maxHeight) {
             util.css(this.showBox, {
@@ -193,7 +204,6 @@ define(function (require) {
             showmore.toggle.apply(showmore);
         }, false);
 
-        
     };
     // 点击时按钮添加class
     Showmore.prototype.addClassWhenUnfold = function () {
@@ -204,7 +214,9 @@ define(function (require) {
     Showmore.prototype.toggle = function (event) {
         var me = this;
         var classList = this.ele.classList;
-        var clickBtn = event ? event.target : null;
+        var clickBtn = event && event.target
+            ? matchOriginTarget(this.ele.id.trim(), event.target)
+            : null;
         var opt = {};
         opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {
@@ -281,10 +293,19 @@ define(function (require) {
         if (!status) {
             return;
         }
+        var closeclass;
+        if (clickBtn && clickBtn.dataset && clickBtn.dataset.closeclass) {
+            closeclass = clickBtn.dataset.closeclass;
+        }
         if (status === 'showOpen') {
             // v1.1.0 显示“展开”按钮
             if (clickBtn) {
-                clickBtn.innerText = clickBtn.dataset.opentext;
+                if (closeclass) {
+                    clickBtn.classList.remove(closeclass);
+                }
+                else {
+                    clickBtn.innerText = clickBtn.dataset.opentext;
+                }
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
@@ -296,11 +317,15 @@ define(function (require) {
         else {
             // v1.1.0显示“收起”按钮
             if (clickBtn) {
-                var opentext = clickBtn.innerText;
-                clickBtn.innerText = clickBtn.dataset.closetext || '收起';
-                clickBtn.dataset.opentext = opentext;
+                if (closeclass) {
+                    clickBtn.classList.add(closeclass);
+                }
+                else {
+                    var opentext = clickBtn.innerText;
+                    clickBtn.innerText = clickBtn.dataset.closetext || '收起';
+                    clickBtn.dataset.opentext = opentext;
+                }
             }
-
             // v1.0.0 显示“收起”按钮
             this._changeBtnText({
                 display: 'none'

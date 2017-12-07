@@ -29,6 +29,14 @@ define(function (require) {
         }
 
         ele.rendered = true;
+        
+        // Issue#246: https://github.com/mipengine/mip/issues/246
+        // FIXME: mip.js内置函数导致audio组件不使用layout时宽高过小
+        // 后遗症：下方代码的使用，util.css，导致 layout 直接不生效
+        util.css(ele, {
+            width: '',
+            height: ''
+        });
 
         var audioAttrs = getAttributeSet(this.element.attributes);
         var audioContent = $(ele).children();

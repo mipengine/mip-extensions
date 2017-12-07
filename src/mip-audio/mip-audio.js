@@ -6,6 +6,7 @@
 
 define(function (require) {
     var $ = require('zepto');
+    var util = require('util');
     var customElement = require('customElement').create();
 
     // 属性来自 https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio
@@ -29,7 +30,7 @@ define(function (require) {
         }
 
         ele.rendered = true;
-        
+
         // Issue#246: https://github.com/mipengine/mip/issues/246
         // FIXME: mip.js内置函数导致audio组件不使用layout时宽高过小
         // 后遗症：下方代码的使用，util.css，导致 layout 直接不生效

@@ -2,7 +2,7 @@
 * 寻医问药mip改造 广告配置组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2017.12.07
+* @time 2017.12.08
 * @version 1.0.8
 */
 define(function (require) {
@@ -23,15 +23,30 @@ define(function (require) {
             };
         }
     };
+    var showPoster = function (department) {
+        var ggArr = {};
+        var string = '';
+        $.each(adStore, function (index, value) {
+            string = string + '|' + value;
+        });
+        ggArr['ad_key'] = string.substr(1);
+        department !== undefined ? ggArr['department'] = department : 0;
+        ggArr['charset'] = 'utf8';
+        mobileAd.getAd(ggArr);
+        // mobileAd.getParseWordInp();
+    };
     // build说明: 广告组件，在页面展示，需要尽快加载
     customElem.prototype.build = function () {
         var elem = this.element;
         var attr = $(elem).attr('aid');
         var channel = $(elem).attr('channel');
         var department = $(elem).attr('department');
-        var paramId = $(elem).attr('param');
         var departId = $(elem).attr('depart_id');
         var departSid = $(elem).attr('depart_sid');
+        // display_load.js说明：站内广告投放js，必须
+        var posterUrl = 'https://a.xywy.com/display/display_load.js';
+        // news.php说明：站内广告反屏蔽策略(非百度联盟反屏蔽)，必须
+        var bdmUrl = 'https://3g.club.xywy.com/zhuanti/news.php?from=mip&department=';
         if (departId) {
             window['subject_pid'] = departId;
         }
@@ -43,64 +58,29 @@ define(function (require) {
                 // take_ip说明：展示广告需要的ip地址，必须
                 loadJs(elem, 'https://ipdisplay.xywy.com/take_ip', function () {
                     if (typeof channel === 'undefined') {
-                        // display_load.js说明：最新站内广告投放js，必须
-                        loadJs(elem, 'https://a.xywy.com/display/display_load.js', function () {
-                            var ggArr = {};
-                            var string = '';
-                            $.each(adStore, function (index, value) {
-                                string = string + '|' + value;
-                            });
-                            ggArr['ad_key'] = string.substr(1);
-                            ggArr['charset'] = 'utf8';
-                            mobileAd.getAd(ggArr);
-                            //mobileAd.getParseWordInp();
-                        });
-                    }
-                    else if (channel === 'club') {
-                        // mobile_v3.js说明：老版站内广告投放js，必须。后期会下掉。
-                        loadJs(elem, 'https://a.xywy.com/mobile_v3.js', function () {
-                            var ggArr = {};
-                            var string = '';
-                            $.each(adStore, function (index, value) {
-                                string = string + '|' + value;
-                            });
-                            ggArr['ad_key'] = string.substr(1);
-                            ggArr['department'] = department;
-                            ggArr['charset'] = 'utf8';
-                            mobileAd.getAd(ggArr);
+                        loadJs(elem, posterUrl, function () {
+                            if (typeof mobileAd === 'undefined') {
+                                loadJs(elem, bdmUrl + 0);
+                            }
+                            else {
+                                showPoster();
+                            }
                         });
                     }
                     else if (channel === 'newclub') {
-                        loadJs(elem, 'https://a.xywy.com/display/display_load.js', function () {
-                            var ggArr = {};
-                            var string = '';
-                            $.each(adStore, function (index, value) {
-                                string = string + '|' + value;
-                            });
-                            ggArr['ad_key'] = string.substr(1);
-                            ggArr['department'] = department;
-                            ggArr['charset'] = 'utf8';
-                            mobileAd.getAd(ggArr);
-                            //mobileAd.getParseWordInp();
-                        });
-                    }
-                    else if (channel === 'medicine') {
-                        // keyword_v1.js说明：药品网站内广告投放js，必须。
-                        loadJs(elem, 'https://a.xywy.com/keyword/keyword_v1.js', function () {
-                            var ggArr = {};
-                            var string = '';
-                            $.each(adStore, function (index, value) {
-                                string = string + '|' + value;
-                            });
-                            ggArr['ad_key'] = string.substr(1);
-                            ggArr['charset'] = 'utf8';
-                            mobileAd.getAd(ggArr);
+                        loadJs(elem, posterUrl, function () {
+                            if (typeof mobileAd === 'undefined') {
+                                loadJs(elem, bdmUrl + department);
+                            }
+                            else {
+                                showPoster(department);
+                            }
                         });
                     }
                 });
                 break;
             case 'stat':
-                //stat.js：广告展示量统计
+                // stat.js：广告展示量统计
                 loadJs(elem, 'https://a.xywy.com/mip/stat.js');
                 break;
             case 'tongji':
@@ -110,10 +90,6 @@ define(function (require) {
             case 'odm':
                 // odm.js说明：点击统计
                 loadJs(elem, 'https://stat.xywy.com/odm.js');
-                break;
-            case 'a_new_test':
-                // a_new_test.js说明：某单个科室流量统计，后期会下掉
-                loadJs(elem, 'https://stat.xywy.com/a_new_test.js?param=' + paramId + '&projectid=2250537300');
                 break;
             case 'visit':
                 // visit.js说明：搜索展示量统计

@@ -266,7 +266,7 @@ define(function (require) {
                 $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
                 $('.youlai_feed_div .youlai_feed_use_name').html(obj2.companyName);
                 $('.youlai_feed_div .youlai_feed_txt').text(obj.describe);
-                $('.youlai_feed_div a').attr('src', obj.picLink);
+                $('.youlai_feed_div a').attr('href', obj.picLink);
                 $('.youlai_feed_div a').attr('data-stats-baidu-obj', statsBaidu);
                 $('.youlai_feed_div .youlai_feed').each(function () {
                     $(this).append('<mip-img class="mip-img" src="' + picList[i++] + '"></mip-img>');
@@ -781,7 +781,7 @@ define(function (require) {
             $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
             $('.youlai_feed_div .youlai_feed_use_name').html(json.brandName);
             $('.youlai_feed_div .youlai_feed_txt').text(json.materialIntroduce);
-            $('.youlai_feed_div a').attr('src', json.materialLink);
+            $('.youlai_feed_div a').attr('href', json.materialLink);
             $('.youlai_feed_div a').attr('data-stats-baidu-obj', baiduObj);
             $('.youlai_feed_div .youlai_feed').each(function () {
                 $(this).append('<mip-img class="mip-img" src="' + picList[i++] + '"></mip-img>');

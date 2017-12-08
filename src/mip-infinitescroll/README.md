@@ -19,6 +19,7 @@
         "pn": 3,
         "pnName": "pn",
         "bufferHeightPx": 40,
+        "timeout": 3000,
         "loadingHtml": "loading",
         "loadFailHtml": "failed",
         "loadOverHtml": "over!"

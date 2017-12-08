@@ -79,6 +79,7 @@
     has-more
     pnName="pageNum"
     pn=2
+    timeout="3000"
     preLoad>
     <template type="mip-mustache" id="mip-template-id">
         <div>

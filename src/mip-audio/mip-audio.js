@@ -5,7 +5,6 @@
  */
 
 define(function (require) {
-    var $ = require('zepto');
     var util = require('util');
     var customElement = require('customElement').create();
 
@@ -31,16 +30,8 @@ define(function (require) {
 
         ele.rendered = true;
 
-        // Issue#246: https://github.com/mipengine/mip/issues/246
-        // FIXME: mip.js内置函数导致audio组件不使用layout时宽高过小
-        // 后遗症：下方代码的使用，util.css，导致 layout 直接不生效
-        util.css(ele, {
-            width: '',
-            height: ''
-        });
-
         var audioAttrs = getAttributeSet(this.element.attributes);
-        var audioContent = $(ele).children();
+        var audioContent = ele.childNodes;
 
         var audio = new Audio({
             audioAttrs: audioAttrs,
@@ -48,6 +39,7 @@ define(function (require) {
             audioContainer: ele,
             audioCustomCtr: audioAttrs.customcontrols || null
         });
+
         audio.init();
     };
 
@@ -86,8 +78,7 @@ define(function (require) {
         this.content = config.audioContent;
         // 保存用户自定义交互控件
         this.customControls = config.audioContainer.querySelector(config.audioCustomCtr) || '';
-        this.volume = 2; // ?
-        this.dragBoolen = true; // ?
+        this.totalTimeShown = false;
     }
 
     Audio.prototype = {
@@ -96,36 +87,51 @@ define(function (require) {
             var me = this;
             // 根据用户配置创建audio标签，插入文档流
             this.audioElement = this._createAudioTag();
-            $(this.container).append($(this.audioElement));
-            $(this.audioElement).append($(this.content));
 
+            // 将原来mip-audio内容插入audio.
+            // 由于每次元素移出content， content.length会减少, 提前保存length
+            var length = this.content.length;
+            for (var i = 0; i < length; i++) {
+                this.audioElement.appendChild(this.content[0]);
+            }
+            this.container.appendChild(this.audioElement);
+
+            // 优先加载音频，让总时间等信息更快返回
             this.audioElement.load();
 
             // 当<mip-audio>存在controls属性，创建交互控件，绑定事件
-            if (this.audioAttrs.controls !== 'no') {
+            if ('controls' in this.audioAttrs) {
                 // 如果不存在用户自定义DOM，新建交互控件
                 if (!this.customControls) {
                     this.customControls = this._createDefaultController();
-                    $(this.container).addClass('mip-audio-default-style');
+                    this.container.classList.add('mip-audio-default-style');
+                    this.container.innerHTML += this.customControls;
                 }
-                $(this.container).append($(this.customControls));
+                else {
+                    // 将用户自定义controller挪出audio
+                    this.container.appendChild(this.customControls);
+                }
 
                 // 事件绑定：获取总播放时长，更新DOM
                 // FIXME: 由于ios10手机百度不执行loadedmetadata函数，
                 // 魅族自带浏览器在播放前获取总播放时长为0.需要修改
-                $(this.audioElement).on('loadedmetadata', me._applyTotalTime.bind(this));
+                this.audioElement
+                    .addEventListener('loadedmetadata', me._applyTotalTime.bind(this), false);
 
                 // 事件绑定：点击播放暂停按钮，播放&暂停音频
-                $(this.container).on('click', '.mip-audio-play-pause', me._playOrPause.bind(this));
+                this.container.querySelector('.mip-audio-play-pause')
+                    .addEventListener('click', me._playOrPause.bind(this), false);
 
                 // 事件绑定：音频播放中，更新时间DOM
-                $(this.audioElement).on('timeupdate', me._timeUpdate.bind(this));
+                this.audioElement
+                    .addEventListener('timeupdate', me._timeUpdate.bind(this), false);
 
                 // 事件绑定：拖动进度条事件
                 this._bindSeekEvent();
 
                 // 事件绑定：音频播放完毕，显示停止DOM
-                $(this.audioElement).on('ended', me._playEnded.bind(this));
+                this.audioElement
+                    .addEventListener('ended', me._playEnded.bind(this), false);
             }
         },
 
@@ -143,7 +149,7 @@ define(function (require) {
                 }
 
             }
-            $(audioEle).addClass('mip-audio-tag');
+            audioEle.classList.add('mip-audio-tag');
             return audioEle;
         },
 
@@ -174,21 +180,18 @@ define(function (require) {
          * @private
          */
         _playOrPause: function (action) {
+            var classList = this.container.querySelector('.mip-audio-play-pause').classList;
             if (!this.audioElement.paused || action === 'pause') {
                 // 暂停播放
                 this.audioElement.pause();
-                $(this.container)
-                    .find('.mip-audio-play-pause')
-                    .removeClass('mip-audio-playing-icon')
-                    .addClass('mip-audio-stopped-icon');
+                classList.remove('mip-audio-playing-icon');
+                classList.add('mip-audio-stopped-icon');
             }
             else {
                 // 开始播放
                 this.audioElement.play();
-                $(this.container)
-                    .find('.mip-audio-play-pause')
-                    .removeClass('mip-audio-stopped-icon')
-                    .addClass('mip-audio-playing-icon');
+                classList.remove('mip-audio-stopped-icon');
+                classList.add('mip-audio-playing-icon');
             }
         },
 
@@ -211,19 +214,20 @@ define(function (require) {
             var currentTime = this.audioElement.currentTime;
             var percent = currentTime / this.audioElement.duration * 100;
 
-            $(this.container).find('.mip-audio-seekbar-btn').css('left', percent + '%');
-            $(this.container).find('.mip-audio-seekbar-fill').css('width', percent + 2 + '%');
+            util.css(this.container.querySelector('.mip-audio-seekbar-btn'), 'left', percent + '%');
+            util.css(this.container.querySelector('.mip-audio-seekbar-fill'), 'width', percent + '%');
         },
 
         /**
          * 获取音频总时长 填充DOM, this为 Audio
+         * FIXME： 在安卓UC上获取的duration为0.1
          *
          * @private
          */
         _applyTotalTime: function () {
             var duration = this.audioElement.duration;
             var milltime = this._msToDate(duration);
-            $(this.container).find('.mip-audio-time-total').html(milltime);
+            this.container.querySelector('.mip-audio-time-total').innerHTML = milltime;
         },
 
         /**
@@ -234,21 +238,27 @@ define(function (require) {
          */
         _timeUpdate: function (percent) {
             var now;
+            // XXX: 在安卓UC上loadedmetadata事件触发获取的duration为0.1，需要重新计算一遍时间。
+            if (!this.totalTimeShown) {
+                this._applyTotalTime();
+                this.totalTimeShown = true;
+            }
             if (typeof (percent) === 'number') {
                 // 拖动进度条导致需要更新播放位置&当前时间, now为具体时间 90 (s)
                 now = this.audioElement.duration * percent;
                 this.audioElement.currentTime = now;
             }
 
-            // now为进度条显示的时间，如1:40
-            now = this._msToDate(this.audioElement.currentTime);
             // 更新进度条
             this._progressShow();
+
+            // now为进度条显示的时间，如1:40
+            now = this._msToDate(this.audioElement.currentTime);
             // timeupdate 每秒执行多次，当时间真正改变时才更新dom，减少DOM操作
             if (this.audioElement.currentTimeShown !== now) {
                 this.audioElement.currentTimeShown = now;
                 // 更新当前时间
-                $(this.container).find('.mip-audio-time-current').html(now);
+                this.container.querySelector('.mip-audio-time-current').innerHTML = now;
             }
         },
 
@@ -258,8 +268,8 @@ define(function (require) {
          * @private
          */
         _bindSeekEvent: function () {
-            var $btn = $(this.container).find('.mip-audio-seekbar-btn');
-            var seekbar = $(this.container).find('.mip-audio-seekbar')[0];
+            var btn = this.container.querySelector('.mip-audio-seekbar-btn');
+            var seekbar = this.container.querySelector('.mip-audio-seekbar');
             var seekbarProp = seekbar.getBoundingClientRect();
 
             var seekbarProperty = {
@@ -281,16 +291,17 @@ define(function (require) {
             // 兼容PC端和移动端。移动端不触发mousemove事件，用touchmove代替
             var pointer = 'ontouchmove' in document ? 'touch' : 'mouse';
             // 拖动开始时记录当前位置，是否播放中
-            $btn.on(pointer === 'touch' ? 'touchstart' : 'mousedown', function (e) {
+            btn.addEventListener(pointer === 'touch' ? 'touchstart' : 'mousedown', function (e) {
                 var event = 'ontouchmove' in document ? e.touches[0] : e;
                 startX = event.clientX;
-                startBtnLeft = $btn.position().left;
+                startBtnLeft = btn.offsetLeft + btn.offsetWidth * 0.5;
                 status = me.audioElement.paused ? 'paused' : 'playing';
                 isSeeking = true;
                 me.audioElement.pause();
-            });
+            }, false);
 
-            $(this.container).on(pointer + 'move', function (e) {
+            // 拖动事件
+            this.container.addEventListener(pointer + 'move', function (e) {
                 if (!isSeeking) {
                     return;
                 }
@@ -317,15 +328,15 @@ define(function (require) {
                     seekPercent = (startBtnLeft + moveXDelta) / seekbarProperty.width;
                 }
                 me._timeUpdate.call(me, seekPercent);
-            });
+            }, false);
 
             // 结束拖动时，回复之前的播放状态
-            $btn.on(pointer === 'touch' ? 'touchend' : 'mouseup', function (event) {
+            btn.addEventListener(pointer === 'touch' ? 'touchend' : 'mouseup', function (event) {
                 isSeeking = false;
                 if (status === 'playing') {
                     me.audioElement.play();
                 }
-            });
+            }, false);
         },
 
         /**

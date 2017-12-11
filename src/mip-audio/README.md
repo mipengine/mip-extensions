@@ -16,9 +16,9 @@ mip-audio 使用方法同 audio 标签。
 ``` html
 <mip-audio 
     src="https://mip-doc.bj.bcebos.com/guitar.mp3"
-    loop
+    controls
     layout="fixed-height"
-    height="45">
+    height="50">
 </mip-audio>
 ```
 
@@ -27,16 +27,15 @@ mip-audio 使用方法同 audio 标签。
 ### 使用source定义多音频源
 
 ``` html
-<mip-audio 
-    src="https://mip-doc.bj.bcebos.com/guitar.mp3"
+<mip-audio
     controls
-    loop
-    width="320">
+    height="50">
     <source src="https://mip-doc.bj.bcebos.com/horse.mp3">
     <source src="https://mip-doc.bj.bcebos.com/horse.ogg">
+    您的浏览器不支持音频播放。
 </mip-audio>
 ```
--->
+-- >
 
 
 ### 自定义控件皮肤
@@ -59,8 +58,10 @@ mip-audio 使用方法同 audio 标签。
 ``` html
 <mip-audio 
     src="https://mip-doc.bj.bcebos.com/guitar.mp3"
+    controls
     customControls = ".mip-audio-controller"
-    class="all-pink">
+    class="all-pink"
+    height="50">
     <div class="mip-audio-controller bg-color-pink">
     	<i class="mip-audio-play-pause mip-audio-stopped-icon"></i>
     	<div class="mip-audio-time-current color-gray">00:00</div>
@@ -81,9 +82,8 @@ mip-audio 使用方法同 audio 标签。
 ```
 <mip-audio 
     src="https://mip-doc.bj.bcebos.com/guitar.mp3"
-    loop
     autoplay
-    controls="no">
+    height="0">
 </mip-audio>
 ```
 
@@ -96,10 +96,9 @@ mip-audio 使用方法同 audio 标签。
 格式：使用document.querySelector()可选择到的值  
 
 ### controls
-说明：音频交互控件  
+说明：音频交互控件，但移动端部分浏览器不会自动播放。建议保留controls参数  
 是否必填：否  
-默认值：无 （存在交互控件）
-其它可选值：controls 显示交互控件，controls="no"不显示交互控件 
+默认值：无
 
 ### src loop autoplay 等  
 说明：audio 属性在mip-audio标签上可以直接使用  

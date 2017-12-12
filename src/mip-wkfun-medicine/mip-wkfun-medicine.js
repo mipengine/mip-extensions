@@ -2,8 +2,8 @@
 * 寻医问药mip改造 药品网功能组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2016.12.23
-* @version 1.0.0
+* @time 2017.12.05
+* @version 1.0.2
 */
 define(function (require) {
     var $ = require('zepto');
@@ -375,7 +375,7 @@ define(function (require) {
     var spackLength = 0;
     $.ajax({
         type: 'GET',
-        url: 'http://a2.wksc.xywy.com/api/rpm/method/3g/',
+        url: 'https://a2wksc.xywy.com/api/rpm/method/3g/',
         data: {
             keyword: keyword
         },
@@ -528,7 +528,7 @@ define(function (require) {
         }
         $.ajax({
             type: 'GET',
-            url: 'http://a2.wksc.xywy.com/api/rpm/method/3g/',
+            url: 'https://a2wksc.xywy.com/api/rpm/method/3g/',
             data: {
                 uuidBox: uuidbox,
                 keyword: keyword
@@ -634,7 +634,7 @@ define(function (require) {
         var latitude = getQueryString('lat');
         $.ajax({
             type: 'get',
-            url: 'http://a2.wksc.xywy.com/StoreVirtuallocation/getStoreVirtual/lng/' + longitude + '/lat/' + latitude + '/dis/0.01',
+            url: 'https://a2wksc.xywy.com/StoreVirtuallocation/getStoreVirtual/lng/' + longitude + '/lat/' + latitude + '/dis/0.01',
             dataType: 'jsonp',
             success: function (msg) {
                 // store_list(msg);

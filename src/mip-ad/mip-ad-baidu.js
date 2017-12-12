@@ -8,7 +8,7 @@ define(function (require) {
     var $ = require('zepto');
     var jsSrc = '//dup.baidustatic.com/js/dm.js';
     var scriptId = 'MIP_DUP_JS';
-    var exps = '113002';
+    var exps = '112002';
 
     var render = function (that, me) {
 
@@ -16,7 +16,7 @@ define(function (require) {
         var MIP = window.MIP || {};
         var sample = MIP.hash.get('sample');
         if (sample === 'mip_wm_sample') {
-            exps = '113004';
+            exps = '113006';
         }
         var cproID = that.getAttribute('cproid');
         if (!cproID) {

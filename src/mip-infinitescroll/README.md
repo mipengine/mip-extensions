@@ -131,7 +131,7 @@
 
 ### timeout
 
-说明：fetch-jsonp请求的最长时间         
+说明：fetch-jsonp 请求的超时时间         
 必选项：否   
 类型：整数   
 取值范围：无   

@@ -75,7 +75,7 @@ mip-audio 使用方法同 audio 标签。
 ```
 
 ### 不显示播放控件
-添加`controls="no"`可以禁止播放控件显示，但需要注意，如果不添加autoplay，音频就不会播放。
+不添加`controls`属性，播放控件显示就不会显示。但需要注意，如果不添加autoplay，音频就不会播放。
 
 [notice] 不建议使用。大部分浏览器出于用户体验考虑，不支持音频自动播放。[developer.apple.com 解释](https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html)
 

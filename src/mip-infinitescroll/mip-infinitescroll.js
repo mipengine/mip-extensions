@@ -55,7 +55,8 @@ define(function (require) {
             bufferHeightPx: 10,
             loadingHtml: '加载中...',
             loadFailHtml: '加载失败',
-            loadOverHtml: '加载完毕!'
+            loadOverHtml: '加载完毕!',
+            timeout: 5000
         };
 
         // 获取用户设置参数
@@ -82,7 +83,8 @@ define(function (require) {
             }
             else {
                 fetchJsonp(self.url, {
-                    jsonpCallback: 'callback'
+                    jsonpCallback: 'callback',
+                    timeout: self.timeout
                 }).then(function (res) {
                     return res.json();
                 }).then(function (data) {

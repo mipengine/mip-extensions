@@ -83,14 +83,14 @@ mip-audio.all-pink {
 .all-pink .mip-audio-time-total {
     font-size: 13px;
     color: #fff;
-    margin-left: 10px;
+    margin-left: 20px;
     min-width: 40px;
     white-space: nowrap;
     flex: 0 0;
 }
 
 .all-pink .mip-audio-time-total {
-    margin: 0 0 0 20px;
+    margin: 0 0 0 10px;
 }
 
 .color-gray {

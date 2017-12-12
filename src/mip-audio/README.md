@@ -63,12 +63,12 @@ mip-audio 使用方法同 audio 标签。
     class="all-pink"
     height="50">
     <div class="mip-audio-controller bg-color-pink">
-    	<i class="mip-audio-play-pause mip-audio-stopped-icon"></i>
-    	<div class="mip-audio-time-current color-gray">00:00</div>
-    	<div class="mip-audio-seekbar">
-        	<div class="mip-audio-seekbar-fill bg-color-pink2"></div>
+        <i class="mip-audio-play-pause mip-audio-stopped-icon"></i>
+        <div class="mip-audio-seekbar">
+            <div class="mip-audio-seekbar-fill bg-color-pink2"></div>
             <div class="mip-audio-seekbar-btn bg-color-pink3"></div>
         </div>
+        <div class="mip-audio-time-current color-gray">00:00</div>
         <div class="mip-audio-time-total color-gray">--:--</div>
     </div>
 </mip-audio>

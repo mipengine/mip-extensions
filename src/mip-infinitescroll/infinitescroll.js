@@ -243,7 +243,7 @@ define(function (require) {
                     // 成功
                     function (newResultArr) {
                         // 处理新增数据
-                        if (newResultArr == false) {
+                        if (newResultArr == false || newResultArr === 'NULL') {
                             // 标记数据状态为无数据
                             me.dataStatus = 0;
                             me.options.$loading.html(me.options.loadOverHtml);
@@ -337,7 +337,7 @@ define(function (require) {
         _separatePage: function (listArr) {
             var me = this;
 
-            if (!listArr.length) {
+            if (!listArr.length || listArr === "NULL") {
                 return;
             }
             var pageResultNum = me.options.pageResultNum;               // 每页结果数

@@ -10,8 +10,53 @@
 
 ## 示例
 
-### 基本用法
-<!--
+### 最简单用法
+异步获取{{number}}等数据，插入页面。接口数据返回示例见文档下方【接口返回数据示例】。
+```html
+<mip-infinitescroll data-src="xxx" template="myTemplate">
+    <template type="mip-mustache" id="myTemplate">
+        <li>
+            <p>序号{{number}} :{{title}}</p>
+            <mip-img src="{{img}}"
+                layout="responsive" width="100" height="100">
+        </li>
+    </template>
+    <div class="mip-infinitescroll-results"></div>
+    <div class="bg">
+        <div class="mip-infinitescroll-loading"></div>
+    </div>
+</mip-infinitescroll>
+```
+
+### 根据返回值判断请求结束
+如果数据量未知，可以填写rn="[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)", 加载完所有数据后才停止请求。
+
+[warning] 由于JSON.parse不能解析Infinity(number)，配置需要写成字符串形式 "Infinity"。
+
+```html
+<mip-infinitescroll data-src="xxx" template="myTemplate">
+    <script type="application/json">
+        {
+            "rn": "Infinity"
+        }
+    </script>
+    <template type="mip-mustache" id="myTemplate">
+        <li>
+            <p>序号{{number}}: {{title}}</p>
+            <mip-img src="{{img}}"
+                layout="responsive" width="100" height="100">
+        </li>
+    </template>
+    <div class="mip-infinitescroll-results"></div>
+    <div class="bg">
+        <div class="mip-infinitescroll-loading"></div>
+    </div>
+</mip-infinitescroll>
+```
+
+### 自定义更多配置
+rn, prn, timeout, loadingHtml 等参数可以配置，可选项参考下文“参数配置”。
+
 ```html
 <mip-infinitescroll data-src="xxx" template="myTemplate">
     <script type="application/json">
@@ -22,54 +67,17 @@
         "pnName": "pn",
         "bufferHeightPx": 40,
         "timeout": 3000,
-        "loadingHtml": "loading",
-        "loadFailHtml": "failed",
-        "loadOverHtml": "over!"
+        "loadingHtml": "更多数据正在路上",
+        "loadFailHtml": "数据加载失败啦",
+        "loadOverHtml": "没有数据了哦"
     }
     </script>
     <template type="mip-mustache" id="myTemplate">
         <li>
-            <mip-img
-                layout="responsive"
-                width="600"
-                height="120"
-                src="{{img}}">
+            <mip-img src="{{img}}"
+                layout="responsive" width="100" height="100">
             </mip-img>
             <p>序号:{{number}}</p>
-        </li>
-    </template>
-    <div class="mip-infinitescroll-results"></div>
-    <div class="bg">
-        <div class="mip-infinitescroll-loading"></div>
-    </div>
-
-</mip-infinitescroll>
-```
--->
-
-### 根据返回值判断请求结束
-如果数据量未知，可以填写rn="[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)", 加载完所有数据后才停止请求。
-
-[warning] 由于JSON.parse不能解析Infinity，配置需要写成字符串形式 "Infinity"。
-```html
-<mip-infinitescroll data-src="xxx" template="myTemplate">
-    <script type="application/json">
-    {
-        "rn": "Infinity",
-        "pn": 1,
-        "prn": 6,
-        "bufferHeightPx": 40
-    }
-    </script>
-    <template type="mip-mustache" id="myTemplate">
-        <li>
-            <p>序号{{number}}: {{title}}</p>
-            <mip-img
-                layout="responsive"
-                width="600"
-                height="120"
-                src="{{img}}">
-            </mip-img>
         </li>
     </template>
     <div class="mip-infinitescroll-results"></div>
@@ -104,7 +112,7 @@
 ### rn
 
 说明：results number, 需要显示的结果总数量  
-类型：整数，"[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)"字符串形式  
+类型：整数，"[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)"字符串  
 必选项：否   
 取值范围：如果填写整数n，则只会取n条数据。如果填写"Infinity"，则无限加载数据，直到后端没有数据返回。   
 单位：无   
@@ -197,7 +205,7 @@
 ```
 - status 0 表示请求成功
 - items: [] 是需要渲染的数据
-- 接口返回数据示例：
+## 异步接口数据示例
 ```
 {
     "status": 0,

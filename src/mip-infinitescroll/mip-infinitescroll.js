@@ -1,6 +1,6 @@
 /**
  * @file mip-infinitescroll 组件
- * @author wangpei07
+ * @author wangpei07, liangjiaying
  */
 
 define(function (require) {
@@ -64,6 +64,8 @@ define(function (require) {
             var script = element.querySelector('script[type="application/json"]');
             if (script) {
                 self.params = util.fn.extend(self.params, JSON.parse(script.textContent.toString()));
+                // 由于JSON.parse() 内不能填写Infinity(number), 只能填"Infinity"(string)来转换
+                self.params.rn = (self.params.rn === 'Infinity' ? Infinity : self.params.rn);
             }
         }
         catch (e) {
@@ -74,6 +76,8 @@ define(function (require) {
 
         self.url = getUrl.call(self, src);
 
+
+        // 异步请求返回后，解析数据，使用mustache 渲染插入页面
         self.pushResult = function (rn, status) {
             // 异步获取数据示例
             var defer = $.Deferred();

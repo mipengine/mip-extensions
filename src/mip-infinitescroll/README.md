@@ -21,6 +21,7 @@
         "prn": 6,
         "pnName": "pn",
         "bufferHeightPx": 40,
+        "timeout": 3000,
         "loadingHtml": "loading",
         "loadFailHtml": "failed",
         "loadOverHtml": "over!"
@@ -170,6 +171,15 @@
 取值范围：无   
 单位：无   
 默认值：加载完毕
+
+### timeout
+
+说明：fetch-jsonp 请求的超时时间         
+必选项：否   
+类型：整数   
+取值范围：无   
+单位：ms   
+默认值：5000
 
 ## 注意事项
 

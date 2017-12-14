@@ -2,8 +2,8 @@
 * 寻医问药mip改造 广告配置组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2017.11.28
-* @version 1.0.7
+* @time 2017.12.08
+* @version 1.0.8
 */
 define(function (require) {
     var $ = require('zepto');
@@ -12,25 +12,41 @@ define(function (require) {
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.charset = 'utf-8';
-        script.src = url + '?v=' + new Date().getTime();
+        script.src = url;
         $(elem).append(script);
         if (typeof callback !== 'function') {
             // return false;
         }
         else {
-            script.onload = function () {
+            script.onload = script.onerror = function () {
                 callback();
             };
         }
     };
+    var showPoster = function (department) {
+        var ggArr = {};
+        var string = '';
+        $.each(adStore, function (index, value) {
+            string = string + '|' + value;
+        });
+        ggArr['ad_key'] = string.substr(1);
+        department !== undefined ? ggArr['department'] = department : 0;
+        ggArr['charset'] = 'utf8';
+        mobileAd.getAd(ggArr);
+        // mobileAd.getParseWordInp();
+    };
+    // build说明: 广告组件，在页面展示，需要尽快加载
     customElem.prototype.build = function () {
         var elem = this.element;
         var attr = $(elem).attr('aid');
         var channel = $(elem).attr('channel');
         var department = $(elem).attr('department');
-        var paramId = $(elem).attr('param');
         var departId = $(elem).attr('depart_id');
         var departSid = $(elem).attr('depart_sid');
+        // display_load.js说明：站内广告投放js，必须
+        var posterUrl = 'https://a.xywy.com/display/display_load.js';
+        // news.php说明：站内广告反屏蔽策略(非百度联盟反屏蔽)，必须
+        var bdmUrl = 'https://3g.club.xywy.com/zhuanti/news.php?from=mip&department=';
         if (departId) {
             window['subject_pid'] = departId;
         }
@@ -39,77 +55,48 @@ define(function (require) {
         }
         switch (attr) {
             case 'take_ip':
+                // take_ip说明：展示广告需要的ip地址，必须
                 loadJs(elem, 'https://ipdisplay.xywy.com/take_ip', function () {
                     if (typeof channel === 'undefined') {
-                        loadJs(elem, 'https://a.xywy.com/display/display_load.js', function () {
-                            var ggArr = {};
-                            var string = '';
-                            $.each(adStore, function (index, value) {
-                                string = string + '|' + value;
-                            });
-                            ggArr['ad_key'] = string.substr(1);
-                            ggArr['charset'] = 'utf8';
-                            mobileAd.getAd(ggArr);
-                            //mobileAd.getParseWordInp();
-                        });
-                    }
-                    else if (channel === 'club') {
-                        loadJs(elem, 'https://a.xywy.com/mobile_v3.js', function () {
-                            var ggArr = {};
-                            var string = '';
-                            $.each(adStore, function (index, value) {
-                                string = string + '|' + value;
-                            });
-                            ggArr['ad_key'] = string.substr(1);
-                            ggArr['department'] = department;
-                            ggArr['charset'] = 'utf8';
-                            mobileAd.getAd(ggArr);
+                        loadJs(elem, posterUrl, function () {
+                            if (typeof mobileAd === 'undefined') {
+                                loadJs(elem, bdmUrl + 0);
+                            }
+                            else {
+                                showPoster();
+                            }
                         });
                     }
                     else if (channel === 'newclub') {
-                        loadJs(elem, 'https://a.xywy.com/display/display_load.js', function () {
-                            var ggArr = {};
-                            var string = '';
-                            $.each(adStore, function (index, value) {
-                                string = string + '|' + value;
-                            });
-                            ggArr['ad_key'] = string.substr(1);
-                            ggArr['department'] = department;
-                            ggArr['charset'] = 'utf8';
-                            mobileAd.getAd(ggArr);
-                            //mobileAd.getParseWordInp();
-                        });
-                    }
-                    else if (channel === 'medicine') {
-                        loadJs(elem, 'https://a.xywy.com/keyword/keyword_v1.js', function () {
-                            var ggArr = {};
-                            var string = '';
-                            $.each(adStore, function (index, value) {
-                                string = string + '|' + value;
-                            });
-                            ggArr['ad_key'] = string.substr(1);
-                            ggArr['charset'] = 'utf8';
-                            mobileAd.getAd(ggArr);
+                        loadJs(elem, posterUrl, function () {
+                            if (typeof mobileAd === 'undefined') {
+                                loadJs(elem, bdmUrl + department);
+                            }
+                            else {
+                                showPoster(department);
+                            }
                         });
                     }
                 });
                 break;
             case 'stat':
+                // stat.js：广告展示量统计
                 loadJs(elem, 'https://a.xywy.com/mip/stat.js');
                 break;
             case 'tongji':
+                // a.js说明：流量统计
                 loadJs(elem, 'https://stat.xywy.com/a.js');
                 break;
             case 'odm':
+                // odm.js说明：点击统计
                 loadJs(elem, 'https://stat.xywy.com/odm.js');
                 break;
-            case 'a_new_test':
-                loadJs(elem, 'https://stat.xywy.com/a_new_test.js?param=' + paramId + '&projectid=2250537300');
-                break;
             case 'visit':
+                // visit.js说明：搜索展示量统计
                 loadJs(elem, 'https://stat.xywy.com/visit.js');
                 break;
             case 'get_ip':
+                // get_ip说明：药品网展示广告所需的ip
                 loadJs(elem, 'https://page.xywy.com/get_ip');
                 break;
             default:

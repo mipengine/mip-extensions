@@ -11,7 +11,7 @@
 ## 示例
 
 ### 最简单用法
-异步获取{{number}}等数据，插入页面。接口数据返回示例见文档下方【接口返回数据示例】。
+异步获取{{number}}等数据，插入页面。接口数据返回示例见文档下方【正常数据示例】。
 ```html
 <mip-infinitescroll data-src="xxx" template="myTemplate">
     <template type="mip-mustache" id="myTemplate">
@@ -29,7 +29,7 @@
 ```
 
 ### 根据返回值判断请求结束
-如果数据量未知，可以填写rn="[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)", 加载完所有数据后才停止请求。
+如果数据量未知，可以填写rn="[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)", 加载完所有数据后，服务端返回空数据自动停止请求。接口数据返回示例见文档下方【空数据示例】。
 
 [warning] 由于JSON.parse不能解析Infinity(number)，配置需要写成字符串形式 "Infinity"。
 
@@ -205,7 +205,8 @@ rn, prn, timeout, loadingHtml 等参数可以配置，可选项参考下文“�
 ```
 - status 0 表示请求成功
 - items: [] 是需要渲染的数据
-## 异步接口数据示例
+## 异步接口示例
+### 正常数据示例
 ```
 {
     "status": 0,
@@ -245,4 +246,13 @@ rn, prn, timeout, loadingHtml 等参数可以配置，可选项参考下文“�
     }
 }
 ```
-
+### 空数据示例
+当不在有数据时，返回如下数据，item为空数组。
+```
+{
+    "status": 0, 
+    "data": { 
+        "items": []
+    }
+}
+```

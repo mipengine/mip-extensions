@@ -13,6 +13,8 @@
 ### 基本示例
 mip-audio 使用方法同 audio 标签。
 
+[info]由于 MIP-Cache 是https环境，src 要求为 https 资源。
+
 ``` html
 <mip-audio 
     src="https://mip-doc.bj.bcebos.com/guitar.mp3"
@@ -39,37 +41,42 @@ mip-audio 使用方法同 audio 标签。
 
 
 ### 自定义控件皮肤
-使用 customControls 属性指向自定义交互控件。可以更改DOM位置，通过增加class及css为控件添加皮肤。  
-当使用 customControls 属性时，mip-audio 不会默认增加class="mip-audio-default-style"，所有样式需要自己添加。  
+使用 controller 属性在`<mip-audio>`中声明自定义交互控件。可以任意更改DOM位置，通过增加class及css为控件添加皮肤。  
+当使用 controller 属性时，mip-audio 不会默认增加class="mip-audio-default-style"，所有样式需要自己添加。  
 
-下列class涉及到事件绑定，请务必保留：
+下列属性涉及到事件绑定，请务必保留：
 
-- mip-audio-play-pause 开始/暂停按钮
+- controller 交互控件最外层，用于判断是否有自定义控件
+- play-button 开始/暂停按钮
+- current-time 当前播放时间
+- total-time 音频总时长
+- seekbar 进度条
+- seekbar-fill 进度条中已播放，具有特殊颜色
+- seekbar-btn 进度条拖动按钮
+
+[notice] controller, current-time 等属性请务必保留，如果不需要总时间，可以设置display:none; 
+
+下列class为播放时动态添加，可以设置自定义图标:
+
 - mip-audio-stopped-icon 图标，暂停时显示的三角图标
 - mip-audio-playing-icon 图标，播放时显示的双竖杠图标
-- mip-audio-time-current 当前播放时间
-- mip-audio-seekbar 进度条
-- mip-audio-seekbar-fill 进度条中已播放，具有特殊颜色
-- mip-audio-seekbar-btn 进度条拖动按钮
-- mip-audio-time-total 音频总时长
 
-[notice] mip-audio-play-pause 等 class请务必保留，开发时请关注控制台（console），避免组件报错。
+[warning]开发时请关注控制台（Console），避免组件报错。
 
 ``` html
 <mip-audio 
     src="https://mip-doc.bj.bcebos.com/guitar.mp3"
     controls
-    customControls = ".mip-audio-controller"
     class="all-pink"
     height="50">
-    <div class="mip-audio-controller bg-color-pink">
-        <i class="mip-audio-play-pause mip-audio-stopped-icon"></i>
-        <div class="mip-audio-seekbar">
-            <div class="mip-audio-seekbar-fill bg-color-pink2"></div>
-            <div class="mip-audio-seekbar-btn bg-color-pink3"></div>
+    <div controller class="bg-color-pink">
+        <i play-button class="mip-audio-stopped-icon"></i>
+        <div seekbar>
+            <div seekbar-fill class="bg-color-pink2"></div>
+            <div seekbar-button class="bg-color-pink3"></div>
         </div>
-        <div class="mip-audio-time-current color-gray">00:00</div>
-        <div class="mip-audio-time-total color-gray">--:--</div>
+        <div current-time class="color-gray">00:00</div>
+        <div total-time class="color-gray">--:--</div>
     </div>
 </mip-audio>
 ```
@@ -88,12 +95,6 @@ mip-audio 使用方法同 audio 标签。
 ```
 
 ## 属性
-
-### customControls
-说明：音频交互控件  
-是否必填：否  
-示例：".mip-audio-controller"  
-格式：使用document.querySelector()可选择到的值  
 
 ### controls
 说明：音频交互控件，但移动端部分浏览器不会自动播放。建议保留controls参数  

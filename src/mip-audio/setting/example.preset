@@ -12,7 +12,7 @@ mip-audio.all-pink {
     user-select: none;
 }
 
-.all-pink .mip-audio-controller {
+.all-pink [controller]{
     background-color: #434343;
     border-radius: 5px;
     padding: 10px 15px;
@@ -23,7 +23,7 @@ mip-audio.all-pink {
     align-items: center;
 }
 
-.all-pink .mip-audio-play-pause {
+.all-pink [play-button] {
     width: 20px;
     height: 20px;
     box-sizing: content-box;
@@ -35,17 +35,17 @@ mip-audio.all-pink {
     flex: 0 0 auto;
 }
 
-.all-pink .mip-audio-play-pause.mip-audio-stopped-icon {
+.all-pink [play-button].mip-audio-stopped-icon {
     background-image: url('https://mipcache.bdstatic.com/static/static/auido/audioimg.png');
     background-position: 9px 11px;
 }
 
-.all-pink .mip-audio-play-pause.mip-audio-playing-icon {
+.all-pink [play-button].mip-audio-playing-icon {
     background-image: url('https://mipcache.bdstatic.com/static/static/auido/audioimg.png');
     background-position: -13px 11px;
 }
 
-.all-pink .mip-audio-seekbar {
+.all-pink [seekbar] {
     width: 120px;
     height: 8px;
     box-sizing: border-box;
@@ -58,7 +58,7 @@ mip-audio.all-pink {
     flex-grow: 2;
 }
 
-.all-pink .mip-audio-seekbar-fill {
+.all-pink [seekbar-fill] {
     height: 6px;
     background-color: #414141;
     position: absolute;
@@ -67,7 +67,7 @@ mip-audio.all-pink {
     border-radius: 8px;
 }
 
-.all-pink .mip-audio-seekbar-btn {
+.all-pink [seekbar-button] {
     width: 20px;
     background-color: #fff;
     height: 20px;
@@ -79,8 +79,8 @@ mip-audio.all-pink {
     margin-left: -10px
 }
 
-.all-pink .mip-audio-time-current,
-.all-pink .mip-audio-time-total {
+.all-pink [current-time],
+.all-pink [total-time] {
     font-size: 13px;
     color: #fff;
     margin-left: 20px;
@@ -89,7 +89,7 @@ mip-audio.all-pink {
     flex: 0 0;
 }
 
-.all-pink .mip-audio-time-total {
+.all-pink [total-time] {
     margin: 0 0 0 10px;
 }
 

@@ -37,7 +37,7 @@ define(function (require) {
             audioAttrs: audioAttrs,
             audioContent: audioContent,
             audioContainer: ele,
-            audioCustomCtr: audioAttrs.customcontrols || null
+            audioCustomCtr: this.element.querySelector('[controller]')
         });
 
         audio.init();
@@ -77,7 +77,7 @@ define(function (require) {
         // 内层元素，如source及audio失效提示
         this.content = config.audioContent;
         // 保存用户自定义交互控件
-        this.customControls = config.audioContainer.querySelector(config.audioCustomCtr) || '';
+        this.customControls = config.audioCustomCtr || '';
         this.totalTimeShown = false;
     }
 
@@ -119,7 +119,7 @@ define(function (require) {
                     .addEventListener('loadedmetadata', me._applyTotalTime.bind(this), false);
 
                 // 事件绑定：点击播放暂停按钮，播放&暂停音频
-                this.container.querySelector('.mip-audio-play-pause')
+                this.container.querySelector('[play-button]')
                     .addEventListener('click', me._playOrPause.bind(this), false);
 
                 // 事件绑定：音频播放中，更新时间DOM
@@ -161,15 +161,15 @@ define(function (require) {
          */
         _createDefaultController: function () {
             var audioDom = ''
-                + '<div class="mip-audio-controller">'
-                +    '<i class="mip-audio-play-pause mip-audio-stopped-icon"></i>'
-                + '<div class="mip-audio-time-current">00:00</div>'
-                + '<div class="mip-audio-seekbar">'
-                +    '<div class="mip-audio-seekbar-fill"></div>'
-                +    '<div class="mip-audio-seekbar-btn"></div>'
-                + '</div>'
-                + '<div class="mip-audio-time-total">--:--</div>'
-                + '</div>';
+                +   '<div controller>'
+                +       '<i play-button class="mip-audio-stopped-icon"></i>'
+                +       '<div current-time>00:00</div>'
+                +       '<div seekbar>'
+                +            '<div seekbar-fill></div>'
+                +           '<div seekbar-button></div>'
+                +       '</div>'
+                +       '<div total-time>--:--</div>'
+                +   '</div>';
             return audioDom;
         },
 
@@ -180,7 +180,7 @@ define(function (require) {
          * @private
          */
         _playOrPause: function (action) {
-            var classList = this.container.querySelector('.mip-audio-play-pause').classList;
+            var classList = this.container.querySelector('[play-button]').classList;
             if (!this.audioElement.paused || action === 'pause') {
                 // 暂停播放
                 this.audioElement.pause();
@@ -214,8 +214,8 @@ define(function (require) {
             var currentTime = this.audioElement.currentTime;
             var percent = currentTime / this.audioElement.duration * 100;
 
-            util.css(this.container.querySelector('.mip-audio-seekbar-btn'), 'left', percent + '%');
-            util.css(this.container.querySelector('.mip-audio-seekbar-fill'), 'width', percent + '%');
+            util.css(this.container.querySelector('[seekbar-button]'), 'left', percent + '%');
+            util.css(this.container.querySelector('[seekbar-fill]'), 'width', percent + '%');
         },
 
         /**
@@ -227,7 +227,7 @@ define(function (require) {
         _applyTotalTime: function () {
             var duration = this.audioElement.duration;
             var milltime = this._msToDate(duration);
-            this.container.querySelector('.mip-audio-time-total').innerHTML = milltime;
+            this.container.querySelector('[total-time]').innerHTML = milltime;
         },
 
         /**
@@ -258,7 +258,7 @@ define(function (require) {
             if (this.audioElement.currentTimeShown !== now) {
                 this.audioElement.currentTimeShown = now;
                 // 更新当前时间
-                this.container.querySelector('.mip-audio-time-current').innerHTML = now;
+                this.container.querySelector('[current-time]').innerHTML = now;
             }
         },
 
@@ -268,8 +268,8 @@ define(function (require) {
          * @private
          */
         _bindSeekEvent: function () {
-            var btn = this.container.querySelector('.mip-audio-seekbar-btn');
-            var seekbar = this.container.querySelector('.mip-audio-seekbar');
+            var button = this.container.querySelector('[seekbar-button]');
+            var seekbar = this.container.querySelector('[seekbar]');
             var seekbarProp = seekbar.getBoundingClientRect();
 
             var seekbarProperty = {
@@ -291,10 +291,10 @@ define(function (require) {
             // 兼容PC端和移动端。移动端不触发mousemove事件，用touchmove代替
             var pointer = 'ontouchmove' in document ? 'touch' : 'mouse';
             // 拖动开始时记录当前位置，是否播放中
-            btn.addEventListener(pointer === 'touch' ? 'touchstart' : 'mousedown', function (e) {
+            button.addEventListener(pointer === 'touch' ? 'touchstart' : 'mousedown', function (e) {
                 var event = 'ontouchmove' in document ? e.touches[0] : e;
                 startX = event.clientX;
-                startBtnLeft = btn.offsetLeft + btn.offsetWidth * 0.5;
+                startBtnLeft = button.offsetLeft + button.offsetWidth * 0.5;
                 status = me.audioElement.paused ? 'paused' : 'playing';
                 isSeeking = true;
                 me.audioElement.pause();
@@ -331,7 +331,7 @@ define(function (require) {
             }, false);
 
             // 结束拖动时，回复之前的播放状态
-            btn.addEventListener(pointer === 'touch' ? 'touchend' : 'mouseup', function (event) {
+            button.addEventListener(pointer === 'touch' ? 'touchend' : 'mouseup', function (event) {
                 isSeeking = false;
                 if (status === 'playing') {
                     me.audioElement.play();

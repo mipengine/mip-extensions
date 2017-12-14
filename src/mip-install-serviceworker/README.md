@@ -30,26 +30,26 @@ mip-install-serviceworker 组件说明
 
 ### src
 
-说明：service worker 文件的路径，如果不在缓存路径下打开，会采用 src 注册 ServiceWorker
-必选项：否
+说明：service worker 文件的路径，如果不在缓存路径下打开，会采用 src 注册 ServiceWorker  
+必选项：否  
 类型：字符串
 
 ### data-iframe-src
 
-说明：安装 Service Workder 的 页面地址，在缓存下打开，由于不同域，无法直接注册，所以采用 iframe
-必选项：否
+说明：安装 Service Workder 的 页面地址，在缓存下打开，由于不同域，无法直接注册，所以采用 iframe  
+必选项：否  
 类型：字符串
 
 ### data-no-service-worker-fallback-url-match
 
-说明：当当前环境不支持 Service Worker 的时候，可以通过制定一个特殊的同源 shell 页面，提前加载这个 shell 页面进行浏览器缓存，可以通过data-no-service-worker-fallback-url-match 属性指定需要跳转到该 shell 页面的规则，该属性为正则表达式。
-必选项：否
+说明：当当前环境不支持 Service Worker 的时候，可以通过制定一个特殊的同源 shell 页面，提前加载这个 shell 页面进行浏览器缓存，可以通过data-no-service-worker-fallback-url-match 属性指定需要跳转到该 shell 页面的规则，该属性为正则表达式。  
+必选项：否  
 类型：正则表达式
 
 ### data-no-service-worker-fallback-shell-url
 
-说明：指定的 shell 页面的 url, 需要和 mip 页面保持同源，当该 shell 页面加载完成之后，有必须通过 url hash 后的参数 redirect 到原页面的逻辑。
-必选项：否
+说明：指定的 shell 页面的 url, 需要和 mip 页面保持同源，当该 shell 页面加载完成之后，有必须通过 url hash 后的参数 redirect 到原页面的逻辑。  
+必选项：否  
 类型：字符串
 
 ## 工作机制

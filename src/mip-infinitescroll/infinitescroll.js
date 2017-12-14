@@ -5,6 +5,7 @@
  */
 
 define(function (require) {
+    // 使用了jquery $.Deferred
     var $ = require('jquery');
     var InfiniteScroll = function (opt) {
         if (!opt.$result || !opt.$loading || !opt.pushResult) {
@@ -242,7 +243,7 @@ define(function (require) {
                     // 成功
                     function (newResultArr) {
                         // 处理新增数据
-                        if (newResultArr === 'NULL') {
+                        if (newResultArr == false) {
                             // 标记数据状态为无数据
                             me.dataStatus = 0;
                             me.options.$loading.html(me.options.loadOverHtml);

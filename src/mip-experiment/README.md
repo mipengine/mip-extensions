@@ -7,7 +7,7 @@ mip-experiment 组件用于前端抽样实验。
 ----|----
 类型|通用
 支持布局|nodisplay
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-experiment/mip-experiment.js
+所需脚本https://c.mipcdn.com/static/v1/mip-experiment/mip-experiment.js
 
 ## 示例
 

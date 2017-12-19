@@ -6,7 +6,7 @@ mip-haixue-contact 用来支持嗨学网咨询功能
 ----|----
 类型|通用
 支持布局|container
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-haixue-contact/mip-haixue-contact.js
+所需脚本https://c.mipcdn.com/static/v1/mip-haixue-contact/mip-haixue-contact.js
 
 
 ## 示例

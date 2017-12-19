@@ -6,7 +6,7 @@
 ----|----
 类型|广告
 支持布局| N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-39ad/mip-39ad.js
+所需脚本https://c.mipcdn.com/static/v1/mip-39ad/mip-39ad.js
 
 ## 示例
 

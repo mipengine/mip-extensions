@@ -5,7 +5,7 @@ mip-html-ajax 评论提交加载
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-html-ajax/mip-html-ajax.js   
+所需脚本https://c.mipcdn.com/static/v1/mip-html-ajax/mip-html-ajax.js   
 
 ## 示例
 

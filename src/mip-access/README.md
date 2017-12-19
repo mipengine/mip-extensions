@@ -6,7 +6,7 @@ mip-access 能够允许发布者对页面内容进行访问权限的控制，通
 ----|----
 类型|通用
 支持布局|N/S
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-access/mip-access.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-access/mip-access.js
 
 ## 示例
 

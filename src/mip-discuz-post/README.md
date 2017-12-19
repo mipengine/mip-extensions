@@ -5,7 +5,7 @@ mip-discuz-post discuz手机页面发布功能组件
 标题|内容
 ----|----
 类型|通用
-所需脚本|http://mipcache.bdstatic.com/static/v1/mip-discuz-post/mip-discuz-post.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-discuz-post/mip-discuz-post.js
 
 ## 示例
 

@@ -19,8 +19,8 @@ mip-access 能够允许发布者对页面内容进行访问权限的控制，通
 - 引入 mip 脚本。
 
     ```
-    <script type="text/javascript" src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
-    <script type="text/javascript" src="https://mipcache.bdstatic.com/static/v1/mip-access/mip-access.js"></script>
+    <script type="text/javascript" src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <script type="text/javascript" src="https://c.mipcdn.com/static/v1/mip-access/mip-access.js"></script>
     ```
 
 - 定义 script 配置标签，并配置以下信息。

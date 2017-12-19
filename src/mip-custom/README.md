@@ -23,7 +23,7 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本https://c.mipcdn.com/static/v1/mip-custom/mip-custom.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js<br>https://mipcache.bdstatic.com/static/v1/mip-fixed/mip-fixed.js
+所需脚本https://c.mipcdn.com/static/v1/mip-custom/mip-custom.js<br/> https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js<br>https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js
 
 ## 示例
 
@@ -49,7 +49,7 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
     <title>title</title>
-    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
     <link rel="canonical" href="对应的 h5 页面 url">
     <style mip-custom>
     </style>
@@ -75,9 +75,9 @@ mip-custom 定制化 MIP 组件，想在页面中加入定制化内容，必须�
             }
         </script>
     </mip-custom>
-    <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
-    <script src="https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js"></script>
-    <script src="https://mipcache.bdstatic.com/static/v1/mip-custom/mip-custom.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-custom/mip-custom.js"></script>
 </body>
 </html>
 

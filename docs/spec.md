@@ -61,7 +61,7 @@ MIP 开发小组在审核扩展组件时，将首先检查组件结构是否符�
 
 示例
 ```
-https://mipcache.bdstatic.com/static/v1/mip-sample/mip-sample.js
+https://c.mipcdn.com/static/v1/mip-sample/mip-sample.js
 ```
 
 #### 对于mip版本的说明  

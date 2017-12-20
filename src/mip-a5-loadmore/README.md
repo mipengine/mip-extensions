@@ -6,7 +6,7 @@ mip-a5-loadmore 是a5创业网逻辑组件,也适应于其他相似业务。
 ----|----
 类型|通用
 支持布局|N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-a5-loadmore/mip-a5-loadmore.js
+所需脚本https://c.mipcdn.com/static/v1/mip-a5-loadmore/mip-a5-loadmore.js
 
 ## 示例
 

@@ -6,7 +6,7 @@ mip-content-readmore 查看更多文本内容
 ----|----
 类型|通用
 支持布局| N/S
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-content-readmore/mip-content-readmore.js
+所需脚本https://c.mipcdn.com/static/v1/mip-content-readmore/mip-content-readmore.js
 
 ## 示例
 

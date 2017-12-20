@@ -7,7 +7,7 @@ mip-ad 的一种类型：百度搜索推广合作。  
 ----|----
 类型|通用
 支持布局|fixed-height, fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
+所需脚本https://c.mipcdn.com/static/v1/mip-ad/mip-ad.js
 
 ## 示例
 

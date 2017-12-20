@@ -6,7 +6,7 @@ mip-map 组件集成了百度地图的服务，目前支持定位、地图控件
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-map/mip-map.js
+所需脚本https://c.mipcdn.com/static/v1/mip-map/mip-map.js
 
 ## 示例
 

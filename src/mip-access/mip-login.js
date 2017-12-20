@@ -109,7 +109,7 @@ define(function (require) {
      */
     Login.prototype._splice = function (url) {
         var search = url.split('?');
-        var returnUrl = encodeURIComponent('https://mipcache.bdstatic.com/static/v1/mip-login-done/mip-login-done.html?url=' + encodeURIComponent(this._href));
+        var returnUrl = encodeURIComponent('https://c.mipcdn.com/static/v1/mip-login-done/mip-login-done.html?url=' + encodeURIComponent(this._href));
         if (search && search.length > 1) {
             url += '&returnUrl=' + returnUrl + '&url=' + this._href;
         }

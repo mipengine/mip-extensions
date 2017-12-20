@@ -226,6 +226,9 @@ define(function (require) {
          */
         _applyTotalTime: function () {
             var duration = this.audioElement.duration;
+            if (isNaN(duration)) {
+                return;
+            }
             var milltime = this._msToDate(duration);
             this.container.querySelector('[total-time]').innerHTML = milltime;
         },
@@ -347,6 +350,9 @@ define(function (require) {
          * @return {string} 格式化后的时间
          */
         _msToDate: function (now) {
+            if (isNaN(now)) {
+                return '--:--';
+            }
             var second = parseInt(now, 10); // 秒
 
             var minute = 0; // 分
@@ -360,21 +366,23 @@ define(function (require) {
                 }
             }
 
-            if (parseInt(second, 10) < 10) {
-                second = '0' + parseInt(second, 10);
+            if (second < 10) {
+                second = '0' + second;
             }
 
             var result = '' + second;
             if (minute === 0) {
                 result = '00' + ':' + result;
             }
-
-            if (minute > 0) {
-                result = '' + parseInt(minute, 10) + ':' + result;
+            else if (minute > 0 && minute < 10) {
+                result = '0' + minute + ':' + result;
+            }
+            else if (minute >= 10) {
+                result = '' + minute + ':' + result;
             }
 
             if (hour > 0) {
-                result = '' + parseInt(hour, 10) + ':' + result;
+                result = '' + hour + ':' + result;
             }
 
             return result;

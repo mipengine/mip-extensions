@@ -3,11 +3,18 @@ mip-audio.mip-audio-default-style{
 	max-width: 100%!important;
 	min-width: 250px;
 	min-height: 40px;
+	display: block;
+	overflow: visible!important;
 	-webkit-tap-highlight-color: transparent;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none; 
 	user-select: none; 
+	audio {
+		/* iOS7.1.2 audio标签有占位，需要手动清除*/
+		display: none;
+		height: 0;
+	}
 	[controller] {
 		background-color: #434343;
 		border-radius: 5px;

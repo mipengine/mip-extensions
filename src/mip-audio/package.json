@@ -1,6 +1,6 @@
 {
     "name": "mip-audio",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "提供了一个音频播放组件",
     "author": {
         "name": "MIP authors",

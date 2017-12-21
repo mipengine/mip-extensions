@@ -6,7 +6,7 @@ mip-comment-down 用来支持文章详情页的评论
 ----|----
 类型|业务
 支持布局|N/S
-所需脚本https://c.mipcdn.com/static/v1/mip-down-comment/mip-down-comment.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-down-comment/mip-down-comment.js
 
 ## 示例
 

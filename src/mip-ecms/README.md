@@ -6,7 +6,7 @@ mip-ecms 帝国cms,整合包主要包括ecms中调用的js如点赞,阅读量,�
 ----|----
 类型|定制
 支持布局|N/S
-所需脚本https://c.mipcdn.com/static/v1/mip-ecms/mip-ecms.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-ecms/mip-ecms.js
 
 ## 示例1
 

@@ -6,7 +6,7 @@
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本https://c.mipcdn.com/static/v1/mip-stats-ajk/mip-stats-ajk.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-stats-ajk/mip-stats-ajk.js
 
 
 ## 示例

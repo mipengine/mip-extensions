@@ -6,7 +6,7 @@ mip-adsense 用来添加谷歌广告
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本https://c.mipcdn.com/static/v1/mip-adsense/mip-adsense.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-adsense/mip-adsense.js
 
 ## 示例
 

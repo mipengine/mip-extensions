@@ -5,7 +5,7 @@ mip-wangxia-call 自由业务
 ----|----
 类型|通用
 支持布局|N/S
-所需脚本https://c.mipcdn.com/static/v1/mip-wangxia-call/mip-wangxia-call.js   
+所需脚本|https://c.mipcdn.com/static/v1/mip-wangxia-call/mip-wangxia-call.js   
 
 ## 示例
 

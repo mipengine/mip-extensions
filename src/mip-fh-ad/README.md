@@ -6,7 +6,7 @@ mip-fh-ad 用来支持m.fh21.com.cn问答详情页的直投广告显示
 |---|---|
 |类型|广告|
 |支持布局|N/S|
-|所需脚本https://c.mipcdn.com/static/v1/mip-fh-ad/mip-fh-ad.js|
+|所需脚本|https://c.mipcdn.com/static/v1/mip-fh-ad/mip-fh-ad.js|
 
 ## 示例
 

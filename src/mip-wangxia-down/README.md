@@ -5,7 +5,7 @@ mip-wangxia-down 下载站定制高速下载组件
 ----|----
 类型|通用
 支持布局|N/S
-所需脚本https://c.mipcdn.com/static/v1/mip-wangxia-down/mip-wangxia-down.js   
+所需脚本|https://c.mipcdn.com/static/v1/mip-wangxia-down/mip-wangxia-down.js   
 
 ## 示例
 

@@ -6,7 +6,7 @@ position:sticky的js兼容版本。页面元素滑动到顶部时自动贴顶。
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本https://c.mipcdn.com/static/v1/mip-semi-fixed/mip-semi-fixed.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-semi-fixed/mip-semi-fixed.js
 
 ## 示例
 

@@ -6,7 +6,7 @@ mip-stats-cnzz 用于友盟（CNZZ）统计投放。
 ----|----
 类型|通用
 支持布局|N/S
-所需脚本https://c.mipcdn.com/static/v1/mip-stats-cnzz/mip-stats-cnzz.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-stats-cnzz/mip-stats-cnzz.js
 
 ## 示例
 

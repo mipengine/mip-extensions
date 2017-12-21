@@ -6,7 +6,7 @@ mip-vd-baidu http 视频源播放的百度解决方案
 ----|----
 类型|通用
 支持布局|responsive
-所需脚本https://c.mipcdn.com/static/v1/mip-vd-baidu/mip-vd-baidu.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-vd-baidu/mip-vd-baidu.js
 
 ## 示例
 

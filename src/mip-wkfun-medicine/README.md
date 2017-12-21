@@ -6,7 +6,7 @@
 ----|----
 类型|业务
 支持布局| N/S
-所需脚本https://c.mipcdn.com/static/v1/mip-wkfun-medicine/mip-wkfun-medicine.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-wkfun-medicine/mip-wkfun-medicine.js
 
 ## 示例
 

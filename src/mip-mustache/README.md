@@ -6,7 +6,7 @@ mustache模板引擎
 ----|----
 类型|通用
 支持布局|不使用布局
-所需脚本https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 
 ## 示例
 

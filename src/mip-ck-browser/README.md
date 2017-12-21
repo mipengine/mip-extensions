@@ -6,7 +6,7 @@ mip-ck-browser用于改造中医详情页面的js脚本代码
 |---|---|
 |类型|脚本|
 |支持布局|N/S|
-|所需脚本https://c.mipcdn.com/static/v1/mip-ck-browser/mip-ck-browser.js|
+|所需脚本|https://c.mipcdn.com/static/v1/mip-ck-browser/mip-ck-browser.js|
 
 ## 示例
 

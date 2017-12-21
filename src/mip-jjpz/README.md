@@ -6,7 +6,7 @@ mip-jjpz  自有业务详情页整体交互组件
 ----|----
 类型|业务，定制
 支持布局|responsive,fill,container
-所需脚本https://c.mipcdn.com/static/v1/mip-jjpz/mip-jjpz.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-jjpz/mip-jjpz.js
 
 ## 示例
 

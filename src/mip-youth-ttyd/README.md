@@ -6,7 +6,7 @@ mip-youth-ttyd 青网移动适配页精彩推荐广告
 ----|----
 类型|通用，定制
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本https://c.mipcdn.com/static/v1/mip-youth-ttyd/mip-youth-ttyd.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-youth-ttyd/mip-youth-ttyd.js
 
 ## 示例
 

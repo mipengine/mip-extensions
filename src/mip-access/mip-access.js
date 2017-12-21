@@ -348,7 +348,8 @@ define(function (require) {
     Access.prototype._bindEvent = function () {
         var self = this;
         window.addEventListener('message', function (event) {
-            if (event.origin === 'https://mipcache.bdstatic.com'
+            if ((event.origin === 'https://mipcache.bdstatic.com'
+                || event.origin === 'https://c.mipcdn.com')
                 && event.source && event.data
                 && event.data.type === 'refresh') {
                 if (event.source && event.source === self._login._openWin) {

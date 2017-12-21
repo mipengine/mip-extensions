@@ -5,7 +5,7 @@ mip-html-tabs TAB滑动、显示、隐藏、元素跳转等操作。
 ----|----
 类型|用通
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-html-tabs/mip-html-tabs.js   
+所需脚本|https://c.mipcdn.com/static/v1/mip-html-tabs/mip-html-tabs.js   
 
 ## 示例
 

@@ -27,6 +27,17 @@ define(function (require) {
         // 修改字段名
         params.query = data.getHashData('word');
         params.logid = data.getHashData('lid');
+
+        // 内容联盟导流字段
+        var originalSource = data.getHashData('originalSource');
+        var mediaid = data.getHashData('mediaid');
+        if (originalSource) {
+            params.originalSource = originalSource;
+        }
+        if (mediaid) {
+            params.mediaid = mediaid;
+        }
+
         return params;
     }
 

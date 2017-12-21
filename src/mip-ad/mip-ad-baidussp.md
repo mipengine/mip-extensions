@@ -7,7 +7,7 @@ mip-ad 的一种类型：百度ssp直投广告。
 ----|----
 类型|通用
 支持布局|reponsive, fixed-height
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-ad/mip-ad.js
 
 ## 示例
 

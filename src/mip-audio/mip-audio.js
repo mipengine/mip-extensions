@@ -99,40 +99,37 @@ define(function (require) {
             // 优先加载音频，让总时间等信息更快返回
             this.audioElement.load();
 
-            // 当<mip-audio>存在controls属性，创建交互控件，绑定事件
-            if ('controls' in this.audioAttrs) {
-                // 如果不存在用户自定义DOM，新建交互控件
-                if (!this.customControls) {
-                    this.customControls = this._createDefaultController();
-                    this.container.classList.add('mip-audio-default-style');
-                    this.container.innerHTML += this.customControls;
-                }
-                else {
-                    // 将用户自定义controller挪出audio
-                    this.container.appendChild(this.customControls);
-                }
-
-                // 事件绑定：获取总播放时长，更新DOM
-                // FIXME: 由于ios10手机百度不执行loadedmetadata函数，
-                // 魅族自带浏览器在播放前获取总播放时长为0.需要修改
-                this.audioElement
-                    .addEventListener('loadedmetadata', me._applyTotalTime.bind(this), false);
-
-                // 事件绑定：点击播放暂停按钮，播放&暂停音频
-                this.container.querySelector('[play-button]')
-                    .addEventListener('click', me._playOrPause.bind(this), false);
-
-                // 事件绑定：音频播放中，更新时间DOM
-                this.audioElement
-                    .addEventListener('timeupdate', me._timeUpdate.bind(this), false);
-
-                // 事件绑定：拖动进度条事件
-                this._bindSeekEvent();
-
-                // 事件绑定：音频播放完毕，显示停止DOM
-                this.audioElement
-                    .addEventListener('ended', me._playEnded.bind(this), false);
+            // 如果不存在用户自定义DOM，新建交互控件
+            if (!this.customControls) {
+                this.customControls = this._createDefaultController();
+                this.container.classList.add('mip-audio-default-style');
+                this.container.innerHTML += this.customControls;
             }
+            else {
+                // 将用户自定义controller挪出audio
+                this.container.appendChild(this.customControls);
+            }
+
+            // 事件绑定：获取总播放时长，更新DOM
+            // FIXME: 由于ios10手机百度不执行loadedmetadata函数，
+            // 魅族自带浏览器在播放前获取总播放时长为0.需要修改
+            this.audioElement
+                .addEventListener('loadedmetadata', me._applyTotalTime.bind(this), false);
+
+            // 事件绑定：点击播放暂停按钮，播放&暂停音频
+            this.container.querySelector('[play-button]')
+                .addEventListener('click', me._playOrPause.bind(this), false);
+
+            // 事件绑定：音频播放中，更新时间DOM
+            this.audioElement
+                .addEventListener('timeupdate', me._timeUpdate.bind(this), false);
+
+            // 事件绑定：拖动进度条事件
+            this._bindSeekEvent();
+
+            // 事件绑定：音频播放完毕，显示停止DOM
+            this.audioElement
+                .addEventListener('ended', me._playEnded.bind(this), false);
         },
 
         /**

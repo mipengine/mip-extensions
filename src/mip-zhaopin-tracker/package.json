@@ -1,0 +1,14 @@
+{
+    "name": "mip-zhaopin-tracker",
+    "version": "1.0.0",
+    "description": "统计功能",
+    "contributors": [
+        {
+            "name": "shawn",
+            "email": "xiao.lee@zhaopin.com.cn"
+        } 
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

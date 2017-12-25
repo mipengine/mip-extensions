@@ -40,7 +40,7 @@ define(function (require) {
                     $('.game-detail-main .bxz').attr('href', this.platAndroidAddress);
                 }
                 else {
-                    $('.game-detail-main .bxz').attr('href', 'http://m.9ht.com/down.asp?id=' + this.platAndroidId);
+                    $('.game-detail-main .bxz').attr('href', 'https://m.9ht.com/down.asp?id=' + this.platAndroidId);
                 }
                 $('.game-detail-main h1').html(this.platAndroidResName);
             }
@@ -50,7 +50,7 @@ define(function (require) {
                     $('.game-detail-main .bxz').attr('href', this.platIPhoneAddress);
                 }
                 else {
-                    $('.game-detail-main .bxz').attr('href', 'http://m.9ht.com/down.asp?id=' + this.platIPhoneId);
+                    $('.game-detail-main .bxz').attr('href', 'https://m.9ht.com/down.asp?id=' + this.platIPhoneId);
                 }
                 $('.game-detail-main h1').html(this.platIPhoneResName);
             }

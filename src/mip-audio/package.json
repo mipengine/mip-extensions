@@ -1,0 +1,13 @@
+{
+    "name": "mip-audio",
+    "version": "1.0.2",
+    "description": "提供了一个音频播放组件",
+    "author": {
+        "name": "MIP authors",
+        "email": "mip-support@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

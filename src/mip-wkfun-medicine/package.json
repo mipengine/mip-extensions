@@ -1,0 +1,11 @@
+{
+    "name": "mip-wkfun-medicine",
+    "version": "1.0.2",
+    "author": {
+        "name": "tinkbell",
+		"email": "343836944@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

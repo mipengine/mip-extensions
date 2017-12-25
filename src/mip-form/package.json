@@ -1,0 +1,13 @@
+{
+    "name": "mip-form",
+    "version": "1.0.7",
+    "description":"表单提交。",
+    "author": {
+        "name": "MIP authors",
+        "email": "mip-support@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

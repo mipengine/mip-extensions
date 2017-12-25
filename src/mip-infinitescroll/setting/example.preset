@@ -1,0 +1,11 @@
+<style>
+    li {
+        margin:10px;
+        border: 1px solid #ccc;
+    }
+    p {
+        font-size: 20px;
+        text-align: center;
+        margin: 10px;
+    }
+</style>

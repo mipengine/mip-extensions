@@ -1,6 +1,6 @@
-# mip-app-banner App 吊起组件
+# mip-app-banner App 调起组件
 
-用于吊起 App。
+用于调起 App。
 
 标题|内容
 ----|----

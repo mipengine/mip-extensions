@@ -85,20 +85,20 @@ mip access 使用时需要配置一些参数才能够进行使用，这些参数
     access: false
 }
 
-<!-- 表达式书写，以下表达式解析为 false -->
+<!-- 表达式书写，以下表达式解析为 false，元素不展示 -->
 <div mip-access="login AND access">展示元素</div>
 ```
 
 #### pingback
 
-计数接口。该接口触发的时机是在 authorization 接口数据返回成功，同时页面表达式解析完成之后。该接口的作用主要是通知开发者，当前页面（文章）已经访问完成，可以采取策略来控制（为下一篇文章的展现做数据准备），如免费文章总访问减 1（主要是改变数据），然后访问下一篇文章时再请求 authorization 接口，里面的数据就已经是变化后的。
+计数接口。该接口触发的时机是在 authorization 接口数据返回成功，同时页面表达式解析完成之后。该接口的作用主要是通知开发者，当前页面（文章）已经访问完成，可以采取策略来控制（为下一篇文章的展现做数据准备），如接到计数接口请求之后，使免费文章总访问减 1（主要是改变数据），然后访问下一篇文章时再请求 authorization 接口，里面的数据就已经是变化后的。
 
 #### noPingback
 
 是否需要在页面表达式解析完成后发出请求，设置为 true 则是不需要。
 
 #### login
-登陆相关接口，可以是一个字符串，用于配制登录页面地址。也可以是一个对象，其中配置登录和登出的页面地址，如:
+登陆相关接口，可以是一个字符串，用于配置登录页面地址。也可以是一个对象，其中配置登录和登出的页面地址，如:
 
 ```
 "login": {
@@ -117,7 +117,7 @@ mip access 使用时需要配置一些参数才能够进行使用，这些参数
     "error": true,
     "access": false
 }
-<!-- 表达式书写，以下表达式解析为 false -->
+<!-- 表达式书写，以下表达式解析为 false，元素不展现 -->
 <div mip-access="error AND access">展示元素</div>
 ```
 
@@ -127,7 +127,7 @@ authorization 接口请求超时时间，默认为 3s。
 
 ### 注意点
 
-- 接口使用 cors 请求：所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置允许的 Access-Control-Allow-origin 为允许的域名，其中域名包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
+- 接口使用 cors 请求：所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置允许的 `Access-Control-Allow-origin` 为允许的域名，其中域名包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
 
 ## 属性
 

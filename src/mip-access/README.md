@@ -125,6 +125,26 @@ mip access 使用时需要配置一些参数才能够进行使用，这些参数
 
 authorization 接口请求超时时间，默认为 3s。
 
+### URL 参数
+
+mip-access 同样为 URL 定制了一些常量，可以允许开发者直接在 URL 中通过参数书写进行使用，如：
+
+```
+<!-- 设置的 URL -->
+https://www.mipengine.org/?rid=READER_ID&url=SOURCE_URL",
+<!-- 解析后的 URL -->
+https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A%2F%2Fwww.mipengine.org%2F",
+```
+
+具体可使用的参数如下：
+
+- READER_ID: 获取访问用户的 ID，该 ID 是可以理解为区分用户的唯一标示，通过 localstorage 的方式进行存储（清除 localstorage 后会再次生成）；
+- SOURCE_URL: 当前页面 URL，即 `window.location.href`；
+- MIPDOC_URL: mip 原站点 URL，非 MIP Cache URL；
+- CANONICAL_URL: mip 站点对应的原 h5 站点 URL，如果 h5 站点不存在，则为当前页面 URL；
+- DOCUMENT_REFERRER: 页面访问的 referer；
+- RANDOM: 随机数；
+
 ### 注意点
 
 - 接口使用 cors 请求：所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置允许的 `Access-Control-Allow-origin` 为允许的域名，其中域名包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
@@ -133,7 +153,16 @@ authorization 接口请求超时时间，默认为 3s。
 
 ### mip-access
 
-说明：控制DOM元素展示或隐藏      
+说明：控制 DOM 元素展示或隐藏的计算表达式      
+必选项：是   
+类型：字符串   
+单位：无   
+取值：无   
+默认值：无
+
+### mip-access-hide
+
+说明：DOM 元素在表达式计算完成之前默认是展现的，如果在这段时间里希望隐藏元素，则通过设置该属性即可
 必选项：是   
 类型：字符串   
 单位：无   

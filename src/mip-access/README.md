@@ -145,7 +145,7 @@ https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A
 - DOCUMENT_REFERRER: 页面访问的 referer；
 - RANDOM: 随机数；
 
-### 注意点
+## 注意点
 
 - cors 请求：mip-access 中所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置 `Access-Control-Allow-origin` 为允许的 origin，其中包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
 

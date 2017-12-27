@@ -24,7 +24,7 @@ mip-access 能够根据用户访问页面的情况（如文章最多能够访问
 ```
 
 ### 表达式书写
-mip access 是通过表达式计算得出的结果来决定一个元素是否能够展示的，如：
+mip-access 是通过表达式计算得出的结果来决定一个元素是否能够展示的，如：
 
 ```
 <!-- 其中 access 和 subscriber 均为第三步中配置的 authorization 接口所返回 -->
@@ -56,7 +56,7 @@ mip access 是通过表达式计算得出的结果来决定一个元素是否能
     \>=|大于等于|A >= B
 
 ### 参数配置
-mip access 使用时需要配置一些参数才能够进行使用，这些参数配置在 id="mip-access" 的 script 中，如：
+mip-access 使用时需要配置一些参数才能够进行使用，这些参数配置在 id="mip-access" 的 script 中，如：
 
 ```
 <script id="mip-access" type="application/json">
@@ -79,7 +79,7 @@ mip access 使用时需要配置一些参数才能够进行使用，这些参数
 授权接口（数据接口）。该接口返回的数据提供给第二步中的表达式解析使用，接口返回的数据名可直接写在表达式中，然后 MIP 会自动根据返回数据进行解析，如：
 
 ```
-<!-- 返回数据 -->
+<!-- authorization 接口返回的数据 -->
 {
     login: true,
     access: false
@@ -91,11 +91,11 @@ mip access 使用时需要配置一些参数才能够进行使用，这些参数
 
 #### pingback
 
-计数接口。该接口触发的时机是在 authorization 接口数据返回成功，同时页面表达式解析完成之后。该接口的作用主要是通知开发者，当前页面（文章）已经访问完成，可以采取策略来控制（为下一篇文章的展现做数据准备），如接到计数接口请求之后，使免费文章总访问减 1（主要是改变数据），然后访问下一篇文章时再请求 authorization 接口，里面的数据就已经是变化后的。
+计数接口。该接口触发的时机是在 authorization 接口数据返回成功，同时页面表达式解析完成之后。该接口的作用主要是通知开发者，当前页面（文章）已经访问完成，可以采取策略来控制（为下一篇文章的展现做数据准备），如接到计数接口请求之后，使免费文章总访问减 1，然后访问下一篇文章时再请求 authorization 接口，里面的数据就已是减 1 之后的。
 
 #### noPingback
 
-是否需要在页面表达式解析完成后发出请求，设置为 true 则是不需要。
+是否需要在页面表达式解析完成后发出 pingback 请求，设置为 true 则是不需要。
 
 #### login
 登陆相关接口，可以是一个字符串，用于配置登录页面地址。也可以是一个对象，其中配置登录和登出的页面地址，如:
@@ -138,7 +138,7 @@ https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A
 
 具体可使用的参数如下：
 
-- READER_ID: 获取访问用户的 ID，该 ID 是可以理解为区分用户的唯一标示，通过 localstorage 的方式进行存储（清除 localstorage 后会再次生成）；
+- READER_ID: 获取访问用户的 ID，该 ID 是可以理解为区分用户的唯一标示，通过 localstorage 的进行存储（清除 localstorage 后会再次生成）；
 - SOURCE_URL: 当前页面 URL，即 `window.location.href`；
 - MIPDOC_URL: mip 原站点 URL，非 MIP Cache URL；
 - CANONICAL_URL: mip 站点对应的原 h5 站点 URL，如果 h5 站点不存在，则为当前页面 URL；
@@ -147,7 +147,7 @@ https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A
 
 ### 注意点
 
-- 接口使用 cors 请求：所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置允许的 `Access-Control-Allow-origin` 为允许的域名，其中域名包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
+- cors 请求：mip-access 中所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置 `Access-Control-Allow-origin` 为允许的 origin，其中包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
 
 ## 属性
 

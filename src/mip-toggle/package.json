@@ -1,5 +1,5 @@
 {
-  "name": "mip-show",
+  "name": "mip-toggle",
   "version": "1.0.0",
   "description":"提供显示/隐藏元素的功能。",
   "author": {

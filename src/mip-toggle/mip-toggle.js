@@ -4,12 +4,12 @@
  */
 
 define(function () {
-    var Show = require('customElement').create();
+    var Toggle = require('customElement').create();
     var css = require('util').css;
     /**
      * Build callback, which will bind events
      */
-    Show.prototype.build = function () {
+    Toggle.prototype.build = function () {
         var element = this.element;
         this._hideTimeout = parseTimeout(element.getAttribute('hidetimeout'));
         this._display = element.getAttribute('display') || 'block';
@@ -34,13 +34,13 @@ define(function () {
     /**
      * Detached callback, remove timeout
      */
-    Show.prototype.detachedCallback = function () {
+    Toggle.prototype.detachedCallback = function () {
         this._clearTimeout();
     };
     /**
      * Clear all timeout
      */
-    Show.prototype._clearTimeout = function () {
+    Toggle.prototype._clearTimeout = function () {
         clearTimeout(this._timeoutId);
     };
     /**
@@ -48,7 +48,7 @@ define(function () {
      * 
      * @param {Number} timeout timeout miliseconds
      */
-    Show.prototype._setHideTimeout = function (timeout) {
+    Toggle.prototype._setHideTimeout = function (timeout) {
         if (timeout === Infinity) {
             return;
         }
@@ -62,7 +62,7 @@ define(function () {
      * 
      * @param {Number} timeout hidden timeout miliseconds
      */
-    Show.prototype.show = function (timeout) {
+    Toggle.prototype.show = function (timeout) {
         // set timeout to default value if none given
         if (timeout === undefined || timeout === '') {
             timeout = this._hideTimeout;
@@ -81,7 +81,7 @@ define(function () {
     /**
      * Hide the element
      */
-    Show.prototype.hide = function () {
+    Toggle.prototype.hide = function () {
         if (this._enterClass) {
             this.element.classList.remove(this._enterClass);
         }
@@ -92,7 +92,7 @@ define(function () {
     /**
      * Toggle show or hide of the element
      */
-    Show.prototype.toggle = function () {
+    Toggle.prototype.toggle = function () {
         if (this._isHidden()) {
             this.show(Infinity);
         }
@@ -103,7 +103,7 @@ define(function () {
     /**
      * Determine if the element is hidden
      */
-    Show.prototype._isHidden = function() {
+    Toggle.prototype._isHidden = function() {
         if (this._enterClass) {
             return !this.element.classList.contains(this._enterClass);
         }
@@ -127,5 +127,5 @@ define(function () {
         }
         return timeout;
     }
-    return Show;
+    return Toggle;
 });

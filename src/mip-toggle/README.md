@@ -1,4 +1,4 @@
-# mip-show 显示隐藏
+# mip-toggle 显示隐藏
 
 提供显示/隐藏元素的功能。
 
@@ -6,21 +6,21 @@
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-show/mip-show.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-toggle/mip-toggle.js
 
 ## 示例
 
 ### 基本使用
 
-你可以使用事件 `toggle`, `show` 或 `hide` 以控制 `mip-show` 组件的显示与隐藏。
+你可以使用事件 `toggle`, `show` 或 `hide` 以控制 `mip-toggle` 组件的显示与隐藏。
 
 ```html
-<button on="tap:my-mip-show-1.toggle">显示/隐藏</button>
-<button on="tap:my-mip-show-1.show">显示</button>
-<button on="tap:my-mip-show-1.hide">隐藏</button>
-<mip-show id="my-mip-show-1">
+<button on="tap:my-mip-toggle-1.toggle">显示/隐藏</button>
+<button on="tap:my-mip-toggle-1.show">显示</button>
+<button on="tap:my-mip-toggle-1.hide">隐藏</button>
+<mip-toggle id="my-mip-toggle-1">
     <p>lorem ipsum</p>
-</mip-show>
+</mip-toggle>
 ```
 
 ### 自动隐藏
@@ -28,12 +28,12 @@
 你可以设置自定义隐藏时间，在显示了指定时间后它将会被自动隐藏。注意这仅对 `show` 生效。
 
 ```html
-<button on="tap:my-mip-show-2.toggle">显示/隐藏</button>
-<button on="tap:my-mip-show-2.show">显示</button>
-<button on="tap:my-mip-show-2.hide">隐藏</button>
-<mip-show id="my-mip-show-2" hidetimeout="500" layout="nodisplay">
+<button on="tap:my-mip-toggle-2.toggle">显示/隐藏</button>
+<button on="tap:my-mip-toggle-2.show">显示</button>
+<button on="tap:my-mip-toggle-2.hide">隐藏</button>
+<mip-toggle id="my-mip-toggle-2" hidetimeout="500" layout="nodisplay">
     <p>lorem ipsum</p>
-</mip-show>
+</mip-toggle>
 ```
 
 ### 自定义 display
@@ -41,9 +41,9 @@
 你可以自定义显示时的 display 以实现特殊需求。
 
 ```html
-<button on="tap:my-mip-show-3.toggle">显示/隐藏</button>
+<button on="tap:my-mip-toggle-3.toggle">显示/隐藏</button>
 <p>
-    <mip-show id="my-mip-show-3" display="inline">lorem ipsum</mip-show> dolor sit amet
+    <mip-toggle id="my-mip-toggle-3" display="inline">lorem ipsum</mip-toggle> dolor sit amet
 </p>
 ```
 
@@ -52,13 +52,13 @@
 你可以通过 `show` 的事件参数传入隐藏延迟以覆盖默认值。
 
 ```html
-<button on="tap:my-mip-show-4.show(500)">显示500ms</button>
-<button on="tap:my-mip-show-4.show(1000)">显示1s</button>
-<button on="tap:my-mip-show-4.show(3000)">显示3s</button>
-<button on="tap:my-mip-show-4.show(Infinity)">不自动隐藏（覆盖默认值）</button>
-<mip-show id="my-mip-show-4" layout="nodisplay" hidetimeout="2000">
+<button on="tap:my-mip-toggle-4.show(500)">显示500ms</button>
+<button on="tap:my-mip-toggle-4.show(1000)">显示1s</button>
+<button on="tap:my-mip-toggle-4.show(3000)">显示3s</button>
+<button on="tap:my-mip-toggle-4.show(Infinity)">不自动隐藏（覆盖默认值）</button>
+<mip-toggle id="my-mip-toggle-4" layout="nodisplay" hidetimeout="2000">
     <p>lorem ipsum</p>
-</mip-show>
+</mip-toggle>
 ```
 
 ### 自定义动画
@@ -67,18 +67,18 @@
 
 ```html
 <style>
-.my-mip-show {
+.my-mip-toggle {
     transition: 2s opacity;
     opacity: 0;
 }
-.my-mip-show-enter {
+.my-mip-toggle-enter {
     opacity: 1;
 }
 </style>
-<button on="tap:my-mip-show-5.toggle">显示/隐藏</button>
-<mip-show id="my-mip-show-5" enterclass="my-mip-show-enter" class="my-mip-show">
+<button on="tap:my-mip-toggle-5.toggle">显示/隐藏</button>
+<mip-toggle id="my-mip-toggle-5" enterclass="my-mip-toggle-enter" class="my-mip-toggle">
     <p>lorem ipsum</p>
-</mip-show>
+</mip-toggle>
 ```
 
 ## 属性

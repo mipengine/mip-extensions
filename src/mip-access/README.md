@@ -163,7 +163,7 @@ https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A
 ### mip-access-hide
 
 说明：DOM 元素在表达式计算完成之前默认是展现的，如果在这段时间里希望隐藏元素，则通过设置该属性即可   
-必选项：是   
+必选项：否   
 类型：字符串   
 单位：无   
 取值：无   

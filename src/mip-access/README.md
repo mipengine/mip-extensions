@@ -14,7 +14,7 @@ mip-access 能够根据用户访问页面的情况（如文章最多能够访问
 
 ## 使用方式
 
-开发者在使用 mip-access 组件实现页面内容访问权限控制时，需要通过脚本引入、表达式书写、参数配置等几个步骤，以下分别对这几步做一个详细描述：
+开发者在使用 mip-access 组件实现页面内容访问权限控制时，需要通过脚本引入、表达式书写、参数配置等几个步骤，以下分别对这几步做详细讲解：
 
 ### 脚本引入
 
@@ -33,10 +33,10 @@ mip access 是通过表达式计算得出的结果来决定一个元素是否能
 <!-- 假如返回数据中 access=false，subscriber=false，则 access AND subscriber 解析为 false，元素不展示；否则为 true，元素展示 -->
 <div mip-access="access OR subscriber">展示元素</div>
 ```
-表达式中可以使用的运算符在 [access-expr-impl.jison](https://github.com/mipengine/mip-extensions/blob/master/src/mip-access/mip-access-expr-impl.jison) 中全部列举，主要运算符如下：
 
-```
-逻辑运算符
+表达式中可以使用的运算符在 [access-expr-impl.jison](https://github.com/mipengine/mip-extensions/blob/master/src/mip-access/mip-access-expr-impl.jison) 中全部列举，其中主要运算符如下：
+
+- 逻辑运算符
 
 运算符|描述|例子
 ---|---|---
@@ -44,7 +44,7 @@ AND|“且”运算|A AND B
 OR|“或”运算|A OR B
 NOT|“非”运算|NOT A
 
-比较运算符
+- 比较运算符
 
 运算符|描述|例子
 ---|---|---

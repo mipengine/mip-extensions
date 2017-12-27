@@ -16,18 +16,18 @@ mip-access 能够根据用户访问页面的情况，协同开发者配置接口
 
 开发者在使用 mip-access 组件实现页面内容访问权限控制时，需要通过脚本引入、表达式书写、参数配置等几个步骤，以下分别对这几步做详细讲解：
 
-### 脚本引入
+### 1. 脚本引入
 
 ```
 <script type="text/javascript" src="https://c.mipcdn.com/static/v1/mip.js"></script>
 <script type="text/javascript" src="https://c.mipcdn.com/static/v1/mip-access/mip-access.js"></script>
 ```
 
-### 表达式书写
+### 2. 表达式书写
 mip-access 是通过表达式计算得出的结果来决定一个元素是否能够展示的，如：
 
 ```
-<!-- 其中 access 和 subscriber 均为第三步中配置的 authorization 接口所返回 -->
+<!-- 其中 access 和 subscriber 均为第 3 步中配置的 authorization 接口所返回 -->
 <!-- 假如返回数据中 access=true，subscriber=true，则 access AND subscriber 解析为 true，元素展示；否则为 false，元素不展示 -->
 <div mip-access="access AND subscriber">展示元素</div>
 <!-- 假如返回数据中 access=false，subscriber=false，则 access AND subscriber 解析为 false，元素不展示；否则为 true，元素展示 -->
@@ -55,7 +55,7 @@ mip-access 是通过表达式计算得出的结果来决定一个元素是否能
     \>|大于|A > B
     \>=|大于等于|A >= B
 
-### 参数配置
+### 3. 参数配置
 mip-access 使用时需要配置一些参数才能够进行使用，这些参数配置在 id="mip-access" 的 script 中，如：
 
 ```
@@ -76,7 +76,7 @@ mip-access 使用时需要配置一些参数才能够进行使用，这些参数
 
 #### authorization
 
-授权接口（数据接口）。该接口返回的数据提供给第二步中的表达式解析使用，接口返回的数据名可直接写在表达式中，然后 MIP 会自动根据返回数据进行解析，如：
+授权接口（数据接口）。该接口返回的数据提供给第 2 步中的表达式解析使用，接口返回的数据名可直接写在表达式中，然后 MIP 会自动根据返回数据进行解析，如：
 
 ```
 <!-- authorization 接口返回的数据 -->

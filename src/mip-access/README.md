@@ -97,7 +97,7 @@ mip access 使用时需要配置一些参数才能够进行使用，这些参数
 
 是否需要在页面表达式解析完成后发出请求，设置为 true 则是不需要。
 
-- login：登陆相关接口，可以是一个字符串，用于配制登录页面地址。也可以是一个对象，其中配置登录和登出的页面地址，如:
+#### login：登陆相关接口，可以是一个字符串，用于配制登录页面地址。也可以是一个对象，其中配置登录和登出的页面地址，如:
 
 ```
 "login": {
@@ -126,7 +126,7 @@ authorization 接口请求超时时间，默认为 3s。
 
 ### 注意点
 
-- 接口使用 cors 请求：所有接口的请求都依据[cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)方案，需要后端配置允许的 Access-Control-Allow-origin 为允许的域名，其中域名包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
+- 接口使用 cors 请求：所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置允许的 Access-Control-Allow-origin 为允许的域名，其中域名包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
 
 ## 属性
 

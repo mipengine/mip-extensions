@@ -71,6 +71,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 绑定元素属性信息。具体格式为 `m-bind:attrs=value`，即：将 attrs 属性值设置为 value，如：
 
 ```html
+<!-- 绑定 placeholder 值 -->
 <mip-data>
     <script type="application/json">
     {
@@ -81,6 +82,69 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 <mip-form url="https://www.mipengine.org/">
     <input m-bind:placeholder="placeholder">
 </mip-form>
+```
+
+```html
+<!-- 变更样式 -->
+<style mip-custom>
+.clicked {
+    background: pink;
+}
+</style>
+<mip-data>
+    <script type="application/json">
+    {
+        "clicked": "来点我呀！",
+        "clickedClass": ""
+    }
+    </script>
+</mip-data>
+<span m-text="clicked" m-bind:class="clickedClass" on="tap:MIP.setData({clickedClass:'clicked',clicked:'点击过啦！'})"></span>
+```
+
+```html
+<!-- 切换 tab 功能实现 -->
+<style mip-custom>
+#content, .filter {
+    text-align: center;
+    padding-top: 10px;
+}
+#content span,
+#content mip-img,
+#content mip-video {
+    display: none;
+}
+.first span,
+.second mip-img,
+.third mip-video {
+    display: block !important;
+}
+</style>
+<mip-data>
+    <script type="application/json">
+    {
+        "clickedClass": "second"
+    }
+    </script>
+</mip-data>
+<mip-vd-tabs>
+    <section>
+        <li>第一页</li>
+        <li>第二页</li>
+        <li>第三页</li>
+    </section>
+    <div class="filter">
+        <span on="tap:MIP.setData({clickedClass:'first'})">文字</span>
+        <span on="tap:MIP.setData({clickedClass:'second'})">图片</span>
+        <span on="tap:MIP.setData({clickedClass:'third'})">视频</span>    
+    </div>    
+</mip-vd-tabs>
+<div id="content" m-bind:class="clickedClass">
+    <span>我是文案啦！</span>
+    <mip-img layout="responsive" width="350" height="263" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
+    <mip-video poster="https://www.mipengine.org/static/img/sample_04.jpg" controls layout="responsive" width="640" height="360" src="https://gss0.bdstatic.com/-b1Caiqa0d9Bmcmop9aC2jh9h2w8e4_h7sED0YQ_t9iCPK/mda-gjkt21pkrsd8ae5y/mda-gjkt21pkrsd8ae5y.mp4"></mip-video>
+</div>
+<script src="https://c.mipcdn.com/static/v1/mip-vd-tabs/mip-vd-tabs.js"></script>
 ```
 
 #### m-text

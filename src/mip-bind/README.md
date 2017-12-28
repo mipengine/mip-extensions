@@ -87,19 +87,18 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 ```html
 <!-- 变更样式 -->
 <style mip-custom>
-.clicked {
+[data-clicked=true] {
     background: pink;
 }
 </style>
 <mip-data>
     <script type="application/json">
     {
-        "clicked": "来点我呀！",
-        "clickedClass": ""
+        "clicked": false
     }
     </script>
 </mip-data>
-<span m-text="clicked" m-bind:class="clickedClass" on="tap:MIP.setData({clickedClass:'clicked',clicked:'点击过啦！'})"></span>
+<span m-bind:data-clicked="clicked" on="tap:MIP.setData({clicked:!m.clicked})">来点我呀！</span>
 ```
 
 ```html

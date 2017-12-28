@@ -11,22 +11,6 @@ define(function (require) {
     var yOffset = 200;
 
     /**
-     * 控制 gototop 元素展示
-     *
-     * @param {boolean} show 是否展示
-     */
-    customElement.prototype.toggle = function (show) {
-        if (show) {
-            this.element.classList.add('mip-gototop-show');
-            this.element.classList.remove('mip-gototop-hide');
-        }
-        else {
-            this.element.classList.add('mip-gototop-hide');
-            this.element.classList.remove('mip-gototop-show');
-        }
-    };
-
-    /**
      * build 组件build
      */
     customElement.prototype.build = function () {
@@ -39,16 +23,16 @@ define(function (require) {
         viewport.on('scroll', function () {
             var scrollTop = viewport.getScrollTop();
             if (scrollTop > threshold) {
-                self.toggle(1);
+                element.classList.add('mip-gototop-show');
                 if (delay) {
                     clearTimeout(timmer);
                     timmer = setTimeout(function () {
-                        self.toggle();
+                        element.classList.remove('mip-gototop-show');
                     }, delay);
                 }
             }
             else {
-                self.toggle();
+                element.classList.remove('mip-gototop-show');
             }
         });
 

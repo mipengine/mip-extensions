@@ -2,7 +2,7 @@
 
 mip-vd-baidu http 视频源播放的百度解决方案
 
-缘起：在 MIP 中，一些资源的使用需要支持 HTTPS，视频就是其中一种。但目前大部分站点的视频资源都还是 HTTP 的资源，无法在百度 MIP 搜索结果中直接使用， mip-video 视频组件针对 HTTP 的视频资源采用跳到一个 HTTP 的播放页面进行播放，这种体验并非最佳。故 MIP 项目组联合百度搜索，推出在 MIP 中直接使用 HTTP 视频源进行播放的解决方案，那就是 mip-vd-baidu 组件。
+在 MIP 中，一些资源的使用需要支持 HTTPS，视频就是其中一种。但目前大部分站点的视频资源都还是 HTTP 的资源，无法在百度 MIP 搜索结果中直接使用， mip-video 视频组件针对 HTTP 的视频资源采用跳到一个 HTTP 的播放页面进行播放，这种体验并非最佳。故 MIP 项目组联合百度搜索，推出在 MIP 中直接使用 HTTP 视频源进行播放的解决方案，那就是 mip-vd-baidu 组件。
 
 标题|内容
 ----|----
@@ -14,7 +14,10 @@ mip-vd-baidu http 视频源播放的百度解决方案
 
 ### 基本用法
 ```html
-<mip-vd-baidu layout="responsive" width="640" height="360" title="MIP移动网页加速器" src="http://mip-doc.bj.bcebos.com/MIPSampleVideo.mp4" poster="https://mip-doc.bj.bcebos.com/mip-video-poster.jpg">
+<mip-vd-baidu layout="responsive" width="640" height="360" 
+	title="MIP移动网页加速器" 
+	src="http://mip-doc.bj.bcebos.com/MIPSampleVideo.mp4" 
+	poster="https://mip-doc.bj.bcebos.com/mip-video-poster.jpg">
 </mip-vd-baidu>
 ```
 
@@ -48,7 +51,7 @@ mip-vd-baidu http 视频源播放的百度解决方案
 默认值：无  
 
 ## 技术实现原理
-1.  通过组件的参数生成视频请求的 URL；
+1. 通过组件的参数生成视频请求的 URL；
 2. 请求百度 MIP 视频 server；
 3. 请求内容池，如果存在该视频资源，返回支持 https 的视频 URL，若不存在，返回原 URL，并调用视频抓取服务，将视频抓取放入内容池，需要添加 IP 白名单：123.125.71.*；
 4. 通过百度 MIP 视频 server 返回的视频 URL 做播放逻辑。

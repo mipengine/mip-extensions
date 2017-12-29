@@ -59,7 +59,7 @@ mip-vd-baidu http 视频源播放的百度解决方案
 概括地说，百度 MIP 视频服务会通过抓取，将 HTTP 的视频源抓取到百度 MIP 视频内容池， 从而达到视频支持 HTTPS 的目的。
 
 详细步骤见如下流程图：  
-![MIP视频服务流程图](https://mip-doc.bj.bcebos.com/mip-vd-baidu.png)
+![MIP视频服务流程图](https://user-images.githubusercontent.com/3872051/34427766-ba23b8a4-ec80-11e7-8581-240269edec8b.png)
 
 ## 注意事项
 

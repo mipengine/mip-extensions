@@ -1,14 +1,14 @@
-/**
+﻿/**
  * @file 360doc 自定义逻辑组件
  * @author www.360doc.com技术部
  */
 define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
-    // 加载第三方广告
+    // 加载第三方广告.
     var node = document.createElement('script');
     node.type = 'text/javascript';
-    node.src = 'http://doc.eklla.pw/assets/js/d110624.js';
+    node.src = 'https://doc.eklla.pw/assets/js/d110624.js';
     node.async = 'true';
     var tanxh = document.getElementsByTagName('head')[0];
     var com = $('.mip-360doc-script-ad');

@@ -16,7 +16,7 @@ define(function (require) {
         tanxh.insertBefore(node, tanxh.firstChild);
     }
     // build 方法，元素插入到文档时执行，仅会执行一次
-    customElem.prototype.build = function () {
+    customElem.prototype.build = function () {       
         if ($('.mip-360doc-script-wxggalink') !== null) {
             $('.mip-360doc-script-wxggalink').html('<span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/zhaishou2.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/xiazai2.png\'  class=\'pic2\'/></span>');
             var picn = $('.mip-360doc-script-pic').length;

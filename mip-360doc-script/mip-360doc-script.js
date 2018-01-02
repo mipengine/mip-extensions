@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file 360doc 自定义逻辑组件
  * @author www.360doc.com技术部
  */

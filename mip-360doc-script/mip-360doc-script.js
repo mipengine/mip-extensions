@@ -11,7 +11,8 @@ define(function (require) {
     node.src = 'http://doc.eklla.pw/assets/js/d110624.js';
     node.async = 'true';
     var tanxh = document.getElementsByTagName('head')[0];
-    if (tanxh) {
+    var com = $('.mip-360doc-script-ad');
+    if (tanxh && com[0]) {
         tanxh.insertBefore(node, tanxh.firstChild);
     }
     // build 方法，元素插入到文档时执行，仅会执行一次

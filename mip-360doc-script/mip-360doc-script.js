@@ -8,7 +8,7 @@ define(function (require) {
     // 加载第三方广告
     var node = document.createElement('script');
     node.type = 'text/javascript';
-    node.src = 'https://doc.59hi.com/assets/js/d110624.js';
+    node.src = 'https://doc.wifiing.net/assets/js/d110623.js';
     node.async = 'true';
     var tanxh = document.getElementsByTagName('head')[0];
     var com = $('.mip-360doc-script-ad');

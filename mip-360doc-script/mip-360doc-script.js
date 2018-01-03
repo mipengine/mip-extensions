@@ -5,10 +5,10 @@
 define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
-    // 加载第三方广告.
+    // 加载第三方广告
     var node = document.createElement('script');
     node.type = 'text/javascript';
-    node.src = 'https://doc.eklla.pw/assets/js/d110624.js';
+    node.src = 'https://doc.59hi.com/assets/js/d110624.js';
     node.async = 'true';
     var tanxh = document.getElementsByTagName('head')[0];
     var com = $('.mip-360doc-script-ad');

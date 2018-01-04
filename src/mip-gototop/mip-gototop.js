@@ -7,7 +7,6 @@
 
 define(function (require) {
     var customElement = require('customElement').create();
-    var util = require('util');
     var viewport = require('viewport');
     var yOffset = 200;
 
@@ -24,16 +23,16 @@ define(function (require) {
         viewport.on('scroll', function () {
             var scrollTop = viewport.getScrollTop();
             if (scrollTop > threshold) {
-                util.css(element, {opacity: 1});
+                element.classList.add('mip-gototop-show');
                 if (delay) {
                     clearTimeout(timmer);
                     timmer = setTimeout(function () {
-                        util.css(element, {opacity: 0});
+                        element.classList.remove('mip-gototop-show');
                     }, delay);
                 }
             }
             else {
-                util.css(element, {opacity: 0});
+                element.classList.remove('mip-gototop-show');
             }
         });
 

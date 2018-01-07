@@ -4,7 +4,7 @@
 * @time  2018-01-07
 * @version 2.1.0
 */
-define('mip-iask-business_temp', ['require', 'customElement', 'zepto'], function (require) {
+define(function (require) {
     var $ = require('zepto');
     var customElem = require('customElement').create();
     var busUid = '';

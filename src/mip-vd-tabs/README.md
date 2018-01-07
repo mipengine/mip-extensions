@@ -93,7 +93,7 @@
     total="23"
     current="11"
     text-tpl="看第{{x}}集"
-    link-tpl="http://www.baidu.com/{{x}}/juji">
+    link-tpl="https://www.baidu.com/s?wd=老九门第{{x}}集">
 </mip-vd-tabs>
 ```
 

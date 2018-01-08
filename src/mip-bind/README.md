@@ -204,7 +204,7 @@ submitError|提交失败后触发的事件
 
 - 修改方式
 
-    - MIP.setdata(data)
+    - MIP.setData(data)
 
         该方法会将新增数据加入到数据源中，重复数据会进行覆盖。
 

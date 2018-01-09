@@ -150,9 +150,10 @@ define(function (require) {
         if (result && result[1]) {
             if (result[1] === 'class') {
                 node.classList.add(newVal);
-            } else {
-                node.setAttribute(result[1], newVal);   
-            }            
+            }
+            else {
+                node.setAttribute(result[1], newVal);
+            }
         }
     };
 

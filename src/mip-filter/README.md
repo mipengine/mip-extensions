@@ -1,6 +1,6 @@
 # mip-filter 筛选组件
 
-筛选组件，自适应pc和wise宽度。mipengine.org有引用
+筛选组件，自适应 PC 端和移动端宽度。mipengine.org有引用
 
 标题|内容
 ----|----

@@ -4,13 +4,12 @@
  * @author menglingjun, Jenny_L, dongshihao
  * From: mip-stats-baidu
  */
-
+/* global MIP */
 define(function (require) {
     var viewer = require('viewer');
     var util = require('util');
     var Gesture = util.Gesture;
     var fn = require('util').fn;
-    var MIP = window.MIP || {};
 
     var customElement = require('customElement').create();
 
@@ -159,8 +158,7 @@ define(function (require) {
             else if (eventType === 'click'
                 && tagBox[index].hasAttribute('on')
                 && tagBox[index].getAttribute('on').match('tap:')
-                && fn.hasTouch())
-            {
+                && fn.hasTouch()) {
                 var gesture = new Gesture(tagBox[index]);
                 gesture.on('tap', eventHandler);
             }
@@ -207,7 +205,7 @@ define(function (require) {
         }
 
         // (不需要处理) ["_trackPageview", "/mip-stats/sheji"]
-        if(typeof(arrayStr) === 'object') {
+        if (typeof arrayStr === 'object') {
             return arrayStr;
         }
 

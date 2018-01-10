@@ -14,8 +14,7 @@ MIP百度统计组件基于[百度统计API](http://tongji.baidu.com/open/api/mo
 
 ## 示例
 
-MIP提供百度统计的插件，便于分析页面数据，需要提前到百度统计这边创建站点，在百度统计后台会自动生成js代码。从中找出token后插入到MIP组件的token
-位置。方法为：
+MIP提供百度统计的插件，便于分析页面数据，需要提前到百度统计这边创建站点，在百度统计后台会自动生成js代码。从中找出token后插入到MIP组件的 token 位置。方法为：
 
 ``` javascript
 // 例：百度统计代码截取
@@ -23,7 +22,7 @@ hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
 // hm.js? 后为你的统计 token。此例 token="02890d4a309827eb62bc3335b2b28f7f"
 ```
 
-百度统计插件引入示例:
+### MIP 插件引入:
 
 ```
 <mip-stats-baidu>
@@ -38,11 +37,15 @@ hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
 
 ```
 
-百度统计事件追踪示例:
+### 事件追踪:
+
+事件追踪是百度统计提供的定制化方法，能够统计按钮点击次数。详见[百度统计api](http://tongji.baidu.com/open/api/)。
+
+[warning] data-stats-baidu-obj 要求配置外层为单引号，内层为双引号。或按照下文 **data-stats-baidu-obj 双引号配置方法** 处理。
 
 ```
-<div data-stats-baidu-obj="{'type':'click','data':'[_trackPageview, /virtual/login]'}">
-    我是自动触发
+<div data-stats-baidu-obj='{"type":"click","data":["_trackPageview", "/virtual/login"]}'>
+    点击发送请求
 </div>
  
 ```
@@ -89,7 +92,7 @@ hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
 必填：是  
 格式：字符串
 
-备注：`_setAccount`无需设置，`token`合法会自动执行`_hmt.push(['_setAccount',toke])`。
+备注：`_setAccount`无需设置，`token`合法会自动执行`_hmt.push(['_setAccount',token])`。
 
 
 ## 其它使用方式
@@ -104,21 +107,21 @@ hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
 // hm.js? 后为你的统计 token。此例 token="02890d4a309827eb62bc3335b2b28f7f"
 ```
 
-
-百度统计插件引入示例:
+### MIP 插件引入:
 
 ```
 <mip-stats-baidu token="02890d4a309827eb62bc3335b2b28f7f"></mip-stats-baidu>
 
 ```
 
-百度统计事件追踪示例:
+### 事件追踪:
+
+[warning] data-stats-baidu-obj 要求配置外层为单引号，内层为双引号。或按照下文 **data-stats-baidu-obj 双引号配置方法** 处理。
 
 ```
-<div data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B_trackPageview,%20/virtual/login%5D%22%7D">
-    我是自动触发
+<div data-stats-baidu-obj='{"type":"click","data":["_trackPageview", "/virtual/login"]}'>
+    点击发送请求
 </div>
- 
 ```
 
 ## 属性
@@ -138,7 +141,7 @@ hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
 
 ### 备注
 
-setconfig值必须encodeURIComponent处理,如[_setAutoPageview, true]需转化为%5B_setAutoPageview%2C%20false%5D字符串传递
+setconfig值必须encodeURIComponent处理,如[_setAutoPageview, true]需转化为%5B_setAutoPageview%2C%20false%5D字符串传递。
 
 ### 事件追踪
 
@@ -150,14 +153,23 @@ setconfig值必须encodeURIComponent处理,如[_setAutoPageview, true]需转化�
 必填：是  
 格式：字符串数组
 
-
 #### data
 
 说明：用于事件追踪数据传递参考([百度统计api](http://tongji.baidu.com/open/api/))  
 必填：是  
 格式：字符串
 
-#### 备注
+#### data-stats-baidu-obj 双引号配置方法
 
-data-stats-baidu-obj值必须encodeURIComponent处理,如{"type":"click","data":"[_trackPageview, /virtual/login]"};需转化为%7B%22type%22:%22click%22,%22data%22:%22%5B_trackPageview,%20/virtual/login%5D%22%7D
+data-stats-baidu-obj值必须encodeURIComponent处理, 方法如下：
 
+```
+// 理想配置
+{"type":"click","data":["_trackPageview", "/virtual/login"]};
+
+// 处理配置方法
+encodeURIComponent(JSON.stringify({type: "click", data: ["_trackPageview", "/virtual/login"]}))
+
+// 最终DOM配置效果
+data-stats-baidu-obj="%7B%22type%22%3A%22click%22%2C%22data%22%3A%5B%22_trackPageview%22%2C%22%2Fvirtual%2Flogin%22%5D%7D"
+```

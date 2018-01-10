@@ -14,7 +14,7 @@
 
 ### 等分固定标签页
 
-```
+```html
 <mip-vd-tabs>
     <section>
         <li>第一页</li>
@@ -30,7 +30,7 @@
 ```
 ### 横滑标签页
 
-```
+```html
 <mip-vd-tabs allow-scroll>
     <section>
         <li>第一季</li>
@@ -51,7 +51,7 @@
 
 ### 带下拉按钮的横滑标签页
 
-```
+```html
 <mip-vd-tabs allow-scroll toggle-more toggle-label="自定义文字">
     <section>
         <li>第一季</li>
@@ -68,7 +68,7 @@
 
 ### 底部标签页
 
-```
+```html
 <mip-vd-tabs allow-scroll type="bottom" current="3">
     <div>内容1</div>
     <div>内容2</div>
@@ -84,7 +84,7 @@
 ```
 
 ### 剧情展开标签页
-```
+```html
 <mip-vd-tabs
     type="episode"
     toggle-more
@@ -93,7 +93,7 @@
     total="23"
     current="11"
     text-tpl="看第{{x}}集"
-    link-tpl="http://www.baidu.com/{{x}}/juji">
+    link-tpl="https://www.baidu.com/s?wd=老九门第{{x}}集">
 </mip-vd-tabs>
 ```
 

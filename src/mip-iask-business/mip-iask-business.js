@@ -383,8 +383,8 @@ define(function (require) {
         for (var key in json) {
             if (json[key].type === '4') {
                 var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,';
-                statsBaidu += '’%22data%22:%22%5B\'_trackEvent\',%20\'M_SJ_1000\',';
-                statsBaidu += '%20\'skip\',%20\'M_SJ_1000_top\'%5D%22%7D"';
+                statsBaidu += '’%22data%22:%22%5B\'_trackEvent\',%20\'MIP_SY_1000\',';
+                statsBaidu += '%20\'skip\',%20\'MIP_SY_1000_top\'%5D%22%7D"';
                 $('.mip_as_bottm_div').empty();
                 $('.mip_as_bottm_div').append(putMXfAd(json[key].picLink, json[key].picUrl, statsBaidu, ''));
             }
@@ -393,7 +393,7 @@ define(function (require) {
                 var companyName = obj.companyName || '';
                 var drName   = obj.drName  || '';
                 var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B';
-                statsBaidu += '_trackEvent\',%20\'M_SJ_1000\',%20\'skip\',%20\'M_SJ_1000_qy\'%5D%22%7D"';
+                statsBaidu += '_trackEvent\',%20\'MIP_SY_1000\',%20\'skip\',%20\'MIP_SY_1000_qy\'%5D%22%7D"';
                 var html1 = putQiyeInfo(drName, companyName, data.website, obj.picUrl, statsBaidu, '');
                 if ($('.qs_bar').length > 0) {
                     $('.qs_bar').eq(0).empty();
@@ -414,7 +414,7 @@ define(function (require) {
                 var obj = json[key];
                 var picList = obj.picList;
                 var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B\'_trackEvent\',';
-                statsBaidu += '%20\'M_SJ_1000\',%20\'skip\',%20\'M_SJ_1000_feed\'%5D%22%7D"';
+                statsBaidu += '%20\'MIP_SY_1000\',%20\'skip\',%20\'MIP_SY_1000_feed\'%5D%22%7D"';
                 var i = 0;
                 var obj2PicUrl = '<mip-img class="mip-img" src="' + obj2.picUrl + '"></mip-img>';
                 $('.youlai_feed_div .youlai_feed_title').text(obj.title);
@@ -434,7 +434,7 @@ define(function (require) {
                 var obj = json[key];
                 var picList = obj.adDetailList;
                 var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B\'_trackEvent\',';
-                statsBaidu += '%20\'M_SJ_1000\',%20\'skip\',%20\'M_SJ_1000_mpic\'%5D%22%7D"';
+                statsBaidu += '%20\'MIP_SY_1000\',%20\'skip\',%20\'MIP_SY_1000_mpic\'%5D%22%7D"';
                 for (var pic in picList) {
                     var picLink = obj.picLink;
                     var picUrl = picList[pic].picUrl;
@@ -449,7 +449,7 @@ define(function (require) {
     var tianZhu = function (data) {
         removeBaiduAd();
         var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B\'_trackEvent\',';
-        statsBaidu += '%20\'M_SJ_300\',%20\'skip\',%20\'M_SJ_300_sj\'%5D%22%7D"';
+        statsBaidu += '%20\'MIP_SY_300\',%20\'skip\',%20\'MIP_SY_300_sj\'%5D%22%7D"';
         $('.mip_as_bottm_div').empty();
         $('.mip_as_bottm_div').append(putMXfAd(data.pics[3].picLink, data.pics[3].picLocal, statsBaidu, ''));
         advLogInfoClick();
@@ -457,7 +457,7 @@ define(function (require) {
     // 商业广告标准版企业信息
     var commercialSqc  = function (divData, commercialStandardHover) {
         var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-        baiduObj += '%20%5C\'M_SJ_600_2%5C\',%20%5C\'skip%5C\',%20%5C\'M_SJ_600_2_qy%5C\'%5D%22%7D';
+        baiduObj += '%20%5C\'MIP_SY_600_2%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_600_2_qy%5C\'%5D%22%7D';
         var imgsrc = divData.attr('imgsrc');
         var brandname = divData.attr('brandname');
         var link = divData.attr('link');
@@ -475,7 +475,7 @@ define(function (require) {
         var tLink = commercialStandardHover.attr('link');
         $('.mip_as_bottm_div').empty();
         var baiduTop = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-        baiduTop += '%20%5C\'M_SJ_600_2%5C\',%20%5C\'skip%5C\',%20%5C\'M_SJ_600_2_top%5C\'%5D%22%7D';
+        baiduTop += '%20%5C\'MIP_SY_600_2%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_600_2_top%5C\'%5D%22%7D';
         $('.mip_as_bottm_div').append(putMXfAd(tLink, tImgSrc, baiduTop, ''));
         advLogInfoClick();
     };
@@ -853,8 +853,8 @@ define(function (require) {
         try {
             $.getJSON(url,
             function (data) {
-                var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-                baiduObj = '%20%5C\'M_SJ_100%5C\',%20%5C\'skip%5C\',%20%5C\'M_SJ_100_sj%5C\'%5D%22%7D';
+                var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B\'_trackEvent\',';
+                baiduObj += '%20\'MIP_SY_100\',%20\'skip\',%20\'MIP_SY_100_sj\'%5D%22%7D';
                 var htmls = putMXfAd(data.m[0].link, data.m[0].pic, baiduObj, '');
                 $(div).empty();
                 $(div).append(htmls);
@@ -904,8 +904,8 @@ define(function (require) {
     var showEffectAdv = function (json, tp) {
         if (json.adType === '3') {
             var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'M_SJ_700_' + tp + '%5C\',';
-            baiduObj += '%20%5C\'skip%5C\',%20%5C\'M_SJ_700_' + tp + '_qiye%5C\'%5D%22%7D';
+            baiduObj += '%20%5C\'MIP_SY_700_' + tp + '%5C\',';
+            baiduObj += '%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_' + tp + '_qiye%5C\'%5D%22%7D';
             removeBaiduAd();
             var uid = $('.paramDiv').attr('uid');
             var html1 = putBrandQiyeInfo(json.brandName, json.shortIntroduce,
@@ -926,7 +926,7 @@ define(function (require) {
         // 旗舰版feed
         if (json.adType === '5') {
             var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'M_SJ_700_1%5C\',%20%5C\'skip%5C\',%20%5C\'M_SJ_700_1_feed%5C\'%5D%22%7D';
+            baiduObj += '%20%5C\'MIP_SY_700_1%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_1_feed%5C\'%5D%22%7D';
             var materialImg = json.materialImg;
             var picList = materialImg.split(',');
             var i = 0;
@@ -948,7 +948,7 @@ define(function (require) {
         if (json.materialType === '5' && tp === 1) {
             removeBaiduAd();
             var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'M_SJ_700_1%5C\',%20%5C\'skip%5C\',%20%5C\'M_SJ_700_1_top%5C\'%5D%22%7D';
+            baiduObj += '%20%5C\'MIP_SY_700_1%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_1_top%5C\'%5D%22%7D';
             var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj, '');
             $('.mip_as_bottm_div').empty();
             $('.mip_as_bottm_div').append(htmls);
@@ -957,7 +957,7 @@ define(function (require) {
         // 标准版顶部悬浮
         if (json.materialType === '5' && tp === 2) {
             var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'M_SJ_700_2%5C\',%20%5C\'skip%5C\',%20%5C\'M_SJ_700_2_top%5C\'%5D%22%7D';
+            baiduObj += '%20%5C\'MIP_SY_700_2%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_2_top%5C\'%5D%22%7D';
             var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj, '');
             $('.mip_as_bottm_div').empty();
             $('.mip_as_bottm_div').append(htmls);
@@ -967,7 +967,7 @@ define(function (require) {
         if (json.materialType === '5' && tp === 3) {
             removeBaiduAd();
             var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'M_SJ_700_3%5C\',%20%5C\'skip%5C\',%20%5C\'M_SJ_700_3_top%5C\'%5D%22%7D';
+            baiduObj += '%20%5C\'MIP_SY_700_3%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_3_top%5C\'%5D%22%7D';
             var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj, '');
             $('.mip_as_bottm_div').empty();
             $('.mip_as_bottm_div').append(htmls);

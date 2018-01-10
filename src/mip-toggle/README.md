@@ -85,24 +85,24 @@
 
 ### hidetimeout
 
-说明：自动隐藏延时(ms)。当设置 hidetimeout 时，每次被 show 后，将会在指定时间后被自动隐藏。toggle 不受该参数影响。
+说明：自动隐藏延时(ms)。当设置 hidetimeout 时，每次被 show 后，将会在指定时间后被自动隐藏。toggle 不受该参数影响。  
 必选项：否  
-类型：整数
-取值范围：0~Infinity
+类型：整数  
+取值范围：0~Infinity  
 默认值：Infinity
 
 ### display
 
-说明：当元素被显示时，需要使用的 display 值。
+说明：当元素被显示时，需要使用的 display 值。  
 必选项：否  
-类型：字符串
-取值范围：css display property
-默认值：block
+类型：字符串  
+取值范围：css display property  
+默认值：block  
 
 ### enterclass
 
-说明：当元素被显示时，使用的 class。注意设置该值之后，组件将不再设置 display。
-必选项：否
-类型：字符串
-取值范围：class
-默认值：无
+说明：当元素被显示时，使用的 class。注意设置该值之后，组件将不再设置 display。  
+必选项：否  
+类型：字符串  
+取值范围：class  
+默认值：无  

@@ -1,0 +1,13 @@
+{
+  "name": "mip-toggle",
+  "version": "1.0.0",
+  "description":"提供显示/隐藏元素的功能。",
+  "author": {
+      "name": "oott123",
+      "email": "git@public.oott123.com",
+      "url": "https://github.com/oott123"
+  },
+  "engines": {
+      "mip": ">=1.1.0"
+  }
+}

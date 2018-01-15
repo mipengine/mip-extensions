@@ -2,8 +2,8 @@
 * 寻医问药mip改造 广告配置组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2017.12.08
-* @version 1.0.8
+* @time 2018.01.10
+* @version 1.0.9
 */
 define(function (require) {
     var $ = require('zepto');
@@ -23,14 +23,14 @@ define(function (require) {
             };
         }
     };
-    var showPoster = function (department) {
+    var showPoster = function (key, val) {
         var ggArr = {};
         var string = '';
         $.each(adStore, function (index, value) {
             string = string + '|' + value;
         });
         ggArr['ad_key'] = string.substr(1);
-        department !== undefined ? ggArr['department'] = department : 0;
+        val !== undefined ? ggArr[key] = val : 0;
         ggArr['charset'] = 'utf8';
         mobileAd.getAd(ggArr);
         // mobileAd.getParseWordInp();
@@ -41,12 +41,13 @@ define(function (require) {
         var attr = $(elem).attr('aid');
         var channel = $(elem).attr('channel');
         var department = $(elem).attr('department');
+        var column = $(elem).attr('column');
         var departId = $(elem).attr('depart_id');
         var departSid = $(elem).attr('depart_sid');
         // display_load.js说明：站内广告投放js，必须
         var posterUrl = 'https://a.xywy.com/display/display_load.js';
         // news.php说明：站内广告反屏蔽策略(非百度联盟反屏蔽)，必须
-        var bdmUrl = 'https://3g.club.xywy.com/zhuanti/news.php?from=mip&department=';
+        var bdmUrl = 'https://3g.club.xywy.com/zhuanti/news.php?from=mip&f=';
         if (departId) {
             window['subject_pid'] = departId;
         }
@@ -60,7 +61,7 @@ define(function (require) {
                     if (typeof channel === 'undefined') {
                         loadJs(elem, posterUrl, function () {
                             if (typeof mobileAd === 'undefined') {
-                                loadJs(elem, bdmUrl + 0);
+                                loadJs(elem, bdmUrl);
                             }
                             else {
                                 showPoster();
@@ -70,10 +71,20 @@ define(function (require) {
                     else if (channel === 'newclub') {
                         loadJs(elem, posterUrl, function () {
                             if (typeof mobileAd === 'undefined') {
-                                loadJs(elem, bdmUrl + department);
+                                loadJs(elem, bdmUrl + 'department&v=' + department);
                             }
                             else {
-                                showPoster(department);
+                                showPoster('department', department);
+                            }
+                        });
+                    }
+                    else if (channel === 'yimei') {
+                        loadJs(elem, posterUrl, function () {
+                            if (typeof mobileAd === 'undefined') {
+                                loadJs(elem, bdmUrl + 'column&v=' + column);
+                            }
+                            else {
+                                showPoster('column', column);
                             }
                         });
                     }

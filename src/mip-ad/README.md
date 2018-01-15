@@ -6,7 +6,7 @@ mip-ad 用于在MIP页中引入广告脚本，投放广告。
 ----|----
 类型|通用
 支持布局|多种 [文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-ad/mip-ad.js
 
 ## 广告类型选择
 
@@ -23,7 +23,7 @@ mip-ad 具有多种类型（type），type 取值由广告分类和投放配置�
 ----|----
 [搜索推广合作](http://union.baidu.com/product/prod-search.html) | [type="ad-qwang"](//www.mipengine.org/examples/mip-ad/mip-ad-qwang.html)
 [网盟推广合作](http://union.baidu.com/product/prod-cpro.html) | [type="ad-baidu"](//www.mipengine.org/examples/mip-ad/mip-ad-baidu.html)
-[百度联盟广告反屏蔽](http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=4&classId=13484&knowledgeId=15198) | [type="ad-baidu-ext"](//www.mipengine.org/examples/mip-ad/mip-baidu-wm-ext.html)
+[百度联盟广告反屏蔽](http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=4&classId=13484&knowledgeId=15198) | [type="baidu-wm-ext"](//www.mipengine.org/examples/mip-ad/mip-baidu-wm-ext.html)
 
 ### 3. 百度 SSP 媒体服务
 

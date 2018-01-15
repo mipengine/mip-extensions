@@ -1,12 +1,12 @@
 # mip-filter 筛选组件
 
-筛选组件，自适应pc和wise宽度。mipengine.org有引用
+筛选组件，自适应 PC 端和移动端宽度。mipengine.org有引用
 
 标题|内容
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-filter/mip-filter.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-filter/mip-filter.js
 
 ## 示例
 

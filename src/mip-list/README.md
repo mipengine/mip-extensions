@@ -6,7 +6,7 @@
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-list/mip-list.js<br/> https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-list/mip-list.js<br/> https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 
 ## 示例
 
@@ -79,6 +79,7 @@
     has-more
     pnName="pageNum"
     pn=2
+    timeout="3000"
     preLoad>
     <template type="mip-mustache" id="mip-template-id">
         <div>
@@ -149,6 +150,15 @@
 
 说明：异步加载数据，如果添加'preLoad'参数，则在初始化时加载第一页内容     
 必选项：否    
+
+### timeout
+
+说明：fetch-jsonp 请求的超时时间         
+必选项：否   
+类型：整数   
+取值范围：无   
+单位：ms   
+默认值：5000
 
 ## 注意事项
 

@@ -1,12 +1,12 @@
-# mip-app-banner App 吊起组件
+# mip-app-banner App 调起组件
 
-用于吊起 App。
+用于调起 App。
 
 标题|内容
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-app-banner/mip-app-banner.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-app-banner/mip-app-banner.js
 
 ## 示例
 

@@ -1,0 +1,114 @@
+<style>
+mip-audio.all-pink {
+    min-height: 40px;
+    font-size: 0;
+    width: 100%;
+    max-width: 500px;
+    min-width: 180px;
+    -webkit-tap-highlight-color: transparent;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.all-pink [controller]{
+    background-color: #434343;
+    border-radius: 5px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+}
+
+.all-pink [play-button] {
+    width: 20px;
+    height: 20px;
+    box-sizing: content-box;
+    padding: 10px;
+    margin: -10px;
+    vertical-align: top;
+    background-size: 42px 20px;
+    background-clip: content-box;
+    flex: 0 0 auto;
+}
+
+.all-pink [play-button].mip-audio-stopped-icon {
+    background-image: url('https://mipcache.bdstatic.com/static/static/auido/audioimg.png');
+    background-position: 9px 11px;
+}
+
+.all-pink [play-button].mip-audio-playing-icon {
+    background-image: url('https://mipcache.bdstatic.com/static/static/auido/audioimg.png');
+    background-position: -13px 11px;
+}
+
+.all-pink [seekbar] {
+    width: 120px;
+    height: 8px;
+    box-sizing: border-box;
+    background-color: #818181;
+    border: 1px solid #989898;
+    margin-left: 15px;
+    margin-top: 1px;
+    position: relative;
+    border-radius: 8px;
+    flex-grow: 2;
+}
+
+.all-pink [seekbar-fill] {
+    height: 6px;
+    background-color: #414141;
+    position: absolute;
+    top: 50%;
+    margin-top: -3px;
+    border-radius: 8px;
+}
+
+.all-pink [seekbar-button] {
+    width: 20px;
+    background-color: #fff;
+    height: 20px;
+    border-radius: 10px;
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    margin-top: -10px;
+    margin-left: -10px
+}
+
+.all-pink [current-time],
+.all-pink [total-time] {
+    font-size: 13px;
+    color: #fff;
+    margin-left: 20px;
+    min-width: 40px;
+    white-space: nowrap;
+    flex: 0 0;
+}
+
+.all-pink [total-time] {
+    margin: 0 0 0 10px;
+}
+
+.color-gray {
+    color: #666!important;
+}
+
+.bg-color-pink {
+    background-color: #edd1d1!important;
+}
+
+.bg-color-pink2 {
+    background-color: #f0a6b2!important;
+}
+
+.bg-color-pink3 {
+    background-color: #e29daa!important;
+    border: 1px inset white;
+}
+
+
+</style>

@@ -139,7 +139,7 @@ mip-vd-tabs{
         color: #38f;
     }
 
-    .mip-vd-tabs .mip-vd-tabs-nav-toggle {
+    .mip-vd-tabs-nav-toggle {
         position: absolute;
         z-index: 9;
         top: 0;
@@ -162,7 +162,7 @@ mip-vd-tabs{
         }
     }
 
-    .mip-vd-tabs .mip-vd-tabs-nav-toggle-holder {
+    .mip-vd-tabs-nav-toggle-holder {
         display: inline-block;
         width: 29px;
         height: 1px;
@@ -229,5 +229,9 @@ mip-vd-tabs{
         height: 100%;
         width: 100%;
         background: rgba(0,0,0,.4);
+    }
+
+    &.mip-vd-tabs[toggle-more] {
+        z-index: 10;
     }
 }

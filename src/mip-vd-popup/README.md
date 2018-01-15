@@ -6,7 +6,7 @@ mip-vd-popup 用来支持网页中弹出浮层的显示。
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://mipcache.bdstatic.com/static/v1/mip-vd-popup/mip-vd-popup.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-vd-popup/mip-vd-popup.js
 
 ## 示例
 

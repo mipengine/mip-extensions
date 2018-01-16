@@ -84,10 +84,10 @@ mip-audio 使用方法同 audio 标签。
 ## 属性
 
 ### autoplay
-说明：移动端部分浏览器会忽视 autoplay 参数，禁止自动播放，（[developer.apple.com 从用户体验的解释](https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html)）
+说明：移动端部分浏览器会忽视 autoplay 参数，禁止自动播放，（[developer.apple.com 从用户体验角度的解释](https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html)）
 
 ### controls
-说明：无论是否写controls, 都显示音频交互控件。因为移动端部分浏览器禁止自动播放，（[developer.apple.com 解释](https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html)），音频组件需要显示控制条。
+说明：无论是否写controls, 都显示音频交互控件。因为移动端部分浏览器禁止自动播放，音频组件需要显示控制条，使用户可以主动触发播放操作。
 
 ### src loop 等  
 说明：audio 属性在mip-audio标签上可以直接使用  

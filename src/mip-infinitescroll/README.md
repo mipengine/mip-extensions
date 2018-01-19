@@ -168,7 +168,7 @@ rn, prn, timeout, loadingHtml, template 等参数可以配置，可选项参考�
 
 ### loadFailHtml
 
-说明：加载失败时提示文案         
+说明：加载失败时提示文案, 当异步请求超时或失败时触发  
 必选项：否   
 类型：字符串   
 取值范围：无   
@@ -198,7 +198,7 @@ rn, prn, timeout, loadingHtml, template 等参数可以配置，可选项参考�
 结果容器 DOM，初始为空。当数据渲染后，作为子节点插入结果容器。
 
 ### class="mip-infinitescroll-loading"
-‘加载中’文字容器 DOM，初始为空。当请求发出后，文字容器显示 `loadingHtml` 内容，请求返回后文字容器消失。
+‘加载中’文字容器 DOM，初始为空。当请求发出后，文字容器显示 `loadingHtml` 内容，请求返回后文字容器消失。当请求超时或请求失败时，文字容器显示 `loadFailHtml`。
 
 ## 注意事项
 

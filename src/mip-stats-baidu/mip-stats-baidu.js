@@ -4,11 +4,12 @@
  * @author menglingjun, Jenny_L, dongshihao
  * From: mip-stats-baidu
  */
-
+/* global MIP */
 define(function (require) {
-    var $ = require('zepto');
     var viewer = require('viewer');
     var util = require('util');
+    var Gesture = util.Gesture;
+    var fn = require('util').fn;
 
     var customElement = require('customElement').create();
 
@@ -22,7 +23,7 @@ define(function (require) {
          */
         if (token) {
             window._hmt = window._hmt || [];
-            _hmt.push([
+            window._hmt.push([
                 '_setAccount',
                 token
             ]);
@@ -34,16 +35,19 @@ define(function (require) {
             if (config && Array.isArray(config.conf) && config.conf.length) {
                 var conf = config.conf;
                 for (var i = 0; i < conf.length; i++) {
-                    _hmt.push(conf[i]);
+                    window._hmt.push(conf[i]);
                 }
             }
 
             bindEle();
-            
+
             var hm = document.createElement('script');
             hm.src = 'https://hm.baidu.com/hm.js?' + token;
-            $(elem).append(hm);
-        } else {
+
+
+            elem.appendChild(hm);
+        }
+        else {
             console.warn('token is unavailable'); // eslint-disable-line
         }
 
@@ -74,8 +78,8 @@ define(function (require) {
             console.warn(e); // eslint-disable-line
         }
         return {
-            'token': this.element.getAttribute('token'),
-            'conf': setconfig ? new Array(buildArry(decodeURIComponent(setconfig))) : null
+            token: this.element.getAttribute('token'),
+            conf: setconfig ? new Array(buildArray(decodeURIComponent(setconfig))) : null
         };
     };
 
@@ -123,7 +127,7 @@ define(function (require) {
                 continue;
             }
 
-            var eventtype = statusData.type;
+            var eventType = statusData.type;
 
             /**
              * 检测传递数据是否存在
@@ -132,50 +136,77 @@ define(function (require) {
                 continue;
             }
 
-            var data = buildArry(statusData.data);
+            // 格式化数据
+            var data = buildArray(statusData.data);
 
-            if (eventtype !== 'click' && eventtype !== 'mouseup' && eventtype !== 'load') {
+            if (eventType !== 'click' && eventType !== 'mouseup' && eventType !== 'load') {
                 // 事件限制到click,mouseup,load(直接触发)
                 continue;
             }
 
-            if ($(tagBox[index]).hasClass('mip-stats-eventload')) {
+            if (tagBox[index].classList.contains('mip-stats-eventload')) {
                 continue;
             }
 
-            $(tagBox[index]).addClass('mip-stats-eventload');
+            tagBox[index].classList.add('mip-stats-eventload');
 
-            if (eventtype === 'load') {
-                _hmt.push(data);
+            if (eventType === 'load') {
+                window._hmt.push(data);
+            }
+            // 解决on=tap: 和click冲突短线方案
+            // TODO 这个为短线方案
+            else if (eventType === 'click'
+                && tagBox[index].hasAttribute('on')
+                && tagBox[index].getAttribute('on').match('tap:')
+                && fn.hasTouch()) {
+                var gesture = new Gesture(tagBox[index]);
+                gesture.on('tap', eventHandler);
             }
             else {
-                tagBox[index].addEventListener(eventtype, function(event) {
-                    var tempData = this.getAttribute('data-stats-baidu-obj');
-                    if (!tempData) {
-                        return;
-                    }
-                    var statusJson;
-                    try {
-                        statusJson = JSON.parse(decodeURIComponent(tempData));
-                    }
-                    catch (e) {
-                        console.warn('事件追踪data-stats-baidu-obj数据不正确');
-                        return;
-                    }
-                    if (!statusJson.data) {
-                        return;
-                    }
-                    var attrData = buildArry(statusJson.data);
-                    _hmt.push(attrData);
-                }, false);
+                tagBox[index].addEventListener(eventType, eventHandler, false);
             }
         }
     }
 
-    // 数据换转
-    function buildArry(arrayStr) {
+    // 事件触发
+    function eventHandler(event) {
+        var tempData = this.getAttribute('data-stats-baidu-obj');
+        if (!tempData) {
+            return;
+        }
+        var statusJson;
+        try {
+            statusJson = JSON.parse(decodeURIComponent(tempData));
+        }
+        catch (e) {
+            console.warn('事件追踪data-stats-baidu-obj数据不正确');
+            return;
+        }
+        if (!statusJson.data) {
+            return;
+        }
+
+        var attrData =  buildArray(statusJson.data);
+        window._hmt.push(attrData);
+    }
+
+    /**
+     * 数据换转 兼容两种格式
+     *
+     * @param {string} arrayStr 百度统计用户配置数据
+     * @example (不需要处理) ["_trackPageview", "/mip-stats/sheji"]
+     * @example (需要处理) "[_trackPageview, /mip-stats/sheji]"
+     *
+     * @return {Object} ["_trackPageview", "/mip-stats/sheji"]
+     */
+    function buildArray(arrayStr) {
         if (!arrayStr) {
             return;
+        }
+
+        // (不需要处理) ["_trackPageview", "/mip-stats/sheji"]
+        if (typeof arrayStr === 'object') {
+            return arrayStr;
         }
 
         var strArr = arrayStr.slice(1, arrayStr.length - 1).split(',');
@@ -210,11 +241,12 @@ define(function (require) {
                 hashObj.word = hashWord;
                 originUrl = document.referrer;
             }
-        } else {
+        }
+        else {
             hashObj.url = '';
             originUrl = location.origin + location.pathname + location.search;
         }
-        _hmt.push(['_setReferrerOverride', makeReferrer(originUrl, hashObj)]);
+        window._hmt.push(['_setReferrerOverride', makeReferrer(originUrl, hashObj)]);
     }
 
     /**
@@ -227,9 +259,8 @@ define(function (require) {
     function isMatch(from, targetFrom) {
         if (from && targetFrom && from === targetFrom) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**

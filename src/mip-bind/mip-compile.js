@@ -148,12 +148,7 @@ define(function (require) {
         var reg = /bind:(.*)/;
         var result = reg.exec(directive);
         if (result && result[1]) {
-            if (result[1] === 'class') {
-                node.classList.add(newVal);
-            }
-            else {
-                node.setAttribute(result[1], newVal);
-            }
+            node.setAttribute(result[1], newVal);
         }
     };
 

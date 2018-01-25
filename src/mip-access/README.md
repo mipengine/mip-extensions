@@ -36,24 +36,24 @@ mip-access 是通过表达式计算得出的结果来决定一个元素是否能
 
 表达式中可以使用的运算符在 [access-expr-impl.jison](https://github.com/mipengine/mip-extensions/blob/master/src/mip-access/mip-access-expr-impl.jison) 中全部列举，其中主要运算符如下：
 
-- 逻辑运算符
+#### 逻辑运算符
 
-    运算符|描述|例子
-    ---|---|---
-    AND|“且”运算|A AND B
-    OR|“或”运算|A OR B
-    NOT|“非”运算|NOT A
+运算符|描述|例子
+---|---|---
+AND|“且”运算|A AND B
+OR|“或”运算|A OR B
+NOT|“非”运算|NOT A
 
-- 比较运算符
+#### 比较运算符
 
-    运算符|描述|例子
-    ---|---|---
-    =|是否相等|A = B
-    !=|是否不等|A != B
-    <|小于|A < B
-    <=|小于等于|A <= B
-    \>|大于|A > B
-    \>=|大于等于|A >= B
+运算符|描述|例子
+---|---|---
+=|是否相等|A = B
+!=|是否不等|A != B
+<|小于|A < B
+<=|小于等于|A <= B
+\>|大于|A > B
+\>=|大于等于|A >= B
 
 ### 3. 参数配置
 mip-access 使用时需要配置一些参数才能够进行使用，这些参数配置在 id="mip-access" 的 script 中，如：

@@ -25,8 +25,9 @@ define(function (require) {
         }
 
         // 修改字段名
-        params.query = data.getHashData('word');
         params.logid = data.getHashData('lid');
+        // eqid 后端获取优先级query>eqid>title
+        params.eqid = data.getHashData('eqid');
 
         // 内容联盟导流字段
         var originalSource = data.getHashData('originalSource');

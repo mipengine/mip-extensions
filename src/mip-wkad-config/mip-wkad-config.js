@@ -2,8 +2,8 @@
 * 寻医问药mip改造 广告配置组件
 * @file 脚本支持
 * @author jqthink@gmail.com
-* @time 2018.01.10
-* @version 1.0.9
+* @time 2018.01.22
+* @version 1.1.0
 */
 define(function (require) {
     var $ = require('zepto');
@@ -33,7 +33,7 @@ define(function (require) {
         val !== undefined ? ggArr[key] = val : 0;
         ggArr['charset'] = 'utf8';
         mobileAd.getAd(ggArr);
-        // mobileAd.getParseWordInp();
+        mobileAd.getParseWordInp();
     };
     // build说明: 广告组件，在页面展示，需要尽快加载
     customElem.prototype.build = function () {

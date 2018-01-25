@@ -92,6 +92,7 @@ define(function (require) {
                 }).then(function (res) {
                     return res.json();
                 }).then(function (data) {
+                    // 数据加载成功，请求返回
                     if (data && parseInt(data.status, 10) === 0 && data.data) {
                         if (rn > self.params.rn || !data.data.items) {
                             defer.resolve('NULL');
@@ -105,6 +106,9 @@ define(function (require) {
                     else {
                         defer.resolve('NULL');
                     }
+                }, function(data) {
+                    // 数据加载失败或超时，显示“loadFailHtml（加载超时）”
+                    defer.reject();
                 });
             }
             return defer.promise();

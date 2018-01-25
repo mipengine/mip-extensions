@@ -14,14 +14,17 @@ define(function (require) {
         var exps = '112002';
         var MIP = window.MIP || {};
         var sample = MIP.hash.get('sample');
-        if (sample === 'mip_wm_sample') {
-            exps = '113006';
+        if (sample === 'mip-wm-base') {
+            exps = '117001';
+        }
+        else if (sample === 'mip-wm-exp') {
+            exps = '117011';
         }
 
         if (domain && token) {
             // 判断 preload 逻辑
             var scripts = document.querySelector('script[mip-preload="mip-script-wm"]');
-            if (scripts && sample === 'mip_wm_sample') {
+            if (scripts && sample === 'mip-wm-exp') {
                 var apiStr = '__container_api_';
                 (window[apiStr] = window[apiStr] || []).push({
                     containerId: token,

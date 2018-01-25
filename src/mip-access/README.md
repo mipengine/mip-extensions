@@ -151,10 +151,6 @@ https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A
 
     mip-access 中所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置 `Access-Control-Allow-origin` 为允许的 origin，其中包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
 
-- 在用户登录之后，如何将登录状态从登录页面带到文章页？
-
-    登录状态可以以数据的形式存放在 authorization 接口中。登录页面由开发者自己维护，所以登录成功的时机开发者是可以知道的，在登录成功后修改接口数据即可。
-
 ## 属性
 
 ### mip-access

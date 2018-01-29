@@ -190,75 +190,63 @@
         <div data-inner>
             <div data-scroller>
                 <div data-item data-col="4">
-                    <div>
-                        <mip-img
-                            src="https://dummyimage.com/300x400?a"
-                            width="300"
-                            height="400"
-                            layout="responsive"
-                        >
-                        </mip-img>
-                    </div>
+                    <mip-img
+                        src="https://dummyimage.com/300x400?a"
+                        width="300"
+                        height="400"
+                        layout="responsive"
+                    >
+                    </mip-img>
                     <p>这是 col4 的容器</p>
                 </div>
                 <div data-item data-col="4">
-                    <div>
-                        <mip-img
-                            src="https://dummyimage.com/300x400?b"
-                            width="300"
-                            height="400"
-                            layout="responsive"
-                        >
-                        </mip-img>
-                    </div>
+                    <mip-img
+                        src="https://dummyimage.com/300x400?b"
+                        width="300"
+                        height="400"
+                        layout="responsive"
+                    >
+                    </mip-img>
                     <p>这是 col4 的容器</p>
                 </div>
                 <div data-item data-col="4">
-                    <div>
-                        <mip-img
-                            src="https://dummyimage.com/300x400?c"
-                            width="300"
-                            height="400"
-                            layout="responsive"
-                        >
-                        </mip-img>
-                    </div>
+                    <mip-img
+                        src="https://dummyimage.com/300x400?c"
+                        width="300"
+                        height="400"
+                        layout="responsive"
+                    >
+                    </mip-img>
                     <p>这是 col4 的容器</p>
                 </div>
                 <div data-item data-col="4">
-                    <div>
-                        <mip-img
-                            src="https://dummyimage.com/300x400?d"
-                            width="300"
-                            height="400"
-                            layout="responsive"
-                        >
-                        </mip-img>
-                    </div>
+                    <mip-img
+                        src="https://dummyimage.com/300x400?d"
+                        width="300"
+                        height="400"
+                        layout="responsive"
+                    >
+                    </mip-img>
                     <p>这是 col4 的容器</p>
                 </div>
                 <div data-item data-col="4">
-                    <div>
-                        <mip-img
-                            src="https://dummyimage.com/300x400?e"
-                            width="300"
-                            height="400"
-                            layout="responsive"
-                        >
-                        </mip-img>
-                    </div>
+                    <mip-img
+                        src="https://dummyimage.com/300x400?e"
+                        width="300"
+                        height="400"
+                        layout="responsive"
+                    >
+                    </mip-img>
                     <p>这是 col4 的容器</p>
                 </div>
                 <div data-item data-col="4">
-                    <div>
-                        <mip-img
-                            src="https://dummyimage.com/300x400?f"
-                            width="300"
-                            height="400"
-                            layout="responsive"
-                        >
-                        </mip-img>
-                    </div>
+                    <mip-img
+                        src="https://dummyimage.com/300x400?f"
+                        width="300"
+                        height="400"
+                        layout="responsive"
+                    >
+                    </mip-img>
                     <p>这是 col4 的容器</p>
                 </div>
             </div>

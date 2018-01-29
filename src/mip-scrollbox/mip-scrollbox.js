@@ -34,7 +34,7 @@ define(function (require) {
             '[data-item]'
         ].forEach(function (key) {
             if (!element.querySelectorAll(key).length) {
-                self.warn('组建必须包含属性元素 `' + key + '` 。', element);
+                self.warn('组件必须包含属性元素 `' + key + '` 。', element);
                 self.build = function () {};
             }
         });

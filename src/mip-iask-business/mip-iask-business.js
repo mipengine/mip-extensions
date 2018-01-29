@@ -266,11 +266,11 @@ define(function (require) {
         htmls += '</div>';
         if ($('.qs_bar').length > 0) {
             $('.qs_bar').eq(0).empty();
-            $('.qs_bar').eq(0).append(html1);
+            $('.qs_bar').eq(0).append(htmls);
         }
         else {
             $('.mip_as_other_qiye_div').eq(0).empty();
-            $('.mip_as_other_qiye_div').eq(0).append(html1);
+            $('.mip_as_other_qiye_div').eq(0).append(htmls);
         }
     };
     var putBrandQiyeInfo = function (companyName, drName, website, picLocal, statsBaidu, pos, uid) {

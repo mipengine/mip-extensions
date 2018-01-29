@@ -1,0 +1,64 @@
+/**
+ * @file 横向滑动组件样式
+ * @author xuexb <fe.xiaowu@gmail.com>
+ */
+
+mip-scrollbox {
+    overflow: hidden;
+
+    [data-wrapper] {
+        position: relative;
+        overflow: hidden;
+
+        [data-scroller],
+        [data-inner],
+        [data-item] {
+                    box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+    }
+
+    [data-item] {
+        display: inline-block;
+        vertical-align: top;
+        overflow: hidden;
+        white-space: initial;
+        font-size: 12px;
+    }
+
+    [data-inner] {
+        position: relative;
+        overflow: hidden;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 30px;
+        margin-top: -30px;
+        -webkit-transform: translateY(30px);
+                transform: translateY(30px);
+    }
+
+    [data-scroller] {
+        white-space: nowrap;
+        position: relative;
+        padding-right: 9px;
+        -webkit-box-sizing: initial;
+                box-sizing: initial;
+        font-size: 0;
+    }
+
+    // 栅格样式
+    &[data-type="row"] {
+        padding-left: 17px;
+        padding-right: 17px;
+
+        [data-inner] {
+            padding-left: 17px;
+            padding-right: 17px;
+        }
+
+        [data-wrapper] {
+            margin-left: -17px;
+            margin-right: -17px;   
+        }
+    }
+}

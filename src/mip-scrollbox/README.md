@@ -34,11 +34,14 @@
             <div data-scroller>
                 <div data-item>
                     <a href="https://www.baidu.com">百度一下，你就知道。</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://www.mipengine.org">MIP 是移动网页加速器。</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://github.com/mipengine">MIP 的 GitHub 地址是： https://github.com/mipengine</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://www.mipengine.org">点击查看更多精彩内容>></a>
                 </div>
             </div>
@@ -74,17 +77,23 @@
             <div data-scroller>
                 <div data-item>
                     <a href="https://www.mipengine.org">使用 MIP 无需等待加载，页面内容将以更友好的方式瞬时到达用户。</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://www.mipengine.org">MIP 提供实用、强大的基础组件，开发者可根据需求任意选择。</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://www.mipengine.org">MIP 是一项永久的开源计划，提供持续优化的解决方案。</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://www.mipengine.org">MIP 语法基于 HTML 并提供详细的示例，开发者仅需做简单开发。</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://www.mipengine.org">MIP（Mobile Instant Pages - 移动网页加速器），是一套应用于移动网页的开放性技术标准。通过提供 MIP HTML 规范、MIP-JS 运行环境以及 MIP-Cache 页面缓存系统，实现移动网页加速。</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://www.mipengine.org">MIP HTML 规范中有两类标签，一类是 HTML 常规标签，另一类是 MIP 标签。MIP 标签也被称作 MIP HTML 组件，使用它们来替代 HTML 常规标签可以大幅提升页面性能。</a>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <a href="https://www.mipengine.org">用户在访问 MIP 页面的时候，请求首先会发到 CDN 服务器，如果页面存在，则从 CDN 返回，如果 CDN 上不存在，则会请求第三方服务器。同时 MIP-Cache 服务器会将页面缓存到 CDN 上。</a>
                 </div>
             </div>
@@ -107,17 +116,23 @@
             <div data-scroller>
                 <div data-item>
                     <div>1的内容，span3</div>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <div>2的内容，span3</div>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <div>3的内容，span3</div>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <div>4的内容，span3</div>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <div>5的内容，span3</div>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <div>6的内容，span3</div>
-                </div><div data-item>
+                </div>
+                <div data-item>
                     <div>7的内容，span3</div>
                 </div>
             </div>
@@ -148,13 +163,17 @@
             <div data-scroller>
                 <div data-item data-col="6">
                     <a href="https://www.mipengine.org">使用 MIP 无需等待加载，页面内容将以更友好的方式瞬时到达用户。</a>
-                </div><div data-item data-col="4">
+                </div>
+                <div data-item data-col="4">
                     <a href="https://www.mipengine.org">MIP 提供实用、强大的基础组件，开发者可根据需求任意选择。</a>
-                </div><div data-item data-col="6">
+                </div>
+                <div data-item data-col="6">
                     <a href="https://www.mipengine.org">MIP 是一项永久的开源计划，提供持续优化的解决方案。</a>
-                </div><div data-item data-col="4">
+                </div>
+                <div data-item data-col="4">
                     <a href="https://www.mipengine.org">MIP 语法基于 HTML 并提供详细的示例，开发者仅需做简单开发。</a>
-                </div><div data-item data-col="6">
+                </div>
+                <div data-item data-col="6">
                     <a href="https://www.mipengine.org">MIP（Mobile Instant Pages - 移动网页加速器），是一套应用于移动网页的开放性技术标准。通过提供 MIP HTML 规范、MIP-JS 运行环境以及 MIP-Cache 页面缓存系统，实现移动网页加速。</a>
                 </div>
             </div>
@@ -181,7 +200,8 @@
                         </mip-img>
                     </div>
                     <p>这是 col4 的容器</p>
-                </div><div data-item data-col="4">
+                </div>
+                <div data-item data-col="4">
                     <div>
                         <mip-img
                             src="https://dummyimage.com/300x400?b"
@@ -192,7 +212,8 @@
                         </mip-img>
                     </div>
                     <p>这是 col4 的容器</p>
-                </div><div data-item data-col="4">
+                </div>
+                <div data-item data-col="4">
                     <div>
                         <mip-img
                             src="https://dummyimage.com/300x400?c"
@@ -203,7 +224,8 @@
                         </mip-img>
                     </div>
                     <p>这是 col4 的容器</p>
-                </div><div data-item data-col="4">
+                </div>
+                <div data-item data-col="4">
                     <div>
                         <mip-img
                             src="https://dummyimage.com/300x400?d"
@@ -214,7 +236,8 @@
                         </mip-img>
                     </div>
                     <p>这是 col4 的容器</p>
-                </div><div data-item data-col="4">
+                </div>
+                <div data-item data-col="4">
                     <div>
                         <mip-img
                             src="https://dummyimage.com/300x400?e"
@@ -225,7 +248,8 @@
                         </mip-img>
                     </div>
                     <p>这是 col4 的容器</p>
-                </div><div data-item data-col="4">
+                </div>
+                <div data-item data-col="4">
                     <div>
                         <mip-img
                             src="https://dummyimage.com/300x400?f"
@@ -291,6 +315,10 @@
 </mip-scrollbox>
 ```
 
-### 子元素 box-sizing 说明
+### 内部元素 box-sizing 说明
 
-由于栅格化需要计算宽度，对 `<mip-scrollbox>` 子元素 `[data-scroller], [data-inner], [data-item]` 设置了 `box-sizing: border-box;` 样式，如有特殊需求请自动覆盖。
+由于栅格化需要计算宽度，对 `<mip-scrollbox>` 组件中的 `[data-scroller], [data-inner], [data-item]` 属性元素设置了 `box-sizing: border-box;` 样式，如有特殊需求请自动覆盖。
+
+### 元素字号问题
+
+由于 `[data-item]` 属性元素使用了 `display: inline-block` 样式，会引发元素之间有约 `3px` 左右的间距，组件内设置了 `[data-scroller] {font-size: 0}` 和 `[data-item] {font-size: 12px}` 来解决间距问题，如有需要可以覆盖相对应的字号大小。

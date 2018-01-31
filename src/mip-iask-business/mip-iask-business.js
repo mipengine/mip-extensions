@@ -569,7 +569,7 @@ define(function (require) {
         else if (type === '') {
             return;
         }
-        var url = 'https://mipp.iask.cn/t/wlsh?openCorporationId=' + openId + '&type=' + type + "&questionId=" + question + "&version=" + version;
+        var url = 'https://mipp.iask.cn/t/wlsh?openCorporationId=' + openId + '&type=' + type + "&questionId=" + questionId + "&version=" + version;
         $.get(url,
         function (data) {
             var base = new Base64();

@@ -1,6 +1,6 @@
 # mip-ad:ad-comm 通用广告
 
-mip-ad 的一种类型：通用广告。
+`<mip-ad>` 的一种类型：通用广告。
 
 标题|内容
 ----|----
@@ -12,7 +12,7 @@ mip-ad 的一种类型：通用广告。
 
 ### banner 样式
 
-layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)。width 和 height 请根据广告实际宽高填写。
+`layout="responsive"` 为组件布局设定（[布局文档](/doc/3-widget/11-widget-layout.html)）。`width` 和 `height` 请根据广告实际宽高填写。
 ```html
 <mip-ad
     layout="responsive"
@@ -77,7 +77,7 @@ layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/d
 说明：广告类型  
 必选项：是  
 类型：字符串  
-取值：ad-comm 
+取值：ad-comm  
 默认值：无
 
 ### tpl
@@ -85,7 +85,7 @@ layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/d
 说明：样式  
 必选项：是  
 类型：字符串  
-取值：banner,noneImg,oneImg,moreImg 
+取值：banner, noneImg, oneImg, moreImg  
 默认值：无
 
 ### href
@@ -104,15 +104,15 @@ layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/d
 
 ### data-size
 
-说明：图片大小, 用来设定图片的宽高比，在有图片的情况下需要设置  
-必选项：否（广告类型为banner时，必填）  
+说明：图片大小，用来设定图片的宽高比，在有图片的情况下需要设置  
+必选项：否（广告类型为 banner 时，必填）  
 类型：两数字用空格分开  
 默认值：无
 
 ### data-title
 
 说明：广告标题，可设置为广告描述  
-必选项：banner，多图）否；（无图，单图）是  
+必选项：（banner，多图）否；（无图，单图）是  
 类型：字符串  
 默认值：无
 

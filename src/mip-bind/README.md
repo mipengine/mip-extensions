@@ -1,6 +1,6 @@
 # mip-bind
 
-MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据信息，并绑定在相应 DOM 上，就可以轻松做到数据变动后 DOM 元素随之变动的效果，可以通过[示例](https://itoss.me/mip-test/src/mip-bind/view/ecommerce.html)查看效果。
+`<mip-bind>` 是以数据驱动页面更新的功能，开发者通过配置数据信息，并绑定在相应 DOM 上，就可以轻松做到数据变动后 DOM 元素随之变动的效果，可以通过[示例](https://itoss.me/mip-test/src/mip-bind/view/ecommerce.html)查看效果。
 
 标题|内容
 ----|----
@@ -12,7 +12,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 ### 设置数据
 
-其中 mip-data 元素用于在页面中设置数据源，一个页面中可以指定多个 mip-data，最终数据会合并到一个数据源对象上。数据源的设置可以通过以下两种方式：
+其中 `<mip-data>` 元素用于在页面中设置数据源，一个页面中可以指定多个 `<mip-data>`，最终数据会合并到一个数据源对象上。数据源的设置可以通过以下两种方式：
 
 #### 固定数据
 
@@ -35,7 +35,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 #### 异步数据
 
-如果需要异步数据，则需指定 src 地址（**注：src 需要是 https 或 // 协议开头，否则在 https 环境下会出现问题**），请求回来的数据会自动合并到数据表里，如：
+如果需要异步数据，则需指定 `src` 地址（**注：`src` 需要是 `https` 或 `//` 协议开头，否则在 HTTPS 环境下会出现问题**），请求回来的数据会自动合并到数据表里，如：
 
 ```
 <mip-data src="https://www.example.org/data"></mip-data>
@@ -43,8 +43,8 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 当使用这种方式获取异步数据时，**请注意：需要开发者服务端配置 cors 跨站访问，具体步骤如下**：
 
-- 接收到请求后，判断请求头中的 origin 是否是允许的，其中允许的包括 `https://mipcache.bdstatic.com`, `https://站点域名转换的字符串.mipcdn.com` 和开发者站点 origin；
-- 如果 origin 在指定的列表中则设置 response header 中的 `Access-Control-Allow-origin` 为请求接收到的 origin，以 Nodejs 举例，如下所示：
+- 接收到请求后，判断请求头中的 `origin` 是否是允许的，其中允许的包括 `https://mipcache.bdstatic.com`, `https://站点域名转换的字符串.mipcdn.com` 和开发者站点 `origin`；
+- 如果 `origin` 在指定的列表中则设置 `response header` 中的 `Access-Control-Allow-origin` 为请求接收到的 `origin`，以 Nodejs 举例，如下所示：
 
     ```
     var origins = {
@@ -66,7 +66,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 目前绑定数据只支持两种功能：
 
-#### m-bind
+#### `m-bind`
 
 绑定元素属性信息。具体格式为 `m-bind:attrs=value`，即：将 attrs 属性值设置为 value，如：
 
@@ -146,8 +146,8 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 <script src="https://c.mipcdn.com/static/v1/mip-vd-tabs/mip-vd-tabs.js"></script>
 ```
 
-#### m-text
-绑定元素 textContent。具体格式为 m-text=value，即：将元素的 textContent 设置为 value 的值，同样 value 为数据源中的属性名，多层数据可以以 `.` 连接，如：
+#### `m-text`
+绑定元素 `textContent`。具体格式为 `m-text=value`，即：将元素的 `textContent` 设置为 `value` 的值，同样 `value` 为数据源中的属性名，多层数据可以以 `.` 连接，如：
 
 ```html
 <mip-data>
@@ -166,7 +166,7 @@ MIP Bind 是以数据驱动页面更新的功能，开发者通过配置数据�
 
 ### 修改数据
 
-设置数据也是通过在 html 元素中加入事件来完成，方式是在元素中加入 on 属性。
+设置数据也是通过在 HTML 元素中加入事件来完成，方式是在元素中加入 `on` 属性。
 
 #### 书写格式
 
@@ -182,35 +182,35 @@ on="事件:MIP.setData({}) 事件:MIP.setData({}) 事件:MIP.setData({})"
 
 事件|描述
 ---|---
-tap|单击事件
-doubletap|双击事件
-swipe|滑动事件
+`tap`|单击事件
+`doubletap`|双击事件
+`swipe`|滑动事件
 
-input 元素
-
-事件|描述
----|---
-change|输入框内容发生变化时候触发的事件
-
-mip-form 元素
+`<input>` 元素
 
 事件|描述
 ---|---
-submit|提交时触发的事件
-submitSuccess|提交成功后触发的事件
-submitError|提交失败后触发的事件
+`change`|输入框内容发生变化时候触发的事件
+
+`<mip-form>` 元素
+
+事件|描述
+---|---
+`submit`|提交时触发的事件
+`submitSuccess`|提交成功后触发的事件
+`submitError`|提交失败后触发的事件
 
 #### 具体操作
 
 - 修改方式
 
-    - MIP.setData(data)
+    - `MIP.setData(data)`
 
         该方法会将新增数据加入到数据源中，重复数据会进行覆盖。
 
     - 变量赋值
 
-        数据源中所有数据，都可以通过 `m.` 的形式获取到，可直接在组件中通过 js 来进行操作，如：
+        数据源中所有数据，都可以通过 `m.` 的形式获取到，可直接在组件中通过 JS 来进行操作，如：
 
         ```
         <mip-data>
@@ -299,7 +299,7 @@ submitError|提交失败后触发的事件
 
     - 支持 dom 元素解析
 
-        mip bind 支持 dom 元素解析，在设置的数据中，可通过 DOM 变量来表示当前事件触发的源 dom 元素，并可通过其获取元素上的属性值等，如：
+        `<mip-bind>` 支持 DOM 元素解析，在设置的数据中，可通过 DOM 变量来表示当前事件触发的源 DOM 元素，并可通过其获取元素上的属性值等，如：
 
         ```html
         <mip-data>

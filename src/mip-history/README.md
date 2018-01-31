@@ -5,7 +5,7 @@
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|responsive, fixed-height, fill, container, fixed
 所需脚本|https://c.mipcdn.com/static/v1/mip-history/mip-history.js
 
 ## 示例
@@ -32,9 +32,9 @@
 </mip-history>
 ```
 
-### 为`mip-history`按钮使用布局
+### 为 `<mip-history>` 按钮使用布局
 
-示例中的 width 和 height 不一定为最终渲染高度，请参考阅读[组件布局](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)。
+示例中的 `width` 和 `height` 不一定为最终渲染高度，请参考阅读[组件布局](/doc/3-widget/11-widget-layout.html)。
 
 ```html
 <!--宽高比3：1-->
@@ -53,11 +53,11 @@
 
 ### history
 
-说明：填入对历史记录的操作方式，支持go, back, forward
-必选项：是
-类型：字符串
-取值范围：back, forward, "go, -1"
+说明：填入对历史记录的操作方式，支持 `go`, `back`, `forward`  
+必选项：是  
+类型：字符串  
+取值范围：`back`, `forward`, `"go, -1"`
 
 ## 注意事项
-1. `mip-history` 的操作相当于对 window.history 的封装。使用方法可参考 MDN 文档： https://developer.mozilla.org/zh-CN/docs/Web/API/History
+1. `mip-history` 的操作相当于对 `window.history` 的封装。使用方法可参考 [MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/History)。
 2. `.mip-history-default`定义了方便预览的点击的样式，没有绑定事件，可选择性使用。

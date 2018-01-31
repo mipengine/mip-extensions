@@ -5,12 +5,12 @@
 标题|内容
 ----|----
 类型|通用，定制
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|responsive, fixed-height, fill, container, fixed
 所需脚本|https://c.mipcdn.com/static/v1/mip-stats-tianrun/mip-stats-tianrun.js
 
 ## 示例
 
-MIP 提供天润的插件，便于站长更好的接入 MIP，noscript 标签中是的代码是当访客手机不支持JS时直接URL回传统计数据，内容由第三方站长自己实现参数填充，代码示例：
+MIP 提供天润的插件，便于站长更好的接入 MIP，`<noscript>` 标签中是的代码是当访客手机不支持 JS 时直接 URL 回传统计数据，内容由第三方站长自己实现参数填充，代码示例：
 
 ```html
 <!-- 人民网CMS自己实现参数填充 noscript 示例：-->
@@ -23,4 +23,4 @@ MIP 提供天润的插件，便于站长更好的接入 MIP，noscript 标签中
 
 ## 注意事项
 
-`img` 的 `src` 不能写协议
+`img` 的 `src` 不能写协议。

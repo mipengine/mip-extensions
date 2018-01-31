@@ -5,7 +5,7 @@
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|responsive, fixed-height, fill, container, fixed
 所需脚本|https://c.mipcdn.com/static/v1/mip-html-os/mip-html-os.js
 
 ## 示例
@@ -22,5 +22,4 @@
 说明：选择操作系统  
 必选项：是  
 类型：字符串  
-取值范围：android, ios  
-
+取值范围：Android, iOS  

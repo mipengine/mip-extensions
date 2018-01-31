@@ -1,6 +1,6 @@
 # mip-access
 
-mip-access 能够根据用户访问页面的情况，协同开发者配置接口返回的数据，对页面内容进行访问权限控制，如文章最多能够访问 n 篇，超过之后不能直接访问，需要通过一些策略，如登陆、付费后才能继续。
+`<mip-access>` 能够根据用户访问页面的情况，协同开发者配置接口返回的数据，对页面内容进行访问权限控制，如文章最多能够访问 n 篇，超过之后不能直接访问，需要通过一些策略，如登陆、付费后才能继续。
 
 标题|内容
 ----|----
@@ -14,7 +14,7 @@ mip-access 能够根据用户访问页面的情况，协同开发者配置接口
 
 ## 使用方式
 
-开发者在使用 mip-access 组件实现页面内容访问权限控制时，需要通过脚本引入、表达式书写、参数配置等几个步骤，以下分别对这几步做详细讲解：
+开发者在使用 `<mip-access`> 组件实现页面内容访问权限控制时，需要通过脚本引入、表达式书写、参数配置等几个步骤，以下分别对这几步做详细讲解：
 
 ### 1. 脚本引入
 
@@ -24,7 +24,7 @@ mip-access 能够根据用户访问页面的情况，协同开发者配置接口
 ```
 
 ### 2. 表达式书写
-mip-access 是通过表达式计算得出的结果来决定一个元素是否能够展示的，如：
+`<mip-access>` 是通过表达式计算得出的结果来决定一个元素是否能够展示的，如：
 
 ```
 <!-- 其中 access 和 subscriber 均为第 3 步中配置的 authorization 接口所返回 -->
@@ -56,7 +56,7 @@ NOT|“非”运算|NOT A
 \>=|大于等于|A >= B
 
 ### 3. 参数配置
-mip-access 使用时需要配置一些参数才能够进行使用，这些参数配置在 id="mip-access" 的 script 中，如：
+`<mip-access>` 使用时需要配置一些参数才能够进行使用，这些参数配置在 `<script id="mip-access" type="application/json"></script>`，如：
 
 ```
 <script id="mip-access" type="application/json">
@@ -127,29 +127,29 @@ authorization 接口请求超时时间，默认为 3s。
 
 ### URL 参数
 
-mip-access 同样为 URL 定制了一些常量，可以允许开发者直接在 URL 中进行使用，如：
+`<mip-access>` 同样为 URL 定制了一些常量，可以允许开发者直接在 URL 中进行使用，如：
 
 ```
 <!-- 设置的 URL -->
-https://www.mipengine.org/?rid=READER_ID&url=SOURCE_URL",
+https://www.mipengine.org/?rid=READER_ID&url=SOURCE_URL"
 <!-- 解析后的 URL -->
-https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A%2F%2Fwww.mipengine.org%2F",
+https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A%2F%2Fwww.mipengine.org%2F"
 ```
 
 具体可使用的参数如下：
 
-- READER_ID: 获取访问用户的 ID，该 ID 是可以理解为区分用户的唯一标示，通过 localstorage 的进行存储（清除 localstorage 后会再次生成）；
-- SOURCE_URL: 当前页面 URL，即 `window.location.href`；
-- MIPDOC_URL: mip 原站点 URL，非 MIP Cache URL；
-- CANONICAL_URL: mip 站点对应的原 h5 站点 URL，如果 h5 站点不存在，则为当前页面 URL；
-- DOCUMENT_REFERRER: 页面访问的 referer；
-- RANDOM: 随机数；
+- READER_ID: 获取访问用户的 ID，该 ID 是可以理解为区分用户的唯一标示，通过 localStorage 的进行存储（清除 localStorage 后会再次生成）。
+- SOURCE_URL: 当前页面 URL，即 `window.location.href`。
+- MIPDOC_URL: mip 原站点 URL，非 MIP-Cache URL。
+- CANONICAL_URL: mip 站点对应的原 h5 站点 URL，如果 h5 站点不存在，则为当前页面 URL。
+- DOCUMENT_REFERRER: 页面访问的 referer。
+- RANDOM: 随机数。
 
 ## 注意点
 
 - 请求如何配置？
 
-    mip-access 中所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置 `Access-Control-Allow-origin` 为允许的 origin，其中包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
+    `<mip-access>` 中所有接口的请求都依据 [cors](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch) 方案，需要后端配置 `Access-Control-Allow-origin` 为允许的 origin，其中包括 `mipcache.bdstatic.com` 、 `*.mipcdn.com` 和 站点自身 URL origin。
 
 ## 属性
 

@@ -5,7 +5,7 @@
 标题|内容
 ----|----
 类型|通用
-支持布局|不使用布局
+支持布局|N/S
 所需脚本|https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js
 
 ## 示例
@@ -28,7 +28,7 @@
 
 ### 左边悬浮
 
-规则：属性 bottom 或 top 必须有一个
+规则：属性 `bottom` 或 `top` 必须有一个
 
 ```html
 <mip-fixed type="left" bottom="50px">
@@ -38,7 +38,7 @@
 
 ### 右边悬浮
 
-规则：属性 bottom 或 top 必须有一个
+规则：属性 `bottom` 或 `top` 必须有一个
 
 ```html
 <mip-fixed type="right" top="50px">
@@ -46,7 +46,7 @@
 </mip-fixed>
 ```
 
-### 支持 mip-gototop
+### 支持 `<mip-gototop>`
 
 ```html
 <mip-fixed type="gototop">
@@ -56,9 +56,9 @@
 
 ### 关闭悬浮元素的方法
 
-1、给 mip-fixed 标签添加一个自定义的 id：customid
+1. 给 `<mip-fixed>` 标签添加一个自定义的 `id=customid`
 
-2、给需要点击关闭悬浮元素的标签添加属性 on="tap:customid.close"
+2. 给需要点击关闭悬浮元素的标签添加属性 `on="tap:customid.close"`
 
 ```html
 <mip-fixed type="top" id="customid">
@@ -74,30 +74,30 @@
 说明：悬浮类型  
 必选项：是  
 类型：字符串  
-取值范围：top/bottom/right/left
+取值范围：`top/bottom/right/left`
 
 ### top
 
 说明：距离屏幕顶部距离  
 必选项: 否  
 类型：字符串  
-取值范围：数值+单位，例如：50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)  
-默认值：auto
+取值范围：数值+单位，例如：`50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)`  
+默认值：`auto`
 
 ### bottom
 
 说明：距离屏幕底部距离  
 必选项: 否  
-取值范围：数值+单位，例如：50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)  
-默认值：auto
+取值范围：数值+单位，例如：`50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)`  
+默认值：`auto`
 
 
 ## 注意事项
 
 ### 悬浮类型
 
-- type为 top、bottom 类别不需要添加属性：top/bottom；
+- `type` 为 `top`, `bottom` 类别不需要添加属性：`top/bottom`。
 
-- type为 left、right 类别需要至少添加一个top/bottom属性，优先用 bottom。
+- `type` 为 `left`, `right` 类别需要至少添加一个 `top/bottom` 属性，优先用 `bottom`。
 
-- type为 gototop 类别不需要任何属性。
+- `type` 为 `gototop` 类别不需要任何属性。

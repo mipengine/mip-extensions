@@ -1,20 +1,20 @@
 # mip-accordion 折叠节点
 
-折叠隐藏节点(可记录用户上次行为)。
+折叠隐藏节点，可记录用户上次行为。
 
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|responsive, fixed-height, fill, container, fixed
 所需脚本|https://c.mipcdn.com/static/v1/mip-accordion/mip-accordion.js
 
 ## 示例
 
 ### 标题加内容形式
 
-section 的第一个子节点为按钮，第二个子节点为隐藏目标节点。
+`<section>` 的第一个子节点为按钮，第二个子节点为隐藏目标节点。
 
-[info]页面加载初默认隐藏的节点，需要添加 class="mip-accordion-content"。
+[info]页面加载初默认隐藏的节点，需要添加 `class="mip-accordion-content"`。
 
 ```html
 <mip-accordion sessions-key="mip_1" animatetime='0.24'>
@@ -131,13 +131,13 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
 
 ### sessions-key
 
-说明：组件唯一标识符,用于区分同个页面中多个mip-accordion以还原用户上次操作  
+说明：组件唯一标识符，用于区分同个页面中多个 `<mip-accordion>` 以还原用户上次操作  
 必选项：是  
 类型：字符串
 
 ### type 
 
-说明：类型，区分自动根据session记录展开节点，还是手动配置默认展开节点  
+说明：类型，区分自动根据 `<session>` 记录展开节点，还是手动配置默认展开节点  
 必选项：否     
 类型：字符串   
 单位：无   
@@ -146,7 +146,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
 
 ### expanded
 
-说明：默认展开的 mip-accordion 子节点需要配置此属性，只有在 mip-accordion 的 type 属性值为 manual 时 才会生效      
+说明：默认展开的 `<mip-accordion>` 子节点需要配置此属性，只有在 `<mip-accordion>` 的 `type` 属性值为 `manual` 时才会生效      
 必选项：否   
 类型：字符串   
 单位：无   
@@ -163,7 +163,7 @@ section 的第一个子节点为按钮，第二个子节点为隐藏目标节点
 默认值：无
 
 ### animatetime
-说明：展开收起动画时间，最大为1秒。建议为 0.24 秒   
+说明：展开收起动画时间，最大为1秒，建议为 0.24 秒   
 必选项：否   
 类型：数字（小数）  
 单位：秒  

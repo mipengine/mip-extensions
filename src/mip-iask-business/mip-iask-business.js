@@ -166,6 +166,7 @@ define(function (require) {
         list['COMMERCIAL_CAD'] = 501;	     // 商业纯广告
         list['COOPERATE_BRAND'] = 600;	     // 品牌自问自答
         list['COOPERATE_EFFECT'] = 700;	     // 效果广告
+	list['COOPERATE_BRAND_MARKET'] = 800; // 问答营销
         list['COOPERATE_YOULAI'] = 1000;     // 有来
         list['COOPERATE_BAOXIAN'] = 901;	// 保险
         return list;
@@ -1225,7 +1226,8 @@ define(function (require) {
             }
             advLogInfo(sources, 0);
         }
-        else if (sources === 'COOPERATE_BRAND' && (version === '1' || version === '3')) {
+        else if ((sources === 'COOPERATE_BRAND' || sources === 'COOPERATE_BRAND_MARKET')
+        		&& (version === '1' || version === '3')) {
             // 商业广告-旗舰版、专业版本
             brandAvertisement(sources);
         }

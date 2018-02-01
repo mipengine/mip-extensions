@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author hejieye
-* @time  2018-01-22
-* @version 2.1.1
+* @time  2018-01-31
+* @version 2.1.2
 */
 define(function (require) {
     var $ = require('zepto');
@@ -121,7 +121,10 @@ define(function (require) {
 	        return output;
 	    };
 	};
-	
+	var encodeURIStr = function (str) {
+		var result = encodeURIComponent(JSON.stringify(str));
+		return result;
+	};
     var ipLoad = function (callback) {
         var url = 'https://mipp.iask.cn/iplookup/search?format=json&callback=?';
         try {
@@ -158,17 +161,19 @@ define(function (require) {
         list['COOPERATE_HUASHENG_QA'] = 201;	 // 华盛QA
         list['COOPERATE_HUASHENG_BY'] = 202;	 // 华盛包月
         list['COOPERATE_TIANZHU'] = 300;		 // 天助
+        // list['"COOPERATE_XINYUHENG'] = 400;    // 新雨恒
         list['COOPERATE_COMMERCIAL'] = 500;	 // 商业自问自答
         list['COMMERCIAL_CAD'] = 501;	     // 商业纯广告
         list['COOPERATE_BRAND'] = 600;	     // 品牌自问自答
         list['COOPERATE_EFFECT'] = 700;	     // 效果广告
+	list['COOPERATE_BRAND_MARKET'] = 800; // 问答营销
         list['COOPERATE_YOULAI'] = 1000;     // 有来
         list['COOPERATE_BAOXIAN'] = 901;	// 保险
         return list;
     };
     var getUserId = function (source, uid, adOwnerId) {
         if (source === 202 || source === 500 || source === 501
-        || source === 600 || source === 700) {
+        || source === 600 || source === 700 || source === 800) {
             return uid;
         }
         else if (source === 1000) {
@@ -251,6 +256,9 @@ define(function (require) {
         if (companyName.length > 9) {
             companyName = companyName.substring(0, 9);
         }
+        if(drName.length > 15) {
+        	drName = drName.substring(0, 15);
+        }
         var htmls = '<div class=\'firms-con href_log\' href=' + website + ' ' + statsBaidu + ' pos=' + pos + '>';
         htmls += '<div class=\'firms-pic\'>';
         htmls += '<mip-img class=\'mip-img\' src=' + picLocal + '></mip-img>';
@@ -273,24 +281,48 @@ define(function (require) {
             $('.mip_as_other_qiye_div').eq(0).append(htmls);
         }
     };
-    var putBrandQiyeInfo = function (companyName, drName, website, picLocal, statsBaidu, pos, uid) {
+    var putBrandQiyeInfo = function (companyName, drName, website, picLocal, statsBaidu, pos, brandLink) {
         if (companyName.length > 9) {
             companyName = companyName.substring(0, 9);
         }
         var htmls = '<div class=\'firms-con\' >';
-        htmls += '<div class=\'firms-pic href_log\' href=\'http://m.iask.sina.com.cn/brand/' + uid + '.html\'>';
+        htmls += '<div class=\'firms-pic href_log\' href=' + brandLink + '>';
         htmls += '<mip-img class=\'mip-img\' src=' + picLocal + '></mip-img>';
         htmls += '<span class=\'icon-v\'></span>';
         htmls += '</div>';
         htmls += '<div class=\'firms-text\'>';
-        htmls += '<p><span class=\'name href_log\'href=\'http://m.iask.sina.com.cn/brand/' + uid + '.html\'>' + companyName + '</span>';
+        htmls += '<p><span class=\'name href_log\'href=' + brandLink + '>' + companyName + '</span>';
         htmls += '<span class=\'time\'> 1小时前</span><span class=\'icon-tui\'>广告</span></p>';
         htmls += '<p class=\' href_log\' href=' + website + ' ' + statsBaidu + ' pos=' + pos + '>' + drName + '</p>';
         htmls += '</div>';
         htmls += '<span class=\'btn-ask href_log\' href=' + website + ' ' + statsBaidu + ' pos=' + pos + '>咨询专家</span>';
         htmls += '</div>';
         htmls += '</div>';
-        return htmls;
+        
+        if ($('.qs_bar').length > 0) {
+            $('.qs_bar').eq(0).empty();
+            $('.qs_bar').eq(0).append(htmls);
+        }
+        else {
+            $('.mip_as_other_qiye_div').eq(0).empty();
+            $('.mip_as_other_qiye_div').eq(0).append(htmls);
+        }
+    };
+    var feedInfo = function (statsBaidu, userImg,useName, shortIntroduce, materialIntroduce, materialLink, picList, pos) {
+        var i = 0;
+        var obj2PicUrl = '<mip-img class="mip-img" src="' + userImg + '"></mip-img>';
+        $('.youlai_feed_div .youlai_feed_title').text(materialIntroduce);
+        $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
+        $('.youlai_feed_div .youlai_feed_use_name').html(useName);
+        $('.youlai_feed_div .youlai_feed_txt').text(shortIntroduce);
+        $('.youlai_feed_div a').attr('pos', pos);
+        $('.youlai_feed_div a').attr('href', materialLink);
+        $('.youlai_feed_div a').attr('class', 'href_log');
+        $('.youlai_feed_div a').attr('data-stats-baidu-obj', statsBaidu);
+        $('.youlai_feed_div .youlai_feed').each(function () {
+            $(this).append('<mip-img class="mip-img" src="' + picList[i++] + '"></mip-img>');
+        });
+        $('.youlai_feed_div').show();
     };
     // 商业广告
     var busBottomAM = function () {
@@ -365,7 +397,7 @@ define(function (require) {
     };
     var putTestButHtml = function (putUrl, picUrl) {
         var statsBaidu = 'data-stats-baidu-obj="%20%7B%22type%22:%22click%22,'
-        + '%22data%22:%22%5B\'_trackEvent\',%20\'100m,%20\'0\',%20\'8002m\'%5D%22%7D"';
+        + '%22data%22:%22%5B\'_trackPageview\',%20\'100m,%20\'0\',%20\'8002m\'%5D%22%7D"';
         return putMXfAd(putUrl, picUrl, statsBaidu, '');
     };
     // 移除百度广告
@@ -389,19 +421,18 @@ define(function (require) {
         var json = data.adList;
         for (var key in json) {
             if (json[key].type === '4') {
-                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,';
-                statsBaidu += '’%22data%22:%22%5B\'_trackEvent\',%20\'MIP_SY_1000\',';
-                statsBaidu += '%20\'skip\',%20\'MIP_SY_1000_top\'%5D%22%7D"';
+                var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_1000", "skip", "MIP_SY_1000_top"]}';
+                var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
                 $('.mip_as_bottm_div').empty();
-                $('.mip_as_bottm_div').append(putMXfAd(json[key].picLink, json[key].picUrl, statsBaidu, ''));
+                $('.mip_as_bottm_div').append(putMXfAd(json[key].picLink, json[key].picUrl, baiduObj, ''));
             }
             else if (json[key].type === '3') {  // 企业信息
                 var obj = json[key];
                 var companyName = obj.companyName || '';
                 var drName   = obj.drName  || '';
-                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B';
-                statsBaidu += '_trackEvent\',%20\'MIP_SY_1000\',%20\'skip\',%20\'MIP_SY_1000_qy\'%5D%22%7D"';
-                putQiyeInfo(drName, companyName, data.website, obj.picUrl, statsBaidu, '');
+                var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_1000", "skip", "MIP_SY_1000_qy"]}';
+                var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
+                putQiyeInfo(drName, companyName, data.website, obj.picUrl, baiduObj, '');
             }
             else if (json[key].type === '5') {
                 var obj2 = {};
@@ -412,32 +443,79 @@ define(function (require) {
                 }
                 var obj = json[key];
                 var picList = obj.picList;
-                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B\'_trackEvent\',';
-                statsBaidu += '%20\'MIP_SY_1000\',%20\'skip\',%20\'MIP_SY_1000_feed\'%5D%22%7D"';
-                var i = 0;
-                var obj2PicUrl = '<mip-img class="mip-img" src="' + obj2.picUrl + '"></mip-img>';
-                $('.youlai_feed_div .youlai_feed_title').text(obj.title);
-                $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
-                $('.youlai_feed_div .youlai_feed_use_name').html(obj2.companyName);
-                $('.youlai_feed_div .youlai_feed_txt').text(obj.describe);
-                $('.youlai_feed_div a').attr('href', obj.picLink);
-                $('.youlai_feed_div a').attr('href', obj.picLink);
-                $('.youlai_feed_div a').attr('class', 'href_log');
-                $('.youlai_feed_div a').attr('data-stats-baidu-obj', statsBaidu);
-                $('.youlai_feed_div .youlai_feed').each(function () {
-                    $(this).append('<mip-img class="mip-img" src="' + picList[i++] + '"></mip-img>');
-                });
-                $('.youlai_feed_div').show();
+                var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_1000", "skip", "MIP_SY_1000_feed"]}';
+                var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
+                feedInfo(baiduObj, obj2.picUrl, obj2.companyName, obj.title, obj.describe, obj.picLink, picList, '');
             }
             else if (json[key].type === '6') {
                 var obj = json[key];
                 var picList = obj.adDetailList;
-                var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B\'_trackEvent\',';
-                statsBaidu += '%20\'MIP_SY_1000\',%20\'skip\',%20\'MIP_SY_1000_mpic\'%5D%22%7D"';
+                var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_1000", "skip", "MIP_SY_1000_mpic"]}';
+                var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
                 for (var pic in picList) {
                     var picLink = obj.picLink;
                     var picUrl = picList[pic].picUrl;
                     var describe = picList[pic].describe;
+                    $('.hot-tui-list').append(hotRecommend(picLink, picUrl, describe, baiduObj, ''));
+                    $('.hot_recomd_div').show();
+                }
+            }
+        }
+        advLogInfoClick();
+    };
+    
+    var brandMedical = function (data) { // 品牌医疗
+        var json = data.adList;
+        var qiyeData = null;
+        for (var k in json) {
+        	if (json[k].adType === '3') {
+        		qiyeData = json[k];
+        	}
+        }
+        for (var key in json) {
+            if (json[key].adType === '1') {
+            	var tempStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_800", "skip", "MIP_SY_800_top"]}';
+                var statsBaidu = 'data-stats-baidu-obj="' + encodeURIStr(tempStr) + '"';
+                $('.mip_as_bottm_div').empty();
+                $('.mip_as_bottm_div').append(putMXfAd(json[key].materialLink, json[key].materialImg, statsBaidu, ''));
+            }
+            else if (json[key].adType === '3') {  // 企业信息
+                var obj = qiyeData;
+                var companyName = obj.shortIntroduce || '';
+                var drName   = obj.brandName  || '';
+                var tempStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_800", "skip", "MIP_SY_800_qy"]}';
+                var statsBaidu = 'data-stats-baidu-obj="' + encodeURIStr(tempStr) + '"';
+                putQiyeInfo(drName, companyName, obj.materialLink, obj.materialImg, statsBaidu, '');
+            }
+            else if (json[key].adType === '5') {
+            	var obj = json[key];
+    			var picList = new Array(0);
+    			var materImg = obj.materialImg.split(",");
+    			for(var k in materImg) {
+    				picList.push(materImg[k]);
+    			}
+                var tempStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_800", "skip", "MIP_SY_800_feed"]}';
+                var statsBaidu = encodeURIStr(tempStr);
+                feedInfo(statsBaidu, qiyeData.materialImg, qiyeData.shortIntroduce, obj.materialIntroduce,
+				obj.shortIntroduce, obj.materialLink, picList, '');
+            }
+            else if (json[key].adType === '6') {
+                var obj = json[key];
+                var tempStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_800", "skip", "MIP_SY_800_mpic"]}';
+                var statsBaidu = 'data-stats-baidu-obj="' + encodeURIStr(tempStr) + '"';
+                var arrayPic = new Array(0);
+    			var arrayDesc = new Array(0);
+    			var materImg = obj.materialImg.split(",");
+    			var materDesc = obj.materialIntroduce.split("|");
+    			for(var index in materImg) {
+    				arrayPic.push(materImg[index]);
+    				arrayDesc.push(materDesc[index]);
+    				
+    			}
+                for (var pic in arrayPic) {
+                    var picLink = obj.materialLink;
+                    var picUrl = arrayPic[pic];
+                    var describe = arrayDesc[pic];
                     $('.hot-tui-list').append(hotRecommend(picLink, picUrl, describe, statsBaidu, ''));
                     $('.hot_recomd_div').show();
                 }
@@ -445,32 +523,34 @@ define(function (require) {
         }
         advLogInfoClick();
     };
+    
     var tianZhu = function (data) {
         removeBaiduAd();
-        var statsBaidu = 'data-stats-baidu-obj="%7B%22type%22:%22click%22,%22data%22:%22%5B\'_trackEvent\',';
-        statsBaidu += '%20\'MIP_SY_300\',%20\'skip\',%20\'MIP_SY_300_sj\'%5D%22%7D"';
+        var tempStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_800", "skip", "MIP_SY_300_sj"]}';
+        var statsBaidu = 'data-stats-baidu-obj="' + encodeURIStr(tempStr) + '"';
         $('.mip_as_bottm_div').empty();
         $('.mip_as_bottm_div').append(putMXfAd(data.pics[3].picLink, data.pics[3].picLocal, statsBaidu, ''));
         advLogInfoClick();
     };
     // 商业广告标准版企业信息
     var commercialSqc  = function (divData, commercialStandardHover) {
-        var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-        baiduObj += '%20%5C\'MIP_SY_600_2%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_600_2_qy%5C\'%5D%22%7D';
+        var tempStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_600", "skip", "MIP_SY_600_2_qy"]}';
+        var statsBaidu = 'data-stats-baidu-obj="' + encodeURIStr(tempStr) + '"';
         var imgsrc = divData.attr('imgsrc');
         var brandname = divData.attr('brandname');
         var link = divData.attr('link');
         var introduce = divData.attr('introduce');
-        putQiyeInfo(brandname, introduce, link, imgsrc, baiduObj, '');
+        putQiyeInfo(brandname, introduce, link, imgsrc, statsBaidu, '');
         var tImgSrc = commercialStandardHover.attr('imgsrc');
         var tLink = commercialStandardHover.attr('link');
         $('.mip_as_bottm_div').empty();
-        var baiduTop = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-        baiduTop += '%20%5C\'MIP_SY_600_2%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_600_2_top%5C\'%5D%22%7D';
+        
+        var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_600", "skip", "MIP_SY_600_2_top"]}';
+        var baiduTop = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
         $('.mip_as_bottm_div').append(putMXfAd(tLink, tImgSrc, baiduTop, ''));
         advLogInfoClick();
     };
-    var loadAd = function (sources, openId, div) {
+    var loadAd = function (sources, openId, div, questionId, version) {
         var type = '';
         if (sources === 'COOPERATE_HUASHENG') {
             type = 'HS';
@@ -484,19 +564,20 @@ define(function (require) {
         else if (sources === 'COOPERATE_TIANZHU') {
             type = 'TZ';
         }
+        else if(sources ==='' && version === '4') {
+        	type = 'PPYL';
+        }
         else if (type === '') {
             return;
         }
-        var url = 'https://mipp.iask.cn/t/wlsh?openCorporationId=' + openId + '&type=' + type;
+        var url = 'https://mipp.iask.cn/t/wlsh?openCorporationId=' + openId + '&type=' + type + "&questionId=" + questionId + "&version=" + version;
         $.get(url,
         function (data) {
             var base = new Base64();
             var res = $.parseJSON(data);
             if (res.succ === 'Y') {
                 var json = $.parseJSON(base.decode(res.html));
-                var isHuasheng = true;
                 var htmls = '';
-                var html1 = '';
                 if (type === 'YL') {
                     youLai(json);
                     return;
@@ -508,6 +589,10 @@ define(function (require) {
                 if (type === 'XYH') {
                     isHuasheng = false;
                     htmls = putMXfAd(json.pics[1].picLink, json.pics[1].picLocal, '');
+                }
+                if (type === 'PPYL') {
+                	brandMedical(json);
+                	return;
                 }
                 else {
                     var pic = json.pics[3] || '';
@@ -811,31 +896,31 @@ define(function (require) {
         + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
     };
     // 广告
-    var currencyAM = function (sourceType, openId) {
-        loadAd(sourceType, openId, '.mip_as_bottm_div');
+    var currencyAM = function (sourceType, openId, questionId, version) {
+        loadAd(sourceType, openId, '.mip_as_bottm_div', questionId, version);
     };
     // 南方网通底部悬浮广告
     var southnetwork = function (openId, div) {
         var url = 'https://imgv2-ssl.g3user.com/api/iask.php?uid=' + openId + '&type=m&callback=?';
         try {
-            $.getJSON(url,
-            function (data) {
-                var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B\'_trackEvent\',';
-                baiduObj += '%20\'MIP_SY_100\',%20\'skip\',%20\'MIP_SY_100_sj\'%5D%22%7D';
+            $.getJSON(url, function (data) {
+                var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_100", "skip", "MIP_SY_100_sj"]}';
+                var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
                 var htmls = putMXfAd(data.mobile.link, data.mobile.pic, baiduObj, '');
                 $(div).empty();
                 $(div).append(htmls);
                 putQiyeInfo(data.logo.brand, data.logo.intro, data.logo.link, data.logo.pic, baiduObj, '');
                 if(data.feed !== null && data.feed.length > 0) {
-                    for(var index in data.feed) {
-                        var picLink = data.feed[index].link;
-                        var picUrl = data.feed[index].pic;
-                        var picDesc = data.feed[index].title;
-                        $('.hot-tui-list').append(hotRecommend(picLink, picUrl, picDesc, baiduObj, ''));
-                    }
-                    $('.hot_recomd_div').show();
+                	for(var index in data.feed) {
+                		var picLink = data.feed[index].link;
+                		var picUrl = data.feed[index].pic;
+                		var picDesc = data.feed[index].title;
+                		$('.hot-tui-list').append(hotRecommend(picLink, picUrl, picDesc, baiduObj, ''));
+                	}
+                	$('.hot_recomd_div').show();
                 }
                 advLogInfoClick();
+                
             });
         }
         catch (e) {}
@@ -863,38 +948,42 @@ define(function (require) {
     var advEffectCallBack = function (dd) {
         var list = dd.materialList;
         var ve = dd.version;
+        var channelCode = dd.channelCode;
         $('.paramDiv').attr('uid', dd.userId);
+        if ('2' !== ve) {
+        	removeBaiduAd();
+        }
         for (var i = 0; i < list.length; i++) {
             var obj = list[i];
             if (ve === '1') {
-                showEffectAdv(obj, 1);
+                showEffectAdv(obj, 1, channelCode);
             }
             else if (ve === '2') {
-                showEffectAdv(obj, 2);
+                showEffectAdv(obj, 2, channelCode);
             }
 			else {
-                showEffectAdv(obj, 3);
+                showEffectAdv(obj, 3, channelCode);
             }
         }
+        var baiduStr = '{"type":"load", "data":["_setPageTag", "MIP_SY_700", "skip", "MIP_SY_效果广告"]}';
+        var baiduObj = '<div data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '" ></div>';
+        $('.baidu_label_div').append(baiduObj);
         advLogInfoClick();
     };
-    var showEffectAdv = function (json, tp) {
+    var showEffectAdv = function (json, tp, channelCode) {
         if (json.adType === '3') {
-            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'MIP_SY_700_' + tp + '%5C\',';
-            baiduObj += '%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_' + tp + '_qiye%5C\'%5D%22%7D';
-            removeBaiduAd();
+            var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_700", "skip", "MIP_SY_700_' + tp + '_qiye"]}';
+            var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
+            var brandLink = '';
             var uid = $('.paramDiv').attr('uid');
-            var html1 = putBrandQiyeInfo(json.brandName, json.shortIntroduce,
-            json.materialLink, json.materialImg, baiduObj, '', uid);
-            if ($('.qs_bar').length > 0) {
-                $('.qs_bar').eq(0).empty();
-                $('.qs_bar').eq(0).append(html1);
+            if('10002' === channelCode) {
+            	brandLink = json.materialLink;  // 南方网通效果广告-链接跳转自己的物料链接
             }
             else {
-                $('.mip_as_other_qiye_div').eq(0).empty();
-                $('.mip_as_other_qiye_div').eq(0).append(html1);
+            	brandLink = 'http://m.iask.sina.com.cn/brand/' + uid + '.html';
             }
+            putBrandQiyeInfo(json.brandName, json.shortIntroduce, json.materialLink, 
+			json.materialImg, baiduObj, '', brandLink);
             return;
         }
         if (json.adType === '2') {
@@ -902,30 +991,18 @@ define(function (require) {
         }
         // 旗舰版feed
         if (json.adType === '5') {
-            var baiduObj = '%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'MIP_SY_700_1%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_1_feed%5C\'%5D%22%7D';
+            var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_700", "skip", "MIP_SY_700_' + tp + '_feed"]}';
             var materialImg = json.materialImg;
             var picList = materialImg.split(',');
-            var i = 0;
-            var obj2PicUrl = '<mip-img class="mip-img" src="http://tp2.sinaimg.cn/1169181841/50/0/1"></mip-img>';
-            $('.youlai_feed_div .youlai_feed_title').text(json.shortIntroduce);
-            $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
-            $('.youlai_feed_div .youlai_feed_use_name').html(json.brandName);
-            $('.youlai_feed_div .youlai_feed_txt').text(json.materialIntroduce);
-            $('.youlai_feed_div a').attr('href', json.materialLink);
-            $('.youlai_feed_div a').attr('data-stats-baidu-obj', baiduObj);
-            $('.youlai_feed_div a').attr('class', 'href_log');
-            $('.youlai_feed_div .youlai_feed').each(function () {
-                $(this).append('<mip-img class="mip-img" src="' + picList[i++] + '"></mip-img>');
-            });
-            $('.youlai_feed_div').show();
+            var picUrl = 'http://tp2.sinaimg.cn/1169181841/50/0/1';
+            feedInfo(encodeURIStr(baiduStr), picUrl, json.brandName, json.shortIntroduce, json.materialIntroduce,
+			json.materialLink, picList, '');
             return;
         }
         // 旗舰版-顶部悬浮
         if (json.materialType === '5' && tp === 1) {
-            removeBaiduAd();
-            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'MIP_SY_700_1%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_1_top%5C\'%5D%22%7D';
+            var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_700", "skip", "MIP_SY_700_' + tp + '_top"]}';
+            var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
             var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj, '');
             $('.mip_as_bottm_div').empty();
             $('.mip_as_bottm_div').append(htmls);
@@ -933,8 +1010,8 @@ define(function (require) {
         }
         // 标准版顶部悬浮
         if (json.materialType === '5' && tp === 2) {
-            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'MIP_SY_700_2%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_2_top%5C\'%5D%22%7D';
+            var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_700", "skip", "MIP_SY_700_' + tp + '_top"]}';
+            var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
             var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj, '');
             $('.mip_as_bottm_div').empty();
             $('.mip_as_bottm_div').append(htmls);
@@ -942,9 +1019,8 @@ define(function (require) {
         }
         // 专业版-顶部悬浮
         if (json.materialType === '5' && tp === 3) {
-            removeBaiduAd();
-            var baiduObj = 'data-stats-baidu-obj=%7B%22type%22:%22click%22,%22data%22:%22%5B%5C\'_trackEvent%5C\',';
-            baiduObj += '%20%5C\'MIP_SY_700_3%5C\',%20%5C\'skip%5C\',%20%5C\'MIP_SY_700_3_top%5C\'%5D%22%7D';
+            var baiduStr = '{"type":"click", "data":["_trackPageview", "MIP_SY_700", "skip", "MIP_SY_700_' + tp + '_top"]}';
+            var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
             var htmls = putMXfAd(json.materialLink, json.materialImg, baiduObj, '');
             $('.mip_as_bottm_div').empty();
             $('.mip_as_bottm_div').append(htmls);
@@ -999,31 +1075,16 @@ define(function (require) {
         },
         feed: function (opts, dsbo) {
             var object = this.conversionsObject(opts);
-            var statsBaidu = 'data-stats-baidu-obj="' + dsbo + '"';
-            var i = 0;
-            var obj2PicUrl = '<mip-img class="mip-img" src="' + object.picUrl + '"></mip-img>';
-            $('.youlai_feed_div .youlai_feed_title').text(object.title);
-            $('.youlai_feed_div .youlai_feed_use_img').html(obj2PicUrl);
-            $('.youlai_feed_div .youlai_feed_use_name').html(object.companyName);
-            $('.youlai_feed_div .youlai_feed_txt').text(object.describe);
-            $('.youlai_feed_div a').attr('pos', object.type);
-            $('.youlai_feed_div a').attr('href', object.picLink);
-            $('.youlai_feed_div a').attr('class', 'href_log');
-            $('.youlai_feed_div a').attr('data-stats-baidu-obj', statsBaidu);
-            $('.youlai_feed_div .youlai_feed').each(function () {
-                $(this).append('<mip-img class="mip-img" src="' + object.picList[i++] + '"></mip-img>');
-            });
-            $('.youlai_feed_div').show();
+            feedInfo(dsbo, object.picUrl, object.companyName, object.title, object.describe,
+			object.picLink, object.picList, object.type);
         },
         hot: function (opts, dsbo) {
             var object = this.conversionsObject(opts);
             var statsBaidu = 'data-stats-baidu-obj="' + dsbo + '"';
-            var i = 0;
             for (var pic in object.adDetailList) {
-                var picUrl = object.adDetailList[i].picUrl;
-                var describe = object.adDetailList[i].describe;
+                var picUrl = object.adDetailList[pic].picUrl;
+                var describe = object.adDetailList[pic].describe;
                 $('.hot-tui-list').append(hotRecommend(object.picLink, picUrl, describe, statsBaidu, object.type));
-                i ++;
             }
             $('.hot_recomd_div').show();
         },
@@ -1103,8 +1164,8 @@ define(function (require) {
             nObject.picList  = opts.picList  || {};
             nObject.describe = opts.describe || '';
             nObject.picUrl   = opts.picUrl || '';
-            nObject.czctype  = 'M_SY_901';
-            nObject.czcintroduce  = 'M_SY_901_' + opts.type;
+            nObject.czctype  = 'MIP_SY_901';
+            nObject.czcintroduce  = 'MIP_SY_901_' + opts.type;
             nObject.companyName = opts.companyName  || '';
             nObject.pos  = opts.pos || '';
             return nObject;
@@ -1165,7 +1226,8 @@ define(function (require) {
             }
             advLogInfo(sources, 0);
         }
-        else if (sources === 'COOPERATE_BRAND' && (version === '1' || version === '3')) {
+        else if ((sources === 'COOPERATE_BRAND' || sources === 'COOPERATE_BRAND_MARKET')
+        		&& (version === '1' || version === '3')) {
             // 商业广告-旗舰版、专业版本
             brandAvertisement(sources);
         }
@@ -1177,15 +1239,15 @@ define(function (require) {
             commercialSqc($commercialSqc, $commercialStandardHover);
             advLogInfo('COOPERATE_BRAND', 0);
         }
-        else if (sourceType === 'COOPERATE_HUASHENG'
-                    || sourceType === 'COOPERATE_HUASHENG_QA' || sourceType === 'COOPERATE_YOULAI'
-                    || sourceType === 'COOPERATE_TIANZHU') {
+        else if (sourceType === 'COOPERATE_HUASHENG' || sourceType === 'COOPERATE_HUASHENG_QA'
+        	|| sourceType === 'COOPERATE_YOULAI' || sourceType === 'COOPERATE_TIANZHU' || sourceType === 'COOPERATE_BRAND_MARKET') {
             // 第三方合作广告
-            if (sourceType === 'COOPERATE_YOULAI' || sourceType === 'COOPERATE_TIANZHU') {
+            if (sourceType === 'COOPERATE_YOULAI' || sourceType === 'COOPERATE_TIANZHU'
+            	|| (sourceType === 'COOPERATE_BRAND_MARKET' && version === '4')) {
                 // 需要删除百度广告
                 removeBaiduAd();
             }
-            currencyAM(sourceType, openId);
+            currencyAM(sourceType, openId, questionId, version);
             advLogInfo(sourceType, 0);
         }
         else if (sourceType === 'COOPERATE_SOUTHNETWORK') {
@@ -1244,7 +1306,7 @@ define(function (require) {
                         var putUrl = $('.yongyouPutUrl').text();
                         var picUrl = $('.yongyouPicUrl').text();
                         $('.mip_as_bottm_div').append(putTestButHtml(putUrl, picUrl));
-                        var urlr = 'http://m.iask.sina.com.cn/t/mipdf?t=yongyou';
+                        var urlr = 'https://mipp.iask.cn/t/mipdf?t=yongyou';
                         $.ajax({
                             type: 'GET',
                             url: urlr,
@@ -1274,4 +1336,3 @@ define(function (require) {
     };
     return customElem;
 });
-

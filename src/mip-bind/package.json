@@ -1,6 +1,6 @@
 {
     "name": "mip-bind",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "数据驱动，拥有双向绑定功能",
     "contributors": [
         {

@@ -173,7 +173,7 @@ define(function (require) {
     };
     var getUserId = function (source, uid, adOwnerId) {
         if (source === 202 || source === 500 || source === 501
-        || source === 600 || source === 700) {
+        || source === 600 || source === 700 || source === 800) {
             return uid;
         }
         else if (source === 1000) {

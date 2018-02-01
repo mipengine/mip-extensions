@@ -526,7 +526,7 @@ define(function (require) {
     
     var tianZhu = function (data) {
         removeBaiduAd();
-        var tempStr = '{"type":"click", "data":["_setCustomVar", "MIP_SY_800", "skip", "MIP_SY_300_sj"]}';
+        var tempStr = '{"type":"click", "data":["_setCustomVar", "MIP_SY_300", "skip", "MIP_SY_300_sj"]}';
         var statsBaidu = 'data-stats-baidu-obj="' + encodeURIStr(tempStr) + '"';
         $('.mip_as_bottm_div').empty();
         $('.mip_as_bottm_div').append(putMXfAd(data.pics[3].picLink, data.pics[3].picLocal, statsBaidu, ''));

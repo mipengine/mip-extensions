@@ -63,7 +63,7 @@
 - 在引用组件的页面头部head标签中需要加两个标签
     - iOS 使用：`<meta name="apple-itunes-app" content="app-id=app的id, app-argument=medium://xxxx">`。
     - Android 使用：`<link rel="manifest" href="https://xxxx/manifest.json">`。
-    - manifest 的 url 必须是 https 的。
+    - manifest 的 url 必须是 HTTPS 的。
 
 - manifest.json 示例
 

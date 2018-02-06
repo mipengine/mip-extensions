@@ -13,7 +13,7 @@
 ### 基本示例
 `<mip-audio>` 使用方法同 `<audio>` 标签。
 
-[info]由于 MIP-Cache 是 https 环境，src 要求为 https 资源。
+[info]由于 MIP-Cache 是 HTTPS 环境，src 要求为 HTTPS 资源。
 
 ``` html
 <mip-audio 

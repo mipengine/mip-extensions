@@ -13,7 +13,7 @@
 `<mip-ad>` 具有多种类型（`type`），`type` 取值由广告分类和投放配置页地址决定。
 
 ### 1. 通用广告-图文链接形式
-直接使用 [通用广告 ad-comm](/examples/mip-ad/mip-ad-comm.html) 即可。
+直接使用 [通用广告 ad-comm](//www.mipengine.org/examples/mip-ad/mip-ad-comm.html) 即可。
 
 ### 2. 百度联盟 
 

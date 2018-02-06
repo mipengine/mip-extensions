@@ -5,7 +5,7 @@
 标题|内容
 ----|----
 类型|通用
-支持事件|click1, touchend, [disp,scroll], timer
+支持事件|click, touchend, [disp,scroll], timer
 所需脚本|https://c.mipcdn.com/static/v1/mip-analytics/mip-analytics.js
 
 ## 示例
@@ -218,7 +218,7 @@
 
 * 统计框架会默认传入一级参数t，为发送日志的时间。
 
-* host地址需要是https的。
+* host 地址需要是 HTTPS 的。
 
 * vars 和 queryString 是为了方便使用方重复利用变量并且保证灵活性，最好是 vars 用于 host 部分，queryString 用于参数部分，或者只选择其一。重叠使用时需要注意图们之间是否有交叉。框架会先替换 vars 再拼接 queryStirng。
 

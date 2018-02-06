@@ -140,8 +140,8 @@ https://www.mipengine.org/?rid=mip-142313cb090fa43b7ebecee9089f15b0&url=https%3A
 
 - READER_ID: 获取访问用户的 ID，该 ID 是可以理解为区分用户的唯一标示，通过 localStorage 的进行存储（清除 localStorage 后会再次生成）。
 - SOURCE_URL: 当前页面 URL，即 `window.location.href`。
-- MIPDOC_URL: mip 原站点 URL，非 MIP-Cache URL。
-- CANONICAL_URL: mip 站点对应的原 h5 站点 URL，如果 h5 站点不存在，则为当前页面 URL。
+- MIPDOC_URL: MIP 原站点 URL，非 MIP-Cache URL。
+- CANONICAL_URL: MIP 站点对应的原 h5 站点 URL，如果 h5 站点不存在，则为当前页面 URL。
 - DOCUMENT_REFERRER: 页面访问的 referer。
 - RANDOM: 随机数。
 

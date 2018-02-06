@@ -5,16 +5,16 @@
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|responsive, fixed-height, fill, container, fixed
 所需脚本|https://c.mipcdn.com/static/v1/mip-infinitescroll/mip-infinitescroll.js<br/> https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 
 ## 示例
 
 ### 最简单用法
-异步获取`{{number}}`等数据，插入页面。
+异步获取 `number` 等数据，插入页面。
 
-- `data-src` 填写 https 异步请求数据接口（仅支持 JSONP 请求）
-- 接口数据返回示例见文档下方 [正常数据示例](https://www.mipengine.org/examples/mip-extensions/mip-infinitescroll.html#markdown-doc-%E6%AD%A3%E5%B8%B8%E6%95%B0%E6%8D%AE%E7%A4%BA%E4%BE%8B)
+- `data-src` 填写 HTTPS 异步请求数据接口（仅支持 JSONP 请求）。
+- 接口数据返回示例见文档下方[正常数据示例](/examples/mip-extensions/mip-infinitescroll.html#markdown-doc-%E6%AD%A3%E5%B8%B8%E6%95%B0%E6%8D%AE%E7%A4%BA%E4%BE%8B)。
 
 ```html
 <mip-infinitescroll data-src="xxx">
@@ -33,9 +33,9 @@
 ```
 
 ### 根据返回值判断请求结束
-如果数据量未知，可以填写rn="[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)", 加载完所有数据后，服务端返回空数据自动停止请求。接口数据返回示例见文档下方[空数据示例](https://www.mipengine.org/examples/mip-extensions/mip-infinitescroll.html#markdown-doc-%E7%A9%BA%E6%95%B0%E6%8D%AE%E7%A4%BA%E4%BE%8B)。
+如果数据量未知，可以填写 rn="[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)"， 加载完所有数据后，服务端返回空数据自动停止请求。接口数据返回示例见文档下方[空数据示例](/examples/mip-extensions/mip-infinitescroll.html#markdown-doc-%E7%A9%BA%E6%95%B0%E6%8D%AE%E7%A4%BA%E4%BE%8B)。
 
-[warning] 由于 JSON.parse 不能解析 Infinity(number)，配置需要写成字符串形式 "Infinity"。
+[warning] 由于 `JSON.parse` 不能解析 `Infinity(number)`，配置需要写成字符串形式 `Infinity`。
 
 ```html
 <mip-infinitescroll data-src="xxx">
@@ -59,7 +59,7 @@
 ```
 
 ### 自定义更多配置
-`rn`, `prn`, `timeout`, `loadingHtml`, `template`等参数可以配置，可选项参考下文“参数配置”。
+`rn`, `prn`, `timeout`, `loadingHtml`, `template` 等参数可以配置，可选项参考下文“参数配置”。
 
 ```html
 <mip-infinitescroll data-src="xxx" template="myTemplate">
@@ -95,7 +95,7 @@
 
 ### data-src
 
-说明：异步请求数据接口（仅支持 JSONP 请求）
+说明：异步请求数据接口（仅支持 JSONP 请求）  
 必选项：是   
 类型：字符串   
 取值范围：无   
@@ -104,7 +104,7 @@
 
 ### template
 
-说明：与模板 `id` 对应，用来标识所采用的模板，如不设置，则默认取组件子节点中的template  
+说明：与模板 `id` 对应，用来标识所采用的模板，如不设置，则默认取组件子节点中的 `<template>`  
 必选项：否   
 类型：字符串   
 取值范围：无   
@@ -115,16 +115,16 @@
 
 ### rn
 
-说明：results number, 需要显示的结果总数量  
-类型：整数，"[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)"字符串  
+说明：results number，需要显示的结果总数量  
+类型：整数，"[Infinity](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Infinity)" 字符串  
 必选项：否   
-取值范围：如果填写整数n，则只会取n条数据。如果填写"Infinity"，则无限加载数据，直到后端没有数据返回。   
+取值范围：如果填写整数 n，则只会取 n 条数据。如果填写 "Infinity"，则无限加载数据，直到后端没有数据返回   
 单位：无   
 默认值：20
 
 ### pn
 
-说明：page number, 请求第几页  
+说明：page number，请求第几页  
 必选项：否   
 类型：整数    
 单位：无   
@@ -132,7 +132,7 @@
 
 ### prn
 
-说明：page result number, 每次请求所请求的数据条数       
+说明：page result number，每次请求所请求的数据条数       
 必选项：否   
 类型：整数   
 取值范围：无   
@@ -150,7 +150,7 @@
 
 ### bufferHeightPx
 
-说明：缓冲高度, 距离底部一定高度时提前请求数据         
+说明：缓冲高度，距离底部一定高度时提前请求数据         
 必选项：否   
 类型：整数   
 取值范围：无   
@@ -168,7 +168,7 @@
 
 ### loadFailHtml
 
-说明：加载失败时提示文案, 当异步请求超时或失败时触发  
+说明：加载失败时提示文案，当异步请求超时或失败时触发  
 必选项：否   
 类型：字符串   
 取值范围：无   
@@ -194,16 +194,16 @@
 默认值：5000
 
 ## 内部DOM说明
-### class="mip-infinitescroll-results"
+### `class="mip-infinitescroll-results"`
 结果容器 DOM，初始为空。当数据渲染后，作为子节点插入结果容器。
 
-### class="mip-infinitescroll-loading"
-‘加载中’文字容器 DOM，初始为空。当请求发出后，文字容器显示 `loadingHtml` 内容，请求返回后文字容器消失。当请求超时或请求失败时，文字容器显示 `loadFailHtml`。
+### `class="mip-infinitescroll-loading"`
+“加载中”文字容器 DOM，初始为空。当请求发出后，文字容器显示 `loadingHtml` 内容，请求返回后文字容器消失。当请求超时或请求失败时，文字容器显示 `loadFailHtml`。
 
 ## 注意事项
 
-- 异步请求接口必须是 https
-- 异步请求接口需要规范 callback 为 'callback'
+- 异步请求接口必须是 HTTPS
+- 异步请求接口需要规范 `callback` 为 `'callback'`
 - 接口返回的数据格式需要是如下格式：
 
 ```
@@ -214,8 +214,9 @@
     }
 }
 ```
-- status 0 表示请求成功
-- items: [] 是需要渲染的数据
+- status: 0 表示请求成功。
+- items: 是需要渲染的数据。
+
 ## 异步接口示例
 
 ### 正常数据示例
@@ -260,7 +261,7 @@
 ```
 
 ### 空数据示例
-当不在有数据时，返回如下数据，item为空数组。
+当不在有数据时，返回如下数据，item 为空数组。
 ```
 {
     "status": 0, 

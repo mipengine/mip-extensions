@@ -5,14 +5,14 @@
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|responsive, fixed-height, fill, container, fixed
 所需脚本|https://c.mipcdn.com/static/v1/mip-list/mip-list.js<br/> https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 
 ## 示例
 
 ### 基本用法
 
-[info]jsonp 异步请求的接口需要遵循规范 callback 为 'callback'。
+[info]JSONP 异步请求的接口需要遵循规范 `callback` 为 `'callback'`。
 
 ```html
 <mip-list src="https://xxx" preLoad>
@@ -69,7 +69,7 @@
 
 ### 点击加载更多
 
-[info]有has-more 属性时，mip-list标签必须要有id属性，同时需要有点击按钮的dom节点，并且此节点有on属性，属性值为：tap:你的mip-list的id.more
+[info]有 `has-more` 属性时，`<mip-list>` 标签必须要有 `id` 属性，同时需要有点击按钮的 DOM 节点，并且此节点有 `on` 属性，属性值为：`tap:对应mip-list的id.more`
 
 ```html
 <mip-list 
@@ -94,10 +94,10 @@
 
 ### src
 
-说明：异步请求的数据接口，如果没有其他参数结尾请不要带 ？      
+说明：异步请求的数据接口，如果没有其他参数结尾请不要带 `？`      
 必选项：否    
 类型：字符串    
-取值范围：必须是https的    
+取值范围：必须是 HTTPS 的    
 单位：无    
 默认值：无
 
@@ -112,7 +112,7 @@
 
 ### id
 
-说明：mip-list 组件id    
+说明：`<mip-list>` 组件 `id`    
 必选项：否    
 类型：字符串    
 取值范围：字符串    
@@ -139,7 +139,7 @@
 
 ### pn
 
-说明：翻页初始页码，每次请求会自动加1     
+说明：翻页初始页码，每次请求会自动加 1     
 必选项：否    
 类型：整数    
 取值范围：无    
@@ -148,7 +148,7 @@
 
 ### preLoad
 
-说明：异步加载数据，如果添加'preLoad'参数，则在初始化时加载第一页内容     
+说明：异步加载数据，如果添加 `preLoad` 参数，则在初始化时加载第一页内容     
 必选项：否    
 
 ### timeout
@@ -163,6 +163,9 @@
 ## 注意事项
 
 - 接口返回的数据格式需要是如下格式：
+    - status：0 表示请求成功。
+    - items：[] 是需要渲染的数序。
+    - isEnd：表示是否是最后一页，非必须。
 
 ```
 {
@@ -171,9 +174,5 @@
         items: [], 
         isEnd: 1 
     }
-}
-
-  - status 0 表示请求成功
-  - items: [] 是需要渲染的数序
-  - isEnd 表示是否是最后一页，非必须
-```
+}  
+```    

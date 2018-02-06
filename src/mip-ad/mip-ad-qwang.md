@@ -1,7 +1,6 @@
 # mip-ad:ad-qwang 百度搜索推广合作
 
-mip-ad 的一种类型：百度搜索推广合作。  
-产品介绍：http://union.baidu.com/product/prod-search.html
+`<mip-ad>` 的一种类型：百度搜索推广合作。产品介绍见[具体文档](http://union.baidu.com/product/prod-search.html)。
 
 标题|内容
 ----|----
@@ -43,12 +42,12 @@ mip-ad 的一种类型：百度搜索推广合作。  
 说明：广告类型  
 必选项：是  
 类型：字符串  
-取值：ad-qwang 
+取值：ad-qwang  
 默认值：无
 
 ### cpro_psid
 
-说明：广告投放id  
+说明：广告投放 `id`  
 必选项：是  
 类型：字符串  
 默认值：无

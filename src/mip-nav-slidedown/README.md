@@ -1,11 +1,11 @@
 # mip-nav-slidedown 菜单
 
-响应式菜单，在mip官网有引用。
+响应式菜单，在 MIP 官网有引用。
 
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|responsive, fixed-height, fill, container, fixed
 所需脚本|https://c.mipcdn.com/static/v1/mip-nav-slidedown/mip-nav-slidedown.js
 
 ## 示例
@@ -38,7 +38,7 @@
 ```
 
 ### 导航菜单个数多
-导航菜单个数较多时，菜单展开可以上下滚动
+导航菜单个数较多时，菜单展开可以上下滚动。
 ```html
 <div class="mip-nav-wrapper">
     <mip-nav-slidedown
@@ -115,7 +115,7 @@
 ## 属性
 
 ### data-id  
-说明：内部菜单id  
+说明：内部菜单 `id`  
 必选项：是  
 类型：字符串  
 
@@ -127,14 +127,14 @@
 默认值：1
 
 ### data-brandname  
-说明：左上角显示可点击区域文字，仅在data-showbrand=1时显示  
+说明：左上角显示可点击区域文字，仅在 `data-showbrand=1` 时显示  
 必选项：否  
-类型：字符串，如"MIP官网"  
+类型：字符串，如 "MIP官网"  
 
 ### data-brandhref  
 说明：左上角图标跳转链接，在data-showbrand为1时有效  
 必选项：否  
-类型：url  
+类型：URL  
 默认：'/'
 
 ## 注意事项

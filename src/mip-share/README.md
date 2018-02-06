@@ -5,7 +5,7 @@
 标题|内容
 ----|----
 类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+支持布局|responsive, fixed-height, fill, container, fixed
 所需脚本|https://c.mipcdn.com/static/v1/mip-share/mip-share.js
 
 
@@ -19,7 +19,7 @@
 </div>
 ```
 
-### fixed布局
+### `fixed` 布局
 
 ```html
 <div class="mip-share-container">
@@ -54,7 +54,7 @@
 必选项：否  
 类型：字符串  
 取值范围：URL    
-默认值：当前页面的url
+默认值：当前页面的 URL  
 
 ### title
 
@@ -77,4 +77,4 @@
 
 ## 注意事项
     
-分享到微信好友和微信朋友圈，在手机百度和 QQ 浏览器上显示是因为 mip-share 组件调用浏览器的 API，在其他浏览器上没有可用API，所以分享按钮不显示或显示不全。
+分享到微信好友和微信朋友圈，在手机百度和 QQ 浏览器上显示是因为 `<mip-share>` 组件调用浏览器的 API，在其他浏览器上没有可用 API，所以分享按钮不显示或显示不全。

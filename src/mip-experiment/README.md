@@ -1,7 +1,7 @@
 # mip-experiment 前端抽样实验
 
-mip-experiment 组件用于前端抽样实验。  
-可用于按钮，banner，广告等前端可控元素的改版实验，与mip-pix，可配合使用。  
+`<mip-experiment>` 组件用于前端抽样实验。  
+可用于按钮，banner，广告等前端可控元素的改版实验，与 `<mip-pix>` 可配合使用。  
 
 标题|内容
 ----|----
@@ -53,7 +53,7 @@ body[mip-x-button-color=blue] .exp-btn1 {
 ```
 
 ### 2. 固定分组用法
-第一次实验抽样后，分组存储在localStorage中，再次刷新分组不变。
+第一次实验抽样后，分组存储在 localStorage 中，再次刷新分组不变。
 ```html
 <style>
 button {
@@ -150,7 +150,7 @@ body[mip-x-font-color=white] .exp-btn3 {
 ```
 
 ### 4. 调试：打印实验信息
-在mip-experiment上添加needConsole参数，可以在控制台看到分组过程和情况
+在 `<mip-experiment>` 上添加 `needConsole` 参数，可以在控制台看到分组过程和情况。
 
 ```html
 <style>
@@ -184,8 +184,8 @@ body[mip-x-button-color4=yellow] .exp-btn4 {
 </mip-experiment>
 ```
 
-### 5. 调试：URL强制中抽样
-测试时，可通过给URL添加hash强制中抽样，如#mip-x-button-color5=red
+### 5. 调试：URL 强制中抽样
+测试时，可通过给 URL 添加 hash 强制中抽样，如 `#mip-x-button-color5=red`。
 
 ```html
 <style>
@@ -229,24 +229,24 @@ body[mip-x-button-color5=red] .exp-btn5 {
 
 #### 注意事项：
 
-1. 需要按照`<mip-stats-baidu>`文档引入百度统计代码和标签，请保证 mip-stats-baidu.js 在 mip-experiment.js 之前引入。
-2. 如果引入了多个百度统计，请以_hmt.id中的token为准，在token对应的统计后台查看数据。
+1. 需要按照`<mip-stats-baidu>`文档引入百度统计代码和标签，请保证 `mip-stats-baidu.js` 在 `mip-experiment.js` 之前引入。
+2. 如果引入了多个百度统计，请以 `_hmt.id` 中的 `token` 为准，在 `token` 对应的统计后台查看数据。
 3. 开发时请关注控制台报错。
-4. 百度统计的数据产出有一定延迟，请在第二天查看数据
+4. 百度统计的数据产出有一定延迟，请在第二天查看数据。
 
 #### 统计使用说明：
 
-1. 配置多个统计：baidu-stats 为统计配置的数组，里面每一个元素相当于一句 js 的`addEventListener`
-2. 配置统计参数：每个配置可以传入三个参数
-    1. 第一个为元素选择器（支持element, id, class）
-    2. 第二个为事件（click, touchend）
-    3. 第三个可以自定义（可以选择填写广告的单价或事件的权重）
+1. 配置多个统计：`baidu-stats` 为统计配置的数组，里面每一个元素相当于一句 JS 的`addEventListener`。
+2. 配置统计参数：每个配置可以传入三个参数。
+    1. 第一个为元素选择器（支持 element, id, class）。
+    2. 第二个为事件（click, touchend）。
+    3. 第三个可以自定义（可以选择填写广告的单价或事件的权重）。
 3. 统计结果：在站长平台看到的统计结果有三个参数:
-    1. 第一个对应元素加事件，相当于统计参数的1和2，格式为element__click
-    2. 第二个对应当前实验名和实验分组，格式为mip-x-name=group
-    3. 第三个对应参数3，自定义
+    1. 第一个对应元素加事件，相当于统计参数的1和2，格式为 `element__click`。
+    2. 第二个对应当前实验名和实验分组，格式为 `mip-x-name=group`。
+    3. 第三个对应参数 3，自定义。
 
-下面例子可用于实验 “改变按钮的背景色，计算按钮的点展比”。在baidu-stats中配置了页面加载的次数和按钮点击次数的统计。
+下面例子可用于实验 “改变按钮的背景色，计算按钮的点展比”。在 `baidu-stats` 中配置了页面加载的次数和按钮点击次数的统计。
 
 ```html
 <style>
@@ -288,18 +288,18 @@ body[mip-x-button-color=grey] #btn01 {
 ```
 最后数据的产生格式为：  
 
---|次数|参数A|参数B|参数C|
-----|----|----|----|----|
+--|次数|参数A|参数B|参数C
+----|----|----|----|----
 第1行|3083|window__load|mip-x-button-color6=red|
 第2行|3013|window__load|mip-x-button-color6=grey|
 第3行|4742|window__load|mip-x-button-color6=default|
-第4行|127|#btn01__click|mip-x-button-color6=red|2.23|
-第5行|210|#btn01__click|mip-x-button-color6=grey|2.23|
-第6行|272|#btn01__click|mip-x-button-color6=default|2.23|
+第4行|127|#btn01__click|mip-x-button-color6=red|2.23
+第5行|210|#btn01__click|mip-x-button-color6=grey|2.23
+第6行|272|#btn01__click|mip-x-button-color6=default|2.23
 
-- 第1行和第4行为按钮红色情况，点展比为127/3083 = 4.12%
-- 第2行和第5行为按钮灰色情况，点展比为210/3013 = 6.97%
-- 第3行和第6行为按钮黑色情况(默认，对照组)，点展比为272/4742 = 5.74%
+- 第 1 行和第 4 行为按钮红色情况，点展比为 127/3083 = 4.12%
+- 第 2 行和第 5 行为按钮灰色情况，点展比为 210/3013 = 6.97%
+- 第 3 行和第 6 行为按钮黑色情况(默认，对照组)，点展比为 272/4742 = 5.74%
 
 可见，红色按钮实验点展比降低，灰色按钮实验点展比升高。
 
@@ -310,11 +310,11 @@ body[mip-x-button-color=grey] #btn01 {
 说明：组件布局，建议使用，避免实验初始化时页面抖动  
 必选项：否  
 类型：字符串  
-取值：layout="nodisplay" class="mip-hidden"  
+取值：`layout="nodisplay" class="mip-hidden"`  
 
 ### 实验名
 
-说明：示例中button-color处，注意和css中的mip-x-[button-color]对应  
+说明：示例中 `button-color` 处，注意和 CSS 中的 `mip-x-[button-color]` 对应  
 必选项：是  
 类型：字符串  
 
@@ -326,13 +326,13 @@ body[mip-x-button-color=grey] #btn01 {
 
 ### variants
 
-说明：实验分组配置。填写key-value组成的对象。key对应css中的属性选择器，value对应分组流量。如果value填写30，则有30%的流量进入该分组  
+说明：实验分组配置。填写 key-value 组成的对象。key 对应 CSS 中的属性选择器，value 对应分组流量。如果 value 填写 30，则有 30% 的流量进入该分组  
 必选项：是  
-类型：JSON对象  
+类型：JSON 对象  
 
 ### sticky
 
-说明：实验分组配置。填写key-value组成的对象。key对应css中的属性选择器，value对应分组流量。如果value填写30，则有30%的流量进入该分组  
+说明：实验分组配置。填写 key-value 组成的对象。key 对应 CSS 中的属性选择器，value  对应分组流量。如果 value 填写 30，则有 30% 的流量进入该分组  
 必选项：否  
 类型：布尔值  
 默认值：true  
@@ -345,5 +345,5 @@ body[mip-x-button-color=grey] #btn01 {
 类型：数组  
 
 ## 注意事项
-1. `<application/json>`为实验分组配置，要求填写合法的JSON对象。开发时请注意控制台是否有报错。
-2. 如果使用百度统计，请保证mip-stats-baidu.js在mip-experiment.js之前引入。
+1. `<application/json>` 为实验分组配置，要求填写合法的JSON对象。开发时请注意控制台是否有报错。
+2. 如果使用百度统计，请保证 `mip-stats-baidu.js` 在 `mip-experiment.js` 之前引入。

@@ -1,7 +1,6 @@
 # mip-ad:ad-baidu 百度网盟推广合作
 
-mip-ad 的一种类型：百度网盟推广合作。  
-产品介绍：http://union.baidu.com/product/prod-cpro.html
+`<mip-ad>` 的一种类型：百度网盟推广合作。产品介绍[具体文档](http://union.baidu.com/product/prod-cpro.html)。
 
 标题|内容
 ----|----
@@ -25,7 +24,7 @@ mip-ad 的一种类型：百度网盟推广合作。  
 
 ### 非定制加布局
 
-组件布局：[文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)。width 和 height 请根据广告实际宽高填写。
+[组件布局文档](/doc/3-widget/11-widget-layout.html)。`width` 和 `height` 请根据广告实际宽高填写。
 
 ```html
 <div class="mip-adbd">
@@ -43,10 +42,10 @@ mip-ad 的一种类型：百度网盟推广合作。  
 
 需要注意的是：
 
-- 定制广告的 script 标签中的参数必须带双引号，也就是说 script 标签中的数据必须是 json 格式的
-- mip-ad 标签必须有一个div子节点，并且此节点必须有属性id，并且id的属性值是"cpro_"为前缀，script标签中的cproid为后缀的字符串，本例应为"cproid="u1908671"
-- 定制广告的参数与原页面参数保持一致，如下代码仅为参考
-- layout="responsive" 为组件布局设定，[文档](https://www.mipengine.org/doc/3-widget/11-widget-layout.html)
+- 定制广告的 `<script>` 标签中的参数必须带双引号，也就是说 `<script>` 标签中的数据必须是 JSON 格式的。
+- `<mip-ad>` 标签必须有一个 `<div>` 子节点，并且此节点必须有属性 `id`，并且 `id` 的属性值是 `"cpro_"` 为前缀，`<script>` 标签中的 `cproid` 为后缀的字符串，本例应为 `"cproid="u1908671"`。
+- 定制广告的参数与原页面参数保持一致，如下代码仅为参考。
+- `layout="responsive"` 为组件布局设定，[文档](/doc/3-widget/11-widget-layout.html)。
 
 ```html
 <mip-ad 

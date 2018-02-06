@@ -152,7 +152,7 @@
 
 ##### setting.click.host
 
-说明：指定日志发送的 log server，可以使用插值变量占位，`${varName}`，在 vars 中指定真实值。 插件使用图片伪装请求。host 应该是一个图片地址，一般是 gif。如 https://logserver.com/mylog.gif?
+说明：指定日志发送的 log server，可以使用插值变量占位，`${varName}`，在 vars 中指定真实值。 插件使用图片伪装请求。host 应该是一个图片地址，一般是 GIF。如 https://logserver.com/mylog.gif?
 
 必选项：是
 

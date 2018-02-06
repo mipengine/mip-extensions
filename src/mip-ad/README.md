@@ -17,7 +17,7 @@
 
 ### 2. 百度联盟 
 
-投放官网 [http://union.baidu.com](http://union.baidu.com)。
+投放官网：[http://union.baidu.com](http://union.baidu.com)。
 
 广告产品页面|对应 MIP 组件
 ----|----

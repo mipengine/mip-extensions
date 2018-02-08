@@ -40,7 +40,7 @@
 
 
 ### 自定义控件皮肤
-使用 `controller` 属性在 `<mip-audio>` 中声明自定义交互控件。可以任意更改 DOM 位置，通过增加 class 及 CSS 为控件添加皮肤。  
+使用 `controller` 属性在 `<mip-audio>` 中声明自定义交互控件。可以任意更改 DOM 位置，通过增加 `class` 及 CSS 为控件添加皮肤。  
 当使用 `controller` 属性时，`<mip-audio>` 不会默认增加 `class="mip-audio-default-style"`，所有样式需要自己添加。  
 
 下列属性涉及到事件绑定，请务必保留：
@@ -55,7 +55,7 @@
 
 [notice] controller, current-time 等属性请务必保留，如果不需要总时间，可以设置 `display:none`。 
 
-下列 class 为播放时动态添加，可以设置自定义图标:
+下列 `class` 为播放时动态添加，可以设置自定义图标:
 
 - `mip-audio-stopped-icon` 图标，暂停时显示的三角图标。
 - `mip-audio-playing-icon` 图标，播放时显示的双竖杠图标。

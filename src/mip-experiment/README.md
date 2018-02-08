@@ -238,11 +238,11 @@ body[mip-x-button-color5=red] .exp-btn5 {
 
 1. 配置多个统计：`baidu-stats` 为统计配置的数组，里面每一个元素相当于一句 JS 的`addEventListener`。
 2. 配置统计参数：每个配置可以传入三个参数。
-    1. 第一个为元素选择器（支持 element, id, class）。
-    2. 第二个为事件（click, touchend）。
+    1. 第一个为元素选择器（支持 `element`, `id`, `class`）。
+    2. 第二个为事件（`click`, `touchend`）。
     3. 第三个可以自定义（可以选择填写广告的单价或事件的权重）。
 3. 统计结果：在站长平台看到的统计结果有三个参数:
-    1. 第一个对应元素加事件，相当于统计参数的1和2，格式为 `element__click`。
+    1. 第一个对应元素加事件，相当于统计参数的 1 和 2，格式为 `element__click`。
     2. 第二个对应当前实验名和实验分组，格式为 `mip-x-name=group`。
     3. 第三个对应参数 3，自定义。
 

@@ -29,7 +29,7 @@
 说明：广告类型  
 必选项：是  
 类型：字符串  
-取值：baidu-wm-ext   
+取值：`baidu-wm-ext`   
 默认值：无
 
 ### domain

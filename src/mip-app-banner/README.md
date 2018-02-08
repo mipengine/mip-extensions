@@ -43,7 +43,7 @@
 
 ### 子节点 `[open-button]`
 
-说明：调起 app 的按钮，必须带有 `open-button` 属性  
+说明：调起 App 的按钮，必须带有 `open-button` 属性  
 必选项：是  
 类型：HTML 节点  
 取值范围：无  

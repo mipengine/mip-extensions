@@ -132,10 +132,10 @@
 类型：字符串，如 "MIP官网"  
 
 ### data-brandhref  
-说明：左上角图标跳转链接，在data-showbrand为1时有效  
+说明：左上角图标跳转链接，在 `data-showbrand` 为 1 时有效  
 必选项：否  
 类型：URL  
 默认：'/'
 
 ## 注意事项
-1. 一个页面内，只能存在一个下拉菜单，data-id="bs-navbar"
+1. 一个页面内，只能存在一个下拉菜单，`data-id="bs-navbar"`。

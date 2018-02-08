@@ -57,4 +57,3 @@ https://c.mipcdn.com/static/v1/mip-link/mip-link.js
 ```html
 <mip-link title="目标页面标题" href="/doc/00-mip-101.html">链接文字</mip-link>
 ```
-

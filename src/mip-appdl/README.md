@@ -1,6 +1,6 @@
 # mip-appdl App 下载
 
-App 下载，可区分安卓和 iOS。
+App 下载，可区分 Android 和 iOS。
 
 标题|内容
 ----|----

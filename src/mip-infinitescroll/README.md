@@ -159,7 +159,7 @@
 
 ### loadingHtml
 
-说明：loading时提示文案         
+说明：loading 时提示文案         
 必选项：否   
 类型：字符串   
 取值范围：无   

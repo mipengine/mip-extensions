@@ -81,7 +81,7 @@
 
 ### validatetype
 
-说明：验证类型, 用于支持简单的验证。目前提供 `email`, `phone`, `idcar`, `custom`。当为custom时则需要填写 `validatereg`    
+说明：验证类型, 用于支持简单的验证。目前提供 `email`, `phone`, `idcar`, `custom`。当为 `custom` 时则需要填写 `validatereg`    
 必选项：否   
 
 ### validatereg

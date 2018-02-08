@@ -111,4 +111,4 @@
 
 - `<mip-lightbox>` 需要一个 `<div>` 子节点，这个 `<div>` 的 `calss` 必须有 `lightbox`，并且必须有 `on` 属性，属性值为 "tap:组件ID.close"。 
 
-- 依赖 mipmain 最低版本为 1.1.2
+- 依赖 mipmain 最低版本为 1.1.2。

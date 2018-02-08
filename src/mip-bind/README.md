@@ -1,6 +1,6 @@
 # mip-bind
 
-`<mip-bind>` 是以数据驱动页面更新的功能，开发者通过配置数据信息，并绑定在相应 DOM 上，就可以轻松做到数据变动后 DOM 元素随之变动的效果，可以通过[示例](https://itoss.me/mip-test/src/mip-bind/view/ecommerce.html)查看效果。
+`<mip-bind>` 是以数据驱动页面更新的功能，开发者通过配置数据信息，并绑定在相应 DOM 上，就可以轻松做到数据变动后 DOM 元素随之变动的效果，可以通过[示例](https://itoss.me/mip-test/src/mip-bind/view/ecommerce.html) 查看效果。
 
 标题|内容
 ----|----
@@ -230,7 +230,7 @@ on="事件:MIP.setData({}) 事件:MIP.setData({}) 事件:MIP.setData({})"
         ```
 - 数据源
 
-    设置的数据按照层级被合并到总的数据源中，后设置的数据会覆盖前者，如
+    设置的数据按照层级被合并到总的数据源中，后设置的数据会覆盖前者，如：
 
     ```
     <mip-data>
@@ -250,7 +250,7 @@ on="事件:MIP.setData({}) 事件:MIP.setData({}) 事件:MIP.setData({})"
     </mip-data>
     ```
 
-    此时页面维护的数据源为
+    此时页面维护的数据源为：
 
     ```json
     {
@@ -260,14 +260,14 @@ on="事件:MIP.setData({}) 事件:MIP.setData({}) 事件:MIP.setData({})"
     }
     ```
 
-    如果此时在进行数据的设置
+    如果此时在进行数据的设置：
 
     ```
     <div on="tap:MIP.setData({job:'互联网从业者', home: '上海'})"></div>
 
     ```
 
-    此时数据源将变为
+    此时数据源将变为：
 
     ```json
     {
@@ -280,7 +280,7 @@ on="事件:MIP.setData({}) 事件:MIP.setData({}) 事件:MIP.setData({})"
 
 - 数据表达式
 
-    - 支持运算表达式解析，如
+    - 支持运算表达式解析，如：
 
     ```html
     <mip-data>

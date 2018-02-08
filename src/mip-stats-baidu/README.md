@@ -22,7 +22,7 @@ hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
 // hm.js? 后为你的统计 token。此例 token="02890d4a309827eb62bc3335b2b28f7f"
 ```
 
-### MIP 插件引入:
+### MIP 插件引入
 
 ```
 <mip-stats-baidu>
@@ -37,7 +37,7 @@ hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
 
 ```
 
-### 事件追踪:
+### 事件追踪
 
 事件追踪是百度统计提供的定制化方法，能够统计按钮点击次数。详见[百度统计 API](http://tongji.baidu.com/open/api/)。
 
@@ -107,7 +107,7 @@ hm.src = "https://hm.baidu.com/hm.js?02890d4a309827eb62bc3335b2b28f7f";
 // hm.js? 后为你的统计 token。此例 token="02890d4a309827eb62bc3335b2b28f7f"
 ```
 
-### MIP 插件引入:
+### MIP 插件引入
 
 ```
 <mip-stats-baidu token="02890d4a309827eb62bc3335b2b28f7f"></mip-stats-baidu>

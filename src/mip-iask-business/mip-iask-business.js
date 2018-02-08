@@ -172,12 +172,14 @@ define(function (require) {
     };
     var getChannel = function () {
         var list = {};
-        var $channelSource = $('.channel_source');
-        $channelSource.find('li').each(function (){
-        	var txt = $(this).attr('txt');
-        	var val = $(this).attr('val');
-        	list[txt] = val;
-        });
+        var $that = document.querySelectorAll('.channel_source li');
+        if($that.length > 0) {
+        	for(var i=0; i< $that.length; i ++) {
+        		var txt = $that[i].getAttribute('txt');
+        		var val = $that[i].getAttribute('val');
+        		list[txt] = val;
+        	}
+        }
         return list;
     };
     var getUserId = function (source, uid, adOwnerId) {

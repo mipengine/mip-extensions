@@ -91,35 +91,20 @@
 
 ### clear
 
-<<<<<<< HEAD:mip-form/README.md
-说明: 表单中input清空按钮开关
-=======
 说明: 表单中 `<input>` 清空按钮开关
->>>>>>> 0d44181deb20e0c6bddd561affa3f0b168582690:src/mip-form/README.md
 
 ### fetch-url
 
 说明: 有此属性则可以开启异步请求数据逻辑，组件会并根据数据返回状态来按`submit-success`，`submit-error`块中的模板刷新局部信息。
 需要注意的几个点：
 
-<<<<<<< HEAD:mip-form/README.md
-- 方法支持
-- 请求结果请返回json对象。
-- 数据状态只有在成功(2xx)的时候触发`submit-success`的逻辑，其他的均触发`submit-error`逻辑。
-=======
 - 方法支持。
 - 请求结果请返回 JSON 对象。
 - 数据状态只有在成功（2xx）的时候触发 `submit-success` 的逻辑，其他的均触发 `submit-error` 逻辑。
->>>>>>> 0d44181deb20e0c6bddd561affa3f0b168582690:src/mip-form/README.md
 
 必选项：否  
 
 ## 注意事项
 
-<<<<<<< HEAD:mip-form/README.md
-1. 表单提交方法如果为post，应使用https地址。避免 MIP-Cache https环境提交到http，导致浏览器报错。
-2. 使用fetch功能时，请求使用cors时不能配置为*.
-=======
 1. 表单提交方法如果为 `post`，应使用 HTTPS 地址。避免 MIP-Cache HTTPS 环境提交到 HTTP，导致浏览器报错。
 2. 使用 fetch 功能时，请求使用 cors 时不能配置为 *。
->>>>>>> 0d44181deb20e0c6bddd561affa3f0b168582690:src/mip-form/README.md

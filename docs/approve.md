@@ -18,7 +18,7 @@ MIP 开发团队在每天 xx:xx 对所有 pull request 进行审核：
 
 我们非常希望自己的提交能够一次性审核通过，但是有时候可能会因为疏忽等原因，我们提交的 MIP 扩展组件没有遵守 [MIP 扩展组件规范](./spec.md)，导致审核不通过。
 
-如果提交的代码没有审核通过，MIP 开发团队将通过 [Pull request reviews](https://help.github.com/articles/about-pull request-reviews/) 反馈修改意见。
+如果提交的代码没有审核通过，MIP 开发团队将通过 [Pull request reviews](https://help.github.com/articles/about-pull-request-reviews/) 反馈修改意见。
 
 收到修改意见后，我们需要做的事和开发时一样：在本地修改代码、`commit` 并 `push`。[MIP 扩展组件仓库](https://github.com/mipengine/mip-extensions) 在该 pull request 在关闭前，将持续收到你的修改。
 

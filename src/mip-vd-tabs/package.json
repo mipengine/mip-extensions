@@ -1,0 +1,13 @@
+{
+    "name": "mip-vd-tabs",
+    "version": "1.1.4",
+    "description": "在网页中显示标签。标签页内元素较多时不建议使用,会影响页面性能。",   
+    "author": {
+        "name": "MIP authors",
+        "email": "mip-support@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

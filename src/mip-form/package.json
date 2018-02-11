@@ -1,0 +1,17 @@
+{
+    "name": "mip-form",
+<<<<<<< HEAD:mip-form/package.json
+    "version": "1.0.6",
+=======
+    "version": "1.0.7",
+>>>>>>> 0d44181deb20e0c6bddd561affa3f0b168582690:src/mip-form/package.json
+    "description":"表单提交。",
+    "author": {
+        "name": "MIP authors",
+        "email": "mip-support@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "name": "mip-custom",
+    "version": "1.2.3",
+    "description": "定制化MIP加载器组件",
+    "contributors": [
+        {
+            "name": "MIP authors",
+            "email": "mip-support@baidu.com",
+            "url": "https://www.mipengine.org"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

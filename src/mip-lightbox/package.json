@@ -1,0 +1,19 @@
+{
+    "name": "mip-lightbox",
+    "version": "1.0.4",
+    "description": "弹层组件",
+    "author": {
+        "name": "MIP authors",
+        "email": "mip-support@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "contributors": [
+        {
+            "name": "JennyL",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.2"
+    }
+}

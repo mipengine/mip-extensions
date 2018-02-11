@@ -1,0 +1,19 @@
+{
+    "name": "mip-stats-baidu",
+    "version": "1.1.2",
+    "description": "百度统计组件，用于统计页面数据",
+    "author": {
+        "name": "menglingjun",
+        "email": "menglingjun@baidu.com",
+        "url": "https://www.mipengine.org"
+    },
+    "contributors": [
+        {
+            "name": "JennyL",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

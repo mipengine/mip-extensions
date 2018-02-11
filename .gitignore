@@ -3,6 +3,7 @@ dist/
 npm-debug.log
 server.log
 Thumbs.db
+package-lock.json
 .DS_Store
 *.swp
 *.gz

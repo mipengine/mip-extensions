@@ -1,0 +1,14 @@
+{
+    "name": "mip-scrollbox",
+    "version": "1.0.0",
+    "description": "横向滑动组件，支持自动适合屏幕宽度、栅格化（12列和两端 `17px` 边距）等特性。",
+    "contributors": [
+        {
+            "name": "xuexb",
+            "email": "fe.xiaowu@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

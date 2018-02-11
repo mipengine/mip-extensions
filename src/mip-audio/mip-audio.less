@@ -1,0 +1,95 @@
+mip-audio.mip-audio-default-style{
+	font-size: 0;
+	max-width: 100%!important;
+	min-width: 250px;
+	min-height: 40px;
+	display: block;
+	overflow: visible!important;
+	-webkit-tap-highlight-color: transparent;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none; 
+	user-select: none; 
+	audio {
+		/* iOS7.1.2 audio标签有占位，需要手动清除*/
+		display: none;
+		height: 0;
+	}
+	[controller] {
+		background-color: #434343;
+		border-radius: 5px;
+		padding: 10px 15px;
+		box-sizing: border-box;
+		position: relative;
+		display: flex;
+		display: -webkit-box;
+		display: -webkit-flex;
+		-webkit-align-content: center;
+		-webkit-align-items: center;
+		-webkit-box-align: center;
+		align-content: center;
+		align-items: center;
+		box-align: center;
+  		height: 100%;
+	}
+	[play-button] {
+		width: 20px;
+		min-width: 20px;
+		height: 20px;
+		box-sizing: content-box;
+		padding: 10px;
+		margin: -10px;
+		background-size: 42px 20px;
+	    background-clip: content-box;
+	    flex: 0 0 auto;
+	}
+	[play-button].mip-audio-stopped-icon {
+		background-image: url('https://mipcache.bdstatic.com/static/static/auido/audioimg.png');
+	    background-position: 9px 11px;
+	}
+	[play-button].mip-audio-playing-icon {
+		background-image: url('https://mipcache.bdstatic.com/static/static/auido/audioimg.png');
+    	background-position: -13px 11px;
+	}
+	[seekbar] {
+		width : 120px;
+		height: 8px;
+		box-sizing: border-box;
+		background-color: #818181;
+		border: 1px solid #989898;
+		margin-left: 15px;
+		position: relative;
+		border-radius: 8px;
+		flex-grow: 2;
+	}
+	[seekbar-fill] {
+		height: 6px;
+		background-color: #414141;
+		position: absolute;
+		top: 50%;
+		margin-top: -3px; 
+		border-radius: 8px; 
+	}
+	[seekbar-button] {
+		width: 20px;
+		background-color: #fff;
+		height: 20px;
+		border-radius: 10px;
+		position: relative;
+		margin-top: -7px;
+		margin-left: -10px
+	}
+	[current-time],
+	[total-time] {
+		font-size: 13px;
+		color: #fff;
+		margin-left: 10px;
+		min-width: 40px;
+		white-space: nowrap;
+		flex: 0 0;
+	}
+	[total-time] {
+		margin: 0 0 0 20px;
+	}
+	
+}

@@ -1,0 +1,18 @@
+{
+    "name": "mip-gototop",
+    "version": "1.0.3",
+    "description":"添加快速回顶按钮，点击回到页面顶部。",
+    "contributors": [
+        {
+            "name": "MIP authors",
+            "email": "mip-support@baidu.com",
+            "url": "https://www.mipengine.org"
+        },{
+            "name": "FengZihao",
+            "email": "452242153@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.0.5"
+    }
+}

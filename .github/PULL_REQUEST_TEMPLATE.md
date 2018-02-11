@@ -1,0 +1,1 @@
+温馨提示：非 mip-extensions 仓库的组件请在[组件平台](https://www.mipengine.org/platform/mip#/)提交，否则一律打回；

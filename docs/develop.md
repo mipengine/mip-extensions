@@ -1,8 +1,6 @@
 开发 MIP 扩展组件
 ==============
 
-
-
 开发组件脚本
 ------
 
@@ -25,7 +23,7 @@ MIP 扩展组件通过 [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) 进行
 
 #### AMD 规范
 
-- [AMD spec](https://github.com/amdjs/amdjs-api/wiki/AMD)
+- [AMD Spec](https://github.com/amdjs/amdjs-api/wiki/AMD)
 - [AMD Require](https://github.com/amdjs/amdjs-api/wiki/require)
 - [AMD Common-Config](https://github.com/amdjs/amdjs-api/wiki/Common-Config)
 - [AMD Loader-Plugins](https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins)
@@ -33,16 +31,16 @@ MIP 扩展组件通过 [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) 进行
 
 ### 组件主模块
 
-首先我们需要创建一个主模块文件。主模块文件是一个 [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) 模块，返回一个 customElement 对象。命名可以在下面两个中选择：
+首先我们需要创建一个主模块文件。主模块文件是一个 [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) 模块，返回一个 `customElement` 对象。命名可以在下面两个中选择：
 
-- mip-[componentname].js
+- mip-[组件名].js
 - main.js
 
 ```javascript
 define(function(require) {
     var customElem = require('customElement').create();
 
-    // bla bla ...
+    // bala bala ...
     return customElem;
 });
 ```
@@ -111,7 +109,6 @@ define(function(require) {
     };
     /* 生命周期 function list，根据组件情况选用 end */
 
-
     return customElem;
 });
 ```
@@ -128,7 +125,7 @@ MIP 开发团队在环境中内置了一些依赖包，在开发 MIP 扩展组�
 define(function(require) {
     var zepto = require('zepto');
 
-    // bla bla ...
+    // bala bala ...
 });
 ```
 
@@ -137,10 +134,10 @@ define(function(require) {
 
 划分多个模块与文件可以让结构更清晰，提高可维护性，是开发的常用手段。
 
-我们可以在 `mip-[componentname]` 目录或子目录下创建 `.js` 文件，每个文件必须是一个 [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) 模块。
+我们可以在 `mip-[组件名]` 目录或子目录下创建 `.js` 文件，每个文件必须是一个 [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) 模块。
 
 ```javascript
-// mip-[componentname]/util.js
+// mip-[组件名]/util.js
 define(function(require) {
     return {
         trim: function (source) {
@@ -153,18 +150,18 @@ define(function(require) {
 然后，通过 `require` 我们可以引用到这个模块。引用时必须使用 `Relative ID`，不允许使用 `Top-Level ID`。
 
 ```javascript
-// mip-[componentname]/mip-[componentname].js
+// mip-[组件名]/mip-[组件名].js
 define(function(require) {
     var util = require('./util');
 
-    // bla bla ...
+    // bala bala ...
     util.trim(input.value);
 });
 ```
 
 ### 异步引用模块
 
-我们可以把部分功能封装到独立的模块，并通过 async require 去加载它们。通常需要这么做的场景有：
+我们可以把部分功能封装到独立的模块，并通过 `async require` 去加载它们。通常需要这么做的场景有：
 
 - 组件比较大，并且初始化时不希望加载一些二次交互才会用到的功能
 - 组件在一次展示中不需要用到所有功能
@@ -174,15 +171,15 @@ define(function(require) {
 ```javascript
 // mip-[componentname]/mip-[componentname].js
 define(function(require) {
-    // bla bla ...
+    // bala bala ...
     
     require(['./action-' + actionType], function (action) {
-        // bla bla ...
+        // bala bala ...
     });
 });
 ```
 
-`注意`: 异步引用内部模块时依然必须使用 `Relative ID`，不允许使用 `Top-Level ID`。
+注意: 异步引用内部模块时依然必须使用 `Relative ID`，不允许使用 `Top-Level ID`。
 
 
 开发组件样式
@@ -195,16 +192,16 @@ define(function(require) {
 
 ### 预编译工具
 
-我们可以使用 CSS 来开发组件的自定义样式，也可以使用 [LESS](http://lesscss.org/)。MIP 扩展组件的编译过程将对后缀为 `.less` 的文件使用 [LESS](http://lesscss.org/) 进行预编译。
+我们可以使用 CSS 来开发组件的自定义样式，也可以使用 [LESS](http://lesscss.org/)。MIP 扩展组件的编译过程将对后缀为 `.less` 的文件进行预编译。
 
 
 ### 样式主文件
 
 首先我们需要创建一个样式主文件。命名可以在下面中选择：
 
-- mip-[componentname].css
+- mip-[组件名].css
 - main.css
-- mip-[componentname].less
+- mip-[组件名].less
 - main.less
 
 ```css
@@ -216,7 +213,7 @@ mip-sample {
 
 ### 分文件开发
 
-通常情况下，自定义样式的代码不会太多，只需要样式主文件就够了。但是，如果我们想要分文件开发样式，只能通过 [LESS](http://lesscss.org/) 的 `@import` 引用。
+通常情况下，自定义样式的代码不会太多，只需要样式主文件就够了。但是如果我们想要分文件开发样式，只能通过 [LESS](http://lesscss.org/) 的 `@import` 引用。
 
 ```less
 @import "variable.less";
@@ -233,5 +230,5 @@ mip-sample {
 调试组件
 ------
 
-开发过程中，我们需要依赖 `mip-cli` 工具进行组件的调试和预览。`mip-cli` 将根据 `README.md` 的示例章节生成调试页面，所以，在调试之前我们需要编写好 `README.md`。详细信息请参考 [调试组件](./debug.md)、[MIP 扩展组件 README.md 规范](./spec-readme-md.md) 文档。
+开发过程中，我们需要依赖 mip-cli 工具进行组件的调试和预览。mip-cli 将根据 `README.md` 的示例章节生成调试页面，所以，在调试之前我们需要编写好 `README.md`。详细信息请参考 [调试组件](./debug.md)、[MIP 扩展组件 README.md 规范](./spec-readme-md.md) 文档。
 

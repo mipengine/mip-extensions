@@ -1,7 +1,7 @@
 MIP 扩展组件规范 - README.md
 ==============
 
-在本文档中，使用的关键字会以中文+括号包含的关键字英文表示：必须(MUST)。关键字"MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"被定义在rfc2119中。
+在本文档中，使用的关键字会以中文 + 括号包含的关键字英文表示：必须(MUST)。关键字 "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", 和 "OPTIONAL"被定义在rfc2119中。
 
 对照着 [README.md 示例文件](https://raw.githubusercontent.com/mipengine/mip-extensions/master/mip-sample/README.md) 阅读此文档，可以更容易理解些。
 
@@ -10,7 +10,7 @@ MIP 扩展组件规范 - README.md
 
 ### README.md 文件 **必须(MUST)** 使用无 BOM 的 UTF-8 编码
 
-`解释`: UTF-8 编码具有更广泛的适应性。[BOM](https://en.wikipedia.org/wiki/Byte_order_mark) 在使用程序或工具处理文件时可能造成不必要的干扰。
+解释: UTF-8 编码具有更广泛的适应性。[BOM](https://en.wikipedia.org/wiki/Byte_order_mark) 在使用程序或工具处理文件时可能造成不必要的干扰。
 
 
 标题与描述
@@ -24,12 +24,12 @@ mip-sample 实现了一个简单的卡牌元素，手指滑过卡牌时可向滑
 
 ### README.md 文件 **必须(MUST)** 以一级标题开头，一级标题 **必须(MUST)** 是组件名
 
-`解释`: 在文档最开始就应该以一级标题显著地告诉阅读者这是什么组件。一级标题和 `package.json` 中的 `name` 字段应该是一致的。
+解释: 在文档最开始就应该以一级标题显著地告诉阅读者这是什么组件。一级标题和 `package.json` 中的 `name` 字段应该是一致的。
 
 
 ### 一级标题后紧跟着的段落 **必须(MUST)** 是组件描述
 
-`解释`: 此处的描述无须与 `package.json` 中的 `description` 字段完全相同，可以更详细些。
+解释: 此处的描述无须与 `package.json` 中的 `description` 字段完全相同，可以更详细些。
 
 
 组件元信息
@@ -79,7 +79,7 @@ README.md 文件 **必须(MUST)** 包含 **示例** 章节。**示例** 章节�
 - 一个示例的格式: 一个示例介绍的段落，跟着一段 html 的代码片段
 - 多个示例的格式: 每个示例以一个三级标题开头，然后是一个示例介绍的段落，再跟着一段 html 的代码片段
 
-`注意`: 下面的示例，如果想复制去用，请去掉代码片段结尾标识开头中的斜杠。
+注意: 下面的示例，如果想复制去用，请去掉代码片段结尾标识开头中的斜杠。
 
 ```markdown
 ## 示例
@@ -113,7 +113,7 @@ README.md 文件 **必须(MUST)** 包含 **示例** 章节。**示例** 章节�
 \```
 ```
 
-`提示`: 示例章节非常重要。除了起到使用说明的作用外，调试工具将基于示例代码生成调试页面。示例信息也将被抽取生成在线的效果展示。请认真为组件编写示例。
+提示: 示例章节非常重要。除了起到使用说明的作用外，调试工具将基于示例代码生成调试页面。示例信息也将被抽取生成在线的效果展示。请认真为组件编写示例。
 
 
 属性

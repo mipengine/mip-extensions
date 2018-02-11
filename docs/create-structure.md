@@ -13,10 +13,10 @@
 
 在完成 [准备](./prepare.md) 工作后，我们的本地将拥有一个 `mip-extensions` 目录，在这个目录下我们可以看到很多 `mip-` 前缀的子目录，每个子目录代表一个 MIP 扩展组件。
 
-我们需要在 `mip-extensions` 内，为将要开发的 MIP 扩展组件创建一个 `mip-[componentname]` 目录。除了要求必须是 `mip-` 前缀外，目录的命名请参考 [MIP 扩展组件规范](./spec.md)。
+我们需要在 `mip-extensions` 内，为将要开发的 MIP 扩展组件创建一个 `mip-[组件名]` 目录。除了要求必须是 `mip-` 前缀外，目录的命名请参考 [MIP 扩展组件规范](./spec.md)。
 
 ```
-$ mkdir mip-componentname
+$ mkdir mip-组件名
 ```
 
 创建 package.json
@@ -56,4 +56,3 @@ $ mkdir mip-componentname
 `README.md` 文件必须符合 [MIP 扩展组件 README.md 规范](./spec-readme-md.md)，该文档详细描述了 `README.md` 文件中需要包含的内容与格式，请仔细阅读这篇文档。
 
 手写 `README.md` 可能比较麻烦，我们可以通过模仿或复制 [README.md 样例](https://raw.githubusercontent.com/mipengine/mip-extensions/master/mip-sample/README.md) 来创建 `README.md`。
-

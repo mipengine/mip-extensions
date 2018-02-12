@@ -97,6 +97,7 @@ define(function (require) {
             mask.id = 'MIP-' + self.id.toUpperCase() + '-MASK';
             mask.className = 'MIP-SIDEBAR-MASK';
             mask.style.display = 'block';
+            mask.setAttribute('data-side', self.side);
 
             // 与mip-sidebar 同级dom
             self.element.parentNode.appendChild(mask);
@@ -105,7 +106,6 @@ define(function (require) {
             }, false);
 
             self.maskElement = mask;
-
         }
 
         self.maskElement.setAttribute('on', 'tap:' + self.id + '.close');
@@ -113,8 +113,13 @@ define(function (require) {
         // 样式设置
         self.maskElement.style.display = 'block';
 
+        // 延迟设置遮罩层显示属性
+        setTimeout(function () {
+            self.maskElement.setAttribute('data-show', true);
+        }, 200);
+
         naboo.animate(self.maskElement, {
-            opacity: 0.2
+            backgroundColor: 'rgba(0, 0, 0, .7)'
         }, {
             duration: 500
         }).start(function () {
@@ -128,8 +133,9 @@ define(function (require) {
     function closeMask() {
         var self = this;
         if (self.maskElement) {
+            self.maskElement.setAttribute('data-show', false);
             naboo.animate(self.maskElement, {
-                opacity: 0
+                backgroundColor: 'rgba(0, 0, 0, 0)'
             }, {
                 duration: 500
             }).start(function () {

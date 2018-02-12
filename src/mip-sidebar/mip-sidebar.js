@@ -115,7 +115,7 @@ define(function (require) {
 
         // 延迟设置遮罩层显示属性
         setTimeout(function () {
-            self.maskElement.setAttribute('data-show', true);
+            self.maskElement.setAttribute('show', '');
         }, 200);
 
         naboo.animate(self.maskElement, {
@@ -133,7 +133,7 @@ define(function (require) {
     function closeMask() {
         var self = this;
         if (self.maskElement) {
-            self.maskElement.setAttribute('data-show', false);
+            self.maskElement.removeAttribute('show');
             naboo.animate(self.maskElement, {
                 backgroundColor: 'rgba(0, 0, 0, 0)'
             }, {

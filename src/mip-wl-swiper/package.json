@@ -1,0 +1,15 @@
+{
+  "name": "mip-wl-swiper",
+  "version": "1.0.0",
+  "contributors": [
+        {
+            "name": "MoGoethe",
+            "email": "1095364870@qq.com"
+        } 
+    ],
+  "description": "mip-wl-swiper实现一个卡片轮播效果",
+  "engines": {
+        "mip": ">=1.1.0"
+  },
+  "license": "ISC"
+}

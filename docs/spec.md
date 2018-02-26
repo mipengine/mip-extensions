@@ -68,4 +68,4 @@ https://c.mipcdn.com/static/v1/mip-sample/mip-sample.js
 
 1、目前线上地址只会保留大版本，但是组件代码中 `package.json` 仍需保留和更新。
 
-2、对于以前使用小版本的页面，如使用 `https://c.mipcdn.com/static/mipmain-v1.1.0.js`，代码仍然保留。但是使用新增功能或者组件代码有升级，需要页面整体符合最新规则，具体可参见 [官网](https://www.mipengine.org/doc/00-mip-101.html)。
+2、对于以前使用小版本的页面，如使用 `https://mipcache.bdstatic.com/static/mipmain-v1.1.0.js`，代码仍然保留。但是使用新增功能或者组件代码有升级，需要页面整体符合最新规则，具体可参见 [官网](https://www.mipengine.org/doc/00-mip-101.html)。

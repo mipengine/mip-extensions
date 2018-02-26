@@ -1229,8 +1229,8 @@ define(function (require) {
             var statsBaidu = 'data-stats-baidu-obj="' + dsbo + '"';
             var object = this.conversionsObject(opts);
             var html = '<div class="api-pic-con href_log" href="' + object.picLink + '"';
-            html += 'pos="' + object.mpicUrl + '" ' + statsBaidu + '>';
-            html += '<mip-img class="mip-img height105" src="' + object.picUrl + '">';
+            html += 'pos="' + object.type + '" ' + statsBaidu + '>';
+            html += '<mip-img class="mip-img height105" src="' + object.mpicUrl + '">';
             html += '</mip-img><span class=\'icon-tui\'>广告</span></div>';
             $that.innerHTML = html;
         },
@@ -1326,7 +1326,7 @@ define(function (require) {
         var params = $thatType === null ? '' : $thatType.getAttribute('params');
         var mainTags  = $thatParam === null ? '' : $thatParam.getAttribute('maintags');
         var questionId = $thatParam === null ? '' : $thatParam.getAttribute('qid');
-        var cid = $thatParam === null ? '' : $thatParam.getAttribute('cid');
+        var qcid = $thatParam === null ? '' : $thatParam.getAttribute('qcid');
         if (sources === 'COMMERCIAL_IAD' || sources === 'COMMERCIAL_ZWZD' || sources === 'COMMERCIAL_CAD') {
             // 商业广告
             removeBaiduAd();
@@ -1364,7 +1364,7 @@ define(function (require) {
             southnetwork(openId, '.mip_as_bottm_div');
             advLogInfo(sourceType, 0);
         }
-        else if (('182' === cid || '924' === cid) && (mainTags.indexOf('意外险') > -1
+        else if ('82' === qcid && (mainTags.indexOf('意外险') > -1
         || mainTags.indexOf('品牌词') > -1 || mainTags.indexOf('少儿险') > -1
         || mainTags.indexOf('重疾险') > -1 || mainTags.indexOf('保险') > -1)) {
             var nowTime = getSysTime();

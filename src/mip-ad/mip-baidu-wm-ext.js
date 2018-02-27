@@ -11,7 +11,6 @@ define(function (require) {
         var self = that;
         var domain = self.getAttribute('domain');
         var token = self.getAttribute('token');
-        var exps = '112002';
         var MIP = window.MIP || {};
 
         if (domain && token) {
@@ -21,14 +20,10 @@ define(function (require) {
                 var apiStr = '__container_api_';
                 (window[apiStr] = window[apiStr] || []).push({
                     containerId: token,
-                    exps: exps,
                     token: token
                 });
             }
             else {
-                window['_' + token] = {
-                    exps: exps
-                };
                 var script = document.createElement('script');
                 script.src = document.location.protocol + '//' + domain + '/' + token + '.js';
                 document.body.appendChild(script);

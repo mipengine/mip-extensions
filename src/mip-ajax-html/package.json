@@ -1,0 +1,14 @@
+{
+  "name": "mip-ajax-html",
+  "version": "1.0.0",
+  "description": "页面加载完成或是指定事件来触发元素ajax异步加载数据到指定容器",
+  "contributors": [
+    {
+      "name": "YanChengLong",
+      "email": "mlongyancheng@163.com"
+    }
+  ],
+  "engines": {
+    "mip": ">=1.1.0"
+  }
+}

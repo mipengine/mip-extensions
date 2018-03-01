@@ -44,7 +44,7 @@
 
 ### ak
 
-使用地图组件之前必须要申请成为百度开发者，并创建百度服务密钥（`ak`），这里的 `ak` 参数即代表该功能。具体申请方式可以参见[百度地图 Javascript api 文档](http://in.lbsyun.baidu.com/index.php?title=jspopular/guide/getkey)。
+使用地图组件之前必须要申请成为百度开发者，并创建百度服务密钥（`ak`），这里的 `ak` 参数即代表该功能。具体申请方式可以参见[百度地图 Javascript api 文档](http://lbsyun.baidu.com/index.php?title=jspopular/guide/getkey)。
 
 ### location
 

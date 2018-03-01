@@ -1,0 +1,14 @@
+{
+    "name": "mip-search-video",
+    "version": "1.0.0",
+    "description": "Search video MIP版",
+    "contributors": [
+        {
+            "name": "邹红全",
+            "email": "zouhongquan@baidu.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

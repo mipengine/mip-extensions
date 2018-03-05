@@ -511,7 +511,7 @@ define(function (require) {
                 var obj = json[key];
                 var picList = obj.picList;
                 var baiduStr = '{"type":"click", "data":["_setCustomVar", "MIP_SY_1000", "skip", "MIP_SY_1000_feed"]}';
-                var baiduObj = 'data-stats-baidu-obj="' + encodeURIStr(baiduStr) + '"';
+                var baiduObj = encodeURIStr(baiduStr);
                 feedInfo(baiduObj, obj2.picUrl, obj2.companyName, obj.title, obj.describe, obj.picLink, picList, '');
             }
             else if (json[key].type === '6') {

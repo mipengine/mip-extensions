@@ -113,17 +113,13 @@ define(function (require) {
         // 样式设置
         self.maskElement.style.display = 'block';
 
-        // 延迟设置遮罩层显示属性
-        setTimeout(function () {
-            self.maskElement.setAttribute('show', '');
-        }, 200);
-
         naboo.animate(self.maskElement, {
             backgroundColor: 'rgba(0, 0, 0, .7)'
         }, {
             duration: 500
         }).start(function () {
             self.runing = false;
+            self.maskElement.setAttribute('show', '');
         });
     }
 

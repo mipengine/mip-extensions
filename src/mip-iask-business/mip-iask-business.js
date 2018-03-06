@@ -1,8 +1,8 @@
 /**
 * @file 脚本支持
 * @author hejieye
-* @time  2018-02-08
-* @version 2.1.2
+* @time  2018-03-06
+* @version 2.1.3
 */
 define(function (require) {
     var $ = require('zepto');
@@ -1433,6 +1433,12 @@ define(function (require) {
             }
         }
     };
+    var loadStatsToken = function() {
+    	// 等广告全部加载完成，最后加载百度统计的token
+    	$tokenDiv = document.querySelector('.mip-stats-token-div');
+    	var tokenValue = document.querySelector('.mip-token-value').innerHTML;
+    	$tokenDiv.innerHTML = '<mip-stats-baidu token="' + tokenValue + '"></mip-stats-baidu>';
+    };
     var effects = {
             newLoadAd: function () {
                 selectAS();
@@ -1440,9 +1446,13 @@ define(function (require) {
             commercialLoad: function () {
             	selectCommercail();
             },
+	    loadToken: function () {
+            	loadStatsToken();
+            },
             init: function () {
                 this.newLoadAd();
                 this.commercialLoad();
+		this.loadToken();
             }
         };
     // build 方法，元素插入到文档时执行，仅会执行一次

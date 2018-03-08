@@ -118,14 +118,20 @@ define(function (require) {
 	                output = output + String.fromCharCode(chr3);
 	            }
 	        }
-	        output = utf8Decode(output);
-	        return output;
-	    };
-	};
-	var encodeURIStr = function (str) {
-		var result = encodeURIComponent(JSON.stringify(str));
-		return result;
-	};
+	    output = utf8Decode(output);
+	    return output;
+        };
+    };
+    var encodeURIStr = function (str) {
+        var result = encodeURIComponent(JSON.stringify(str));
+        return result;
+    };
+    var loadStatsToken = function() {
+    	// 等广告全部加载完成，最后加载百度统计的token
+    	$tokenDiv = document.querySelector('.mip-stats-token-div');
+    	var tokenValue = document.querySelector('.mip-token-value').innerHTML;
+    	$tokenDiv.innerHTML = '<mip-stats-baidu token="' + tokenValue + '"></mip-stats-baidu>';
+    };
     var ipLoad = function (callback) {
         var url = 'https://mipp.iask.cn/iplookup/search?format=json&callback=?';
         try {
@@ -243,6 +249,7 @@ define(function (require) {
             var url = $(this).attr('href');
             window.open(url);
     	});
+        loadStatsToken();
     };
     
     var subStringIask = function (str, size) {
@@ -1433,12 +1440,6 @@ define(function (require) {
             }
         }
     };
-    var loadStatsToken = function() {
-    	// 等广告全部加载完成，最后加载百度统计的token
-    	$tokenDiv = document.querySelector('.mip-stats-token-div');
-    	var tokenValue = document.querySelector('.mip-token-value').innerHTML;
-    	$tokenDiv.innerHTML = '<mip-stats-baidu token="' + tokenValue + '"></mip-stats-baidu>';
-    };
     var effects = {
             newLoadAd: function () {
                 selectAS();
@@ -1446,13 +1447,9 @@ define(function (require) {
             commercialLoad: function () {
             	selectCommercail();
             },
-	    loadToken: function () {
-            	loadStatsToken();
-            },
             init: function () {
                 this.newLoadAd();
                 this.commercialLoad();
-		this.loadToken();
             }
         };
     // build 方法，元素插入到文档时执行，仅会执行一次

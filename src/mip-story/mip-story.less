@@ -106,18 +106,18 @@ mip-story-layer * {
 }
 
 .mip-story-progress-bar {
-    display: flex;
-    display: -webkit-flex;    
+    display: flex !important;
+    display: -webkit-flex !important;    
     display: -webkit-box;
     -webkit-box-align: center;
     -webkit-box-pack: center;
     -moz-box-align: center;
     -moz-box-pack: center;        
     height: 40px;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
     position: absolute;
     left: 70px;
     right: 70px;    
@@ -155,7 +155,7 @@ mip-story-layer * {
 	display: flex !important;
     display: -webkit-flex !important;
     height: 100%;
-    display: -webkit-box !important;    
+    display: -webkit-box;    
 }
 
 .mip-story-template-fill > :first-child {
@@ -213,12 +213,12 @@ mip-story-layer * {
     top: 0;
     left: 0;
     text-align: center;
-    display: flex;
-    display: -webkit-flex;
-    justify-content: center;
-    -webkit-justify-content: center;
-    align-items: center;
-    -webkit-align-items: center;
+    display: flex !important;
+    display: -webkit-flex !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
     -webkit-transform: translate(1000%);
     transform: translateY(1000%);
     color: #fff;
@@ -235,15 +235,15 @@ mip-story-layer * {
 
 .mip-backend-preview {
     position: relative;
-    justify-content: center;
-    -webkit-justify-content: center;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
     width: 121px;
     height: 121px;
     margin: 0 auto;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
+    display: flex !important;
+    display: -webkit-flex !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
     display: -webkit-box;
     -webkit-box-align: center;
     -webkit-box-pack: center;
@@ -342,14 +342,6 @@ mip-story-layer * {
     display: none;
 }
 
-.mip-story-hint-left {
-    flex: 1;
-}
-
-.mip-story-hint-right {
-    flex: 1;
-}
-
 .mip-story-hint-shadow {
     display: block;
     height: 100%;
@@ -381,15 +373,20 @@ mip-story-layer * {
 }
 
 .mip-story-system-show .mip-story-hint-system {
-    display: flex;
-    display: -webkit-flex;
+    display: flex !important;
+    display: -webkit-flex !important;
+    display: -webkit-box;
+    
 }
 
 .mip-story-hint-left,
 .mip-story-hint-middle,
 .mip-story-hint-right {
     height: 100%;
-    flex: 1;
+    flex: 1 !important;
+    -webkit-flex: 1 !important;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
 }
 
 .mip-story-hint-left {
@@ -419,20 +416,20 @@ mip-story-layer * {
     left: 0;
     right: 0;
     color: #fff;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
-    flex-direction: column;
-    -webkit-flex-direction: column;
+    display: flex !important;
+    display: -webkit-flex !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
     display: -webkit-box;
     -webkit-box-align: center;
     -webkit-box-pack: center;
     -moz-box-align: center;
     -moz-box-pack: center;
-    -webkit-box-orient: horizontal;    
+    -webkit-box-orient: vertical;
 }
 
 .mip-story-hint-middle-icon span {
@@ -456,6 +453,7 @@ mip-story-layer * {
     background-repeat: no-repeat;
     background-position: 26px;
     transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
 }
 
 .mip-story-hint-touch-icon {
@@ -498,20 +496,20 @@ mip-story-layer * {
         display: block !important;
     }
     .mip-story-hint-rotate {
-        display: flex;
-        display: -webkit-flex;
-        flex-direction: column;
-        -webkit-flex-direction: column;
-        align-items: center;
-        -webkit-align-items: center;
-        justify-content: center;
-        -webkit-justify-content: center;
+        display: flex !important;
+        display: -webkit-flex !important;
+        flex-direction: column !important;
+        -webkit-flex-direction: column !important;
+        align-items: center !important;
+        -webkit-align-items: center !important;
+        justify-content: center !important;
+        -webkit-justify-content: center !important;
         display: -webkit-box;
         -webkit-box-align: center;
         -webkit-box-pack: center;
         -moz-box-align: center;
         -moz-box-pack: center;
-        -webkit-box-orient: horizontal;
+        -webkit-box-orient: vertical;
     }
 }
 

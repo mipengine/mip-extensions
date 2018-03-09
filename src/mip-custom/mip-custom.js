@@ -18,6 +18,7 @@ define(function () {
     // creat钩子
     var customElement = require('customElement').create();
     var logData = dataProcessor.logData;
+    var errorLogData = dataProcessor.errorLogData;
 
     /**
      * prerenderAllowed钩子,优先加载
@@ -292,6 +293,7 @@ define(function () {
                 return;
             }
             callback && callback(data.data, element);
+            me.errMoniter(element.innerHTML, '{{img_left.img_src}}');
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();
@@ -377,6 +379,25 @@ define(function () {
             }
         }
         me.storeData(data);
+    };
+
+    /**
+     * 错误日志监控
+     *
+     * @return {} 
+     */
+    customElement.prototype.errMoniter = function (htmlStr, str) {
+        var idx = htmlStr.indexOf(str);
+        if (idx !== -1) {
+            var params = logData.params;
+            params.ts = new Date().getTime();
+            var start = idx - 100;
+            if (start < 0) {
+                start = 0;
+            }
+            params.info = encodeURIComponent(htmlStr.substring(start, idx + 100) + '|' + location.href + '|' + document.referrer);
+            log.sendLog(errorLogData.host, util.fn.extend(params));
+        }
     };
 
     return customElement;

@@ -90,14 +90,17 @@ define(function (require) {
 
     MIPStory.prototype.initEvent = function () {
         var self = this;
-        var gesture = new Gesture(this.element);
+        var gesture = new Gesture(this.element, {});
         // 绑定点击事件
         this.element.addEventListener('click', function (e) {
             self.emitter.trigger(TAPNAVIGATION, e);
         });
         // 绑定点击事件
-        gesture.on('swipe', function (e) {
-            self.emitter.trigger(SWIP, e);
+        gesture.on('swipe', function (e, data) {
+            self.emitter.trigger(SWIP, {
+                e: e,
+                data: data
+            });
         });
         // 初始化自定义事件
         self.bindEvent();
@@ -137,11 +140,15 @@ define(function (require) {
     };
 
     MIPStory.prototype.swip = function (e) {
-        var backend = document.querySelector('.mip-backend');
-        if (dm.contains(backend, e.target)) {
-            return;
-        }
-        this.hint.showSystemLater();
+        if (e.data.swipeDirection === 'left'
+            || e.data.swipeDirection === 'right') {
+            var backend = document.querySelector('.mip-backend');
+            var hint = document.querySelector('.mip-story-hint');
+            if (dm.contains(backend, e.target)) {
+                return;
+            }
+            this.hint.toggleSystemLater();   
+        }        
     };
 
     MIPStory.prototype.tapnavigation = function (e) {

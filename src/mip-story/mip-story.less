@@ -75,6 +75,7 @@ mip-story-layer * {
 }
 
 .mip-story-close {
+    opacity: 1;
     display: block;
     float: left;
     height: 40px;
@@ -84,6 +85,10 @@ mip-story-layer * {
     background-size: 16px 16px;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.mip-story-close:active {
+    opacity: .6;
 }
 
 .mip-stoy-audio {
@@ -248,11 +253,15 @@ mip-story-layer * {
     position: relative;
 }
 
+.mip-backend-preview-thumbnail:active {
+    opacity: .6;
+}
+
 .mip-backend-preview-replay-btn {
     height: 24px;
     width: 24px;    
     background: url(https://mip-extensions.bj.bcebos.com/mip-story/mip-story-replay.png);
-    background-size: cover;
+    background-size: cover;    
 }
 
 .mip-backend-preview-share-btn {
@@ -295,7 +304,12 @@ mip-story-layer * {
 .mip-backend-share {
     display: block;
     margin-top: 66px;
-    overflow: hidden;    
+    overflow: hidden;
+    opacity: 1;
+}
+
+.mip-backend-share:active {
+    opacity: .6;
 }
 
 .mip-backend-share-btn {

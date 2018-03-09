@@ -8,6 +8,7 @@ define(function (require) {
 
     var MIP_STORY_HINT_DAMPING_HIDE = 'mip-story-hint-damping-hide';
     var MIP_STORY_SYSTEM_SHOW = 'mip-story-system-show';
+    var HASSHOWMIPSTORYHINT = 'has-show-mip-story-hint';
     var FIRST_PAGE_NAVIGATION_OVERLAY_TIMEOUT = 250;
 
     var util = require('util');
@@ -49,22 +50,37 @@ define(function (require) {
         }, FIRST_PAGE_NAVIGATION_OVERLAY_TIMEOUT);
     };
 
-    MIPStoryHint.prototype.hideDamping = function () {
+    MIPStoryHint.prototype.hideDamping = function () {        
         var ele = document.querySelector('.mip-story-hint');
         util.css(ele, {display: 'none'});
         ele.classList.add(MIP_STORY_HINT_DAMPING_HIDE);
     };
 
     MIPStoryHint.prototype.showSystemLater = function () {
-        var ele = document.querySelector('.mip-story-hint');
-        util.css(ele, {display: 'block'});
-        ele.classList.add(MIP_STORY_SYSTEM_SHOW);
-    };
+        var hasShown = localStorage.getItem(HASSHOWMIPSTORYHINT);
+        if (!hasShown) {
+            var ele = document.querySelector('.mip-story-hint');
+            util.css(ele, {display: 'block'});
+            ele.classList.add(MIP_STORY_SYSTEM_SHOW);
+            localStorage.setItem('has-show-mip-story-hint', '1');
+        }
+    };    
 
     MIPStoryHint.prototype.hideSystemLater = function () {
         var ele = document.querySelector('.mip-story-hint');
         util.css(ele, {display: 'none'});
         ele.classList.remove(MIP_STORY_SYSTEM_SHOW);
+    };
+
+    MIPStoryHint.prototype.toggleSystemLater = function () {        
+        var ele = document.querySelector('.mip-story-hint');
+        var display = ele.style.display;
+        if (display === 'block') {
+            this.hideSystemLater();
+        }
+        else {
+            this.showSystemLater();
+        }
     };
 
     return MIPStoryHint;

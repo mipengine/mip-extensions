@@ -30,11 +30,11 @@ define(function (require) {
                 "data":["_trackEvent", "小故事分享", "点击", window.location.href]
             })
         );
-        var html = '<aside class="mip-backend">'
+        var html = '<aside class="mip-backend" style="background-image: url(' + data.background + ')">'
                 + '<div class="mip-backend-outer">'
                 +    '<div class="mip-backend-preview"'
                 +       'style="background-position:center;background-size:cover;background-image:url('
-                +       data.img + ')" data-stats-baidu-obj="' + replayStats + '">'
+                +       data.thumbnail + ')" data-stats-baidu-obj="' + replayStats + '">'
                 +        '<div class="mip-backend-preview-mask"></div>'
                 +        '<div class="mip-backend-preview-thumbnail">'
                 +            '<span class="mip-backend-preview-replay-btn"></span>'

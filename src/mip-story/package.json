@@ -1,0 +1,14 @@
+{
+    "name": "mip-story",
+    "version": "1.0.0",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "Jackson",
+            "email": "smartfutureplayer@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

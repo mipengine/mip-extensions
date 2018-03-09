@@ -55,11 +55,7 @@ mip-story-layer * {
 }
 
 /* progress */
-.mip-story-system-layer {
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
+.mip-story-system-layer {    
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     background: linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     position: absolute;
@@ -111,15 +107,20 @@ mip-story-layer * {
 
 .mip-story-progress-bar {
     display: flex;
-    display: -webkit-flex;
-    height: 16px;
+    display: -webkit-flex;    
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;        
+    height: 40px;
     align-items: center;
     -webkit-align-items: center;
     justify-content: center;
     -webkit-justify-content: center;
     position: absolute;
     left: 70px;
-    right: 70px;
+    right: 70px;    
 }
 
 .mip-story-page-progress-bar {
@@ -154,6 +155,7 @@ mip-story-layer * {
 	display: flex !important;
     display: -webkit-flex !important;
     height: 100%;
+    display: -webkit-box !important;    
 }
 
 .mip-story-template-fill > :first-child {
@@ -220,6 +222,11 @@ mip-story-layer * {
     -webkit-transform: translate(1000%);
     transform: translateY(1000%);
     color: #fff;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
 }
 
 .mip-backend-outer {
@@ -237,6 +244,11 @@ mip-story-layer * {
     display: -webkit-flex;
     align-items: center;
     -webkit-align-items: center;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
 }
 
 .mip-backend-preview-mask {
@@ -356,6 +368,12 @@ mip-story-layer * {
     height: 100%;
 }
 
+.mip-story-page-switch {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
 .mip-story-hint-system {
     background: #000;
     opacity: 0.8;
@@ -409,6 +427,12 @@ mip-story-layer * {
     -webkit-justify-content: center;
     flex-direction: column;
     -webkit-flex-direction: column;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+    -webkit-box-orient: horizontal;    
 }
 
 .mip-story-hint-middle-icon span {
@@ -482,6 +506,12 @@ mip-story-layer * {
         -webkit-align-items: center;
         justify-content: center;
         -webkit-justify-content: center;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        -moz-box-align: center;
+        -moz-box-pack: center;
+        -webkit-box-orient: horizontal;
     }
 }
 
@@ -513,4 +543,66 @@ mip-story-layer * {
     padding: 10px 0;
     color: #000;
     border-top: 1px solid #eee;
+}
+
+/* 左右切换按钮 */
+@keyframes spread {
+    0%{
+        transform: scale(1, 1);
+    }
+    100%{
+        transform: scale(1.5, 1.5);
+    }
+}
+@-webkit-keyframes spread {
+    0%{
+        transform: scale(1, 1);
+    }
+    100%{
+        transform: scale(1.5, 1.5);
+    }
+}
+.mip-story-page-switch-left {
+    display: block;
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    display: none;
+}
+.mip-story-page-switch-right {
+    display: block;
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    display: none;
+}
+.mip-story-page-switch-left > :first-child,
+.mip-story-page-switch-right > :first-child {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: #fff;
+    position: absolute;    
+    top: 50%;
+    opacity: .1;
+    animation-delay: 100ms;
+    -webkit-animation: 100ms;
+    animation: spread 1s ease-out;
+    -webkit-animation: spread 1s ease-out;
+    animation-fill-mode: backwards;
+    -webkit-animation-fill-mode: backwards;
+    background: linear-gradient(center, rgba(255, 255, 255, .3), transparent);
+    background: -webkit-linear-gradient(center, rgba(255, 255, 255, .3), transparent);
+}
+
+.mip-story-page-switch-left > :nth-child(2),
+.mip-story-page-switch-right > :nth-child(2) {
+    display: block;    
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: #fff;
+    position: absolute;    
+    top: 50%;
+    opacity: .1;
 }

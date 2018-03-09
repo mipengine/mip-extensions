@@ -246,6 +246,16 @@ define(function (require) {
         currentEle.customElement.setActive(true, this.muted);        
         this.progress.updateProgress(this.currentIndex, data.status);
         this.preInex = this.currentIndex;
+        
+        // 右翻
+        if (!data.notIncrease) {
+            if (data.status === 1) {
+                this.hint.showPageSwitchLayer();
+            }
+            else {
+                this.hint.hidePageSwitchLayer();
+            }   
+        }        
     };
 
     MIPStory.prototype.showbookend = function () {

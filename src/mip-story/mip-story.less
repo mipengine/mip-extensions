@@ -56,6 +56,10 @@ mip-story-layer * {
 
 /* progress */
 .mip-story-system-layer {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     background: linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     position: absolute;
@@ -63,7 +67,7 @@ mip-story-layer * {
     left: 0;
     right: 0;
     z-index: 100000;
-    padding: 22px 0 72px 0;
+    padding: 12px 0 72px 0;
 }
 
 .mip-story-progress {
@@ -73,11 +77,12 @@ mip-story-layer * {
 .mip-story-close {
     display: block;
     float: left;
-    height: 20px;
+    height: 40px;
     width: 40px;
-    margin-left: 17px;
+    margin-left: 7px;
     background: url(https://mip-extensions.bj.bcebos.com/mip-story/mip-story-close.png);
     background-size: 16px 16px;
+    background-position: center;
     background-repeat: no-repeat;
 }
 

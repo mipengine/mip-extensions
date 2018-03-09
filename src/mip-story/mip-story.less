@@ -55,11 +55,7 @@ mip-story-layer * {
 }
 
 /* progress */
-.mip-story-system-layer {
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
+.mip-story-system-layer {    
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     background: linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     position: absolute;
@@ -75,6 +71,7 @@ mip-story-layer * {
 }
 
 .mip-story-close {
+    opacity: 1;
     display: block;
     float: left;
     height: 40px;
@@ -84,6 +81,10 @@ mip-story-layer * {
     background-size: 16px 16px;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.mip-story-close:active {
+    opacity: .6;
 }
 
 .mip-stoy-audio {
@@ -105,16 +106,21 @@ mip-story-layer * {
 }
 
 .mip-story-progress-bar {
-    display: flex;
-    display: -webkit-flex;
-    height: 16px;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
+    display: flex !important;
+    display: -webkit-flex !important;    
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;        
+    height: 40px;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
     position: absolute;
     left: 70px;
-    right: 70px;
+    right: 70px;    
 }
 
 .mip-story-page-progress-bar {
@@ -149,6 +155,7 @@ mip-story-layer * {
 	display: flex !important;
     display: -webkit-flex !important;
     height: 100%;
+    display: -webkit-box;    
 }
 
 .mip-story-template-fill > :first-child {
@@ -206,15 +213,20 @@ mip-story-layer * {
     top: 0;
     left: 0;
     text-align: center;
-    display: flex;
-    display: -webkit-flex;
-    justify-content: center;
-    -webkit-justify-content: center;
-    align-items: center;
-    -webkit-align-items: center;
+    display: flex !important;
+    display: -webkit-flex !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
     -webkit-transform: translate(1000%);
     transform: translateY(1000%);
     color: #fff;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
 }
 
 .mip-backend-outer {
@@ -223,15 +235,20 @@ mip-story-layer * {
 
 .mip-backend-preview {
     position: relative;
-    justify-content: center;
-    -webkit-justify-content: center;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
     width: 121px;
     height: 121px;
     margin: 0 auto;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
+    display: flex !important;
+    display: -webkit-flex !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
 }
 
 .mip-backend-preview-mask {
@@ -248,11 +265,15 @@ mip-story-layer * {
     position: relative;
 }
 
+.mip-backend-preview-thumbnail:active {
+    opacity: .6;
+}
+
 .mip-backend-preview-replay-btn {
     height: 24px;
     width: 24px;    
     background: url(https://mip-extensions.bj.bcebos.com/mip-story/mip-story-replay.png);
-    background-size: cover;
+    background-size: cover;    
 }
 
 .mip-backend-preview-share-btn {
@@ -295,7 +316,12 @@ mip-story-layer * {
 .mip-backend-share {
     display: block;
     margin-top: 66px;
-    overflow: hidden;    
+    overflow: hidden;
+    opacity: 1;
+}
+
+.mip-backend-share:active {
+    opacity: .6;
 }
 
 .mip-backend-share-btn {
@@ -316,14 +342,6 @@ mip-story-layer * {
     display: none;
 }
 
-.mip-story-hint-left {
-    flex: 1;
-}
-
-.mip-story-hint-right {
-    flex: 1;
-}
-
 .mip-story-hint-shadow {
     display: block;
     height: 100%;
@@ -342,6 +360,12 @@ mip-story-layer * {
     height: 100%;
 }
 
+.mip-story-page-switch {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
 .mip-story-hint-system {
     background: #000;
     opacity: 0.8;
@@ -349,15 +373,20 @@ mip-story-layer * {
 }
 
 .mip-story-system-show .mip-story-hint-system {
-    display: flex;
-    display: -webkit-flex;
+    display: flex !important;
+    display: -webkit-flex !important;
+    display: -webkit-box;
+    
 }
 
 .mip-story-hint-left,
 .mip-story-hint-middle,
 .mip-story-hint-right {
     height: 100%;
-    flex: 1;
+    flex: 1 !important;
+    -webkit-flex: 1 !important;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
 }
 
 .mip-story-hint-left {
@@ -387,14 +416,20 @@ mip-story-layer * {
     left: 0;
     right: 0;
     color: #fff;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
-    justify-content: center;
-    -webkit-justify-content: center;
-    flex-direction: column;
-    -webkit-flex-direction: column;
+    display: flex !important;
+    display: -webkit-flex !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+    -webkit-box-orient: vertical;
 }
 
 .mip-story-hint-middle-icon span {
@@ -418,6 +453,7 @@ mip-story-layer * {
     background-repeat: no-repeat;
     background-position: 26px;
     transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
 }
 
 .mip-story-hint-touch-icon {
@@ -460,14 +496,20 @@ mip-story-layer * {
         display: block !important;
     }
     .mip-story-hint-rotate {
-        display: flex;
-        display: -webkit-flex;
-        flex-direction: column;
-        -webkit-flex-direction: column;
-        align-items: center;
-        -webkit-align-items: center;
-        justify-content: center;
-        -webkit-justify-content: center;
+        display: flex !important;
+        display: -webkit-flex !important;
+        flex-direction: column !important;
+        -webkit-flex-direction: column !important;
+        align-items: center !important;
+        -webkit-align-items: center !important;
+        justify-content: center !important;
+        -webkit-justify-content: center !important;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        -moz-box-align: center;
+        -moz-box-pack: center;
+        -webkit-box-orient: vertical;
     }
 }
 
@@ -499,4 +541,66 @@ mip-story-layer * {
     padding: 10px 0;
     color: #000;
     border-top: 1px solid #eee;
+}
+
+/* 左右切换按钮 */
+@keyframes spread {
+    0%{
+        transform: scale(1, 1);
+    }
+    100%{
+        transform: scale(1.5, 1.5);
+    }
+}
+@-webkit-keyframes spread {
+    0%{
+        transform: scale(1, 1);
+    }
+    100%{
+        transform: scale(1.5, 1.5);
+    }
+}
+.mip-story-page-switch-left {
+    display: block;
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    display: none;
+}
+.mip-story-page-switch-right {
+    display: block;
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    display: none;
+}
+.mip-story-page-switch-left > :first-child,
+.mip-story-page-switch-right > :first-child {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: #fff;
+    position: absolute;    
+    top: 50%;
+    opacity: .1;
+    animation-delay: 100ms;
+    -webkit-animation: 100ms;
+    animation: spread 1s ease-out;
+    -webkit-animation: spread 1s ease-out;
+    animation-fill-mode: backwards;
+    -webkit-animation-fill-mode: backwards;
+    background: linear-gradient(center, rgba(255, 255, 255, .3), transparent);
+    background: -webkit-linear-gradient(center, rgba(255, 255, 255, .3), transparent);
+}
+
+.mip-story-page-switch-left > :nth-child(2),
+.mip-story-page-switch-right > :nth-child(2) {
+    display: block;    
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: #fff;
+    position: absolute;    
+    top: 50%;
+    opacity: .1;
 }

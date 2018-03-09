@@ -387,15 +387,21 @@ define(function () {
      * @return {} 
      */
     customElement.prototype.errMoniter = function (htmlStr, str) {
+        var me = this;
         var idx = htmlStr.indexOf(str);
         if (idx !== -1) {
-            var params = logData.params;
+            var params = errorLogData.params;
             params.ts = new Date().getTime();
-            var start = idx - 100;
+            var start = idx - 200;
+            var end = idx + 200;
             if (start < 0) {
                 start = 0;
             }
-            params.info = encodeURIComponent(htmlStr.substring(start, idx + 100) + '|' + location.href + '|' + document.referrer);
+            if (idx + 200 >= htmlStr.length) {
+                end = htmlStr.length - 1;
+            }
+            params.info = encodeURIComponent(htmlStr.substring(start, end) + '|' 
+                + document.referrer + '|' + me.commonUrl);
             log.sendLog(errorLogData.host, util.fn.extend(params));
         }
     };

@@ -23,8 +23,10 @@ define(function (require) {
             })
         );
         var content = '<aside class="mip-story-system-layer">'
-                        +   '<span class="mip-story-close" data-stats-baidu-obj="' + closeStats + '"></span>'
-                        +   '<ol class="mip-story-progress-bar">';
+        if (history.length > 1) {
+            content += '<span class="mip-story-close" data-stats-baidu-obj="' + closeStats + '"></span>';
+        }
+        content += '<ol class="mip-story-progress-bar">';
         for (var i = 0; i < this.elements.length; i++) {
             content += '<li class="mip-story-page-progress-bar">'
                     +   '<div class="mip-story-page-progress-value"></div>'

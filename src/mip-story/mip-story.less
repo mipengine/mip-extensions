@@ -7,8 +7,8 @@ html#mip-i-story-standalone body {
     height: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;     
-    cursor: auto !important;    
+    width: 100% !important;
+    cursor: auto !important;
 }
 
 mip-story {
@@ -20,13 +20,15 @@ mip-story {
     tap-highlight-color: transparent;
 }
 
-mip-story, mip-story-view, mip-story-layer {
+mip-story,
+mip-story-view,
+mip-story-layer {
     overflow: hidden !important;
 }
 
 mip-story-view {
     display: none !important;
-    bottom: 0 !important;   
+    bottom: 0 !important;
     height: auto !important;
     left: 0 !important;
     position: absolute !important;
@@ -42,7 +44,7 @@ mip-story-view[active] {
 mip-story-layer {
     position: absolute !important;
     bottom: 0 !important;
-    left: 0 !important;  
+    left: 0 !important;
     right: 0 !important;
     top: 0 !important;
     padding: 68px 32px 32px !important;
@@ -50,12 +52,12 @@ mip-story-layer {
 }
 
 mip-story-layer * {
-  box-sizing: border-box;
-  margin: 0;
+    box-sizing: border-box;
+    margin: 0;
 }
 
-/* progress */
-.mip-story-system-layer {    
+// progress
+.mip-story-system-layer {
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     background: linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     position: absolute;
@@ -107,12 +109,12 @@ mip-story-layer * {
 
 .mip-story-progress-bar {
     display: flex !important;
-    display: -webkit-flex !important;    
+    display: -webkit-flex !important;
     display: -webkit-box;
     -webkit-box-align: center;
     -webkit-box-pack: center;
     -moz-box-align: center;
-    -moz-box-pack: center;        
+    -moz-box-pack: center;
     height: 40px;
     align-items: center !important;
     -webkit-align-items: center !important;
@@ -124,7 +126,7 @@ mip-story-layer * {
 }
 
 .mip-story-page-progress-bar {
-    background: hsla(0, 0, 100%, 0.3); 
+    background: hsla(0, 0, 100%, 0.3);
     list-style-type: none;
     margin: 0 5px;
     overflow: hidden ;
@@ -148,7 +150,7 @@ mip-story-layer * {
     transform: scale(0, 1);
 }
 
-/* 布局 */
+// 布局
 .mip-story-template-fill,
 .mip-story-template-vertical,
 .mip-story-template-horizontal {
@@ -159,25 +161,25 @@ mip-story-layer * {
 }
 
 .mip-story-template-fill > :first-child {
-  bottom: 0;
-  display: block;
-  height: auto;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: auto;
-  object-fit: cover;
+    bottom: 0;
+    display: block;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    object-fit: cover;
 }
 
 .mip-story-template-fill > :not(:first-child) {
-  display: none !important;
+    display: none !important;
 }
 
 .mip-story-template-fill > mip-anim img,
 .mip-story-template-fill > mip-img img,
 .mip-story-template-fill > mip-video video {
-  object-fit: cover !important;
+    object-fit: cover !important;
 }
 
 .mip-story-template-horizontal {
@@ -185,7 +187,7 @@ mip-story-layer * {
     -webkit-flex-direction: row;
     align-items: stretch;
     -webkit-align-items: stretch;
-    align-content: flex-start;    
+    align-content: flex-start;
     -webkit-align-content: flex-start;
 }
 
@@ -203,7 +205,7 @@ mip-story-layer * {
     width: 100%;
 }
 
-/* 结尾页 */
+// 结尾页
 .mip-backend {
     position: absolute;
     z-index: 100002;
@@ -258,7 +260,7 @@ mip-story-layer * {
     width: 100%;
     height: 100%;
     background: #000;
-    opacity: 0.5;
+    opacity: .5;
 }
 
 .mip-backend-preview-thumbnail {
@@ -271,7 +273,7 @@ mip-story-layer * {
 
 .mip-backend-preview-replay-btn {
     height: 24px;
-    width: 24px;    
+    width: 24px;
     background: url(https://www.mipengine.org/static/img/mip-story/mip-story-replay.png);
     background-size: cover;    
 }
@@ -280,7 +282,7 @@ mip-story-layer * {
     display: block;
     margin: 0 auto;
     width: 25px;
-    height: 25px;    
+    height: 25px;
     background: url(https://www.mipengine.org/static/img/mip-story/mip-story-share.png);
     background-size: cover;
 }
@@ -301,7 +303,7 @@ mip-story-layer * {
 }
 
 .mip-backend-info {
-    display: block;    
+    display: block;
     font-size: 13px;
     margin-top: 10px;
     color: #bababa;
@@ -331,7 +333,7 @@ mip-story-layer * {
     color: #fff;
 }
 
-/* hint layer */
+// hint layer
 .mip-story-hint {
     position: absolute;
     left: 0;
@@ -346,11 +348,11 @@ mip-story-layer * {
     display: block;
     height: 100%;
     width: 25%;
-    background: -webkit-linear-gradient(left, rgba(0,0,0,0.5), transparent) !important;
-    background: linear-gradient(90deg, rgba(0,0,0,0.5), transparent) !important;
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent) !important;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent) !important;
 }
 
-.mip-story-hint-damping-hide .mip-story-hint-shadow {    
+.mip-story-hint-damping-hide .mip-story-hint-shadow {
     display: none;
 }
 
@@ -368,7 +370,7 @@ mip-story-layer * {
 
 .mip-story-hint-system {
     background: #000;
-    opacity: 0.8;
+    opacity: .8;
     display: none;
 }
 
@@ -513,7 +515,7 @@ mip-story-layer * {
     }
 }
 
-/* 分享 */
+// 分享
 .mip-story-share {
     width: 100%;
     position: absolute;
@@ -543,20 +545,20 @@ mip-story-layer * {
     border-top: 1px solid #eee;
 }
 
-/* 左右切换按钮 */
+// 左右切换按钮
 @keyframes spread {
-    0%{
+    0% {
         transform: scale(1, 1);
     }
-    100%{
+    100% {
         transform: scale(1.5, 1.5);
     }
 }
 @-webkit-keyframes spread {
-    0%{
+    0% {
         transform: scale(1, 1);
     }
-    100%{
+    100% {
         transform: scale(1.5, 1.5);
     }
 }
@@ -580,7 +582,7 @@ mip-story-layer * {
     height: 28px;
     border-radius: 14px;
     background: #fff;
-    position: absolute;    
+    position: absolute;
     top: 50%;
     opacity: .1;
     animation-delay: 100ms;
@@ -595,12 +597,12 @@ mip-story-layer * {
 
 .mip-story-page-switch-left > :nth-child(2),
 .mip-story-page-switch-right > :nth-child(2) {
-    display: block;    
+    display: block;
     width: 28px;
     height: 28px;
     border-radius: 14px;
     background: #fff;
-    position: absolute;    
+    position: absolute;
     top: 50%;
     opacity: .1;
 }

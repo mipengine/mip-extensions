@@ -13,9 +13,6 @@ define(function (require) {
     var TEMPLATEHORIZONTAL = 'mip-story-template-horizontal';
     var TEMPLATETHIRDS = 'mip-story-template-thirds';
 
-    function MIPStoryLayer() {
-    }
-
     customElement.prototype.firstInviewCallback = function () {
         var template = this.element.getAttribute('template');
         switch (template) {

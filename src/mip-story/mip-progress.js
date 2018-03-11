@@ -18,11 +18,12 @@ define(function (require) {
 
     MIPProgress.prototype.build = function () {
         var closeStats = encodeURIComponent(
-            JSON.stringify({"type":"click",
-                "data":["_trackEvent", "小故事关闭按钮", "点击", window.location.href]
+            JSON.stringify({
+                type: 'click',
+                data: ['_trackEvent', '小故事关闭按钮', '点击', window.location.href]
             })
         );
-        var content = '<aside class="mip-story-system-layer">'
+        var content = '<aside class="mip-story-system-layer">';
         if (history.length > 1) {
             content += '<span class="mip-story-close" data-stats-baidu-obj="' + closeStats + '"></span>';
         }
@@ -32,11 +33,11 @@ define(function (require) {
                     +   '<div class="mip-story-page-progress-value"></div>'
                     + '</li>';
         }
-        
+
         var muteStats = encodeURIComponent(
             JSON.stringify({
-                "type":"click",
-                "data":["_trackEvent", "音频静音按钮", "点击", window.location.href]
+                type: 'click',
+                data: ['_trackEvent', '音频静音按钮', '点击', window.location.href]
             })
         );
         content += '</ol>'

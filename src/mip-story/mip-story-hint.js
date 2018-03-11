@@ -60,7 +60,7 @@ define(function (require) {
         }, FIRST_PAGE_NAVIGATION_OVERLAY_TIMEOUT);
     };
 
-    MIPStoryHint.prototype.hideDamping = function () {        
+    MIPStoryHint.prototype.hideDamping = function () {
         var ele = document.querySelector('.mip-story-hint');
         util.css(ele, {display: 'none'});
         ele.classList.add(MIP_STORY_HINT_DAMPING_HIDE);
@@ -74,7 +74,7 @@ define(function (require) {
             ele.classList.add(MIP_STORY_SYSTEM_SHOW);
             localStorage.setItem('has-show-mip-story-hint', '1');
         }
-    };    
+    };
 
     MIPStoryHint.prototype.hideSystemLater = function () {
         var ele = document.querySelector('.mip-story-hint');
@@ -82,7 +82,7 @@ define(function (require) {
         ele.classList.remove(MIP_STORY_SYSTEM_SHOW);
     };
 
-    MIPStoryHint.prototype.toggleSystemLater = function () {        
+    MIPStoryHint.prototype.toggleSystemLater = function () {
         var ele = document.querySelector('.mip-story-hint');
         var display = ele.style.display;
         if (display === 'block') {
@@ -92,7 +92,7 @@ define(function (require) {
             this.showSystemLater();
         }
     };
-    
+
     MIPStoryHint.prototype.showPageSwitchLayer = function () {
         var hint = document.querySelector('.mip-story-hint');
         util.css(hint, {display: 'block'});
@@ -109,7 +109,7 @@ define(function (require) {
             util.css(right, {display: 'none'});
         }, 400);
     };
-    
+
     MIPStoryHint.prototype.hidePageSwitchLayer = function () {
         var hint = document.querySelector('.mip-story-hint');
         util.css(hint, {display: 'block'});

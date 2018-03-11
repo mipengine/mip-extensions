@@ -61,7 +61,7 @@ define(function (require) {
         // 切换到第一页
         this.switchTo({status: 1, notIncrease: 1});
     };
-    
+
     MIPStory.prototype.initAudio = function () {
         var audioSrc = this.element.getAttribute('background-audio');
         if (audioSrc) {
@@ -143,12 +143,11 @@ define(function (require) {
         if (e.data.swipeDirection === 'left'
             || e.data.swipeDirection === 'right') {
             var backend = document.querySelector('.mip-backend');
-            var hint = document.querySelector('.mip-story-hint');
             if (dm.contains(backend, e.target)) {
                 return;
             }
-            this.hint.toggleSystemLater();   
-        }        
+            this.hint.toggleSystemLater();
+        }
     };
 
     MIPStory.prototype.tapnavigation = function (e) {
@@ -243,10 +242,10 @@ define(function (require) {
         if (this.currentIndex !== this.preInex) {
             preEle.customElement.setActive(false, this.muted);
         }
-        currentEle.customElement.setActive(true, this.muted);        
+        currentEle.customElement.setActive(true, this.muted);
         this.progress.updateProgress(this.currentIndex, data.status);
         this.preInex = this.currentIndex;
-        
+
         // 右翻
         if (!data.notIncrease) {
             if (data.status === 1) {
@@ -254,8 +253,8 @@ define(function (require) {
             }
             else {
                 this.hint.hidePageSwitchLayer();
-            }   
-        }        
+            }
+        }
     };
 
     MIPStory.prototype.showbookend = function () {

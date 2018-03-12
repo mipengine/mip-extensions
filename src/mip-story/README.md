@@ -52,11 +52,10 @@
 - share
 
 share 字段下包含的是分享相关的数据。
-
-	- thumbnail：预览小故事的缩略图地址；
-	- background：结尾页背景图片地址；
-	- title：小故事标题；
-	- from：资源的来源信息；
+- thumbnail：预览小故事的缩略图地址；
+- background：结尾页背景图片地址；
+- title：小故事标题；
+- from：资源的来源信息；
 
 ## 属性
 

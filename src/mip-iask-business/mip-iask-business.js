@@ -128,9 +128,9 @@ define(function (require) {
     };
     var loadStatsToken = function() {
     	// 等广告全部加载完成，最后加载百度统计的token
-    	$tokenDiv = document.querySelector('.mip-stats-token-div');
-    	var tokenValue = document.querySelector('.mip-token-value').innerHTML;
-    	$tokenDiv.innerHTML = '<mip-stats-baidu token="' + tokenValue + '"></mip-stats-baidu>';
+    	var $tokenDiv = document.querySelector('.mip-stats-token-div');
+    	var $tokenValue = document.querySelector('.mip-token-value');
+    	$tokenDiv.innerHTML = '<mip-stats-baidu token="' + $tokenValue.innerHTML + '"></mip-stats-baidu>';
     };
     var ipLoad = function (callback) {
         var url = 'https://mipp.iask.cn/iplookup/search?format=json&callback=?';
@@ -238,7 +238,7 @@ define(function (require) {
     	util.event.delegate(document.body, '.href_log', 'click', function(){
     		var $that = document.querySelector('.business_source');
 	    	var $thatType = document.querySelector('.business_source_type');
-			var $thatDiv = document.querySelector('.paramDiv');
+		var $thatDiv = document.querySelector('.paramDiv');
 	        var sources = $that.getAttribute('sources') || $thatType.getAttribute('sourceType');
 			if (sources === 'COMMERCIAL_ZWZD') {
                 sources = 'COOPERATE_COMMERCIAL';

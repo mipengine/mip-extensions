@@ -128,8 +128,9 @@ define(function (require) {
     };
     var loadStatsToken = function() {
     	// 等广告全部加载完成，最后加载百度统计的token
-    	var $tokenDiv = document.querySelector('.mip-stats-token-div');
-    	var $tokenValue = document.querySelector('.mip-token-value');
+	var ele = this.document;
+    	var $tokenDiv = ele.querySelector('.mip-stats-token-div');
+    	var $tokenValue = ele.querySelector('.mip-token-value');
     	$tokenDiv.innerHTML = '<mip-stats-baidu token="' + $tokenValue.innerHTML + '"></mip-stats-baidu>';
     };
     var ipLoad = function (callback) {
@@ -236,18 +237,19 @@ define(function (require) {
     
     var advLogInfoClick = function () {
     	util.event.delegate(document.body, '.href_log', 'click', function(){
-    		var $that = document.querySelector('.business_source');
-	    	var $thatType = document.querySelector('.business_source_type');
-		var $thatDiv = document.querySelector('.paramDiv');
+    		var ele = this.document;
+    		var $that = ele.querySelector('.business_source');
+	    	var $thatType = ele.querySelector('.business_source_type');
+		var $thatDiv = ele.querySelector('.paramDiv');
 	        var sources = $that.getAttribute('sources') || $thatType.getAttribute('sourceType');
-			if (sources === 'COMMERCIAL_ZWZD') {
-                sources = 'COOPERATE_COMMERCIAL';
-            }
-            var pos = $(this).attr('pos');
-            $thatDiv.setAttribute('pos', pos);
-            advLogInfo(sources, 1);
-            var url = $(this).attr('href');
-            window.open(url);
+		if (sources === 'COMMERCIAL_ZWZD') {
+                    sources = 'COOPERATE_COMMERCIAL';
+                }
+                var pos = $(this).attr('pos');
+                $thatDiv.setAttribute('pos', pos);
+                advLogInfo(sources, 1);
+                var url = $(this).attr('href');
+                window.open(url);
     	});
         loadStatsToken();
     };

@@ -51,8 +51,8 @@
 
 #### template
 
-template 表示一个 layer 的布局方式，可以分为以下几种布局方式：
+`template` 表示一个 layer 的布局方式，可以分为以下几种布局方式：
 
-- fill：填充布局，该布局方式会将当前 `<mip-story-layer>` 中的第一个元素进行填充布局，其他元素均隐藏。适合于将图片、视频作为背景展示的场景。
-- vertical：`<mip-story-layer>` 中的元素沿 y 轴排列，x 轴方向填充布局。
-- horizontal：`<mip-story-layer>` 中的元素沿 x 轴排列，y 轴方向填充。
+- `fill`：填充布局，该布局方式会将当前 `<mip-story-layer>` 中的第一个元素进行填充布局，其他元素均隐藏。适合于将图片、视频作为背景展示的场景。
+- `vertical`：`<mip-story-layer>` 中的元素沿 `y` 轴排列，`x` 轴方向填充布局。
+- `horizontal`：`<mip-story-layer>` 中的元素沿 `x` 轴排列，`y` 轴方向填充。

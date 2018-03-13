@@ -199,7 +199,7 @@ define(function () {
             element.appendChild(container);
 
             // dom 渲染
-            dom.render(element, tplData, container);
+            dom.render(element, tplData, container, me.errMoniter);
         }
     };
 

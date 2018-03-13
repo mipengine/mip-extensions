@@ -293,7 +293,7 @@ define(function () {
                 return;
             }
             callback && callback(data.data, element);
-            me.errMoniter(element.innerHTML, '{{img_left.img_src}}');
+            me.errMoniter(element && element.innerHTML, '{{img_left.img_src}}');
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();
@@ -387,6 +387,9 @@ define(function () {
      * @return {} 
      */
     customElement.prototype.errMoniter = function (htmlStr, str) {
+        if (!htmlStr) {
+            return;
+        }
         var me = this;
         var idx = htmlStr.indexOf(str);
         if (idx !== -1) {
@@ -402,7 +405,7 @@ define(function () {
             }
             params.info = encodeURIComponent(htmlStr.substring(start, end) + '|' 
                 + document.referrer + '|' + me.commonUrl);
-            log.sendLog(errorLogData.host, util.fn.extend(params));
+            log.sendLog(errorLogData.host, params);
         }
     };
 

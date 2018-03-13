@@ -11,11 +11,11 @@ define(function (require) {
     function MIPStoryHint() {
     }
 
-    MIPStoryHint.prototype.build = function () {        
+    MIPStoryHint.prototype.build = function () {
         var shareCancelStats = encodeURIComponent(
             JSON.stringify({
-                "type":"click",
-                "data":["_trackEvent", "小故事分享取消", "点击", window.location.href]
+                type: 'click',
+                data: ['_trackEvent', '小故事分享取消', '点击', window.location.href]
             })
         );
         var html = '<aside class="mip-story-share">'

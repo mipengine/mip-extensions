@@ -18,23 +18,26 @@ define(function (require) {
 
     MIPProgress.prototype.build = function () {
         var closeStats = encodeURIComponent(
-            JSON.stringify({"type":"click",
-                "data":["_trackEvent", "小故事关闭按钮", "点击", window.location.href]
+            JSON.stringify({
+                type: 'click',
+                data: ['_trackEvent', '小故事关闭按钮', '点击', window.location.href]
             })
         );
-        var content = '<aside class="mip-story-system-layer">'
-                        +   '<span class="mip-story-close" data-stats-baidu-obj="' + closeStats + '"></span>'
-                        +   '<ol class="mip-story-progress-bar">';
+        var content = '<aside class="mip-story-system-layer">';
+        if (history.length > 1) {
+            content += '<span class="mip-story-close" data-stats-baidu-obj="' + closeStats + '"></span>';
+        }
+        content += '<ol class="mip-story-progress-bar">';
         for (var i = 0; i < this.elements.length; i++) {
             content += '<li class="mip-story-page-progress-bar">'
                     +   '<div class="mip-story-page-progress-value"></div>'
                     + '</li>';
         }
-        
+
         var muteStats = encodeURIComponent(
             JSON.stringify({
-                "type":"click",
-                "data":["_trackEvent", "音频静音按钮", "点击", window.location.href]
+                type: 'click',
+                data: ['_trackEvent', '音频静音按钮', '点击', window.location.href]
             })
         );
         content += '</ol>'

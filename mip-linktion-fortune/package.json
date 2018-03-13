@@ -1,0 +1,14 @@
+{
+    "name": "mip-linktion-fortune",
+    "version": "1.0.0",
+    "description": "通用代码使用",
+    "contributors": [
+        {
+            "name": "tinng",
+            "email": "tinng_emial@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

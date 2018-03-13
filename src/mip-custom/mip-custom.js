@@ -293,7 +293,6 @@ define(function () {
                 return;
             }
             callback && callback(data.data, element);
-            me.errMoniter(element && element.innerHTML, '{{img_left.img_src}}');
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();

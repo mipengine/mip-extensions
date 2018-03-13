@@ -16,10 +16,12 @@ define(function (require) {
     var TAPNAVIGATION = 'tapnavigation';
     var MIP_STORY_STANDALONE_ATTRIBUTE = 'standalone';
     var SHOWNOPREVIOUSPAGEHELP = 'shownopreviouspagehelp';
+    var VISIBILITYCHANGE = 'visibilitychange';
     var MIP_I_STORY_STANDALONE = 'mip-i-story-standalone';
 
     require('./mip-story-view');
     require('./mip-story-layer');
+    var Audio = require('./audio');
     var ShareLayer = require('./mip-story-share');
     var HintLayer = require('./mip-story-hint');
     var BookEnd = require('./mip-story-bookend');
@@ -34,7 +36,7 @@ define(function (require) {
     function MIPStory(element) {
         this.element = element;
         this.win = window;
-        this.muted = false;
+        this.muted = true;
         this.currentIndex = this.preInex = 0;
     }
 
@@ -63,16 +65,9 @@ define(function (require) {
     };
 
     MIPStory.prototype.initAudio = function () {
-        var audioSrc = this.element.getAttribute('background-audio');
-        if (audioSrc) {
-            var audioEl = document.createElement('audio');
-            audioEl.setAttribute('src', audioSrc);
-            audioEl.setAttribute('preload', 'auto');
-            audioEl.setAttribute('loop', '');
-            audioEl.setAttribute('autoplay', '');
-            audioEl.setAttribute('muted', '');
-            audioEl.style.disply = 'hidden';
-            this.element.appendChild(audioEl);
+        var au = this.element.getAttribute('background-audio');
+        if (au) {
+            this.audio = new Audio().build(this.element, au);
         }
     };
 
@@ -95,6 +90,10 @@ define(function (require) {
         this.element.addEventListener('click', function (e) {
             self.emitter.trigger(TAPNAVIGATION, e);
         });
+        // 页面切换到后台
+        document.addEventListener(VISIBILITYCHANGE, function (e) {
+            self.emitter.trigger(VISIBILITYCHANGE, e);
+        });
         // 绑定点击事件
         gesture.on('swipe', function (e, data) {
             self.emitter.trigger(SWIP, {
@@ -102,8 +101,24 @@ define(function (require) {
                 data: data
             });
         });
+
         // 初始化自定义事件
         self.bindEvent();
+    };
+
+    MIPStory.prototype.visibilitychange = function (e) {
+        var hiddenProperty = 'hidden' in document ? 'hidden'
+            : 'webkitHidden' in document ? 'webkitHidden'
+            : 'mozHidden' in document ? 'mozHidden' : null;
+        var currentEle = storyViews[this.currentIndex];
+        if (document[hiddenProperty]) {
+            this.pauseGlobalAudio();
+            currentEle.customElement.pauseAllMedia();
+        }
+        else {
+            this.playGlobalAudio();
+            currentEle.customElement.resumeAllMedia();
+        }
     };
 
     MIPStory.prototype.initBookend = function () {
@@ -136,6 +151,7 @@ define(function (require) {
         this.emitter.on(SWITCHPAGE, this.switchTo.bind(this));
         this.emitter.on(SHOWBOOKEND, this.showbookend.bind(this));
         this.emitter.on(CLOSEBOOKEND, this.closebookend.bind(this));
+        this.emitter.on(VISIBILITYCHANGE, this.visibilitychange.bind(this));
         this.emitter.on(SHOWNOPREVIOUSPAGEHELP, this.shownopreviouspagehelp.bind(this));
     };
 
@@ -266,16 +282,43 @@ define(function (require) {
         this.share.hideShareLayer();
     };
 
+    MIPStory.prototype.muteGlobalAudio = function () {
+        if (this.audio) {
+            this.audio.muted = true;
+        }
+    };
+
+    MIPStory.prototype.unMuteGlobalAudio = function () {
+        if (this.audio) {
+            this.audio.muted = false;
+        }
+    };
+
+    MIPStory.prototype.playGlobalAudio = function () {
+        if (this.audio) {
+            this.audio.play();
+        }
+    };
+
+    MIPStory.prototype.pauseGlobalAudio = function () {
+        if (this.audio) {
+            this.audio.pause();
+        }
+    };
+
     MIPStory.prototype.mute = function (e) {
-        this.muted = true;
+        this.muteGlobalAudio();
         var ele = storyViews[this.currentIndex];
         ele.customElement.toggleAllMedia(e);
+        e.target.setAttribute('muted', '');
     };
 
     MIPStory.prototype.unmute = function (e) {
-        this.muted = false;
+        this.unMuteGlobalAudio();
+        this.playGlobalAudio();
         var ele = storyViews[this.currentIndex];
         ele.customElement.toggleAllMedia(e);
+        e.target.removeAttribute('muted');
     };
 
     MIPStory.prototype.replay = function () {

@@ -7,6 +7,8 @@ define(function (require) {
     'use strict';
 
     var customElement = require('customElement').create();
+    var Audio = require('./audio');
+    var BACKGROUND_AUDIO = 'background-audio';
 
     customElement.prototype.resumeAllMedia = function () {
         this.whenAllMediaElements(function (ele) {
@@ -30,11 +32,9 @@ define(function (require) {
         var ele = e.target;
         if (ele.hasAttribute('muted')) {
             this.unMuteAllMedia();
-            ele.removeAttribute('muted');
         }
         else {
             this.muteAllMedia();
-            ele.setAttribute('muted', '');
         }
     };
 
@@ -44,22 +44,8 @@ define(function (require) {
         });
     };
 
-    customElement.prototype.upgradeBackgroundAudio = function () {
-        var audioSrc = this.element.getAttribute('background-audio');
-        if (audioSrc) {
-            var audioEl = document.createElement('audio');
-            audioEl.setAttribute('src', audioSrc);
-            audioEl.setAttribute('preload', 'auto');
-            audioEl.setAttribute('loop', '');
-            audioEl.setAttribute('autoplay', '');
-            audioEl.setAttribute('muted', '');
-            audioEl.style.disply = 'hidden';
-            this.element.appendChild(audioEl);
-        }
-    };
-
     customElement.prototype.getAllMedia = function () {
-        return this.element.parentNode.querySelectorAll('audio, video');
+        return this.element.querySelectorAll('audio, video');
     };
 
     customElement.prototype.whenAllMediaElements = function (cb) {
@@ -81,8 +67,17 @@ define(function (require) {
         }
     };
 
+    customElement.prototype.initView = function () {
+        this.audio = new Audio();
+        var node = this.element.parentNode;
+        if (!node.hasAttribute(BACKGROUND_AUDIO)) {
+            var audioSrc = this.element.getAttribute(BACKGROUND_AUDIO);
+            this.audio.build(this.element, audioSrc);
+        }
+    };
+
     customElement.prototype.firstInviewCallback = function () {
-        this.upgradeBackgroundAudio();
+        this.initView();
         this.pauseAllMedia();
     };
 

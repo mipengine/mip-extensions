@@ -30,9 +30,10 @@ define(function (require) {
         content += '<ol class="mip-story-progress-bar">';
         for (var i = 0; i < this.elements.length; i++) {
             content += '<li class="mip-story-page-progress-bar">'
-                    +   '<div class="mip-story-page-progress-value"></div>'
+                    +       '<div class="mip-story-page-progress-value"></div>'
                     + '</li>';
         }
+        content += '</ol>';
 
         var muteStats = encodeURIComponent(
             JSON.stringify({
@@ -40,10 +41,15 @@ define(function (require) {
                 data: ['_trackEvent', '音频静音按钮', '点击', window.location.href]
             })
         );
-        content += '</ol>'
-            // +       '<span class="mip-stoy-audio" data-stats-baidu-obj="' + muteStats + '"></span>'
-            + '</aside>';
+        content += this.showAudio()
+            ? '<span class="mip-stoy-audio" muted data-stats-baidu-obj="'
+            + muteStats + '"></span></aside>' : '';
         return content;
+    };
+
+    MIPProgress.prototype.showAudio = function () {
+        var ele = this.root.querySelectorAll('audio, video');
+        return !!ele.length;
     };
 
     MIPProgress.prototype.updateProgress = function (index, status) {

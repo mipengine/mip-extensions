@@ -30,7 +30,7 @@
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
         </mip-story-layer>
         <mip-story-layer>
-            <p>小故事是什么？</p>
+            <h1>小故事是什么？</h1>
             <p>快用 MIP 小故事开发很多丰富的交互效果吧！</p>
         </mip-story-layer>
     </mip-story-view>
@@ -39,7 +39,7 @@
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
         </mip-story-layer>
         <mip-story-layer>
-            <p>用 MIP 来诉说你的故事！</p>
+            <h1>用 MIP 来诉说你的故事！</h1>
         </mip-story-layer>
     </mip-story-view>
 </mip-story>

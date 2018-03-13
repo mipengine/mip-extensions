@@ -19,6 +19,7 @@ define(function (require) {
 
     require('./mip-story-view');
     require('./mip-story-layer');
+    var Audio = require('./audio');
     var ShareLayer = require('./mip-story-share');
     var HintLayer = require('./mip-story-hint');
     var BookEnd = require('./mip-story-bookend');
@@ -60,17 +61,11 @@ define(function (require) {
     };
 
     MIPStory.prototype.initAudio = function () {
-        var audioSrc = this.element.getAttribute('background-audio');
-        if (audioSrc) {
-            var audioEl = document.createElement('audio');
-            audioEl.setAttribute('src', audioSrc);
-            audioEl.setAttribute('preload', 'auto');
-            audioEl.setAttribute('loop', '');
-            audioEl.setAttribute('autoplay', '');
-            audioEl.setAttribute('muted', '');
-            audioEl.style.disply = 'hidden';
-            this.element.appendChild(audioEl);
-        }
+        var au = this.element.getAttribute('background-audio');
+        if (au) {
+            this.audio = new Audio();
+            au && this.audio.build(this.element, au);
+        }        
     };
 
     MIPStory.prototype.initShare = function () {

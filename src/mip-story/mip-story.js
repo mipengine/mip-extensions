@@ -14,7 +14,6 @@ define(function (require) {
     var SHOWBOOKEND = 'showbookend';
     var CLOSEBOOKEND = 'closebookend';
     var TAPNAVIGATION = 'tapnavigation';
-    var MIP_STORY_STANDALONE_ATTRIBUTE = 'standalone';
     var SHOWNOPREVIOUSPAGEHELP = 'shownopreviouspagehelp';
     var MIP_I_STORY_STANDALONE = 'mip-i-story-standalone';
 
@@ -40,10 +39,8 @@ define(function (require) {
 
     MIPStory.prototype.init = function () {
         var self = this;
-        if (self.element.hasAttribute(MIP_STORY_STANDALONE_ATTRIBUTE)) {
-            var html = this.win.document.documentElement;
-            html.setAttribute('id', MIP_I_STORY_STANDALONE);
-        }
+        var html = this.win.document.documentElement;
+        html.setAttribute('id', MIP_I_STORY_STANDALONE);
         // 初始化音频
         this.initAudio();
         // 保存 story views

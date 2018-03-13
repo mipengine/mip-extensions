@@ -59,13 +59,6 @@ share 字段下包含的是分享相关的数据。
 
 ## 属性
 
-### mip-story
-
-#### standalone
-
-说明：用于标示页面是 `<mip-story>` 类型的页面    
-必选项：是
-
 ### mip-story-layer
 
 该元素表示“层”的概念，在每一个 `<mip-story-view>` 元素里面可以有多个 layer 作为页面内容，如视频、图片、文字等。

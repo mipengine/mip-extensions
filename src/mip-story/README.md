@@ -39,7 +39,7 @@
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
         </mip-story-layer>
         <mip-story-layer>
-            <h1>用 MIP 来诉说你的故事！</h1>
+            <h1>用 MIP 来讲述你的故事！</h1>
         </mip-story-layer>
     </mip-story-view>
 </mip-story>

@@ -15,8 +15,8 @@
 ### 基本用法
 ```html
 <mip-story standalone>
-	<script type="application/json">
-	{
+    <script type="application/json">
+    {
         "share": {
             "thumbnail": "https://mip-extensions.bj.bcebos.com/oscar/cover.jpg",
             "background": "https://mip-extensions.bj.bcebos.com/oscar/p8.png",
@@ -24,23 +24,22 @@
             "from": "小故事"
         }
     }
-	</script>
+    </script>
     <mip-story-view>
         <mip-story-layer template="fill">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
         </mip-story-layer>
-        <mip-story-layer template="fill">
-            <span>小故事是什么？</span>
-            <span>快用 MIP 小故事开发很多丰富的交互效果吧！</span>
+        <mip-story-layer>
+            <h1>小故事是什么？</h1>
+            <p>快用 MIP 小故事开发很多丰富的交互效果吧！</p>
         </mip-story-layer>
     </mip-story-view>
     <mip-story-view>
         <mip-story-layer template="fill">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
+            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
         </mip-story-layer>
-        <mip-story-layer template="fill">
-            <span>小故事是什么？</span>
-            <span>快用 MIP 小故事开发很多丰富的交互效果吧！</span>
+        <mip-story-layer>
+            <h1>用 MIP 来讲述你的故事！</h1>
         </mip-story-layer>
     </mip-story-view>
 </mip-story>
@@ -68,6 +67,6 @@
 - `vertical`：`<mip-story-layer>` 中的元素沿 `y` 轴排列，`x` 轴方向填充布局。
 - `horizontal`：`<mip-story-layer>` 中的元素沿 `x` 轴排列，`y` 轴方向填充。
 
-默认情况下会按照正常布局进行展示。	
+默认情况下会按照正常布局进行展示。   
 
 必选项：否

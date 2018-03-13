@@ -7,6 +7,7 @@ define(function (require) {
     'use strict';
 
     var customElement = require('customElement').create();
+    var Audio = require('./audio');
 
     customElement.prototype.resumeAllMedia = function () {
         this.whenAllMediaElements(function (ele) {
@@ -45,7 +46,7 @@ define(function (require) {
     };
 
     customElement.prototype.upgradeBackgroundAudio = function () {
-        var audioSrc = this.element.getAttribute('background-audio');
+        var audioSrc = this.element.getAttribute('background-audio');    
         if (audioSrc) {
             var audioEl = document.createElement('audio');
             audioEl.setAttribute('src', audioSrc);
@@ -53,13 +54,14 @@ define(function (require) {
             audioEl.setAttribute('loop', '');
             audioEl.setAttribute('autoplay', '');
             audioEl.setAttribute('muted', '');
+            audioEl.muted = true;
             audioEl.style.disply = 'hidden';
             this.element.appendChild(audioEl);
         }
     };
 
     customElement.prototype.getAllMedia = function () {
-        return this.element.parentNode.querySelectorAll('audio, video');
+        return this.element.querySelectorAll('audio, video');
     };
 
     customElement.prototype.whenAllMediaElements = function (cb) {
@@ -69,7 +71,7 @@ define(function (require) {
         });
     };
 
-    customElement.prototype.setActive = function (status, muted) {
+    customElement.prototype.setActive = function (status, muted) {        
         if (status) {
             this.element.setAttribute('active', '');
             this.resumeAllMedia();
@@ -81,9 +83,9 @@ define(function (require) {
         }
     };
 
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.firstInviewCallback = function () {        
         this.upgradeBackgroundAudio();
-        this.pauseAllMedia();
+        this.pauseAllMedia();        
     };
 
     /* eslint-disable */

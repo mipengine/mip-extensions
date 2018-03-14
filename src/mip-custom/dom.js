@@ -166,7 +166,7 @@ define(function (require) {
      * @param  {DOM}     container 装载定制化组件节点的容器
      * @return {string}  customTag 定制化组件标签
      */
-    function renderHtml(element, str, len, result, container) {
+    function renderHtml(element, str, len, result, container, callback) {
         var html = str.replace(regexs.script, '').replace(regexs.style, '');
         var customTag = (new RegExp(regexs.tag, 'g')).exec(html);
         customTag = customTag && customTag[1] ? customTag[1] : null;
@@ -203,8 +203,8 @@ define(function (require) {
                 }
 
             }
+            callback && callback(res.html, '{{img_left.img_src}}');
         });
-
         return customTag;
     }
 
@@ -215,7 +215,7 @@ define(function (require) {
      * @param  {Array} tplData   渲染mustache模板的数据数组
      * @param  {DOM}   container 装载定制化组件节点的容器
      */
-    function render(element, tplData, container) {
+    function render(element, tplData, container, callback) {
 
         for (var len = 0; len < tplData.length; len++) {
 
@@ -236,7 +236,7 @@ define(function (require) {
             renderStyleOrScript(str, regexs.style, 'style', 'mip-custom-css', document.head);
 
             // html 处理
-            var customTag = renderHtml(element, str, len, result, container);
+            var customTag = renderHtml(element, str, len, result, container, callback);
 
             if (!customTag) {
                 continue;

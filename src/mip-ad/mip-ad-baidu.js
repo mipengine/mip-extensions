@@ -37,6 +37,7 @@ define(function (require) {
             (window[apiStr] = window[apiStr] || []).push({
                 containerId: s,
                 exps: exps,
+                proxy: 0,
                 slotId: cproID
             });
         }

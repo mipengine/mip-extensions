@@ -236,8 +236,8 @@ define(function (require) {
     };
     
     var advLogInfoClick = function () {
+	var ele = this.document;
     	util.event.delegate(document.body, '.href_log', 'click', function(){
-    		var ele = this.document;
     		var $that = ele.querySelector('.business_source');
 	    	var $thatType = ele.querySelector('.business_source_type');
 		var $thatDiv = ele.querySelector('.paramDiv');

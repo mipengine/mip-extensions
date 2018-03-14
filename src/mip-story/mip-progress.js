@@ -7,6 +7,7 @@ define(function (require) {
     'use strict';
 
     var ACTIVE = 'mip-story-page-progress-bar-active';
+    var VISITED = 'mip-story-page-progress-bar-visited';
 
     function MIPProgress(root, elements) {
         this.root = root;
@@ -57,6 +58,12 @@ define(function (require) {
         var ele = progressBar[index];
         ele.classList.add(ACTIVE);
         this.oldEle && this.oldEle !== ele && this.oldEle.classList.remove(ACTIVE);
+        if (status) {
+            this.oldEle && this.oldEle !== ele && this.oldEle.classList.add(VISITED);
+        }
+        else {
+            this.oldEle && this.oldEle !== ele && this.oldEle.classList.remove(VISITED);
+        }
         this.oldEle = ele;
     };
 

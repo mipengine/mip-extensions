@@ -11,7 +11,7 @@ define(function (require) {
     var BACKGROUND_AUDIO = 'background-audio';
 
     customElement.prototype.resumeAllMedia = function () {
-        this.whenAllMediaElements(function (ele) {            
+        this.whenAllMediaElements(function (ele) {
             ele.play();
         });
     };
@@ -29,7 +29,7 @@ define(function (require) {
     };
 
     customElement.prototype.toggleAllMedia = function (e) {
-        var ele = e.target;        
+        var ele = e.target;
         if (ele.hasAttribute('muted')) {
             this.resumeAllMedia();
             this.unMuteAllMedia();

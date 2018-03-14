@@ -58,8 +58,12 @@ define(function (require) {
         var ele = progressBar[index];
         ele.classList.add(ACTIVE);
         this.oldEle && this.oldEle !== ele && this.oldEle.classList.remove(ACTIVE);
+
         if (status) {
             this.oldEle && this.oldEle !== ele && this.oldEle.classList.add(VISITED);
+            for (var i = index; i < progressBar.length; i++) {
+                progressBar[i].classList.remove(VISITED);
+            }
         }
         else {
             this.oldEle && this.oldEle !== ele && this.oldEle.classList.remove(VISITED);

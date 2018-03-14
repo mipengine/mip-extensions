@@ -40,7 +40,6 @@ define(function (require) {
     }
 
     MIPStory.prototype.init = function () {
-        var self = this;
         var html = this.win.document.documentElement;
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
         // 初始化音频

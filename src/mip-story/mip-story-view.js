@@ -11,8 +11,9 @@ define(function (require) {
     var BACKGROUND_AUDIO = 'background-audio';
 
     customElement.prototype.resumeAllMedia = function () {
-        this.whenAllMediaElements(function (ele) {
-            ele.play();
+        var self = this;
+        self.whenAllMediaElements(function (ele) {
+            !self.muted && ele.play();
         });
     };
 

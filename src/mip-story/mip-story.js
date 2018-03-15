@@ -108,12 +108,13 @@ define(function (require) {
             : 'mozHidden' in document ? 'mozHidden' : null;
         var currentEle = storyViews[this.currentIndex];
         if (document[hiddenProperty]) {
-            this.pauseGlobalAudio();            
+            this.pauseGlobalAudio();
+            currentEle.customElement.pauseAllMedia();
         }
         else {
             this.playGlobalAudio();
+            currentEle.customElement.resumeAllMedia();
         }
-        currentEle.customElement.toggleAllMedia(e);
     };
 
     MIPStory.prototype.initBookend = function () {

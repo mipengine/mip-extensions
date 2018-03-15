@@ -25,6 +25,7 @@ define(function (require) {
     customElement.prototype.muteAllMedia = function () {
         this.whenAllMediaElements(function (ele) {
             ele.muted = true;
+            ele.pause();
         });
     };
 
@@ -42,6 +43,7 @@ define(function (require) {
     customElement.prototype.unMuteAllMedia = function () {
         this.whenAllMediaElements(function (ele) {
             ele.muted = false;
+            ele.play();
         });
     };
 

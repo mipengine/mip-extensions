@@ -280,12 +280,14 @@ define(function (require) {
 
     MIPStory.prototype.muteGlobalAudio = function () {
         if (this.audio) {
+            this.audio.pause();
             this.audio.muted = true;
         }
     };
 
     MIPStory.prototype.unMuteGlobalAudio = function () {
         if (this.audio) {
+            this.audio.play();
             this.audio.muted = false;
         }
     };

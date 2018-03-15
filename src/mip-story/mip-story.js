@@ -108,13 +108,12 @@ define(function (require) {
             : 'mozHidden' in document ? 'mozHidden' : null;
         var currentEle = storyViews[this.currentIndex];
         if (document[hiddenProperty]) {
-            this.pauseGlobalAudio();
-            currentEle.customElement.pauseAllMedia();
+            this.pauseGlobalAudio();            
         }
         else {
             this.playGlobalAudio();
-            currentEle.customElement.resumeAllMedia();
         }
+        currentEle.customElement.toggleAllMedia(e);
     };
 
     MIPStory.prototype.initBookend = function () {
@@ -292,8 +291,8 @@ define(function (require) {
         }
     };
 
-    MIPStory.prototype.playGlobalAudio = function () {
-        if (this.audio) {
+    MIPStory.prototype.playGlobalAudio = function () {        
+        if (this.audio && !this.muted) {
             this.audio.play();
         }
     };

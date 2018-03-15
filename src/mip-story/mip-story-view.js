@@ -32,8 +32,8 @@ define(function (require) {
     customElement.prototype.toggleAllMedia = function (e) {
         var ele = e.target;
         if (ele.hasAttribute('muted')) {
-            this.resumeAllMedia();
-            this.unMuteAllMedia();
+            !this.muted && this.resumeAllMedia();
+            !this.muted && this.unMuteAllMedia();
         }
         else {
             this.muteAllMedia();
@@ -59,10 +59,11 @@ define(function (require) {
     };
 
     customElement.prototype.setActive = function (status, muted) {
+        this.muted = muted;
         if (status) {
             this.element.setAttribute('active', '');
             this.resumeAllMedia();
-            muted ? this.muteAllMedia() : this.unMuteAllMedia();
+            this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
         }
         else {
             this.element.removeAttribute('active');

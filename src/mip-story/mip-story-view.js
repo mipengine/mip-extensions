@@ -30,7 +30,8 @@ define(function (require) {
         });
     };
 
-    customElement.prototype.toggleAllMedia = function (e) {
+    customElement.prototype.toggleAllMedia = function (e, muted) {
+        this.muted = muted;
         var ele = e.target;
         if (ele.hasAttribute('muted')) {
             !this.muted && this.resumeAllMedia();

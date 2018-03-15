@@ -308,7 +308,7 @@ define(function (require) {
         this.muted = true;
         this.muteGlobalAudio();
         var ele = storyViews[this.currentIndex];
-        ele.customElement.toggleAllMedia(e);
+        ele.customElement.toggleAllMedia(e, this.muted);
         e.target.setAttribute('muted', '');
     };
 
@@ -317,7 +317,7 @@ define(function (require) {
         this.unMuteGlobalAudio();
         this.playGlobalAudio();
         var ele = storyViews[this.currentIndex];
-        ele.customElement.toggleAllMedia(e);
+        ele.customElement.toggleAllMedia(e, this.muted);
         e.target.removeAttribute('muted');
     };
 

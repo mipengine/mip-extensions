@@ -147,9 +147,12 @@ define(function (require) {
     Compile.prototype.bind = function (node, directive, newVal) {
         var reg = /bind:(.*)/;
         var result = reg.exec(directive);
-        if (result && result[1]) {
-            node.setAttribute(result[1], newVal);
+        if (!result.length) {
+            return;
         }
+        newVal !== ""
+            ? node.setAttribute(result[1], newVal)
+            : node.removeAttribute(result[1]);
     };
 
     /**

@@ -146,6 +146,8 @@
 <script src="https://c.mipcdn.com/static/v1/mip-vd-tabs/mip-vd-tabs.js"></script>
 ```
 
+[info] 如果通过 `m-bind` 绑定的数据为空值，即 "" 时，则删除该属性。
+
 #### `m-text`
 绑定元素 `textContent`。具体格式为 `m-text=value`，即：将元素的 `textContent` 设置为 `value` 的值，同样 `value` 为数据源中的属性名，多层数据可以以 `.` 连接，如：
 

@@ -236,12 +236,12 @@ define(function (require) {
     };
     
     var advLogInfoClick = function () {
+	var ele = this.document;
+	var $that = ele.querySelector('.business_source');
+	var $thatType = ele.querySelector('.business_source_type');
+	var $thatDiv = ele.querySelector('.paramDiv');
+	var sources = $that.getAttribute('sources') || $thatType.getAttribute('sourceType');
     	util.event.delegate(document.body, '.href_log', 'click', function(){
-    		var ele = this.document;
-    		var $that = ele.querySelector('.business_source');
-	    	var $thatType = ele.querySelector('.business_source_type');
-		var $thatDiv = ele.querySelector('.paramDiv');
-	        var sources = $that.getAttribute('sources') || $thatType.getAttribute('sourceType');
 		if (sources === 'COMMERCIAL_ZWZD') {
                     sources = 'COOPERATE_COMMERCIAL';
                 }

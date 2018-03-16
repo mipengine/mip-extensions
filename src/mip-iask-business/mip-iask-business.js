@@ -236,22 +236,21 @@ define(function (require) {
     };
     
     var advLogInfoClick = function () {
-    	util.event.delegate(document.body, '.href_log', 'click', function(){
-    		var ele = this.document;
-    		var $that = ele.querySelector('.business_source');
-	    	var $thatType = ele.querySelector('.business_source_type');
-		var $thatDiv = ele.querySelector('.paramDiv');
-	        var sources = $that.getAttribute('sources') || $thatType.getAttribute('sourceType');
-		if (sources === 'COMMERCIAL_ZWZD') {
-                    sources = 'COOPERATE_COMMERCIAL';
-                }
-                var pos = $(this).attr('pos');
-                $thatDiv.setAttribute('pos', pos);
-                advLogInfo(sources, 1);
-                var url = $(this).attr('href');
-                window.open(url);
+        var $that = document.querySelector('.business_source');
+        var $thatType = document.querySelector('.business_source_type');
+        var $thatDiv = document.querySelector('.paramDiv');
+        var sources = $that.getAttribute('sources') || $thatType.getAttribute('sourceType');
+        $('.href_log').on('click', function(){
+            if (sources === 'COMMERCIAL_ZWZD') {
+                sources = 'COOPERATE_COMMERCIAL';
+            }
+            var pos = $(this).attr('pos');
+            var url = $(this).attr('href');
+            $thatDiv.setAttribute('pos', pos);
+            advLogInfo(sources, 1);
+            window.open(url);
     	});
-        loadStatsToken();
+    	loadStatsToken();
     };
     
     var subStringIask = function (str, size) {

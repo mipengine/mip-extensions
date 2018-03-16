@@ -236,22 +236,25 @@ define(function (require) {
     };
     
     var advLogInfoClick = function () {
+        $('.href_log').on('click', function(){
+            var pos = $(this).attr('pos');
+            var url = $(this).attr('href');
+            openURL(pos, url);
+    	});
+    	loadStatsToken();
+    };
+    function openURL(pos, url) {
         var $that = document.querySelector('.business_source');
         var $thatType = document.querySelector('.business_source_type');
         var $thatDiv = document.querySelector('.paramDiv');
         var sources = $that.getAttribute('sources') || $thatType.getAttribute('sourceType');
-        $('.href_log').on('click', function(){
-            if (sources === 'COMMERCIAL_ZWZD') {
-                sources = 'COOPERATE_COMMERCIAL';
-            }
-            var pos = $(this).attr('pos');
-            var url = $(this).attr('href');
-            $thatDiv.setAttribute('pos', pos);
-            advLogInfo(sources, 1);
-            window.open(url);
-    	});
-    	loadStatsToken();
-    };
+        if (sources === 'COMMERCIAL_ZWZD') {
+            sources = 'COOPERATE_COMMERCIAL';
+        }
+        $thatDiv.setAttribute('pos', pos);
+        advLogInfo(sources, 1);
+        window.open(url);
+    }
     
     var subStringIask = function (str, size) {
         if (!str) {

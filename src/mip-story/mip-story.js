@@ -92,10 +92,17 @@ define(function (require) {
         });
         // 绑定点击事件
         gesture.on('swipe', function (e, data) {
-            self.emitter.trigger(SWIP, {
-                e: e,
-                data: data
-            });
+            if (data.swipeDirection === 'left') {
+                self.emitter.trigger(SWITCHPAGE, {e: e, status: 1});
+            }
+            else if (data.swipeDirection === 'right') {
+                self.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
+            }
+        });
+
+        // 阻止在尾页时滑动切换
+        new Gesture(this.element.querySelector('.mip-backend'), {}).on('swipe', function (event) {
+            event.stopPropagation();
         });
 
         // 初始化自定义事件
@@ -140,7 +147,7 @@ define(function (require) {
     MIPStory.prototype.bindEvent = function () {
         this.emitter = new EventEmitter();
         this.emitter.on(MUTE, this.mute.bind(this));
-        this.emitter.on(SWIP, this.swip.bind(this));
+        // this.emitter.on(SWIP, this.swip.bind(this));
         this.emitter.on(UNMUTE, this.unmute.bind(this));
         this.emitter.on(REPLAY, this.replay.bind(this));
         this.emitter.on(TAPNAVIGATION, this.tapnavigation.bind(this));
@@ -151,16 +158,16 @@ define(function (require) {
         this.emitter.on(SHOWNOPREVIOUSPAGEHELP, this.shownopreviouspagehelp.bind(this));
     };
 
-    MIPStory.prototype.swip = function (e) {
-        if (e.data.swipeDirection === 'left'
-            || e.data.swipeDirection === 'right') {
-            var backend = document.querySelector('.mip-backend');
-            if (dm.contains(backend, e.target)) {
-                return;
-            }
-            this.hint.toggleSystemLater();
-        }
-    };
+    // MIPStory.prototype.swip = function (e) {
+    //     if (e.data.swipeDirection === 'left'
+    //         || e.data.swipeDirection === 'right') {
+    //         var backend = document.querySelector('.mip-backend');
+    //         if (dm.contains(backend, e.target)) {
+    //             return;
+    //         }
+    //         this.hint.toggleSystemLater();
+    //     }
+    // };
 
     MIPStory.prototype.tapnavigation = function (e) {
         e.preventDefault();
@@ -211,15 +218,15 @@ define(function (require) {
         }
 
         // 翻页逻辑
-        var centerX = (this.element.offsetLeft + this.element.offsetWidth) / 2;
-        // 向右切换
-        if (e.pageX > centerX) {
-            this.emitter.trigger(SWITCHPAGE, {e: e, status: 1});
-        }
-        // 向左切换
-        else {
-            this.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
-        }
+        // var centerX = (this.element.offsetLeft + this.element.offsetWidth) / 2;
+        // // 向右切换
+        // if (e.pageX > centerX) {
+        //     this.emitter.trigger(SWITCHPAGE, {e: e, status: 1});
+        // }
+        // // 向左切换
+        // else {
+        //     this.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
+        // }
     };
 
     MIPStory.prototype.setActive = function (status) {

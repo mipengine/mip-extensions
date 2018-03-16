@@ -92,11 +92,6 @@ define(function (require) {
         });
         // 绑定点击事件
         gesture.on('swipe', function (e, data) {
-            self.emitter.trigger(SWIP, {
-                e: e,
-                data: data
-            });
-
             if (data.swipeDirection === 'left') {
                 self.emitter.trigger(SWITCHPAGE, {e: e, status: 1});
             }
@@ -152,7 +147,7 @@ define(function (require) {
     MIPStory.prototype.bindEvent = function () {
         this.emitter = new EventEmitter();
         this.emitter.on(MUTE, this.mute.bind(this));
-        this.emitter.on(SWIP, this.swip.bind(this));
+        // this.emitter.on(SWIP, this.swip.bind(this));
         this.emitter.on(UNMUTE, this.unmute.bind(this));
         this.emitter.on(REPLAY, this.replay.bind(this));
         this.emitter.on(TAPNAVIGATION, this.tapnavigation.bind(this));
@@ -163,16 +158,16 @@ define(function (require) {
         this.emitter.on(SHOWNOPREVIOUSPAGEHELP, this.shownopreviouspagehelp.bind(this));
     };
 
-    MIPStory.prototype.swip = function (e) {
-        if (e.data.swipeDirection === 'left'
-            || e.data.swipeDirection === 'right') {
-            var backend = document.querySelector('.mip-backend');
-            if (dm.contains(backend, e.target)) {
-                return;
-            }
-            this.hint.toggleSystemLater();
-        }
-    };
+    // MIPStory.prototype.swip = function (e) {
+    //     if (e.data.swipeDirection === 'left'
+    //         || e.data.swipeDirection === 'right') {
+    //         var backend = document.querySelector('.mip-backend');
+    //         if (dm.contains(backend, e.target)) {
+    //             return;
+    //         }
+    //         this.hint.toggleSystemLater();
+    //     }
+    // };
 
     MIPStory.prototype.tapnavigation = function (e) {
         e.preventDefault();

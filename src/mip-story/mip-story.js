@@ -170,7 +170,6 @@ define(function (require) {
     // };
 
     MIPStory.prototype.tapnavigation = function (e) {
-        e.preventDefault();
         e.stopPropagation();
         var backend = document.querySelector('.mip-backend');
         var replay = document.querySelector('.mip-backend-preview');

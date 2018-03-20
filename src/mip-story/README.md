@@ -38,6 +38,7 @@
         <mip-story-layer>
             <h1>小故事是什么？</h1>
             <p>快用 MIP 小故事开发很多丰富的交互效果吧！</p>
+            <a href="https://www.baidu.com">普通跳转链接</a>
         </mip-story-layer>
     </mip-story-view>
     <mip-story-view>

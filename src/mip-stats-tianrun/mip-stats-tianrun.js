@@ -14,9 +14,13 @@ define(function (require) {
 
         util.css(_this.element, 'display', 'none');
 
+        // 获取节点数据，默认以原来数据提交
+        var sub = _this.element.getAttribute('sub') || 'cl2';
+        var z = _this.element.getAttribute('z') || '26';
+
         var node = document.createElement('script');
         node.type = 'text/javascript';
-        node.src = '//cl2.webterren.com/webdig.js?z=26';
+        node.src = '//' + sub + '.webterren.com/webdig.js?z=' + z;
         _this.element.appendChild(node);
 
         node.onload = function() {

@@ -1,6 +1,6 @@
 {
     "name": "mip-sidebar",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "侧边栏组件，点击按钮，侧边栏滑入屏幕。",
     "contributors": [
         {

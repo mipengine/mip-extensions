@@ -1,0 +1,14 @@
+{
+    "name": "mip-xzh-payment",
+    "version": "1.0.0",
+    "description": "熊掌号支付组件",
+    "contributors": [
+        {
+            "name": "lillian",
+            "email": ""
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

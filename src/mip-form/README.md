@@ -71,7 +71,7 @@
 
 ### url
 
-说明：表单提交 URL，建议填写 HTTPS 地址   
+说明：必须是 HTTP(S) 或 // 开头的地址   
 必选项: 是  
 
 ### validatetarget

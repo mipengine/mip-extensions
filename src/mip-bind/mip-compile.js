@@ -7,8 +7,8 @@
 define(function (require) {
 
     var Watcher = require('./mip-watcher');
-    var TAGNAMES = /^((input)|(textarea)|(select))$/i;
-    var ATTRS = /^((checked)|(selected)|(autofocus)|(controls)|(disabled)|(hidden)|(multiple)|(readonly)|(required))$/i;
+    var TAGNAMES = /^(input|textarea|select)$/i;
+    var ATTRS = /^(checked|selected|autofocus|controls|disabled|hidden|multiple|readonly|required)$/i;
 
      /**
      * Compile Class

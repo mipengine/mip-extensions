@@ -6,6 +6,8 @@
 
 define(function (require) {
 
+    var util = require('util');
+    var fn = util.fn;
     var Watcher = require('./mip-watcher');
     var VALUE = /^value$/;
     var TAGNAMES = /^(input|textarea|select)$/i;
@@ -179,6 +181,7 @@ define(function (require) {
         }
         var attr = result[1];
         if (attr !== 'disabled' && node.disabled) {
+            fn.extend(window.m, this.origin);
             return;
         }
         newVal !== ''
@@ -193,6 +196,10 @@ define(function (require) {
             }
         }        
     };
+
+    Compile.prototype.upadteData = function (data) {
+        this.origin = data;
+    }
 
     /**
      * Handle expression value

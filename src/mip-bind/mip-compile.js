@@ -121,13 +121,33 @@ define(function (require) {
         var data = me._getMVal(node, attrName, expression);
         if (data) {
             me[fnName] && me[fnName](node, attrName, data);
-        }
+        }        
+        this._listenerFormElement(node, directive, expression);
         new Watcher(node, me.data, attrName, expression, function (dir, newVal, oldVal) {
             if (typeof me[fnName] === 'function') {
                 me[fnName](node, dir, newVal);
             }
         });
     };
+    
+    /**
+     * Handle bidirectional data binding
+     *
+     * @param {HTMLElement} node html element
+     * @param {string} directive mip directive
+     * @param {string} newVal new value
+     */
+    Compile.prototype._listenerFormElement = function (node, directive, expression) {
+        if (TAGNAMES.test(node.tagName)) {
+            var handle = function (e) {
+                var data = {};
+                data[expression] = e.target.value;
+                MIP.setData(data);
+            }
+            node.addEventListener('change', handle.bind(this));
+            node.addEventListener('input', handle.bind(this));
+        }        
+    }
 
     /**
      * Handle m-text directive
@@ -153,7 +173,7 @@ define(function (require) {
         if (!result.length) {
             return;
         }
-        var attr = result[1];
+        var attr = result[1];        
         newVal !== ""
             ? node.setAttribute(attr, newVal)
             : node.removeAttribute(attr);

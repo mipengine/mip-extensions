@@ -1,6 +1,6 @@
 {
     "name": "mip-bind",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "组件提供数据驱动，使得页面数据拥有双向绑定功能",
     "contributors": [
         {

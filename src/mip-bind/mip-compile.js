@@ -7,6 +7,8 @@
 define(function (require) {
 
     var Watcher = require('./mip-watcher');
+    var TAGNAMES = /^((input)|(textarea))$/i;
+    var ATTRS = /^((checked)|(selected)|(async)|(autofocus)|(autoplay)|(controls)|(defer)|(disabled)|(hidden)|(ismap)|(loop)|(multiple)|(open)|(readonly)|(required)|(scoped))$/i;
 
      /**
      * Compile Class
@@ -150,9 +152,13 @@ define(function (require) {
         if (!result.length) {
             return;
         }
+        var attr = result[1];
         newVal !== ""
-            ? node.setAttribute(result[1], newVal)
-            : node.removeAttribute(result[1]);
+            ? node.setAttribute(attr, newVal)
+            : node.removeAttribute(attr);
+        if (TAGNAMES.test(node.tagName) && ATTRS.test(attr)) {
+            node[attr] = !!newVal;
+        }
     };
 
     /**

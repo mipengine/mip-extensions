@@ -8,8 +8,8 @@ define(function (require) {
 
     var Watcher = require('./mip-watcher');
     var VALUE = /^value$/;
-    var TAGNAMES = /^(input|textarea|select)$/i;    
-    var ATTRS = /^(checked|selected|autofocus|controls|disabled|hidden|multiple|readonly|required)$/i;
+    var TAGNAMES = /^(input|textarea|select)$/i;
+    var ATTRS = /^(checked|selected|autofocus|controls|disabled|hidden|multiple|readonly)$/i;
 
      /**
      * Compile Class
@@ -121,7 +121,7 @@ define(function (require) {
         var data = me._getMVal(node, attrName, expression);
         if (data) {
             me[fnName] && me[fnName](node, attrName, data);
-        }        
+        }
         this._listenerFormElement(node, directive, expression);
         new Watcher(node, me.data, attrName, expression, function (dir, newVal, oldVal) {
             if (typeof me[fnName] === 'function') {
@@ -129,25 +129,29 @@ define(function (require) {
             }
         });
     };
-    
+
     /**
      * Handle bidirectional data binding
      *
      * @param {HTMLElement} node html element
      * @param {string} directive mip directive
-     * @param {string} newVal new value
+     * @param {string} expression expression
      */
     Compile.prototype._listenerFormElement = function (node, directive, expression) {
         if (TAGNAMES.test(node.tagName)) {
             var handle = function (e) {
                 var data = {};
-                data[expression] = e.target.value;
-                MIP.setData(data);
-            }
+                var attr = directive.name.split(':');
+                attr = attr.length > 1 ? attr[1] : '';
+                if (attr.trim() === 'value') {
+                    data[expression] = e.target.value;
+                    MIP.setData(data);
+                }
+            };
             node.addEventListener('change', handle.bind(this));
             node.addEventListener('input', handle.bind(this));
-        }        
-    }
+        }
+    };
 
     /**
      * Handle m-text directive
@@ -173,10 +177,7 @@ define(function (require) {
         if (!result.length) {
             return;
         }
-        var attr = result[1];        
-        newVal !== ""
-            ? node.setAttribute(attr, newVal)
-            : node.removeAttribute(attr);
+        var attr = result[1];
         if (TAGNAMES.test(node.tagName)) {
             if (ATTRS.test(attr)) {
                 node[attr] = !!newVal;
@@ -185,6 +186,9 @@ define(function (require) {
                 node[attr] = newVal;
             }
         }
+        newVal !== ''
+            ? node.setAttribute(attr, newVal)
+            : node.removeAttribute(attr);
     };
 
     /**

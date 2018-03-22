@@ -138,15 +138,16 @@ define(function (require) {
      * @param {string} expression expression
      */
     Compile.prototype._listenerFormElement = function (node, directive, expression) {
-        if (TAGNAMES.test(node.tagName)) {
+        if (TAGNAMES.test(node.tagName)) {            
+            var attr = directive.name.split(':');
+            attr = attr.length > 1 ? attr[1] : '';
+            if (attr.trim() !== 'value') {
+                return;
+            }
             var handle = function (e) {
                 var data = {};
-                var attr = directive.name.split(':');
-                attr = attr.length > 1 ? attr[1] : '';
-                if (attr.trim() === 'value') {
-                    data[expression] = e.target.value;
-                    MIP.setData(data);
-                }
+                data[expression] = e.target.value;
+                MIP.setData(data);
             };
             node.addEventListener('input', handle.bind(this));
         }

@@ -148,7 +148,6 @@ define(function (require) {
                     MIP.setData(data);
                 }
             };
-            node.addEventListener('change', handle.bind(this));
             node.addEventListener('input', handle.bind(this));
         }
     };

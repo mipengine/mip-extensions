@@ -177,6 +177,12 @@ define(function (require) {
             return;
         }
         var attr = result[1];
+        if (attr !== 'disabled' && node.disabled) {
+            return;
+        }
+        newVal !== ''
+            ? node.setAttribute(attr, newVal)
+            : node.removeAttribute(attr);
         if (TAGNAMES.test(node.tagName)) {
             if (ATTRS.test(attr)) {
                 node[attr] = !!newVal;
@@ -184,10 +190,7 @@ define(function (require) {
             else if (VALUE.test(attr)) {
                 node[attr] = newVal;
             }
-        }
-        newVal !== ''
-            ? node.setAttribute(attr, newVal)
-            : node.removeAttribute(attr);
+        }        
     };
 
     /**

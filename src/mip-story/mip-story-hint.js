@@ -36,16 +36,16 @@ define(function (require) {
             +   '    <mip-img src="https://www.mipengine.org/static/img/mip-story/mip-story-rotate.png"></mip-img>'
             +   '    <p>为了更好的体验，请将手机横过来</p>'
             +   '</div>'
-            // +   '<div class="mip-story-page-switch">'
-            // +   '   <span class="mip-story-page-switch-left">'
-            // +   '     <span></span>'
-            // +   '     <span></span>'
-            // +   '   </span>'
-            // +   '   <span class="mip-story-page-switch-right">'
-            // +   '       <span></span>'
-            // +   '       <span></span>'
-            // +   '   </span>'
-            // +   '</div>'
+            +   '<div class="mip-story-page-switch">'
+            +   '   <span class="mip-story-page-switch-left">'
+            +   '     <span></span>'
+            +   '     <span></span>'
+            +   '   </span>'
+            +   '   <span class="mip-story-page-switch-right">'
+            +   '       <span></span>'
+            +   '       <span></span>'
+            +   '   </span>'
+            +   '</div>'
             + '</aside>';
         return html;
     };
@@ -94,37 +94,37 @@ define(function (require) {
     };
 
     MIPStoryHint.prototype.showPageSwitchLayer = function () {
-        // var hint = document.querySelector('.mip-story-hint');
-        // util.css(hint, {display: 'block'});
-        // var sw = document.querySelector('.mip-story-page-switch');
-        // util.css(sw, {display: 'block'});
-        // var left = document.querySelector('.mip-story-page-switch-left');
-        // util.css(left, {display: 'none'});
-        // var right = document.querySelector('.mip-story-page-switch-right');
-        // util.css(right, {display: 'block'});
-        // setTimeout(function () {
-        //     util.css(hint, {display: 'none'});
-        //     util.css(sw, {display: 'none'});
-        //     util.css(left, {display: 'none'});
-        //     util.css(right, {display: 'none'});
-        // }, 400);
+        var hint = document.querySelector('.mip-story-hint');
+        util.css(hint, {display: 'block'});
+        var sw = document.querySelector('.mip-story-page-switch');
+        util.css(sw, {display: 'block'});
+        var left = document.querySelector('.mip-story-page-switch-left');
+        util.css(left, {display: 'none'});
+        var right = document.querySelector('.mip-story-page-switch-right');
+        util.css(right, {display: 'block'});
+        setTimeout(function () {
+            util.css(hint, {display: 'none'});
+            util.css(sw, {display: 'none'});
+            util.css(left, {display: 'none'});
+            util.css(right, {display: 'none'});
+        }, 400);
     };
 
     MIPStoryHint.prototype.hidePageSwitchLayer = function () {
-        // var hint = document.querySelector('.mip-story-hint');
-        // util.css(hint, {display: 'block'});
-        // var sw = document.querySelector('.mip-story-page-switch');
-        // util.css(sw, {display: 'block'});
-        // var left = document.querySelector('.mip-story-page-switch-left');
-        // util.css(left, {display: 'block'});
-        // var right = document.querySelector('.mip-story-page-switch-right');
-        // util.css(right, {display: 'none'});
-        // setTimeout(function () {
-        //     util.css(hint, {display: 'none'});
-        //     util.css(sw, {display: 'none'});
-        //     util.css(left, {display: 'none'});
-        //     util.css(right, {display: 'none'});
-        // }, 400);
+        var hint = document.querySelector('.mip-story-hint');
+        util.css(hint, {display: 'block'});
+        var sw = document.querySelector('.mip-story-page-switch');
+        util.css(sw, {display: 'block'});
+        var left = document.querySelector('.mip-story-page-switch-left');
+        util.css(left, {display: 'block'});
+        var right = document.querySelector('.mip-story-page-switch-right');
+        util.css(right, {display: 'none'});
+        setTimeout(function () {
+            util.css(hint, {display: 'none'});
+            util.css(sw, {display: 'none'});
+            util.css(left, {display: 'none'});
+            util.css(right, {display: 'none'});
+        }, 400);
     };
 
     return MIPStoryHint;

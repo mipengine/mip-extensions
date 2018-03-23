@@ -12,7 +12,7 @@ html#mip-i-story-standalone body {
 }
 
 mip-story {
-    background: #000;
+    background: #fff;
     position: relative !important;
     height: 100% !important;
     width: 100% !important;
@@ -158,16 +158,17 @@ mip-story-layer * {
 }
 
 // 布局
-.mip-story-template-fill,
-.mip-story-template-vertical,
-.mip-story-template-horizontal {
+mip-story-layer[template=fill],
+mip-story-layer[template=vertical],
+mip-story-layer[template=horizontal],
+mip-story-layer[template=thirds] {
     display: flex !important;
     display: -webkit-flex !important;
     height: 100%;
-    display: -webkit-box;    
+    display: -webkit-box;
 }
 
-.mip-story-template-fill > :first-child {
+mip-story-layer[template=fill] > :first-child {
     bottom: 0;
     display: block;
     height: auto;
@@ -179,17 +180,17 @@ mip-story-layer * {
     object-fit: cover;
 }
 
-.mip-story-template-fill > :not(:first-child) {
+mip-story-layer[template=fill] > :not(:first-child) {
     display: none !important;
 }
 
-.mip-story-template-fill > mip-anim img,
-.mip-story-template-fill > mip-img img,
-.mip-story-template-fill > mip-video video {
+mip-story-layer[template=fill] > mip-anim img,
+mip-story-layer[template=fill] > mip-img img,
+mip-story-layer[template=fill] > mip-video video {
     object-fit: cover !important;
 }
 
-.mip-story-template-horizontal {
+mip-story-layer[template=horizontal] {
     flex-direction: row;
     -webkit-flex-direction: row;
     align-items: stretch;
@@ -198,7 +199,7 @@ mip-story-layer * {
     -webkit-align-content: flex-start;
 }
 
-.mip-story-template-vertical {
+mip-story-layer[template=vertical] {
     flex-direction: column;
     -webkit-flex-direction: column;
     align-items: stretch;
@@ -208,8 +209,20 @@ mip-story-layer * {
     margin-bottom: 16px;
 }
 
-.mip-story-template-vertical > * {
+mip-story-layer[template=vertical] > * {
     width: 100%;
+}
+
+mip-story-layer[template=thirds] {
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
+    -webkit-box-orient: vertical;
+}
+
+[flex-area=upper-third],
+[flex-area=middle-third],
+[flex-area=lower-third] {
+    height: 33%;
 }
 
 // 结尾页

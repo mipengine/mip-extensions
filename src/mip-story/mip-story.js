@@ -50,7 +50,7 @@ define(function (require) {
         this.initProgress();
         // 初始化结尾页
         this.initBookend();
-        // // 初始化引导页
+        // 初始化引导页
         this.initHintLayer();
         // 初始化分享页面
         this.initShare();

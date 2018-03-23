@@ -75,7 +75,7 @@ define(function (require) {
         var self = this;
         var nodes = [];
         var index = 0;
-        const CHILDRENS = self.element.childNodes;
+        var CHILDRENS = self.element.childNodes;
 
         for (index = 0; index < CHILDRENS.length; index++) {
             if (CHILDRENS[index].nodeType === 1) {
@@ -193,7 +193,7 @@ define(function (require) {
         // 不存在遮盖层时先创建
         if (!self.maskElement) {
 
-            const mask = document.createElement('div');
+            var mask = document.createElement('div');
             mask.id = 'MIP-LLIGTBOX-MASK';
             mask.setAttribute('on', 'tap:' + self.id + '.close');
             mask.style.display = 'block';

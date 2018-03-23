@@ -8,15 +8,17 @@ define(function (require) {
     var $ = require('zepto');
     var jsSrc = '//dup.baidustatic.com/js/dm.js';
     var scriptId = 'MIP_DUP_JS';
-    var exps = '112002';
+    var exps;
 
     var render = function (that, me) {
-
         var $this = $(that);
         var MIP = window.MIP || {};
         var sample = MIP.hash.get('sample');
-        if (sample === 'mip_wm_sample') {
-            exps = '113006';
+        if (sample === 'mip-wm-base') {
+            exps = '117021';
+        }
+        else if (sample === 'mip-wm-exp') {
+            exps = '117031';
         }
         var cproID = that.getAttribute('cproid');
         if (!cproID) {
@@ -27,7 +29,7 @@ define(function (require) {
 
         // 判断 preload 逻辑
         var scripts = document.querySelector('script[mip-preload="mip-script-wm"]');
-        if (scripts && !elem && sample === 'mip_wm_sample') {
+        if (scripts && !elem && sample === 'mip-wm-exp') {
             var s = '_' + Math.random().toString(36).slice(2);
             var html = '<div style="" id="' + s + '"></div>';
             $this.append(html);
@@ -35,6 +37,7 @@ define(function (require) {
             (window[apiStr] = window[apiStr] || []).push({
                 containerId: s,
                 exps: exps,
+                proxy: 0,
                 slotId: cproID
             });
         }

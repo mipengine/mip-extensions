@@ -8,7 +8,6 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
-    var naboo = util.naboo;
 
     /**
      * [toggle 打开或关闭 sidebar 入口]
@@ -93,10 +92,10 @@ define(function (require) {
         // 不存在遮盖层时先创建
         if (!self.maskElement) {
 
-            const mask = document.createElement('div');
+            var mask = document.createElement('div');
             mask.id = 'MIP-' + self.id.toUpperCase() + '-MASK';
             mask.className = 'MIP-SIDEBAR-MASK';
-            mask.style.display = 'block';
+            mask.setAttribute('data-side', self.side);
 
             // 与mip-sidebar 同级dom
             self.element.parentNode.appendChild(mask);
@@ -105,21 +104,18 @@ define(function (require) {
             }, false);
 
             self.maskElement = mask;
-
         }
 
         self.maskElement.setAttribute('on', 'tap:' + self.id + '.close');
 
-        // 样式设置
         self.maskElement.style.display = 'block';
 
-        naboo.animate(self.maskElement, {
-            opacity: 0.2
-        }, {
-            duration: 500
-        }).start(function () {
+        // 触发重绘
+        self.maskElement.offsetWidth;
+        self.maskElement.setAttribute('open', '');
+        setTimeout(function () {
             self.runing = false;
-        });
+        }, 500);
     }
 
     /**
@@ -128,14 +124,11 @@ define(function (require) {
     function closeMask() {
         var self = this;
         if (self.maskElement) {
-            naboo.animate(self.maskElement, {
-                opacity: 0
-            }, {
-                duration: 500
-            }).start(function () {
+            self.maskElement.removeAttribute('open');
+            setTimeout(function () {
                 self.maskElement.style.display = 'none';
                 self.runing = false;
-            });
+            }, 500);
         }
     }
 

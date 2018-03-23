@@ -1,0 +1,615 @@
+/**
+ * @file mip-story样式文件
+ */
+
+html#mip-i-story-standalone,
+html#mip-i-story-standalone body {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    cursor: auto !important;
+}
+
+mip-story {
+    background: #000;
+    position: relative !important;
+    height: 100% !important;
+    width: 100% !important;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+mip-story,
+mip-story-view,
+mip-story-layer {
+    overflow: hidden !important;
+}
+
+mip-story-view {
+    display: none !important;
+    bottom: 0 !important;
+    height: auto !important;
+    left: 0 !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    transition: none !important;
+}
+
+mip-story-view[active] {
+    display: block !important;  
+}
+
+mip-story-layer {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    padding: 68px 32px 32px !important;
+    overflow: hidden !important;
+}
+
+mip-story-layer * {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+// progress
+.mip-story-system-layer {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), transparent);
+    background: linear-gradient(top, rgba(0, 0, 0, 1), transparent);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
+    padding: 12px 0 72px 0;
+}
+
+.mip-story-progress {
+    overflow: hidden;
+}
+
+.mip-story-close {
+    opacity: 1;
+    display: block;
+    float: left;
+    height: 40px;
+    width: 40px;
+    margin-left: 7px;
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-close.png);
+    background-size: 16px 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mip-story-close:active {
+    opacity: .6;
+}
+
+.mip-stoy-audio {
+    height: 16px;
+    height: 40px;
+    width: 40px;
+    top: 0;
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-unmute.png);
+    background-size: cover;
+    float: right;
+    margin-right: 7px;
+    background-size: 17px 17px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mip-stoy-audio[muted] {
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-mute.png);
+    background-size: 17px 17px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mip-story-progress-bar {
+    display: flex !important;
+    display: -webkit-flex !important;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+    height: 40px;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    position: absolute;
+    left: 70px;
+    right: 70px;    
+}
+
+.mip-story-page-progress-bar {
+    background: hsla(0, 0, 100%, 0.3);
+    list-style-type: none;
+    margin: 0 5px;
+    overflow: hidden ;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;    
+}
+
+.mip-story-page-progress-bar-active {
+    width: 16px;
+    background: #fff;
+}
+
+.mip-story-page-progress-bar-visited {
+    background: rgba(255, 255, 255, 1);
+}
+
+.mip-story-page-progress-value {
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    -webkit-transform-origin: left;
+    transform-origin: left;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
+}
+
+// 布局
+.mip-story-template-fill,
+.mip-story-template-vertical,
+.mip-story-template-horizontal {
+    display: flex !important;
+    display: -webkit-flex !important;
+    height: 100%;
+    display: -webkit-box;    
+}
+
+.mip-story-template-fill > :first-child {
+    bottom: 0;
+    display: block;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    object-fit: cover;
+}
+
+.mip-story-template-fill > :not(:first-child) {
+    display: none !important;
+}
+
+.mip-story-template-fill > mip-anim img,
+.mip-story-template-fill > mip-img img,
+.mip-story-template-fill > mip-video video {
+    object-fit: cover !important;
+}
+
+.mip-story-template-horizontal {
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    align-items: stretch;
+    -webkit-align-items: stretch;
+    align-content: flex-start;
+    -webkit-align-content: flex-start;
+}
+
+.mip-story-template-vertical {
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: stretch;
+    -webkit-align-items: stretch;
+    align-content: flex-start;
+    -webkit-align-content: flex-start;
+    margin-bottom: 16px;
+}
+
+.mip-story-template-vertical > * {
+    width: 100%;
+}
+
+// 结尾页
+.mip-backend {
+    position: absolute;
+    z-index: 100002;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .9);
+    top: 0;
+    left: 0;
+    text-align: center;
+    display: flex !important;
+    display: -webkit-flex !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    -webkit-transform: translate(1000%);
+    transform: translateY(1000%);
+    color: #fff;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+}
+
+.mip-backend-outer {
+    overflow: hidden;
+}
+
+.mip-backend-preview {
+    position: relative;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    width: 121px;
+    height: 121px;
+    margin: 0 auto;
+    display: flex !important;
+    display: -webkit-flex !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+}
+
+.mip-backend-preview-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .5;
+}
+
+.mip-backend-preview-thumbnail {
+    position: relative;
+}
+
+.mip-backend-preview-thumbnail:active {
+    opacity: .6;
+}
+
+.mip-backend-preview-replay-btn {
+    height: 24px;
+    width: 24px;
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-replay.png);
+    background-size: cover;    
+}
+
+.mip-backend-preview-share-btn {
+    display: block;
+    margin: 0 auto;
+    width: 25px;
+    height: 25px;
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-share.png);
+    background-size: cover;
+}
+
+.mip-backend-preview-thumbnail span {
+    display: block;
+    font-size: 13px;
+    margin-top: 8px !important;
+    color: #e8eaea;
+    line-height: 13px;
+}
+
+.mip-backend-description {
+    display: block;
+    font-size: 16px;
+    margin-top: 16px;
+    line-height: 16px;
+}
+
+.mip-backend-info {
+    display: block;
+    font-size: 13px;
+    margin-top: 10px;
+    color: #bababa;
+    line-height: 13px;
+    opacity: .6;
+}
+
+.mip-backend-info > :nth-child(2) {
+    margin-left: 10px;
+}
+
+.mip-backend-share {
+    display: block;
+    margin-top: 66px;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.mip-backend-share:active {
+    opacity: .6;
+}
+
+.mip-backend-share-btn {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #fff;
+}
+
+// hint layer
+.mip-story-hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100005;
+    display: none;
+}
+
+.mip-story-hint-shadow {
+    display: block;
+    height: 100%;
+    width: 25%;
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent) !important;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent) !important;
+}
+
+.mip-story-hint-damping-hide .mip-story-hint-shadow {
+    display: none;
+}
+
+.mip-story-hint-system,
+.mip-story-hint-rotate {
+    display: none;
+    height: 100%;
+}
+
+.mip-story-page-switch {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.mip-story-hint-system {
+    background: #000;
+    opacity: .8;
+    display: none;
+}
+
+.mip-story-system-show .mip-story-hint-system {
+    display: flex !important;
+    display: -webkit-flex !important;
+    display: -webkit-box;
+    
+}
+
+.mip-story-hint-left,
+.mip-story-hint-middle,
+.mip-story-hint-right {
+    height: 100%;
+    flex: 1 !important;
+    -webkit-flex: 1 !important;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+}
+
+.mip-story-hint-left {
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-arrow.png);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: 26px;
+}
+
+.mip-story-hint-middle {
+}
+
+.mip-story-hint-middle-top {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    background: #ddd;
+    height: 40%;
+    font-size: 13px;
+}
+
+.mip-story-hint-middle-icon {
+    position: absolute;
+    top: 40%;
+    height: 20%;
+    left: 0;
+    right: 0;
+    color: #fff;
+    display: flex !important;
+    display: -webkit-flex !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+    -webkit-box-orient: vertical;
+}
+
+.mip-story-hint-middle-icon span {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.mip-story-hint-middle-bottom {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 1px;
+    background: #fff;
+    height: 40%;
+}
+
+.mip-story-hint-right {
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-arrow.png);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: 26px;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
+.mip-story-hint-touch-icon {
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-touch.png);
+    width: 46px;
+    height: 50px;
+    margin-top: 14px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.mip-story-hint-rotate {
+    position: absolute;
+    z-index: 100003;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.mip-story-hint-rotate p {
+    margin-top: 10px;
+}
+
+.mip-story-hint-rotate mip-img {
+    width: 47px;
+    height: 45px;
+}
+
+@media all and (orientation: portrait) {
+    .mip-story-hint-rotate {
+        display: none;
+    }
+}
+@media all and (orientation: landscape) {
+    .mip-story-hint {
+        display: block !important;
+    }
+    .mip-story-hint-rotate {
+        display: flex !important;
+        display: -webkit-flex !important;
+        flex-direction: column !important;
+        -webkit-flex-direction: column !important;
+        align-items: center !important;
+        -webkit-align-items: center !important;
+        justify-content: center !important;
+        -webkit-justify-content: center !important;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        -moz-box-align: center;
+        -moz-box-pack: center;
+        -webkit-box-orient: vertical;
+    }
+}
+
+// 分享
+.mip-story-share {
+    width: 100%;
+    position: absolute;
+    z-index: 1000010;
+    bottom: -500%;
+}
+
+.mip-story-share-show {
+    bottom: 0;
+    transition: bottom 200ms ease;
+    -webkit-transition: bottom 200ms ease;
+}
+
+.mip-story-share mip-share {
+    width: 100%;
+}
+
+.mip-story-share-cancel {
+    width: 100%;
+    background: #fff;
+    height: 30px;
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 0;
+    color: #000;
+    border-top: 1px solid #eee;
+}
+
+// 左右切换按钮
+@keyframes spread {
+    0% {
+        transform: scale(1, 1);
+    }
+    100% {
+        transform: scale(1.5, 1.5);
+    }
+}
+@-webkit-keyframes spread {
+    0% {
+        transform: scale(1, 1);
+    }
+    100% {
+        transform: scale(1.5, 1.5);
+    }
+}
+.mip-story-page-switch-left {
+    display: block;
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    display: none;
+}
+.mip-story-page-switch-right {
+    display: block;
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    display: none;
+}
+.mip-story-page-switch-left > :first-child,
+.mip-story-page-switch-right > :first-child {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    opacity: .1;
+    animation-delay: 100ms;
+    -webkit-animation: 100ms;
+    animation: spread 1s ease-out;
+    -webkit-animation: spread 1s ease-out;
+    animation-fill-mode: backwards;
+    -webkit-animation-fill-mode: backwards;
+    background: linear-gradient(center, rgba(255, 255, 255, .3), transparent);
+    background: -webkit-linear-gradient(center, rgba(255, 255, 255, .3), transparent);
+}
+
+.mip-story-page-switch-left > :nth-child(2),
+.mip-story-page-switch-right > :nth-child(2) {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    opacity: .1;
+}

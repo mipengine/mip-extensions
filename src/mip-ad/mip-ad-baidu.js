@@ -12,7 +12,6 @@ define(function (require) {
     var render = function (that, me) {
         var $this = $(that);
         var MIP = window.MIP || {};
-        
         var cproID = that.getAttribute('cproid');
         if (!cproID) {
             return;

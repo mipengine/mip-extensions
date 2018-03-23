@@ -19,7 +19,7 @@ define(function (require) {
      * @class
      */
     var Compile = function () {
-        this._el = document.body;
+        this._el = document;
     };
 
     /**

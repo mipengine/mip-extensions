@@ -147,9 +147,8 @@ define(function (require) {
                 return;
             }
             var handle = function (e) {
-                var data = {};
-                data[expression] = e.target.value;
-                MIP.setData(data);
+                var fn = this.setWithResult(expression, e.target.value);
+                fn.call(this.data);
             };
             node.addEventListener('input', handle.bind(this));
         }
@@ -235,6 +234,25 @@ define(function (require) {
             + 'with(this){'
             +   'try {'
             +       'return ' + exp
+            +   '} catch (e) {'
+            +       'throw e'
+            +   '}'
+            + '}'
+        ));
+    };
+
+    /**
+     * Set value
+     *
+     * @param {string} exp value of directive
+     * @param {string} value value
+     * @return {string} anonymous funtion which change runtime scope and return expression
+     */
+    Compile.prototype.setWithResult = function (exp, value) {
+        return new Function((''
+            + 'with(this){'
+            +   'try {'
+            +       exp + ' = ' + value
             +   '} catch (e) {'
             +       'throw e'
             +   '}'

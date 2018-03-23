@@ -252,7 +252,7 @@ define(function (require) {
         return new Function((''
             + 'with(this){'
             +   'try {'
-            +       exp + ' = ' + value
+            +       exp + ' = "' + value + '"'
             +   '} catch (e) {'
             +       'throw e'
             +   '}'

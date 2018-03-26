@@ -1,6 +1,6 @@
 /**
  * @file search-video MIP版
- * @author IShinji<zouhongquan@baidu.com>
+ * @author 邹红全<zouhongquan@baidu.com>
  * @version 1.0
  * @copyright 2018 Baidu.com, Inc. All Rights Reserved
  */

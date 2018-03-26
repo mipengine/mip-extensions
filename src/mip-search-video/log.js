@@ -1,6 +1,12 @@
-define(function (require){
+/**
+ * @file search-video MIP版
+ * @author 邹红全<zouhongquan@baidu.com>
+ * @version 1.0
+ * @copyright 2018 Baidu.com, Inc. All Rights Reserved
+ */
+define(function (require) {
     var Webb2 = require('./webb2.min');
-    var md5 = require('./md5');
+    var md5 = require('./md5.min');
     var util = require('util');
     var platform = util.platform;
     var videoLog = {
@@ -21,14 +27,17 @@ define(function (require){
             this.webb2 = new Webb2({
                 pid: '1_5',
                 lid: lid,
+                /* eslint-disable fecs-camelcase */
                 pf_comm: {
                     sample: 1
                 },
                 et_comm: {
                     sample: 1
                 }
+                /* eslint-enable fecs-camelcase */
             });
         },
+
         /**
          * Bind log event
          * @param {Element} videoEl <video> element
@@ -37,7 +46,7 @@ define(function (require){
             var self = this;
             self.init();
             var autoplay = videoEl.getAttribute('autoplay');
-            if (autoplay){
+            if (autoplay) {
                 videoLog.time.play = +new Date();
             }
             var urlData = {
@@ -45,12 +54,12 @@ define(function (require){
                 videoSrc: videoEl.src
             };
             // Play times & Start time
-            videoEl.addEventListener('play', function(){
+            videoEl.addEventListener('play', function () {
                 if (!videoLog.status.init) {
                     videoLog.time.play = +new Date();
                 }
             });
-            videoEl.addEventListener('playing', function(){
+            videoEl.addEventListener('playing', function () {
                 var playingTime = +new Date();
                 // iOS playing event is true playing
                 if (!videoLog.status.init && platform.isIos()) {
@@ -73,11 +82,11 @@ define(function (require){
                     self.sendLog('waiting', data);
                 }
             });
-            videoEl.addEventListener('waiting', function() {
+            videoEl.addEventListener('waiting', function () {
                 videoLog.time.waiting = +new Date();
                 videoLog.status.waiting = true;
-            })
-            var sectionArr = new Array(videoLog.sectionNum);          
+            });
+            var sectionArr = new Array(videoLog.sectionNum);
             videoEl.addEventListener('timeupdate', function () {
                 // Hack Android playing event
                 if (!videoLog.status.init && platform.isAndroid() && videoEl.currentTime !== 0) {
@@ -118,100 +127,96 @@ define(function (require){
                 self.sendLog('section', data);
             });
         },
+
         /**
          * Send log function
-         * @param {String} type event type
+         * @param {string} type event type
          * @param {Object} data the record data object
          */
-         sendLog: function (type, data) {
+        sendLog: function (type, data) {
             var self = this;
             var time = '';
-            // if (window.webb2 && window.webb2 && window.webb2.options && window.webb2.options.pid !== '1_5') {
-            //     self.init();
-            // }
-            //if (window.webb2 && window.webb2.send) {
-                switch (type) {
-                    case 'play':
-                        time = data.time;
-                        // Send log when first time start play
-                        self.webb2.send('pf_comm', {
-                            expend: time,
+            switch (type) {
+                case 'play':
+                    time = data.time;
+                    // Send log when first time start play
+                    self.webb2.send('pf_comm', {
+                        expend: time,
+                        url: data.url,
+                        videoSrc: data.videoSrc
+                    }, function () {}, {
+                        group: 'searchVideo-mip'
+                    });
+                    // Send log when start play time >= 100ms
+                    if (100 <= time && time < 300) {
+                        self.webb2.send('et_comm', {
+                            msg: 'searchVideo-mip: Start playing 100<=time<300',
+                            time: time,
                             url: data.url,
                             videoSrc: data.videoSrc
-                        }, function () {}, {
-                            group: 'searchVideo-mip'
                         });
-                        // Send log when start play time >= 100ms
-                        if (100 <= time && time < 300) {
-                            self.webb2.send('et_comm', {
-                                msg: 'searchVideo-mip: Start playing 100<=time<300',
-                                time: time,
-                                url: data.url,
-                                videoSrc: data.videoSrc
-                            });
-                        }
-                        if (300 <= time && time < 1000) {
-                            self.webb2.send('et_comm', {
-                                msg: 'searchVideo-mip: Start playing 300<=time<1000',
-                                time: time,
-                                url: data.url,
-                                videoSrc: data.videoSrc
-                            });
-                        }
-                        if (1000 <= time) {
-                            self.webb2.send('et_comm', {
-                                msg: 'searchVideo-mip: Start playing 1000<=time',
-                                time: time,
-                                url: data.url,
-                                videoSrc: data.videoSrc
-                            });
-                        }
-                        break;
-                    case 'waiting':
-                        time = data.time;
-                        var duration = data.duration;
-                        // Send log when buffer event happen, coust time >= 100ms
-                        if (100 <= time && time < 300) {
-                            self.webb2.send('et_comm', {
-                                msg: 'searchVideo-mip: Buffer 100<=time<300',
-                                time: time,
-                                duration: duration,
-                                url: data.url,
-                                videoSrc: data.videoSrc
-                            });
-                        }
-                        if (300 <= time && time < 1000) {
-                            self.webb2.send('et_comm', {
-                                msg: 'searchVideo-mip: Buffer 300<=time<1000',
-                                time: time,
-                                duration: duration,
-                                url: data.url,
-                                videoSrc: data.videoSrc
-                            });
-                        }
-                        if (1000 <= time) {
-                            self.webb2.send('et_comm', {
-                                msg: 'searchVideo-mip: Buffer 1000<=time',
-                                time: time,
-                                duration: duration,
-                                url: data.url,
-                                videoSrc: data.videoSrc
-                            });
-                        }
-                        break;
-                    case 'section':
-                        self.webb2.send('pf_comm', {
-                            cent: data.cent,
-                            currentTime: data.currentTime,
+                    }
+                    if (300 <= time && time < 1000) {
+                        self.webb2.send('et_comm', {
+                            msg: 'searchVideo-mip: Start playing 300<=time<1000',
+                            time: time,
                             url: data.url,
                             videoSrc: data.videoSrc
-                        }, function () {}, {
-                            group: 'searchVideo-mip'
                         });
-                        break;
-                }
-            //}
-         }
+                    }
+                    if (1000 <= time) {
+                        self.webb2.send('et_comm', {
+                            msg: 'searchVideo-mip: Start playing 1000<=time',
+                            time: time,
+                            url: data.url,
+                            videoSrc: data.videoSrc
+                        });
+                    }
+                    break;
+                case 'waiting':
+                    time = data.time;
+                    var duration = data.duration;
+                    // Send log when buffer event happen, coust time >= 100ms
+                    if (100 <= time && time < 300) {
+                        self.webb2.send('et_comm', {
+                            msg: 'searchVideo-mip: Buffer 100<=time<300',
+                            time: time,
+                            duration: duration,
+                            url: data.url,
+                            videoSrc: data.videoSrc
+                        });
+                    }
+                    if (300 <= time && time < 1000) {
+                        self.webb2.send('et_comm', {
+                            msg: 'searchVideo-mip: Buffer 300<=time<1000',
+                            time: time,
+                            duration: duration,
+                            url: data.url,
+                            videoSrc: data.videoSrc
+                        });
+                    }
+                    if (1000 <= time) {
+                        self.webb2.send('et_comm', {
+                            msg: 'searchVideo-mip: Buffer 1000<=time',
+                            time: time,
+                            duration: duration,
+                            url: data.url,
+                            videoSrc: data.videoSrc
+                        });
+                    }
+                    break;
+                case 'section':
+                    self.webb2.send('pf_comm', {
+                        cent: data.cent,
+                        currentTime: data.currentTime,
+                        url: data.url,
+                        videoSrc: data.videoSrc
+                    }, function () {}, {
+                        group: 'searchVideo-mip'
+                    });
+                    break;
+            }
+        }
     };
     return log;
 });

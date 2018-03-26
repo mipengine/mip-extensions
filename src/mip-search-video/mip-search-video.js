@@ -150,4 +150,8 @@ define(function (require) {
     }
 
     return customElem;
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> ee3dcfa0e6b5a4c1f6b10db0038b48ba46a6e156

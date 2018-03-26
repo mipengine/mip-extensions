@@ -43,7 +43,7 @@ define(function (require) {
             })
         );
         content += this.showAudio()
-            ? '<span class="mip-stoy-audio" muted data-stats-baidu-obj="'
+            ? '<span class="mip-stoy-audio" data-stats-baidu-obj="'
             + muteStats + '"></span></aside>' : '';
         return content;
     };

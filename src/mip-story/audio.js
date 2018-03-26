@@ -17,7 +17,7 @@ define(function (require) {
             audioEl.setAttribute('src', audioSrc);
             audioEl.setAttribute('preload', 'auto');
             audioEl.setAttribute('loop', '');
-            // audioEl.setAttribute('autoplay', '');
+            audioEl.setAttribute('autoplay', '');
             // audioEl.setAttribute('muted', '');
             util.css(audioEl, {display: 'hidden'});
             ele.appendChild(audioEl);

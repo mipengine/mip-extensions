@@ -35,15 +35,12 @@ define(function (require) {
     function MIPStory(element) {
         this.element = element;
         this.win = window;
-        this.muted = true;
         this.currentIndex = this.preInex = 0;
     }
 
     MIPStory.prototype.init = function () {
         var html = this.win.document.documentElement;
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
-        // 初始化音频
-        this.initAudio();
         // 保存 story views
         this.initStoryViews();
         // 初始化进度条
@@ -56,6 +53,8 @@ define(function (require) {
         this.initShare();
         // 绑定事件
         this.initEvent();
+        // 初始化音频
+        this.initAudio();
         // 切换到第一页
         this.switchTo({status: 1, notIncrease: 1});
     };
@@ -65,6 +64,9 @@ define(function (require) {
         if (au) {
             this.audio = new Audio().build(this.element, au);
         }
+        var ele = document.querySelector('.mip-stoy-audio[muted]');
+        this.muted = !!ele;
+        this.viewMuted = !!(this.muted || this.audio);
     };
 
     MIPStory.prototype.initShare = function () {
@@ -89,6 +91,14 @@ define(function (require) {
         // 页面切换到后台
         document.addEventListener(VISIBILITYCHANGE, function (e) {
             self.emitter.trigger(VISIBILITYCHANGE, e);
+        });
+        document.addEventListener('touchstart', function (e) {
+            if (!self.hasPlay && !self.muted) {
+                var currentEle = storyViews[self.currentIndex];
+                self.playGlobalAudio();
+                currentEle.customElement.resumeAllMedia();
+                self.hasPlay = true;
+            }
         });
         // 绑定点击事件
         gesture.on('swipe', function (e, data) {
@@ -256,9 +266,9 @@ define(function (require) {
         var currentEle = storyViews[this.currentIndex];
         var preEle = storyViews[this.preInex];
         if (this.currentIndex !== this.preInex) {
-            preEle.customElement.setActive(false, this.muted);
+            preEle.customElement.setActive(false, this.viewMuted);
         }
-        currentEle.customElement.setActive(true, this.muted);
+        currentEle.customElement.setActive(true, this.viewMuted);
         this.progress.updateProgress(this.currentIndex, data.status);
         this.preInex = this.currentIndex;
 
@@ -296,7 +306,7 @@ define(function (require) {
         }
     };
 
-    MIPStory.prototype.playGlobalAudio = function () {        
+    MIPStory.prototype.playGlobalAudio = function () {
         if (this.audio && !this.muted) {
             this.audio.play();
         }
@@ -312,7 +322,7 @@ define(function (require) {
         this.muted = true;
         this.muteGlobalAudio();
         var ele = storyViews[this.currentIndex];
-        ele.customElement.toggleAllMedia(e, this.muted);
+        ele.customElement.toggleAllMedia(e, this.viewMuted);
         e.target.setAttribute('muted', '');
     };
 
@@ -321,7 +331,7 @@ define(function (require) {
         this.unMuteGlobalAudio();
         this.playGlobalAudio();
         var ele = storyViews[this.currentIndex];
-        ele.customElement.toggleAllMedia(e, this.muted);
+        ele.customElement.toggleAllMedia(e, this.viewMuted);
         e.target.removeAttribute('muted');
     };
 

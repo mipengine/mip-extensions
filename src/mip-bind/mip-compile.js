@@ -6,7 +6,12 @@
 
 define(function (require) {
 
+    var util = require('util');
+    var fn = util.fn;
     var Watcher = require('./mip-watcher');
+    var VALUE = /^value$/;
+    var TAGNAMES = /^(input|textarea|select)$/i;
+    var ATTRS = /^(checked|selected|autofocus|controls|disabled|hidden|multiple|readonly)$/i;
 
      /**
      * Compile Class
@@ -14,7 +19,7 @@ define(function (require) {
      * @class
      */
     var Compile = function () {
-        this._el = document.body;
+        this._el = document.documentElement;
     };
 
     /**
@@ -119,11 +124,34 @@ define(function (require) {
         if (data) {
             me[fnName] && me[fnName](node, attrName, data);
         }
+        this._listenerFormElement(node, directive, expression);
         new Watcher(node, me.data, attrName, expression, function (dir, newVal, oldVal) {
             if (typeof me[fnName] === 'function') {
                 me[fnName](node, dir, newVal);
             }
         });
+    };
+
+    /**
+     * Handle bidirectional data binding
+     *
+     * @param {HTMLElement} node html element
+     * @param {string} directive mip directive
+     * @param {string} expression expression
+     */
+    Compile.prototype._listenerFormElement = function (node, directive, expression) {
+        if (TAGNAMES.test(node.tagName)) {            
+            var attr = directive.name.split(':');
+            attr = attr.length > 1 ? attr[1] : '';
+            if (attr.trim() !== 'value') {
+                return;
+            }
+            var handle = function (e) {
+                var fn = this.setWithResult(expression, e.target.value);
+                fn.call(this.data);
+            };
+            node.addEventListener('input', handle.bind(this));
+        }
     };
 
     /**
@@ -150,10 +178,27 @@ define(function (require) {
         if (!result.length) {
             return;
         }
-        newVal !== ""
-            ? node.setAttribute(result[1], newVal)
-            : node.removeAttribute(result[1]);
+        var attr = result[1];
+        if (attr !== 'disabled' && node.disabled) {
+            fn.extend(window.m, this.origin);
+            return;
+        }
+        newVal !== ''
+            ? node.setAttribute(attr, newVal)
+            : node.removeAttribute(attr);
+        if (TAGNAMES.test(node.tagName)) {
+            if (ATTRS.test(attr)) {
+                node[attr] = !!newVal;
+            }
+            else if (VALUE.test(attr)) {
+                node[attr] = newVal;
+            }
+        }        
     };
+
+    Compile.prototype.upadteData = function (data) {
+        this.origin = data;
+    }
 
     /**
      * Handle expression value
@@ -189,6 +234,25 @@ define(function (require) {
             + 'with(this){'
             +   'try {'
             +       'return ' + exp
+            +   '} catch (e) {'
+            +       'throw e'
+            +   '}'
+            + '}'
+        ));
+    };
+
+    /**
+     * Set value
+     *
+     * @param {string} exp value of directive
+     * @param {string} value value
+     * @return {string} anonymous funtion which change runtime scope and return expression
+     */
+    Compile.prototype.setWithResult = function (exp, value) {
+        return new Function((''
+            + 'with(this){'
+            +   'try {'
+            +       exp + ' = "' + value + '"'
             +   '} catch (e) {'
             +       'throw e'
             +   '}'

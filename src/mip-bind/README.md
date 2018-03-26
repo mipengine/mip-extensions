@@ -338,9 +338,9 @@ viewer.eventAction.execute(自定义事件名, 事件元素, 事件);
     }
     </script>
 </mip-data>
-<div on="blur:MIP.setData({title:'Hello!'})" m-text="title"></div>
+<div m-text="title"></div>
 <mip-form url="https://www.mipengine.org/">
-    <input id="price" type='text'>
+    <input on="blur:MIP.setData({title:'Hello!'})" id="price" type='text'>
 </mip-form>
 // 以下为组件中使用的示例代码
 <script type="text/javascript">

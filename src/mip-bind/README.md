@@ -346,7 +346,7 @@ viewer.eventAction.execute(自定义事件名, 事件元素, 事件);
 <script type="text/javascript">
     var viewer = require('viewer');
     var ele = document.querySelector('#price');
-    ele.addEventListener('blur', function (e) {
+    ele.addEventListener('blur', function (event) {
         viewer.eventAction.execute('blur', event.target, event);
     });
 </script>

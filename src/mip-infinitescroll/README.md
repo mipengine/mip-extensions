@@ -70,7 +70,7 @@
         "prn": 6,
         "pnName": "pn",
         "bufferHeightPx": 40,
-        "timeout": 3000,
+        "timeout": 5000,
         "loadingHtml": "更多数据正在路上",
         "loadFailHtml": "数据加载失败啦",
         "loadOverHtml": "没有数据了哦"

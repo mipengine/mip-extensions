@@ -61,29 +61,28 @@ define(function (require) {
                 +     '</mip-scrollbox>'
                 + '</div>';
         }
-        var html = [
-                '<aside class="mip-backend" style="background-image: url(' + share.background + ')">',
-                    '<span class="mip-story-close mip-backend-close"></span>',
-                    '<div class="mip-backend-outer">',
-                        '<div class="mip-backend-preview" style="background-position:center;background-size:cover;background-image:url(' + share.thumbnail + ')" data-stats-baidu-obj="' + replayStats + '">',
-                            '<div class="mip-backend-preview-mask"></div>',
-                            '<div class="mip-backend-preview-thumbnail">',
-                                '<span class="mip-backend-preview-replay-btn"></span>',
-                                '<span>重播</span>',
-                            '</div>',
-                        '</div>',
-                        '<span class="mip-backend-description">' + share.title + '</span>',
-                        '<span class="mip-backend-info">',
-                            '<a href="' + share.fromUrl + '">' + share.from + '</a>',
-                        '</span>',
-                        '<span class="mip-backend-share" data-stats-baidu-obj="' + shareStats + '">',
-                            '<span class="mip-backend-preview-share-btn"></span>',
-                            '<span class="mip-backend-share-btn">分享</span>',
-                       '</span>',
-                       recTpl,
-                   '</div>',
-                '</aside>'
-            ].join('');
+        var html = ""
+                + '<aside class="mip-backend" style="background-image: url(' + share.background + ')">'
+                +     '<span class="mip-story-close mip-backend-close"></span>'
+                +     '<div class="mip-backend-outer">'
+                +         '<div class="mip-backend-preview" style="background-position:center;background-size:cover;background-image:url(' + share.thumbnail + ')" data-stats-baidu-obj="' + replayStats + '">'
+                +             '<div class="mip-backend-preview-mask"></div>'
+                +             '<div class="mip-backend-preview-thumbnail">'
+                +                 '<span class="mip-backend-preview-replay-btn"></span>'
+                +                 '<span>重播</span>'
+                +             '</div>'
+                +         '</div>'
+                +         '<span class="mip-backend-description">' + share.title + '</span>'
+                +         '<span class="mip-backend-info">'
+                +             '<a href="' + share.fromUrl + '">' + share.from + '</a>'
+                +         '</span>'
+                +         '<span class="mip-backend-share" data-stats-baidu-obj="' + shareStats + '">'
+                +             '<span class="mip-backend-preview-share-btn"></span>'
+                +             '<span class="mip-backend-share-btn">分享</span>'
+                +        '</span>'
+                +        recTpl
+                +    '</div>'
+                + '</aside>';
         return html;
     };
 

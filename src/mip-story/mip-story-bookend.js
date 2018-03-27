@@ -20,7 +20,7 @@ define(function (require) {
     };
 
     MIPStoryBackEnd.prototype.build = function () {
-        var data = this.getData();        
+        var data = this.getData();
         var replayStats = encodeURIComponent(
             JSON.stringify({
                 type: 'click',
@@ -34,7 +34,7 @@ define(function (require) {
             })
         );
         var share = data.share;
-        var recommend = data.recommend;        
+        var recommend = data.recommend;
         var items = recommend.items;
         var recTpl = '';
         if (items && items.length) {
@@ -43,13 +43,15 @@ define(function (require) {
                 var item = items[i];
                 innerTpl += ''
                     + '<div data-item>'
-                    +    '<a href="' + item.url + '" class="recommend-item" style="background-image:url(' + (item.cover || '') + ');background-size:cover;background-repeat:no-repeat;">'
+                    +    '<a href="' + item.url
+                    +       '" class="recommend-item" style="background-image:url('
+                    +       (item.cover || '') + ');background-size:cover;background-repeat:no-repeat;">'
                     +        '<span>' + (item.title || '') + '</span>'
                     +        '<span class="item-from" data-src="' + item.fromUrl + '">' + (item.from || '') + '</span>'
                     +    '</a>'
                     + '</div>';
             }
-            var recTpl = ''
+            recTpl = ''
                 + '<div class="recommend">'
                 +     '<a href="' + recommend.url + '">更多小故事</a>'
                 +     '<mip-scrollbox>'
@@ -61,11 +63,13 @@ define(function (require) {
                 +     '</mip-scrollbox>'
                 + '</div>';
         }
-        var html = ""
+        var html = ''
                 + '<aside class="mip-backend" style="background-image: url(' + share.background + ')">'
                 +     '<span class="mip-story-close mip-backend-close"></span>'
                 +     '<div class="mip-backend-outer">'
-                +         '<div class="mip-backend-preview" style="background-position:center;background-size:cover;background-image:url(' + share.thumbnail + ')" data-stats-baidu-obj="' + replayStats + '">'
+                +         '<div class="mip-backend-preview" '
+                +           'style="background-position:center;background-size:cover;background-image:url('
+                +           share.thumbnail + ')" data-stats-baidu-obj="' + replayStats + '">'
                 +             '<div class="mip-backend-preview-mask"></div>'
                 +             '<div class="mip-backend-preview-thumbnail">'
                 +                 '<span class="mip-backend-preview-replay-btn"></span>'

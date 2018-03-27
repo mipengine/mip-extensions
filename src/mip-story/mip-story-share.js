@@ -20,9 +20,10 @@ define(function (require) {
             })
         );
         var shareUrl = util.parseCacheUrl(location.href);
-        var html = '<aside class="mip-story-share">'
+        var html = ''
+            + '<aside class="mip-story-share">'
             +   '<div class="mip-share-container">'
-            +   '    <mip-share url="' + shareUrl + '"></mip-share>'
+            +       '<mip-share url="' + shareUrl + '"></mip-share>'
             +   '</div>'
             +   '<span class="mip-story-share-cancel" data-stats-baidu-obj="' + shareCancelStats + '">取消</span>'
             + '</aside>';

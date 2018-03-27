@@ -183,7 +183,7 @@ define(function (require) {
         var back = 'mip-story-close';
         var audio = document.querySelector('.mip-stoy-audio');
         var recommend = document.querySelector('.recommend');
-        
+
         // 推荐
         if (dm.contains(recommend, e.target)) {
             var ele = document.querySelector('.item-from');
@@ -243,11 +243,11 @@ define(function (require) {
             this.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
         }
     };
-    
+
     MIPStory.prototype.hasClass = function (e, clsName) {
         var reg = new RegExp('\\s*' + clsName + '\\s*');
         return !!reg.exec(e.target.className);
-    }
+    };
 
     MIPStory.prototype.setActive = function (status) {
         for (var i = 0; i < storyViews.length; i++) {

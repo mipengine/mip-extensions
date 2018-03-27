@@ -43,6 +43,8 @@ define(function (require) {
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
         // 保存 story views
         this.initStoryViews();
+        // 初始化音频
+        this.initAudio();
         // 初始化进度条
         this.initProgress();
         // 初始化结尾页
@@ -53,8 +55,6 @@ define(function (require) {
         this.initShare();
         // 绑定事件
         this.initEvent();
-        // 初始化音频
-        this.initAudio();
         // 切换到第一页
         this.switchTo({status: 1, notIncrease: 1});
     };
@@ -64,8 +64,7 @@ define(function (require) {
         if (au) {
             this.audio = new Audio().build(this.element, au);
         }
-        var ele = document.querySelector('.mip-stoy-audio[muted]');
-        this.muted = !!ele;
+        this.muted = false;
         this.viewMuted = !!(this.muted || this.audio);
     };
 

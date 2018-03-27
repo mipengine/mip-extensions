@@ -83,7 +83,9 @@ define(function (require) {
 
     MIPStory.prototype.initEvent = function () {
         var self = this;
-        var gesture = new Gesture(this.element, {});
+        var gesture = new Gesture(this.element, {
+            preventX: false
+        });
         // 绑定点击事件
         this.element.addEventListener('click', function (e) {
             self.emitter.trigger(TAPNAVIGATION, e);
@@ -107,12 +109,6 @@ define(function (require) {
                 data: data
             });
         });
-
-        // 阻止在尾页时滑动切换
-        new Gesture(this.element.querySelector('.mip-backend'), {}).on('swipe', function (event) {
-            event.stopPropagation();
-        });
-
         // 初始化自定义事件
         self.bindEvent();
     };
@@ -184,10 +180,22 @@ define(function (require) {
         var shareBtn = document.querySelector('.mip-backend-share');
         var shareArea = document.querySelector('.mip-story-share');
         var cancelBtn = document.querySelector('.mip-story-share-cancel');
-        var back = document.querySelector('.mip-story-close');
+        var back = 'mip-story-close';
         var audio = document.querySelector('.mip-stoy-audio');
+        var recommend = document.querySelector('.recommend');
+        
+        // 推荐
+        if (dm.contains(recommend, e.target)) {
+            var ele = document.querySelector('.item-from');
+            var src = e.target.getAttribute('data-src');
+            if (ele === e.target && src) {
+                e.preventDefault();
+                location.href = src;
+            }
+            return;
+        }
         // 返回上一页
-        if (e.target === back) {
+        if (this.hasClass(e, back)) {
             history.back();
             return;
         }
@@ -235,6 +243,11 @@ define(function (require) {
             this.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
         }
     };
+    
+    MIPStory.prototype.hasClass = function (e, clsName) {
+        var reg = new RegExp('\\s*' + clsName + '\\s*');
+        return !!reg.exec(e.target.className);
+    }
 
     MIPStory.prototype.setActive = function (status) {
         for (var i = 0; i < storyViews.length; i++) {

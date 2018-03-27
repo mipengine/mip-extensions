@@ -124,26 +124,35 @@ mip-story-layer * {
     justify-content: center !important;
     -webkit-justify-content: center !important;
     position: absolute;
-    left: 70px;
-    right: 70px;    
+    left: 59px;
+    right: 59px;    
+}
+
+.mip-story-progress-bar > :last-child {
+    margin-right: 0 !important;
 }
 
 .mip-story-page-progress-bar {
     background: hsla(0, 0, 100%, 0.3);
     list-style-type: none;
-    margin: 0 5px;
+    margin: 0 6px 0 0;
     overflow: hidden ;
-    width: 6px;
-    height: 6px;
-    border-radius: 3px;    
+    width: 100%;
+    height: 2px;
+    border-radius: 1px;    
 }
 
 .mip-story-page-progress-bar-active {
-    width: 16px;
-    background: #fff;
+    -webkit-transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
+    -webkit-transform-origin: left;
+    transform-origin: left;
+    transition: transform 200ms ease !important;
 }
 
 .mip-story-page-progress-bar-visited {
+    -webkit-transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
     background: rgba(255, 255, 255, 1);
 }
 
@@ -253,6 +262,7 @@ mip-story-layer[template=thirds] {
 
 .mip-backend-outer {
     overflow: hidden;
+    width: 100%;
 }
 
 .mip-backend-preview {
@@ -331,6 +341,11 @@ mip-story-layer[template=thirds] {
     opacity: .6;
 }
 
+.mip-backend-info a {
+    text-decoration: none;
+    color: #fff;
+}
+
 .mip-backend-info > :nth-child(2) {
     margin-left: 10px;
 }
@@ -351,6 +366,12 @@ mip-story-layer[template=thirds] {
     margin-top: 8px;
     font-size: 13px;
     color: #fff;
+}
+
+.mip-backend-close {
+    position: absolute;
+    left: 7px;
+    top: 12px;
 }
 
 // hint layer
@@ -625,4 +646,51 @@ mip-story-layer[template=thirds] {
     position: absolute;
     top: 50%;
     opacity: .1;
+}
+// 更多小故事推荐
+.recommend {
+    margin: 34px 17px 0 17px;
+    text-align: left;
+}
+
+.recommend > :first-child {
+    display: block;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 20px 0 15px 0;
+    color: #fff;    
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.recommend-item {
+    width: 186px;
+    height: 277px;
+    text-align: center;
+    display: flex !important;
+    display: -webkit-flex !important;
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
+    justify-content: flex-end !important;
+    -webkit-justify-content: flex-end !important;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: end;    
+    margin-right: 8px;
+}
+
+.recommend-item > span {
+    display: block;
+    color: #fff;
+}
+
+.recommend-item > :first-child {
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.recommend-item > :nth-child(2) {
+    font-size: 13px;
+    line-height: 13px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }

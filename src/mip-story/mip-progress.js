@@ -54,7 +54,7 @@ define(function (require) {
     };
 
     MIPProgress.prototype.updateProgress = function (index, status) {
-        var progressBar = this.root.querySelectorAll('.mip-story-progress-bar li');
+        var progressBar = this.root.querySelectorAll('.mip-story-progress-bar .mip-story-page-progress-value');
         var ele = progressBar[index];
         ele.classList.add(ACTIVE);
         this.oldEle && this.oldEle !== ele && this.oldEle.classList.remove(ACTIVE);

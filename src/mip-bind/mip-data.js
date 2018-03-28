@@ -77,7 +77,9 @@ define(function (require) {
             return;
         }
         var me = this;
-        fetch(url).then(function (res) {
+        fetch(url, {
+            credentials: 'include'
+        }).then(function (res) {
             if (res.ok) {
                 res.json().then(function (data) {
                     me._postMessage(data);

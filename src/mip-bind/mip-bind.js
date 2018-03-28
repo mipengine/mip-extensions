@@ -46,6 +46,8 @@ define(function (require) {
             data = (new Function('DOM', 'return ' + data))(evt);
         }
         if (typeof data === 'object') {
+            var origin = JSON.stringify(window.m);
+            this._compile.upadteData(JSON.parse(origin));
             fn.extend(window.m, data);
             if (compile) {
                 this._observer.start(this._win.m);

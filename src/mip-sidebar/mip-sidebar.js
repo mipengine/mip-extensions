@@ -92,7 +92,7 @@ define(function (require) {
         // 不存在遮盖层时先创建
         if (!self.maskElement) {
 
-            const mask = document.createElement('div');
+            var mask = document.createElement('div');
             mask.id = 'MIP-' + self.id.toUpperCase() + '-MASK';
             mask.className = 'MIP-SIDEBAR-MASK';
             mask.setAttribute('data-side', self.side);

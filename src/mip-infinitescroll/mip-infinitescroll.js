@@ -88,7 +88,7 @@ define(function (require) {
             else {
                 fetchJsonp(self.url, {
                     jsonpCallback: 'callback',
-                    timeout: self.timeout
+                    timeout: self.params.timeout
                 }).then(function (res) {
                     return res.json();
                 }).then(function (data) {

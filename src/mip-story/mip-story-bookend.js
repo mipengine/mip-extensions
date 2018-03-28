@@ -35,7 +35,7 @@ define(function (require) {
         );
         var share = data.share;
         var recommend = data.recommend;
-        var items = recommend.items;
+        var items = recommend && recommend.items ? recommend.items : [];
         var recTpl = '';
         if (items && items.length) {
             var innerTpl = '';
@@ -68,11 +68,12 @@ define(function (require) {
                 +   '<span class="mip-backend-preview-share-btn"></span>'
                 +   '<span class="mip-backend-share-btn">分享</span>'
                 + '</span>' : '';
-        var historyTpl = history.length > 1 ? '<span class="mip-story-close mip-backend-close"></span>' : '';        
+        var historyTpl = history.length > 1 ? '<span class="mip-story-close mip-backend-close"></span>' : '';
+        var middleClass = recTpl ? '' : 'mip-story-middle';
         var html = ''
                 + '<aside class="mip-backend" style="background-image: url(' + share.background + ')">'
                 +     historyTpl
-                +     '<div class="mip-backend-outer">'
+                +     '<div class="mip-backend-outer ' + middleClass + '">'
                 +         '<div class="mip-backend-preview" '
                 +           'style="background-position:center;background-size:cover;background-image:url('
                 +           share.thumbnail + ')" data-stats-baidu-obj="' + replayStats + '">'

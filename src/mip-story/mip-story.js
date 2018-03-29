@@ -35,22 +35,21 @@ define(function (require) {
     function MIPStory(element) {
         this.element = element;
         this.win = window;
-        this.muted = true;
         this.currentIndex = this.preInex = 0;
     }
 
     MIPStory.prototype.init = function () {
         var html = this.win.document.documentElement;
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
-        // 初始化音频
-        this.initAudio();
         // 保存 story views
         this.initStoryViews();
+        // 初始化音频
+        this.initAudio();
         // 初始化进度条
         this.initProgress();
         // 初始化结尾页
         this.initBookend();
-        // // 初始化引导页
+        // 初始化引导页
         this.initHintLayer();
         // 初始化分享页面
         this.initShare();
@@ -65,6 +64,8 @@ define(function (require) {
         if (au) {
             this.audio = new Audio().build(this.element, au);
         }
+        this.muted = false;
+        this.viewMuted = !!(this.muted || this.audio);
     };
 
     MIPStory.prototype.initShare = function () {
@@ -81,7 +82,9 @@ define(function (require) {
 
     MIPStory.prototype.initEvent = function () {
         var self = this;
-        var gesture = new Gesture(this.element, {});
+        var gesture = new Gesture(this.element, {
+            preventX: false
+        });
         // 绑定点击事件
         this.element.addEventListener('click', function (e) {
             self.emitter.trigger(TAPNAVIGATION, e);
@@ -90,21 +93,21 @@ define(function (require) {
         document.addEventListener(VISIBILITYCHANGE, function (e) {
             self.emitter.trigger(VISIBILITYCHANGE, e);
         });
+        document.addEventListener('touchstart', function (e) {
+            if (!self.hasPlay && !self.muted) {
+                var currentEle = storyViews[self.currentIndex];
+                self.playGlobalAudio();
+                currentEle.customElement.resumeAllMedia();
+                self.hasPlay = true;
+            }
+        });
         // 绑定点击事件
         gesture.on('swipe', function (e, data) {
-            if (data.swipeDirection === 'left') {
-                self.emitter.trigger(SWITCHPAGE, {e: e, status: 1});
-            }
-            else if (data.swipeDirection === 'right') {
-                self.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
-            }
+            self.emitter.trigger(SWIP, {
+                e: e,
+                data: data
+            });
         });
-
-        // 阻止在尾页时滑动切换
-        new Gesture(this.element.querySelector('.mip-backend'), {}).on('swipe', function (event) {
-            event.stopPropagation();
-        });
-
         // 初始化自定义事件
         self.bindEvent();
     };
@@ -147,7 +150,7 @@ define(function (require) {
     MIPStory.prototype.bindEvent = function () {
         this.emitter = new EventEmitter();
         this.emitter.on(MUTE, this.mute.bind(this));
-        // this.emitter.on(SWIP, this.swip.bind(this));
+        this.emitter.on(SWIP, this.swip.bind(this));
         this.emitter.on(UNMUTE, this.unmute.bind(this));
         this.emitter.on(REPLAY, this.replay.bind(this));
         this.emitter.on(TAPNAVIGATION, this.tapnavigation.bind(this));
@@ -158,16 +161,16 @@ define(function (require) {
         this.emitter.on(SHOWNOPREVIOUSPAGEHELP, this.shownopreviouspagehelp.bind(this));
     };
 
-    // MIPStory.prototype.swip = function (e) {
-    //     if (e.data.swipeDirection === 'left'
-    //         || e.data.swipeDirection === 'right') {
-    //         var backend = document.querySelector('.mip-backend');
-    //         if (dm.contains(backend, e.target)) {
-    //             return;
-    //         }
-    //         this.hint.toggleSystemLater();
-    //     }
-    // };
+    MIPStory.prototype.swip = function (e) {
+        if (e.data.swipeDirection === 'left'
+            || e.data.swipeDirection === 'right') {
+            var backend = document.querySelector('.mip-backend');
+            if (dm.contains(backend, e.target)) {
+                return;
+            }
+            this.hint.toggleSystemLater();
+        }
+    };
 
     MIPStory.prototype.tapnavigation = function (e) {
         e.stopPropagation();
@@ -176,10 +179,22 @@ define(function (require) {
         var shareBtn = document.querySelector('.mip-backend-share');
         var shareArea = document.querySelector('.mip-story-share');
         var cancelBtn = document.querySelector('.mip-story-share-cancel');
-        var back = document.querySelector('.mip-story-close');
+        var back = 'mip-story-close';
         var audio = document.querySelector('.mip-stoy-audio');
+        var recommend = document.querySelector('.recommend');
+
+        // 推荐
+        if (dm.contains(recommend, e.target)) {
+            var ele = document.querySelector('.item-from');
+            var src = e.target.getAttribute('data-src');
+            if (ele === e.target && src) {
+                e.preventDefault();
+                location.href = src;
+            }
+            return;
+        }
         // 返回上一页
-        if (e.target === back) {
+        if (this.hasClass(e, back)) {
             history.back();
             return;
         }
@@ -217,15 +232,20 @@ define(function (require) {
         }
 
         // 翻页逻辑
-        // var centerX = (this.element.offsetLeft + this.element.offsetWidth) / 2;
-        // // 向右切换
-        // if (e.pageX > centerX) {
-        //     this.emitter.trigger(SWITCHPAGE, {e: e, status: 1});
-        // }
-        // // 向左切换
-        // else {
-        //     this.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
-        // }
+        var centerX = (this.element.offsetLeft + this.element.offsetWidth) / 2;
+        // 向右切换
+        if (e.pageX > centerX) {
+            this.emitter.trigger(SWITCHPAGE, {e: e, status: 1});
+        }
+        // 向左切换
+        else {
+            this.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
+        }
+    };
+
+    MIPStory.prototype.hasClass = function (e, clsName) {
+        var reg = new RegExp('\\s*' + clsName + '\\s*');
+        return !!reg.exec(e.target.className);
     };
 
     MIPStory.prototype.setActive = function (status) {
@@ -258,9 +278,9 @@ define(function (require) {
         var currentEle = storyViews[this.currentIndex];
         var preEle = storyViews[this.preInex];
         if (this.currentIndex !== this.preInex) {
-            preEle.customElement.setActive(false, this.muted);
+            preEle.customElement.setActive(false, this.viewMuted);
         }
-        currentEle.customElement.setActive(true, this.muted);
+        currentEle.customElement.setActive(true, this.viewMuted);
         this.progress.updateProgress(this.currentIndex, data.status);
         this.preInex = this.currentIndex;
 
@@ -298,7 +318,7 @@ define(function (require) {
         }
     };
 
-    MIPStory.prototype.playGlobalAudio = function () {        
+    MIPStory.prototype.playGlobalAudio = function () {
         if (this.audio && !this.muted) {
             this.audio.play();
         }
@@ -314,7 +334,7 @@ define(function (require) {
         this.muted = true;
         this.muteGlobalAudio();
         var ele = storyViews[this.currentIndex];
-        ele.customElement.toggleAllMedia(e, this.muted);
+        ele.customElement.toggleAllMedia(e, this.viewMuted);
         e.target.setAttribute('muted', '');
     };
 
@@ -323,7 +343,7 @@ define(function (require) {
         this.unMuteGlobalAudio();
         this.playGlobalAudio();
         var ele = storyViews[this.currentIndex];
-        ele.customElement.toggleAllMedia(e, this.muted);
+        ele.customElement.toggleAllMedia(e, this.viewMuted);
         e.target.removeAttribute('muted');
     };
 

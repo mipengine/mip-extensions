@@ -124,26 +124,38 @@ mip-story-layer * {
     justify-content: center !important;
     -webkit-justify-content: center !important;
     position: absolute;
-    left: 70px;
-    right: 70px;    
+    left: 59px;
+    right: 59px;    
+}
+
+.mip-story-progress-bar > :last-child {
+    margin-right: 0 !important;
 }
 
 .mip-story-page-progress-bar {
     background: hsla(0, 0, 100%, 0.3);
     list-style-type: none;
-    margin: 0 5px;
+    margin: 0 6px 0 0;
     overflow: hidden ;
-    width: 6px;
-    height: 6px;
-    border-radius: 3px;    
+    flex: 1 !important;
+    -webkit-flex: 1 !important;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    height: 2px;
+    border-radius: 1px;    
 }
 
 .mip-story-page-progress-bar-active {
-    width: 16px;
-    background: #fff;
+    -webkit-transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
+    -webkit-transform-origin: left;
+    transform-origin: left;
+    transition: transform 200ms ease !important;
 }
 
 .mip-story-page-progress-bar-visited {
+    -webkit-transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
     background: rgba(255, 255, 255, 1);
 }
 
@@ -158,16 +170,17 @@ mip-story-layer * {
 }
 
 // 布局
-.mip-story-template-fill,
-.mip-story-template-vertical,
-.mip-story-template-horizontal {
+mip-story-layer[template=fill],
+mip-story-layer[template=vertical],
+mip-story-layer[template=horizontal],
+mip-story-layer[template=thirds] {
     display: flex !important;
     display: -webkit-flex !important;
     height: 100%;
-    display: -webkit-box;    
+    display: -webkit-box;
 }
 
-.mip-story-template-fill > :first-child {
+mip-story-layer[template=fill] > :first-child {
     bottom: 0;
     display: block;
     height: auto;
@@ -179,17 +192,17 @@ mip-story-layer * {
     object-fit: cover;
 }
 
-.mip-story-template-fill > :not(:first-child) {
+mip-story-layer[template=fill] > :not(:first-child) {
     display: none !important;
 }
 
-.mip-story-template-fill > mip-anim img,
-.mip-story-template-fill > mip-img img,
-.mip-story-template-fill > mip-video video {
+mip-story-layer[template=fill] > mip-anim img,
+mip-story-layer[template=fill] > mip-img img,
+mip-story-layer[template=fill] > mip-video video {
     object-fit: cover !important;
 }
 
-.mip-story-template-horizontal {
+mip-story-layer[template=horizontal] {
     flex-direction: row;
     -webkit-flex-direction: row;
     align-items: stretch;
@@ -198,7 +211,7 @@ mip-story-layer * {
     -webkit-align-content: flex-start;
 }
 
-.mip-story-template-vertical {
+mip-story-layer[template=vertical] {
     flex-direction: column;
     -webkit-flex-direction: column;
     align-items: stretch;
@@ -208,8 +221,20 @@ mip-story-layer * {
     margin-bottom: 16px;
 }
 
-.mip-story-template-vertical > * {
+mip-story-layer[template=vertical] > * {
     width: 100%;
+}
+
+mip-story-layer[template=thirds] {
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
+    -webkit-box-orient: vertical;
+}
+
+[flex-area=upper-third],
+[flex-area=middle-third],
+[flex-area=lower-third] {
+    height: 33%;
 }
 
 // 结尾页
@@ -239,7 +264,25 @@ mip-story-layer * {
 }
 
 .mip-backend-outer {
-    overflow: hidden;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+}
+
+.mip-story-middle {
+    display: flex !important;
+    display: -webkit-flex !important;
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    display: -webkit-box;    
+    -webkit-box-pack: center;
+    -webkit-box-orient: vertical;    
+}
+
+.mip-story-middle .mip-backend-preview {
+    margin-top: 0;
 }
 
 .mip-backend-preview {
@@ -249,6 +292,7 @@ mip-story-layer * {
     width: 121px;
     height: 121px;
     margin: 0 auto;
+    margin-top: 92px;
     display: flex !important;
     display: -webkit-flex !important;
     align-items: center !important;
@@ -318,6 +362,11 @@ mip-story-layer * {
     opacity: .6;
 }
 
+.mip-backend-info a {
+    text-decoration: none;
+    color: #fff;
+}
+
 .mip-backend-info > :nth-child(2) {
     margin-left: 10px;
 }
@@ -338,6 +387,13 @@ mip-story-layer * {
     margin-top: 8px;
     font-size: 13px;
     color: #fff;
+}
+
+.mip-backend-close {
+    position: absolute;
+    left: 7px;
+    top: 12px;
+    z-index: 1000;
 }
 
 // hint layer
@@ -372,6 +428,21 @@ mip-story-layer * {
 .mip-story-page-switch {
     width: 100%;
     height: 100%;
+    display: none;
+}
+
+.mip-story-page-switch-lt,
+.mip-story-page-switch-rt,
+.mip-story-page-switch-lt .mip-story-page-switch,
+.mip-story-page-switch-rt .mip-story-page-switch,
+.mip-story-page-switch-lt .mip-story-page-switch-left,
+.mip-story-page-switch-rt .mip-story-page-switch-right {
+    display: block !important;
+}
+
+
+.mip-story-page-switch-lt .mip-story-page-switch-right,
+.mip-story-page-switch-rt .mip-story-page-switch-left {
     display: none;
 }
 
@@ -612,4 +683,57 @@ mip-story-layer * {
     position: absolute;
     top: 50%;
     opacity: .1;
+}
+// 更多小故事推荐
+.recommend {
+    margin: 34px 17px 10px 17px;
+    text-align: left;
+}
+
+.recommend > :first-child {
+    display: block;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 20px 0 15px 0;
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.recommend-item {
+    width: 186px;
+    height: 277px;
+    text-align: center;
+    display: flex !important;
+    display: -webkit-flex !important;
+    flex-direction: column !important;
+    -webkit-flex-direction: column !important;
+    justify-content: flex-end !important;
+    -webkit-justify-content: flex-end !important;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: end;
+    margin-right: 8px;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.recommend-item > span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+    padding: 0 2px;
+}
+
+.recommend-item > :first-child {
+    font-size: 16px;
+}
+
+.recommend-item > :nth-child(2) {
+    font-size: 13px;
+    line-height: 13px;
+    margin-top: 13px;
+    margin-bottom: 10px;
 }

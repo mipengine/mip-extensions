@@ -14,12 +14,30 @@
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
+
 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
+
 
 ## 示例
 
 ### 基本用法
 ```html
+<style mip-custom>
+    mip-story-view {
+        color: #fff;
+    }
+    h1 {
+        text-align: center;
+    }
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: #09f;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    </style>
 <mip-story standalone>
     <script type="application/json">
     {
@@ -55,8 +73,8 @@
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
         </mip-story-layer>
         <mip-story-layer>
-            <h1>小故事是什么？</h1>
-            <p>快用 MIP 小故事开发很多丰富的交互效果吧！</p>
+            <h1 animate-in="fade-in">小故事是什么？</h1>
+            <p animate-in="fly-in-top">快用 MIP 小故事开发很多丰富的交互效果吧！</p>
             <a href="https://www.baidu.com">普通跳转链接</a>
         </mip-story-layer>
     </mip-story-view>
@@ -68,6 +86,66 @@
             <h1>用 MIP 来讲述你的故事！</h1>
         </mip-story-layer>
     </mip-story-view>
+    <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>fade-in</h1>
+                <div animate-in="fly-in-left fade-in" class="box"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>fly-in-top</h1>
+                <div animate-in="fly-in-top" class="box"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>fly-in-bottom</h1>
+                <div class="box" animate-in="fly-in-bottom"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>fly-in-left</h1>
+                <div class="box" animate-in="fly-in-left"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>fly-in-right</h1>
+                <div class="box" animate-in="fly-in-right"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>twirl-in</h1>
+                <div class="box" animate-in="twirl-in"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>whoosh-in-left</h1>
+                <div class="box" animate-in="whoosh-in-left"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>whoosh-in-right</h1>
+                <div class="box" animate-in="whoosh-in-right"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>rotate-in-left</h1>
+                <div class="box" animate-in="rotate-in-left"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="vertical">
+                <h1>rotate-in-right</h1>
+                <div class="box" animate-in="rotate-in-right"></div>
+            </mip-story-layer>
+        </mip-story-view>
 </mip-story>
 ```
 

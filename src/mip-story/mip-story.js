@@ -25,6 +25,7 @@ define(function (require) {
     var HintLayer = require('./mip-story-hint');
     var BookEnd = require('./mip-story-bookend');
     var customElement = require('customElement').create();
+    var animatePreset = require('./animate-preset');
     var util = require('util');
     var dm = util.dom;
     var EventEmitter = util.EventEmitter;

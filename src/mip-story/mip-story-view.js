@@ -10,6 +10,8 @@ define(function (require) {
     var Audio = require('./audio');
     var BACKGROUND_AUDIO = 'background-audio';
 
+    var AnimationManager = require('./animation').AnimationManager;
+    var hasAnimations = require('./animation').hasAnimations;
     customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
         self.whenAllMediaElements(function (ele) {
@@ -71,10 +73,17 @@ define(function (require) {
             this.element.setAttribute('active', '');
             this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
+            if (hasAnimations(this.element)) {
+                if (!this.animationManager) {
+                    this.animationManager = new AnimationManager(this.element);
+                }
+                this.animationManager.runAllAnimate();
+            }
         }
         else {
             this.element.removeAttribute('active');
             this.pauseAllMedia();
+            this.animationManager && this.animationManager.cancelAllAnimate();
         }
     };
 

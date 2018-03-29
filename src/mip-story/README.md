@@ -14,7 +14,7 @@
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js
+所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
 
 ## 示例
 
@@ -28,6 +28,25 @@
             "background": "https://mip-extensions.bj.bcebos.com/oscar/p8.png",
             "title": "第90届奥斯卡颁奖典礼回顾",
             "from": "小故事"
+        },
+        "recommend": {
+            "url": "https://www.example.com/",
+            "items": [
+                {
+                    "cover": "https://www.example.com/static/img/mip-story/p5.png",
+                    "url": "https://www.example.com/",
+                    "title": "第80届奥斯卡颁奖典礼",
+                    "from": "example",
+                    "fromUrl": "http://example.com/from"
+                },
+                {
+                    "cover": "https://www.example.com/static/img/mip-story/p5.png",
+                    "url": "https://www.example.com/",
+                    "title": "第80届奥斯卡颁奖典礼",
+                    "from": "example",
+                    "fromUrl": "http://www.example.com/from"
+                }
+            ]
         }
     }
     </script>
@@ -55,11 +74,19 @@
 ## 数据配置
 为提供给用户更多信息和传播渠道，在 `<mip-story>` 段落最后提供了专门用于展示分享及小故事更多相关信息的页面。当用户在最后一个段落继续向后点击时候，即会出现。其中该页面内容需要通过开发者进行配置，具体配置参数如下：
 
-- share：share 字段下包含的是分享相关的数据：
-  - thumbnail：预览小故事的缩略图地址。
-  - background：结尾页背景图片地址。
-  - title：小故事标题。
-  - from：资源的来源信息。
+- share: share 字段下包含的是分享相关的数据。
+- share.thumbnail: 预览小故事的缩略图地址。
+- share.background: 结尾页背景图片地址。
+- share.title: 小故事标题。
+- share.from: 资源的来源信息。
+- recommend: 小故事推荐相关的信息。
+- recommend.url: 更多小故事跳转链接。
+- recommend.items: 推荐小故事列表，它是一个数组，包含了所有推荐的小故事数据。
+    - cover: 推荐的小故事背景图片。
+    - url: 推荐的小故事跳转地址。
+    - title: 推荐的小故事标题。
+    - from: 推荐的小故事来源信息。
+    - fromUrl: 推荐的小故事来源跳转地址。
 
 ## 属性
 

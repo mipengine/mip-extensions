@@ -16,8 +16,6 @@ define(function (require) {
         customTag: /<(mip-\S+)>/,
         tag: '\<([^\\s|\>]*)',
         tagandAttr: /<(mip-[^>]*)>/,
-        regHttp: /\/c\/(\S*)/,
-        regHttps: /\/c\/s\/(\S*)/,
         domain: /^(http(s)?:\/\/)?[^\/]*baidu.com/
     };
 
@@ -30,7 +28,7 @@ define(function (require) {
         logid: '',
         query: '',
         title: '',
-        originalUrl: getSubString(location.pathname, regexs.regHttps) || getSubString(location.pathname, regexs.regHttp)
+        originalUrl: MIP && MIP.custom && MIP.custom.originUrl || ''
     };
 
     var logData = {
@@ -87,7 +85,7 @@ define(function (require) {
     /**
      * [getSubString 根据正则获取子串]
      *
-     * @param  {string}  str [截取钱字符串]
+     * @param  {string}  str [截取前字符串]
      * @param  {RegExp}  reg [正则表达式]
      * @param  {integer} pos [位置]
      * @return {string}      [截取后字符串]

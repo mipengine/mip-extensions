@@ -4,6 +4,7 @@
  */
 
 define(function () {
+
     // rquire tools
     var util = require('util');
     var viewer = require('viewer');
@@ -323,7 +324,7 @@ define(function () {
      */
     customElement.prototype.initQueue = function () {
         var me = this;
-        window.MIP = window.MIP || {};    
+        window.MIP = window.MIP || {};
         MIP.custom = MIP.custom || {};
         MIP.custom.tempQueue = [];
         MIP.custom.tempData = {};

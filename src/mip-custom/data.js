@@ -3,7 +3,7 @@
  * @author pearl
  */
 define(function (require) {
-
+    var util = require('util');
     /**
      * [regexs 正则表达式]
      * @type {Object}
@@ -28,7 +28,7 @@ define(function (require) {
         logid: '',
         query: '',
         title: '',
-        originalUrl: MIP && MIP.custom && MIP.custom.originUrl || ''
+        originalUrl: util.getOriginalUrl()
     };
 
     var logData = {

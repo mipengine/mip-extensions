@@ -8,11 +8,6 @@ define(function () {
     var util = require('util');
     var viewer = require('viewer');
 
-    // 尽早执行对应原mip页面url获取，方便'mip-custom/data'拼装请求及模板中使用
-    window.MIP = window.MIP || {};
-    MIP.custom = MIP.custom || {};
-    MIP.custom.originUrl = util.parseCacheUrl(window.location.href);
-
     // require modules
     var url = require('mip-custom/url');
     var dom = require('mip-custom/dom');

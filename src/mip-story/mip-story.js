@@ -334,6 +334,7 @@ define(function (require) {
 
     MIPStory.prototype.mute = function (e) {
         this.muted = true;
+        this.viewMuted = true;
         this.muteGlobalAudio();
         var ele = storyViews[this.currentIndex];
         ele.customElement.toggleAllMedia(e, this.viewMuted);
@@ -342,6 +343,7 @@ define(function (require) {
 
     MIPStory.prototype.unmute = function (e) {
         this.muted = false;
+        this.viewMuted = false;
         this.unMuteGlobalAudio();
         this.playGlobalAudio();
         var ele = storyViews[this.currentIndex];

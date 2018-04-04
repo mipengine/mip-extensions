@@ -13,8 +13,8 @@ define(function (require) {
     customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
         self.whenAllMediaElements(function (ele) {
-            if (ele.tagName.toLowerCase() === 'audio' && !self.muted) {
-                load ? ele.load() : ele.play();
+            if (ele.tagName.toLowerCase() === 'audio' && load) {
+                !self.muted ? ele.load() : ele.load() && ele.pause();
             }
             else {
                 !self.muted && ele.play();

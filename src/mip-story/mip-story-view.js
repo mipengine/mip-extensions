@@ -10,11 +10,11 @@ define(function (require) {
     var Audio = require('./audio');
     var BACKGROUND_AUDIO = 'background-audio';
 
-    customElement.prototype.resumeAllMedia = function () {
+    customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
         self.whenAllMediaElements(function (ele) {
             if (ele.tagName.toLowerCase() === 'audio' && !self.muted) {
-                self.reload ? ele.load() : ele.play();
+                load ? ele.load() : ele.play();
             }
             else {
                 !self.muted && ele.play();
@@ -66,11 +66,10 @@ define(function (require) {
     };
 
     customElement.prototype.setActive = function (status, muted, load) {
-        this.load = load;
         this.muted = muted;
         if (status) {
             this.element.setAttribute('active', '');
-            this.resumeAllMedia();
+            this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
         }
         else {

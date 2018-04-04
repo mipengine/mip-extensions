@@ -277,10 +277,12 @@ define(function (require) {
         }
         var currentEle = storyViews[this.currentIndex];
         var preEle = storyViews[this.preInex];
+
+        var reload = this.element.hasAttribute('audio-reload');
         if (this.currentIndex !== this.preInex) {
-            preEle.customElement.setActive(false, this.viewMuted);
+            preEle.customElement.setActive(false, this.viewMuted, reload);
         }
-        currentEle.customElement.setActive(true, this.viewMuted);
+        currentEle.customElement.setActive(true, this.viewMuted, reload);
         this.progress.updateProgress(this.currentIndex, data.status);
         this.preInex = this.currentIndex;
 

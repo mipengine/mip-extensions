@@ -13,7 +13,12 @@ define(function (require) {
     customElement.prototype.resumeAllMedia = function () {
         var self = this;
         self.whenAllMediaElements(function (ele) {
-            !self.muted && ele.play();
+            if (ele.tagName.toLowerCase() === 'audio' && !self.muted) {
+                self.reload ? ele.load() : ele.play();
+            }
+            else {
+                !self.muted && ele.play();
+            }
         });
     };
 
@@ -60,7 +65,8 @@ define(function (require) {
         });
     };
 
-    customElement.prototype.setActive = function (status, muted) {
+    customElement.prototype.setActive = function (status, muted, load) {
+        this.load = load;
         this.muted = muted;
         if (status) {
             this.element.setAttribute('active', '');

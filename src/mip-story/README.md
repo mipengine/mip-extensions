@@ -96,6 +96,10 @@
 
 用于配置全局播放的音频地址，需要使用 HTTPS 协议。
 
+### audio-reload
+
+如果包含该属性，拥有音频的段落在切换后返回，音频会重新从头播放。
+
 ## mip-story-view
 
 ### background-audio

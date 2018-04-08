@@ -110,7 +110,7 @@ define(function (require) {
         return res;
     }
 
-
+    /* errorLogData 短期追查问题-2018330 */
     return {
         domain: 'https://mipengine.baidu.com/',
         ajaxUrl: 'https://mipengine.baidu.com/common?',

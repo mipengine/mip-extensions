@@ -164,9 +164,10 @@ define(function (require) {
      * @param  {integer} len       模块中第几个组件
      * @param  {Object}  result    渲染mustache模板的数据
      * @param  {DOM}     container 装载定制化组件节点的容器
+     * @param  {function} callback 短期追查问题-2018330
      * @return {string}  customTag 定制化组件标签
      */
-    function renderHtml(element, str, len, result, container) {
+    function renderHtml(element, str, len, result, container, callback) {
         var html = str.replace(regexs.script, '').replace(regexs.style, '');
         var customTag = (new RegExp(regexs.tag, 'g')).exec(html);
         customTag = customTag && customTag[1] ? customTag[1] : null;
@@ -201,8 +202,9 @@ define(function (require) {
                     // alert(getCss(res.element, 'height') - 10)
                     fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
                 }
-
             }
+            /*callback 短期追查问题-2018330*/
+            callback && callback(res.html, '{{img_left.img_src}}');
         });
 
         return customTag;
@@ -214,8 +216,9 @@ define(function (require) {
      * @param  {DOM}   element   mip-custom 节点
      * @param  {Array} tplData   渲染mustache模板的数据数组
      * @param  {DOM}   container 装载定制化组件节点的容器
+     * @param  {function} callback 短期追查问题-2018330
      */
-    function render(element, tplData, container) {
+    function render(element, tplData, container, callback) {
 
         for (var len = 0; len < tplData.length; len++) {
 
@@ -236,7 +239,8 @@ define(function (require) {
             renderStyleOrScript(str, regexs.style, 'style', 'mip-custom-css', document.head);
 
             // html 处理
-            var customTag = renderHtml(element, str, len, result, container);
+            // callback 短期追查问题-2018330
+            var customTag = renderHtml(element, str, len, result, container, callback);
 
             if (!customTag) {
                 continue;

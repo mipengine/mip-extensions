@@ -52,13 +52,15 @@ define(function (require) {
         }
     };
 
-    /* errorLogData       */
-    var errorLogData = {
+    var performanceData = {
         host: 'https://sp1.baidu.com/5b1ZeDe5KgQFm2e88IuM_a/mwb2.gif',
         params: {
-            type: 'et_js',
             pid: '1_4',
-            lid: getHashData('lid')
+            type: 'pf_comm',
+            lid: getHashData('lid'),
+            info: {},
+            group: 'common',
+            ts: new Date() - 0
         }
     };
 
@@ -119,7 +121,7 @@ define(function (require) {
         addPaths: addPaths,
         subStr: getSubString,
         logData: logData,
-        errorLogData: errorLogData,
+        performanceData: performanceData,
         getHashData: getHashData
     };
 

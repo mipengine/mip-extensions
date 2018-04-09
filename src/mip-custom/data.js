@@ -51,7 +51,6 @@ define(function (require) {
             en: 'mip_async_err'
         }
     };
-
     var performanceData = {
         host: 'https://sp1.baidu.com/5b1ZeDe5KgQFm2e88IuM_a/mwb2.gif',
         params: {
@@ -63,7 +62,6 @@ define(function (require) {
             ts: new Date() - 0
         }
     };
-
     var config = {
         domain: 'https://mipengine.baidu.com/',
         paths: {
@@ -110,7 +108,7 @@ define(function (require) {
         return res;
     }
 
-    /* errorLogData 短期追查问题-2018330 */
+
     return {
         domain: 'https://mipengine.baidu.com/',
         ajaxUrl: 'https://mipengine.baidu.com/common?',

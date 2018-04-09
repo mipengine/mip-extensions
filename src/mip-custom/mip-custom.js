@@ -18,8 +18,6 @@ define(function () {
     // creat钩子
     var customElement = require('customElement').create();
     var logData = dataProcessor.logData;
-    // errorLogData 短期追查问题-2018330
-    var errorLogData = dataProcessor.errorLogData;
 
     /**
      * prerenderAllowed钩子,优先加载
@@ -169,7 +167,6 @@ define(function () {
     customElement.prototype.render = function (data, element) {
         var commonData = {};
         var template = {};
-        var me = this;
         if (!data || !element) {
             return;
         }
@@ -201,9 +198,7 @@ define(function () {
             element.appendChild(container);
 
             // dom 渲染
-            // dom.render(element, tplData, container);
-            // 短期追查问题-2018330
-            dom.render(element, tplData, container, me.errMoniter);
+            dom.render(element, tplData, container);
         }
     };
 
@@ -382,34 +377,6 @@ define(function () {
             }
         }
         me.storeData(data);
-    };
-
-    /**
-     * 错误日志监控 2018330
-     * @param {string} htmlStr 要被截取的地址
-     * @param {string} str 关键字
-     */
-    customElement.prototype.errMoniter = function (htmlStr, str) {
-        if (!htmlStr) {
-            return;
-        }
-        var me = this;
-        var idx = htmlStr.indexOf(str);
-        if (idx !== -1) {
-            var params = errorLogData.params;
-            params.ts = new Date().getTime();
-            var start = idx - 200;
-            var end = idx + 200;
-            if (start < 0) {
-                start = 0;
-            }
-            if (idx + 200 >= htmlStr.length) {
-                end = htmlStr.length - 1;
-            }
-            params.info = encodeURIComponent(htmlStr.substring(start, end) + '|'
-                + document.referrer + '|' + me.commonUrl);
-            log.sendLog(errorLogData.host, params);
-        }
     };
 
     return customElement;

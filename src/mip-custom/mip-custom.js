@@ -308,7 +308,11 @@ define(function () {
                 duration: performance.duration,
                 emptyTime: performance.emptyTime
             }, 1));
-            log.sendLog(performanceData.host, performanceData.params);
+            // 性能日志：按照流量 1/500 发送日志
+            var random500 = Math.random() * 500;
+            if(random500 < 1) {
+                log.sendLog(performanceData.host, performanceData.params);
+            }
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();

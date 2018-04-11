@@ -93,14 +93,6 @@ define(function (require) {
         document.addEventListener(VISIBILITYCHANGE, function (e) {
             self.emitter.trigger(VISIBILITYCHANGE, e);
         });
-        document.addEventListener('touchstart', function (e) {
-            if (!self.hasPlay && !self.muted) {
-                var currentEle = storyViews[self.currentIndex];
-                self.playGlobalAudio();
-                currentEle.customElement.resumeAllMedia();
-                self.hasPlay = true;
-            }
-        });
         // 绑定点击事件
         gesture.on('swipe', function (e, data) {
             self.emitter.trigger(SWIP, {
@@ -230,7 +222,11 @@ define(function (require) {
             }
             return;
         }
-
+        // 如果视频/音频不能 autoplay，则主动触发
+        if (!this.hasPlay && !this.muted) {
+            this.emitter.trigger(UNMUTE, e);
+            this.hasPlay = true;
+        }
         // 翻页逻辑
         var centerX = (this.element.offsetLeft + this.element.offsetWidth) / 2;
         // 向右切换
@@ -262,7 +258,6 @@ define(function (require) {
     MIPStory.prototype.switchTo = function (data) {
         this.hint.hideDamping();
         this.hint.hideSystemLater();
-
         if (data.status === 0 && this.currentIndex <= 0) {
             this.emitter.trigger(SHOWNOPREVIOUSPAGEHELP);
             return;

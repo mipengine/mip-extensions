@@ -73,8 +73,9 @@ define(function (require) {
         fixedParent.appendChild(customNode);
         element.appendChild(fixedParent);
 
-        // 测试, 初始化底部fixed元素一开始在页面外部, 滑入页面
-        if(type = 'bottom') {
+        // 初始化底部fixed元素一开始在页面外部, 动画滑入页面
+        // 预先增加下移样式，当元素被插入页面后（setTimeout执行），动画执行。
+        if (type = 'bottom') {
             fixedParent.classList.add('mip-custom-transit-from-bottom');
             window.setTimeout(function(){
                 fixedParent.classList.add('mip-custom-transit-end');

@@ -18,12 +18,10 @@ define(function () {
     // creat钩子
     var customElement = require('customElement').create();
     var logData = dataProcessor.logData;
-    // errorLogData 短期追查问题-2018330
-    var errorLogData = dataProcessor.errorLogData;
+    var performanceData = dataProcessor.performanceData;
 
     /**
      * prerenderAllowed钩子,优先加载
-     *
      */
     customElement.prototype.prerenderAllowed = function () {
         return true;
@@ -130,7 +128,7 @@ define(function () {
         // 无异步url不展现定制化内容
         if (!me.commonUrl) {
             me.element.remove();
-           isShowCustom = false;
+            isShowCustom = false;
         }
         return isShowCustom;
     };
@@ -169,7 +167,6 @@ define(function () {
     customElement.prototype.render = function (data, element) {
         var commonData = {};
         var template = {};
-        var me = this;
         if (!data || !element) {
             return;
         }
@@ -201,9 +198,7 @@ define(function () {
             element.appendChild(container);
 
             // dom 渲染
-            // dom.render(element, tplData, container);
-            // 短期追查问题-2018330
-            dom.render(element, tplData, container, me.errMoniter);
+            dom.render(element, tplData, container);
         }
     };
 
@@ -247,7 +242,6 @@ define(function () {
                     matchTempData.template.push(singleTempData);
                     break;
                 }
-                
             }
         }
 
@@ -267,11 +261,17 @@ define(function () {
             return;
         }
         var errorData = {};
+        // 性能日志
+        var performance = {};
+        performance.fetchStart = new Date() - 0;
 
         // fetch
         fetch(url, {
             credentials: 'include'
         }).then(function (res) {
+            // 性能日志：duration-网络请求时间
+            performance.responseEnd = new Date() - 0;
+            performance.duration = performance.responseEnd - performance.fetchStart;
             errorData = {
                 st: res.status,
                 info: res.statusText,
@@ -297,6 +297,19 @@ define(function () {
                 return;
             }
             callback && callback(data.data, element);
+
+            // 性能日志：emptyTime-广告未显示时间
+            performance.renderEnd = new Date() - 0;
+            performance.emptyTime = performance.renderEnd - performance.fetchStart;
+            performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, {
+                duration: performance.duration,
+                emptyTime: performance.emptyTime
+            }, 1));
+            // 性能日志：按照流量 1/500 发送日志
+            var random500 = Math.random() * 500;
+            if(random500 < 1) {
+                log.sendLog(performanceData.host, performanceData.params);
+            }
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();
@@ -382,34 +395,6 @@ define(function () {
             }
         }
         me.storeData(data);
-    };
-
-    /**
-     * 错误日志监控 2018330
-     * @param {string} htmlStr 要被截取的地址
-     * @param {string} str 关键字
-     */
-    customElement.prototype.errMoniter = function (htmlStr, str) {
-        if (!htmlStr) {
-            return;
-        }
-        var me = this;
-        var idx = htmlStr.indexOf(str);
-        if (idx !== -1) {
-            var params = errorLogData.params;
-            params.ts = new Date().getTime();
-            var start = idx - 200;
-            var end = idx + 200;
-            if (start < 0) {
-                start = 0;
-            }
-            if (idx + 200 >= htmlStr.length) {
-                end = htmlStr.length - 1;
-            }
-            params.info = encodeURIComponent(htmlStr.substring(start, end) + '|'
-                + document.referrer + '|' + me.commonUrl);
-            log.sendLog(errorLogData.host, params);
-        }
     };
 
     return customElement;

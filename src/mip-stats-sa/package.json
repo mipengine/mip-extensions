@@ -1,0 +1,14 @@
+{
+    "name": "mip-stats-sa",
+    "version": "1.0.0",
+    "description": "神策数据 javascript sdk",
+    "contributors": [
+        {
+            "name": "shengyonggen",
+            "email": "522370351@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

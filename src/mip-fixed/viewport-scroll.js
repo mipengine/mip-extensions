@@ -29,7 +29,7 @@ define(function (require) {
         first: true,
 
         /**
-         * 处理元素
+         * 动画处理元素
          *
          * @type {Array}
          * @param {string} animate.position 浮动元素位置：top、bottom
@@ -48,7 +48,10 @@ define(function (require) {
 
             var type = event.direction === 'down' ? 'out' : 'in';
             viewportScroll.animate.forEach(function (item) {
-                viewportScroll.position[item.position][type](item.element, item.slide);
+                var positionHandle = viewportScroll.position[item.position];
+                if (positionHandle && 'function' === typeof positionHandle[type]) {
+                    positionHandle[type](item.element, item.slide);
+                }
             });
         },
 
@@ -64,6 +67,13 @@ define(function (require) {
                 return;
             }
 
+            viewportScroll.bindScrollEvent();            
+        },
+
+        /**
+         * 绑定滚动事件
+         */
+        bindScrollEvent: function () {
             var lastDirection = null;
             var direct = 0;
             var scrollTop = viewport.getScrollTop();

@@ -129,7 +129,8 @@ define(function (require) {
         if (this.progress) {
             return;
         }
-        this.progress = new Progress(this.element, storyViews);
+        var audioHide = this.element.hasAttribute('audio-hide');
+        this.progress = new Progress(this.element, storyViews, audioHide);
         var html = dm.create(this.progress.build());
         this.element.appendChild(html);
         this.progress.updateProgress(0, 1);

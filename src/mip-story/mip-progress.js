@@ -9,9 +9,10 @@ define(function (require) {
     var ACTIVE = 'mip-story-page-progress-bar-active';
     var VISITED = 'mip-story-page-progress-bar-visited';
 
-    function MIPProgress(root, elements) {
+    function MIPProgress(root, elements, audioHide) {
         this.root = root;
         this.elements = elements;
+        this.audioHide = audioHide;
         this.win = window;
         this.items = {};
         this.oldEle;
@@ -50,7 +51,7 @@ define(function (require) {
 
     MIPProgress.prototype.showAudio = function () {
         var ele = this.root.querySelectorAll('audio, video');
-        return !!ele.length;
+        return !!ele.length && !this.audioHide;
     };
 
     MIPProgress.prototype.updateProgress = function (index, status) {

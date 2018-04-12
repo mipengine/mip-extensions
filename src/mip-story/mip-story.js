@@ -277,9 +277,9 @@ define(function (require) {
 
         var reload = this.element.hasAttribute('audio-reload');
         if (this.currentIndex !== this.preInex) {
-            preEle.customElement.setActive(false, this.viewMuted, reload);
+            preEle.customElement.setActive(false, this.viewMuted, reload, this.emitter);
         }
-        currentEle.customElement.setActive(true, this.viewMuted, reload);
+        currentEle.customElement.setActive(true, this.viewMuted, reload, this.emitter);
         this.progress.updateProgress(this.currentIndex, data.status);
         this.preInex = this.currentIndex;
 
@@ -364,6 +364,8 @@ define(function (require) {
      */
     customElement.prototype.firstInviewCallback = function () {
         var mipStory = new MIPStory(this.element);
+
+        require('./web-animation');
         mipStory.init();
     };
 

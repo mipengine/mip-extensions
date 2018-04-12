@@ -5,63 +5,111 @@
  */
 define(function(require) {
     'use strict';
-    var util = require('util');
+
     var animatePreset = require('./animate-preset');
+    var AnimationRunner = require('./animation-runner');
+    var util = require('util');
+    var extend = util.fn.extend;
     var MIP_STORY_ANIMATE_IN_ATTR = 'animate-in';
     var MIP_STORY_ANIMATE_IN_DURATION_ATTR = 'animate-in-duration';
     var MIP_STORY_ANIMATE_IN_DELAY_ATTR = 'animate-in-delay';
     var MIP_STORY_ANIMATE_IN_AFTER_ATTR = 'animate-in-after';
     var MIP_STORY_ANIMATE_IN_SELECROR = '[animate-in]';
 
-    var naboo = util.naboo;
     function AnimationManager (page) {
         this.page = page;
-        this.quene = [];
+        // [
+        //     {
+        //         id: xxx,
+        //         runner: runner
+        //     }
+        // ]
+        this.sequence = [];
         this.init();
     }
 
-    /**
-     * [init] 初始化 AnimationmAnager
-     * @return {[type]} [description]
-     */
     AnimationManager.prototype.init = function () {
-        var currentEle = this.page;
-        var $animate = currentEle.querySelectorAll('[animate-in]');
         var self = this;
+        var EventEmitter = util.EventEmitter;
+        var currentEle = this.page;
+        var $animate = currentEle.querySelectorAll(MIP_STORY_ANIMATE_IN_SELECROR);
+
+        this.emitter = new EventEmitter();
         [].slice.call($animate).forEach(function (el) {
             var runner = buildRuner(el);
-            self.quene.push(runner);
+            var player = {
+                runner: runner
+            };
+
+            if (el.id) {
+                player.id = el.id;
+            }
+
+            self.sequence.push(player);
         });
     };
 
     AnimationManager.prototype.runAllAnimate = function () {
-        this.quene.forEach(function (val) {
-            val.play();
-        });
-    }
-    AnimationManager.prototype.cancelAllAnimate = function () {
-        this.quene.forEach(function (val) {
-            val.cancel();
+        var self = this;
+        var startAfterId;
+        this.sequence.forEach(function (player) {
+            startAfterId = player.runner.animationDef.startAfterId;
+            if (startAfterId && self.getRunnerById(startAfterId)) {
+                self.waitAndStart(self.getRunnerById(startAfterId), player);
+            } else {
+                player.runner.play();
+            }
         });
     }
 
     /**
-     * [hasAnimations description]
-     * @param  {[type]}  element [description]
-     * @return {Boolean}         [description]
+     * paintFirstFrame 渲染动画第一帧
+     */
+    AnimationManager.prototype.paintFirstFrame = function () {
+        this.sequence.forEach(function(player) {
+            player.runner.pause();
+        });
+    }
+
+    AnimationManager.prototype.getRunnerById = function (id) {
+        var runner = null;
+        if (id) {
+            this.sequence.forEach(function(val) {
+                if (val.id === id && val.runner && val.runner.isRunner) {
+                    runner = val.runner;
+                }
+            });
+        }
+        return runner;
+    };
+
+    AnimationManager.prototype.cancelAllAnimate = function () {
+        this.sequence.forEach(function (player) {
+            player.runner.cancel();
+        });
+    }
+
+    AnimationManager.prototype.waitAndStart = function(prevPlayer, player) {
+        var self = this;
+        if (prevPlayer.runner && player.runner) {
+            self.emitter.on(prevPlayer.el.id, function () {
+                player.runner.play();
+            });
+            prevPlayer.runner.onfinish = function () {
+                self.emitter.trigger(prevPlayer.el.id);
+            }
+        }
+    }
+
+
+    /**
+     * hasAnimations 判断是否有动画
+     * @param  {nodeElement}  element
+     * @return Boolean
      */
     function hasAnimations(element) {
         return !!element.querySelectorAll(MIP_STORY_ANIMATE_IN_SELECROR).length;
     }
-
-    /**
-     * [cancelCallBack description]
-     * @param  {[type]} runner [description]
-     * @return {[type]}        [description]
-     */
-    function cancelCallBack(runner) {
-
-    };
 
     /**
      * [createAnimationDef description]
@@ -70,23 +118,42 @@ define(function(require) {
      * @return {[type]}        [description]
      */
     function createAnimationDef (el) {
-        var offset = el.getBoundingClientRect();
         var keyframes;
+        var easing;
+
+        var offset = el.getBoundingClientRect();
+        var animationDef = getPreset(el);
+        var duration = el.getAttribute(MIP_STORY_ANIMATE_IN_DURATION_ATTR);
+        var delay = el.getAttribute(MIP_STORY_ANIMATE_IN_DELAY_ATTR);
+        var after = el.getAttribute(MIP_STORY_ANIMATE_IN_AFTER_ATTR);
+
         offset.pageHeight = window.innerHeight;
         offset.pageWidth = window.innerWidth;
 
-        var animationType = getPreset(el);
         // 处理动画的keyframes
-        if (animationType && animationType.keyframes) {
-            if (typeof animationType.keyframes === 'function') {
-                keyframes = animationType.keyframes(offset);
+        if (animationDef && animationDef.keyframes) {
+            if (typeof animationDef.keyframes === 'function') {
+                keyframes = animationDef.keyframes(offset);
             } else {
-                keyframes = animationType.keyframes;
+                keyframes = animationDef.keyframes;
             }
         }
 
-        return keyframes;
+        easing = {
+            'duration': +duration || animationDef.duration
+        };
 
+        if (+delay) {
+            animationDef.delay = delay;
+        }
+        animationDef.easing = easing;
+        animationDef.keyframes = keyframes;
+
+        if (after) {
+            animationDef.startAfterId = after;
+        }
+
+        return animationDef;
     }
 
     /**
@@ -95,51 +162,23 @@ define(function(require) {
      * @return {[type]}    [description]
      */
     function getPreset(el) {
-        var name = (String(el.getAttribute('animate-in')).split(/\s+/))[0];
-        return animatePreset[name];
+        var animationDef = {};
+        var name = (String(el.getAttribute(MIP_STORY_ANIMATE_IN_ATTR)).split(/\s+/))[0];
+        extend(animationDef, animatePreset[name]);
+        return animationDef;
     }
 
-    /**
-     * [getEasing description]
-     * @param  {[type]} el     [description]
-     * @param  {[type]} easing [description]
-     * @return {[type]}        [description]
-     */
-    function getEasing(el) {
-        var easeDef = getPreset(el);
-        var ease = el.getAttribute('animate-in-ease');
-        var duration = el.getAttribute('animate-in-duration');
-        var delay = el.getAttribute('animate-in-delay');
-        var after = el.getAttribute('animate-in-after');
-        var easing = {
-            'easing': ease || easeDef.easing,
-            'duration': duration || easeDef.duration,
-            'delay': delay || 0
-        };
-        return easing;
-
-    }
     /**
      * [buildRuner description]
      * @param  {[type]} animateDef [description]
      * @return {[type]}            [description]
      */
-    function buildRuner(el) {
-        var player;
-        var animateDef = createAnimationDef(el);
-        var easing = getEasing(el);
-        player = el.animate(animateDef, easing);
-        player.pause();
-        return player;
+    function buildRuner (el) {
+        var runner;
+        var animationDef = createAnimationDef(el);
+        runner = new AnimationRunner(el, animationDef);
+        return runner;
     }
-    /**
-     * [getAnimationStatus description]
-     * @param  {[type]} runner [description]
-     * @return {[type]}        [description]
-     */
-    function getAnimationStatus(runner) {
-
-    };
 
     return {
         AnimationManager: AnimationManager,

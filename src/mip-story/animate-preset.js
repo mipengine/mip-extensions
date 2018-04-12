@@ -171,32 +171,5 @@ define(function (require) {
         }
     };
 
-    // Object.keys(animates).forEach(function (key) {
-    //     var value = animates[key];
-
-    //     // 这里处理下名称是因为 naboo register 的 key 没有做去重，可能被别的项目注册覆盖，关爱代码更关爱你。
-    //     naboo.register('mip-story-' + key, function (next, el, opts, offset) {
-    //         opts.duration = opts.duration || value.duration || 300;
-    //         opts.delay = opts.delay || value.delay || 0;
-    //         opts.easing = opts.easing || value.easing || '-ease-out';
-
-    //         var before = value.before;
-    //         var after = value.after;
-
-    //         if ('function' === typeof before) {
-    //             before = before(offset);
-    //         }
-    //         if ('function' === typeof after) {
-    //             after = after(offset);
-    //         }
-
-    //         util.css(el, before);
-
-    //         naboo.animate(el, after, opts).start(next);
-    //     });
-    // });
-
-    // naboo.keyframes = animates;
-
     return animatesPresets;
 });

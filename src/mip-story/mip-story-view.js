@@ -67,26 +67,61 @@ define(function (require) {
         });
     };
 
-    customElement.prototype.setActive = function (status, muted, load) {
+
+    customElement.prototype.setActive = function (status, muted, load, eventEmiter) {
         this.muted = muted;
+        this.parentEmiter = eventEmiter;
         if (status) {
             this.element.setAttribute('active', '');
             this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
-            if (hasAnimations(this.element)) {
-                if (!this.animationManager) {
-                    this.animationManager = new AnimationManager(this.element);
-                }
-                this.animationManager.runAllAnimate();
-            }
+            this.maybeStartAnimation();
         }
         else {
             this.element.removeAttribute('active');
+            this.maybeClearAutoAdvance();
             this.pauseAllMedia();
-            this.animationManager && this.animationManager.cancelAllAnimate();
+            this.maybeClearAnimation();
+        }
+    };
+    customElement.prototype.maybeStartAnimation = function () {
+        if (hasAnimations(this.element)) {
+            if (!this.animationManager) {
+                this.animationManager = new AnimationManager(this.element);
+            }
+            this.animationManager.paintFirstFrame();
+            this.animationManager.runAllAnimate();
+            this.maybeSetAutoAdvance();
         }
     };
 
+    customElement.prototype.maybeClearAnimation = function() {
+        if (this.animationManager) {
+            this.animationManager.cancelAllAnimate();
+            this.animationManager = null;
+            // 切换页面的时候清除当前animationManager
+            // web-animation polyfill 有个兼容性问题；
+        }
+    };
+
+    customElement.prototype.maybeClearAutoAdvance = function () {
+        var self = this;
+        self.timer && clearTimeout(self.timer);
+    };
+
+    customElement.prototype.maybeSetAutoAdvance = function () {
+        var self = this;
+        var el = self.element;
+        var node = self.element.parentNode;
+        self.parentElement = node.customElement;
+        var advancment = el.getAttribute('auto-advancement-after');
+        if (advancment && validateAdvance(advancment)) {
+            self.timer = setTimeout(function () {
+                self.parentEmiter.trigger('switchpage', {status: 1});
+            }, +advancment);
+        }
+
+    };
     customElement.prototype.initView = function () {
         this.audio = new Audio();
         var node = this.element.parentNode;
@@ -96,6 +131,10 @@ define(function (require) {
         }
     };
 
+    function validateAdvance (val) {
+        var reg = /^[0-9]+$/;
+        return reg.test(val);
+    }
     customElement.prototype.firstInviewCallback = function () {
         this.initView();
         this.pauseAllMedia();

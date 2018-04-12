@@ -17,7 +17,6 @@
 
 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
 
-
 ## 示例
 
 ### 基本用法
@@ -38,6 +37,7 @@
         margin-right: auto;
     }
     </style>
+    <script type="text/javascript" src="http://mip-extensions.bj.bcebos.com/little-story%2Fanimation.js"></script>
 <mip-story standalone>
     <script type="application/json">
     {
@@ -69,27 +69,9 @@
     }
     </script>
     <mip-story-view>
-        <mip-story-layer template="fill">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
-        </mip-story-layer>
-        <mip-story-layer>
-            <h1 animate-in="fade-in">小故事是什么？</h1>
-            <p animate-in="fly-in-top">快用 MIP 小故事开发很多丰富的交互效果吧！</p>
-            <a href="https://www.baidu.com">普通跳转链接</a>
-        </mip-story-layer>
-    </mip-story-view>
-    <mip-story-view>
-        <mip-story-layer template="fill">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
-        </mip-story-layer>
-        <mip-story-layer>
-            <h1>用 MIP 来讲述你的故事！</h1>
-        </mip-story-layer>
-    </mip-story-view>
-    <mip-story-view>
             <mip-story-layer template="vertical">
                 <h1>fade-in</h1>
-                <div animate-in="fly-in-left fade-in" class="box"></div>
+                <div animate-in="fade-in" class="box"></div>
             </mip-story-layer>
         </mip-story-view>
         <mip-story-view>

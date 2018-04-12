@@ -31,8 +31,8 @@ define(function (require) {
 
     /**
      * [getCss 获取样式]
-     * 由于目前只需要取 height 和 paddig-bottom，
-     * 所以对util.css结果进行处理，返回整数
+     * 由于目前只需要取 height 和 paddig-bottom,
+     * 所以对util.css结果进行处理, 返回整数
      *
      * @param  {DOM} elem     dom 节点
      * @param  {string} style 获取样式
@@ -62,7 +62,7 @@ define(function (require) {
             excr = 10;
         }
 
-        // 存在悬浮时，设置距离 top/bottom 的距离
+        // 存在悬浮时, 设置距离 top/bottom 的距离
         if (customNode.hasAttribute('top') && top) {
             util.css(fixedParent, {top: top});
         }
@@ -73,7 +73,16 @@ define(function (require) {
         fixedParent.appendChild(customNode);
         element.appendChild(fixedParent);
 
-        // 结果页打开，移动到 fixed layer
+        // 初始化底部fixed元素一开始在页面外部, 动画滑入页面
+        // 预先增加下移样式，当元素被插入页面后（setTimeout执行），动画执行。
+        if (type === 'bottom') {
+            fixedParent.classList.add('mip-custom-transit-from-bottom');
+            setTimeout(function () {
+                fixedParent.classList.add('mip-custom-transit-end');
+            }, 0);
+        }
+        
+        // 结果页打开, 移动到 fixed layer
         if (fixedElement._fixedLayer) {
             fixedElement.setFixedElement([fixedParent], true);
 
@@ -183,16 +192,15 @@ define(function (require) {
         container.appendChild(itemNode);
 
         if (customNode.hasAttribute('mip-fixed')) {
+
             moveToFixedLayer(element, customNode, container);
         }
-
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
             res.element.innerHTML = res.html;
 
             if (res.element.hasAttribute('mip-fixed')
                 && res.element.parentNode.getAttribute('type') === 'bottom') {
-
                 fixedElement.setPlaceholder();
                 var zIndex = getCss(res.element.parentNode, 'z-index');
 
@@ -201,7 +209,6 @@ define(function (require) {
                     // alert(getCss(res.element, 'height') - 10)
                     fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
                 }
-
             }
         });
 
@@ -216,7 +223,6 @@ define(function (require) {
      * @param  {DOM}   container 装载定制化组件节点的容器
      */
     function render(element, tplData, container) {
-
         for (var len = 0; len < tplData.length; len++) {
 
             // 某条结果为空时不渲染此条结果
@@ -251,7 +257,7 @@ define(function (require) {
     /**
      * [proxyLink a 标签事件代理]
      *
-     * @param  {DOM} element    mip-custom，只监听当前组件下的 a 标签
+     * @param  {DOM} element    mip-custom, 只监听当前组件下的 a 标签
      * @param  {DOM} fixedLayer fixed body
      */
     function proxyLink(element, fixedLayer) {

@@ -25,4 +25,14 @@ mip-custom {
 	    padding-bottom: 10px;
 	}
 }
-
+.mip-custom {
+	&-transit {
+		&-from-bottom {
+			transform: translate3d(0, 100%, 0);
+			transition: transform .3s;
+		}
+		&-end {
+			transform: translate3d(0, 0%, 0);
+		}
+	}
+}

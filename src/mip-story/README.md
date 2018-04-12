@@ -96,6 +96,14 @@
 
 用于配置全局播放的音频地址，需要使用 HTTPS 协议。
 
+### audio-reload
+
+如果包含该属性，拥有音频的段落在切换后返回，音频会重新从头播放。
+
+### audio-hide
+
+如果包含该属性，音频按钮会默认隐藏。
+
 ## mip-story-view
 
 ### background-audio
@@ -109,9 +117,15 @@
 #### template
 
 说明：`template` 表示一个 layer 的布局方式，可以分为以下几种布局方式：
-- `fill`：填充布局，该布局方式会将当前 `<mip-story-layer>` 中的第一个元素进行填充布局，其他元素均隐藏。适合于将图片、视频作为背景展示的场景。
-- `vertical`：`<mip-story-layer>` 中的元素沿 `y` 轴排列，`x` 轴方向填充布局。
-- `horizontal`：`<mip-story-layer>` 中的元素沿 `x` 轴排列，`y` 轴方向填充。
+- `fill`: 填充布局，该布局方式会将当前 `<mip-story-layer>` 中的第一个元素进行填充布局，其他元素均隐藏。适合于将图片、视频作为背景展示的场景。
+- `vertical`: `<mip-story-layer>` 中的元素沿 `y` 轴排列，`x` 轴方向填充布局。
+- `horizontal`: `<mip-story-layer>` 中的元素沿 `x` 轴排列，`y` 轴方向填充。
+- `thirds`：支持上中下三列布局，在使用该布局时，内部的元素需要同时加入对应的属性，包括：
+    - `flex-area='upper-third'`: 元素位于三等分布局的上部；
+    - `flex-area='middle-third'`: 元素位于三等分布局的中部；
+    - `flex-area='lower-third'`: 元素位于三等分布局的下部；
+
+[notice] 使用 thirds 布局时，内部的第一次子元素必须使用 `flex-area` 进行声明，并且每个类型的 `flex-area` 只能使用一次，否则会导致元素不能正常展示。
 
 [notice] 页面中使用视频时，请注意两点：一、视频不建议作为背景填充，因为在 Android 中视频播放器优先级较高会遮住页面内容，导致用户操作不能正常进行。二、视频作为每个段落内容时，不建议设置自动播放，即添加 `autoplay` 属性，因为 iOS 下的部分浏览器会直接弹出系统的视频播放器，影响用户体验。如果需要播放视频，可以暂时使用 GIF + `background-audio` 进行设置。
 

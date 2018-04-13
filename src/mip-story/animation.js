@@ -3,7 +3,8 @@
  * @author xiongwenjie@baidu.com
  * @description
  */
-define(function(require) {
+
+define(function (require) {
     'use strict';
 
     var animatePreset = require('./animate-preset');
@@ -17,7 +18,8 @@ define(function(require) {
     var MIP_STORY_ANIMATE_IN_AFTER_ATTR = 'animate-in-after';
     var MIP_STORY_ANIMATE_IN_SELECROR = '[animate-in]';
 
-    function AnimationManager (page) {
+    // @class
+    function AnimationManager(page) {
         this.page = page;
         // [
         //     {
@@ -61,21 +63,18 @@ define(function(require) {
                 player.runner.play();
             }
         });
-    }
+    };
 
-    /**
-     * paintFirstFrame 渲染动画第一帧
-     */
     AnimationManager.prototype.paintFirstFrame = function () {
-        this.sequence.forEach(function(player) {
+        this.sequence.forEach(function (player) {
             css(player.runner.el, player.runner.animationDef.keyframes[0]);
         });
-    }
+    };
 
     AnimationManager.prototype.getRunnerById = function (id) {
         var runner = null;
         if (id) {
-            this.sequence.forEach(function(val) {
+            this.sequence.forEach(function (val) {
                 if (val.id === id && val.runner && val.runner.isRunner) {
                     runner = val.runner;
                 }
@@ -88,9 +87,9 @@ define(function(require) {
         this.sequence.forEach(function (player) {
             player.runner.cancel();
         });
-    }
+    };
 
-    AnimationManager.prototype.waitAndStart = function(prevPlayer, player) {
+    AnimationManager.prototype.waitAndStart = function (prevPlayer, player) {
         var self = this;
         if (prevPlayer.runner && player.runner) {
             self.emitter.on(prevPlayer.el.id, function () {
@@ -98,27 +97,15 @@ define(function(require) {
             });
             prevPlayer.runner.onfinish = function () {
                 self.emitter.trigger(prevPlayer.el.id);
-            }
+            };
         }
-    }
+    };
 
-
-    /**
-     * hasAnimations 判断是否有动画
-     * @param  {nodeElement}  element
-     * @return Boolean
-     */
     function hasAnimations(element) {
         return !!element.querySelectorAll(MIP_STORY_ANIMATE_IN_SELECROR).length;
     }
 
-    /**
-     * [createAnimationDef description]
-     * @param  {[type]} el     [description]
-     * @param  {[type]} preset [description]
-     * @return {[type]}        [description]
-     */
-    function createAnimationDef (el) {
+    function createAnimationDef(el) {
         var keyframes;
         var easing;
 
@@ -157,11 +144,6 @@ define(function(require) {
         return animationDef;
     }
 
-    /**
-     * [getPreset description]
-     * @param  {[type]} el [description]
-     * @return {[type]}    [description]
-     */
     function getPreset(el) {
         var animationDef = {};
         var name = (String(el.getAttribute(MIP_STORY_ANIMATE_IN_ATTR)).split(/\s+/))[0];
@@ -169,12 +151,7 @@ define(function(require) {
         return animationDef;
     }
 
-    /**
-     * [buildRuner description]
-     * @param  {[type]} animateDef [description]
-     * @return {[type]}            [description]
-     */
-    function buildRuner (el) {
+    function buildRuner(el) {
         var runner;
         var animationDef = createAnimationDef(el);
         runner = new AnimationRunner(el, animationDef);

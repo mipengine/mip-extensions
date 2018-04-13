@@ -41,7 +41,7 @@ define(function (require) {
             easing: 'ease-out',
             delay: 0,
             keyframes: function (offset) {
-                var offsetY = offset.pageHeight + offset.top;
+                var offsetY = offset.pageHeight - offset.top;
                 return [
                     {
                         transform: 'translateY(' + offsetY +'px)'

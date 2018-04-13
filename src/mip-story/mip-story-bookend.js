@@ -53,7 +53,7 @@ define(function (require) {
             }
             recTpl = ''
                 + '<div class="recommend">'
-                +     '<a href="' + recommend.url + '">更多小故事</a>'
+                +     '<a href="' + recommend.url + '">更多阅读</a>'
                 +     '<mip-scrollbox>'
                 +         '<div data-wrapper>'
                 +            '<div data-inner>'

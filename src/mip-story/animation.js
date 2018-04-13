@@ -10,6 +10,7 @@ define(function(require) {
     var AnimationRunner = require('./animation-runner');
     var util = require('util');
     var extend = util.fn.extend;
+    var css = util.css;
     var MIP_STORY_ANIMATE_IN_ATTR = 'animate-in';
     var MIP_STORY_ANIMATE_IN_DURATION_ATTR = 'animate-in-duration';
     var MIP_STORY_ANIMATE_IN_DELAY_ATTR = 'animate-in-delay';
@@ -67,7 +68,7 @@ define(function(require) {
      */
     AnimationManager.prototype.paintFirstFrame = function () {
         this.sequence.forEach(function(player) {
-            player.runner.pause();
+            css(player.runner.el, player.runner.animationDef.keyframes[0]);
         });
     }
 

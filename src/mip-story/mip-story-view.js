@@ -12,6 +12,7 @@ define(function (require) {
 
     var AnimationManager = require('./animation').AnimationManager;
     var hasAnimations = require('./animation').hasAnimations;
+    var css = require('util').css;
     customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
         self.whenAllMediaElements(function (ele) {
@@ -73,9 +74,10 @@ define(function (require) {
         this.parentEmiter = eventEmiter;
         if (status) {
             this.element.setAttribute('active', '');
+            css(this.element, {visibility: 'hidden'});
+            this.maybeStartAnimation();
             this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
-            this.maybeStartAnimation();
         }
         else {
             this.element.removeAttribute('active');
@@ -90,6 +92,7 @@ define(function (require) {
                 this.animationManager = new AnimationManager(this.element);
             }
             this.animationManager.paintFirstFrame();
+            css(this.element, {visibility: ''});
             this.animationManager.runAllAnimate();
             this.maybeSetAutoAdvance();
         }
@@ -98,7 +101,7 @@ define(function (require) {
     customElement.prototype.maybeClearAnimation = function() {
         if (this.animationManager) {
             this.animationManager.cancelAllAnimate();
-            this.animationManager = null;
+            // this.animationManager = null;
             // 切换页面的时候清除当前animationManager
             // web-animation polyfill 有个兼容性问题；
         }

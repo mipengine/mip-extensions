@@ -5,7 +5,7 @@
  */
 define(function(require) {
     'use strict'
-
+    var css = require('util').css;
     function AnimationRunner(el, animationDef) {
         this.el = el;
         this.animationDef = animationDef;
@@ -16,6 +16,7 @@ define(function(require) {
 
     AnimationRunner.prototype.create = function () {
         var animationDef = this.animationDef;
+        animationDef.easing.fill = 'forwards';
         this.runner = this.el.animate(animationDef.keyframes, animationDef.easing);
         this.pause();
     }
@@ -26,9 +27,11 @@ define(function(require) {
             // delay属性会造成无法渲染第一帧，所以使用setTimeout来代替delay
             if (self.animationDef.delay) {
                 self.timer = setTimeout(function() {
+                    css(self.el, {visibility: ''});
                     self.runner.play();
                 }, self.animationDef.delay);
             } else {
+                css(self.el, {visibility: ''});
                 self.runner.play();
             }
             self.isStart = 1;
@@ -42,6 +45,7 @@ define(function(require) {
     AnimationRunner.prototype.cancel = function() {
         var self = this;
         clearTimeout(self.timer);
+        this.el.removeAttribute('style');
         this.isStart = 0;
         this.runner.cancel();
     }

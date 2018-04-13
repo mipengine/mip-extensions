@@ -10,10 +10,10 @@
 - 每个段落又可以包含多个层（layer），单个层可以设置布局模式，如多行布局，左右布局，图片拉伸布局等。
 - 元素（element）是资源素材，如背景图，主标题，详细描述等。在 `<h1>`、`<p>`、`<mip-img>` 等标签中声明。
 
-标题|内容
-----|----
-类型|通用
-支持布局|responsive,fixed-height,fill,container,fixed
+| 标题   | 内容                                       |
+| ---- | ---------------------------------------- |
+| 类型   | 通用                                       |
+| 支持布局 | responsive,fixed-height,fill,container,fixed |
 
 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
 
@@ -28,16 +28,7 @@
     h1 {
         text-align: center;
     }
-    .box {
-        width: 100px;
-        height: 100px;
-        background-color: #09f;
-        margin-top: 30px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    </style>
-    <script type="text/javascript" src="http://mip-extensions.bj.bcebos.com/little-story%2Fanimation.js"></script>
+</style>
 <mip-story standalone>
     <script type="application/json">
     {
@@ -69,65 +60,23 @@
     }
     </script>
     <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>fade-in</h1>
-                <div animate-in="fade-in" class="box"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>fly-in-top</h1>
-                <div animate-in="fly-in-top" class="box"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>fly-in-bottom</h1>
-                <div class="box" animate-in="fly-in-bottom"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>fly-in-left</h1>
-                <div class="box" animate-in="fly-in-left"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>fly-in-right</h1>
-                <div class="box" animate-in="fly-in-right"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>twirl-in</h1>
-                <div class="box" animate-in="twirl-in"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>whoosh-in-left</h1>
-                <div class="box" animate-in="whoosh-in-left"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>whoosh-in-right</h1>
-                <div class="box" animate-in="whoosh-in-right"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>rotate-in-left</h1>
-                <div class="box" animate-in="rotate-in-left"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="vertical">
-                <h1>rotate-in-right</h1>
-                <div class="box" animate-in="rotate-in-right"></div>
-            </mip-story-layer>
-        </mip-story-view>
+        <mip-story-layer template="fill">
+            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
+        </mip-story-layer>
+        <mip-story-layer>
+            <h1 animate-in="fly-in-left">小故事是什么？</h1>
+            <p animate-in="fly-in-right">快用 MIP 小故事开发很多丰富的交互效果吧！</p>
+            <a href="https://www.baidu.com">普通跳转链接</a>
+        </mip-story-layer>
+    </mip-story-view>
+    <mip-story-view>
+        <mip-story-layer template="fill">
+            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+        </mip-story-layer>
+        <mip-story-layer>
+            <h1 animate-in="fly-in-right">用 MIP 来讲述你的故事！</h1>
+        </mip-story-layer>
+    </mip-story-view>
 </mip-story>
 ```
 
@@ -140,13 +89,81 @@
 - share.title: 小故事标题。
 - share.from: 资源的来源信息。
 - recommend: 小故事推荐相关的信息。
-- recommend.url: 更多小故事跳转链接。
 - recommend.items: 推荐小故事列表，它是一个数组，包含了所有推荐的小故事数据。
     - cover: 推荐的小故事背景图片。
     - url: 推荐的小故事跳转地址。
     - title: 推荐的小故事标题。
     - from: 推荐的小故事来源信息。
     - fromUrl: 推荐的小故事来源跳转地址。
+
+## 为元素添加动画
+
+在小故事中，我们提供了一些内置的动画，小故事页面元素在进场的时候变得更生动有趣；
+
+### 基本用法
+
+```html
+<style mip-custom>
+    mip-story-view {
+        color: #fff;
+    }
+    h1 {
+        text-align: center;
+    }
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: #09f;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    </style>
+<mip-story>
+    <mip-story-view>
+        <mip-story-layer template="vertical">
+              <h1>fade-in</h1>
+              <div animate-in="fade-in" class="box"></div>
+        </mip-story-layer>
+	</mip-story-view>
+</mip-story>
+```
+
+### 更多动画配置
+
+`animate-in`: 元素入场的动画类型，小故事提供以下预设动画
+
+| animate-in        | 说明     |
+| ----------------- | ------ |
+| `fade-in`         | 淡入     |
+| `fly-in-top`      | 上侧滑入   |
+| `fly-in-bottom`   | 下侧滑入   |
+| `fly-in-left`     | 左侧滑入   |
+| `fly-in-right`    | 右侧滑入   |
+| `twirl-in`        | 旋转进入   |
+| `whoosh-in-left`  | 左侧放大飞入 |
+| `whoosh-in-right` | 右侧放大飞入 |
+| `rotate-in-left`  | 左侧旋转飞入 |
+| `rotate-in-right` | 右侧旋转飞入 |
+
+`animate-in-duration` : 元素动画的持续事件；可以取得值为正整数，单位为毫秒；
+
+`animate-in-delay` : 元素动画开始前的延迟时间，可以取得值为正整数，单位为毫秒
+
+`animate-in-after` ：指定动画在另一个元素动画结束之后触发；可以的取值为带有动画元素的id
+
+```html
+
+<mip-story-layer>
+  	<!-- 以fade-in的形式入场，动画时间持续1000ms, 动画开始前延迟1000ms-->
+    <h1 animate-in="fade-in" animate-in-duration="1000" animate-in-delay="1000"  id="first-animate">最佳影片</h1>
+  	<!--在id为 first-animate 的元素动画动画结束之后开始执行-->
+    <p animate-in="fly-in-left" animate-in-after="first-animate">钢铁侠是一部非常好的科幻片。</p>
+</mip-story-layer>
+
+```
+
+
 
 ## 属性
 

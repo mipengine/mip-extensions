@@ -306,11 +306,44 @@ define(function (require) {
         return elem.querySelector('script[type="application/json"]');
     }
 
+    // 广告加载前loading效果
+    function addPlaceholder() {
+        var placeholder = document.createElement('div');
+        this.placeholder = placeholder;
+        placeholder.classList.add('mip-custom-placeholder');
+        placeholder.setAttribute('mip-custom-container', '');
+        placeholder.innerHTML = ''
+            + '<span class="mip-custom-placeholder-title"></span>'
+            + '<span class="mip-custom-placeholder-text text1"></span>'
+            + '<span class="mip-custom-placeholder-text text2"></span>'
+            + '<span class="mip-custom-placeholder-text text3"></span>'
+            + '<span class="mip-custom-placeholder-space"></span>'
+            + '<span class="mip-custom-placeholder-title"></span>'
+            + '<span class="mip-custom-placeholder-text text1"></span>'
+            + '<span class="mip-custom-placeholder-text text2"></span>'
+            + '<span class="mip-custom-placeholder-text text3"></span>';
+        this.element.appendChild(placeholder);
+    }
+    // 移除 广告占位
+    function removePlaceholder() {
+        var me = this;
+        this.placeholder.classList.add('fadeout');
+        // 占位符增加淡出效果
+        this.placeholder.addEventListener("transitionend", function() {
+            me.placeholder.remove();
+        }, false);
+        this.placeholder.addEventListener("webkitTransitionend", function() {
+            me.placeholder.remove();
+        }, false);
+    }
+
 
     return {
         render: render,
         proxyLink: proxyLink,
-        getConfigScriptElement: getConfigScriptElement
+        getConfigScriptElement: getConfigScriptElement,
+        addPlaceholder: addPlaceholder,
+        removePlaceholder: removePlaceholder
     };
 
 });

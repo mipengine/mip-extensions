@@ -4,7 +4,6 @@
  * @email 522370351@qq.com
  * 参考了mip-stats-baidu的实现方式
  */
-
 define(function (require) {
     var util = require('util');
     var Gesture = util.Gesture;
@@ -12,35 +11,38 @@ define(function (require) {
 
     var customElement = require('customElement').create();
 
-    customElement.prototype.createdCallback = function () {
+    customElement.prototype.firstInViewCallback = function () {
         var elem = this.element;
         var config = this.getConfig();
         if (config) {
-
-          var para = config;          
-          var n = para.name, x = null;
-          window['sensorsDataAnalytic201505'] = n;
-          if(!window[n]){
-            window[n] = function(a) {
-                return function() {
-                    (window[n]._q = window[n]._q || []).push([a, arguments]);
-                }
-            };
-          }
-          var ifs = ['track','quick','register','registerPage','registerOnce','registerSession','registerSessionOnce','trackSignup', 'trackAbtest', 'setProfile','setOnceProfile','appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify','login','logout','clearAllRegister'];
-          for (var i = 0; i < ifs.length; i++) {
-            window[n][ifs[i]] = window[n].call(null, ifs[i]);
-          }
-          if (!window[n]._t) {
-            x = document.createElement('script');
-            x.async = 1;
-            x.src = para.sdk_url;
-            elem.appendChild(x);
-            window[n].para = para;
-          }
-          this.bindEle();
-        }
-        else {
+            var para = config;
+            var n = para.name;
+            var x = null;
+// 使用window说明： 为了使用第三方统计神策数据JSSDK(www.sensorsdata.cn)里暴露的全局变量
+            window['sensorsDataAnalytic201505'] = n;
+            if (!window[n]) {
+                window[n] = function (a) {
+                    return function () {
+                        window[n]._q = window[n]._q || [];
+                        window[n]._q.push([a, arguments]);
+                    };
+                };
+            }
+            var ifs = ['track', 'quick', 'register', 'registerPage', 'registerOnce', 'registerSession',
+             'registerSessionOnce', 'trackSignup', 'trackAbtest', 'setProfile', 'setOnceProfile', 'appendProfile',
+             'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify', 'login', 'logout', 'clearAllRegister'];
+            for (var i = 0; i < ifs.length; i++) {
+                window[n][ifs[i]] = window[n].call(null, ifs[i]);
+            }
+            if (!window[n]._t) {
+                x = document.createElement('script');
+                x.async = 1;
+                x.src = para.sdk_url;
+                elem.appendChild(x);
+                window[n].para = para;
+            }
+            this.bindEle();
+        } else {
             console.warn('sensorsdata config is wrong');
         }
 
@@ -58,12 +60,7 @@ define(function (require) {
         this.saConfig = config;
         return config;
     };
-    /**
-     * JSON object to Array
-     *
-     * @param {Object} configObj configObj from script has type="application/json"
-     * @return {Object} outConfigArray return stats array
-     */
+
     customElement.prototype.objToArray = function (configObj) {
         var outConfigArray = [];
         if (!configObj) {
@@ -78,19 +75,17 @@ define(function (require) {
         return outConfigArray;
     };
 
-    customElement.prototype.saSend = function (data){
+    customElement.prototype.saSend = function (data) {
         var slice = Object.prototype.toString;
-        if(slice.call(data) !== '[object Array]'){
-          return false;
+        if (slice.call(data) !== '[object Array]') {
+            return false;
         }
         var type = data[0];
         var arg = data.slice(1);
         var name = this.saConfig.name;
         var sa = window[name];
-
         sa[type].apply(sa, arg);
-
-    }
+    };
 
     // 绑定事件追踪
     customElement.prototype.bindEle = function () {
@@ -110,8 +105,7 @@ define(function (require) {
 
             try {
                 statusData = JSON.parse(decodeURIComponent(statusData));
-            }
-            catch (e) {
+            } catch (e) {
                 console.warn('事件追踪data-stats-sa-obj数据不正确');
                 continue;
             }
@@ -150,12 +144,11 @@ define(function (require) {
                 && fn.hasTouch()) {
                 var gesture = new Gesture(tagBox[index]);
                 gesture.on('tap', eventHandler);
-            }
-            else {
+            } else {
                 tagBox[index].addEventListener(eventType, eventHandler, false);
             }
         }
-    }
+    };
 
     // 事件触发
     function eventHandler(event) {
@@ -166,8 +159,7 @@ define(function (require) {
         var statusJson;
         try {
             statusJson = JSON.parse(decodeURIComponent(tempData));
-        }
-        catch (e) {
+        } catch (e) {
             console.warn('事件追踪data-stats-sa-obj数据不正确');
             return;
         }

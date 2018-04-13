@@ -15,7 +15,7 @@ mip-stats-sa 组件说明
 ### 1. 基本用法，引入SDK
 ```html
 
-<mip-stats-sa setConfig=""></mip-stats-sa>
+<mip-stats-sa setconfig=""></mip-stats-sa>
 
 ```
 

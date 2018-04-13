@@ -79,7 +79,6 @@ define(function (require) {
             var scrollTop = viewport.getScrollTop();
             var scrollHeight = viewport.getScrollHeight();
             var lastScrollTop = 0;
-            var wrapper = util.platform.needSpecialScroll ? document.body : window;
 
             // 设置状态
             viewportScroll.inited = true;
@@ -131,12 +130,12 @@ define(function (require) {
             }
 
             // 使用 touch + scroll 兼容在移动端 iframe 和非 iframe
-            wrapper.addEventListener('touchstart',function(event){
+            window.addEventListener('touchstart',function(event){
                 scrollTop = viewport.getScrollTop();
                 scrollHeight = viewport.getScrollHeight();
             });
-            wrapper.addEventListener('touchmove', pagemove);
-            wrapper.addEventListener('touchend', pagemove);
+            window.addEventListener('touchmove', pagemove);
+            window.addEventListener('touchend', pagemove);
             viewport.on('scroll', function (event) {
                 if (viewportScroll.first) {
                     viewportScroll.first = false;

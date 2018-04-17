@@ -1,16 +1,16 @@
 {
   "name": "mip-extensions",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "MIP 组件包括官方组件和开发者自定义组件，是用于定制站点页面功能的利器。",
   "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "prebuild": "echo Hi Miper, Welcome to start compile!",
-    "build": "mip-extension-optimise ./src",
+    "build": "mip-extension-optimise ./src -o ./dist",
     "release": "gren release",
-    "postbuild": "echo Compile over, Have a nice day!"
+    "presite": "npm run build",
+    "site": "node tools/site.js"
   },
   "repository": {
     "type": "git",
@@ -20,13 +20,18 @@
     "MIP",
     "Extensions"
   ],
-  "author": "Jackson <smartfutureplayer@gmail.com>",
+  "author": "MIP <mip-support@baidu.com>",
+  "contributors": [
+    {
+      "name": "Jackson",
+      "email": "smartfutureplayer@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mipengine/mip-extensions/issues"
   },
   "homepage": "https://github.com/mipengine/mip-extensions#readme",
-  "dependencies": {},
   "devDependencies": {
     "github-release-notes": "^0.11.0",
     "mip-extension-optimizer": "^1.1.3"

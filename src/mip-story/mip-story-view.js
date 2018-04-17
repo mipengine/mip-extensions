@@ -74,7 +74,6 @@ define(function (require) {
         this.parentEmiter = eventEmiter;
         if (status) {
             this.element.setAttribute('active', '');
-            css(this.element, {visibility: 'hidden'});
             this.maybeStartAnimation();
             this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
@@ -88,6 +87,7 @@ define(function (require) {
     };
     customElement.prototype.maybeStartAnimation = function () {
         if (hasAnimations(this.element)) {
+            css(this.element, {visibility: 'hidden'});
             if (!this.animationManager) {
                 this.animationManager = new AnimationManager(this.element);
             }
@@ -101,9 +101,6 @@ define(function (require) {
     customElement.prototype.maybeClearAnimation = function() {
         if (this.animationManager) {
             this.animationManager.cancelAllAnimate();
-            // this.animationManager = null;
-            // 切换页面的时候清除当前animationManager
-            // web-animation polyfill 有个兼容性问题；
         }
     };
 

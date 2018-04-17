@@ -9,7 +9,7 @@ define(function (require) {
     var animatesPresets = {
         'fade-in': {
             duration: 500,
-            easing: 'ease-out',
+            easing: 'ease-in',
             delay: 0,
             keyframes: [
                 {
@@ -22,32 +22,32 @@ define(function (require) {
         },
         'fly-in-top': {
             duration: 500,
-            easing: 'ease-out',
+            easing: 'ease-in',
             delay: 0,
             keyframes: function (offset) {
                 var offsetY = -(offset.top + offset.height);
                 return [
                     {
-                        transform: 'translateY(' + offsetY +'px)'
+                        transform: 'translate3d(0, ' + offsetY + 'px, 0)'
                     },
                     {
-                        transform: 'translateY(0)'
+                        transform: 'translate3d(0, 0, 0)'
                     }
                 ];
             }
         },
         'fly-in-bottom': {
             duration: 500,
-            easing: 'ease-out',
+            easing: 'ease-in',
             delay: 0,
             keyframes: function (offset) {
                 var offsetY = offset.pageHeight - offset.top;
                 return [
                     {
-                        transform: 'translateY(' + offsetY +'px)'
+                        transform: 'translate3d(0, ' + offsetY + 'px, 0)'
                     },
                     {
-                        transform: 'translateY(0)'
+                        transform: 'translate3d(0, 0, 0)'
                     }
                 ];
             }
@@ -55,15 +55,15 @@ define(function (require) {
         'fly-in-left': {
             duration: 500,
             delay: 0,
-            easing: 'ease-out',
+            easing: 'ease-in',
             keyframes: function (offset) {
                 var offsetX = -(offset.left + offset.width);
                 return [
                     {
-                        transform: 'translateX(' + offsetX +'px)'
+                        transform: 'translate3d(' + offsetX + 'px, 0, 0)'
                     },
                     {
-                        transform: 'translateX(0)'
+                        transform: 'translate3d(0, 0, 0)'
                     }
                 ];
             }
@@ -71,15 +71,15 @@ define(function (require) {
         'fly-in-right': {
             duration: 500,
             delay: 0,
-            easing: 'ease-out',
+            easing: 'ease-in',
             keyframes: function (offset) {
                 var offsetX = offset.pageWidth - offset.left;
                 return [
                     {
-                        transform: 'translateX(' + offsetX +'px)'
+                        transform: 'translate3d(' + offsetX + 'px, 0, 0)'
                     },
                     {
-                        transform: 'translateX(0)'
+                        transform: 'translate3d(0, 0, 0)'
                     }
                 ];
             }
@@ -102,7 +102,7 @@ define(function (require) {
         'whoosh-in-left': {
             duration: 500,
             delay: 0,
-            easing: 'ease-out',
+            easing: 'ease-in',
             keyframes: function (offset) {
                 var offsetX = -(offset.left + offset.width);
                 return [
@@ -120,7 +120,7 @@ define(function (require) {
         'whoosh-in-right': {
             duration: 500,
             delay: 0,
-            easing: 'ease-out',
+            easing: 'ease-in',
             keyframes: function (offset) {
                 var offsetX = offset.left + offset.width;
 
@@ -138,7 +138,7 @@ define(function (require) {
         },
         'rotate-in-left': {
             duration: 700,
-            easing: 'ease-out',
+            easing: 'ease-in',
             delay: 0,
             keyframes: function(offset) {
                 var offsetX = -(offset.left + offset.width);
@@ -154,7 +154,7 @@ define(function (require) {
         },
         'rotate-in-right': {
             duration: 700,
-            easing: 'ease-out',
+            easing: 'ease-in',
             delay: 0,
             keyframes: function (offset) {
                 var offsetX = offset.left + offset.width;

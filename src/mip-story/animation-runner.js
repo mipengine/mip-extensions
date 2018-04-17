@@ -46,7 +46,6 @@ define(function (require) {
     AnimationRunner.prototype.cancel = function () {
         var self = this;
         clearTimeout(self.timer);
-        this.el.removeAttribute('style');
         this.isStart = 0;
         this.runner.cancel();
     };

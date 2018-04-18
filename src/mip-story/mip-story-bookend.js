@@ -109,7 +109,7 @@ define(function (require) {
 
     MIPStoryBackEnd.prototype.show = function () {
         var eleAnimation = document.querySelector('.mip-backend').animate([
-            { transform: 'translate3D(0, 1000%, 0)', opacity: 0 },
+            { transform: 'translate3D(0, 100%, 0)', opacity: 0 },
             { transform: 'translate3D(0, 0, 0)', opacity: 1 }
         ], {
                 fill: 'forwards',
@@ -122,7 +122,7 @@ define(function (require) {
     MIPStoryBackEnd.prototype.hide = function () {
         var eleAnimation = document.querySelector('.mip-backend').animate([
             { transform: 'translate3D(0, 0, 0)', opacity: 1 },
-            { transform: 'translate3D(0, 1000%, 0)', opacity: 0 }
+            { transform: 'translate3D(0, 100%, 0)', opacity: 0 }
         ], {
                 fill: 'forwards',
                 easing: 'ease-out',

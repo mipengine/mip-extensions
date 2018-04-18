@@ -108,17 +108,27 @@ define(function (require) {
     };
 
     MIPStoryBackEnd.prototype.show = function () {
-        var ele = document.querySelector('.mip-backend');
-        naboo.animate(ele, {
-            transform: 'translateY(0)'
-        }).start();
+        var eleAnimation = document.querySelector('.mip-backend').animate([
+            { transform: 'translate3D(0, 1000%, 0)', opacity: 0 },
+            { transform: 'translate3D(0, 0, 0)', opacity: 1 }
+        ], {
+                fill: 'forwards',
+                easing: 'ease-in',
+                duration: 280
+            });
+        eleAnimation.play();
     };
 
     MIPStoryBackEnd.prototype.hide = function () {
-        var ele = document.querySelector('.mip-backend');
-        naboo.animate(ele, {
-            transform: 'translateY(1000%)'
-        }).start();
+        var eleAnimation = document.querySelector('.mip-backend').animate([
+            { transform: 'translate3D(0, 0, 0)', opacity: 1 },
+            { transform: 'translate3D(0, 1000%, 0)', opacity: 0 }
+        ], {
+                fill: 'forwards',
+                easing: 'ease-out',
+                duration: 280
+            });
+        eleAnimation.play();
     };
 
     return MIPStoryBackEnd;

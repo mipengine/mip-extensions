@@ -8,6 +8,7 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
+    var viewportScroll = require('./viewport-scroll');
     
     /**
      * build
@@ -22,6 +23,15 @@ define(function (require) {
             util.css(_this.element, 'display', 'none');
         });
 
+        // 如果有需要悬浮过渡动画
+        var position = _this.element.getAttribute('type');
+        if (_this.element.hasAttribute('data-slide') && (position === 'top' || position === 'bottom')) {
+            viewportScroll.init({
+                element: _this.element,
+                position: position,
+                slide: _this.element.getAttribute('data-slide')
+            });
+        }
     }
 
     customElement.prototype.build = build;

@@ -143,7 +143,7 @@ define(function (require) {
             document.body.addEventListener('touchmove', function (event) {
                 onIframeScroll.call(self, viewport);
             });
-
+            onIframeScroll.call(self, viewport);
         }
         else {
             // 监听滚动事件和 touchmove 事件
@@ -153,6 +153,7 @@ define(function (require) {
             document.body.addEventListener('touchmove', function (event) {
                 onScroll.call(self, viewport);
             });
+            onScroll.call(self, viewport);
         }
 
         // 初始状态为 fixed 时

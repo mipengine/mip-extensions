@@ -25,6 +25,7 @@ define(function (require) {
     var HintLayer = require('./mip-story-hint');
     var BookEnd = require('./mip-story-bookend');
     var customElement = require('customElement').create();
+    var animatePreset = require('./animate-preset');
     var util = require('util');
     var dm = util.dom;
     var EventEmitter = util.EventEmitter;
@@ -93,14 +94,6 @@ define(function (require) {
         document.addEventListener(VISIBILITYCHANGE, function (e) {
             self.emitter.trigger(VISIBILITYCHANGE, e);
         });
-        document.addEventListener('touchstart', function (e) {
-            if (!self.hasPlay && !self.muted) {
-                var currentEle = storyViews[self.currentIndex];
-                self.playGlobalAudio();
-                currentEle.customElement.resumeAllMedia();
-                self.hasPlay = true;
-            }
-        });
         // 绑定点击事件
         gesture.on('swipe', function (e, data) {
             self.emitter.trigger(SWIP, {
@@ -137,7 +130,8 @@ define(function (require) {
         if (this.progress) {
             return;
         }
-        this.progress = new Progress(this.element, storyViews);
+        var audioHide = this.element.hasAttribute('audio-hide');
+        this.progress = new Progress(this.element, storyViews, audioHide);
         var html = dm.create(this.progress.build());
         this.element.appendChild(html);
         this.progress.updateProgress(0, 1);
@@ -230,7 +224,11 @@ define(function (require) {
             }
             return;
         }
-
+        // 如果视频/音频不能 autoplay，则主动触发
+        if (!this.hasPlay && !this.muted) {
+            this.emitter.trigger(UNMUTE, e);
+            this.hasPlay = true;
+        }
         // 翻页逻辑
         var centerX = (this.element.offsetLeft + this.element.offsetWidth) / 2;
         // 向右切换
@@ -262,7 +260,6 @@ define(function (require) {
     MIPStory.prototype.switchTo = function (data) {
         this.hint.hideDamping();
         this.hint.hideSystemLater();
-
         if (data.status === 0 && this.currentIndex <= 0) {
             this.emitter.trigger(SHOWNOPREVIOUSPAGEHELP);
             return;
@@ -277,10 +274,12 @@ define(function (require) {
         }
         var currentEle = storyViews[this.currentIndex];
         var preEle = storyViews[this.preInex];
+
+        var reload = this.element.hasAttribute('audio-reload');
         if (this.currentIndex !== this.preInex) {
-            preEle.customElement.setActive(false, this.viewMuted);
+            preEle.customElement.setActive(false, this.viewMuted, reload, this.emitter);
         }
-        currentEle.customElement.setActive(true, this.viewMuted);
+        currentEle.customElement.setActive(true, this.viewMuted, reload, this.emitter);
         this.progress.updateProgress(this.currentIndex, data.status);
         this.preInex = this.currentIndex;
 
@@ -332,6 +331,7 @@ define(function (require) {
 
     MIPStory.prototype.mute = function (e) {
         this.muted = true;
+        this.viewMuted = true;
         this.muteGlobalAudio();
         var ele = storyViews[this.currentIndex];
         ele.customElement.toggleAllMedia(e, this.viewMuted);
@@ -340,6 +340,7 @@ define(function (require) {
 
     MIPStory.prototype.unmute = function (e) {
         this.muted = false;
+        this.viewMuted = false;
         this.unMuteGlobalAudio();
         this.playGlobalAudio();
         var ele = storyViews[this.currentIndex];
@@ -363,6 +364,8 @@ define(function (require) {
      */
     customElement.prototype.firstInviewCallback = function () {
         var mipStory = new MIPStory(this.element);
+
+        require('./web-animation');
         mipStory.init();
     };
 

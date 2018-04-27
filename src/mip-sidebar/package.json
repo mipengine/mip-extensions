@@ -1,6 +1,6 @@
 {
     "name": "mip-sidebar",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "侧边栏组件，点击按钮，侧边栏滑入屏幕。",
     "contributors": [
         {
@@ -10,7 +10,10 @@
         },{
             "name": "Jenny_L",
             "email": "jiaojiaomao220@163.com"
-        }
+        },{
+	    "name": "Breezet",
+            "email": "taoqingqian@gmail.com"
+	}
     ],
     "engines": {
         "mip": ">=1.1.0"

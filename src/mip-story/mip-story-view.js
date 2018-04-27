@@ -10,10 +10,18 @@ define(function (require) {
     var Audio = require('./audio');
     var BACKGROUND_AUDIO = 'background-audio';
 
-    customElement.prototype.resumeAllMedia = function () {
+    var AnimationManager = require('./animation').AnimationManager;
+    var hasAnimations = require('./animation').hasAnimations;
+    var css = require('util').css;
+    customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
         self.whenAllMediaElements(function (ele) {
-            !self.muted && ele.play();
+            if (ele.tagName.toLowerCase() === 'audio' && load) {
+                !self.muted ? ele.load() : ele.load() && ele.pause();
+            }
+            else {
+                !self.muted && ele.play();
+            }
         });
     };
 
@@ -60,19 +68,60 @@ define(function (require) {
         });
     };
 
-    customElement.prototype.setActive = function (status, muted) {
+
+    customElement.prototype.setActive = function (status, muted, load, eventEmiter) {
         this.muted = muted;
+        this.parentEmiter = eventEmiter;
         if (status) {
             this.element.setAttribute('active', '');
-            this.resumeAllMedia();
+            this.maybeStartAnimation();
+            this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
         }
         else {
             this.element.removeAttribute('active');
+            this.maybeClearAutoAdvance();
             this.pauseAllMedia();
+            this.maybeClearAnimation();
+        }
+    };
+    customElement.prototype.maybeStartAnimation = function () {
+        if (hasAnimations(this.element)) {
+            css(this.element, {visibility: 'hidden'});
+            if (!this.animationManager) {
+                this.animationManager = new AnimationManager(this.element);
+            }
+            this.animationManager.paintFirstFrame();
+            css(this.element, {visibility: ''});
+            this.animationManager.runAllAnimate();
+            this.maybeSetAutoAdvance();
         }
     };
 
+    customElement.prototype.maybeClearAnimation = function() {
+        if (this.animationManager) {
+            this.animationManager.cancelAllAnimate();
+        }
+    };
+
+    customElement.prototype.maybeClearAutoAdvance = function () {
+        var self = this;
+        self.timer && clearTimeout(self.timer);
+    };
+
+    customElement.prototype.maybeSetAutoAdvance = function () {
+        var self = this;
+        var el = self.element;
+        var node = self.element.parentNode;
+        self.parentElement = node.customElement;
+        var advancment = el.getAttribute('auto-advancement-after');
+        if (advancment && validateAdvance(advancment)) {
+            self.timer = setTimeout(function () {
+                self.parentEmiter.trigger('switchpage', {status: 1});
+            }, +advancment);
+        }
+
+    };
     customElement.prototype.initView = function () {
         this.audio = new Audio();
         var node = this.element.parentNode;
@@ -82,6 +131,10 @@ define(function (require) {
         }
     };
 
+    function validateAdvance (val) {
+        var reg = /^[0-9]+$/;
+        return reg.test(val);
+    }
     customElement.prototype.firstInviewCallback = function () {
         this.initView();
         this.pauseAllMedia();

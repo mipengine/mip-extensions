@@ -24,10 +24,6 @@ define(function (require) {
     function open() {
 
         var self = this;
-        if (self.runing) {
-            return;
-        }
-        self.runing = true;
 
         if (isOpen.call(this)) {
             return;
@@ -36,6 +32,10 @@ define(function (require) {
         util.css(self.element, {display: 'block'});
         openMask.call(self);
 
+        if (self.runing) {
+            return;
+        }
+        self.runing = true;
 
         self.bodyOverflow = getComputedStyle(document.body).overflow;
         document.body.style.overflow = "hidden";
@@ -59,16 +59,17 @@ define(function (require) {
     function close(event) {
 
         var self = this;
-        if (self.runing) {
-            return;
-        }
-        self.runing = true;
         event.preventDefault();
 
         self.element.removeAttribute('open');
         self.element.setAttribute('aria-hidden', 'true');
 
         closeMask.call(self);
+
+        if (self.runing) {
+            return;
+        }
+        self.runing = true;
 
         document.body.style.overflow = self.bodyOverflow;
 

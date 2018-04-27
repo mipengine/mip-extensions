@@ -317,6 +317,7 @@ define(function () {
             if(random500 < 1) {
                 log.sendLog(performanceData.host, performanceData.params);
             }
+
             dom.removePlaceholder.apply(me);
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));

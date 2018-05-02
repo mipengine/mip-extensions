@@ -299,17 +299,20 @@ define(function () {
             callback && callback(data.data, element);
 
             // 性能日志：emptyTime-广告未显示时间
-            performance.renderEnd = new Date() - 0;
-            performance.emptyTime = performance.renderEnd - performance.fetchStart;
+            performance.renderEnd = new Date() - 0; // 渲染结束时间戳
+            performance.emptyTime = performance.renderEnd - performance.fetchStart; // 页面空白毫秒数
+            performance.frontendRender = performance.renderEnd - performance.responseEnd;
+            console.log(performance.frontendRender);
             performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, {
                 duration: performance.duration,
-                emptyTime: performance.emptyTime
+                emptyTime: performance.emptyTime,
+                frontendRender: performance.frontendRender
             }, 1));
             // 性能日志：按照流量 1/500 发送日志
-            var random500 = Math.random() * 500;
-            if(random500 < 1) {
+            // var random500 = Math.random() * 500;
+            // if(random500 < 1) {
                 log.sendLog(performanceData.host, performanceData.params);
-            }
+            // }
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();

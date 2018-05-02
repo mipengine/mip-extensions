@@ -19,15 +19,15 @@ define(function (require) {
         var self = this;
         this.addEventAction('toggle', function (event) {
             self.toggle();
-            event.preventDefault();
+            event && event.preventDefault && event.preventDefault();
         });
         this.addEventAction('show', function (event, timeout) {
             self.show(timeout);
-            event.preventDefault();
+            event && event.preventDefault && event.preventDefault();
         });
         this.addEventAction('hide', function (event) {
             self.hide();
-            event.preventDefault();
+            event && event.preventDefault && event.preventDefault();
         });
     };
 

@@ -33,6 +33,8 @@ define(function () {
      */
     customElement.prototype.build = function () {
         var me = this;
+        dom.addPlaceholder.apply(this);
+
         var checkElement = function () {
             if (dom.getConfigScriptElement(me.element)) {
                 me.initCustom();
@@ -40,7 +42,6 @@ define(function () {
             }
             return false;
         };
-
         if (!checkElement()) {
             window.requestAnimationFrame(checkElement);
         }
@@ -264,7 +265,6 @@ define(function () {
         // 性能日志
         var performance = {};
         performance.fetchStart = new Date() - 0;
-
         // fetch
         fetch(url, {
             credentials: 'include'
@@ -296,8 +296,15 @@ define(function () {
                 me.element.remove();
                 return;
             }
+
             callback && callback(data.data, element);
 
+            // 广告插入页面时，增加渐显效果
+            var mipCustomContainers= document.querySelectorAll('[mip-custom-container]');
+            for (var i = mipCustomContainers.length - 1; i >= 0; i--) {
+                var mipCustomContainer = mipCustomContainers[i];
+                mipCustomContainer.classList.add('fadein');
+            }
             // 性能日志：emptyTime-广告未显示时间
             performance.renderEnd = new Date() - 0;
             performance.emptyTime = performance.renderEnd - performance.fetchStart;
@@ -310,6 +317,8 @@ define(function () {
             if(random500 < 1) {
                 log.sendLog(performanceData.host, performanceData.params);
             }
+
+            dom.removePlaceholder.apply(me);
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();

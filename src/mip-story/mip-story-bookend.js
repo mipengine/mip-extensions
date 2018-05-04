@@ -11,16 +11,12 @@ define(function (require) {
     var platform = util.platform;
     var naboo = util.naboo;
 
-    function MIPStoryBackEnd() {
+    function MIPStoryBackEnd(storyConfig) {
+        this.storyConfig = storyConfig || {};
     }
 
-    MIPStoryBackEnd.prototype.getData = function () {
-        var mipStory = document.querySelector('mip-story > script[type="application/json"]');
-        return JSON.parse(mipStory.innerText);
-    };
-
     MIPStoryBackEnd.prototype.build = function () {
-        var data = this.getData();
+        var data = this.storyConfig;
         var replayStats = encodeURIComponent(
             JSON.stringify({
                 type: 'click',

@@ -1,0 +1,12 @@
+{
+    "name": "mip-repcount",
+    "version": "1.0.0",
+    "description": "可以支持页面进行个性化的数据上报统计，包括简单的自定义埋点",
+    "contributors": [{
+        "name": "svenMcLee",
+        "email": "abc7797005@vip.163.com"
+    }],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -5,10 +5,14 @@
  * @UC & QQ share based on https://github.com/JefferyWang/nativeShare.js
  */
 define(function (require) {
+    /* globals Box browser ucweb ucbrowser B */
+    /* eslint-disable fecs-camelcase */
     var $ = require('zepto');
     var util = require('util');
     var platform = util.platform;
-
+    var viewer = require('viewer');
+    var dom = util.dom;
+    require('./aio');
     var defaultOpt = {
         url: window.location.href,
         title: '百度搜索有惊喜',       // 分享至外站的title,必选
@@ -21,18 +25,18 @@ define(function (require) {
     var detect = require('./detect');
     var OS = detect.os;
     var Browser = detect.browser;
-    var isZbios = (Browser.n == 'zbios') ? 1 : 0;
-    var isUC = (Browser.n == 'uc' && (typeof(ucweb) != 'undefined' || typeof(ucbrowser) != 'undefined')) ? 1 : 0;
+    var isZbios = (Browser.n === 'zbios') ? 1 : 0;
+    var isUC = (Browser.n === 'uc') ? 1 : 0;
     var isQQ = (platform.isQQ() && Browser.v && Browser.v > '5.4') ? 1 : 0;
     var isWechat = platform.isWechatApp() ? 1 : 0;
-    var share_promise = new Promise(function(resolve, reject) {
+    var sharePromise = new Promise(function (resolve, reject) {
         if (isQQ) {
             // zepto $.ajax在qq浏览器上无法加载这个api url,永远返回fail,jquery以及直接请求均可以,原因不明,采用原生方法实现异步加载
             // TODO: 查清原因！！！！！！！！！
             var script = document.createElement('script');
             script.type = 'text/javascript';
-            script.onload = script.onreadystatechange = function() {
-                if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete" ) {
+            script.onload = script.onreadystatechange = function () {
+                if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
                     resolve();
                 }
             };
@@ -43,16 +47,21 @@ define(function (require) {
 
     // 手百分享接口
     var nativeShare = function (cfg, encode) {
-        var onSuccess = function(){}
-        var onFail = function(){}
+        var onSuccess = function () {
+
+        };
+        var onFail = function () {
+
+        };
         if (encode) {
             cfg.url = encodeURIComponent(cfg.url);
             cfg.linkUrl = encodeURIComponent(cfg.url);
         }
         // 以这种方式require是为了避免过早加载aio组件
-        require('./aio');
         if (Box.os.android) {
+            /* eslint-disable max-len */
             Box.android.invokeApp('Bdbox_android_utils', 'callShare', [JSON.stringify(cfg), window.successFnName || 'console.log', window.errorFnName || 'console.log']);
+            /* eslint-enable max-len */
         } else {
             Box.ios.invokeApp('callShare', {
                 options: encodeURIComponent(JSON.stringify(cfg)),
@@ -60,12 +69,11 @@ define(function (require) {
                 successcallback: 'onSuccess'
             });
         }
-
     };
 
 
     // UC分享接口
-    var ucShare = function (to_app, opt) {
+    var ucShare = function (toApp, opt) {
         var ucAppList = {
             sinaweibo: ['kSinaWeibo', 'SinaWeibo', 11, '新浪微博'],
             wxfriend: ['kWeixin', 'WechatFriends', 1, '微信好友'],
@@ -80,31 +88,23 @@ define(function (require) {
         var img = '';
         var desc = opt.content;
 
-        to_app = to_app == '' ? '' : (OS.n == 'ios' ? ucAppList[to_app][0] : ucAppList[to_app][1]);
+        toApp = toApp === '' ? '' : (OS.n === 'ios' ? ucAppList[toApp][0] : ucAppList[toApp][1]);
 
-        // 安卓uc qq空间分享特殊逻辑
-        // 伪协议失效，目前该伪协议只能打开QQ apk，并不能打开分享页面，uc端调用的sdk方法未知
-        // if (to_app == 'QZone') {
-        //     B = "mqqapi://share/to_qzone?src_type=web&version=1&file_type=news&req_type=1&image_url="+img+"&title="+title+"&description="+desc+"&url="+url+"&app_name="+from;
-        //     k = document.createElement("div"), k.style.visibility = "hidden", k.innerHTML = '<iframe src="' + B + '" scrolling="no" width="1" height="1"></iframe>', document.body.appendChild(k), setTimeout(function () {
-        //         k && k.parentNode && k.parentNode.removeChild(k)
-        //     }, 5E3);
-        // }
-
-        if (typeof(ucweb) != 'undefined') {
+        if (viewer.isIframed) {
+            sendShareMessage(toApp, opt, 'uc');
+        }
+        if (typeof (ucweb) !== 'undefined') {
             // 判断ucweb方法是否存在,安卓uc中可以使用
-            ucweb.startRequest('shell.page_share', [title, title, url, to_app, '', '@' + from, '']);
-        } else if (typeof(ucbrowser) != 'undefined') {
+            ucweb.startRequest('shell.page_share', [title, title, url, toApp, '', '@' + from, '']);
+        } else if (typeof(ucbrowser) !== 'undefined') {
             // 判断ucbrowser方法是否存在,ios uc中可以使用
-            ucbrowser.web_share(title, title, url, to_app, '', '@' + from, '');
+            ucbrowser.web_share(title, title, url, toApp, '', '@' + from, '');
         }
     };
 
     // QQ浏览器分享接口
-    var qqShare = function (to_app, opt) {
-        var viewer = require('viewer');
-        var key = to_app;
-
+    var qqShare = function (toApp, opt) {
+        var key = toApp;
         var qqAppList = {
             sinaweibo: ['kSinaWeibo', 'SinaWeibo', 11, '新浪微博'],
             wxfriend: ['kWeixin', 'WechatFriends', 1, '微信好友'],
@@ -113,25 +113,26 @@ define(function (require) {
             qzone: ['kQZone', 'QZone', '3', 'QQ空间']
         };
 
-        to_app = to_app == '' ? '' : qqAppList[to_app][2];
+        toApp = toApp === '' ? '' : qqAppList[toApp][2];
         var ah = {
             url: opt.url,
             title: opt.title,
             description: opt.content,
             img_url: '',
             img_title: '',
-            to_app: to_app,//微信好友1,腾讯微博2,QQ空间3,QQ好友4,生成二维码7,微信朋友圈8,啾啾分享9,复制网址10,分享到微博11,创意分享13
-            cus_txt: "请输入此时此刻想要分享的内容"
+            // 微信好友1,腾讯微博2,QQ空间3,QQ好友4,生成二维码7,微信朋友圈8,啾啾分享9,复制网址10,分享到微博11,创意分享13
+            to_app: toApp,
+            cus_txt: '请输入此时此刻想要分享的内容'
         };
-        ah = to_app == '' ? '' : ah;
-        
-        if(viewer.isIframed && platform.isIos() && platform.isQQ()) {
-            viewer.sendMessage('mip-share', {key: key, opt: ah});
-        }
+        ah = toApp === '' ? '' : ah;
 
+        // iframe 加载时，通过壳对外抛消息分享
+        if (viewer.isIframed) {
+            sendShareMessage(key, ah, 'qq');
+        }
         // qq share api加载完毕后执行
-        share_promise.then(function () {
-            if (typeof(browser) != "undefined" && typeof(browser.app) != "undefined") {
+        sharePromise.then(function () {
+            if (typeof(browser) !== 'undefined' && typeof(browser.app) !== 'undefined') {
                 browser.app.share(ah);
             }
         });
@@ -143,7 +144,8 @@ define(function (require) {
         if ($('.c-share-wechat-tips').length) {
             $('.c-share-wechat-tips').show();
         } else {
-            $('body').append($('<div class="c-share-wechat-tips"></div>'));
+            var html = dom.create('<div class="c-share-wechat-tips"></div>');
+            document.querySelector('body').appendChild(html);
             $('.c-share-wechat-tips').on('click', function () {
                 $(this).hide();
                 clearTimeout(TIME);
@@ -261,7 +263,7 @@ define(function (require) {
                     opt.mediaType = 'qqdenglu';
                     nativeShare(opt, false);
                 };
-            } else if (isUC && OS.n == 'ios') {
+            } else if (isUC && OS.n === 'ios') {
                 // uc调起逻辑
                 fn = function (opt) {
                     ucShare('qzone', opt);
@@ -274,7 +276,9 @@ define(function (require) {
             } else {
                 // 普通浏览器
                 fn = function (opt) {
+                    /* eslint-disable max-len */
                     var qqUrl = 'url=' + encodeURIComponent(opt.url) + '&successurl=' + encodeURIComponent(window.location.href) + '&summary=' + opt.content + '&title=' + opt.title + '&pics=' + encodeURIComponent(opt.iconUrl);
+                    /* eslint-enable max-len */
                     window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?' + qqUrl);
                 };
             }
@@ -315,6 +319,10 @@ define(function (require) {
         })()
     };
 
+    function sendShareMessage(key, opt, app) {
+        viewer.sendMessage('mip_share', {key: key, opt: opt, app: app});
+    }
+
     var more = {
         key: 'more',
         icon: '//m.baidu.com/se/static/pmd/pmd/share/images/more.png',
@@ -340,7 +348,7 @@ define(function (require) {
             }
             return fn;
         })()
-    }
+    };
 
     var Share = function (opt) {
         // 参数校验并设置默认值
@@ -382,14 +390,14 @@ define(function (require) {
                 list.push(qqfriend);
             }
             list.push(qzone, sinaweibo);
-            if (isZbios || isUC || (isQQ && OS.n == 'ios')) {
+            if (isZbios || isUC || (isQQ && OS.n === 'ios')) {
                 list.push(more);
             }
             list = list.concat(me.opt.custom);
             me.list = list;
 
             var str = '';
-            if ($.type(list) == 'array' && list.length > 0) {
+            if ($.type(list) === 'array' && list.length > 0) {
                 str += '<div class="c-share-list">';
                 var num = list.length;
                 var lines = Math.ceil(num / 4);
@@ -403,7 +411,7 @@ define(function (require) {
                         if (obj) {
                             str += '<div class="c-span3 c-share-btn c-share-btn-' + obj.key + '">';
                             str += '<div class="c-img c-img-s">';
-                            str +=     '<img src="' + obj.icon + '" />';
+                            str += '<img src="' + obj.icon + '" />';
                             str += '</div>';
                             str += '<div class="c-line-clamp1">' + obj.title + '</div>';
                         }
@@ -441,17 +449,17 @@ define(function (require) {
             var me = this;
 
             var appKeyList = {
-                pyq:       {'ct': 40, 'cst': 2},
-                wxfriend:  {'ct': 40, 'cst': 1},
-                qqfriend:  {'ct': 40, 'cst': 5},
-                qzone:     {'ct': 40, 'cst': 3},
+                pyq: {'ct': 40, 'cst': 2},
+                wxfriend: {'ct': 40, 'cst': 1},
+                qqfriend: {'ct': 40, 'cst': 5},
+                qzone: {'ct': 40, 'cst': 3},
                 sinaweibo: {'ct': 40, 'cst': 4},
-                more:      {'ct': 40, 'cst': 9},
-                close:     {'ct': 40, 'cst': 0}     // 关闭
+                more: {'ct': 40, 'cst': 9},
+                close: {'ct': 40, 'cst': 0}
             };
-            if (key && appKeyList[key] && typeof B == 'object' && B.log && B.log.send) {
+            if (key && appKeyList[key] && typeof B === 'object' && B.log && B.log.send) {
                 var obj = appKeyList[key];
-                if (me.opt && typeof me.opt.loginfo == 'object') {
+                if (me.opt && typeof me.opt.loginfo === 'object') {
                     obj = $.extend(obj, me.opt.loginfo);
                 }
                 // 结果页日志发送接口
@@ -480,7 +488,7 @@ define(function (require) {
             // 标记dom已经被插入页面
             me.isRender = true;
 
-            if (renderOpts && typeof renderOpts.onRender == 'function') {
+            if (renderOpts && typeof renderOpts.onRender === 'function') {
                 renderOpts.onRender();
             }
         },
@@ -504,8 +512,9 @@ define(function (require) {
             }
 
             // 初始化"取消"按钮dom
+            /* eslint-disable max-len */
             var $dom_cancelBtn = $('<div class="c-row c-gap-top-large"><div class="c-span12"><div class="c-btn c-share-cancel-btn">取消</div></div></div>');
-
+            /* eslint-enable max-len */
 
             // 改全局 pmd
             // 以这种方式require是为了避免过早加载popup组件
@@ -513,8 +522,8 @@ define(function (require) {
                 me.sharePopup = new Popup({
                     content: me.$dom_shareList.add($dom_cancelBtn),
                     customClassName: 'c-share-popup-modal',
-                    onOpen:  popupOpts.onOpen  || function(){},
-                    onClose: popupOpts.onClose || function(){}
+                    onOpen: popupOpts.onOpen || function () {},
+                    onClose: popupOpts.onClose || function () {}
                 });
 
                 // 执行横竖屏补丁,为popup容器设置最大宽度,避免横屏时显示内容过大
@@ -543,12 +552,14 @@ define(function (require) {
         _horizontalHack: function () {
             var verticalScreenWidth;
             if (window.orientation != undefined) {
-                if (window.orientation == 0 || window.orientation == 180) {
+                if (window.orientation === 0 || window.orientation === 180) {
                     verticalScreenWidth = Math.min(window.screen.width, $(window).width());
                 }
-                else if (window.orientation == 90 || window.orientation == -90) {
+                else if (window.orientation === 90 || window.orientation === -90) {
                     verticalScreenWidth = Math.min(window.screen.width, window.screen.height);
+                    /* eslint-disable max-len */
                     verticalScreenWidth = verticalScreenWidth * $(window).width() / Math.max(window.screen.width, window.screen.height);
+                    /* eslint-enable max-len */
                 }
             }
             else {
@@ -561,4 +572,6 @@ define(function (require) {
     };
 
     return Share;
+    /* eslint-enable fecs-camelcase */
 });
+

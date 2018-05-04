@@ -38,9 +38,20 @@ define(function (require) {
         this.win = window;
         this.currentIndex = this.preInex = 0;
     }
+    MIPStory.prototype.getConfigData = function () {
 
+        var configData = this.element.querySelector('mip-story > script[type="application/json"]');
+
+        try {
+            return JSON.parse(configData.innerText);
+        } catch(e) {
+            console.error(e);
+        }
+        return {};
+    };
     MIPStory.prototype.init = function () {
         var html = this.win.document.documentElement;
+        var mipStoryConfigData = this.getConfigData();
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
         // 保存 story views
         this.initStoryViews();
@@ -49,11 +60,11 @@ define(function (require) {
         // 初始化进度条
         this.initProgress();
         // 初始化结尾页
-        this.initBookend();
+        this.initBookend(mipStoryConfigData);
         // 初始化引导页
         this.initHintLayer();
         // 初始化分享页面
-        this.initShare();
+        this.initShare(mipStoryConfigData);
         // 绑定事件
         this.initEvent();
         // 切换到第一页
@@ -69,8 +80,9 @@ define(function (require) {
         this.viewMuted = !!(this.muted || this.audio);
     };
 
-    MIPStory.prototype.initShare = function () {
-        this.share = new ShareLayer();
+    MIPStory.prototype.initShare = function (storyConfig) {
+        var shareConfig = storyConfig.share || {};
+        this.share = new ShareLayer(shareConfig);
         var html = dm.create(this.share.build());
         this.element.appendChild(html);
     };
@@ -120,8 +132,8 @@ define(function (require) {
         }
     };
 
-    MIPStory.prototype.initBookend = function () {
-        this.bookEnd = new BookEnd();
+    MIPStory.prototype.initBookend = function (storyConfig) {
+        this.bookEnd = new BookEnd(storyConfig);
         var html = dm.create(this.bookEnd.build());
         this.element.appendChild(html);
     };

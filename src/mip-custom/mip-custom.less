@@ -9,22 +9,88 @@ mip-custom {
 	font-size: 14px;
 
 	[mip-custom-container] {
-	    padding: 0 17px;
-	    margin-bottom: 10px;
-	    background-color: #fff;
+		padding: 0 17px;
+		margin-bottom: 10px;
+		background-color: #fff;
+		opacity: 0;
+		transition: opacity 0.5s;
+		&.fadein {
+			opacity: 1;
+		}
 	}
 	[mip-custom-item] {
-	    border-bottom: 1px solid #f1f1f1;
-	    padding: 10px 0 8px;
+		border-bottom: 1px solid #f1f1f1;
+		padding: 10px 0 8px;
+		&:first-child {
+			padding-top: 13px;
+		}
+		&:last-child {
+			border-bottom: none;
+			padding-bottom: 10px;
+		}
 	}
-	[mip-custom-item]:first-child {
-	    padding-top: 13px;
-	}
-	[mip-custom-item]:last-child {
-	    border-bottom: none;
-	    padding-bottom: 10px;
+	.mip-custom-placeholder {
+		min-height: 300px;
+		padding-top: 13px;
+		width: 100%;
+		box-sizing: border-box;
+		position: absolute;
+		opacity: 1;
+		&.fadeout {
+			opacity: 0;
+		}
+		&-title, &-text {
+			margin: 4px 0;
+			margin-bottom: 12px;
+			height: 18px;
+			background: #eee;
+			display: block;
+			width: 100%;
+		}
+		&-space {
+			padding-bottom: 30px;
+			display: block;
+		}
+		&-text {
+			height: 14px;
+			margin-bottom: 8px;
+			background: #f3f3f3;
+			transform-origin: left;
+/*			&.text1 {
+				-webkit-animation: loading-text-ani1 .6s infinite alternate;
+				animation: loading-text-ani1 .6s infinite alternate;
+			}*/
+			&.text2 {
+				transform: scaleX(0.8);
+/*				-webkit-animation: loading-text-ani2 .6s infinite alternate;
+				animation: loading-text-ani2 .6s infinite alternate;
+*/			}
+			&.text3 {
+				width: 70px;
+				margin-top: 12px;
+				background: #f9f9f9;
+				height: 10px;
+			}
+		}
 	}
 }
+/*@-webkit-keyframes loading-text-ani1 {
+	from {
+		transform: scaleX(1);
+	}
+	to {
+		transform: scaleX(0.9);
+	}
+}
+@-webkit-keyframes loading-text-ani2 {
+	from {
+		transform: scaleX(0.4);
+	}
+	to {
+		transform: scaleX(0.7);
+	}
+}*/
+
 .mip-custom {
 	&-transit {
 		&-from-bottom {

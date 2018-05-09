@@ -4,6 +4,7 @@
  * @email 522370351@qq.com
  * 参考了mip-stats-baidu的实现方式
  */
+
 define(function (require) {
     var util = require('util');
     var Gesture = util.Gesture;
@@ -11,7 +12,9 @@ define(function (require) {
 
     var customElement = require('customElement').create();
 
-    customElement.prototype.firstInViewCallback = function () {
+    customElement.prototype.firstInviewCallback = function () {
+
+
         var elem = this.element;
         var config = this.getConfig();
         if (config) {
@@ -89,6 +92,27 @@ define(function (require) {
 
     // 绑定事件追踪
     customElement.prototype.bindEle = function () {
+        var me = this;
+        // 事件触发
+        function eventHandler(event) {
+            var tempData = this.getAttribute('data-stats-sa-obj');
+            if (!tempData) {
+                return;
+            }
+            var statusJson;
+            try {
+                statusJson = JSON.parse(decodeURIComponent(tempData));
+            } catch (e) {
+                console.warn('事件追踪data-stats-sa-obj数据不正确');
+                return;
+            }
+            if (!statusJson.data) {
+                return;
+            }
+
+            var attrData = statusJson.data;
+            me.saSend(attrData);
+        }
 
         // 获取所有需要触发的dom
         var tagBox = document.querySelectorAll('*[data-stats-sa-obj]');
@@ -149,27 +173,6 @@ define(function (require) {
             }
         }
     };
-
-    // 事件触发
-    function eventHandler(event) {
-        var tempData = this.getAttribute('data-stats-baidu-obj');
-        if (!tempData) {
-            return;
-        }
-        var statusJson;
-        try {
-            statusJson = JSON.parse(decodeURIComponent(tempData));
-        } catch (e) {
-            console.warn('事件追踪data-stats-sa-obj数据不正确');
-            return;
-        }
-        if (!statusJson.data) {
-            return;
-        }
-
-        var attrData = statusJson.data;
-        this.saSend(attrData);
-    }
 
     return customElement;
 });

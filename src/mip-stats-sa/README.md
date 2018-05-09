@@ -36,7 +36,7 @@ mip-stats-sa 组件说明
 
 这是需要配置的值
 ```
-var para = {"type":"click","data":["track", ['click_button',{button_name:'导航'}]]}
+var para = {"type":"click","data":["track", 'click_button',{button_name:'导航'}]}
 ```
 #### type
 

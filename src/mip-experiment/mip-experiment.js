@@ -5,7 +5,7 @@
 
 define(function (require) {
 
-    var customElement = require('customElement').create();
+    var experimentElement = require('customElement').create();
     var util = require('util');
     var customStorage = new util.customStorage(0);
 
@@ -14,7 +14,8 @@ define(function (require) {
      *
      * @param  {Object} ele mip-dom
      */
-    function initExp(ele) {
+    experimentElement.prototype.initExperiments = function() {
+        var ele = this.element;
         var jsonScript = ele.querySelector('script[type="application/json"][for="mip-experiment"]');
         if (!jsonScript) {
             console.warn('<mip-experiment>找不到配置 for="mip-experiment"');
@@ -36,9 +37,10 @@ define(function (require) {
         }
 
         for (var expName in expJson) {
-            var exp = new Experiment(expName, expJson, needConsole);
+            var exp = new Experiment(expName, expJson, needConsole, ele);
             // read experiment group
             var expGroup = exp.getExpGroup();
+            // 执行分组：给body增加属性，渲染内部template
             exp.setExpGroup(expGroup);
             // add baidu-stats
             exp.bindBaiduStats(exp.baiduStats);
@@ -52,13 +54,20 @@ define(function (require) {
      * @param  {Object} expJson json for experiment config
      * @param  {boolean} needConsole whether dump group info to console
      */
-    var Experiment = function (expName, expJson, needConsole) {
-        var exp = expJson[expName];
+    var Experiment = function (expName, expJson, needConsole, tagElement) {
+        // 保存mip-experiment节点
+        this.element = tagElement;
+
+        // 获取单个抽样配置
         this.expName = expName;
+        this.needConsole = needConsole;
+
+        var exp = expJson[expName];
         this.expVar = exp.variants || {};
         this.expVar.default = 100;
-        this.needConsole = needConsole;
         this.isSticky = exp.hasOwnProperty('sticky') ? !!exp.sticky : true;
+        this.descri = exp.descri;
+        this.type = exp.type;
         this.baiduStats = exp['baidu-stats'];
     };
 
@@ -71,8 +80,10 @@ define(function (require) {
         // if url hash is set, get group from URL
         var groupFromUrl = this._getExpGroupFromUrl();
         if (this.needConsole) {
-            console.warn('实验名: ' + this.expName);
-            console.warn('URL hash分组生效: ' + groupFromUrl);
+            console.warn('实验名: ' + this.expName + ', ' + this.descri);
+            if (groupFromUrl) {
+                console.warn('URL hash分组生效: ' + groupFromUrl);
+            }
         }
 
         // if history is set, get group from localstorage
@@ -88,7 +99,7 @@ define(function (require) {
         if (!groupFromStorage && !groupFromUrl) {
             var groupNew = this._getExpGroupNew();
             if (this.needConsole) {
-                console.warn('重新分组: ' + groupNew);
+                console.warn('新分组: ' + groupNew);
             }
         }
 
@@ -185,6 +196,19 @@ define(function (require) {
             // XXX: no use of document.body for there might be multiple bodies
             document.querySelector('body').setAttribute('mip-x-' + this.expName, expGroup);
         }
+        // html代码块渲染抽样
+        if (this.type == 'tag-abtest') {
+            var templates = require('templates');
+            var element = this.element.querySelector('[for=' + this.expName + ']');
+            var data = {}
+            data[expGroup] = true;
+            templates.render(element, data, true).then(function (res) {
+                var tag = document.createElement('div');
+                tag.innerHTML = res.html;
+                element.appendChild(tag);
+            });
+
+        }
     };
 
     /**
@@ -239,12 +263,12 @@ define(function (require) {
     /**
      * build element, exec only once
      */
-    customElement.prototype.build = function () {
+    experimentElement.prototype.build = function () {
         var element = this.element;
         element.needConsole = element.hasAttribute('needConsole');
-        initExp(element);
+        this.initExperiments();
         util.css(element, 'display', 'inherit');
     };
 
-    return customElement;
+    return experimentElement;
 });

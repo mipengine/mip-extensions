@@ -149,16 +149,16 @@ body[mip-x-font-color=white] .exp-btn3 {
 </mip-experiment>
 ```
 
-### 4. 组件渲染抽样
-组件渲染抽样用于两个组件间的AB实验。根据开发者配置的流量比例渲染A组件或B组件。
+### 4. html代码块渲染抽样
+组件渲染抽样用于两个组件间的AB实验。根据开发者配置的流量比例渲染 A组件或 B组件。
 
 #### 第一步：配置抽样分组及比例
-
+配置`"type": "tag-abtest"`用于声明用于抽样方式为 **html 代码块渲染抽样**。
 ``` javascript
-"fixed-experiment": {
+"实验名": { //实验名不限，建议英文，多个单次使用'-'分割
     "sticky": false, // 是否按照用户抽样
     "descri": "", // 实验描述，仅用于记录
-    "type": "extension-abtest" // "extension-abtest"代表组件渲染抽样
+    "type": "tag-abtest" // "extension-abtest"代表组件渲染抽样
     "variants": {
         "实验组A": 40, // key为实验分组名，value为实验流量百分比
         "实验组B": 60 // 同上，百分比之和上限为100
@@ -168,16 +168,21 @@ body[mip-x-font-color=white] .exp-btn3 {
 
 #### 第二步：配置各实验组
 `template` 内部标签默认不渲染，当流量被分配到`实验组A`时，`{{#实验组A}}`判定为true，内部标签渲染。此时`{{#实验组B}}`为false，内部标签不渲染。
+
+[notice] `div for=""` 取值对应第一步中的实验名。
+
 ``` html
-<template type="mip-mustache">
-    {{#实验组A}}
-        实验组A内容，可以引用组件或填写DOM。如：
-        <mip-fixed type="bottom">mip-fixed内容</mip-fixed>
-    {{/实验组A}}
-    {{#实验组B}}
-        实验组B内容，可以引用组件或填写DOM。
-    {{/实验组B}}
-</template>
+<div for="实验名">
+    <template type="mip-mustache">
+        {{#实验组A}}
+            实验组A内容，可以引用组件或填写DOM。如：
+            <mip-fixed type="bottom">mip-fixed内容</mip-fixed>
+        {{/实验组A}}
+        {{#实验组B}}
+            实验组B内容，可以引用组件或填写DOM。
+        {{/实验组B}}
+    </template>
+</div>
 ```
 
 #### 第三步：引用所有实验组内组件脚本
@@ -186,40 +191,46 @@ body[mip-x-font-color=white] .exp-btn3 {
 ```
 <script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js"></script>
 <script src="https://c.mipcdn.com/static/v1/mip-……/mip-…….js"></script>
+<!-- mustache模板依赖 -->
+<script src="https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js"></script>
 ```
 
 #### 真实示例
-按照流量抽样分组，40%流量渲染组件mip-img，60%流量渲染组件mip-fixed
-```
-<mip-experiment layout="nodisplay">
+创建实验名为`anim-experiment`的抽样，按照流量抽样分组，40%流量渲染组件mip-img，60%流量渲染组件mip-anim。
+
+```html
+<mip-experiment class="mip-hidden">
     <script type="application/json" for="mip-experiment">
         {
-            "fixed-experiment": {
+            "anim-experiment": {
                 "sticky": false,
-                "descri": "按照流量抽样分组，40%渲染组件mip-img，60%渲染组件mip-fixed",
-                "type": "extension-abtest"
+                "descri": "按照流量抽样分组，40%渲染组件mip-img，60%渲染组件mip-anim",
+                "type": "tag-abtest",
                 "variants": {
                     "mip-img-group": 40,
-                    "mip-fixed-group": 60
+                    "mip-anim-group": 60
                 }
             }
         }
     </script>
-    <template type="mip-mustache">
-        {{#mip-img-group}}
-            实验组 mip-img-group：
-            <mip-img layout="responsive" width="350" height="263" 
-                src="https://www.mipengine.org/static/img/sample_01.jpg">
-            </mip-img>
-        {{/mip-img-group}}
-        {{#mip-fixed-group}}
-            实验组 mip-fixed-group：
-            <mip-fixed type="bottom">底部悬浮元素内容</mip-fixed>
-        {{/mip-fixed-group}}
-    </template>
+    <div for="anim-experiment">
+        <template for="anim-experiment">
+            {{#mip-img-group}}
+                实验组 mip-img-group：
+                <mip-img layout="responsive" width="350" height="263"
+                    src="https://www.mipengine.org/static/img/sample_01.jpg">
+                </mip-img>
+            {{/mip-img-group}}
+            {{#mip-anim-group}}
+                实验组 mip-fixed-group：
+                <mip-fixed type="bottom">底部悬浮元素内容</mip-fixed>
+            {{/mip-anim-group}}
+        </template>
+    </div>
 </mip-experiment>
-
-<script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js"></script>
+<script src="https://c.mipcdn.com/static/v1/mip-anim/mip-anim.js"></script>
+<!-- mustache模板依赖 -->
+<script src="https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js"></script>
 ```
 
 ### 5. 调试：打印实验信息

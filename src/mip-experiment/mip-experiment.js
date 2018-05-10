@@ -79,6 +79,7 @@ define(function (require) {
     Experiment.prototype.getExpGroup = function () {
         // if url hash is set, get group from URL
         var groupFromUrl = this._getExpGroupFromUrl();
+        console.log(groupFromUrl);
         if (this.needConsole) {
             console.warn('实验名: ' + this.expName + ', ' + this.descri);
             if (groupFromUrl) {
@@ -118,6 +119,7 @@ define(function (require) {
      */
     Experiment.prototype._getExpGroupFromUrl = function () {
         var hash = window.location.hash.slice(1);
+        console.log(hash);
         var group = '';
         if (!hash) {
             return '';
@@ -128,7 +130,7 @@ define(function (require) {
             if (!expGroupArr[i].match(this.expName + '=')) {
                 continue;
             }
-            var regExp = new RegExp('mip-x-' + this.expName + '=(\\w+)');
+            var regExp = new RegExp('mip-x-' + this.expName + '=([\\w-_]+)');
             var expGroup = regExp.exec(expGroupArr[i])[1];
             group = expGroup in this.expVar ? expGroup : '';
         }

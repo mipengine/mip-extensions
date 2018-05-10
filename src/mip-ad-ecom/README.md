@@ -12,21 +12,36 @@ mip-ad-ecom 组件说明
 
 ### 基本用法
 ```html
-<mip-ad-ecom>
-    自定义内容，可以嵌套其他组件
+<mip-ad-ecom layout="fixed-height" height="343">
+    <script type="application/json">
+        {
+            "accid": "e2217bab684fbb898dccf04b",
+            "title": "%E8%BF%99%E9%87%8C%E6%98%AF%E6%A0%87%E9%A2%98"
+        }
+    </script>
 </mip-ad-ecom>
 ```
 
 ## 属性
 
-### {属性名}
 
-说明：{说明}
-必选项：{是|否}
-类型：{类型}
-取值范围：{取值范围}
-单位：{单位}
-默认值：{默认值}
+### accid
+
+说明：分润平台帐号ID，暂时需要联系百度 PM 手工申请   
+必选项：是   
+类型：字符串  
+取值范围：无  
+单位：无   
+默认值：无   
+ 
+### title
+
+说明：页面内容标题，需要对中文编码（encodeURIComponent）   
+必选项：是   
+类型：字符串   
+取值范围：无   
+单位：无   
+默认值：无  
 
 ## 注意事项
 

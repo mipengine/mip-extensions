@@ -28,14 +28,18 @@ define(function (require) {
         params.logid = data.getHashData('lid');
         params.eqid = data.getHashData('eqid');
 
-        // 内容联盟导流字段
+        // 内容联盟来源 导流字段
         var originalSource = data.getHashData('originalSource');
         var mediaid = data.getHashData('mediaid');
+        var tn = data.getHashData('tn');
         if (originalSource) {
             params.originalSource = originalSource;
         }
         if (mediaid) {
             params.mediaid = mediaid;
+        }
+        if (tn) {
+            params.tn = tn;
         }
 
         return params;

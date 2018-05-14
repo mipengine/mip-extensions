@@ -98,7 +98,7 @@ define(function (require) {
         var gesture = new Gesture(this.element, {
             preventX: false
         });
-        // 绑定点击事件
+        // 绑定点击事件, story 组件的点击事件都有组件自己接管；
         this.element.addEventListener('click', function (e) {
             self.emitter.trigger(TAPNAVIGATION, e);
         });
@@ -179,6 +179,12 @@ define(function (require) {
     };
 
     MIPStory.prototype.tapnavigation = function (e) {
+
+        // a 标签不做任何处理；
+        if (e.target.nodeName.toLocaleLowerCase() === 'a') {
+            return;
+        }
+
         e.stopPropagation();
         var backend = document.querySelector('.mip-backend');
         var replay = document.querySelector('.mip-backend-preview');
@@ -195,7 +201,7 @@ define(function (require) {
             var src = e.target.getAttribute('data-src');
             if (ele === e.target && src) {
                 e.preventDefault();
-                location.href = src;
+                window.top.location.href = src;
             }
             return;
         }

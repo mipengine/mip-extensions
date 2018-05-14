@@ -321,7 +321,7 @@ define(function () {
                 // 加入后端打点时间
                 var frontAndServerData;
                 if (data.data.responseTime) {
-                    frontAndServerData = util.fn.extend(frontendData, data.data.responseTime, 1);
+                    frontAndServerData = util.fn.extend(frontendData, data.data.responseTime);
                 }
                 else {
                     frontAndServerData = frontendData;

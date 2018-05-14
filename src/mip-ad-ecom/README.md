@@ -1,6 +1,6 @@
 # mip-ad-ecom
 
-mip-ad-ecom 组件说明
+mip-ad-ecom 百度凤巢广告组件，仅在百度搜索来源的MIP页中生效。
 
 标题|内容
 ----|----

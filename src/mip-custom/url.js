@@ -29,17 +29,12 @@ define(function (require) {
         params.eqid = data.getHashData('eqid');
 
         // 内容联盟来源 导流字段
-        var originalSource = data.getHashData('originalSource');
-        var mediaid = data.getHashData('mediaid');
-        var tn = data.getHashData('tn');
-        if (originalSource) {
-            params.originalSource = originalSource;
-        }
-        if (mediaid) {
-            params.mediaid = mediaid;
-        }
-        if (tn) {
-            params.tn = tn;
+        var feedArr = ['originalSource', 'mediaid', 'fn'];
+        for (var i = 0; i < feedArr.length; i ++) {
+            var arr = feedArr[i];
+            if (data.getHashData(arr)) {
+                params[arr] = data.getHashData(arr);
+            }
         }
 
         return params;

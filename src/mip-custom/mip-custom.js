@@ -284,7 +284,6 @@ define(function () {
         }).then(function (data) {
             // 返回数据问题
             if (data && data.errno) {
-
                 // send error log
                 errorData = {
                     info: data.errmsg,
@@ -298,23 +297,37 @@ define(function () {
             }
 
             callback && callback(data.data, element);
-
             // 广告插入页面时，增加渐显效果
-            var mipCustomContainers= document.querySelectorAll('[mip-custom-container]');
+            var mipCustomContainers = document.querySelectorAll('[mip-custom-container]');
             for (var i = mipCustomContainers.length - 1; i >= 0; i--) {
                 var mipCustomContainer = mipCustomContainers[i];
                 mipCustomContainer.classList.add('fadein');
             }
-            // 性能日志：emptyTime-广告未显示时间
-            performance.renderEnd = new Date() - 0;
-            performance.emptyTime = performance.renderEnd - performance.fetchStart;
-            performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, {
-                duration: performance.duration,
-                emptyTime: performance.emptyTime
-            }, 1));
+
             // 性能日志：按照流量 1/500 发送日志
             var random500 = Math.random() * 500;
-            if(random500 < 1) {
+            if (random500 < 1) {
+                // 性能日志：emptyTime-广告未显示时间
+                performance.renderEnd = new Date() - 0; // 渲染结束时间戳
+                performance.emptyTime = performance.renderEnd - performance.fetchStart; // 页面空白毫秒数
+                performance.frontendRender = performance.renderEnd - performance.responseEnd;
+
+                // 前端打点时间
+                var frontendData = {
+                    duration: performance.duration,
+                    emptyTime: performance.emptyTime,
+                    frontendRender: performance.frontendRender
+                };
+                // 加入后端打点时间
+                var frontAndServerData;
+                if (data.data.responseTime) {
+                    frontAndServerData = util.fn.extend(frontendData, data.data.responseTime);
+                }
+                else {
+                    frontAndServerData = frontendData;
+                }
+                // 加入默认统计参数
+                performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
                 log.sendLog(performanceData.host, performanceData.params);
             }
 

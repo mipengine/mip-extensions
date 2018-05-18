@@ -7,6 +7,7 @@
 define(function (require) {
     // 使用了jquery $.Deferred
     var $ = require('jquery');
+    var viewport = require('viewport');
     var InfiniteScroll = function (opt) {
         if (!opt.$result || !opt.$loading || !opt.pushResult) {
             return;
@@ -90,7 +91,7 @@ define(function (require) {
             }
 
             me.wrapperHeight = me.options.$wrapper.height();        // 可视区高度
-            me.scrollerHeight = me.options.$scroller.height();      // 滚动容器高度
+            me.scrollerHeight = this._getScrollerHeight();      // 滚动容器高度
             me.currentScrollTop = me.options.$wrapper.scrollTop();  // 当前滚动条位置
         },
 
@@ -101,8 +102,8 @@ define(function (require) {
             var me = this;
 
             $(window).off('resize' + me.eventSpace);            // 注销resize事件
-            me.options.$wrapper.off('scroll' + me.eventSpace);  // 注销scroll事件
             me.options.$loading.off('click' + me.eventSpace);   // 注销loading上的点击事件
+            viewport.off('scroll', me.scrollHandler);
             me.scrollPageCache = null;                          // 删除cache数据
         },
 
@@ -172,17 +173,18 @@ define(function (require) {
 
         _bindScroll: function () {
             var me = this;
-
-            me.options.$wrapper.on('scroll' + me.eventSpace, function () {
+            var scrollHandler;
+            viewport.on('scroll', function scrollHandler () {
                 // 若为暂停状态,什么也不做
+
                 if (me.state === 'pause') {
                     return;
                 }
 
                 // 获取当前滚动条位置
-                me.currentScrollTop = $(this).scrollTop();
+                me.currentScrollTop = viewport.getScrollTop();
                 // 某些浏览器(安卓QQ)滚动时会隐藏头部但不触发resize,需要反复获取 wtf...
-                me.wrapperHeight = me.options.$wrapper.height();
+                me.wrapperHeight = viewport.getHeight();
 
                 // 到顶了
                 if (me.currentScrollTop <= 0) {
@@ -213,8 +215,10 @@ define(function (require) {
 
             // 若初始即不满一屏,trigger scroll事件触发加载
             if (me.currentScrollTop >= me.scrollerHeight - me.wrapperHeight - me.options.bufferHeightPx) {
-                me.options.$wrapper.trigger('scroll');
+                viewport.trigger('scroll');
             }
+
+            this.scrollHandler = scrollHandler;
         },
 
         /**
@@ -255,7 +259,7 @@ define(function (require) {
                             me.scrollPageCache.content
                                 = me.scrollPageCache.content.concat(me._separatePage(newResultArr));
                             // trigger scroll事件,确保继续触发数据加载
-                            me.options.$wrapper.trigger('scroll');
+                            viewport.trigger('scroll');
                         }
                     // 失败
                     }, function () {
@@ -266,7 +270,7 @@ define(function (require) {
                             me.dataStatus = 1;
                             me.options.$loading.html(me.options.loadingHtml);
                             // trigger scroll事件,重新触发数据加载
-                            me.options.$wrapper.trigger('scroll');
+                            viewport.trigger('scroll');
                         });
                     }
                 );
@@ -286,10 +290,12 @@ define(function (require) {
 
             // 更新变量
             me.currentLoadPage = pn;
-            me.scrollerHeight = me.options.$scroller.height();
+            me.scrollerHeight = this._getScrollerHeight();
             me.scrollPageCache.topPosition.push($dom_newPage.position().top);
         },
-
+        _getScrollerHeight: function () {
+            return viewport.getScrollHeight();
+        },
         /**
          * 清理&恢复dom方法
          * IP:[number]当前可视区页码
@@ -322,7 +328,7 @@ define(function (require) {
                     $(this).addClass(recycleClass);
                 });
                 // 这里有可能导致整体高度变化,需要重新更新高度
-                me.scrollerHeight = me.options.$scroller.height();
+                me.scrollerHeight = this._getScrollerHeight();
             }
         },
 

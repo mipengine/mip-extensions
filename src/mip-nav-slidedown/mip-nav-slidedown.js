@@ -72,9 +72,8 @@ define(function (require) {
         if (window.innerWidth > 767) {
             return;
         }
-
         var $wiseNav = $('#bs-navbar');
-
+        var $navWrapper = $('.mip-nav-wrapper');
         if ($wiseNav.hasClass('in')) {
             // 关闭菜单
             $wiseNav.height('0px');
@@ -85,6 +84,9 @@ define(function (require) {
             setTimeout(function () {
                 $wiseNav.removeClass('in');
             }, 500);
+            setTimeout(function () {
+                $navWrapper.removeAttr('style');
+            }, 100);
         }
         else {
             // 打开菜单
@@ -118,6 +120,10 @@ define(function (require) {
                 var offsetTop = $('mip-nav-slidedown')[0] ? $('mip-nav-slidedown')[0].getBoundingClientRect().top : 0;
                 var navHeight = window.innerHeight - $('.navbar-header').height() - offsetTop;
                 $wiseNav.height(navHeight);
+
+                var $navWrapper = $('.mip-nav-wrapper');
+                var navWrapperHeight = window.innerHeight - offsetTop;
+                $navWrapper.height(navWrapperHeight);
                 // 关闭按钮距离底部固定为90px
                 closeBtnTop = navHeight - ($('.navbar-right li').height()) * listNum - 90;
                 if (closeBtnTop > 20) {

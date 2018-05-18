@@ -1,20 +1,21 @@
-## 小故事组件的介绍
+# 小故事组件的介绍
 
 ## 组件介绍
 
 ### 1、小故事的介绍
 
- 	小故事是基于[mip](https://www.mipengine.org/)技术的一个产品，小故事的组件也是MIP组件，主要是三个组件一起使用，构成小故事的整体结构，其中故事组件为`mip-story`，段落为`mip-story-view`，层为`mip-story-layer`。
+​	小故事是基于[mip](https://www.mipengine.org/)技术的一个产品，小故事的组件也是MIP组件，主要是三个组件一起使用，构成小故事的整体结构，其中故事组件为`mip-story`，段落为`mip-story-view`，层为`mip-story-layer`。
+
 | **描述**       | 丰富的视觉故事形式。                                         |
 | -------------- | ------------------------------------------------------------ |
 | **可用性**     | 可用                                                         |
-| **必需的脚本** | `<script src="https://c.mipcdn.com/static/v1/mip-share//mip-story.js"></script>` |
+| **必需的脚本** | https://c.mipcdn.com/static/v1/mip-share//mip-story.js |
 | **支持的布局** | 没有                                                         |
 | **例子**       | 请参阅MIP的小故事实力。从“ [创建视觉MIP故事](https://www.mipengine.org/examples/mip-extensions/mip-story.html)教程”中学习。 |
 
 展现形式如下：
 
-![story-demo](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/oscar5.gif)
+<img src="http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/oscar5.gif" width=276 height=494 />
 
 小故事的组织结构为：
 
@@ -26,7 +27,7 @@
 - 每个段落又可以包含多个层（layer），单个层可以设置布局模式，如多行布局，左右布局，图片拉伸布局等。
 - 元素（element）是资源素材，如背景图，主标题，详细描述等。在 `<h1>`、`<p>`、`<mip-img>` 等标签中声明。
 
-![intro-view-layer-element (1)](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/intro-view-layer-element%20(1).jpg)
+![intro-view-layer-element (1)](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/intro-view-layer-element.jpg)
 
 ​	这里的每一个组件都是一个mip组件，其中故事组件为`mip-story`，段落为`mip-story-view`，层为`mip-story-layer`，元素为资源素材，如背景图，主标题，详细描述等。在 `<h1>`、`<p>`、`<mip-img>` 等标签中声明。
 
@@ -96,7 +97,7 @@
 
 #### 2.1  `mip-story`组件
 
-##### 属性：
+属性：
 
 | 属性               | 是否必须 | 取值范围           | 描述                                           |
 | ------------------ | -------- | ------------------ | ---------------------------------------------- |
@@ -107,7 +108,8 @@
 
 - 以下是每个属性的详细使用方法
 
-  - background-audio：用于配置全局播放的音频地址，需要使用 HTTPS 协议。
+  - ##### background-audio
+    用于配置全局播放的音频地址，需要使用 HTTPS 协议。
 
     示例
 
@@ -117,7 +119,8 @@
     </mip-story>
     ```
 
-  - audio-reload：如果包含该属性，拥有音频的段落在切换后返回，音频会重新从头播放。
+  - ##### audio-reload
+    如果包含该属性，拥有音频的段落在切换后返回，音频会重新从头播放。
 
     示例
 
@@ -127,7 +130,8 @@
     </mip-story>
     ```
 
-  - audio-hide：如果包含该属性，音频按钮会默认隐藏。
+  - ##### audio-hide
+    如果包含该属性，音频按钮会默认隐藏。
 
     示例
 
@@ -137,7 +141,7 @@
     </mip-story>
     ```
 
-  - 数据配置
+  - ##### 数据配置
 
     ​	为提供给用户更多信息和传播渠道，在 `<mip-story>` 段落最后提供了专门用于展示分享及小故事更多相关信息的页面。当用户在最后一个段落继续向后点击时候，即会出现。其中该页面内容需要通过开发者进行配置，具体配置参数如下：
 
@@ -194,13 +198,13 @@
 
     实际页面效果如下：
 
-    ![share](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/share.jpeg)
+    <img src="http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/share.jpeg" width=276 height=494 />
 
     目前，我们支持分享到朋友圈、微信好友、QQ空间、新浪微博；
 
 #### 2.2  `mip-story-view`
 
-##### 属性：
+属性：
 
 | 属性               | 是否必须 | 取值范围           | 描述                   |
 | ------------------ | -------- | ------------------ | ---------------------- |
@@ -209,7 +213,21 @@
 
 - 以下是每个属性的详细使用方法
 
-  - background-audio：用于配置在每个段落播放的音频地址，切换段落后，前一个段落的音频会终止。需要使用 HTTPS 协议。如果同时配置了全局和局部音频，则只会播放全局音频。
+  - ##### id
+    用于对当前段落进行定位
+
+    示例
+
+    ```html
+    <mip-story>
+    	<mip-story-view id="first-page">
+            ...
+    	</mip-story-view>
+    </mip-story>
+    ```
+
+  - ##### background-audio
+    用于配置在每个段落播放的音频地址，切换段落后，前一个段落的音频会终止。需要使用 HTTPS 协议。如果同时配置了全局和局部音频，则只会播放全局音频。
 
     示例
 
@@ -225,13 +243,14 @@
 
 ​	该元素表示“层”的概念，在每一个 `<mip-story-view>` 元素里面可以有多个 layer 作为段落内容，如视频、图片、文字等。
 
-##### 属性：
+属性：
 
 | 属性       | 是否必须 | 取值范围                                   | 描述             |
 | ---------- | -------- | ------------------------------------------ | ---------------- |
 | `template` | 否       | `fill`、`vertical`、`horizontal`、`thirds` | layer 的布局方式 |
 
-- template：表示一个 layer 的布局方式。
+- ##### template
+    表示一个 layer 的布局方式。
 
   示例
 
@@ -255,7 +274,7 @@
 </mip-story-layer>
 ```
 
-![layer-fill](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/cover-2.png)
+<img src="http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/cover-2.png" width=276 height=494 />
 
 - `template="vertical"`：`<mip-story-layer>` 中的元素沿 `y` 轴排列，`x` 轴方向填充布局。
 
@@ -267,7 +286,7 @@
 </mip-story-layer>
 ```
 
-![layer-vertical](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/cover-3.png)
+<img src="http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/cover-3.png" width=276 height=494 />
 
 - `template="horizontal"`：`<mip-story-layer>` 中的元素沿 `x` 轴排列，`y` 轴方向填充。
 
@@ -279,7 +298,7 @@
 </mip-story-layer>
 ```
 
-![layer-horizontal](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/cover-4.png)
+<img src="http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/cover-4.png" width=276 height=494 />
 
 - `template="thirds"`：支持上中下三列布局，在使用该布局时，内部的元素需要同时加入对应的属性，包括：
   - `flex-area='upper-third'`: 元素位于三等分布局的上部；
@@ -295,7 +314,8 @@
 </mip-story-layer>
 ```
 
-![layer-thirds](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/cover-5.png)
+
+<img src="http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/cover-5.png" width=276 height=494 />
 
 - **注意：**
 
@@ -305,7 +325,7 @@
 
 默认情况下会按照正常布局进行展示。
 
-#### 内置动画
+#### 2.4 内置动画
 
 ​	在小故事的层（layer）中可以添加 HTML 元素来完成页面展示，在 HTML 元素中添加 `animate-in` 属性来完成指定的动画效果，例如：可以让标题从左侧滑入、文字淡入出现等。
 
@@ -347,6 +367,8 @@
 </mip-story>
 ```
 
+##### `animate-in`
+
 小故事提供以下预设动画：
 
 | animate-in        | 默认动画时间（ms） | 默认延迟时间（ms） | 说明         |
@@ -362,13 +384,16 @@
 | `rotate-in-left`  | 700                | 0                  | 左侧旋转飞入 |
 | `rotate-in-right` | 700                | 0                  | 右侧旋转飞入 |
 
-##### 更多的动画配置
+更多的动画配置
 
-`animate-in-duration` : 元素动画的持续事件；可以取得值为正整数，单位为毫秒；
+##### `animate-in-duration`
+元素动画的持续事件；可以取得值为正整数，单位为毫秒；
 
-`animate-in-delay` : 元素动画开始前的延迟时间，可以取得值为正整数，单位为毫秒
+##### `animate-in-delay`
+元素动画开始前的延迟时间，可以取得值为正整数，单位为毫秒
 
-`animate-in-after` ：指定动画在另一个元素动画结束之后触发；可以的取值为带有动画元素的id
+##### `animate-in-after`
+指定动画在另一个元素动画结束之后触发；可以的取值为带有动画元素的id
 
 - 示例
 
@@ -383,6 +408,7 @@
 
 - 实际动画示意图如下：
 
-![小故事内置动画](http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/%E5%B0%8F%E6%95%85%E4%BA%8B%E5%86%85%E7%BD%AE%E5%8A%A8%E7%94%BB.gif)
+
+<img src="http://mipstatic.baidu.com/static/mip-static/mip-story/demo/static/%E5%B0%8F%E6%95%85%E4%BA%8B%E5%86%85%E7%BD%AE%E5%8A%A8%E7%94%BB.gif" width=276 height=494 />
 
 ​	以上内容为整个小故事组件的介绍，如果您在开始发中遇到任何问题，可以在[issue](https://github.com/mipengine/mip-extensions/issues)上给我们提相关问题，我们会第一时间给您反馈。

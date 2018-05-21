@@ -28,14 +28,14 @@ define(function () {
     };
 
     /**
-     * build钩子，触发渲染
-     *
+     * build钩子，触发渲染. 广告需要尽早执行所以用build
      */
     customElement.prototype.build = function () {
         var me = this;
         dom.addPlaceholder.apply(this);
-
         var checkElement = function () {
+            console.log('mip-ad-ecom 配置合法');
+            console.log(dom.getConfigScriptElement(me.element));
             if (dom.getConfigScriptElement(me.element)) {
                 me.initCustom();
                 return true;
@@ -59,6 +59,7 @@ define(function () {
 
         // 异常情况下不展示定制化MIP
         if (!me.isShowCustom()) {
+            console.log('return');
             return;
         }
 
@@ -82,6 +83,7 @@ define(function () {
             }
 
         } else {
+            console.log('fetchData');
             me.fetchData(me.commonUrl, me.render.bind(me), me.element);
         }
     };
@@ -116,6 +118,7 @@ define(function () {
     customElement.prototype.isShowCustom = function () {
         var me = this;
         var isShowCustom = true;
+
         // 非结果页进入不展现定制化内容
         if (!viewer.isIframed) {
             me.element.remove();
@@ -166,6 +169,7 @@ define(function () {
      * @param {HTMLElement} element 需要渲染的element
      */
     customElement.prototype.render = function (data, element) {
+        console.log(data);
         var commonData = {};
         var template = {};
         if (!data || !element) {
@@ -293,7 +297,8 @@ define(function () {
                 log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
 
                 console.error(data.errmsg);
-                me.element.remove();
+                // TODO do not remove me
+                // me.element.remove();
                 return;
             }
 

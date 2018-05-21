@@ -79,7 +79,6 @@ define(function (require) {
     Experiment.prototype.getExpGroup = function () {
         // if url hash is set, get group from URL
         var groupFromUrl = this._getExpGroupFromUrl();
-        console.log(groupFromUrl);
         if (this.needConsole) {
             console.warn('实验名: ' + this.expName + ', ' + this.descri);
             if (groupFromUrl) {
@@ -119,7 +118,6 @@ define(function (require) {
      */
     Experiment.prototype._getExpGroupFromUrl = function () {
         var hash = window.location.hash.slice(1);
-        console.log(hash);
         var group = '';
         if (!hash) {
             return '';
@@ -195,7 +193,7 @@ define(function (require) {
     Experiment.prototype.setExpGroup = function (expGroup) {
         customStorage.set('mip-x-' + this.expName, expGroup);
         if (expGroup !== 'default') {
-            // XXX: no use of document.body for there might be multiple bodies
+            // 给body增加特殊class标识，用于发送统计日志
             document.querySelector('body').setAttribute('mip-x-' + this.expName, expGroup);
         }
         // html代码块渲染抽样
@@ -206,6 +204,8 @@ define(function (require) {
             data[expGroup] = true;
             templates.render(element, data, true).then(function (res) {
                 var tag = document.createElement('div');
+                console.log('mip-experiment render');
+                console.log(res);
                 tag.innerHTML = res.html;
                 element.appendChild(tag);
             });
@@ -239,6 +239,7 @@ define(function (require) {
             if (stats.ele === 'window') {
                 stats.eleDoms[0] = window;
             } else {
+                // 全局选择百度统计组件，与百度统计联动
                 stats.eleDoms = document.querySelectorAll(stats.ele);
             }
 
@@ -263,7 +264,7 @@ define(function (require) {
     };
 
     /**
-     * build element, exec only once
+     * 涉及到页面样式改动，尽早执行
      */
     experimentElement.prototype.build = function () {
         var element = this.element;

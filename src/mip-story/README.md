@@ -14,7 +14,6 @@
 | ---- | ---------------------------------------- |
 | 类型   | 通用                                       |
 | 支持布局 | responsive,fixed-height,fill,container,fixed |
-
 | 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js|
 
 ## 示例
@@ -84,53 +83,6 @@
         <mip-story-layer>
             <h1 animate-in="fly-in-right">用 MIP 来讲述你的故事！</h1>
         </mip-story-layer>
-    </mip-story-view>
-    <mip-story-view>
-      <div animate-in="pan-right"
-        animate-in-duration="30s"
-        class="img-container">
-        <mip-img src="https://picsum.photos/1600/1200?image=1078"
-          animate-in="zoom-in"
-          animate-in-duration="30000"
-          layout="fixed"
-          width="1600"
-          height="1200">
-        </mip-img>
-      </div>
-    </mip-story-view>
-    <mip-story-view>
-      <div animate-in="zoom-in"
-        animate-in-duration="30000"
-        class="img-container">
-        <mip-img src="https://picsum.photos/1600/1200?image=1078"
-          animate-in="pan-right"
-          animate-in-duration="30000"
-          layout="fixed"
-          width="1600"
-          height="1200">
-        </mip-img>
-      </div>
-    </mip-story-view>
-    <mip-story-view>
-        <div animate-in="zoom-out"
-          animate-in-duration="30000"
-          class="img-container"
-          >
-          aaaa
-        </div>
-    </mip-story-view>
-    <mip-story-view>
-        <div animate-in="pan-left"
-          animate-in-duration="30000"
-          class="img-container">
-          <mip-img src="https://picsum.photos/1600/1200?image=1033"
-            layout="fixed"
-            width="1600"
-            height="1200"
-            animate-in="zoom-out"
-            animate-in-duration="30000">
-          </mip-img>
-        </div>
     </mip-story-view>
 </mip-story>
 ```

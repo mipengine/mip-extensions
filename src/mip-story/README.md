@@ -14,7 +14,7 @@
 | ---- | ---------------------------------------- |
 | 类型   | 通用                                       |
 | 支持布局 | responsive,fixed-height,fill,container,fixed |
-| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js|
+| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
 
 ## 示例
 
@@ -64,11 +64,7 @@
     </script>
     <mip-story-view background-audio="http://mipstatic.baidu.com/static/mip-static/mip-story/story-film/videos/CliffRichardDevilWoman.mp3">
         <mip-story-layer template="fill">
-            <mip-img
-                animate-in="zoom-in"
-                animate-in-duration="3s"
-                layout="fill"
-                src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
+            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
         </mip-story-layer>
         <mip-story-layer>
             <h1 animate-in="fly-in-left">小故事是什么？</h1>

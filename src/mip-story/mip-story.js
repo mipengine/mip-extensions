@@ -50,6 +50,7 @@ define(function (require) {
         return {};
     };
     MIPStory.prototype.init = function () {
+        var element = this.element;
         var html = this.win.document.documentElement;
         var mipStoryConfigData = this.getConfigData();
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
@@ -62,7 +63,7 @@ define(function (require) {
         // 初始化结尾页
         this.initBookend(mipStoryConfigData);
         // 初始化引导页
-        this.initHintLayer();
+        this.initHintLayer(element);
         // 初始化分享页面
         this.initShare(mipStoryConfigData);
         // 绑定事件
@@ -87,8 +88,8 @@ define(function (require) {
         this.element.appendChild(html);
     };
 
-    MIPStory.prototype.initHintLayer = function () {
-        this.hint = new HintLayer();
+    MIPStory.prototype.initHintLayer = function (element) {
+        this.hint = new HintLayer(element);
         var html = dm.create(this.hint.build());
         this.element.appendChild(html);
     };

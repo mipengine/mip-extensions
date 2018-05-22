@@ -6,6 +6,7 @@
 
 define(function (require) {
     // 使用了jquery $.Deferred
+    var util = require('util');
     var $ = require('jquery');
     var viewport = require('viewport');
     var InfiniteScroll = function (opt) {
@@ -16,6 +17,7 @@ define(function (require) {
 
         opt.$result = $(opt.$result);
         opt.$loading = $(opt.$loading);
+        opt.$ele = opt.ele;
 
         // 设置默认值
         me.options = $.extend({
@@ -176,8 +178,7 @@ define(function (require) {
             var scrollHandler;
             viewport.on('scroll', function scrollHandler () {
                 // 若为暂停状态,什么也不做
-
-                if (me.state === 'pause') {
+                if (me.state === 'pause' || !me._isElementInViewport()) {
                     return;
                 }
 
@@ -185,6 +186,8 @@ define(function (require) {
                 me.currentScrollTop = viewport.getScrollTop();
                 // 某些浏览器(安卓QQ)滚动时会隐藏头部但不触发resize,需要反复获取 wtf...
                 me.wrapperHeight = viewport.getHeight();
+                // 获取容器高度
+                me.scrollerHeight = viewport.getScrollHeight();
 
                 // 到顶了
                 if (me.currentScrollTop <= 0) {
@@ -261,7 +264,7 @@ define(function (require) {
                             // trigger scroll事件,确保继续触发数据加载
                             viewport.trigger('scroll');
                         }
-                    // 失败
+                        // 失败
                     }, function () {
                         // 标记数据状态为请求失败
                         me.dataStatus = 3;
@@ -376,6 +379,25 @@ define(function (require) {
             );
         },
 
+        /**
+         * 判断组件是否在可视区域内
+         * 
+         * @return {boolean} true 或 false
+         */
+        _isElementInViewport: function () {
+            var ele = this.options.$ele;
+            var rect = util.rect.getElementRect(ele);
+
+            var winWidth = viewport.getWidth();
+            var winHeight = viewport.getHeight();
+            var offRect = util.rect.getElementOffset(ele);
+            var offLeft = offRect.left;
+            var offTop = offRect.top;
+            var offWidth = offRect.width;
+            var offHeight = offRect.height;
+
+            return (offLeft > -offWidth && offLeft < winWidth && offTop > -offHeight && offTop < winHeight)
+        },
         /**
          * 获取当前可视区页码的方法(从0计)
          *

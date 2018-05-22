@@ -211,7 +211,7 @@ define(function (require) {
         for (var i = 0; i < opt.filterWrap.querySelectorAll('.filter-link').length; i++) {
             var ele = opt.filterWrap.querySelectorAll('.filter-link')[i];
             ele.addEventListener('click', function(e) {
-                _this.filterSelect(e.target)
+                _this.filterSelect(e.currentTarget)
             });
         }
 
@@ -222,7 +222,7 @@ define(function (require) {
         opt.filterWrap.querySelector('.filter-result').addEventListener('click', _this.toggleFilter);
     }
 
-    // 初始化
+    //  build说明: 筛选组件，需要尽快加载
     customElement.prototype.build = build;
     return customElement;
 });

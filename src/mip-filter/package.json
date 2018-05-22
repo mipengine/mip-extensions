@@ -1,11 +1,14 @@
 {
     "name": "mip-filter",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "筛选组件，自适应pc和wise宽度。mipengine.org有引用",
     "contributors": [
         {
             "name": "liangjiaying",
             "email": "liangjiaying@baidu.com"
+        },{
+            "name": "caoru",
+            "email": "caoru@baidu.com"
         }
     ],
     "engines": {

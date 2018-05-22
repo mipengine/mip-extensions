@@ -5,6 +5,7 @@
  */
 define(function (require) {
     var customElement = require('customElement').create();
+    var mipUtil = require('util');
 
     /**
      * build
@@ -208,13 +209,11 @@ define(function (require) {
         * when clicked, select the filter,
         * if wise, collapse filter list.
         */
-        for (var i = 0; i < opt.filterWrap.querySelectorAll('.filter-link').length; i++) {
-            var ele = opt.filterWrap.querySelectorAll('.filter-link')[i];
-            ele.addEventListener('click', function(e) {
-                _this.filterSelect(e.currentTarget)
-            });
-        }
 
+        var listWrap = opt.filterWrap.querySelector('.filter-list');
+        var undelegate = mipUtil.event.delegate(opt.filterWrap, '.filter-link', 'click', function(){
+            _this.filterSelect(this)
+        } );
         /**
         * add click event to filter result, which show only on wise.
         * when clicked, uncollapse and collapse filter list.

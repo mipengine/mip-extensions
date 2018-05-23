@@ -24,47 +24,33 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
     		"cities": [
 	        	{ "city": "北京", "pinyin": "beijing", "code": "1"},
 	        	{ "city": "上海", "pinyin": "shanghai", "code": "2"},
-	        	{ "city": "广州", "pinyin": "guangzhou", "code": "3"},
-	        	{ "city": "深圳", "pinyin": "shenzhen", "code": "4"},
-	        	{ "city": "重庆", "pinyin": "chongqing", "code": "5"}]
 	    },{	"key" :"A", 
         	"cities": [
 				{ "city": "澳门", "pinyin": "aomen", "code": "7"},
 				{ "city": "安庆", "pinyin": "anqing", "code": "8"},
-				{ "city": "安泽", "pinyin": "anze", "code": "9"}]
 		},{ "key" :"B", 
 			"cities": [
 				{ "city": "宝清", "pinyin": "baoqing", "code": "10"},
-				{ "city": "宝鸡", "pinyin": "baoji", "code": "11"},
-				{ "city": "巴东", "pinyin": "badong", "code": "12"}]
 		},{
 			"key":"C",
 			"cities": [
 				{ "city": "重庆", "pinyin": "chongqing", "code": "13"},
-				{ "city": "成都", "pinyin": "chengdu", "code": "14"},
-				{ "city": "苍山", "pinyin": "cangshan", "code": "15"}]
 		},{
 			"key":"D",
 			"cities": [
 				{ "city": "大庆", "pinyin": "daqing", "code": "16"},
-				{ "city": "大理", "pinyin": "dali", "code": "17"},
-				{ "city": "东莞", "pinyin": "dongguan", "code": "18"}]
 		},{
 			"key":"E",
 			"cities": [
 				{ "city": "鄂尔多斯", "pinyin": "eerduosi", "code": "19"},
-				{ "city": "峨眉山", "pinyin": "emeishan", "code": "20"}]
 		},{
 			"key":"F",
 			"cities": [
 				{ "city": "阜阳", "pinyin": "fuyang", "code": "21"},
-				{ "city": "福州", "pinyin": "fuzhou", "code": "22"},
-				{ "city": "防城港", "pinyin": "fangchenggang", "code": "23"}]
 		},{
 			"key":"G",
 			"cities": [
 				{ "city": "广州", "pinyin": "guangzhou", "code": "24"},
-				{ "city": "贵阳", "pinyin": "guiyang", "code": "25"}]
 		}
 	]}
     </script>
@@ -90,6 +76,43 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 		    </mip-fixed>
 		</template>
 	</div>
+</mip-group-selection>
+<script src="https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js"></script>
+<!--侧边栏布局依赖mip-fixed组件提供样式-->
+<script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js"></script>
+```
+
+### 基本用法
+
+按照如下示例配置城市数据。
+
+[notice]`data-src`属于前后端交互请求。由于 MIP-Cache 为 HTTPs 环境，`data-src` 要求支持 HTTPs.
+
+```html
+<mip-group-selection class="mip-hidden" data-src="https://xxx/cities.json">
+    <!--存在 data-src 时，本地数据配置不生效-->
+    <!-- 城市选择组件依赖的 DOM 结构，不建议自行删除内容 -->
+    <div class="mip-group-selection-wrapper">
+        <template type="mip-mustache">
+            <div class="mip-group-selection-content">
+                {{#list}}
+                <div class="mip-group-selection-group mip-group-selection-part-letter">
+                    <div class="mip-group-selection-title" data-anchor="{{key}}">{{key}}</div>
+                    {{#cities}}
+                    <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
+                    {{/cities}}
+                </div>
+               {{/list}}
+            </div>
+            <mip-fixed class="mip-group-selection-sidebar-wrapper">
+                <div class="mip-group-selection-sidebar">
+                    {{#list}}
+                    <a class="mip-group-selection-link" data-target-anchor="{{key}}">{{key}}</a>
+                    {{/list}}
+                </div>
+            </mip-fixed>
+        </template>
+    </div>
 </mip-group-selection>
 <script src="https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js"></script>
 <!--侧边栏布局依赖mip-fixed组件提供样式-->
@@ -224,6 +247,12 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
     <mip-gototop id="mygototop01"></mip-gototop>
 </mip-fixed>
 ```
+
+## 属性说明
+### data-src
+说明：用于指向远程数据地址，异步加载并渲染。指明`data-src`后，配置在`<script type="application/json">`本地的数据不再生效。
+使用限制：异步加载数据属于前后端交互请求。由于 MIP-Cache 为 HTTPs 环境，`data-src` 要求支持 HTTPs.
+
 
 ## 注意事项
 - mip-group-selection 分组选择组件依赖`mip-fixed`，`mip-mustache`，必须引用对应的javascript。

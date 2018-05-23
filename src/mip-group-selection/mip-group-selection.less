@@ -3,187 +3,105 @@
  */
 
 mip-group-selection {
-	.mip-group-selection-wrapper {
-		/* todo position:fixed */
-	    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	}
+    .mip-group-selection-content {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 0 16px 0 16px;
+        color: #333;
+    }
 
-	.mip-group-selection-header-search-left {
-	    position: absolute;
-	    left: 0;
-	    top: 0;
-	    height: 0.34rem;
-	}
+    .mip-group-selection-group {
+        margin-top: 18px;
+    }
 
-	.mip-group-selection-header-search-left i {
-	    color: #ccc;
-	    margin: 0 .10rem;
-	}
+    .mip-group-selection-title {
+        font-weight: bold;
+        color: #38f;
+    }
 
-	.mip-group-selection-header-search-right {
-	    height: 0.34rem;
-	    position: absolute;
-	    right: 0;
-	    top: 0;
-	    display: flex;
-	    flex-direction: row;
-	}
+    .mip-group-selection-part-history {
+        display: none;
+    }
 
-	.mip-group-selection-header-search-right button {
-	    height: 0.34rem;
-	    width: .34rem;
-	    margin: 0 .17rem;
-	    color: #000;
-	    display: block;
-	}
+    .mip-group-selection-btn {
+        height: 38px;
+        line-height: 38px;
+        text-align: center;
+        background: #f8f8f8;
+    }
 
-	.mip-group-selection-header-search-right button:active {
-	    background-color: rgba(0, 0, 0, 0.05);
-	}
+    .mip-group-selection-item {
+        height: 39px;
+        border-bottom: 1px solid #eee;
+        line-height: 39px;
+    }
 
-	.mip-group-selection-header-search-right button:before {
-	    content: '';
-	    height: .14rem;
-	    width: 1px;
-	    background-color: #e0e0e0;
-	    position: absolute;
-	    right: .66rem;
-	    top: 50%;
-	    margin-top: -0.07rem;
-	}
+    .mip-group-selection-sidebar-wrapper {
+        top: 0;
+        right: 10px;
+        bottom: 0;
+        margin: 10px 0;
+    }
 
-	.mip-group-selection-header-search-right i {
-	    padding: 0 0.09rem;
-	    font-size: .18rem;
-	    color: #e0e0e0;
-	}
+    .mip-group-selection-sidebar {
+        z-index: 50;
+        right: 7px;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+        box-sizing: border-box;
+        max-height: 100%;
+        padding: 20px 0;
+        border: 1px solid rgba(0, 0, 0, .05);
+        text-align: center;
+        color: #666;
+        border-radius: 10px;
+        background: rgba(255,255,255,.5);
+    }
 
-	.mip-group-selection-header-search-right i:active {
-	    background-color: rgba(0, 0, 0, 0.05);
-	}
+    .mip-group-selection-link {
+        display: block;
+        padding: 0 10px;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 3;
+        color: #38f;
+        border-radius: 50%;
+    }
 
-	.mip-group-selection-sug {
-	    display: none;
-	    position: absolute;
-	    left: 0;
-	    top: 0;
-	    width: 100%;
-	    height: 100%;
-	    padding: 44px 16px 0 16px;
-	    -webkit-box-sizing: border-box;
-	    box-sizing: border-box;
-	    z-index: 50;
-	    overflow: scroll;
-	    background: #fff;
-	}
+    .mip-group-selection-letter-top {
+        position: absolute;
+        z-index: 40;
+        top: 44px;
+        left: 0;
+        display: none;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        width: 100%;
+        height: 50px;
+        padding-left: 16px;
+        line-height: 50px;
+        background: #fff;
+    }
 
-	.mip-group-selection-sug.mip-group-selection-mask {
-	    background: rgba(0, 0, 0, 0.3);
-	}
-
-	.mip-group-selection-search-item {
-	    height: 42px;
-	    line-height: 42px;
-	}
-
-	.mip-group-selection-content {
-	    padding: 0 16px 0 16px;
-	    width: 100%;
-	    height: 100%;
-	    color: #333;
-	    -webkit-box-sizing: border-box;
-	    box-sizing: border-box;
-	    overflow-x: hidden;
-	    overflow-y: scroll;
-	    -webkit-overflow-scrolling: touch;
-	}
-
-	.mip-group-selection-group {
-	    margin-top: 18px;
-	}
-
-	.mip-group-selection-title {
-	    color: #3388ff;
-    	font-weight: bold;
-	}
-
-	.mip-group-selection-part-history {
-	    display: none;
-	}
-
-	.mip-group-selection-btn {
-	    height: 38px;
-	    line-height: 38px;
-	    background: #f8f8f8;
-	    text-align: center;
-	}
-
-	.mip-group-selection-item {
-	    height: 39px;
-	    line-height: 39px;
-	    border-bottom: 1px solid #eee;
-	}
-
-	.mip-group-selection-sidebar-wrapper {
-		top: 0;
-		right: 10px;
-		bottom: 0;
-		margin: 10px 0;
-	}
-
-	.mip-group-selection-sidebar {
-	    right: 7px;
-	    color: #666;
-	    text-align: center;
-	    z-index: 50;
-	    background: rgba(255,255,255,0.5);
-	    max-height: 100%;
-	    overflow: scroll;
-	    -webkit-overflow-scrolling: touch;
-	    border-radius: 10px;
-	    padding: 20px 0;
-	    box-sizing: border-box;
-	    border: 1px solid rgba(0,0,0,0.05);
-	}
-
-	.mip-group-selection-link {
-	    line-height: 3;
-	    font-size: 13px;
-	    color: #3388ff;
-    	font-weight: bold;
-    	display: block;
-    	padding: 0 10px;
-	}
-
-	.mip-group-selection-letter-top {
-	    display: none;
-	    position: absolute;
-	    top: 44px;
-	    left: 0;
-	    width: 100%;
-	    height: 50px;
-	    padding-left: 16px;
-	    line-height: 50px;
-	    background: #fff;
-	    z-index: 40;
-	    -webkit-box-sizing: border-box;
-	    box-sizing: border-box;
-	}
-
-	.mip-group-selection-large-char {
-	    display: none;
-	    position: absolute;
-	    left: 50%;
-	    top: 50%;
-	    width: 78px;
-	    height: 78px;
-	    line-height: 78px;
-	    margin-left: -39px;
-	    margin-top: -39px;
-	    border-radius: 3px;
-	    font-size: 36px;
-	    color: #fff;
-	    text-align: center;
-	    background: rgba(51, 51, 51, 0.4);
-	}
+    .mip-group-selection-large-char {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: none;
+        width: 78px;
+        height: 78px;
+        margin-top: -39px;
+        margin-left: -39px;
+        font-size: 36px;
+        line-height: 78px;
+        text-align: center;
+        color: #fff;
+        border-radius: 3px;
+        background: rgba(51, 51, 51, .4);
+    }
 }

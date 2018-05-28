@@ -62,7 +62,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 		        <div class="mip-group-selection-group mip-group-selection-part-letter">
 		            <div class="mip-group-selection-title" data-anchor="{{key}}">{{key}}</div>
 		            {{#cities}}
-		            <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
+		            <a class="mip-group-selection-item" href="#" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</a>
 		            {{/cities}}
 		        </div>
 		       {{/list}}
@@ -99,7 +99,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
                 <div class="mip-group-selection-group mip-group-selection-part-letter">
                     <div class="mip-group-selection-title" data-anchor="{{key}}">{{key}}</div>
                     {{#cities}}
-                    <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
+                    <a class="mip-group-selection-item" href="#" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</a>
                     {{/cities}}
                 </div>
                {{/list}}
@@ -208,7 +208,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
                 <div class="mip-group-selection-group mip-group-selection-part-letter">
                     <div class="mip-group-selection-title" data-anchor="{{key}}">{{key}}</div>
                     {{#cities}}
-                    <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}" data-city="{{city}}">{{city}}</div>
+                    <a class="mip-group-selection-item" href="#" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</a>
                     {{/cities}}
                 </div>
                 {{/list}}
@@ -233,7 +233,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 ### 配合事件绑定
 当用户选择某个元素时，分组选择组件会抛出名为 `selected` 的事件(event)，使用组件[事件通信机制](https://www.mipengine.org/doc/3-widget/6-help/3-mip-normal.html)可以监听这个事件，并与其他组件/数据交互（action）。
 
-如下方示例，当分组选择组件`mip-group-selection`中`selected`事件(event)发生时，调用id为`mygototop01`组件的`gototop`作为响应（action）。
+如下方示例，当分组选择组件`mip-group-selection`中`selected`事件(event)被触发时，调用 id 为`mygototop01`组件的`gototop`作为响应（action）。
 
 ```html
 <mip-group-selection
@@ -255,4 +255,4 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 
 
 ## 注意事项
-- mip-group-selection 分组选择组件依赖`mip-fixed`，`mip-mustache`，必须引用对应的javascript。
+- mip-group-selection 分组选择组件依赖`mip-fixed`，`mip-mustache`，必须引用对应的 javascript 脚本。

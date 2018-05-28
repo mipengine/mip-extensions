@@ -13,6 +13,8 @@ define(function (require) {
     var viewer = require('viewer');
     var dom = util.dom;
     require('./aio');
+    var shareConfig = require('./shareConfig');
+
     var defaultOpt = {
         url: window.location.href,
         title: '百度搜索有惊喜',       // 分享至外站的title,必选
@@ -44,6 +46,22 @@ define(function (require) {
             $('head').append(script);
         }
     });
+
+    //  去重
+    function unique (array) {
+        var res = [];
+        for (var i = 0, arrayLen = array.length; i < arrayLen; i++) {
+            for (var j = 0, resLen = res.length; j < resLen; j++) {
+                if (array[i] === res[j]) {
+                    break;
+                }
+            }
+            if (j === resLen) {
+                res.push(array[i])
+            }
+        }
+        return res;
+    }
 
     // 手百分享接口
     var nativeShare = function (cfg, encode) {
@@ -350,6 +368,9 @@ define(function (require) {
         })()
     };
 
+    // 分享按钮列表
+    var appArr = [pyq, wxfriend, qqfriend, qzone, sinaweibo, more];
+
     var Share = function (opt) {
         // 参数校验并设置默认值
         this.opt = $.extend({}, defaultOpt, opt);
@@ -361,6 +382,20 @@ define(function (require) {
         }
         this.opt.linkUrl = this.opt.url;
 
+        if (this.opt.wechatAPI && this.opt.wechatAppId){
+            var wechatOptions = {
+                title: this.opt.title,
+                content: this.opt.content,
+                iconUrl: this.opt.iconUrl,
+                wx:{
+                    api: this.opt.wechatAPI,
+                    appId: this.opt.wechatAppId,
+                    jsApiList: []
+                }
+            }
+            var wechatShare = new shareConfig(wechatOptions);
+        }
+        
         // init
         this._init();
     };
@@ -380,7 +415,8 @@ define(function (require) {
 
         _initShareList: function () {
             var me = this;
-
+            var appArrStr = ['pyq', 'wxfriend', 'qqfriend', 'qzone', 'sinaweibo']
+            var customArr = me.opt.custom.replace(/\s+/g, "").split(',');
             // 处理分享图标list,并拼装dom
             var list = [];
             if (isZbios || isUC || isQQ || isWechat) {
@@ -568,6 +604,21 @@ define(function (require) {
             return verticalScreenWidth;
         },
 
+        // 获取自定义分享按钮
+        _getCustomList: function (arrStr, arrCus) {
+            var arrIndexTemp = [];
+            for(var k =0; k<arrCus.length; k++){
+                var index = arrStr.indexOf(arrCus[k]);
+                if(index !== -1){
+                    arrIndexTemp.push(appArr[index]);
+                }
+            }
+            var arrFinal = arrIndexTemp.concat([qzone, sinaweibo]);
+            console.log(arrFinal)
+            arrFinal = unique(arrFinal);
+            return arrFinal;
+        },
+        
         constructor: Share
     };
 

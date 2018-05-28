@@ -22,7 +22,9 @@ define(function (require) {
             title: element.getAttribute('title') || document.title,
             url: element.getAttribute('url') || location.href,
             content: element.getAttribute('content') || '',
-            iconUrl: element.getAttribute('icon') || ''
+            iconUrl: element.getAttribute('icon') || '',
+            custom: element.getAttribute('custom') || '',
+            wechatAPI: element.getAttribute('wechatAPI') || ''
         }, $(element));
 
         var elem = $(element).children().not('mip-i-space')[0];

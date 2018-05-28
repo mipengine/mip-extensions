@@ -39,6 +39,7 @@
         title="分享标题" 
         content="分享内容" 
         icon="https://m.baidu.com/se/static/pmd/pmd/share/images/bdu.jpg" 
+        wechatAPI="//po.baidu.com/api/wechat/token.jsonp?app_id=wxadc1a0c6b9096e89"
         layout="responsive"
         width="414"
         height="158">
@@ -71,6 +72,13 @@
 ### icon
 
 说明：分享出去的图标  
+必选项：否  
+类型：字符串  
+取值范围：URL
+
+### wechatAPI
+
+说明：获取微信动态签名接口  
 必选项：否  
 类型：字符串  
 取值范围：URL

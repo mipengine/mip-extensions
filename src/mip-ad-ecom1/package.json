@@ -1,0 +1,14 @@
+{
+    "name": "mip-ad-ecom1",
+    "version": "1.0.0",
+    "description": "凤巢广告组件",
+    "contributors": [
+        {
+            "name": "liangjiaying",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

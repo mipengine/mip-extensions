@@ -1,0 +1,13 @@
+{
+  "name": "mip-searchAssociation",
+  "version": "1.0.0",
+
+  "author": {
+    "name": "wjb",
+    "email": "544913422@qq.com"
+  },
+
+  "engines": {
+    "mip": ">=1.1.0"
+  }
+}

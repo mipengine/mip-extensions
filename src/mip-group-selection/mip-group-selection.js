@@ -28,16 +28,20 @@ define(function (require) {
 
         // 从本地和远程获取数据
         this.getData(dataUrl).then(function (data) {
-            return me.renderHtml(data);
-        }).then(function () {
+            if (!data) {
+                reject('mip-city-selection 需要配置分组选项。可以配置到组件中，也可以配置远程数据。');
+            }
+            return templates.render(ele, data);
+        }).then(function(html){
+            me.renderHtml(html);
             // 修改最下方分组的样式，增加marginBottom, 保证滚动后分组标题可以在页面最上方
             me.modifyMarginBottom();
             // 绑定侧边栏快捷选择事件
             me.bindSidebarClickEvent();
             // 绑定列表元素选择事件
             me.bindItemClickEvent();
-        }, function (data) {
-            console.error(data);
+        }, function (dat) {
+            console.error(dat);
         });
     };
 
@@ -90,31 +94,19 @@ define(function (require) {
      * @param {Object} data 要被渲染的数据
      * @return {Object} Promise
      */
-    groupSelection.prototype.renderHtml = function renderHtml(data) {
+    groupSelection.prototype.renderHtml = function renderHtml(html) {
         var ele = this.element;
-
-        // mustache 模板渲染是异步的，需要promise一下。
-        return new Promise(function (resolve, reject) {
-            if (!data) {
-                reject('mip-city-selection 需要配置分组选项。可以配置到组件中，也可以配置远程数据。');
-            }
-
-            // 根据json配置渲染所有分组备选项
-            templates.render(ele, data).then(function (html) {
-                var wrapper = document.createElement('div');
-                wrapper.classList = 'mip-city-selection-wrapper';
-                wrapper.innerHTML = html;
-                ele.appendChild(wrapper);
-                resolve();
-            });
-        });
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('mip-city-selection-wrapper');
+        wrapper.innerHTML = html;
+        ele.appendChild(wrapper);
     };
 
     /**
      * 修改最下方分组的样式，增加marginBottom, 保证滚动后分组标题可以在页面最上方
      */
     groupSelection.prototype.modifyMarginBottom = function modifyMarginBottom() {
-        var lastGroup = this.element.querySelector('.mip-group-selection-content').lastElementChild;
+        var lastGroup = this.element.querySelector('.mip-city-selection-wrapper .mip-group-selection-content').lastElementChild;
         lastGroup.style.marginBottom = viewport.getHeight() - lastGroup.getBoundingClientRect().height - 10 + 'px';
     };
 
@@ -122,6 +114,7 @@ define(function (require) {
      * 绑定侧边栏快捷选择事件
      */
     groupSelection.prototype.bindSidebarClickEvent = function bindSidebarClickEvent() {
+        console.log('bindSidebarClickEvent');
         var me = this;
         var ele = this.element;
 
@@ -144,10 +137,17 @@ define(function (require) {
      */
     groupSelection.prototype.scrollToAnchor = function (anchor) {
         var anchorElement = this.element.querySelector('[data-anchor=' + anchor + ']');
-        window.scrollBy({
-            behavior: 'smooth',
-            top: anchorElement.getBoundingClientRect().top - 10
-        });
+        // 直接使用scrollBy + behavior 在安卓系统5 会报错。但在iphone4s 下不执行也不报错
+        try {
+            window.scrollBy({
+                behavior: 'smooth',
+                top: anchorElement.getBoundingClientRect().top - 10
+            });
+        } catch (e) {
+
+        }
+        // 兜底效果，再scroll一次
+        window.scrollBy(0, anchorElement.getBoundingClientRect().top - 10);
     };
 
     /**
@@ -159,6 +159,7 @@ define(function (require) {
      * 绑定列表元素选择事件
      */
     groupSelection.prototype.bindItemClickEvent = function () {
+        console.log('bindItemClickEvent');
         var ele = this.element;
 
         util.event.delegate(ele, '.mip-group-selection-item', 'click', itemClickHandler);

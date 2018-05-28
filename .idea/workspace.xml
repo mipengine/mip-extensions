@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d080ecf-01e9-414f-8c80-51b40fefb983" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mip-searchAssociation/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mip-searchAssociation/mip-searchAssociation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mip-searchAssociation/package.json" />
-    </list>
+    <list default="true" id="4d080ecf-01e9-414f-8c80-51b40fefb983" name="Default" comment="" />
     <ignored path="mip-extensions.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />

@@ -25,7 +25,7 @@ define(function (require) {
         var shareConfig = {
             title: shareData.title,
             titleDefault: document.title,
-            content: shareData.desc || document.title,
+            content: shareData.desc || shareData.content ||document.title,
             contentDefault: '我发现了一个精彩的小故事，一起来看吧',
             iconUrl: shareData.thumbnail,
             iconUrlDefault: ''
@@ -37,7 +37,7 @@ define(function (require) {
         var html = ''
             + '<aside class="mip-story-share">'
             +   '<div class="mip-share-container">'
-            +       '<mip-share url="' + shareUrl + '" title="'+ shareData.title + '" content="' + shareData.desc + '" iconUrl="' + shareData.thumbnail + '"></mip-share>'
+            +       '<mip-share url="' + shareUrl + '" title="'+ shareConfig.title + '" content="' + shareConfig.content + '" iconUrl="' + shareConfig.iconUrl + '"></mip-share>'
             +   '</div>'
             +   '<span class="mip-story-share-cancel" data-stats-baidu-obj="' + shareCancelStats + '">取消</span>'
             + '</aside>';

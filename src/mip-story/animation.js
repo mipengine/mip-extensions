@@ -105,14 +105,39 @@ define(function (require) {
         return !!element.querySelectorAll(MIP_STORY_ANIMATE_IN_SELECROR).length;
     }
 
+    function timeStrFormat (time) {
+        var match;
+        var num;
+        var units;
+
+        if (!time) {
+            return 0;
+        }
+        // 兼容线上传纯数字的情况；
+        time = (/^[0-9]*$/).test(+time) ? (time + 'ms') : time;
+        match = time.toLowerCase().match(/^([0-9\.]+)\s*(s|ms)$/);
+
+        if (!match) {
+            return 0;
+        }
+
+        num = match[1];
+        units = match[2];
+
+        if (match && match.length === 3 && (units === 's' || units === 'ms')) {
+            return units == 's' ? parseFloat(num) * 1000 : parseInt(num, 10);
+        }
+
+    }
+
     function createAnimationDef(el) {
         var keyframes;
         var easing;
 
         var offset = el.getBoundingClientRect();
         var animationDef = getPreset(el);
-        var duration = el.getAttribute(MIP_STORY_ANIMATE_IN_DURATION_ATTR);
-        var delay = el.getAttribute(MIP_STORY_ANIMATE_IN_DELAY_ATTR);
+        var duration = timeStrFormat(el.getAttribute(MIP_STORY_ANIMATE_IN_DURATION_ATTR));
+        var delay = timeStrFormat(el.getAttribute(MIP_STORY_ANIMATE_IN_DELAY_ATTR));
         var after = el.getAttribute(MIP_STORY_ANIMATE_IN_AFTER_ATTR);
 
         offset.pageHeight = window.innerHeight;
@@ -128,7 +153,8 @@ define(function (require) {
         }
 
         easing = {
-            'duration': +duration || animationDef.duration
+            'duration': +duration || animationDef.duration,
+            'easing': animationDef.easing || 'ease'
         };
 
         if (+delay) {

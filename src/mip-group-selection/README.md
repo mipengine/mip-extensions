@@ -1,4 +1,4 @@
-# mip-group-selection
+# mip-group-selection 分组选择
 
 mip-group-selection 分组选择组件，可用于城市分组，英文名分组，颜色分组等。
 

@@ -409,6 +409,7 @@ define(function (require) {
         return showmore.dataset.showmoreId;
     }
 
+    // 分析组件嵌套关系
     Showmore.prototype.analysisDep = function(){
         var childMipShowmore = this.ele.querySelectorAll('mip-showmore');
         var self = this;
@@ -426,8 +427,8 @@ define(function (require) {
                 return;
             }
 
-            let id = self.getId(child);
-            let childIns = ShowmoreInstance[id] || {};
+            var id = self.getId(child);
+            var childIns = ShowmoreInstance[id] || {};
             childIns.deps = (childIns.deps || []).concat([parentId])
             ShowmoreInstance[id] = childIns
 
@@ -436,10 +437,11 @@ define(function (require) {
         this.containSMChild = true;
     };
 
+    // 运行嵌套的showmore组件实例
     Showmore.prototype.runInitShowMore = function(){
-        let depIds = ShowmoreInstance[this.getId(this.ele)];
+        var depIds = ShowmoreInstance[this.getId(this.ele)];
         depIds && depIds.deps.forEach(function(depid){
-            let instan = ShowmoreInstance[depid];
+            var instan = ShowmoreInstance[depid];
             instan && instan.instance && !instan.instance.initialized &&instan.instance.init()
         })
     };

@@ -29,10 +29,10 @@ define(function (require) {
         // 从本地和远程获取数据
         this.getData(dataUrl).then(function (data) {
             if (!data) {
-                reject('mip-city-selection 需要配置分组选项。可以配置到组件中，也可以配置远程数据。');
+                console.error('mip-city-selection 需要配置分组选项。可以配置到组件中，也可以配置远程数据。');
             }
             return templates.render(ele, data);
-        }).then(function(html){
+        }).then(function (html) {
             me.renderHtml(html);
             // 修改最下方分组的样式，增加marginBottom, 保证滚动后分组标题可以在页面最上方
             me.modifyMarginBottom();
@@ -91,8 +91,7 @@ define(function (require) {
     /**
      * 获取分组配置信息，渲染备选项和右侧快速选择列表
      *
-     * @param {Object} data 要被渲染的数据
-     * @return {Object} Promise
+     * @param {Object} html 要被渲染的数据
      */
     groupSelection.prototype.renderHtml = function renderHtml(html) {
         var ele = this.element;
@@ -114,7 +113,6 @@ define(function (require) {
      * 绑定侧边栏快捷选择事件
      */
     groupSelection.prototype.bindSidebarClickEvent = function bindSidebarClickEvent() {
-        console.log('bindSidebarClickEvent');
         var me = this;
         var ele = this.element;
 
@@ -143,8 +141,8 @@ define(function (require) {
                 behavior: 'smooth',
                 top: anchorElement.getBoundingClientRect().top - 10
             });
-        } catch (e) {
-
+        }
+        catch (e) {
         }
         // 兜底效果，再scroll一次
         window.scrollBy(0, anchorElement.getBoundingClientRect().top - 10);
@@ -159,7 +157,6 @@ define(function (require) {
      * 绑定列表元素选择事件
      */
     groupSelection.prototype.bindItemClickEvent = function () {
-        console.log('bindItemClickEvent');
         var ele = this.element;
 
         util.event.delegate(ele, '.mip-group-selection-item', 'click', itemClickHandler);

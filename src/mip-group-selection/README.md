@@ -54,7 +54,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 		}
 	]}
     </script>
-    <!-- 城市选择组件依赖的 DOM 结构，不建议自行删除内容 -->
+    <!-- 城市选择组件依赖的 DOM 结构，不建议自行删除结构 -->
     <div class="mip-group-selection-wrapper">
     	<template type="mip-mustache">
 		    <div class="mip-group-selection-content">
@@ -70,7 +70,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 	    	<mip-fixed class="mip-group-selection-sidebar-wrapper">
 	    		<div class="mip-group-selection-sidebar">
 			    	{{#list}}
-			        <a class="mip-group-selection-link" data-target-anchor="{{key}}">{{key}}</a>
+			        <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
 			        {{/list}}
 		        </div>
 		    </mip-fixed>
@@ -91,7 +91,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 ```html
 <mip-group-selection class="mip-hidden" data-src="https://xxx/cities.json">
     <!--存在 data-src 时，本地数据配置不生效-->
-    <!-- 城市选择组件依赖的 DOM 结构，不建议自行删除内容 -->
+    <!-- 城市选择组件依赖的 DOM 结构，不建议自行删除结构 -->
     <div class="mip-group-selection-wrapper">
         <template type="mip-mustache">
             <div class="mip-group-selection-content">
@@ -99,7 +99,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
                 <div class="mip-group-selection-group mip-group-selection-part-letter">
                     <div class="mip-group-selection-title" data-anchor="{{key}}">{{key}}</div>
                     {{#cities}}
-                    <a class="mip-group-selection-item" href="#" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</a>
+                    <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
                     {{/cities}}
                 </div>
                {{/list}}
@@ -208,7 +208,7 @@ https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
                 <div class="mip-group-selection-group mip-group-selection-part-letter">
                     <div class="mip-group-selection-title" data-anchor="{{key}}">{{key}}</div>
                     {{#cities}}
-                    <a class="mip-group-selection-item" href="#" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</a>
+                    <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
                     {{/cities}}
                 </div>
                 {{/list}}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <title>城市选择组件-异步获取数据</title>
+    <title>城市选择组件 异步获取数据</title>
     <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
     <link rel="canonical" href="对应的原页面地址">
     <style mip-custom>
@@ -75,7 +75,7 @@
                     <div class="mip-group-selection-group mip-group-selection-part-letter">
                         <div class="mip-group-selection-title" data-anchor="{{key}}">{{key}}</div>
                         {{#cities}}
-                        <a class="mip-group-selection-item" href="#" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</a>
+                        <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
                         {{/cities}}
                     </div>
                     {{/list}}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html mip>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>城市选择组件 异步获取数据</title>
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    <link rel="canonical" href="对应的原页面地址">
+    <style mip-custom>
+    .selected-p {
+        margin: 10px;
+        white-space: pre-line;
+        line-height: 2;
+    }
+
+    .selected-text {
+        background: #f6f6f6;
+        padding: 5px;
+    }
+    </style>
+</head>
+
+<body>
+    <h3>这里使用了mip-bind组件</h3>
+    <mip-data>
+        <script type="application/json">
+            {
+                "code": "",
+                "pinyin": "",
+                "city": ""
+            }
+        </script>
+    </mip-data>
+    <p class="selected-p">
+        城市代号：<span m-text="code" class="selected-text"></span>，
+        城市拼音：<span m-text="pinyin" class="selected-text"></span>，
+        城市中文：<span m-text="city" class="selected-text"></span>
+    </p>
+
+    <mip-group-selection class="mip-hidden" data-src="cities.json">
+        <script type="application/json">
+        {
+            "list": [{
+                "key": "热门",
+                "cities": [{ "city": "北京", "pinyin": "beijing", "code": "1" }]
+            }, {
+                "key": "A",
+                "cities": [{ "city": "澳门", "pinyin": "aomen", "code": "7" }]
+            }, {
+                "key": "B",
+                "cities": [{ "city": "宝清", "pinyin": "baoqing", "code": "10" }]
+            }, {
+                "key": "C",
+                "cities": [{ "city": "重庆", "pinyin": "chongqing", "code": "13" }]
+            }, {
+                "key": "D",
+                "cities": [{ "city": "大庆", "pinyin": "daqing", "code": "16" }]
+            }, {
+                "key": "E",
+                "cities": [{ "city": "鄂尔多斯", "pinyin": "eerduosi", "code": "19" }]
+            }, {
+                "key": "F",
+                "cities": [{ "city": "阜阳", "pinyin": "fuyang", "code": "21" }]
+            }, {
+                "key": "G",
+                "cities": [{ "city": "广州", "pinyin": "guangzhou", "code": "24" }]
+            }]
+        }
+        </script>
+        <div class="mip-group-selection-wrapper">
+            <template type="mip-mustache">
+                <div class="mip-group-selection-content">
+                    {{#list}}
+                    <div class="mip-group-selection-group mip-group-selection-part-letter">
+                        <div class="mip-group-selection-title" data-anchor="{{key}}">{{key}}</div>
+                        {{#cities}}
+                        <div class="mip-group-selection-item" data-code="{{code}}" data-pinyin="{{pinyin}}">{{city}}</div>
+                        {{/cities}}
+                    </div>
+                    {{/list}}
+                </div>
+                <mip-fixed class="mip-group-selection-sidebar-wrapper">
+                    <div class="mip-group-selection-sidebar">
+                        {{#list}}
+                        <a class="mip-group-selection-link" data-target-anchor="{{key}}">{{key}}</a>
+                        {{/list}}
+                    </div>
+                </mip-fixed>
+            </template>
+        </div>
+    </mip-group-selection>
+
+
+    <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-group-selection/mip-group-selection.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-bind/mip-bind.js"></script>
+</body>
+
+</html>

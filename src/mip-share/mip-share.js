@@ -24,7 +24,7 @@ define(function (require) {
             content: element.getAttribute('content') || '',
             iconUrl: element.getAttribute('icon') || '',
             custom: element.getAttribute('custom') || '',
-            wechatAPI: element.getAttribute('wechatAPI') || ''
+            wechatAPI: element.getAttribute('wechatAPI') || '//po.baidu.com/api/wechat/token.jsonp?app_id=wxadc1a0c6b9096e89'
         }, $(element));
 
         var elem = $(element).children().not('mip-i-space')[0];

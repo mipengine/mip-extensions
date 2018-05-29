@@ -382,14 +382,13 @@ define(function (require) {
         }
         this.opt.linkUrl = this.opt.url;
 
-        if (this.opt.wechatAPI && this.opt.wechatAppId){
+        if (isWechat){
             var wechatOptions = {
                 title: this.opt.title,
                 content: this.opt.content,
                 iconUrl: this.opt.iconUrl,
                 wx:{
                     api: this.opt.wechatAPI,
-                    appId: this.opt.wechatAppId,
                     jsApiList: []
                 }
             }
@@ -614,7 +613,6 @@ define(function (require) {
                 }
             }
             var arrFinal = arrIndexTemp.concat([qzone, sinaweibo]);
-            console.log(arrFinal)
             arrFinal = unique(arrFinal);
             return arrFinal;
         },

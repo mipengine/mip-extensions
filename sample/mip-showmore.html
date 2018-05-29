@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html mip>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -12,7 +13,9 @@
         hr {
             margin: 20px 0;
         }
-
+        .egbox{
+            padding: 10px
+        }
         #demo1 mip-showmore  {
             opacity: 0.9;
             border: 1px solid #000;
@@ -56,6 +59,23 @@
             background-color: rgb(0, 56, 177);
             /* opacity: 0.5 */
         }
+/* 
+
+        #demo1 mip-showmore .showmoreBox02 {
+            opacity: 0.4
+        }
+
+        #demo1 mip-showmore .showmoreBox03 {
+            opacity: 0.3
+        }
+
+        #demo1 mip-showmore .showmoreBox04 {
+            opacity: 0.3
+        }
+
+        #demo1 mip-showmore .showmoreBox05 {
+            opacity: 0.1
+        } */
     </style>
 </head>
 
@@ -98,6 +118,24 @@
         <div on="tap:showmore13.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
     </div>
 
+    <hr />
+    <div class="egbox">
+        <mip-showmore maxheight='100' animatetime='.3' id="showmore21">
+            <div style="height:130px; background:#f3f3f3">
+                <h3>bufferheight:0</h3>        
+            </div>
+        </mip-showmore>
+        <div on="tap:showmore21.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
+        <div style="height:10px"></div>
+        <mip-showmore maxheight='100' bufferheight="50" animatetime='.3' id="showmore22">
+            <div style="height:130px; background:#f3f3f3">
+                <h3>bufferheight:20</h3>
+            </div>
+        </mip-showmore>
+        <div on="tap:showmore22.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
+
+    </div>
+    
     <!--mip 运行环境-->
     <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
     <script src="https://c.mipcdn.com/static/v1/mip-showmore/mip-showmore.js"></script>

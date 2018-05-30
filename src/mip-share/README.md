@@ -39,7 +39,7 @@
         title="分享标题" 
         content="分享内容" 
         icon="https://m.baidu.com/se/static/pmd/pmd/share/images/bdu.jpg" 
-        wechatAPI="//po.baidu.com/api/wechat/token.jsonp?app_id=wxadc1a0c6b9096e89"
+        wechatAPI="//xx.yy.com/getToken"
         layout="responsive"
         width="414"
         height="158">
@@ -86,3 +86,22 @@
 ## 注意事项
     
 分享到微信好友和微信朋友圈，在手机百度和 QQ 浏览器上显示是因为 `<mip-share>` 组件调用浏览器的 API，在其他浏览器上没有可用 API，所以分享按钮不显示或显示不全。
+
+## 获取微信动态签名接口返回数据格式参考
+```js
+{
+    "errno": 0,
+    "errmsg": "SUCCESS",
+    "data": {
+        "appId": "wxadc1a0c6b9096e89",
+        "nonceStr": "PwBOsf46ZVkUvlWN",
+        "timestamp": 1527676437,
+        "url": null,
+        "signature": "503771ae35c3b301ce61b3ef1791128cf68fe14e"
+    },
+    "time": 1527676437,
+    "hasFlush": true,
+    "format": "jsonp"
+}
+```
+其中，动态签名**必须**包含在`data`下

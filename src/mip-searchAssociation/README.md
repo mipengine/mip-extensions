@@ -14,6 +14,14 @@
 
 ```html
 <mip-searchAssociation data-src="XXX" class="result-list-con">
+    <div class="search-search">
+        <div class="search-box">
+            <span></span>
+            <input  class="mip-list-more" type="text" autocomplete="off" />
+            <span></span>
+        </div>
+        <button on="tap:home-right-sidebar.close">取消</button>
+    </div>
     <ul class="result-list"><ul>
 </mip-searchAssociation>
 \```

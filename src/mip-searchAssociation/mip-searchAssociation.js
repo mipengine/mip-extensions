@@ -6,8 +6,8 @@ define(function(require) {
     var fetchJsonp = require('fetch-jsonp');
     customElem.prototype.firstInviewCallback = function () {
         var element = this.element;
-        var input =  document.querySelectorAll('.mip-list-more')[0];
-        var resultList = element.querySelector('.result-list')[0];
+        var input =  element.querySelectorAll('.mip-list-more')[0];
+        var resultList = element.querySelectorAll('.result-list')[0];
         var src = element.getAttribute('data-src');
         var inputVal = input.value;
         input.onkeyup=function(){

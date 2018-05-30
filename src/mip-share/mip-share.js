@@ -11,6 +11,8 @@ define(function (require) {
 
     var Share = require('./share');
 
+    // 百度获取微信动态签名的默认接口
+    var BAIDUAPI = '//po.baidu.com/api/wechat/token.jsonp?app_id=wxadc1a0c6b9096e89';
 
     /**
      * build
@@ -22,7 +24,8 @@ define(function (require) {
             title: element.getAttribute('title') || document.title,
             url: element.getAttribute('url') || location.href,
             content: element.getAttribute('content') || '',
-            iconUrl: element.getAttribute('icon') || ''
+            iconUrl: element.getAttribute('icon') || '',
+            wechatAPI: element.getAttribute('wechatAPI') || BAIDUAPI
         }, $(element));
 
         var elem = $(element).children().not('mip-i-space')[0];

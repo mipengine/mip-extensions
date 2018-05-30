@@ -5,7 +5,7 @@
  */
 /* eslint-disable */
 define(function (require) {
-
+    var wx = require('./weixinsdk.min');
     // ------------------------------------- 手百提供分享代码 -------------------------------------
     var UA = navigator.userAgent;
     var isWX = /micromessenger\//i.test(UA); // 微信
@@ -21,23 +21,6 @@ define(function (require) {
     // 存储 init 时的 options 参数
     var OPTIONS;
     // ------------------------------------- 工具函数 -------------------------------------
-
-    // 数组去重, 微信获取签名数据时，站长传回的jsApiList可能和默认值重复
-    function unique (array) {
-        var res = [];
-        for (var i = 0, arrayLen = array.length; i < arrayLen; i++) {
-            for (var j = 0, resLen = res.length; j < resLen; j++) {
-                if (array[i] === res[j]) {
-                    break;
-                }
-            }
-            if (j === resLen) {
-                res.push(array[i])
-            }
-        }
-        return res;
-    }
-
     function objForEach (obj, fn) {
         var key, result
         for (key in obj) {
@@ -260,7 +243,6 @@ define(function (require) {
             options.wx.appId = options.wx.appId || 'wxadc1a0c6b9096e89' // 默认百家号公共帐号，安全域是 baidu.com
             options.wx.jsApiList = options.wx.jsApiList || []
             options.wx.jsApiList = options.wx.jsApiList.concat(['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']) //@Todo去重
-            options.wx.jsApiList = unique(options.wx.jsApiList);
 
             // 动态获取微信签名
             loadJS({
@@ -348,7 +330,7 @@ define(function (require) {
         // debug
         var debug = !!options.debug
         // 判断依赖的 sdk 是否加载完
-        if (isWX && !window.wx) {
+        if (isWX && !wx) {
             // wx.js 还没加载完
             if (debug) {
                 // alert('微信 SDK 未加载完成')
@@ -428,15 +410,12 @@ define(function (require) {
             var _arguments = arguments
             if (isWX) {
                 // 在微信中
-                if (window.wx) {
+                if (wx) {
                     // 已经引入微信 jssdk
                     initConfig.apply(this, _arguments);
 
                 } else {
-                    require(["./weixinsdk"], function (wx) {
-                        wx();
-                        initConfig.apply(this, _arguments)
-                    });
+                    initConfig.apply(this, _arguments)
                 }
             } else {
                 // 其他环境中
@@ -454,7 +433,7 @@ define(function (require) {
                 }
             })
             if (isWX) {
-                if (window.wx) {
+                if (wx) {
                     initConfig.call(this, options)
                 }
             } else {

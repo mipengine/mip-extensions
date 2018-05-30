@@ -368,9 +368,6 @@ define(function (require) {
         })()
     };
 
-    // 分享按钮列表
-    var appArr = [pyq, wxfriend, qqfriend, qzone, sinaweibo, more];
-
     var Share = function (opt) {
         // 参数校验并设置默认值
         this.opt = $.extend({}, defaultOpt, opt);
@@ -382,12 +379,12 @@ define(function (require) {
         }
         this.opt.linkUrl = this.opt.url;
 
-        if (isWechat){
+        if (isWechat) {
             var wechatOptions = {
                 title: this.opt.title,
                 content: this.opt.content,
                 iconUrl: this.opt.iconUrl,
-                wx:{
+                wx: {
                     api: this.opt.wechatAPI,
                     jsApiList: []
                 }
@@ -414,8 +411,7 @@ define(function (require) {
 
         _initShareList: function () {
             var me = this;
-            var appArrStr = ['pyq', 'wxfriend', 'qqfriend', 'qzone', 'sinaweibo']
-            var customArr = me.opt.custom.replace(/\s+/g, "").split(',');
+
             // 处理分享图标list,并拼装dom
             var list = [];
             if (isZbios || isUC || isQQ || isWechat) {
@@ -603,20 +599,6 @@ define(function (require) {
             return verticalScreenWidth;
         },
 
-        // 获取自定义分享按钮
-        _getCustomList: function (arrStr, arrCus) {
-            var arrIndexTemp = [];
-            for(var k =0; k<arrCus.length; k++){
-                var index = arrStr.indexOf(arrCus[k]);
-                if(index !== -1){
-                    arrIndexTemp.push(appArr[index]);
-                }
-            }
-            var arrFinal = arrIndexTemp.concat([qzone, sinaweibo]);
-            arrFinal = unique(arrFinal);
-            return arrFinal;
-        },
-        
         constructor: Share
     };
 

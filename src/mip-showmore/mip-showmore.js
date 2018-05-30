@@ -421,8 +421,8 @@ define(function (require) {
         ShowmoreInstance[parentId] = ShowmoreInstance[parentId] || {deps:[]};
         ShowmoreInstance[parentId].instance = this;
 
-        var currendParentNode = childMipShowmore[0]
-        childMipShowmore.forEach(function(child){
+        var currendParentNode = childMipShowmore[0];
+        Array.prototype.slice.call(childMipShowmore).forEach(function(child){
             if( currendParentNode !== child && currendParentNode.contains(child) ){
                 return;
             }
@@ -574,7 +574,6 @@ define(function (require) {
         var showmoreObj = new Showmore(ele);
         showmoreObj.analysisDep();
 
-        
         if( !showmoreObj.containSMChild ){
             showmoreObj.init();
         }

@@ -93,11 +93,12 @@
     "errno": 0,
     "errmsg": "SUCCESS",
     "data": {
-        "appId": "wxadc1a0c6b9096e89",
-        "nonceStr": "PwBOsf46ZVkUvlWN",
-        "timestamp": 1527676437,
-        "url": null,
-        "signature": "503771ae35c3b301ce61b3ef1791128cf68fe14e"
+        "debug": false, // 非必须，默认false， 值为true时开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        "appId": 'aaa', // 必须，公众号的唯一标识
+        "timestamp": 123, // 必须，生成签名的时间戳
+        "nonceStr": 'bbb', // 必须，生成签名的随机串
+        "signature": 'ccc',// 必须，签名
+        "jsApiList": [] // 必须，需要使用的JS接口列表，默认含['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
     },
     "time": 1527676437,
     "hasFlush": true,

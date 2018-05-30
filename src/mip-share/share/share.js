@@ -47,22 +47,6 @@ define(function (require) {
         }
     });
 
-    //  去重
-    function unique (array) {
-        var res = [];
-        for (var i = 0, arrayLen = array.length; i < arrayLen; i++) {
-            for (var j = 0, resLen = res.length; j < resLen; j++) {
-                if (array[i] === res[j]) {
-                    break;
-                }
-            }
-            if (j === resLen) {
-                res.push(array[i])
-            }
-        }
-        return res;
-    }
-
     // 手百分享接口
     var nativeShare = function (cfg, encode) {
         var onSuccess = function () {

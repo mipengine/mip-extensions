@@ -81,7 +81,7 @@ define(function (require) {
                 fixedParent.classList.add('mip-custom-transit-end');
             }, 0);
         }
-        
+
         // 结果页打开, 移动到 fixed layer
         if (fixedElement._fixedLayer) {
             fixedElement.setFixedElement([fixedParent], true);
@@ -197,17 +197,34 @@ define(function (require) {
         }
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
+            // 将渲染后的html片段插入外层组件模板
             res.element.innerHTML = res.html;
+            if (res.element.getAttribute('mip-position') === 'top') {
+                var height = result.height;
+                // 头部广告作为第一个元素插入在body顶部，以动画效果出现
+                util.css(res.element, {
+                    'margin-top': '-' + height + 'px'
+                });
+                document.body.prepend(res.element);
 
-            if (res.element.hasAttribute('mip-fixed')
-                && res.element.parentNode.getAttribute('type') === 'bottom') {
-                fixedElement.setPlaceholder();
-                var zIndex = getCss(res.element.parentNode, 'z-index');
+                // body 动画下移
+                var currentPaddingTop = getComputedStyle(document.body).paddingTop.replace('px', '');
+                util.css(document.body, {
+                    'padding-top': currentPaddingTop + height + 'px',
+                    'transition': 'padding-top .3s'
+                });
+            }
+            else {
+                // 渲染底部悬浮按钮
+                if (res.element.hasAttribute('mip-fixed')
+                    && res.element.parentNode.getAttribute('type') === 'bottom') {
+                    fixedElement.setPlaceholder();
+                    var zIndex = getCss(res.element.parentNode, 'z-index');
 
-                if (zIndex >= maxzIndex) {
-                    maxzIndex = zIndex;
-                    // alert(getCss(res.element, 'height') - 10)
-                    fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
+                    if (zIndex >= maxzIndex) {
+                        maxzIndex = zIndex;
+                        fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
+                    }
                 }
             }
         });
@@ -301,7 +318,7 @@ define(function (require) {
      */
     function getConfigScriptElement(elem) {
         if (!elem) {
-            return;  
+            return;
         }
         return elem.querySelector('script[type="application/json"]');
     }
@@ -329,10 +346,10 @@ define(function (require) {
         var me = this;
         this.placeholder.classList.add('fadeout');
         // 占位符增加淡出效果
-        this.placeholder.addEventListener("transitionend", function() {
+        this.placeholder.addEventListener('transitionend', function () {
             me.placeholder.remove();
         }, false);
-        this.placeholder.addEventListener("webkitTransitionend", function() {
+        this.placeholder.addEventListener('webkitTransitionend', function () {
             me.placeholder.remove();
         }, false);
     }

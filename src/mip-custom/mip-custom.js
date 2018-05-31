@@ -4,8 +4,7 @@
  */
 
 define(function () {
-
-    // rquire tools
+    // require tools
     var util = require('util');
     var viewer = require('viewer');
 
@@ -29,7 +28,6 @@ define(function () {
 
     /**
      * build钩子，触发渲染
-     *
      */
     customElement.prototype.build = function () {
         var me = this;
@@ -77,11 +75,12 @@ define(function () {
             var templateData = me.getMatchData(me.element, queue && queue.tempData);
             if (templateData && templateData.template.length > 0) {
                 me.render(templateData, me.element);
-            } else {
+            }
+            else {
                 me.pushQueue(me.element);
             }
-
-        } else {
+        }
+        else {
             me.fetchData(me.commonUrl, me.render.bind(me), me.element);
         }
     };
@@ -185,11 +184,10 @@ define(function () {
             commonData = data.common;
         }
 
-        // 模板数据缓存
+        // 渲染B区广告，模板数据缓存
         if (data.template) {
             template = data.template;
         }
-
         for (var i = 0; i < template.length; i++) {
 
             var tplData = template[i];

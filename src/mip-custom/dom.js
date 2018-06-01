@@ -4,22 +4,9 @@
  */
 define(function (require) {
 
-    /**
-     * [util 引入工具类]
-     * @type {Object}
-     */
     var util = require('util');
-
-    /**
-     * [templates 模板库]
-     * @type {Object}
-     */
+    var viewport = require('viewport');
     var templates = require('templates');
-
-    /**
-     * [fixedElement 引入 fixed 元素类]
-     * @type {Object}
-     */
     var fixedElement = require('fixed-element');
 
     var log = require('mip-custom/log');
@@ -171,11 +158,11 @@ define(function (require) {
      * @param  {DOM}     element   mip-custom 节点
      * @param  {string}  str       返回的 tpl 字符串
      * @param  {integer} len       模块中第几个组件
-     * @param  {Object}  result    渲染mustache模板的数据
+     * @param  {Object}  data    渲染mustache模板的数据
      * @param  {DOM}     container 装载定制化组件节点的容器
      * @return {string}  customTag 定制化组件标签
      */
-    function renderHtml(element, str, len, result, container) {
+    function renderHtml(element, str, len, data, container) {
         var html = str.replace(regexs.script, '').replace(regexs.style, '');
         var customTag = (new RegExp(regexs.tag, 'g')).exec(html);
         customTag = customTag && customTag[1] ? customTag[1] : null;
@@ -192,27 +179,14 @@ define(function (require) {
         container.appendChild(itemNode);
 
         if (customNode.hasAttribute('mip-fixed')) {
-
             moveToFixedLayer(element, customNode, container);
         }
-        // 模板渲染
-        templates.render(customNode, result, true).then(function (res) {
+        templates.render(customNode, data, true).then(function (res) {
             // 将渲染后的html片段插入外层组件模板
             res.element.innerHTML = res.html;
             if (res.element.getAttribute('mip-position') === 'top') {
-                var height = result.height;
-                // 头部广告作为第一个元素插入在body顶部，以动画效果出现
-                util.css(res.element, {
-                    'margin-top': '-' + height + 'px'
-                });
-                document.body.prepend(res.element);
-
-                // body 动画下移
-                var currentPaddingTop = getComputedStyle(document.body).paddingTop.replace('px', '');
-                util.css(document.body, {
-                    'padding-top': currentPaddingTop + height + 'px',
-                    'transition': 'padding-top .3s'
-                });
+                // 头部广告作为第一个元素插入在body顶部
+                insertTopAd({element: res.element, height: parseInt(data.height)});
             }
             else {
                 // 渲染底部悬浮按钮
@@ -308,7 +282,6 @@ define(function (require) {
         });
     }
 
-
     /**
      * [getConfigScriptElement 获取页面配置的content内容]
      * 不在此做解析
@@ -354,6 +327,30 @@ define(function (require) {
         }, false);
     }
 
+    // 插入头部广告位。
+    // 当用户未滚动时，滑动插入到页面顶部，将页面其他内容顶下来。
+    // 当用户已经滚动页面时，为不打扰用户，静默插入页面顶部，并保持页面区域内容稳定。
+    function insertTopAd(opt) {
+        // 广告插入头部位置
+        document.body.prepend(opt.element);
+        // 页面当前滚动距离
+        var scrollDistance = viewport.getScrollTop();
+        if (scrollDistance > 0) {
+            // 用户已经滚动页面时，为不打扰用户，静默插入页面顶部，并保持页面区域内容稳定。
+            viewport.setScrollTop(scrollDistance + opt.height);
+        }
+        else {
+            // 用户未滚动时，滑动插入到页面顶部，将页面其他内容顶下来。
+            var currentPaddingTop = getComputedStyle(document.body).paddingTop.replace('px', '');
+            util.css(document.body, {
+                'padding-top': currentPaddingTop + opt.height + 'px',
+                'transition': 'padding-top .3s'
+            });
+            util.css(opt.element, {
+                'margin-top': '-' + opt.height + 'px'
+            });
+        }
+    }
 
     return {
         render: render,

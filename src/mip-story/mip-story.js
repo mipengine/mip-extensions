@@ -65,7 +65,7 @@ define(function (require) {
         // 初始化引导页
         this.initHintLayer(element);
         // 初始化分享页面
-        this.initShare(mipStoryConfigData);
+        this.initShare(mipStoryConfigData, element);
         // 绑定事件
         this.initEvent();
         // 切换到第一页
@@ -81,9 +81,9 @@ define(function (require) {
         this.viewMuted = !!(this.muted || this.audio);
     };
 
-    MIPStory.prototype.initShare = function (storyConfig) {
+    MIPStory.prototype.initShare = function (storyConfig, element) {
         var shareConfig = storyConfig.share || {};
-        this.share = new ShareLayer(shareConfig);
+        this.share = new ShareLayer(shareConfig, element);
         var html = dm.create(this.share.build());
         this.element.appendChild(html);
     };

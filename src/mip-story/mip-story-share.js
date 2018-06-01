@@ -10,8 +10,9 @@ define(function (require) {
     var MIP_STORY_SHARE_SHOW = 'mip-story-share-show';
     var viewer = require('viewer');
 
-    function MIPStoryShare(shareConfig) {
+    function MIPStoryShare(shareConfig, root) {
         this.shareConfig = shareConfig;
+        this.root = root;
     }
 
     MIPStoryShare.prototype.build = function () {
@@ -21,23 +22,22 @@ define(function (require) {
                 data: ['_trackEvent', '小故事分享取消', '点击', window.location.href]
             })
         );
-        var shareData = this.shareConfig;
-        var shareConfig = {
-            title: shareData.title,
+        this.shareData = {
+            title: this.shareConfig.title,
             titleDefault: document.title,
-            content: shareData.desc || shareData.content ||document.title,
+            content: this.shareConfig.desc || this.shareConfig.content || document.title,
             contentDefault: '我发现了一个精彩的小故事，一起来看吧',
-            iconUrl: shareData.thumbnail,
+            iconUrl: this.shareConfig.thumbnail,
             iconUrlDefault: ''
         };
         // 微信小故事分享配置
-        viewer.sendMessage('wxshare_config', shareConfig);
-        var shareUrl = util.parseCacheUrl(location.href);
+        viewer.sendMessage('wxshare_config', this.shareData);
+        this.shareUrl = util.parseCacheUrl(location.href);
         /* eslint-disable max-len */
         var html = ''
             + '<aside class="mip-story-share">'
             +   '<div class="mip-share-container">'
-            +       '<mip-share url="' + shareUrl + '" title="'+ shareConfig.title + '" content="' + shareConfig.content + '" iconUrl="' + shareConfig.iconUrl + '"></mip-share>'
+            +       '<mip-share url="' + this.shareUrl + '" title="'+ this.shareData.title + '" content="' + this.shareData.content + '" iconUrl="' + this.shareData.iconUrl + '"></mip-share>'
             +   '</div>'
             +   '<span class="mip-story-share-cancel" data-stats-baidu-obj="' + shareCancelStats + '">取消</span>'
             + '</aside>';
@@ -46,12 +46,66 @@ define(function (require) {
     };
 
     MIPStoryShare.prototype.showShareLayer = function () {
-        var ele = document.querySelector('.mip-story-share');
+        var scSupport = this.supportCraft();
+        // 适配简单搜索，简单没有给出单独调用微信等渠道的api, 所以在这里拦截一下；
+        if (scSupport.support) {
+            this.callSearchCraftShare(scSupport.os);
+            return;
+        }
+
+        var ele = this.root.querySelector('.mip-story-share');
         ele.classList.add(MIP_STORY_SHARE_SHOW);
     };
 
+    /**
+     * callSearchCraftShare 吊起简单搜索的分享组件；
+     * @param {Boolean} osAndroid 是否是安卓端，对安卓有特殊的处理
+     */
+
+    MIPStoryShare.prototype.callSearchCraftShare = function (osAndroid) {
+        var message = {
+            func: 'callNativeShare',
+            options: {
+                'type': 'url',
+                'imgurl': this.shareData.iconUrl,
+                'title': this.shareData.title,
+                'describe': this.shareData.content,
+                'url': this.shareUrl || window.location.href
+            }
+        };
+
+        if (osAndroid) {
+            message = JSON.stringify(message);
+        }
+
+        try {
+            window.Viaduct.postMessage(message);
+        } catch (e) {
+            // 错误处理
+        }
+
+    };
+    /**
+     * supportCraft 检测当前运行环境是否支持简单搜索的分享吊起
+     * @return {Object}
+     */
+    MIPStoryShare.prototype.supportCraft = function () {
+        // 简单搜索ua判断 detect无法判断简单搜索故手动检测
+        var shareUa = typeof navigator !== 'undefined' ? navigator.userAgent : '';
+        var craft = /SearchCraft/i.test(shareUa);
+        var shareosAndroid = /Android/i.test(shareUa);
+        var shareV = craft && shareUa.match(/SearchCraft\/([\d.]*)/);
+        var supportAnd = ((shareosAndroid && parseFloat(shareV[1]) > 1.5));
+        var supportIos = (!shareosAndroid && (parseFloat(shareV[1])) > 1.11);
+        var support = craft && (supportAnd || supportIos);
+        return {
+            os: shareosAndroid,
+            support: support
+        };
+    };
+
     MIPStoryShare.prototype.hideShareLayer = function () {
-        var ele = document.querySelector('.mip-story-share');
+        var ele = this.root.querySelector('.mip-story-share');
         ele.classList.remove(MIP_STORY_SHARE_SHOW);
     };
 

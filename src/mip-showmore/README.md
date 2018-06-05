@@ -28,7 +28,7 @@
 - 在按钮中增加 `on` 属性，注意 `on` 属性中需要填写对应 `<mip-showmore>` 的 `id`。比如本例中，`<mip-showmore id="showmore02">`，`on` 属性需要写成 `on="tap:showmore01.toggle"`。
 
 ```html
-<mip-showmore maxheight='screen:0.5' animatetime='.3' id="showmore02">
+<mip-showmore bufferheight="40" maxheight='screen:0.5' animatetime='.3' id="showmore02">
     <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
     <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
     <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
@@ -223,4 +223,10 @@ MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部�
 
 - 说明：折叠边界是否渐变
 - 取值：只能为 '0' 或 '1'
+- 必选项：否
+
+### bufferheight
+
+- 说明：弹性缓冲高度，判读 maxheight 时会加上此高度进行判断
+- 取值：数字
 - 必选项：否

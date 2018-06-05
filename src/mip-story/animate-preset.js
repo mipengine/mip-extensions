@@ -84,6 +84,95 @@ define(function (require) {
                 ];
             }
         },
+        'fade-in-top': {
+            duration: 500,
+            easing: 'ease-in',
+            delay: 0,
+            keyframes: function (offset) {
+                var offsetY = -50;
+                return [
+                    {
+                        opacity: 0,
+                        transform: 'translate3d(0, ' + offsetY + 'px, 0)'
+                    },
+                    {
+                        opacity: 1,
+                        transform: 'translate3d(0, 0, 0)'
+                    }
+                ];
+            }
+        },
+        'fade-in-bottom': {
+            duration: 500,
+            easing: 'ease-in',
+            delay: 0,
+            keyframes: function (offset) {
+                var offsetY = 50;
+                return [
+                    {
+                        opacity: 0,
+                        transform: 'translate3d(0, ' + offsetY + 'px, 0)'
+                    },
+                    {
+                        opacity: 1,
+                        transform: 'translate3d(0, 0, 0)'
+                    }
+                ];
+            }
+        },
+        'fade-in-left': {
+            duration: 500,
+            delay: 0,
+            easing: 'ease-in',
+            keyframes: function (offset) {
+                var offsetX = -50;
+                return [
+                    {
+                        opacity: 0,
+                        transform: 'translate3d(' + offsetX + 'px, 0, 0)'
+                    },
+                    {
+                        opacity: 1,
+                        transform: 'translate3d(0, 0, 0)'
+                    }
+                ];
+            }
+        },
+        'fade-in-right': {
+            duration: 500,
+            delay: 0,
+            easing: 'ease-in',
+            keyframes: function (offset) {
+                var offsetX = 50;
+                return [
+                    {
+                        opacity: 0,
+                        transform: 'translate3d(' + offsetX + 'px, 0, 0)'
+                    },
+                    {
+                        opacity: 1,
+                        transform: 'translate3d(0, 0, 0)'
+                    }
+                ];
+            }
+        },
+        'scale-in': {
+            duration: 1000,
+            delay: 0,
+            easing: 'linear',
+            keyframes: function (offset) {
+                var offsetX = 50;
+                return [
+                    {
+                        transform: 'scale(1)',
+                    },
+                    {
+                        transform: 'scale(1.1)'
+                    }
+                ];
+            }
+        },
+
         'twirl-in': {
             duration: 1000,
             delay: 0,

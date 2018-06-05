@@ -33,8 +33,6 @@ define(function () {
         var me = this;
         dom.addPlaceholder.apply(this);
         var checkElement = function () {
-            console.log('mip-ad-ecom 配置合法');
-            console.log(dom.getConfigScriptElement(me.element));
             if (dom.getConfigScriptElement(me.element)) {
                 me.initCustom();
                 return true;
@@ -58,7 +56,6 @@ define(function () {
 
         // 异常情况下不展示定制化MIP
         if (!me.isShowCustom()) {
-            console.log('return');
             return;
         }
         // 监听代理 a 标签点击事件
@@ -118,7 +115,6 @@ define(function () {
      * @param {HTMLElement} element 需要渲染的element
      */
     customElement.prototype.render = function (data, element) {
-        console.log(data);
         var commonData = {};
         var template = {};
         if (!data || !element) {

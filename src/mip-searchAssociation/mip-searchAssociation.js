@@ -10,7 +10,10 @@ define(function(require) {
         var resultList = element.querySelectorAll('.result-list')[0];
         var src = element.getAttribute('data-src');
         var inputVal = input.value;
-        input.onkeyup=function(){
+        input.onkeyup=function(e){
+            if(e.keyCode == 13){
+                window.location.href='/search-kecheng?kw='+inputVal
+            }
             fetchJsonp(src, {
                 jsonpCallback: inputVal
             }).then(function (res) {
@@ -19,7 +22,7 @@ define(function(require) {
                 for(var value of searchData){
                     html+=`
                         <li>
-                            <a href="${value.url}">${value.name}</a>
+                            <a href="${value.url}">${value.kwd}</a>
                         </li>
                     `
                 }

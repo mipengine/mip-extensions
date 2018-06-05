@@ -9,6 +9,9 @@ define(function (require) {
     var util = require('util');
     var viewport = require('viewport');
     var timeoutArray = [];
+    var increaseId = 0;
+
+    var ShowmoreInstance = {};
 
     // 匹配节点是否在按钮中
     function matchOriginTarget (id, node) {
@@ -46,24 +49,35 @@ define(function (require) {
         // 对应的收起按钮
         this.btn = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
         this.eleid = ele.id;
+
+        // 是否含有mip-showmore子元素
+        this.containSMChild = false;
+        
+        // 是否初使化
+        this.initialized = false;
+
         // 获取内容显示框，v1.1.0 方法
         if (!this.showBox) {
             this.showBox = this.ele;
         }
     };
 
-    Showmore.prototype.init = function () {
+    Showmore.prototype.init = function (deps) {
         // 如果动画不是数字
         if (isNaN(this.animateTime)) {
             return;
         }
 
+        // console.log(this.ele.id)
         // 获取高度阈值
         this.maxHeight = this.ele.getAttribute('maxheight');
         // 获取字数阈值
         this.maxLen = this.ele.getAttribute('maxlen');
         // 获取是否需要bottom渐变
         this.bottomShadow = this.ele.getAttribute('bottomshadow') === '1';
+        // 弹性高度，判断高度阈值时会增加此弹性
+        this.bufferHeight = this.ele.getAttribute('bufferheight');
+        this.bufferHeight = +this.bufferHeight ? +this.bufferHeight : 0;
         // 渐变className
         this.bottomShadowClassName = 'linear-gradient';
         // 处理阈值高度(高度优先于字体长度,不允许两个同时存在)
@@ -103,10 +117,15 @@ define(function (require) {
             this._initHeight();
         }
 
+        
+
         // 避免初始加载闪现
         util.css(this.ele, {
             visibility: 'visible'
         });
+        this.runInitShowMore();
+
+        this.initialized = true;
 
         // 保存点击按钮当前display状态，兼容v1.0.0和v1.1.0
         var display = this.clickBtnSpan && getComputedStyle(this.clickBtnSpan).display;
@@ -145,7 +164,7 @@ define(function (require) {
             height = util.rect.getElementOffset(this.showBox).height;
         }
         // 如果高度大于阈值
-        if (height > this.maxHeight) {
+        if (height > (+this.maxHeight) + this.bufferHeight) {
             util.css(this.showBox, {
                 'height': this.maxHeight + 'px',
                 'overflow': 'hidden'
@@ -383,6 +402,50 @@ define(function (require) {
         util.css(obj, cssObj);
     };
 
+    Showmore.prototype.getId = function(showmore){
+        if( !showmore.dataset.showmoreId ){
+            showmore.dataset.showmoreId = '__showmoreincreaseId__'+(++increaseId);
+        }
+        return showmore.dataset.showmoreId;
+    }
+
+    // 分析组件嵌套关系
+    Showmore.prototype.analysisDep = function(){
+        var childMipShowmore = this.ele.querySelectorAll('mip-showmore');
+        var self = this;
+        if( !childMipShowmore.length ){
+            return
+        }
+        var parentId = this.getId(this.ele)
+
+        ShowmoreInstance[parentId] = ShowmoreInstance[parentId] || {deps:[]};
+        ShowmoreInstance[parentId].instance = this;
+
+        var currendParentNode = childMipShowmore[0];
+        Array.prototype.slice.call(childMipShowmore).forEach(function(child){
+            if( currendParentNode !== child && currendParentNode.contains(child) ){
+                return;
+            }
+
+            var id = self.getId(child);
+            var childIns = ShowmoreInstance[id] || {};
+            childIns.deps = (childIns.deps || []).concat([parentId])
+            ShowmoreInstance[id] = childIns
+
+            currendParentNode = child;
+        });
+        this.containSMChild = true;
+    };
+
+    // 运行嵌套的showmore组件实例
+    Showmore.prototype.runInitShowMore = function(){
+        var depIds = ShowmoreInstance[this.getId(this.ele)];
+        depIds && depIds.deps.forEach(function(depid){
+            var instan = ShowmoreInstance[depid];
+            instan && instan.instance && !instan.instance.initialized &&instan.instance.init()
+        })
+    };
+
      /**
          * Make height transiton for element that has unknown height.
          * height transiton from 0px/40px to whatever height element will be.
@@ -453,12 +516,16 @@ define(function (require) {
         }
 
         element.style.height = oriHeight;
+        element.style.transition = 'height ' + transitionTime + 's';
+        
         // now start the animation
-        var timeout2 = setTimeout(function () {
-            element.style.transition = 'height ' + transitionTime + 's';
+
+        var timeout2 = requestAnimationFrame ?  (requestAnimationFrame)(function () {
             // XXX: in setTimeout, or there won't be any animation
             element.style.height = tarHeight;
-        }, 10);
+        }) : setTimeout(function(){
+            element.style.height = tarHeight;
+        },10);
         // after transition, exec callback functions
         var timeout3 = setTimeout(function () {
             cbFun();
@@ -497,6 +564,7 @@ define(function (require) {
         return height;
     }
 
+
     /**
      * 构造元素，只会运行一次
      */
@@ -504,7 +572,12 @@ define(function (require) {
         var me = this;
         var ele = this.element;
         var showmoreObj = new Showmore(ele);
-        showmoreObj.init();
+        showmoreObj.analysisDep();
+
+        if( !showmoreObj.containSMChild ){
+            showmoreObj.init();
+        }
+
         showmoreObj._bindClick();
 
         this.addEventAction('toggle', function (event) {

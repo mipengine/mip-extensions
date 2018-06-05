@@ -184,7 +184,8 @@ mip-story-layer[template=thirds] {
     display: -webkit-box;
 }
 
-mip-story-layer[template=fill] > :first-child{
+mip-story-layer[template=fill] > :first-child,
+mip-story-layer[template=cover] > :first-child {
     bottom: 0;
     display: block;
     height: auto;
@@ -209,20 +210,6 @@ mip-story-layer[template=cover] > mip-img img,
 mip-story-layer[template=cover] > mip-video video {
     object-fit: cover !important;
 }
-
-mip-story-layer[template=cover] mip-anim,
-mip-story-layer[template=cover] mip-img,
-mip-story-layer[template=cover] mip-video {
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100%;
-    height: auto;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-}
-
 mip-story-layer[template=horizontal] {
     flex-direction: row;
     -webkit-flex-direction: row;

@@ -13,6 +13,8 @@ define(function (require) {
     var viewer = require('viewer');
     var dom = util.dom;
     require('./aio');
+    var shareConfig = require('./shareConfig');
+
     var defaultOpt = {
         url: window.location.href,
         title: '百度搜索有惊喜',       // 分享至外站的title,必选
@@ -361,6 +363,19 @@ define(function (require) {
         }
         this.opt.linkUrl = this.opt.url;
 
+        if (isWechat) {
+            var wechatOptions = {
+                title: this.opt.title,
+                content: this.opt.content,
+                iconUrl: this.opt.iconUrl,
+                wx: {
+                    api: this.opt.wechatAPI,
+                    jsApiList: []
+                }
+            }
+            var wechatShare = new shareConfig(wechatOptions);
+        }
+        
         // init
         this._init();
     };

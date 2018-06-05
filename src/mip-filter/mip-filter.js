@@ -6,13 +6,13 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var mipUtil = require('util');
-
+    var filter = "all";
+    var filterKey = 'mipFilterKey';
     /**
      * build
      */
     function build() {
         var element = this.element;
-
         var filter = new Filter({
             filterWrap: element.querySelector(element.getAttribute('mip-filter-filterWrap')),
             itemWrap: element.querySelector(element.getAttribute('mip-filter-itemWrap')),
@@ -22,7 +22,6 @@ define(function (require) {
 
         filter.init();
     }
-
     var util = {
         // used multiple times
         containReg: function (txt) {
@@ -56,13 +55,13 @@ define(function (require) {
         }
     };
     /**
-    * define a Filter,
-    * opt.filterWrap: mandatory. dom wrapper of filter
-    * opt.itemWrap: mandatory. dom wrapper of item
-    * opt.mobileWidth: maximum width to show wise layout
-    * opt.enableHash: weather use window hash.
-    * opt.filterText: text shown when filter is activated.
-    */
+     * define a Filter,
+     * opt.filterWrap: mandatory. dom wrapper of filter
+     * opt.itemWrap: mandatory. dom wrapper of item
+     * opt.mobileWidth: maximum width to show wise layout
+     * opt.enableHash: weather use window hash.
+     * opt.filterText: text shown when filter is activated.
+     */
     function Filter(opt) {
         var _this = this;
         if (!opt || !opt.filterWrap || !opt.itemWrap) {
@@ -74,28 +73,34 @@ define(function (require) {
         opt.enableHash = (opt.enableHash && opt.enableHash==="false") ? false : true;
 
         /**
-        * shoot: at first time,
-        * add filter color and text to default-"none"
-        */
+         * shoot: at first time,
+         * add filter color and text to default-"none"
+         */
         this.init = function () {
-            var hash = '';
-            var filter = '';
-            if (opt.enableHash) {
-                hash = window.location.hash;
-            }
-            if(hash) {
-                filter = hash.replace('#','');
-            } else {
-                filter = 'all';
-            }
-            var filterTarget = opt.filterWrap.querySelector('[data-filtertype="' + filter + '"]')
+            filter = MIP.hash.get(filterKey);
+            this.setHash(filter);
+            var filterTarget = opt.filterWrap.querySelector('[data-filtertype="' + filter + '"]');
+            filterTarget = filterTarget || opt.filterWrap.querySelector('[data-filtertype="all"]');
             this.filterSelect(filterTarget);
         };
 
+        this.setHash = function(setValue){
+            var hasTreeKeys = Object.keys(MIP.hash.hashTree);
+            var hashKeys = [];
+            if(hasTreeKeys.length > 0){
+                hasTreeKeys.forEach(function(key){
+                    key !== filterKey && MIP.hash.get(key) && hashKeys.push(key+'='+MIP.hash.get(key))
+                })
+            }
+            hashKeys.push(filterKey+'='+setValue);
+            window.location.hash = '&'+hashKeys.join('&');
+            MIP.hash.refreshHashTree()
+        }
+
         /**
-        * shoot: when a filter is clicked.
-        * add filter color and text to selected one.
-        */
+         * shoot: when a filter is clicked.
+         * add filter color and text to selected one.
+         */
         this.filterSelect = function (target) {
             var oldEle = opt.filterWrap.querySelector('.active') || '';
             var newEle = target;
@@ -134,9 +139,9 @@ define(function (require) {
         };
 
         /**
-        * shoot: on mobile when filter btn is clicked.
-        * slide up or down the whole filter.
-        */
+         * shoot: on mobile when filter btn is clicked.
+         * slide up or down the whole filter.
+         */
         this.toggleFilter = function () {
             var listWrap = opt.filterWrap.querySelector('.filter-list');
 
@@ -166,9 +171,9 @@ define(function (require) {
         };
 
         /**
-        * shoot: when filter btn is clicked.
-        * hide items that cant pass the filter.
-        */
+         * shoot: when filter btn is clicked.
+         * hide items that cant pass the filter.
+         */
         this.applyFilter = function (filter) {
             var num = 0;
             //hack: arr.forEach() cannot be used in uc&qq browser
@@ -197,27 +202,22 @@ define(function (require) {
                     opt.itemWrap.removeChild(emptyTip);
                 }
             }
-            if (opt.enableHash) {
-                var items = location.href.split('#');
-                window.location.replace(items[0] + '#' + filter);
-            }
+            this.setHash(filter)
             window.scrollTo(0,0);
         };
 
         /**
-        * add click event to all filters
-        * when clicked, select the filter,
-        * if wise, collapse filter list.
-        */
-
-        var listWrap = opt.filterWrap.querySelector('.filter-list');
+         * add click event to all filters
+         * when clicked, select the filter,
+         * if wise, collapse filter list.
+         */
         var undelegate = mipUtil.event.delegate(opt.filterWrap, '.filter-link', 'click', function(){
             _this.filterSelect(this)
         } );
         /**
-        * add click event to filter result, which show only on wise.
-        * when clicked, uncollapse and collapse filter list.
-        */
+         * add click event to filter result, which show only on wise.
+         * when clicked, uncollapse and collapse filter list.
+         */
         opt.filterWrap.querySelector('.filter-result').addEventListener('click', _this.toggleFilter);
     }
 

@@ -1,0 +1,14 @@
+{
+    "name": "mip-group-selection",
+    "version": "1.0.0",
+    "description": "分组选择组件，可用于城市分组，英文名分组，颜色分组等",
+    "contributors": [
+        {
+            "name": "Jenny_L",
+            "email": "jiaojiaomao220@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

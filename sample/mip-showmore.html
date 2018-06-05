@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html mip>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    <!--TODO: canonical href需要替换成原页面url-->
+    <link rel="canonical" href="https://www.example.com/your/path.html">
+    <title>MIP showmore </title>
+    <!--TODO: 替换样式-->
+    <style mip-custom>
+        hr {
+            margin: 20px 0;
+        }
+        .egbox{
+            padding: 10px
+        }
+        #demo1 mip-showmore  {
+            opacity: 0.9;
+            border: 1px solid #000;
+            margin: 10px;
+            /* padding: 10px; */
+            color: #fff;
+            margin-bottom: 0
+        }
+        #demo1 .mip-showmore-btn{
+            color: #fff;
+            margin:0 10px;
+            padding: 8px 15px;
+        }
+
+        #demo1 mip-showmore .showmoreBox {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            color: #fff
+        }
+
+        #demo1 mip-showmore#showmore02,
+        #demo1 mip-showmore#showmore02+.mip-showmore-btn {
+            background-color: rgb(153, 0, 0);
+            /* opacity: 0.4 */
+        }
+
+        #demo1 mip-showmore#showmore03, #demo1 mip-showmore#showmore03+.mip-showmore-btn {
+            background-color: rgb(142, 202, 0);
+            /* opacity: 0.3 */
+        }
+
+        #demo1 mip-showmore#showmore04, #demo1 mip-showmore#showmore04+.mip-showmore-btn {
+            background-color: rgb(0, 194, 129);
+            /* opacity: 0.4 */
+        }
+
+        #demo1 mip-showmore#showmore05, #demo1 mip-showmore#showmore05 +.mip-showmore-btn {
+            background-color: rgb(0, 56, 177);
+            /* opacity: 0.5 */
+        }
+/* 
+
+        #demo1 mip-showmore .showmoreBox02 {
+            opacity: 0.4
+        }
+
+        #demo1 mip-showmore .showmoreBox03 {
+            opacity: 0.3
+        }
+
+        #demo1 mip-showmore .showmoreBox04 {
+            opacity: 0.3
+        }
+
+        #demo1 mip-showmore .showmoreBox05 {
+            opacity: 0.1
+        } */
+    </style>
+</head>
+
+<body>
+    <h3>多级嵌套</h3>
+    <div id="demo1">
+        <mip-showmore bottomshadow='1'  maxheight='screen:1.5' animatetime='.3' id="showmore02">
+            <div class="showmoreBox showmoreBox02"> showmore02 (screen:1.5) </div>    
+            <mip-showmore bottomshadow='1'  maxheight='screen:0.1' animatetime='.3' id="showmore03">
+                <div class="showmoreBox showmoreBox03"> showmore03 </div>
+                <div>
+                    <mip-showmore bottomshadow='1'  maxheight='screen:0.1' animatetime='.3' id="showmore04">
+                        <div class="showmoreBox showmoreBox04"> showmore04 </div>
+                    </mip-showmore>
+                    <div on="tap:showmore04.toggle" data-closetext="收起04" class="mip-showmore-btn">显示04</div>
+                </div>
+
+            </mip-showmore>
+            <div on="tap:showmore03.toggle" data-closetext="收起03" class="mip-showmore-btn">显示03</div>
+
+            <mip-showmore bottomshadow='1' bufferheight="40"  maxheight='260' animatetime='.3' id="showmore05">
+                <div class="showmoreBox showmoreBox05"> showmore05 </div>
+            </mip-showmore>
+            <div on="tap:showmore05.toggle" data-closetext="收起05" class="mip-showmore-btn">显示05</div>
+           
+        </mip-showmore>
+        <div on="tap:showmore02.toggle" data-closetext="收起02" class="mip-showmore-btn">显示02</div>
+
+    </div>
+    <hr />
+    <h3>嵌套</h3>
+    <div id="demo2">
+        <mip-showmore maxheight='40' animatetime='.3' id="showmore13">
+            【外层元素】MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。
+            <mip-showmore maxheight='40' animatetime='.3' id="showmore14">
+                【内层元素】MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。
+            </mip-showmore>
+            <div on="tap:showmore14.toggle" data-closetext="收起内层内容" class="mip-showmore-btn">点击显示内层</div>
+        </mip-showmore>
+        <div on="tap:showmore13.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
+    </div>
+
+    <hr />
+    <div class="egbox">
+        <mip-showmore maxheight='100' animatetime='.3' id="showmore21">
+            <div style="height:130px; background:#f3f3f3">
+                <h3>bufferheight:0</h3>        
+            </div>
+        </mip-showmore>
+        <div on="tap:showmore21.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
+        <div style="height:10px"></div>
+        <mip-showmore maxheight='100' bufferheight="50" animatetime='.3' id="showmore22">
+            <div style="height:130px; background:#f3f3f3">
+                <h3>bufferheight:20</h3>
+            </div>
+        </mip-showmore>
+        <div on="tap:showmore22.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
+
+    </div>
+    
+    <!--mip 运行环境-->
+    <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-showmore/mip-showmore.js"></script>
+</body>
+
+</html>

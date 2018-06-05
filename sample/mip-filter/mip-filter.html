@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html mip>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title><!-- 标题 --></title>
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    <link rel="canonical">
+    <style mip-custom>
+        /* 自定义样式 */
+    </style>
+</head>
+<body>
+<!-- 正文 -->
+<mip-filter
+        mip-filter-filterWrap=".filter"
+        mip-filter-itemWrap=".filter-item-wrap"
+        mip-filter-enableHash="true">
+    <sidebar class="filter">
+        <div class="filter-result"></div>
+        <ul class="filter-list">
+            <li class="filter-title"                                                                                                                                                                                                                                                                                                                                                                                        >
+                <div class="filter-link" data-filtertype="all">(all)查看全部<span class="filter-num">3</span></div>
+            </li>
+            <li class="filter-title">
+                <div class="filter-link" data-filtertype="widget">(widget)组件<span class="filter-num">2</span></div>
+            </li>
+            <li class="filter-title">
+                <div class="filter-link" data-filtertype="layout">(layout)组件布局<span class="filter-num">1</span></div>
+            </li>
+        </ul>
+    </sidebar>
+    <div class="filter-item-wrap">
+        <div class="filter-item" data-filtertype="widget">
+            <span>(widget)组件新增</span>
+        </div>
+        <div class="filter-item" data-filtertype="layout">
+            <span>(layout)广告组件 layout 升级</span>
+        </div>
+        <div class="filter-item" data-filtertype="widget">
+            <span>(widget)测试版发布</span>
+        </div>
+    </div>
+</mip-filter>
+<script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+<script src="https://c.mipcdn.com/static/v1/mip-filter/mip-filter.js"></script>
+</body>
+</html>

@@ -28,14 +28,13 @@ define(function (require) {
         params.logid = data.getHashData('lid');
         params.eqid = data.getHashData('eqid');
 
-        // 内容联盟导流字段
-        var originalSource = data.getHashData('originalSource');
-        var mediaid = data.getHashData('mediaid');
-        if (originalSource) {
-            params.originalSource = originalSource;
-        }
-        if (mediaid) {
-            params.mediaid = mediaid;
+        // 内容联盟来源 导流字段
+        var feedArr = ['originalSource', 'mediaid', 'fn'];
+        for (var i = 0; i < feedArr.length; i ++) {
+            var arr = feedArr[i];
+            if (data.getHashData(arr)) {
+                params[arr] = data.getHashData(arr);
+            }
         }
 
         return params;

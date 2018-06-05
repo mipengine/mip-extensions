@@ -50,6 +50,7 @@ define(function (require) {
         return {};
     };
     MIPStory.prototype.init = function () {
+        var element = this.element;
         var html = this.win.document.documentElement;
         var mipStoryConfigData = this.getConfigData();
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
@@ -62,7 +63,7 @@ define(function (require) {
         // 初始化结尾页
         this.initBookend(mipStoryConfigData);
         // 初始化引导页
-        this.initHintLayer();
+        this.initHintLayer(element);
         // 初始化分享页面
         this.initShare(mipStoryConfigData);
         // 绑定事件
@@ -87,8 +88,8 @@ define(function (require) {
         this.element.appendChild(html);
     };
 
-    MIPStory.prototype.initHintLayer = function () {
-        this.hint = new HintLayer();
+    MIPStory.prototype.initHintLayer = function (element) {
+        this.hint = new HintLayer(element);
         var html = dm.create(this.hint.build());
         this.element.appendChild(html);
     };
@@ -98,7 +99,7 @@ define(function (require) {
         var gesture = new Gesture(this.element, {
             preventX: false
         });
-        // 绑定点击事件
+        // 绑定点击事件, story 组件的点击事件都有组件自己接管；
         this.element.addEventListener('click', function (e) {
             self.emitter.trigger(TAPNAVIGATION, e);
         });
@@ -179,6 +180,12 @@ define(function (require) {
     };
 
     MIPStory.prototype.tapnavigation = function (e) {
+
+        // a 标签不做任何处理；
+        if (e.target.nodeName.toLocaleLowerCase() === 'a') {
+            return;
+        }
+
         e.stopPropagation();
         var backend = document.querySelector('.mip-backend');
         var replay = document.querySelector('.mip-backend-preview');
@@ -195,7 +202,7 @@ define(function (require) {
             var src = e.target.getAttribute('data-src');
             if (ele === e.target && src) {
                 e.preventDefault();
-                location.href = src;
+                window.top.location.href = src;
             }
             return;
         }

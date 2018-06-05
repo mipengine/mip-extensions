@@ -33,7 +33,9 @@
   },
   "homepage": "https://github.com/mipengine/mip-extensions#readme",
   "devDependencies": {
+    "fs-extra": "^6.0.0",
     "github-release-notes": "^0.11.0",
+    "glob": "^7.1.2",
     "mip-extension-optimizer": "^1.1.3"
   }
 }

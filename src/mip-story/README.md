@@ -14,8 +14,7 @@
 | ---- | ---------------------------------------- |
 | 类型   | 通用                                       |
 | 支持布局 | responsive,fixed-height,fill,container,fixed |
-
-所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
+| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
 
 ## 示例
 
@@ -28,6 +27,9 @@
     h1 {
         text-align: center;
     }
+    mip-story {
+        display: none;
+    }
 </style>
 <mip-story standalone>
     <script type="application/json">
@@ -36,6 +38,7 @@
             "thumbnail": "https://mip-extensions.bj.bcebos.com/oscar/cover.jpg",
             "background": "https://mip-extensions.bj.bcebos.com/oscar/p8.png",
             "title": "第90届奥斯卡颁奖典礼回顾",
+            "desc": "一分钟带你了解第90届奥斯卡颁奖典礼",
             "from": "小故事"
         },
         "recommend": {
@@ -59,7 +62,7 @@
         }
     }
     </script>
-    <mip-story-view>
+    <mip-story-view background-audio="http://mipstatic.baidu.com/static/mip-static/mip-story/story-film/videos/CliffRichardDevilWoman.mp3">
         <mip-story-layer template="fill">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
         </mip-story-layer>
@@ -86,6 +89,7 @@
 - share: share 字段下包含的是分享相关的数据。
 - share.thumbnail: 预览小故事的缩略图地址。
 - share.background: 结尾页背景图片地址。
+- share.decs: 小故事的描述内容
 - share.title: 小故事标题。
 - share.from: 资源的来源信息。
 - recommend: 小故事推荐相关的信息。
@@ -125,7 +129,7 @@
               <h1>fade-in</h1>
               <div animate-in="fade-in" class="box"></div>
         </mip-story-layer>
-	</mip-story-view>
+    </mip-story-view>
 </mip-story>
 ```
 
@@ -155,9 +159,9 @@
 ```html
 
 <mip-story-layer>
-  	<!-- 以fade-in的形式入场，动画时间持续1000ms, 动画开始前延迟1000ms-->
+    <!-- 以fade-in的形式入场，动画时间持续1000ms, 动画开始前延迟1000ms-->
     <h1 animate-in="fade-in" animate-in-duration="1000" animate-in-delay="1000"  id="first-animate">最佳影片</h1>
-  	<!--在id为 first-animate 的元素动画动画结束之后开始执行-->
+    <!--在id为 first-animate 的元素动画动画结束之后开始执行-->
     <p animate-in="fly-in-left" animate-in-after="first-animate">钢铁侠是一部非常好的科幻片。</p>
 </mip-story-layer>
 
@@ -206,6 +210,6 @@
 
 [notice] 页面中使用视频时，请注意两点：一、视频不建议作为背景填充，因为在 Android 中视频播放器优先级较高会遮住页面内容，导致用户操作不能正常进行。二、视频作为每个段落内容时，不建议设置自动播放，即添加 `autoplay` 属性，因为 iOS 下的部分浏览器会直接弹出系统的视频播放器，影响用户体验。如果需要播放视频，可以暂时使用 GIF + `background-audio` 进行设置。
 
-默认情况下会按照正常布局进行展示。   
+默认情况下会按照正常布局进行展示。
 
 必选项：否

@@ -12,7 +12,6 @@ define(function () {
     // require modules
     var url = require('mip-ad-ecom/url');
     var dom = require('mip-ad-ecom/dom');
-    var log = require('mip-ad-ecom/log');
     var dataProcessor = require('mip-ad-ecom/data');
 
     // creat钩子
@@ -62,30 +61,8 @@ define(function () {
             console.log('return');
             return;
         }
-
         // 监听代理 a 标签点击事件
-        dom.proxyLink(me.element);
-
-        /**
-         * AB区分处理
-         */
-        if (me.getPosition() === 'top') {
-            if (me.getTagNum(me.element).current === 0) {
-                me.initQueue();
-                me.fetchData(url.get(me.element, 'top'), me.renderQueue.bind(me));
-            }
-            var queue = me.getQueue();
-            var templateData = me.getMatchData(me.element, queue && queue.tempData);
-            if (templateData && templateData.template.length > 0) {
-                me.render(templateData, me.element);
-            } else {
-                me.pushQueue(me.element);
-            }
-
-        } else {
-            console.log('fetchData');
-            me.fetchData(me.commonUrl, me.render.bind(me), me.element);
-        }
+        me.fetchData(me.commonUrl, me.render.bind(me), me.element);
     };
 
     /**
@@ -93,9 +70,6 @@ define(function () {
      *
      */
     customElement.prototype.firstInviewCallback = function () {
-        // 曝光日志
-        logData.params.t = +new Date();
-        log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
     };
 
     /**
@@ -105,7 +79,7 @@ define(function () {
     customElement.prototype.initBuild = function () {
         var me = this;
         me.regexs = dataProcessor.regexs;
-        me.position = me.element.getAttribute('position') || '';
+        // me.position = me.element.getAttribute('position') || '';
         me.sourceType = me.element.getAttribute('source-type') || '';
         me.commonUrl = url.get(me.element);
     };
@@ -135,31 +109,6 @@ define(function () {
             isShowCustom = false;
         }
         return isShowCustom;
-    };
-
-    /**
-     * 获取标签所在的位置
-     *
-     * @return {Object} position 标签位置
-     */
-    customElement.prototype.getPosition = function () {
-        return this.position === 'top' ? 'top' : 'bottom';
-    };
-
-    /**
-     * 初始化
-     *
-     * @param {HTMLElement} el mip-ad-ecom元素
-     * @return {Object} tagNum 返回标签数量信息
-     * @return {string} tagNum.total 标签总数量
-     * @return {string} tagNum.current 当前标签序号
-     */
-    customElement.prototype.getTagNum = function (el) {
-        var element = [].slice.call(document.querySelectorAll('mip-ad-ecom[position=top]'));
-        return {
-            total: element.length,
-            current: element.indexOf(el)
-        };
     };
 
     /**
@@ -273,32 +222,12 @@ define(function () {
         fetch(url, {
             credentials: 'include'
         }).then(function (res) {
-            // 性能日志：duration-网络请求时间
-            performance.responseEnd = new Date() - 0;
-            performance.duration = performance.responseEnd - performance.fetchStart;
-            errorData = {
-                st: res.status,
-                info: res.statusText,
-                t: +new Date()
-            };
-            if (!res.ok) {
-                log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
-            }
             return res.json();
         }).then(function (data) {
             // 返回数据问题
             if (data && data.errno) {
-
-                // send error log
-                errorData = {
-                    info: data.errmsg,
-                    t: +new Date()
-                };
-                log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
-
                 console.error(data.errmsg);
-                // TODO do not remove me
-                // me.element.remove();
+                me.element.remove();
                 return;
             }
 
@@ -310,24 +239,9 @@ define(function () {
                 var mipCustomContainer = mipCustomContainers[i];
                 mipCustomContainer.classList.add('fadein');
             }
-            // 性能日志：emptyTime-广告未显示时间
-            performance.renderEnd = new Date() - 0;
-            performance.emptyTime = performance.renderEnd - performance.fetchStart;
-            performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, {
-                duration: performance.duration,
-                emptyTime: performance.emptyTime
-            }, 1));
-            // 性能日志：按照流量 1/500 发送日志
-            var random500 = Math.random() * 500;
-            if(random500 < 1) {
-                log.sendLog(performanceData.host, performanceData.params);
-            }
-
             dom.removePlaceholder.apply(me);
         }, function (error) {
-            log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();
-            errorData.en = error;
             console.error(error);
         }).catch(function (evt) {
             console.warn(evt);

@@ -33,35 +33,6 @@ define(function (require) {
         originalUrl: getSubString(location.pathname, regexs.regHttps) || getSubString(location.pathname, regexs.regHttp)
     };
 
-    var logData = {
-        host: 'https://sp1.baidu.com/5b1ZeDe5KgQFm2e88IuM_a/owb.gif',
-        params: {
-            type: 3,
-            pid: 1106,
-            qid: getHashData('lid'),
-            q: getHashData('word'),
-            srcid: getHashData('srcid')
-        },
-        exposure: {
-            fm: 'view',
-            data: encodeURIComponent('[{"type": "w", "action": "show"}]')
-        },
-        error: {
-            fm: 'ex',
-            en: 'mip_async_err'
-        }
-    };
-    var performanceData = {
-        host: 'https://sp1.baidu.com/5b1ZeDe5KgQFm2e88IuM_a/mwb2.gif',
-        params: {
-            pid: '1_4',
-            type: 'pf_comm',
-            lid: getHashData('lid'),
-            info: {},
-            group: 'common',
-            ts: new Date() - 0
-        }
-    };
     var config = {
         domain: 'https://mipengine.baidu.com/',
         paths: {
@@ -97,7 +68,7 @@ define(function (require) {
     /**
      * [getSubString 根据正则获取子串]
      *
-     * @param  {string}  str [截取钱字符串]
+     * @param  {string}  str [截取前字符串]
      * @param  {RegExp}  reg [正则表达式]
      * @param  {integer} pos [位置]
      * @return {string}      [截取后字符串]
@@ -108,18 +79,14 @@ define(function (require) {
         return res;
     }
 
-
     return {
         domain: 'https://mipengine.baidu.com/',
         ajaxUrl: 'https://mipengine.baidu.com/common?',
-        topAjaxUrl: 'https://mipengine.baidu.com/commonTop?',
         regexs: regexs,
         params: params,
         config: config,
         addPaths: addPaths,
         subStr: getSubString,
-        logData: logData,
-        performanceData: performanceData,
         getHashData: getHashData
     };
 

@@ -99,12 +99,11 @@ define(function (require) {
      * [getUrl url 拼接函数]
      *
      * @param  {HTMLElement}    element mip-ad-ecom 组件节点
-     * @param  {string}    poi 区分AB区的url
      * @return {string} url     拼接后的url
      */
-    function getUrl(element, poi) {
+    function getUrl(element) {
         var firstKey = true;
-        var url = poi === 'top' ? data.topAjaxUrl : data.ajaxUrl;
+        var url = data.ajaxUrl;
         var urlParams = getUrlParams(element);
 
         if (!urlParams) {
@@ -118,27 +117,7 @@ define(function (require) {
             }
         }
 
-        if (poi === 'top') {
-            var sourceId = getSourceId();
-            if (sourceId) {
-                url += '&sourceId=' + encodeURIComponent(sourceId);
-            }
-        }
-
         return url;
-    }
-    function getSourceId() {
-        var customs = document.querySelectorAll('mip-ad-ecom[position=top]');
-        var sourceIdArr = [];
-        var cLen = customs.length;
-        if (customs && cLen > 0) {
-            for (var i = 0; i < cLen; i++) {
-                var singleCustom = customs[i];
-                var sourceId = singleCustom && singleCustom.getAttribute('source-type');
-                sourceId && sourceIdArr.push(sourceId);
-            }
-        }
-        return sourceIdArr.join(',');
     }
 
     return {

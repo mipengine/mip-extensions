@@ -22,7 +22,7 @@ define(function (require) {
      */
     var fixedElement = require('fixed-element');
 
-    var log = require('mip-ad-ecom/log');
+    // var log = require('mip-ad-ecom/log');
     var dataProcessor = require('mip-ad-ecom/data');
     var regexs = dataProcessor.regexs;
 
@@ -102,7 +102,6 @@ define(function (require) {
      * @param {DOM} container style/script 节点的容器
      */
     function renderStyleOrScript(str, reg, tag, attr, container) {
-
         var node = container.querySelector(tag + '[' + attr + ']') || document.createElement(tag);
         node.setAttribute(attr, '');
         var substrs = str.match(reg);
@@ -283,7 +282,7 @@ define(function (require) {
             logUrl += ((logUrl[logUrl.length - 1] === '&') ? '' : '&')
                       + 'clk_info=' + JSON.stringify({xpath: xpath});
             if (link) {
-                log.sendLog(logUrl, {});
+                // log.sendLog(logUrl, {});
             }
             else {
                 this.href = logUrl;
@@ -329,14 +328,13 @@ define(function (require) {
         var me = this;
         this.placeholder.classList.add('fadeout');
         // 占位符增加淡出效果
-        this.placeholder.addEventListener("transitionend", function() {
+        this.placeholder.addEventListener('transitionend', function () {
             me.placeholder.remove();
         }, false);
-        this.placeholder.addEventListener("webkitTransitionend", function() {
+        this.placeholder.addEventListener('webkitTransitionend', function () {
             me.placeholder.remove();
         }, false);
     }
-
 
     return {
         render: render,
@@ -345,5 +343,4 @@ define(function (require) {
         addPlaceholder: addPlaceholder,
         removePlaceholder: removePlaceholder
     };
-
 });

@@ -204,12 +204,9 @@ define(function (require) {
             data[expGroup] = true;
             templates.render(element, data, true).then(function (res) {
                 var tag = document.createElement('div');
-                console.log('mip-experiment render');
-                console.log(res);
                 tag.innerHTML = res.html;
                 element.appendChild(tag);
             });
-
         }
     };
 

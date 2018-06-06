@@ -1,6 +1,6 @@
 /**
  * @file mip-ad-ecom/dom
- * @author pearl
+ * @author JennyL
  */
 define(function (require) {
 
@@ -44,54 +44,6 @@ define(function (require) {
     }
 
     /**
-     * [moveToFixedLayer 需要悬浮的组件外层嵌套mip-fixed并移动到 fixed layer]
-     *
-     * @param  {DOM} element    mip-ad-ecom 节点
-     * @param  {DOM} customNode 定制化组件节点
-     * @param  {DOM} container  装载定制化组件节点的容器
-     */
-    function moveToFixedLayer(element, customNode, container) {
-        var type = customNode.getAttribute('mip-fixed');
-        var top = customNode.getAttribute('top') || null;
-        var bot = customNode.getAttribute('bottom') || null;
-        var fixedParent = document.createElement('mip-fixed');
-
-        // 兼容 酷派手机 UC 浏览器
-        if (util.platform.isIos()) {
-            container.remove();
-            excr = 10;
-        }
-
-        // 存在悬浮时, 设置距离 top/bottom 的距离
-        if (customNode.hasAttribute('top') && top) {
-            util.css(fixedParent, {top: top});
-        }
-        if (customNode.hasAttribute('bottom') && bot) {
-            util.css(fixedParent, {bottom: bot});
-        }
-        fixedParent.setAttribute('type', type);
-        fixedParent.appendChild(customNode);
-        element.appendChild(fixedParent);
-
-        // 初始化底部fixed元素一开始在页面外部, 动画滑入页面
-        // 预先增加下移样式，当元素被插入页面后（setTimeout执行），动画执行。
-        if (type === 'bottom') {
-            fixedParent.classList.add('mip-ad-ecom-transit-from-bottom');
-            setTimeout(function () {
-                fixedParent.classList.add('mip-ad-ecom-transit-end');
-            }, 0);
-        }
-        
-        // 结果页打开, 移动到 fixed layer
-        if (fixedElement._fixedLayer) {
-            fixedElement.setFixedElement([fixedParent], true);
-
-            // 为悬浮节点添加代理事件
-            proxyLink(customNode, fixedElement._fixedLayer);
-        }
-    }
-
-    /**
      * [renderStyleOrScript 渲染 style/script 函数]
      * 截取 style/script 并插入到 dom 中
      *
@@ -126,15 +78,11 @@ define(function (require) {
      * @return {DOM}     tpl  template 子节点
      */
     function createTemplateNode(html, id) {
-
         var tpl = document.createElement('template');
-
         tpl.setAttribute('type', 'mip-mustache');
         tpl.id = id;
         tpl.innerHTML = dataProcessor.subStr(html, regexs.innerHtml);
-
         return tpl;
-
     }
 
     /**
@@ -145,7 +93,6 @@ define(function (require) {
      * @return {DOM}    node      定制化组件节点
      */
     function createCustomNode(html, customTag) {
-
         var node = document.createElement(customTag);
         var tagandAttrs = dataProcessor.subStr(html, regexs.tagandAttr).split(' ');
 
@@ -189,11 +136,6 @@ define(function (require) {
         itemNode.setAttribute('mip-ad-ecom-item', len);
         itemNode.appendChild(customNode);
         container.appendChild(itemNode);
-
-        if (customNode.hasAttribute('mip-fixed')) {
-
-            moveToFixedLayer(element, customNode, container);
-        }
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
             res.element.innerHTML = res.html;
@@ -302,7 +244,13 @@ define(function (require) {
         if (!elem) {
             return;  
         }
-        return elem.querySelector('script[type="application/json"]');
+        // scriptJson: 配置script写在组件标签内部
+        var scriptJson = elem.querySelector('script[type="application/json"]');
+        if (!scriptJson) {
+            // 需要mustache渲染情况下，为了防止sanitizer.js移除script，将配置写在组件外
+            scriptJson = document.querySelector('script[for="' + elem.id + '"]');
+        }
+        return scriptJson;
     }
 
     // 广告加载前loading效果

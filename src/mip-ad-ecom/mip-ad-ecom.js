@@ -36,6 +36,8 @@ define(function () {
             if (dom.getConfigScriptElement(me.element)) {
                 me.initCustom();
                 return true;
+            } else {
+                console.warn('获取不到配置！！');
             }
             return false;
         };
@@ -58,15 +60,7 @@ define(function () {
         if (!me.isShowCustom()) {
             return;
         }
-        // 监听代理 a 标签点击事件
         me.fetchData(me.commonUrl, me.render.bind(me), me.element);
-    };
-
-    /**
-     * firstInviewCallback钩子，发送曝光日志
-     *
-     */
-    customElement.prototype.firstInviewCallback = function () {
     };
 
     /**
@@ -76,7 +70,6 @@ define(function () {
     customElement.prototype.initBuild = function () {
         var me = this;
         me.regexs = dataProcessor.regexs;
-        // me.position = me.element.getAttribute('position') || '';
         me.sourceType = me.element.getAttribute('source-type') || '';
         me.commonUrl = url.get(me.element);
     };
@@ -211,9 +204,6 @@ define(function () {
             return;
         }
         var errorData = {};
-        // 性能日志
-        var performance = {};
-        performance.fetchStart = new Date() - 0;
         // fetch
         fetch(url, {
             credentials: 'include'
@@ -226,7 +216,6 @@ define(function () {
                 me.element.remove();
                 return;
             }
-
             callback && callback(data.data, element);
 
             // 广告插入页面时，增加渐显效果

@@ -19,6 +19,9 @@ mip-story {
     width: 100% !important;
     -webkit-tap-highlight-color: transparent;
     tap-highlight-color: transparent;
+    overflow: auto;
+    overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
 }
 
 mip-story,
@@ -35,11 +38,17 @@ mip-story-view {
     position: absolute !important;
     right: 0 !important;
     top: 0 !important;
-    transition: none !important;
+    // transition: none !important;
 }
 
 mip-story-view[active] {
     display: block !important;
+    will-change: transform;
+}
+
+mip-story-view[current] {
+    display: block !important;
+    will-change: transform;
 }
 
 mip-story-layer {
@@ -255,20 +264,38 @@ mip-story-layer[template=thirds] {
     top: 0;
     left: 0;
     text-align: center;
-    display: flex !important;
-    display: -webkit-flex !important;
-    justify-content: center !important;
-    -webkit-justify-content: center !important;
-    align-items: center !important;
-    -webkit-align-items: center !important;
-    -webkit-transform: translate(1000%);
-    transform: translateY(1000%);
+    display: none !important;
+    // display: flex !important;
+    // display: -webkit-flex !important;
+    // justify-content: center !important;
+    // -webkit-justify-content: center !important;
+    // align-items: center !important;
+    // -webkit-align-items: center !important;
+    // -webkit-transform: translate(1000%);
+    // transform: translateY(1000%);
     color: #fff;
     display: -webkit-box;
     -webkit-box-align: center;
     -webkit-box-pack: center;
     -moz-box-align: center;
     -moz-box-pack: center;
+}
+.mip-backend[active] {
+    display: flex !important;
+    display: -webkit-flex !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
+}
+
+.mip-backend[current] {
+    display: flex !important;
+    display: -webkit-flex !important;
+    justify-content: center !important;
+    -webkit-justify-content: center !important;
+    align-items: center !important;
+    -webkit-align-items: center !important;
 }
 
 .mip-backend-outer {

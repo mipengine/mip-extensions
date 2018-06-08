@@ -26,13 +26,14 @@ define(function (require) {
     var showDampingCB;
 
     var util = require('util');
-    var EventEmitter = util.EventEmitter;
+    var dm = util.dom;
 
     var SLIDEMOVING = 'slideMoving';
     var storyInstance;
     var storyInstanceEle;
-    var sliderTime = 140;
-    var reboundTime = 70;
+    var sliderTime = 200;
+    var reboundTime = 80;
+    var recommend;
 
     var directionMap = {
         back: 'back',
@@ -123,6 +124,7 @@ define(function (require) {
         this.sliderIng();
         // 结束滑动
         this.sliderEnd();
+        recommend = document.querySelector('.recommend');
     }
 
     // 初始化view的最初排布
@@ -169,6 +171,10 @@ define(function (require) {
         var self = this;
         // 对story进行手势的监控
         storyInstanceEle.addEventListener('touchmove', function (e) {
+            // 特殊处理，分享页更多小故事滚动，禁止翻页滚动
+            if (dm.contains(recommend, e.target)) {
+                return;
+            }
             // 如果正处于翻页状态跳出
             if (self.moveFlag) {
                 return;
@@ -181,6 +187,10 @@ define(function (require) {
         var self = this;
         // 对story进行手势的监控
         storyInstanceEle.addEventListener('touchend', function (e) {
+            // 特殊处理，分享页更多小故事滚动，禁止翻页滚动
+            if (dm.contains(recommend, e.target)) {
+                return;
+            }
             // 如果正处于翻页状态跳出
             if (self.moveFlag) {
                 return;

@@ -72,7 +72,7 @@
             <a href="https://www.baidu.com">普通跳转链接</a>
         </mip-story-layer>
     </mip-story-view>
-    <mip-story-view auto-advancement-after='2000'>
+    <mip-story-view>
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
         </mip-story-layer>

@@ -29,7 +29,7 @@ define(function (require) {
     var Slider = require('./mip-story-slider');
     var slider;
 
-    var ClickSwitch = require('./mip-story-clickSwitch');
+    var ClickSwitch = require('./mip-story-clickswitch');
     var clickSwitch;
 
     var util = require('util');

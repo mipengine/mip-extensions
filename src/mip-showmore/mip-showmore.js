@@ -17,7 +17,8 @@ define(function (require) {
     function matchOriginTarget (id, node) {
         while (node.parentNode) {
             var attr = node.getAttribute('on');
-            if (attr && attr.indexOf('tap:' + id) === 0) {
+            // 兼容click
+            if (attr &&  new RegExp('^(tap|click):'+id).test(attr)) {
                 return node;
             }
             node = node.parentNode;
@@ -47,7 +48,7 @@ define(function (require) {
         // 折叠高度类型
         this.heightType = ['HEIGHTSCREEN', 'HEIGHT', 'LENGTH'];
         // 对应的收起按钮
-        this.btn = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+        this.btn = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]') || document.querySelector('div[on="click:' + this.ele.id +  '.toggle"]');
         this.eleid = ele.id;
 
         // 是否含有mip-showmore子元素
@@ -130,6 +131,7 @@ define(function (require) {
         // 保存点击按钮当前display状态，兼容v1.0.0和v1.1.0
         var display = this.clickBtnSpan && getComputedStyle(this.clickBtnSpan).display;
         var displayNew = this.btn && getComputedStyle(this.btn).display
+        this.btn.style.cursor = 'pointer'
         this.btnDisplay = displayNew || display;
     };
 

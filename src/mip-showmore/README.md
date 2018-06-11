@@ -175,6 +175,17 @@ MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部�
 ```
 -->
 
+### 点透问题处理
+- 问题：在移动设备中 在 showmore 展开按钮 中使用tap事件会触发 内容中click事件
+- 解决：增加click事件
+使用方式：
+```html
+<mip-showmore bottomshadow='1' maxheight='100' id="showmore">
+MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
+</mip-showmore>
+<div on="click:showmore.toggle" data-closetext="收起内层内容" class="mip-showmore-btn">
+```
+
 ## 属性
 
 ###  maxheight

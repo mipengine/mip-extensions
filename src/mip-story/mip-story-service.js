@@ -245,12 +245,10 @@ define(function (require) {
                 window.top.location.href = href;
                 return;
             }
-
             if (ele === e.target && src) {
                 e.preventDefault();
                 window.top.location.href = src;
             }
-
             return;
         }
 
@@ -267,7 +265,6 @@ define(function (require) {
                 : this.emitter.trigger(MUTE, e);
             return;
         }
-
         // 重头开始播放
         if (dm.contains(replay, e.target)) {
             this.emitter.trigger(REPLAY);
@@ -319,11 +316,8 @@ define(function (require) {
         var self = this;
         if (switchPageType == SWITCHTYPES.click) {
             clickSwitch = null;
-            clickSwitch = new ClickSwitch(this.storyInstance);
-            clickSwitch.initViewForSwitch(function (activeType, data) {
-                self.clickSwitchTo(activeType, data);
-            });
-            clickSwitch.closebookend();
+            this.clickSwitch();
+            clickSwitch.closeBookEnd();
             this.share.hideShareLayer();
             return;
         }

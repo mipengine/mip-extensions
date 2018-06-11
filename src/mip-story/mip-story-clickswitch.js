@@ -12,6 +12,7 @@ define(function (require) {
     var Gesture = util.Gesture;
     var dm = util.dom;
     var storyInstance;
+    var storyInstanceEle;
     var showDampingCB;
     var resetClickEndStatusCB;
     var isShowSwitchLayerCB;
@@ -19,13 +20,15 @@ define(function (require) {
     function MIPStoryClickSwitch(param) {
         // story的实例
         storyInstance = param.storyInstance;
+        // 小故事实例ele
+        // storyInstanceEle = storyInstance.element;
         this.hint = storyInstance.hint;
         // story中每个页面包括分享页
         storyContain = storyInstance.storyContain;
         storyViews = storyInstance.storyViews;
         showDampingCB = param.showDamping;
         resetClickEndStatusCB = param.resetClickEndStatus;
-        isShowSwitchLayerCB = param.isShowSwitchLayer;
+        isShowSwitchLayerCB = param.showSwitchLayer;
         this.preIndex = this.currentIndex = this.nextIndex = 0;
     }
 

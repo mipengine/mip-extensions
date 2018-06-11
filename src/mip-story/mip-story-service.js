@@ -220,15 +220,16 @@ define(function (require) {
 
     MIPStoryService.prototype.tapnavigation = function (e) {
         e.stopPropagation();
-        var backend = document.querySelector('.mip-backend');
-        var replay = document.querySelector('.mip-backend-preview');
-        var shareBtn = document.querySelector('.mip-backend-share');
-        var shareArea = document.querySelector('.mip-story-share');
-        var cancelBtn = document.querySelector('.mip-story-share-cancel');
+        var storyEle = this.storyInstance.element;
+        var backend = storyEle.querySelector('.mip-backend');
+        var replay = storyEle.querySelector('.mip-backend-preview');
+        var shareBtn = storyEle.querySelector('.mip-backend-share');
+        var shareArea = storyEle.querySelector('.mip-story-share');
+        var cancelBtn = storyEle.querySelector('.mip-story-share-cancel');
         var back = 'mip-story-close';
-        var audio = document.querySelector('.mip-stoy-audio');
-        var recommend = document.querySelector('.recommend');
-        var shareAreaShow = document.querySelector('.mip-story-share-show');
+        var audio = storyEle.querySelector('.mip-stoy-audio');
+        var recommend = storyEle.querySelector('.recommend');
+        var shareAreaShow = storyEle.querySelector('.mip-story-share-show');
         if (!dm.contains(shareArea, e.target) && shareAreaShow) {
             this.share.hideShareLayer();
             return;
@@ -236,7 +237,7 @@ define(function (require) {
 
         // 推荐
         if (dm.contains(recommend, e.target)) {
-            var ele = document.querySelector('.item-from');
+            var ele = storyEle.querySelector('.item-from');
             var src = e.target.getAttribute('data-src');
             if (e.target.nodeName.toLocaleLowerCase() === 'a' && ele != e.target) {
                 var href = e.target.getAttribute('href');

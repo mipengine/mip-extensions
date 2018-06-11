@@ -136,7 +136,7 @@ define(function (require) {
         // 初始化段落布局
         this.initViewForSlider();
         this.bindEvent();
-        recommend = document.querySelector('.recommend');
+        recommend = storyInstanceEle.querySelector('.recommend');
     };
     MIPStorySlider.prototype.bindEvent = function () {
         // 开始滑动
@@ -181,7 +181,6 @@ define(function (require) {
             if (self.moveFlag) {
                 return;
             }
-
             var touch = e.targetTouches[0];
             self.touchstartX = touch.pageX;
             self.touchstartY = touch.pageY;
@@ -390,9 +389,9 @@ define(function (require) {
         }
 
         currentEle.removeAttribute('style');
-        if (this.currentIndex == storyContain.length - 1) {
-            enableScroll(document.querySelector('.mip-backend-outer'));
-            enableScroll(document.getElementsByTagName('mip-scrollbox'));
+        if (this.currentIndex === storyContain.length - 1) {
+            enableScroll(storyInstanceEle.querySelector('.mip-backend-outer'));
+            enableScroll(storyInstanceEle.getElementsByTagName('mip-scrollbox'));
         }
 
     };

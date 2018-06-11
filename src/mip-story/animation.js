@@ -17,7 +17,7 @@ define(function (require) {
     var MIP_STORY_ANIMATE_IN_DELAY_ATTR = 'animate-in-delay';
     var MIP_STORY_ANIMATE_IN_AFTER_ATTR = 'animate-in-after';
     var MIP_STORY_ANIMATE_IN_SELECROR = '[animate-in]';
-
+    var timeStrFormat = require('./animation-util').timeStrFormat;
     // @class
     function AnimationManager(page) {
         this.page = page;

@@ -47,7 +47,7 @@ define(function (require) {
         }
         // 折叠高度类型
         this.heightType = ['HEIGHTSCREEN', 'HEIGHT', 'LENGTH'];
-        // 对应的收起按钮
+        // 对应的收起按钮，因收起按钮可能不在 showmore组件中，故使用 document.querySelector 全局选择
         this.btn = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]') || document.querySelector('div[on="click:' + this.ele.id +  '.toggle"]');
         this.eleid = ele.id;
 

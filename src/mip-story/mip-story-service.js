@@ -15,10 +15,6 @@ define(function (require) {
     var STYLE = 'style';
     var screenWidth = viewport.getWidth();
     var screenHeight = viewport.getHeight();
-    // 左右翻页的阀值
-    var SWITCHPAGE_THRESHOLD = viewport.getWidth() * 0.15;
-    // 上下翻页的阀值
-    var SWITCHPAGE_THRESHOLD_Height = viewport.getHeight() * 0.4;
     var SWITCHTYPES = {
         click: 'click',
         slideX: 'slideX',
@@ -42,11 +38,10 @@ define(function (require) {
     var TAPNAVIGATION = 'tapnavigation';
     var REPLAY = 'replay';
     var VISIBILITYCHANGE = 'visibilitychange';
-    var CREATSLIDER = 'creatSlider';
+    var CREATESLIDER = 'createSlider';
     var CLICKSWITCH = 'clickSwitch';
     var SWITCHPAGE = 'switchPage';
     var reload;
-
 
     function MIPStoryService(storyInstance) {
         // story的实例
@@ -74,12 +69,13 @@ define(function (require) {
         this.bindEvent();
         // 左右或者上下翻页
         if (switchPageType == SWITCHTYPES.slideX || switchPageType == SWITCHTYPES.slideY) {
-            self.emitter.trigger(CREATSLIDER);
+            self.emitter.trigger(CREATESLIDER);
         }
         // 点击翻页
         else if (switchPageType == SWITCHTYPES.click) {
             self.emitter.trigger(CLICKSWITCH);
         }
+
         // 页面切换到后台
         document.addEventListener(VISIBILITYCHANGE, function (e) {
             self.emitter.trigger(VISIBILITYCHANGE, e);
@@ -94,33 +90,35 @@ define(function (require) {
         var clickSwitchParam = {
             storyInstance: this.storyInstance,
             showDamping: this.showDamping.bind(this),
-            clickSwitchEnd: this.clickSwitchEnd.bind(this),
-            isShowSwitchLayer: this.isShowSwitchLayer.bind(this)
-        }
+            resetClickEndStatus: this.resetClickEndStatus.bind(this),
+            showSwitchLayer: this.showSwitchLayer.bind(this)
+        };
         clickSwitch = new ClickSwitch(clickSwitchParam);
         clickSwitch.build();
     };
 
-    MIPStoryService.prototype.clickSwitchEnd = function (data) {
+    MIPStoryService.prototype.resetClickEndStatus = function (data) {
         this.preIndex = data.preIndex;
         this.currentIndex = data.currentIndex;
+        this.resetViewEle();
         if (this.currentIndex !== this.preIndex) {
-            storyViews[this.preIndex].customElement.setAllMedia(false, this.viewMuted, reload, this.emitter);
+            this.preEle.setAllMedia(false, this.viewMuted, reload, this.emitter);
         }
-        storyViews[this.currentIndex].customElement.setAllMedia(true, this.viewMuted, reload, this.emitter);
-        this.progress.updateProgress(this.currentIndex, data.status);
-    }
 
-    MIPStoryService.prototype.isShowSwitchLayer = function (data) {
+        this.currentEle.setAllMedia(true, this.viewMuted, reload, this.emitter);
+        this.progress.updateProgress(this.currentIndex, data.status);
+    };
+
+    MIPStoryService.prototype.showSwitchLayer = function (data) {
         if (data.status === 1) {
             this.hint.showPageSwitchLayer();
         }
         else {
             this.hint.hidePageSwitchLayer();
         }
-    }
+    };
 
-    MIPStoryService.prototype.creatSlider = function () {
+    MIPStoryService.prototype.createSlider = function () {
         var self = this;
         var sliderParam = {
             storyInstance: this.storyInstance,
@@ -133,43 +131,58 @@ define(function (require) {
         };
         slider = new Slider(sliderParam);
         slider.build();
-    }
+    };
 
     MIPStoryService.prototype.showDamping = function () {
         this.hint.showDamping();
-    }
+    };
     MIPStoryService.prototype.resetSlideEndView = function (index) {
         this.preIndex = index.preIndex;
         this.currentIndex = index.currentIndex;
         this.nextIndex = index.nextIndex;
+        // 重新更新当前活跃的页面
+        this.resetViewEle();
+        // 在重设view状态时，如果前一页与当前页的不是同一页，需要进行状态修改
         if (this.preIndex != this.currentIndex) {
-            storyViews[this.preIndex].customElement.setPreActive(this.emitter);
-            storyViews[this.preIndex].customElement.setAllMedia(false, this.viewMuted, reload, this.emitter);
+            this.preEle.setPreActive(this.emitter);
+            this.preEle.setAllMedia(false, this.viewMuted, reload, this.emitter);
         }
+
+        // 在重设view状态时，如果下一页与当前页的不是同一页并且下一页不是封底页，需要进行状态修改
         if (this.nextIndex != this.currentIndex && this.nextIndex <= storyViews.length - 1) {
-            storyViews[this.nextIndex].customElement.setPreActive(this.emitter);
-            storyViews[this.nextIndex].customElement.setAllMedia(false, this.viewMuted, reload, this.emitter);
+            this.nextEle.setPreActive(this.emitter);
+            this.nextEle.setAllMedia(false, this.viewMuted, reload, this.emitter);
         }
+
         if (this.currentIndex + 1 < storyContain.length) {
-            storyViews[this.currentIndex].customElement.setAllMedia(true, this.viewMuted, reload, this.emitter);
-            storyViews[this.currentIndex].customElement.setCssMedia(true, this.viewMuted, this.emitter);
+            this.currentEle.setAllMedia(true, this.viewMuted, reload, this.emitter);
+            this.currentEle.setCssMedia(true, this.viewMuted, this.emitter);
             this.progress.updateProgress(this.currentIndex, 1);
         }
+
         this.clearCssMedia();
-    }
+    };
+
+    MIPStoryService.prototype.resetViewEle = function () {
+        this.preEle = storyViews && storyViews[this.preIndex] && storyViews[this.preIndex].customElement || null;
+        this.currentEle = storyViews && storyViews[this.currentIndex] && storyViews[this.currentIndex].customElement || null;
+        this.nextEle = storyViews && storyViews[this.nextIndex] && storyViews[this.nextIndex].customElement || null;
+    };
 
     MIPStoryService.prototype.initfirstViewStatus = function (index) {
         this.preIndex = index.preIndex;
         this.currentIndex = index.currentIndex;
         this.nextIndex = index.nextIndex;
+        // 重新更新当前活跃的页面
+        this.resetViewEle();
         // 激活当前页的的多媒体
-        storyViews[this.currentIndex].customElement.setAllMedia(true, this.viewMuted, reload, this.emitter);
-        storyViews[this.currentIndex].customElement.setCssMedia(true, this.viewMuted, this.emitter);
+        this.currentEle.setAllMedia(true, this.viewMuted, reload, this.emitter);
+        this.currentEle.setCssMedia(true, this.viewMuted, this.emitter);
         // 初始化下一页的动画效果
-        storyViews[this.nextIndex].customElement.setPreActive(this.emitter);
+        this.nextEle.setPreActive(this.emitter);
         // 清除其余所有页面的动画
         this.clearCssMedia();
-    }
+    };
 
     MIPStoryService.prototype.clearCssMedia = function () {
         for (var i = 0; i < storyViews.length; i++) {
@@ -177,8 +190,9 @@ define(function (require) {
                 // 由于CSS3中动画效果在翻页过程中会丢掉第一帧，此处的动画控制放到view的组件中控制
                 storyViews[i].customElement.clearCssMedia();
             }
+
         }
-    }
+    };
 
     MIPStoryService.prototype.bindEvent = function () {
         this.emitter = new EventEmitter();
@@ -188,7 +202,7 @@ define(function (require) {
         this.emitter.on(TAPNAVIGATION, this.tapnavigation.bind(this));
         this.emitter.on(REPLAY, this.replay.bind(this));
         this.emitter.on(VISIBILITYCHANGE, this.visibilitychange.bind(this));
-        this.emitter.on(CREATSLIDER, this.creatSlider.bind(this));
+        this.emitter.on(CREATESLIDER, this.createSlider.bind(this));
         this.emitter.on(CLICKSWITCH, this.clickSwitch.bind(this));
         this.emitter.on(SWITCHPAGE, this.switchPage.bind(this));
     };
@@ -197,10 +211,12 @@ define(function (require) {
         if (switchPageType == SWITCHTYPES.click && clickSwitch) {
             clickSwitch.switchTo(param);
         }
+
         if (switchPageType != SWITCHTYPES.click && slider) {
             slider.switchEnd();
         }
-    }
+
+    };
 
     MIPStoryService.prototype.tapnavigation = function (e) {
         e.stopPropagation();
@@ -217,6 +233,7 @@ define(function (require) {
             this.share.hideShareLayer();
             return;
         }
+
         // 推荐
         if (dm.contains(recommend, e.target)) {
             var ele = document.querySelector('.item-from');
@@ -227,17 +244,21 @@ define(function (require) {
                 window.top.location.href = href;
                 return;
             }
+
             if (ele === e.target && src) {
                 e.preventDefault();
                 window.top.location.href = src;
             }
+
             return;
         }
+
         // 返回上一页
         if (this.hasClass(e, back)) {
             history.back();
             return;
         }
+
         // 静音控制
         if (e.target === audio) {
             var enabled = audio.hasAttribute('muted');
@@ -260,8 +281,9 @@ define(function (require) {
             }
             // 关闭结尾页-只有点击交互的时候触发
             else if (switchPageType == SWITCHTYPES.click) {
-                clickSwitch.goback();
+                clickSwitch.goBack();
             }
+
             return;
         }
         // 分享点击
@@ -270,17 +292,21 @@ define(function (require) {
             if (e.target === cancelBtn) {
                 this.share.hideShareLayer();
             }
+
             return;
         }
+
         // 如果视频/音频不能 autoplay，则主动触发
         if (!this.muted) {
             this.emitter.trigger(UNMUTE, e);
         }
+
         // 点击翻页的逻辑处理
         if (switchPageType == SWITCHTYPES.click && clickSwitch) {
             var self = this;
             clickSwitch.switchPage(e);
         }
+
     };
 
     MIPStoryService.prototype.hasClass = function (e, clsName) {
@@ -300,7 +326,8 @@ define(function (require) {
             this.share.hideShareLayer();
             return;
         }
-        slider.initViewForSwitch(function (preIndex, currentIndex, nextIndex) {
+
+        slider.initViewForSlider(function (preIndex, currentIndex, nextIndex) {
             self.initfirstViewStatus(preIndex, currentIndex, nextIndex);
         });
         this.replayBookEnd();
@@ -319,14 +346,17 @@ define(function (require) {
             e.target.removeAttribute('muted');
             // 初始化下一页的音频或者视频
             // 暂停下一页的视频
+            this.resetViewEle();
             if (this.nextIndex <= storyViews.length - 1) {
-                storyViews[this.nextIndex].customElement.muteAllMedia();
+                this.nextEle.muteAllMedia();
             }
+
             if (this.preIndex != this.currentIndex) {
-                storyViews[this.preIndex].customElement.muteAllMedia();
+                this.preEle.muteAllMedia();
             }
         }
-    }
+
+    };
 
     MIPStoryService.prototype.unmute = function (e) {
         this.muted = false;
@@ -334,9 +364,10 @@ define(function (require) {
         this.unMuteGlobalAudio();
         this.playGlobalAudio();
         if (this.currentIndex <= storyViews.length - 1) {
-            var ele = storyViews[this.currentIndex];
-            ele.customElement.toggleAllMedia(e, this.viewMuted);
+            this.resetViewEle();
+            this.currentEle.toggleAllMedia(e, this.viewMuted);
         }
+
         e.target.removeAttribute('muted');
     };
 
@@ -345,9 +376,10 @@ define(function (require) {
         this.viewMuted = true;
         this.muteGlobalAudio();
         if (this.currentIndex <= storyViews.length - 1) {
-            var ele = storyViews[this.currentIndex];
-            ele.customElement.toggleAllMedia(e, this.viewMuted);
+            this.resetViewEle();
+            this.currentEle.toggleAllMedia(e, this.viewMuted);
         }
+
         e.target.setAttribute('muted', '');
     };
 
@@ -356,6 +388,7 @@ define(function (require) {
             this.audio.pause();
             this.audio.muted = true;
         }
+
     };
 
     MIPStoryService.prototype.unMuteGlobalAudio = function () {
@@ -363,12 +396,14 @@ define(function (require) {
             this.audio.play();
             this.audio.muted = false;
         }
+
     };
 
     MIPStoryService.prototype.playGlobalAudio = function () {
         if (this.audio && !this.muted) {
             this.audio.play();
         }
+
     };
 
     MIPStoryService.prototype.visibilitychange = function (e) {
@@ -376,24 +411,26 @@ define(function (require) {
             : 'webkitHidden' in document ? 'webkitHidden'
                 : 'mozHidden' in document ? 'mozHidden' : null;
         if (this.currentIndex <= storyViews.length - 1) {
-            var currentEle = storyViews[this.currentIndex];
+            this.resetViewEle();
+            this.currentEle.toggleAllMedia(e, this.viewMuted);
             if (document[hiddenProperty]) {
                 this.pauseGlobalAudio();
-                currentEle.customElement.pauseAllMedia();
+                this.currentEle.pauseAllMedia();
             }
             else {
                 this.playGlobalAudio();
-                currentEle.customElement.resumeAllMedia();
+                this.currentEle.resumeAllMedia();
             }
         }
+
     };
 
     MIPStoryService.prototype.pauseGlobalAudio = function () {
         if (this.audio) {
             this.audio.pause();
         }
-    };
 
+    };
 
     return MIPStoryService;
 });

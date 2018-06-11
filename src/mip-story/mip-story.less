@@ -4,24 +4,25 @@
 
 html#mip-i-story-standalone,
 html#mip-i-story-standalone body {
+    width: 100% !important;
     height: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
     cursor: auto !important;
 }
 
 mip-story {
-    display: block;
-    background: #000;
     position: relative !important;
-    height: 100% !important;
-    width: 100% !important;
-    -webkit-tap-highlight-color: transparent;
-    tap-highlight-color: transparent;
+    display: block;
     overflow: auto;
-    overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+    height: 100% !important;
+    background: #000;
+
+            overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+            tap-highlight-color: transparent;
 }
 
 mip-story,
@@ -31,34 +32,36 @@ mip-story-layer {
 }
 
 mip-story-view {
-    display: none !important;
-    bottom: 0 !important;
-    height: auto !important;
-    left: 0 !important;
     position: absolute !important;
-    right: 0 !important;
     top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    display: none !important;
+    height: auto !important;
     // transition: none !important;
 }
 
 mip-story-view[active] {
     display: block !important;
+
     will-change: transform;
 }
 
 mip-story-view[current] {
     display: block !important;
+
     will-change: transform;
 }
 
 mip-story-layer {
     position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
     bottom: 0 !important;
     left: 0 !important;
-    right: 0 !important;
-    top: 0 !important;
-    padding: 68px 32px 32px !important;
     overflow: hidden !important;
+    padding: 68px 32px 32px !important;
 }
 mip-story-layer[template=cover] {
     box-sizing: border-box;
@@ -70,14 +73,14 @@ mip-story-layer * {
 
 // progress
 .mip-story-system-layer {
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), transparent);
-    background: linear-gradient(top, rgba(0, 0, 0, 1), transparent);
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     z-index: 100000;
+    top: 0;
+    right: 0;
+    left: 0;
     padding: 12px 0 72px 0;
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), transparent);
+    background:         linear-gradient(top, rgba(0, 0, 0, 1), transparent);
 }
 
 .mip-story-progress {
@@ -85,16 +88,16 @@ mip-story-layer * {
 }
 
 .mip-story-close {
-    opacity: 1;
     display: block;
     float: left;
-    height: 40px;
     width: 40px;
+    height: 40px;
     margin-left: 7px;
+    opacity: 1;
     background: url(https://www.mipengine.org/static/img/mip-story/mip-story-close.png);
-    background-size: 16px 16px;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
 }
 
 .mip-story-close:active {
@@ -102,42 +105,43 @@ mip-story-layer * {
 }
 
 .mip-stoy-audio {
+    top: 0;
+    float: right;
+    width: 40px;
     height: 16px;
     height: 40px;
-    width: 40px;
-    top: 0;
-    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-unmute.png);
-    background-size: cover;
-    float: right;
     margin-right: 7px;
-    background-size: 17px 17px;
-    background-position: center;
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-unmute.png);
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: 17px 17px;
 }
 
 .mip-stoy-audio[muted] {
     background: url(https://www.mipengine.org/static/img/mip-story/mip-story-mute.png);
-    background-size: 17px 17px;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: 17px 17px;
 }
 
 .mip-story-progress-bar {
-    display: flex !important;
+    position: absolute;
+    right: 59px;
+    left: 59px;
+    display:         flex !important;
     display: -webkit-flex !important;
     display: -webkit-box;
-    -webkit-box-align: center;
-    -webkit-box-pack: center;
-    -moz-box-align: center;
-    -moz-box-pack: center;
     height: 40px;
-    align-items: center !important;
+
     -webkit-align-items: center !important;
-    justify-content: center !important;
+            align-items: center !important;
+    -webkit-box-align: center;
+       -moz-box-align: center;
+    -webkit-box-pack: center;
+       -moz-box-pack: center;
     -webkit-justify-content: center !important;
-    position: absolute;
-    left: 59px;
-    right: 59px;
+            justify-content: center !important;
 }
 
 .mip-story-progress-bar > :last-child {
@@ -145,40 +149,41 @@ mip-story-layer * {
 }
 
 .mip-story-page-progress-bar {
-    background: hsla(0, 0, 100%, 0.3);
-    list-style-type: none;
-    margin: 0 6px 0 0;
     overflow: hidden ;
-    flex: 1 !important;
-    -webkit-flex: 1 !important;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
     height: 2px;
+    margin: 0 6px 0 0;
+    list-style-type: none;
     border-radius: 1px;
+    background: hsla(0, 0, 100%, .3);
+
+    -webkit-box-flex: 1;
+       -moz-box-flex: 1;
+    -webkit-flex: 1 !important;
+            flex: 1 !important;
 }
 
 .mip-story-page-progress-bar-active {
-    -webkit-transform: scale(1, 1) !important;
-    transform: scale(1, 1) !important;
-    -webkit-transform-origin: left;
-    transform-origin: left;
     transition: transform 200ms ease !important;
+    -webkit-transform: scale(1, 1) !important;
+            transform: scale(1, 1) !important;
+    -webkit-transform-origin: left;
+            transform-origin: left;
 }
 
 .mip-story-page-progress-bar-visited {
-    -webkit-transform: scale(1, 1) !important;
-    transform: scale(1, 1) !important;
     background: rgba(255, 255, 255, 1);
+    -webkit-transform: scale(1, 1) !important;
+            transform: scale(1, 1) !important;
 }
 
 .mip-story-page-progress-value {
-    background: #fff;
-    height: 100%;
     width: 100%;
-    -webkit-transform-origin: left;
-    transform-origin: left;
+    height: 100%;
+    background: #fff;
     -webkit-transform: scale(0, 1);
-    transform: scale(0, 1);
+            transform: scale(0, 1);
+    -webkit-transform-origin: left;
+            transform-origin: left;
 }
 
 // 布局
@@ -187,22 +192,23 @@ mip-story-layer[template=cover],
 mip-story-layer[template=vertical],
 mip-story-layer[template=horizontal],
 mip-story-layer[template=thirds] {
-    display: flex !important;
+    display:         flex !important;
     display: -webkit-flex !important;
-    height: 100%;
     display: -webkit-box;
+    height: 100%;
 }
 
 mip-story-layer[template=fill] > :first-child,
 mip-story-layer[template=cover] > :first-child {
-    bottom: 0;
-    display: block;
-    height: auto;
-    left: 0;
     position: absolute;
-    right: 0;
     top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
     width: auto;
+    height: auto;
+
     object-fit: cover;
 }
 
@@ -220,22 +226,24 @@ mip-story-layer[template=cover] > mip-video video {
     object-fit: cover !important;
 }
 mip-story-layer[template=horizontal] {
-    flex-direction: row;
-    -webkit-flex-direction: row;
-    align-items: stretch;
-    -webkit-align-items: stretch;
-    align-content: flex-start;
+            flex-direction: row;
+
     -webkit-align-content: flex-start;
+            align-content: flex-start;
+    -webkit-align-items: stretch;
+            align-items: stretch;
+    -webkit-flex-direction: row;
 }
 
 mip-story-layer[template=vertical] {
-    flex-direction: column;
-    -webkit-flex-direction: column;
-    align-items: stretch;
-    -webkit-align-items: stretch;
-    align-content: flex-start;
-    -webkit-align-content: flex-start;
+            flex-direction: column;
     margin-bottom: 16px;
+
+    -webkit-align-content: flex-start;
+            align-content: flex-start;
+    -webkit-align-items: stretch;
+            align-items: stretch;
+    -webkit-flex-direction: column;
 }
 
 mip-story-layer[template=vertical] > * {
@@ -243,9 +251,10 @@ mip-story-layer[template=vertical] > * {
 }
 
 mip-story-layer[template=thirds] {
-    flex-direction: column !important;
-    -webkit-flex-direction: column !important;
+            flex-direction: column !important;
+
     -webkit-box-orient: vertical;
+    -webkit-flex-direction: column !important;
 }
 
 [flex-area=upper-third],
@@ -258,13 +267,13 @@ mip-story-layer[template=thirds] {
 .mip-backend {
     position: absolute;
     z-index: 100002;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, .9);
     top: 0;
     left: 0;
-    text-align: center;
     display: none !important;
+    display: -webkit-box;
+    width: 100%;
+    height: 100%;
+    text-align: center;
     // display: flex !important;
     // display: -webkit-flex !important;
     // justify-content: center !important;
@@ -274,28 +283,31 @@ mip-story-layer[template=thirds] {
     // -webkit-transform: translate(1000%);
     // transform: translateY(1000%);
     color: #fff;
-    display: -webkit-box;
+    background: rgba(0, 0, 0, .9);
+
     -webkit-box-align: center;
+       -moz-box-align: center;
     -webkit-box-pack: center;
-    -moz-box-align: center;
-    -moz-box-pack: center;
+       -moz-box-pack: center;
 }
 .mip-backend[active] {
-    display: flex !important;
+    display:         flex !important;
     display: -webkit-flex !important;
-    justify-content: center !important;
-    -webkit-justify-content: center !important;
-    align-items: center !important;
+
     -webkit-align-items: center !important;
+            align-items: center !important;
+    -webkit-justify-content: center !important;
+            justify-content: center !important;
 }
 
 .mip-backend[current] {
-    display: flex !important;
+    display:         flex !important;
     display: -webkit-flex !important;
-    justify-content: center !important;
-    -webkit-justify-content: center !important;
-    align-items: center !important;
+
     -webkit-align-items: center !important;
+            align-items: center !important;
+    -webkit-justify-content: center !important;
+            justify-content: center !important;
 }
 
 .mip-backend-outer {
@@ -305,15 +317,16 @@ mip-story-layer[template=thirds] {
 }
 
 .mip-story-middle {
-    display: flex !important;
+    display:         flex !important;
     display: -webkit-flex !important;
-    flex-direction: column !important;
-    -webkit-flex-direction: column !important;
-    justify-content: center !important;
-    -webkit-justify-content: center !important;
-    display: -webkit-box;    
+    display: -webkit-box;
+            flex-direction: column !important;
+
+    -webkit-box-orient: vertical;
     -webkit-box-pack: center;
-    -webkit-box-orient: vertical;    
+    -webkit-flex-direction: column !important;
+    -webkit-justify-content: center !important;
+            justify-content: center !important;
 }
 
 .mip-story-middle .mip-backend-preview {
@@ -322,21 +335,22 @@ mip-story-layer[template=thirds] {
 
 .mip-backend-preview {
     position: relative;
-    justify-content: center !important;
-    -webkit-justify-content: center !important;
+    display:         flex !important;
+    display: -webkit-flex !important;
+    display: -webkit-box;
     width: 121px;
     height: 121px;
     margin: 0 auto;
     margin-top: 92px;
-    display: flex !important;
-    display: -webkit-flex !important;
-    align-items: center !important;
+
     -webkit-align-items: center !important;
-    display: -webkit-box;
+            align-items: center !important;
     -webkit-box-align: center;
+       -moz-box-align: center;
     -webkit-box-pack: center;
-    -moz-box-align: center;
-    -moz-box-pack: center;
+       -moz-box-pack: center;
+    -webkit-justify-content: center !important;
+            justify-content: center !important;
 }
 
 .mip-backend-preview-mask {
@@ -345,8 +359,8 @@ mip-story-layer[template=thirds] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000;
     opacity: .5;
+    background: #000;
 }
 
 .mip-backend-preview-thumbnail {
@@ -358,43 +372,43 @@ mip-story-layer[template=thirds] {
 }
 
 .mip-backend-preview-replay-btn {
-    height: 24px;
     width: 24px;
+    height: 24px;
     background: url(https://www.mipengine.org/static/img/mip-story/mip-story-replay.png);
-    background-size: cover;    
+    background-size: cover;
 }
 
 .mip-backend-preview-share-btn {
     display: block;
-    margin: 0 auto;
     width: 25px;
     height: 25px;
+    margin: 0 auto;
     background: url(https://www.mipengine.org/static/img/mip-story/mip-story-share.png);
     background-size: cover;
 }
 
 .mip-backend-preview-thumbnail span {
     display: block;
-    font-size: 13px;
     margin-top: 8px !important;
-    color: #e8eaea;
+    font-size: 13px;
     line-height: 13px;
+    color: #e8eaea;
 }
 
 .mip-backend-description {
     display: block;
-    font-size: 16px;
     margin-top: 16px;
+    font-size: 16px;
     line-height: 16px;
 }
 
 .mip-backend-info {
     display: block;
-    font-size: 13px;
     margin-top: 10px;
-    color: #bababa;
+    font-size: 13px;
     line-height: 13px;
     opacity: .6;
+    color: #bababa;
 }
 
 .mip-backend-info a {
@@ -408,8 +422,8 @@ mip-story-layer[template=thirds] {
 
 .mip-backend-share {
     display: block;
-    margin-top: 66px;
     overflow: hidden;
+    margin-top: 66px;
     opacity: 1;
 }
 
@@ -426,28 +440,28 @@ mip-story-layer[template=thirds] {
 
 .mip-backend-close {
     position: absolute;
-    left: 7px;
-    top: 12px;
     z-index: 1000;
+    top: 12px;
+    left: 7px;
 }
 
 // hint layer
 .mip-story-hint {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
     z-index: 100005;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: none;
 }
 
 .mip-story-hint-shadow {
     display: block;
-    height: 100%;
     width: 25%;
-    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent) !important;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent) !important;
+    height: 100%;
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, .5), transparent) !important;
+    background:         linear-gradient(90deg, rgba(0, 0, 0, .5), transparent) !important;
 }
 
 .mip-story-hint-damping-hide .mip-story-hint-shadow {
@@ -461,9 +475,9 @@ mip-story-layer[template=thirds] {
 }
 
 .mip-story-page-switch {
+    display: none;
     width: 100%;
     height: 100%;
-    display: none;
 }
 
 .mip-story-page-switch-lt,
@@ -482,114 +496,114 @@ mip-story-layer[template=thirds] {
 }
 
 .mip-story-hint-system {
-    background: #000;
-    opacity: .8;
     display: none;
+    opacity: .8;
+    background: #000;
 }
 
 .mip-story-system-show .mip-story-hint-system {
-    display: flex !important;
+    display:         flex !important;
     display: -webkit-flex !important;
     display: -webkit-box;
-    
 }
 
 .mip-story-hint-left,
 .mip-story-hint-middle,
 .mip-story-hint-right {
     height: 100%;
-    flex: 1 !important;
-    -webkit-flex: 1 !important;
+
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
+       -moz-box-flex: 1;
+    -webkit-flex: 1 !important;
+            flex: 1 !important;
 }
 
 .mip-story-hint-left {
     background: url(https://www.mipengine.org/static/img/mip-story/mip-story-arrow.png);
-    background-size: 30px 30px;
     background-repeat: no-repeat;
     background-position: 26px;
+    background-size: 30px 30px;
 }
 
-.mip-story-hint-middle {
-}
+
 
 .mip-story-hint-middle-top {
     position: absolute;
-    left: 50%;
     top: 0;
+    left: 50%;
     width: 1px;
-    background: #ddd;
     height: 40%;
     font-size: 13px;
+    background: #ddd;
 }
 
 .mip-story-hint-middle-icon {
     position: absolute;
     top: 40%;
-    height: 20%;
-    left: 0;
     right: 0;
-    color: #fff;
-    display: flex !important;
+    left: 0;
+    display:         flex !important;
     display: -webkit-flex !important;
-    align-items: center !important;
-    -webkit-align-items: center !important;
-    justify-content: center !important;
-    -webkit-justify-content: center !important;
-    flex-direction: column !important;
-    -webkit-flex-direction: column !important;
     display: -webkit-box;
+            flex-direction: column !important;
+    height: 20%;
+    color: #fff;
+
+    -webkit-align-items: center !important;
+            align-items: center !important;
     -webkit-box-align: center;
-    -webkit-box-pack: center;
-    -moz-box-align: center;
-    -moz-box-pack: center;
+       -moz-box-align: center;
     -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+       -moz-box-pack: center;
+    -webkit-flex-direction: column !important;
+    -webkit-justify-content: center !important;
+            justify-content: center !important;
 }
 
 .mip-story-hint-middle-icon span {
     display: block;
-    text-align: center;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .mip-story-hint-middle-bottom {
     position: absolute;
-    left: 50%;
     bottom: 0;
+    left: 50%;
     width: 1px;
-    background: #fff;
     height: 40%;
+    background: #fff;
 }
 
 .mip-story-hint-right {
     background: url(https://www.mipengine.org/static/img/mip-story/mip-story-arrow.png);
-    background-size: 30px 30px;
     background-repeat: no-repeat;
     background-position: 26px;
-    transform: rotate(180deg);
+    background-size: 30px 30px;
     -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
 }
 
 .mip-story-hint-touch-icon {
-    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-touch.png);
     width: 46px;
     height: 50px;
     margin-top: 14px;
-    background-size: contain;
+    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-touch.png);
     background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .mip-story-hint-rotate {
     position: absolute;
     z-index: 100003;
-    left: 0;
     top: 0;
-    height: 100%;
+    left: 0;
     width: 100%;
-    background: #000;
-    color: #fff;
+    height: 100%;
     text-align: center;
+    color: #fff;
+    background: #000;
 }
 
 .mip-story-hint-rotate p {
@@ -611,35 +625,36 @@ mip-story-layer[template=thirds] {
         display: block !important;
     }
     .mip-story-hint-rotate {
-        display: flex !important;
+        display:         flex !important;
         display: -webkit-flex !important;
-        flex-direction: column !important;
-        -webkit-flex-direction: column !important;
-        align-items: center !important;
-        -webkit-align-items: center !important;
-        justify-content: center !important;
-        -webkit-justify-content: center !important;
         display: -webkit-box;
+                flex-direction: column !important;
+
+        -webkit-align-items: center !important;
+                align-items: center !important;
         -webkit-box-align: center;
-        -webkit-box-pack: center;
-        -moz-box-align: center;
-        -moz-box-pack: center;
+           -moz-box-align: center;
         -webkit-box-orient: vertical;
+        -webkit-box-pack: center;
+           -moz-box-pack: center;
+        -webkit-flex-direction: column !important;
+        -webkit-justify-content: center !important;
+                justify-content: center !important;
     }
 }
 
 // 分享
 .mip-story-share {
-    width: 100%;
     position: absolute;
     z-index: 1000010;
     bottom: -500%;
+    width: 100%;
 }
 
 .mip-story-share-show {
     bottom: 0;
-    transition: bottom 200ms ease;
     -webkit-transition: bottom 200ms ease;
+            transition: bottom 200ms ease;
 }
 
 .mip-story-share mip-share {
@@ -647,15 +662,15 @@ mip-story-layer[template=thirds] {
 }
 
 .mip-story-share-cancel {
-    width: 100%;
-    background: #fff;
-    height: 30px;
     display: block;
+    width: 100%;
+    height: 30px;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
     font-size: 16px;
     text-align: center;
-    padding: 10px 0;
     color: #000;
-    border-top: 1px solid #eee;
+    background: #fff;
 }
 
 // 左右切换按钮
@@ -676,48 +691,49 @@ mip-story-layer[template=thirds] {
     }
 }
 .mip-story-page-switch-left {
-    display: block;
     position: absolute;
-    left: 17px;
     top: 50%;
+    left: 17px;
+    display: block;
     display: none;
 }
 .mip-story-page-switch-right {
-    display: block;
     position: absolute;
-    right: 45px;
     top: 50%;
+    right: 45px;
+    display: block;
     display: none;
 }
 .mip-story-page-switch-left > :first-child,
 .mip-story-page-switch-right > :first-child {
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
-    background: #fff;
     position: absolute;
     top: 50%;
+    width: 28px;
+    height: 28px;
     opacity: .1;
-    animation-delay: 100ms;
-    -webkit-animation: 100ms;
-    animation: spread 1s ease-out;
-    -webkit-animation: spread 1s ease-out;
-    animation-fill-mode: backwards;
-    -webkit-animation-fill-mode: backwards;
-    background: linear-gradient(center, rgba(255, 255, 255, .3), transparent);
+    border-radius: 14px;
+    background: #fff;
+    background:         linear-gradient(center, rgba(255, 255, 255, .3), transparent);
     background: -webkit-linear-gradient(center, rgba(255, 255, 255, .3), transparent);
+    -webkit-animation: 100ms;
+    -webkit-animation: spread 1s ease-out;
+            animation: spread 1s ease-out;
+    animation-delay: 100ms;
+
+    -webkit-animation-fill-mode: backwards;
+            animation-fill-mode: backwards;
 }
 
 .mip-story-page-switch-left > :nth-child(2),
 .mip-story-page-switch-right > :nth-child(2) {
+    position: absolute;
+    top: 50%;
     display: block;
     width: 28px;
     height: 28px;
+    opacity: .1;
     border-radius: 14px;
     background: #fff;
-    position: absolute;
-    top: 50%;
-    opacity: .1;
 }
 // 更多小故事推荐
 .recommend {
@@ -727,39 +743,41 @@ mip-story-layer[template=thirds] {
 
 .recommend > :first-child {
     display: block;
+    padding: 20px 0 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, .3);
     font-size: 16px;
     line-height: 16px;
-    padding: 20px 0 15px 0;
     color: #fff;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .recommend-item {
+    display:         flex !important;
+    display: -webkit-flex !important;
+    display: -webkit-box;
+            flex-direction: column !important;
     width: 186px;
     height: 277px;
-    text-align: center;
-    display: flex !important;
-    display: -webkit-flex !important;
-    flex-direction: column !important;
-    -webkit-flex-direction: column !important;
-    justify-content: flex-end !important;
-    -webkit-justify-content: flex-end !important;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-pack: end;
     margin-right: 8px;
+    text-align: center;
     word-wrap: break-word;
     word-break: break-word;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: end;
+    -webkit-flex-direction: column !important;
+    -webkit-justify-content: flex-end !important;
+            justify-content: flex-end !important;
 }
 
 .recommend-item > span {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     overflow: hidden;
+    padding: 0 2px;
     text-overflow: ellipsis;
     color: #fff;
-    padding: 0 2px;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 .recommend-item > :first-child {
@@ -767,8 +785,8 @@ mip-story-layer[template=thirds] {
 }
 
 .recommend-item > :nth-child(2) {
-    font-size: 13px;
-    line-height: 13px;
     margin-top: 13px;
     margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 13px;
 }

@@ -43,7 +43,8 @@ define(function (require) {
 
         try {
             return JSON.parse(configData.innerText);
-        } catch (e) {
+        }
+        catch (e) {
             console.error(e);
         }
         return {};
@@ -54,6 +55,7 @@ define(function (require) {
         if (au) {
             this.audio = new Audio().build(this.element, au);
         }
+
         this.muted = false;
         this.viewMuted = !!(this.muted || this.audio);
     };
@@ -98,13 +100,13 @@ define(function (require) {
         if (this.progress) {
             return;
         }
+
         var audioHide = this.element.hasAttribute('audio-hide');
         this.progress = new Progress(this.element, this.storyViews, audioHide);
         var html = dm.create(this.progress.build());
         this.element.appendChild(html);
         this.progress.updateProgress(0, 1);
     };
-
 
     // story组件的初始化
     MIPStory.prototype.init = function () {

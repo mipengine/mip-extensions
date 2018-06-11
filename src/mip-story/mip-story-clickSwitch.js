@@ -1,5 +1,5 @@
 /**
- * @file mip-story-click 组件
+ * @file mip-story-clickswitch 组件
  * @author
  */
 define(function (require) {
@@ -13,7 +13,7 @@ define(function (require) {
     var dm = util.dom;
     var storyInstance;
     var showDampingCB;
-    var clickSwitchEndCB;
+    var resetClickEndStatusCB;
     var isShowSwitchLayerCB;
 
     function MIPStoryClickSwitch(param) {
@@ -24,7 +24,7 @@ define(function (require) {
         storyContain = storyInstance.storyContain;
         storyViews = storyInstance.storyViews;
         showDampingCB = param.showDamping;
-        clickSwitchEndCB = param.clickSwitchEnd;
+        resetClickEndStatusCB = param.resetClickEndStatus;
         isShowSwitchLayerCB = param.isShowSwitchLayer;
         this.preIndex = this.currentIndex = this.nextIndex = 0;
     }
@@ -32,12 +32,12 @@ define(function (require) {
     MIPStoryClickSwitch.prototype.build = function () {
         this.initViewForSwitch();
         this.swipe();
-    }
+    };
 
     // 初始化第一页
     MIPStoryClickSwitch.prototype.initViewForSwitch = function () {
-        this.switchTo({ status: 1, notIncrease: 1 });
-    }
+        this.switchTo({status: 1, notIncrease: 1});
+    };
 
     // 点击翻页
     MIPStoryClickSwitch.prototype.switchPage = function (e) {
@@ -51,7 +51,7 @@ define(function (require) {
         else {
             this.switchTo({e: e, status: 0});
         }
-    }
+    };
     MIPStoryClickSwitch.prototype.swipe = function () {
         var gesture = new Gesture(storyInstance.element, {
             preventX: false
@@ -65,10 +65,12 @@ define(function (require) {
                 if (dm.contains(backend, e.target)) {
                     return;
                 }
+
                 self.hint.toggleSystemLater();
             }
+
         });
-    }
+    };
     MIPStoryClickSwitch.prototype.switchTo = function (data) {
         this.hint.hideDamping();
         this.hint.hideSystemLater();
@@ -82,60 +84,64 @@ define(function (require) {
             this.showBookEnd();
             return;
         }
+
         if (!data.notIncrease) {
             data.status === 1 ? this.currentIndex++ : this.currentIndex--;
         }
+
         var currentEle = storyViews[this.currentIndex];
         var preEle = storyViews[this.preIndex];
         if (this.currentIndex !== this.preIndex) {
             this.setViewStatue(false, CURRENT, preEle);
         }
+
         this.setViewStatue(true, CURRENT, currentEle);
         var index = {
             preIndex: this.preIndex,
             currentIndex: this.currentIndex,
             status: data.status
         };
-        clickSwitchEndCB(index);
+        resetClickEndStatusCB(index);
         this.preIndex = this.currentIndex;
         // 右翻
         if (!data.notIncrease) {
             isShowSwitchLayerCB(data.status);
         }
+
     };
 
     MIPStoryClickSwitch.prototype.showBookEnd = function () {
         var ele = storyContain[storyContain.length - 1];
         this.setViewStatue(true, CURRENT, ele);
         var eleAnimation = ele.animate([
-            { transform: 'translate3D(0, 100%, 0)', opacity: 0 },
-            { transform: 'translate3D(0, 0, 0)', opacity: 1 }
+            {transform: 'translate3D(0, 100%, 0)', opacity: 0},
+            {transform: 'translate3D(0, 0, 0)', opacity: 1}
         ], {
-                fill: 'forwards',
-                easing: 'ease-in',
-                duration: 280
-            });
+            fill: 'forwards',
+            easing: 'ease-in',
+            duration: 280
+        });
         eleAnimation.play();
-    }
+    };
 
-    MIPStoryClickSwitch.prototype.goback = function () {
+    MIPStoryClickSwitch.prototype.goBack = function () {
         this.setViewStatue(true, CURRENT, storyViews[this.currentIndex]);
-        this.closebookend();
-    }
+        this.closeBookEnd();
+    };
 
-    MIPStoryClickSwitch.prototype.closebookend = function () {
+    MIPStoryClickSwitch.prototype.closeBookEnd = function () {
         var ele = storyContain[storyContain.length - 1];
         this.setViewStatue(true, CURRENT, ele);
         var eleAnimation = ele.animate([
-            { transform: 'translate3D(0, 0, 0)', opacity: 1 },
-            { transform: 'translate3D(0, 100%, 0)', opacity: 0 }
+            {transform: 'translate3D(0, 0, 0)', opacity: 1},
+            {transform: 'translate3D(0, 100%, 0)', opacity: 0}
         ], {
-                fill: 'forwards',
-                easing: 'ease-out',
-                duration: 280
-            });
+            fill: 'forwards',
+            easing: 'ease-out',
+            duration: 280
+        });
         eleAnimation.play();
-    }
+    };
 
     MIPStoryClickSwitch.prototype.setViewStatue = function (isSetStatus, viewStatue, viewEle) {
         if (viewEle && viewStatue) {
@@ -146,6 +152,7 @@ define(function (require) {
                 viewEle.removeAttribute(viewStatue);
             }
         }
+
     };
 
     MIPStoryClickSwitch.prototype.swip = function (e) {
@@ -155,8 +162,10 @@ define(function (require) {
             if (dm.contains(backend, e.target)) {
                 return;
             }
+
             this.hint.toggleSystemLater();
         }
+
     };
 
     return MIPStoryClickSwitch;

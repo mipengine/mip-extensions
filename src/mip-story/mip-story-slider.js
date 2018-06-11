@@ -17,7 +17,7 @@ define(function (require) {
     // 左右翻页的阀值
     var SWITCHPAGE_THRESHOLD = viewport.getWidth() * 0.15;
     // 上下翻页的阀值
-    var SWITCHPAGE_THRESHOLD_Height = viewport.getHeight() * 0.1;
+    var SWITCHPAGE_THRESHOLD_HEIGHT = viewport.getHeight() * 0.1;
     var SWITCHTYPES = {};
     var switchPageType = '';
     var initViewForSwitchCB;
@@ -35,6 +35,10 @@ define(function (require) {
     var reboundTime = 80;
     var recommend;
 
+    var DIRECTIONMAP = {
+        back: 'back',
+        goto: 'goto'
+    };
     var directionMap = {
         back: 'back',
         goto: 'goto'
@@ -65,15 +69,20 @@ define(function (require) {
     function enableScroll(ele) {
         if (ele && ele.addEventListener) {
             ele.addEventListener('touchstart', function () {
-                if (ele.scrollTop == 0) ele.scrollTop = 1;
+                if (ele.scrollTop == 0) {
+                    ele.scrollTop = 1;
+                }
+
             });
 
             ele.addEventListener('touchmove', function (e) {
-                if (ele.scrollTop > 0) e.stopPropagation();
+                if (ele.scrollTop > 0) {
+                    e.stopPropagation();
+                }
+
             }, false);
         }
     }
-
 
     function isPositionChange(index) {
         var currentEle = storyContain[index];
@@ -82,50 +91,61 @@ define(function (require) {
         if (matrix[0] == 0) {
             return false;
         }
+
         return true;
     }
 
     function setSliderPosition(ele, isPre, changemove) {
-        var width = isPre ? - screenWidth : screenWidth;
-        var height = isPre ? - screenHeight : screenHeight;
+        var width = isPre ? -screenWidth : screenWidth;
+        var height = isPre ? -screenHeight : screenHeight;
         if (ele == null) {
             return;
         }
-        if (changemove != null && switchPageType == SWITCHTYPES.slideX) {
-            ele.style.transform = 'translate(' + changemove + 'px, 0)'
-            return;
+
+        // 根据手指位移而修改位移
+        if (changemove != null) {
+            if (switchPageType == SWITCHTYPES.slideX) {
+                ele.style.transform = 'translate(' + changemove + 'px, 0)';
+            }
+            else {
+                ele.style.transform = 'translate(0, ' + changemove + 'px)';
+            }
         }
-        if (changemove != null && switchPageType == SWITCHTYPES.slideY) {
-            ele.style.transform = 'translate(0, ' + changemove + 'px)'
-            return;
-        }
-        if (switchPageType == SWITCHTYPES.slideX) {
-            ele.style.transform = 'translate(' + width + 'px, 0)'
-        }
+        // 设置翻页前的前一页和后一页的位置
         else {
-            ele.style.transform = 'translate(0, ' + height + 'px)'
+            if (switchPageType == SWITCHTYPES.slideX) {
+                ele.style.transform = 'translate(' + width + 'px, 0)';
+            }
+            else {
+                ele.style.transform = 'translate(0, ' + height + 'px)';
+            }
         }
-    };
+    }
 
     function setTransitionDuration(ele, time) {
-        ele.style['transition'] = 'transform ' + time + 'ms ease';
+        ele.style.transition = 'transform ' + time + 'ms ease';
     }
 
     MIPStorySlider.prototype.build = function () {
         // 禁止橡皮筋效果
         document.addEventListener('touchmove', function (e) {
             e.preventDefault();
-        }, {passive: false});
+        }, {
+            passive: false
+        });
         // 初始化段落布局
         this.initViewForSlider();
+        this.bindEvent();
+        recommend = document.querySelector('.recommend');
+    };
+    MIPStorySlider.prototype.bindEvent = function () {
         // 开始滑动
         this.sliderStart();
         // 滑动中
-        this.sliderIng();
+        this.sliding();
         // 结束滑动
         this.sliderEnd();
-        recommend = document.querySelector('.recommend');
-    }
+    };
 
     // 初始化view的最初排布
     MIPStorySlider.prototype.initViewForSlider = function () {
@@ -140,10 +160,11 @@ define(function (require) {
         if (storyContain.length >= 2) {
             this.nextIndex = this.currentIndex + 1;
             nextEle = storyContain[this.nextIndex];
-            this.setViewStatue(true, ACTIVE, nextEle);
+            this.setViewStatus(true, ACTIVE, nextEle);
             // 初始化下一页的位置
             setSliderPosition(nextEle, false);
         }
+
         initViewForSwitchCB({
             preIndex: this.preIndex,
             currentIndex: this.currentIndex,
@@ -160,6 +181,7 @@ define(function (require) {
             if (self.moveFlag) {
                 return;
             }
+
             var touch = e.targetTouches[0];
             self.touchstartX = touch.pageX;
             self.touchstartY = touch.pageY;
@@ -167,7 +189,7 @@ define(function (require) {
         });
     };
 
-    MIPStorySlider.prototype.sliderIng = function () {
+    MIPStorySlider.prototype.sliding = function () {
         var self = this;
         // 对story进行手势的监控
         storyInstanceEle.addEventListener('touchmove', function (e) {
@@ -175,13 +197,15 @@ define(function (require) {
             if (dm.contains(recommend, e.target)) {
                 return;
             }
+
             // 如果正处于翻页状态跳出
             if (self.moveFlag) {
                 return;
             }
+
             self.slideMoving(e);
         });
-    }
+    };
 
     MIPStorySlider.prototype.sliderEnd = function () {
         var self = this;
@@ -191,10 +215,12 @@ define(function (require) {
             if (dm.contains(recommend, e.target)) {
                 return;
             }
+
             // 如果正处于翻页状态跳出
             if (self.moveFlag) {
                 return;
             }
+
             var touch = e.changedTouches[0];
             self.touchendX = touch.pageX;
             self.touchendY = touch.pageY;
@@ -224,8 +250,10 @@ define(function (require) {
             if (isPositionChange(this.currentIndex)) {
                 this.setRebound();
             }
+
             return;
         }
+
         // 判断滑动的距离小于阀值-弹回
         if (Math.abs(move) <= threshold) {
             this.setRebound();
@@ -236,29 +264,30 @@ define(function (require) {
         else {
             this.switchEnd(e);
         }
-    }
+    };
 
     MIPStorySlider.prototype.resetMovingEndStatus = function (direction) {
         var self = this;
         var preEle = storyContain[this.preIndex];
         var currentEle = storyContain[this.currentIndex];
         var nextEle = storyContain[this.nextIndex];
+        // 翻页结束后，重设页面状态
         setTimeout(function () {
             self.moveFlag = false;
             self.resetViewForSwitch(direction);
-        }, 140);
-    }
+        }, +sliderTime);
+    };
 
     MIPStorySlider.prototype.resetViewForSwitch = function (direction) {
         // 往后翻页
         var isPre = false;
         switch (direction) {
-            case directionMap.back:
+            case DIRECTIONMAP.back:
                 this.nextIndex = this.currentIndex;
                 this.currentIndex = this.preIndex;
                 this.preIndex = this.preIndex - 1 < 0 ? this.preIndex : this.preIndex - 1;
                 break;
-            case directionMap.goto:
+            case DIRECTIONMAP.goto:
                 isPre = true;
                 this.preIndex = this.currentIndex;
                 this.currentIndex = this.currentIndex + 1;
@@ -276,14 +305,16 @@ define(function (require) {
         this.clearStyle();
         var preChangeIndex;
         if (this.preIndex != this.currentIndex) {
-            this.setViewStatue(true, ACTIVE, preEle);
+            this.setViewStatus(true, ACTIVE, preEle);
             setSliderPosition(preEle, isPre, null);
         }
+
         if (this.nextIndex != this.currentIndex) {
-            this.setViewStatue(true, ACTIVE, nextEle);
+            this.setViewStatus(true, ACTIVE, nextEle);
             setSliderPosition(nextEle, !isPre, null);
         }
-        this.setViewStatue(true, CURRENT, currentEle);
+
+        this.setViewStatus(true, CURRENT, currentEle);
         setSliderPosition(currentEle, null, 0);
         var index = {
             preIndex: this.preIndex,
@@ -291,19 +322,20 @@ define(function (require) {
             nextIndex: this.nextIndex
         };
         resetSlideEndViewCB(index);
-    }
+    };
 
     MIPStorySlider.prototype.getSwitchDirection = function (e) {
-        var direction = directionMap.goto;
+        var direction = DIRECTIONMAP.goto;
         if (e) {
             var data = this.getMoveData(e);
             var move = data.move;
             if (move >= 0) {
-                direction = directionMap.back;
+                direction = DIRECTIONMAP.back;
             }
         }
+
         return direction;
-    }
+    };
 
     MIPStorySlider.prototype.switchEnd = function (e) {
         var self = this;
@@ -313,11 +345,11 @@ define(function (require) {
         var isPre = false;
         var direction = this.getSwitchDirection(e);
         switch (direction) {
-            case directionMap.back:
+            case DIRECTIONMAP.back:
                 setSliderPosition(preEle, null, 0);
                 setTransitionDuration(preEle, sliderTime);
                 break;
-            case directionMap.goto:
+            case DIRECTIONMAP.goto:
                 isPre = true;
                 setSliderPosition(nextEle, null, 0);
                 setTransitionDuration(nextEle, sliderTime);
@@ -329,18 +361,19 @@ define(function (require) {
         setTransitionDuration(currentEle, sliderTime);
         // 重新设置页面状态
         this.resetMovingEndStatus(direction);
-    }
+    };
 
     MIPStorySlider.prototype.resetReboundEndStatus = function () {
         var self = this;
         var preEle = storyContain[this.preIndex];
         var currentEle = storyContain[this.currentIndex];
         var nextEle = storyContain[this.nextIndex];
+        // 未翻页成功，页面回弹后重设页面状态
         setTimeout(function () {
             self.moveFlag = false;
             self.resetViewStyle();
-        }, 70);
-    }
+        }, reboundTime);
+    };
 
     MIPStorySlider.prototype.resetViewStyle = function () {
         var preEle = storyContain[this.preIndex];
@@ -350,16 +383,19 @@ define(function (require) {
             preEle.removeAttribute('style');
             setSliderPosition(preEle, true);
         }
+
         if (this.nextIndex != this.currentIndex) {
             nextEle.removeAttribute('style');
             setSliderPosition(nextEle, false);
         }
+
         currentEle.removeAttribute('style');
         if (this.currentIndex == storyContain.length - 1) {
             enableScroll(document.querySelector('.mip-backend-outer'));
             enableScroll(document.getElementsByTagName('mip-scrollbox'));
         }
-    }
+
+    };
 
     MIPStorySlider.prototype.setConfineEle = function (e) {
         var data = this.getMoveData(e);
@@ -373,13 +409,15 @@ define(function (require) {
             showDampingCB();
             isConfineEle = true;
         }
+
         // 最后一页往后滑动
         if (this.currentIndex + 1 >= storyContain.length && move <= 0) {
             this.moveFlag = false;
             isConfineEle = true;
         }
+
         return isConfineEle;
-    }
+    };
 
     MIPStorySlider.prototype.slideMoving = function (e) {
         var data = this.getMoveData(e);
@@ -393,13 +431,16 @@ define(function (require) {
         if (this.setConfineEle(e)) {
             return;
         }
+
         // 页面的滑动
         if (this.currentIndex != this.preIndex) {
             setSliderPosition(preEle, null, preActiveMove);
         }
+
         if (this.currentIndex != this.nextIndex) {
             setSliderPosition(nextEle, null, nextActiveMove);
         }
+
         setSliderPosition(currentEle, null, move);
     };
 
@@ -408,36 +449,39 @@ define(function (require) {
         var moveX = touch.pageX - this.touchstartX;
         var moveY = touch.pageY - this.touchstartY;
         var move = moveX;
-        var preActiveMove = - screenWidth + moveX;
+        var preActiveMove = -screenWidth + moveX;
         var nextActiveMove = screenWidth + moveX;
         var threshold = SWITCHPAGE_THRESHOLD;
-        if (switchPageType == SWITCHTYPES.slideY) {
+        if (switchPageType === SWITCHTYPES.slideY) {
             move = moveY;
-            preActiveMove = - screenHeight + moveY;
+            preActiveMove = -screenHeight + moveY;
             nextActiveMove = screenHeight + moveY;
-            threshold = SWITCHPAGE_THRESHOLD_Height;
+            threshold = SWITCHPAGE_THRESHOLD_HEIGHT;
         }
+
         var data = {
             move: move,
             preActiveMove: preActiveMove,
             nextActiveMove: nextActiveMove,
             threshold: threshold
-        }
+        };
         return data;
-    }
+    };
 
     MIPStorySlider.prototype.setRebound = function (e) {
         var preEle = storyContain[this.preIndex];
         var currentEle = storyContain[this.currentIndex];
         var nextEle = storyContain[this.nextIndex];
-        if (this.preIndex != this.currentIndex) {
+        if (this.preIndex !== this.currentIndex) {
             setSliderPosition(preEle, true);
             setTransitionDuration(preEle, reboundTime);
         }
-        if (this.nextIndex != this.currentIndex) {
+
+        if (this.nextIndex !== this.currentIndex) {
             setSliderPosition(nextEle, false);
             setTransitionDuration(nextEle, reboundTime);
         }
+
         setSliderPosition(currentEle, null, 0);
         setTransitionDuration(currentEle, reboundTime);
     };
@@ -446,35 +490,39 @@ define(function (require) {
         for (var i = 0; i < storyContain.length; i++) {
             if (i === this.currentIndex) {
                 // 设置当前页面为current状态
-                this.setViewStatue(true, CURRENT, storyContain[i]);
+                this.setViewStatus(true, CURRENT, storyContain[i]);
             }
             else {
                 // 清除非当前页的current状态，确保只有一个current页
-                this.setViewStatue(false, CURRENT, storyContain[i]);
+                this.setViewStatus(false, CURRENT, storyContain[i]);
             }
             // 如果当前页面原先为active状态则清除
             if (this.hasStatus(ACTIVE, storyContain[i])) {
-                this.setViewStatue(false, ACTIVE, storyContain[i]);
+                this.setViewStatus(false, ACTIVE, storyContain[i]);
             }
+
         }
     };
 
     MIPStorySlider.prototype.clearStyle = function () {
         for (var i = 0; i < storyContain.length; i++) {
             if (this.hasStatus(STYLE, storyContain[i])) {
-                this.setViewStatue(false, STYLE, storyContain[i])
+                this.setViewStatus(false, STYLE, storyContain[i]);
                 storyContain[i].removeAttribute(STYLE);
             }
+
         }
     };
 
+    // 用来判断当前ele是否有要判断的status，例如style/current/active的状态
     MIPStorySlider.prototype.hasStatus = function (viewStatue, viewEle) {
         if (viewStatue && viewEle) {
             return viewEle.hasAttribute(viewStatue);
         }
+
     };
 
-    MIPStorySlider.prototype.setViewStatue = function (isSetStatus, viewStatue, viewEle) {
+    MIPStorySlider.prototype.setViewStatus = function (isSetStatus, viewStatue, viewEle) {
         if (viewEle && viewStatue) {
             if (isSetStatus) {
                 viewEle.setAttribute(viewStatue, '');
@@ -483,6 +531,7 @@ define(function (require) {
                 viewEle.removeAttribute(viewStatue);
             }
         }
+
     };
 
     return MIPStorySlider;

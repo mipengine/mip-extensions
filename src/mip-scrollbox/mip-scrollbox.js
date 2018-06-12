@@ -61,9 +61,7 @@ define(function (require) {
 
         // 绑定滚动事件触发更新视图
         element.querySelector('[data-inner]').addEventListener('scroll', updateView);
-        element.addEventListener('touchmove', function (e) {
-            e.stopPropagation();
-        });
+
         if (config.type !== 'row') {
             return;
         }

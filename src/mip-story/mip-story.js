@@ -152,6 +152,9 @@ define(function (require) {
 
     MIPStory.prototype.initStoryViews = function () {
         storyViews = this.element.querySelectorAll('mip-story-view');
+        // storyViews.forEach(function(val) {
+        //     val.customElement.setActive(false);
+        // });
     };
 
     MIPStory.prototype.bindEvent = function () {

@@ -8,6 +8,7 @@ define(function (require) {
 
     var customElement = require('customElement').create();
     var Audio = require('./audio');
+    require('./mip-story-video');
     var BACKGROUND_AUDIO = 'background-audio';
     var timeStrFormat = require('./animation-util').timeStrFormat;
     var AnimationManager = require('./animation').AnimationManager;
@@ -16,12 +17,7 @@ define(function (require) {
     customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
         self.whenAllMediaElements(function (ele) {
-            if (ele.tagName.toLowerCase() === 'audio' && load) {
-                !self.muted ? ele.load() : ele.load() && ele.pause();
-            }
-            else {
-                !self.muted && ele.play();
-            }
+            !self.muted ? ele.load() : ele.load() && ele.pause();
         });
     };
 
@@ -68,7 +64,6 @@ define(function (require) {
         });
     };
 
-
     customElement.prototype.setActive = function (status, muted, load, eventEmiter) {
         this.muted = muted;
         this.parentEmiter = eventEmiter;
@@ -77,14 +72,33 @@ define(function (require) {
             this.maybeStartAnimation();
             this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
+            this.startStoryViedo();
         }
         else {
             this.element.removeAttribute('active');
             this.maybeClearAutoAdvance();
             this.pauseAllMedia();
             this.maybeClearAnimation();
+            this.stopStoryViedo();
         }
     };
+
+    customElement.prototype.startStoryViedo = function() {
+        if (this.hasStoryVideo) {
+            this.canvasVideo.forEach(function(val) {
+                val.customElement.play();
+            });
+        };
+    };
+
+    customElement.prototype.stopStoryViedo = function() {
+        if (this.hasStoryVideo) {
+            this.canvasVideo.forEach(function(val) {
+                val.customElement.stop();
+            });
+        };
+    };
+
     customElement.prototype.maybeStartAnimation = function () {
         if (hasAnimations(this.element)) {
             css(this.element, {visibility: 'hidden'});
@@ -99,6 +113,7 @@ define(function (require) {
     };
 
     customElement.prototype.maybeClearAnimation = function() {
+
         if (this.animationManager) {
             this.animationManager.cancelAllAnimate();
         }
@@ -120,11 +135,15 @@ define(function (require) {
                 self.parentEmiter.trigger('switchpage', {status: 1});
             }, duration);
         }
-
     };
+
     customElement.prototype.initView = function () {
+
         this.audio = new Audio();
+        this.canvasVideo = this.element.querySelectorAll('mip-story-video');
+        this.hasStoryVideo = !!this.canvasVideo.length;
         var node = this.element.parentNode;
+
         if (!node.hasAttribute(BACKGROUND_AUDIO)) {
             var audioSrc = this.element.getAttribute(BACKGROUND_AUDIO);
             this.audio.build(this.element, audioSrc);

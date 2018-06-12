@@ -98,7 +98,7 @@ define(function (require) {
      */
     MIPStoryBackEnd.prototype.showShareBtn = function () {
         var hostName = util.parseCacheUrl(location.hostname);
-        if (platform.isBaiduApp() && !viewer.isIframed && !hostName.includes('baidu')) {
+        if (platform.isBaiduApp() && !viewer.isIframed && hostName.indexOf('baidu.com') === -1) {
             return false;
         }
         return true;

@@ -66,23 +66,11 @@ define(function (require) {
         var autoAdvanceDuration = timeStrFormat(this.elements[index].getAttribute('auto-advancement-after'));
         var progressBar = this.root.querySelectorAll('.mip-story-progress-bar .mip-story-page-progress-value');
         var ele = progressBar[index];
-
         // 后续会有场景视频播放时，如果遇到缓冲，则需要暂停动画
         // 所以采用 WebAnimation API来进行头部切换动画的控制；
         // 处理其他views的状态
         if (!ele.animatePlayer) {
-            ele.animatePlayer = ele.animate([
-                {
-                    transform: "scale(0, 1)"
-                }, {
-                    transform: "scale(1, 1)"
-                }
-            ]
-            ,{
-                easing: 'linear',
-                duration: autoAdvanceDuration || 200,
-                fill: 'forwards'
-            });
+            this.setAnimatePlayer(ele, autoAdvanceDuration);
         } else {
             // 这里对自动播放和非自动播放做了不同处理
             // 如果设置了自动播放或者当前不是被访问过的状态，就重新播放动画；
@@ -95,21 +83,46 @@ define(function (require) {
         };
         // 处理其他views的状态
         if (this.oldEle && this.oldEle !== ele) {
-            this.oldEle.classList.add(VISITED);
-            this.oldEle.animatePlayer.finish();
-            // 向右翻
-            if (status) {
-                this.oldEle.classList.add(VISITED);
-                this.oldEle.animatePlayer && this.oldEle.animatePlayer.finish();
-            }
-            else {
-                this.oldEle.classList.remove(VISITED);
-                this.oldEle.animatePlayer.cancel();
-            }
+            this.setOldEleAnimatePlayer(this.oldEle, progressBar, status, index);
         }
 
         this.oldEle = ele;
     };
+
+    MIPProgress.prototype.setOldEleAnimatePlayer = function (ele, progressBar, status, index) {
+        ele.classList.add(VISITED);
+        ele.animatePlayer.finish();
+        // 向右翻
+        if (status) {
+            ele.classList.add(VISITED);
+            ele.animatePlayer && ele.animatePlayer.finish();
+            for (var i = index + 1; i < progressBar.length; i++) {
+                css(progressBar[i], {transform: "scale(0, 1)"});
+                progressBar[i].animatePlayer && progressBar[i].animatePlayer.cancel();
+                progressBar[i].classList.remove(VISITED);
+            }
+        }
+        else {
+            ele.classList.remove(VISITED);
+            ele.animatePlayer.cancel();
+        }
+    }
+
+    MIPProgress.prototype.setAnimatePlayer = function (ele, autoAdvanceDuration) {
+        ele.animatePlayer = ele.animate([
+            {
+                transform: "scale(0, 1)"
+            }, {
+                transform: "scale(1, 1)"
+            }
+        ]
+        ,{
+            easing: 'linear',
+            duration: autoAdvanceDuration || 200,
+            fill: 'forwards'
+        });
+    };
+
 
     return MIPProgress;
 });

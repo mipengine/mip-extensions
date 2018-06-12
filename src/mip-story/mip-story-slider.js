@@ -106,24 +106,28 @@ define(function (require) {
         if (changemove != null) {
             if (switchPageType == SWITCHTYPES.slideX) {
                 ele.style.transform = 'translate(' + changemove + 'px, 0)';
+                ele.style.webkitTransform = 'translate(' + changemove + 'px, 0)';
             }
             else {
                 ele.style.transform = 'translate(0, ' + changemove + 'px)';
+                ele.style.webkitTransform = 'translate(0, ' + changemove + 'px)';
             }
         }
         // 设置翻页前的前一页和后一页的位置
         else {
             if (switchPageType == SWITCHTYPES.slideX) {
                 ele.style.transform = 'translate(' + width + 'px, 0)';
+                ele.style.webkitTransform = 'translate(' + width + 'px, 0)';
             }
             else {
-                ele.style.transform = 'translate(0, ' + height + 'px)';
+                ele.style.webkitTransform = 'translate(0, ' + height + 'px)';
             }
         }
     }
 
     function setTransitionDuration(ele, time) {
         ele.style.transition = 'transform ' + time + 'ms ease';
+        ele.style.webkitTransition = 'transform ' + time + 'ms ease';
     }
 
     MIPStorySlider.prototype.build = function () {

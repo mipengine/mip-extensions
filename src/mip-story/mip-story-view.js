@@ -40,8 +40,8 @@ define(function (require) {
 
     customElement.prototype.toggleAllMedia = function (e, muted) {
         this.muted = muted;
-        var ele = e.target;
-        if (ele.hasAttribute('muted')) {
+        var ele = e.target || null;
+        if (ele && ele.hasAttribute && ele.hasAttribute('muted')) {
             !this.muted && this.resumeAllMedia();
             !this.muted && this.unMuteAllMedia();
         }
@@ -82,7 +82,8 @@ define(function (require) {
     function hasCssAnimation(obj) {
         var ani = null;
         try {
-            ani = document.defaultView.getComputedStyle(obj)['animationName'];
+            ani = document.defaultView.getComputedStyle(obj)['animationName']
+                || document.defaultView.getComputedStyle(obj)['-webkit-animationName'];
         } catch (e) {
         }
         if (ani && ani != 'none') {

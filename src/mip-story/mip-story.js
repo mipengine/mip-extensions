@@ -6,25 +6,15 @@
 define(function (require) {
     'use strict';
 
-    var MUTE = 'mute';
-    var SWIP = 'swip';
-    var UNMUTE = 'unmute';
-    var REPLAY = 'replay';
-    var SWITCHPAGE = 'switchpage';
-    var SHOWBOOKEND = 'showbookend';
-    var CLOSEBOOKEND = 'closebookend';
-    var TAPNAVIGATION = 'tapnavigation';
-    var SHOWNOPREVIOUSPAGEHELP = 'shownopreviouspagehelp';
-    var VISIBILITYCHANGE = 'visibilitychange';
     var MIP_I_STORY_STANDALONE = 'mip-i-story-standalone';
 
+    var customElement = require('customElement').create();
     require('./mip-story-view');
     require('./mip-story-layer');
     var Audio = require('./audio');
     var ShareLayer = require('./mip-story-share');
     var HintLayer = require('./mip-story-hint');
     var BookEnd = require('./mip-story-bookend');
-    var customElement = require('customElement').create();
     var animatePreset = require('./animate-preset');
     var util = require('util');
     var dm = util.dom;
@@ -32,44 +22,32 @@ define(function (require) {
     var Gesture = util.Gesture;
     var Progress = require('./mip-progress');
     var storyViews = [];
+    var storyContain = [];
+    var viewport = require('viewport');
+    var $ = require('zepto');
+    var SWITCHPAGE_THRESHOLD = viewport.getWidth() * 0.15;
+    var SWITCHPAGE_THRESHOLD_Height = viewport.getHeight() * 0.4;
+    var Service = require('./mip-story-service');
+    var service;
 
     function MIPStory(element) {
         this.element = element;
         this.win = window;
-        this.currentIndex = this.preInex = 0;
+        this.storyViews = [];
+        this.storyContain = [];
     }
+
     MIPStory.prototype.getConfigData = function () {
 
         var configData = this.element.querySelector('mip-story > script[type="application/json"]');
 
         try {
             return JSON.parse(configData.innerText);
-        } catch(e) {
+        }
+        catch (e) {
             console.error(e);
         }
         return {};
-    };
-    MIPStory.prototype.init = function () {
-        var element = this.element;
-        var html = this.win.document.documentElement;
-        var mipStoryConfigData = this.getConfigData();
-        html.setAttribute('id', MIP_I_STORY_STANDALONE);
-        // 保存 story views
-        this.initStoryViews();
-        // 初始化音频
-        this.initAudio();
-        // 初始化进度条
-        this.initProgress();
-        // 初始化结尾页
-        this.initBookend(mipStoryConfigData);
-        // 初始化引导页
-        this.initHintLayer(element);
-        // 初始化分享页面
-        this.initShare(mipStoryConfigData, element);
-        // 绑定事件
-        this.initEvent();
-        // 切换到第一页
-        this.switchTo({status: 1, notIncrease: 1});
     };
 
     MIPStory.prototype.initAudio = function () {
@@ -77,8 +55,33 @@ define(function (require) {
         if (au) {
             this.audio = new Audio().build(this.element, au);
         }
+
         this.muted = false;
         this.viewMuted = !!(this.muted || this.audio);
+    };
+
+    MIPStory.prototype.initBookend = function (storyConfig) {
+        this.bookEnd = new BookEnd(storyConfig);
+        var html = dm.create(this.bookEnd.build());
+        this.element.appendChild(html);
+    };
+
+    MIPStory.prototype.initStoryViews = function () {
+        this.storyViews = this.element.querySelectorAll('mip-story-view');
+    };
+
+    MIPStory.prototype.initStoryContain = function () {
+        this.bookEndContainer = document.querySelector('.mip-backend');
+        for (var index = 0; index < this.storyViews.length; index++) {
+            this.storyContain.push(this.storyViews[index].customElement.element);
+        }
+        this.storyContain.push(this.bookEndContainer);
+    };
+
+    MIPStory.prototype.initHintLayer = function (element) {
+        this.hint = new HintLayer(element);
+        var html = dm.create(this.hint.build());
+        this.element.appendChild(html);
     };
 
     MIPStory.prototype.initShare = function (storyConfig, element) {
@@ -88,294 +91,45 @@ define(function (require) {
         this.element.appendChild(html);
     };
 
-    MIPStory.prototype.initHintLayer = function (element) {
-        this.hint = new HintLayer(element);
-        var html = dm.create(this.hint.build());
-        this.element.appendChild(html);
-    };
-
-    MIPStory.prototype.initEvent = function () {
-        var self = this;
-        var gesture = new Gesture(this.element, {
-            preventX: false
-        });
-        // 绑定点击事件, story 组件的点击事件都有组件自己接管；
-        this.element.addEventListener('click', function (e) {
-            self.emitter.trigger(TAPNAVIGATION, e);
-        });
-        // 页面切换到后台
-        document.addEventListener(VISIBILITYCHANGE, function (e) {
-            self.emitter.trigger(VISIBILITYCHANGE, e);
-        });
-        // 绑定点击事件
-        gesture.on('swipe', function (e, data) {
-            self.emitter.trigger(SWIP, {
-                e: e,
-                data: data
-            });
-        });
-        // 初始化自定义事件
-        self.bindEvent();
-    };
-
-    MIPStory.prototype.visibilitychange = function (e) {
-        var hiddenProperty = 'hidden' in document ? 'hidden'
-            : 'webkitHidden' in document ? 'webkitHidden'
-            : 'mozHidden' in document ? 'mozHidden' : null;
-        var currentEle = storyViews[this.currentIndex];
-        if (document[hiddenProperty]) {
-            this.pauseGlobalAudio();
-            currentEle.customElement.pauseAllMedia();
-        }
-        else {
-            this.playGlobalAudio();
-            currentEle.customElement.resumeAllMedia();
-        }
-    };
-
-    MIPStory.prototype.initBookend = function (storyConfig) {
-        this.bookEnd = new BookEnd(storyConfig);
-        var html = dm.create(this.bookEnd.build());
-        this.element.appendChild(html);
+    MIPStory.prototype.initService = function () {
+        service = new Service(this);
+        service.build();
     };
 
     MIPStory.prototype.initProgress = function () {
         if (this.progress) {
             return;
         }
+
         var audioHide = this.element.hasAttribute('audio-hide');
-        this.progress = new Progress(this.element, storyViews, audioHide);
+        this.progress = new Progress(this.element, this.storyViews, audioHide);
         var html = dm.create(this.progress.build());
         this.element.appendChild(html);
         this.progress.updateProgress(0, 1);
     };
 
-    MIPStory.prototype.initStoryViews = function () {
-        storyViews = this.element.querySelectorAll('mip-story-view');
-    };
-
-    MIPStory.prototype.bindEvent = function () {
-        this.emitter = new EventEmitter();
-        this.emitter.on(MUTE, this.mute.bind(this));
-        this.emitter.on(SWIP, this.swip.bind(this));
-        this.emitter.on(UNMUTE, this.unmute.bind(this));
-        this.emitter.on(REPLAY, this.replay.bind(this));
-        this.emitter.on(TAPNAVIGATION, this.tapnavigation.bind(this));
-        this.emitter.on(SWITCHPAGE, this.switchTo.bind(this));
-        this.emitter.on(SHOWBOOKEND, this.showbookend.bind(this));
-        this.emitter.on(CLOSEBOOKEND, this.closebookend.bind(this));
-        this.emitter.on(VISIBILITYCHANGE, this.visibilitychange.bind(this));
-        this.emitter.on(SHOWNOPREVIOUSPAGEHELP, this.shownopreviouspagehelp.bind(this));
-    };
-
-    MIPStory.prototype.swip = function (e) {
-        if (e.data.swipeDirection === 'left'
-            || e.data.swipeDirection === 'right') {
-            var backend = document.querySelector('.mip-backend');
-            if (dm.contains(backend, e.target)) {
-                return;
-            }
-            this.hint.toggleSystemLater();
-        }
-    };
-
-    MIPStory.prototype.tapnavigation = function (e) {
-
-        // a 标签不做任何处理；
-        if (e.target.nodeName.toLocaleLowerCase() === 'a') {
-            return;
-        }
-
-        e.stopPropagation();
-        var backend = document.querySelector('.mip-backend');
-        var replay = document.querySelector('.mip-backend-preview');
-        var shareBtn = document.querySelector('.mip-backend-share');
-        var shareArea = document.querySelector('.mip-story-share');
-        var cancelBtn = document.querySelector('.mip-story-share-cancel');
-        var back = 'mip-story-close';
-        var audio = document.querySelector('.mip-stoy-audio');
-        var recommend = document.querySelector('.recommend');
-
-        // 推荐
-        if (dm.contains(recommend, e.target)) {
-            var ele = document.querySelector('.item-from');
-            var src = e.target.getAttribute('data-src');
-            if (ele === e.target && src) {
-                e.preventDefault();
-                window.top.location.href = src;
-            }
-            return;
-        }
-        // 返回上一页
-        if (this.hasClass(e, back)) {
-            history.back();
-            return;
-        }
-        // 静音控制
-        if (e.target === audio) {
-            var enabled = audio.hasAttribute('muted');
-            enabled ? this.emitter.trigger(UNMUTE, e)
-                : this.emitter.trigger(MUTE, e);
-            return;
-        }
-        // 重头开始播放
-        if (dm.contains(replay, e.target)) {
-            this.emitter.trigger(REPLAY);
-            return;
-        }
-        // 结尾页点击逻辑
-        else if (dm.contains(backend, e.target)) {
-            // 弹出分享
-            if (dm.contains(shareBtn, e.target)) {
-                this.share.showShareLayer();
-            }
-            // 关闭结尾页
-            else {
-                this.emitter.trigger(CLOSEBOOKEND);
-            }
-            return;
-        }
-        // 分享点击
-        else if (dm.contains(shareArea, e.target)) {
-            // 关闭分享界面
-            if (e.target === cancelBtn) {
-                this.share.hideShareLayer();
-            }
-            return;
-        }
-        // 如果视频/音频不能 autoplay，则主动触发
-        if (!this.hasPlay && !this.muted) {
-            this.emitter.trigger(UNMUTE, e);
-            this.hasPlay = true;
-        }
-        // 翻页逻辑
-        var centerX = (this.element.offsetLeft + this.element.offsetWidth) / 2;
-        // 向右切换
-        if (e.pageX > centerX) {
-            this.emitter.trigger(SWITCHPAGE, {e: e, status: 1});
-        }
-        // 向左切换
-        else {
-            this.emitter.trigger(SWITCHPAGE, {e: e, status: 0});
-        }
-    };
-
-    MIPStory.prototype.hasClass = function (e, clsName) {
-        var reg = new RegExp('\\s*' + clsName + '\\s*');
-        return !!reg.exec(e.target.className);
-    };
-
-    MIPStory.prototype.setActive = function (status) {
-        for (var i = 0; i < storyViews.length; i++) {
-            if (i === this.currentIndex) {
-                storyViews[i].setAttribute('active', '');
-            }
-            else {
-                storyViews[i].removeAttribute('active');
-            }
-        }
-    };
-
-    MIPStory.prototype.switchTo = function (data) {
-        this.hint.hideDamping();
-        this.hint.hideSystemLater();
-        if (data.status === 0 && this.currentIndex <= 0) {
-            this.emitter.trigger(SHOWNOPREVIOUSPAGEHELP);
-            return;
-        }
-        else if (!data.notIncrease && data.status === 1
-            && this.currentIndex + 1 >= storyViews.length) {
-            this.emitter.trigger(SHOWBOOKEND);
-            return;
-        }
-        if (!data.notIncrease) {
-            data.status === 1 ? this.currentIndex++ : this.currentIndex--;
-        }
-        var currentEle = storyViews[this.currentIndex];
-        var preEle = storyViews[this.preInex];
-
-        var reload = this.element.hasAttribute('audio-reload');
-        if (this.currentIndex !== this.preInex) {
-            preEle.customElement.setActive(false, this.viewMuted, reload, this.emitter);
-        }
-        currentEle.customElement.setActive(true, this.viewMuted, reload, this.emitter);
-        this.progress.updateProgress(this.currentIndex, data.status);
-        this.preInex = this.currentIndex;
-
-        // 右翻
-        if (!data.notIncrease) {
-            if (data.status === 1) {
-                this.hint.showPageSwitchLayer();
-            }
-            else {
-                this.hint.hidePageSwitchLayer();
-            }
-        }
-    };
-
-    MIPStory.prototype.showbookend = function () {
-        this.bookEnd.show();
-    };
-
-    MIPStory.prototype.closebookend = function () {
-        this.bookEnd.hide();
-        this.share.hideShareLayer();
-    };
-
-    MIPStory.prototype.muteGlobalAudio = function () {
-        if (this.audio) {
-            this.audio.pause();
-            this.audio.muted = true;
-        }
-    };
-
-    MIPStory.prototype.unMuteGlobalAudio = function () {
-        if (this.audio) {
-            this.audio.play();
-            this.audio.muted = false;
-        }
-    };
-
-    MIPStory.prototype.playGlobalAudio = function () {
-        if (this.audio && !this.muted) {
-            this.audio.play();
-        }
-    };
-
-    MIPStory.prototype.pauseGlobalAudio = function () {
-        if (this.audio) {
-            this.audio.pause();
-        }
-    };
-
-    MIPStory.prototype.mute = function (e) {
-        this.muted = true;
-        this.viewMuted = true;
-        this.muteGlobalAudio();
-        var ele = storyViews[this.currentIndex];
-        ele.customElement.toggleAllMedia(e, this.viewMuted);
-        e.target.setAttribute('muted', '');
-    };
-
-    MIPStory.prototype.unmute = function (e) {
-        this.muted = false;
-        this.viewMuted = false;
-        this.unMuteGlobalAudio();
-        this.playGlobalAudio();
-        var ele = storyViews[this.currentIndex];
-        ele.customElement.toggleAllMedia(e, this.viewMuted);
-        e.target.removeAttribute('muted');
-    };
-
-    MIPStory.prototype.replay = function () {
-        this.currentIndex = 0;
-        this.preInex = storyViews.length - 1;
-        this.switchTo({status: 1, notIncrease: 1});
-        this.emitter.trigger(CLOSEBOOKEND);
-    };
-
-    MIPStory.prototype.shownopreviouspagehelp = function () {
-        this.hint.showDamping();
+    // story组件的初始化
+    MIPStory.prototype.init = function () {
+        var element = this.element;
+        var html = this.win.document.documentElement;
+        var mipStoryConfigData = this.getConfigData();
+        html.setAttribute('id', MIP_I_STORY_STANDALONE);
+        // 初始化音频
+        this.initAudio();
+        // 初始化结尾页
+        this.initBookend(mipStoryConfigData);
+        // 保存 story-views到storyViews中便于后期操作
+        this.initStoryViews();
+        // 保存包括封底页面在内的所有结果页
+        this.initStoryContain();
+        // 初始化引导页
+        this.initHintLayer(element);
+        // 初始化分享页面
+        this.initShare(mipStoryConfigData, element);
+        // 初始化导航
+        this.initProgress();
+        // 初始化story的Slider
+        this.initService();
     };
 
     /**
@@ -383,7 +137,6 @@ define(function (require) {
      */
     customElement.prototype.firstInviewCallback = function () {
         var mipStory = new MIPStory(this.element);
-
         require('./web-animation');
         mipStory.init();
     };

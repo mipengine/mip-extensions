@@ -9,7 +9,7 @@ define(function (require) {
     var customElement = require('customElement').create();
     var Audio = require('./audio');
     var BACKGROUND_AUDIO = 'background-audio';
-
+    var timeStrFormat = require('./animation-util').timeStrFormat;
     var AnimationManager = require('./animation').AnimationManager;
     var hasAnimations = require('./animation').hasAnimations;
     var css = require('util').css;
@@ -112,13 +112,13 @@ define(function (require) {
     customElement.prototype.maybeSetAutoAdvance = function () {
         var self = this;
         var el = self.element;
-        var node = self.element.parentNode;
-        self.parentElement = node.customElement;
+
         var advancment = el.getAttribute('auto-advancement-after');
-        if (advancment && validateAdvance(advancment)) {
+        var duration = timeStrFormat(advancment);
+        if (duration) {
             self.timer = setTimeout(function () {
                 self.parentEmiter.trigger('switchpage', {status: 1});
-            }, +advancment);
+            }, duration);
         }
 
     };
@@ -131,10 +131,6 @@ define(function (require) {
         }
     };
 
-    function validateAdvance (val) {
-        var reg = /^[0-9]+$/;
-        return reg.test(val);
-    }
     customElement.prototype.firstInviewCallback = function () {
         this.initView();
         this.pauseAllMedia();

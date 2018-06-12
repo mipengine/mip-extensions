@@ -62,7 +62,7 @@
         }
     }
     </script>
-    <mip-story-view background-audio="http://mipstatic.baidu.com/static/mip-static/mip-story/story-film/videos/CliffRichardDevilWoman.mp3">
+    <mip-story-view auto-advancement-after="2s">
         <mip-story-layer template="fill">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
         </mip-story-layer>
@@ -73,6 +73,22 @@
         </mip-story-layer>
     </mip-story-view>
     <mip-story-view>
+        <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
+            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+        </mip-story-layer>
+        <mip-story-layer>
+            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
+        </mip-story-layer>
+    </mip-story-view>
+    <mip-story-view auto-advancement-after="3s">
+        <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
+            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+        </mip-story-layer>
+        <mip-story-layer>
+            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
+        </mip-story-layer>
+    </mip-story-view>
+    <mip-story-view auto-advancement-after="1s">
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
         </mip-story-layer>

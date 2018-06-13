@@ -127,11 +127,10 @@ define(function (require) {
      * @return {DOM}     tpl  template 子节点
      */
     function createTemplateNode(html, id) {
-
         var tpl = document.createElement('template');
 
         tpl.setAttribute('type', 'mip-mustache');
-        if(id) {
+        if (id) {
             tpl.id = id;
         }
         tpl.innerHTML = dataProcessor.subStr(html, regexs.innerHtml);
@@ -160,10 +159,7 @@ define(function (require) {
             }
         }
 
-        // var id = customTag + '-' + Math.random().toString(36).slice(2);
-        // node.setAttribute('template', id);
         node.appendChild(createTemplateNode(html));
-
         return node;
     }
 

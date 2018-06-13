@@ -63,55 +63,69 @@ define(function (require) {
     };
 
     MIPProgress.prototype.updateProgress = function (index, status) {
-        var autoAdvanceDuration = timeStrFormat(this.elements[index].getAttribute('auto-advancement-after'));
         this.progressBar = this.root.querySelectorAll('.mip-story-progress-bar .mip-story-page-progress-value');
-        var ele = this.progressBar[index];
+        this.ele = this.progressBar[index];
+        // 设置当前元素的状态
+        this.setCurrentEleStatus(index, status);
+        // 处理其他views的状态
+        this.setOtherEleStatus(index, status);
+        this.oldEle = this.ele;
+    };
+
+    MIPProgress.prototype.setCurrentEleStatus = function (index, status) {
+        var autoAdvanceDuration = timeStrFormat(this.elements[index].getAttribute('auto-advancement-after'));
         // 后续会有场景视频播放时，如果遇到缓冲，则需要暂停动画
         // 所以采用 WebAnimation API来进行头部切换动画的控制；
         // 处理其他views的状态
-        if (!ele.animatePlayer) {
-            this.setCurrentEleAnimatePlayer(ele, autoAdvanceDuration);
+        if (!this.ele.animatePlayer) {
+            this.setCurrentEleAnimatePlayer(autoAdvanceDuration);
         } else {
             // 这里对自动播放和非自动播放做了不同处理
             // 如果设置了自动播放或者当前不是被访问过的状态，就重新播放动画；
-            if (autoAdvanceDuration || !(ele.classList.value.indexOf(VISITED) > -1)) {
+            if (autoAdvanceDuration || status) {
                 // WAAPI的polyfill 在cancelapi上的实现和标准有点不一致，这里手动处理下；
-                ele.classList.remove(VISITED);
-                css(ele, {transform: "scale3d(0, 1, 1)"});
-                ele.animatePlayer.play();
+                css(this.ele, {transform: "scale3d(0, 1, 0)"});
+                this.ele.classList.remove(VISITED);
+                this.ele.animatePlayer.play();
             }
         };
-        // 处理其他views的状态
-        if (this.oldEle && this.oldEle !== ele) {
-            this.reSetOldEleStatus(this.oldEle, status, index);
-        }
-        this.oldEle = ele;
-    };
+    }
 
-    MIPProgress.prototype.reSetOldEleStatus = function (ele, status, currentIndex) {
-        ele.classList.add(VISITED);
-        ele.animatePlayer.finish();
-        // 向右翻
+    MIPProgress.prototype.setOtherEleStatus = function (index, status) {
+        // 处理前一个元素的状态
+        if (this.oldEle && this.oldEle !== this.ele) {
+            this.resetOldEleStatus(status, index);
+        }
+        // 往前翻页时需要init后面页面的动画
         if (status) {
-            ele.classList.add(VISITED);
-            ele.animatePlayer && ele.animatePlayer.finish();
-            this.reSetAllEleAnimatePlayer(currentIndex);
+            for (var i = index + 1; i < this.progressBar.length; i++) {
+                this.cancelEleVistedStatus(this.progressBar[i]);
+            }
+        }
+    }
+
+    MIPProgress.prototype.resetOldEleStatus = function (status, index) {
+        // 向后翻
+        if (status) {
+            this.oldEle.classList.add(VISITED);
+            this.oldEle.animatePlayer && this.oldEle.animatePlayer.finish();
         }
         else {
-            ele.classList.remove(VISITED);
-            ele.animatePlayer.cancel();
-        }
-    }
-    MIPProgress.prototype.reSetAllEleAnimatePlayer = function (currentIndex) {
-        for (var i = currentIndex + 1; i < this.progressBar.length; i++) {
-            css(this.progressBar[i], {transform: "scale3d(0, 1, 1)"});
-            this.progressBar[i].animatePlayer && this.progressBar[i].animatePlayer.cancel();
-            this.progressBar[i].classList.remove(VISITED);
+            // 往前翻时需要清除元素已经播放过的状态
+            this.cancelEleVistedStatus(this.oldEle);
         }
     }
 
-    MIPProgress.prototype.setCurrentEleAnimatePlayer = function (ele, autoAdvanceDuration) {
-        ele.animatePlayer = ele.animate([
+    MIPProgress.prototype.cancelEleVistedStatus = function (ele) {
+        if (ele) {
+            css(ele, {transform: "scale3d(0, 1, 0)"});
+            ele.classList.remove(VISITED);
+            ele.animatePlayer && ele.animatePlayer.cancel();
+        }
+    }
+
+    MIPProgress.prototype.setCurrentEleAnimatePlayer = function (autoAdvanceDuration) {
+        this.ele.animatePlayer = this.ele.animate([
             {
                 transform: 'scale3d(0, 1, 1)'
             }, {

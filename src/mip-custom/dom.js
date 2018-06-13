@@ -89,7 +89,6 @@ define(function (require) {
      * @param {DOM} container style/script 节点的容器
      */
     function renderStyleOrScript(str, reg, tag, attr, container) {
-
         var node = container.querySelector(tag + '[' + attr + ']') || document.createElement(tag);
         node.setAttribute(attr, '');
         var substrs = str.match(reg);
@@ -102,7 +101,6 @@ define(function (require) {
                 node.innerHTML += innerhtml;
             }
         });
-
         container.appendChild(node);
     }
 
@@ -133,7 +131,6 @@ define(function (require) {
      * @return {DOM}    node      定制化组件节点
      */
     function createCustomNode(html, customTag) {
-
         var node = document.createElement(customTag);
         var tagandAttrs = dataProcessor.subStr(html, regexs.tagandAttr).split(' ');
 
@@ -186,7 +183,9 @@ define(function (require) {
             res.element.innerHTML = res.html;
             if (res.element.getAttribute('mip-position') === 'top') {
                 // 头部广告作为第一个元素插入在body顶部
-                insertTopAd({element: res.element, height: parseInt(data.height)});
+                // data.ratio: 数据中用于表示banner宽高比的
+                var height = viewport.getWidth() / parseInt(data.ratio);
+                insertTopAd({"element": res.element, "height": height});
             }
             else {
                 // 渲染底部悬浮按钮
@@ -202,7 +201,6 @@ define(function (require) {
                 }
             }
         });
-
         return customTag;
     }
 
@@ -331,7 +329,12 @@ define(function (require) {
     // 当用户未滚动时，滑动插入到页面顶部，将页面其他内容顶下来。
     // 当用户已经滚动页面时，为不打扰用户，静默插入页面顶部，并保持页面区域内容稳定。
     function insertTopAd(opt) {
-        // 广告插入头部位置
+        // 广告插入头部位置, 由于高度未知，布局需要手动写
+        util.css(opt.element, {
+            height: opt.height + 'px',
+            display: 'block',
+            overflow: 'hidden'
+        });
         document.body.prepend(opt.element);
         // 页面当前滚动距离
         var scrollDistance = viewport.getScrollTop();

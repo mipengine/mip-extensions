@@ -62,22 +62,38 @@
         }
     }
     </script>
-    <mip-story-view background-audio="http://mipstatic.baidu.com/static/mip-static/mip-story/story-film/videos/CliffRichardDevilWoman.mp3">
+    <mip-story-view auto-advancement-after="2s">
         <mip-story-layer template="fill">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
         </mip-story-layer>
         <mip-story-layer>
-            <h1 animate-in="fly-in-left">小故事是什么？</h1>
-            <p animate-in="fly-in-right">快用 MIP 小故事开发很多丰富的交互效果吧！</p>
+            <h1 animate-in="fade-in-left">小故事是什么？</h1>
+            <p animate-in="fade-in-right">快用 MIP 小故事开发很多丰富的交互效果吧！</p>
             <a href="https://www.baidu.com">普通跳转链接</a>
         </mip-story-layer>
     </mip-story-view>
     <mip-story-view>
-        <mip-story-layer template="fill">
+        <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
         </mip-story-layer>
         <mip-story-layer>
-            <h1 animate-in="fly-in-right">用 MIP 来讲述你的故事！</h1>
+            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
+        </mip-story-layer>
+    </mip-story-view>
+    <mip-story-view auto-advancement-after="3s">
+        <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
+            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+        </mip-story-layer>
+        <mip-story-layer>
+            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
+        </mip-story-layer>
+    </mip-story-view>
+    <mip-story-view auto-advancement-after="1s">
+        <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
+            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+        </mip-story-layer>
+        <mip-story-layer>
+            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
         </mip-story-layer>
     </mip-story-view>
 </mip-story>
@@ -140,19 +156,23 @@
 | animate-in        | 说明     |
 | ----------------- | ------ |
 | `fade-in`         | 淡入     |
-| `fly-in-top`      | 上侧滑入   |
-| `fly-in-bottom`   | 下侧滑入   |
-| `fly-in-left`     | 左侧滑入   |
-| `fly-in-right`    | 右侧滑入   |
+| `fly-in-top`      | 上侧飞入   |
+| `fly-in-bottom`   | 下侧飞入   |
+| `fly-in-left`     | 左侧飞入   |
+| `fly-in-right`    | 右侧飞入   |
+| `fade-in-top`     | 上侧淡入  |
+| `fade-in-bottom`  | 下侧淡入  |
+| `fade-in-left`    | 左侧淡入  |
+| `fade-in-right`   | 右侧淡入  |
 | `twirl-in`        | 旋转进入   |
 | `whoosh-in-left`  | 左侧放大飞入 |
 | `whoosh-in-right` | 右侧放大飞入 |
 | `rotate-in-left`  | 左侧旋转飞入 |
 | `rotate-in-right` | 右侧旋转飞入 |
 
-`animate-in-duration` : 元素动画的持续事件；可以取得值为正整数，单位为毫秒；
+`animate-in-duration` : 元素动画的持续时间，默认单位为毫秒，可取值为300、300ms、0.3s，以上都代表动画持续时间为300ms；
 
-`animate-in-delay` : 元素动画开始前的延迟时间，可以取得值为正整数，单位为毫秒
+`animate-in-delay` : 元素动画开始前的延迟时间，默认单位为毫秒，可取值为300、300ms、0.3s，以上都代表动画开始前延迟时间为300ms；
 
 `animate-in-after` ：指定动画在另一个元素动画结束之后触发；可以的取值为带有动画元素的id
 

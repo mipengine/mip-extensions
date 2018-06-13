@@ -23,6 +23,7 @@ define(function (require) {
 
     customElement.prototype.pauseAllMedia = function () {
         this.whenAllMediaElements(function (ele) {
+            ele.load();
             ele.pause();
         });
     };
@@ -36,8 +37,8 @@ define(function (require) {
 
     customElement.prototype.toggleAllMedia = function (e, muted) {
         this.muted = muted;
-        var ele = e.target;
-        if (ele.hasAttribute('muted')) {
+        var ele = e.target || null;
+        if (ele && ele.hasAttribute && ele.hasAttribute('muted')) {
             !this.muted && this.resumeAllMedia();
             !this.muted && this.unMuteAllMedia();
         }
@@ -64,18 +65,72 @@ define(function (require) {
         });
     };
 
-    customElement.prototype.setActive = function (status, muted, load, eventEmiter) {
+    customElement.prototype.setPreActive = function (eventEmiter) {
+        this.parentEmiter = eventEmiter;
+        this.animationElements = [];
+        this.initAnimationFirstFrame();
+        // css-获取有动画的节点，并且放到数组中便于修改display
+        this.findAnimationNodes(this.element);
+        // css-修改每个有动画节点的display
+        this.initFirstFrameStyle(false);
+    };
+
+    // 监控CSS中是否有动画
+    function hasCssAnimation(obj) {
+        var ani = null;
+        try {
+            ani = document.defaultView.getComputedStyle(obj)['animationName']
+                || document.defaultView.getComputedStyle(obj)['-webkit-animationName'];
+        } catch (e) {
+        }
+        if (ani && ani != 'none') {
+            return true;
+        }
+        return false;
+    }
+
+    customElement.prototype.findAnimationNodes = function (parent) {
+        if (parent == null) return;
+        var subNodes = parent.children;
+        for (var index = 0; index < subNodes.length; index++) {
+            if (hasCssAnimation(subNodes[index])) {
+                this.animationElements.push(subNodes[index]);
+            }
+            if (subNodes[index].children.length > 0) {
+                this.findAnimationNodes(subNodes[index]);
+            }
+        }
+    };
+
+    function toggleDisplay(obj, disp) {
+        if (disp) {
+            obj.setAttribute('style', 'display: ' + obj.getAttribute("originDisplay"));
+        } else {
+            var originDisplay = document.defaultView.getComputedStyle(obj)['display'];
+            obj.setAttribute('originDisplay', originDisplay);
+            obj.setAttribute('style', 'display: none');
+        }
+    }
+
+    customElement.prototype.initFirstFrameStyle = function (disp) {
+        if (this.animationElements != null) {
+            for (var index = 0; index < this.animationElements.length; index++) {
+                toggleDisplay(this.animationElements[index], disp);
+            }
+        }
+    };
+
+    customElement.prototype.setAllMedia = function (status, muted, load, eventEmiter, viewType) {
         this.muted = muted;
         this.parentEmiter = eventEmiter;
         if (status) {
-            this.element.setAttribute('active', '');
+            this.initAnimationFirstFrame();
             this.maybeStartAnimation();
             this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
             this.startStoryViedo();
         }
         else {
-            this.element.removeAttribute('active');
             this.maybeClearAutoAdvance();
             this.pauseAllMedia();
             this.maybeClearAnimation();
@@ -85,7 +140,7 @@ define(function (require) {
 
     customElement.prototype.startStoryViedo = function() {
         if (this.hasStoryVideo) {
-            this.canvasVideo.forEach(function(val) {
+            Array.prototype.slice.apply(this.canvasVideo).forEach(function(val) {
                 val.customElement.play();
             });
         };
@@ -93,10 +148,40 @@ define(function (require) {
 
     customElement.prototype.stopStoryViedo = function() {
         if (this.hasStoryVideo) {
-            this.canvasVideo.forEach(function(val) {
+            Array.prototype.slice.apply(this.canvasVideo).forEach(function(val) {
                 val.customElement.stop();
             });
         };
+    };
+    customElement.prototype.setCssMedia = function (status, muted, eventEmiter) {
+        this.muted = muted;
+        this.parentEmiter = eventEmiter;
+        if (status) {
+            this.initFirstFrameStyle(true);
+        }
+        else {
+            this.initFirstFrameStyle(false);
+        }
+    };
+
+    customElement.prototype.clearCssMedia = function (status, muted, eventEmiter) {
+        if (this.animationElements != null) {
+            for (var index = 0; index < this.animationElements.length; index++) {
+                toggleDisplay(this.animationElements[index], true);
+                this.animationElements[index].removeAttribute('originDisplay')
+            }
+        }
+    };
+
+    customElement.prototype.initAnimationFirstFrame = function () {
+        if (hasAnimations(this.element)) {
+            css(this.element, {visibility: 'hidden'});
+            if (!this.animationManager) {
+                this.animationManager = new AnimationManager(this.element);
+            }
+            this.animationManager.paintFirstFrame();
+            css(this.element, {visibility: ''});
+        }
     };
 
     customElement.prototype.maybeStartAnimation = function () {
@@ -110,10 +195,11 @@ define(function (require) {
             this.animationManager.runAllAnimate();
             this.maybeSetAutoAdvance();
         }
+
     };
 
-    customElement.prototype.maybeClearAnimation = function() {
 
+    customElement.prototype.maybeClearAnimation = function () {
         if (this.animationManager) {
             this.animationManager.cancelAllAnimate();
         }
@@ -132,7 +218,7 @@ define(function (require) {
         var duration = timeStrFormat(advancment);
         if (duration) {
             self.timer = setTimeout(function () {
-                self.parentEmiter.trigger('switchpage', {status: 1});
+                self.parentEmiter.trigger('switchPage', {status: 1});
             }, duration);
         }
     };
@@ -144,6 +230,7 @@ define(function (require) {
         this.hasStoryVideo = !!this.canvasVideo.length;
         var node = this.element.parentNode;
 
+        this.animationElements = [];
         if (!node.hasAttribute(BACKGROUND_AUDIO)) {
             var audioSrc = this.element.getAttribute(BACKGROUND_AUDIO);
             this.audio.build(this.element, audioSrc);

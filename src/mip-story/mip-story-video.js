@@ -43,8 +43,8 @@ define(function (require) {
     customElement.prototype.renderVideoElement = function () {
 
         var poster = this.attributes.poster;
-        var height =  this.attributes.height || '100%';
-        var width  =  this.attributes.width || '100%';
+        var height =  this.attributes.height;
+        var width  =  this.attributes.width;
         var sourceHTML = this.element.innerHTML;
         var html = '<mip-video layout="responsive" loop autoplay height="' + height +'" width="' + width + '" poster="' + poster + '">'
                 + sourceHTML
@@ -64,7 +64,7 @@ define(function (require) {
 
         var posterEl = document.createElement('div');
         var canvas = document.createElement('canvas');
-        css(canvas, {position: 'absolute', opacity: '0', height: '100%', width: '100%'});
+        css(canvas, {position: 'absolute', opacity: '0'});
 
         var tsUrl = this.sourceList['video/ts'];
 
@@ -89,7 +89,6 @@ define(function (require) {
         this.attributes.canvas = canvas;
         this.element.appendChild(canvas);
         this.player = new JSMpeg.Player(tsUrl, this.attributes);
-
         this.player.on('playing', function () {
             var event = new Event('playing');
             // 开始播放时展示canvas

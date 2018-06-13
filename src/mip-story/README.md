@@ -47,18 +47,18 @@
             "url": "https://www.example.com/",
             "items": [
                 {
-                    "cover": "https://www.example.com/static/img/mip-story/p5.png",
-                    "url": "https://www.example.com/",
-                    "title": "第80届奥斯卡颁奖典礼",
-                    "from": "example",
-                    "fromUrl": "http://example.com/from"
+                    "cover": "https://img6.bdstatic.com/img/image/public/ribenshangying3.jpg",
+                    "url": "http://shxingtuan.com/jp_sakura/index.html",
+                    "title": "日本赏樱推荐",
+                    "from": "百度",
+                    "fromUrl": "m.baidu.com"
                 },
                 {
-                    "cover": "https://www.example.com/static/img/mip-story/p5.png",
-                    "url": "https://www.example.com/",
-                    "title": "第80届奥斯卡颁奖典礼",
-                    "from": "example",
-                    "fromUrl": "http://www.example.com/from"
+                    "cover": "https://img6.bdstatic.com/img/image/public/shangyingmeitu.jpg",
+                    "url": "https://m.baidu.com/sf/vsearch?pd=image_content&word=%E8%B5%8F%E6%A8%B1&tn=vsearch&sa=vs_tab&lid=9813145669733695291&ms=1&atn=page&fr=tab&ssid=2e3d6e69757a696e616e6e616ece0f",
+                    "title": "往年樱花美图欣赏",
+                    "from": "百度",
+                    "fromUrl": "m.baidu.com"
                 }
             ]
         }

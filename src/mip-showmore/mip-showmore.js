@@ -131,7 +131,7 @@ define(function (require) {
         // 保存点击按钮当前display状态，兼容v1.0.0和v1.1.0
         var display = this.clickBtnSpan && getComputedStyle(this.clickBtnSpan).display;
         var displayNew = this.btn && getComputedStyle(this.btn).display
-        this.btn.style.cursor = 'pointer'
+        this.btn && this.btn.style && (this.btn.style.cursor = 'pointer');
         this.btnDisplay = displayNew || display;
     };
 

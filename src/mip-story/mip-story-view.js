@@ -129,6 +129,7 @@ define(function (require) {
             this.resumeAllMedia(load);
             this.muted ? this.muteAllMedia() : this.unMuteAllMedia();
             this.startStoryViedo();
+            this.maybeSetAutoAdvance();
         }
         else {
             this.maybeClearAutoAdvance();
@@ -193,7 +194,6 @@ define(function (require) {
             this.animationManager.paintFirstFrame();
             css(this.element, {visibility: ''});
             this.animationManager.runAllAnimate();
-            this.maybeSetAutoAdvance();
         }
 
     };

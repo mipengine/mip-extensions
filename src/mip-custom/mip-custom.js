@@ -151,7 +151,6 @@ define(function () {
         }
 
         for (var i = 0; i < template.length; i++) {
-
             var tplData = template[i];
             var container = document.createElement('div');
 

@@ -68,7 +68,7 @@ define(function (require) {
             'js/nav': 'static/js/nav',
             'js/util': 'static/js/util',
             'js/mip-ecom/ck': 'static/js/mip-ecom/ck',
-            'js/mip-ecom-phoneDail':'static/js/mip-ecom/phoneDail'
+            'js/mip-ecom/mip-ecom-phoneDail':'static/js/mip-ecom/phoneDail'
         }
     };
 

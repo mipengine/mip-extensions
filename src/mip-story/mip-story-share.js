@@ -48,9 +48,7 @@ define(function (require) {
     MIPStoryShare.prototype.showShareLayer = function () {
         var scSupport = this.supportCraft();
         // 适配简单搜索，简单没有给出单独调用微信等渠道的api, 所以在这里拦截一下；
-        // 如果简搜支持且为百度域的可吊起简搜，由于简搜会对非百度域的分享做特殊处理；
-        var hostName = util.parseCacheUrl(location.hostname);
-        if (scSupport.support && hostName.indexOf('baidu.com') !== -1) {
+        if (scSupport.support) {
             this.callSearchCraftShare(scSupport.os);
             return;
         }
@@ -97,7 +95,9 @@ define(function (require) {
         var craft = /SearchCraft/i.test(shareUa);
         var shareosAndroid = /Android/i.test(shareUa);
         var shareV = craft && shareUa.match(/SearchCraft\/([\d.]*)/);
-        var supportAnd = ((shareosAndroid && parseFloat(shareV[1]) > 1.5));
+        var hostName = util.parseCacheUrl(location.hostname);
+        // 在安卓机型内，如果简搜支持且为百度域的可吊起简搜，由于简搜会对非百度域的分享做特殊处理；
+        var supportAnd = ((shareosAndroid && parseFloat(shareV[1]) > 1.5) && hostName.indexOf('baidu.com') !== -1);
         var supportIos = (!shareosAndroid && (parseFloat(shareV[1])) > 1.11);
         var support = craft && (supportAnd || supportIos);
         return {

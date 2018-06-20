@@ -14,15 +14,17 @@
 | ---- | ---------------------------------------- |
 | 类型   | 通用                                       |
 | 支持布局 | responsive,fixed-height,fill,container,fixed |
-| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
 
+| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
 ## 示例
-
-### 基本用法
 ```html
 <style mip-custom>
     mip-story-view {
         color: #fff;
+        padding: 0 !important;
+    }
+    mip-story-layer {
+        padding: 0 !important;
     }
     h1 {
         text-align: center;
@@ -45,41 +47,23 @@
             "url": "https://www.example.com/",
             "items": [
                 {
-                    "cover": "https://www.example.com/static/img/mip-story/p5.png",
-                    "url": "https://www.example.com/",
-                    "title": "第80届奥斯卡颁奖典礼",
-                    "from": "example",
-                    "fromUrl": "http://example.com/from"
+                    "cover": "https://img6.bdstatic.com/img/image/public/ribenshangying3.jpg",
+                    "url": "http://shxingtuan.com/jp_sakura/index.html",
+                    "title": "日本赏樱推荐",
+                    "from": "百度",
+                    "fromUrl": "m.baidu.com"
                 },
                 {
-                    "cover": "https://www.example.com/static/img/mip-story/p5.png",
-                    "url": "https://www.example.com/",
-                    "title": "第80届奥斯卡颁奖典礼",
-                    "from": "example",
-                    "fromUrl": "http://www.example.com/from"
+                    "cover": "https://img6.bdstatic.com/img/image/public/shangyingmeitu.jpg",
+                    "url": "https://m.baidu.com/sf/vsearch?pd=image_content&word=%E8%B5%8F%E6%A8%B1&tn=vsearch&sa=vs_tab&lid=9813145669733695291&ms=1&atn=page&fr=tab&ssid=2e3d6e69757a696e616e6e616ece0f",
+                    "title": "往年樱花美图欣赏",
+                    "from": "百度",
+                    "fromUrl": "m.baidu.com"
                 }
             ]
         }
     }
     </script>
-    <mip-story-view auto-advancement-after="2s">
-        <mip-story-layer template="fill">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
-        </mip-story-layer>
-        <mip-story-layer>
-            <h1 animate-in="fade-in-left">小故事是什么？</h1>
-            <p animate-in="fade-in-right">快用 MIP 小故事开发很多丰富的交互效果吧！</p>
-            <a href="https://www.baidu.com">普通跳转链接</a>
-        </mip-story-layer>
-    </mip-story-view>
-    <mip-story-view>
-        <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
-        </mip-story-layer>
-        <mip-story-layer>
-            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
-        </mip-story-layer>
-    </mip-story-view>
     <mip-story-view auto-advancement-after="3s">
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
@@ -88,7 +72,7 @@
             <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
         </mip-story-layer>
     </mip-story-view>
-    <mip-story-view auto-advancement-after="1s">
+    <mip-story-view>
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
         </mip-story-layer>

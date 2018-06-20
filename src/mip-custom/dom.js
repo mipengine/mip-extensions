@@ -127,12 +127,11 @@ define(function (require) {
      * @return {DOM}     tpl  template 子节点
      */
     function createTemplateNode(html, id) {
+
         var tpl = document.createElement('template');
 
         tpl.setAttribute('type', 'mip-mustache');
-        if (id) {
-            tpl.id = id;
-        }
+        tpl.id = id;
         tpl.innerHTML = dataProcessor.subStr(html, regexs.innerHtml);
 
         return tpl;
@@ -159,7 +158,10 @@ define(function (require) {
             }
         }
 
-        node.appendChild(createTemplateNode(html));
+        var id = customTag + '-' + Math.random().toString(36).slice(2);
+        node.setAttribute('template', id);
+        node.appendChild(createTemplateNode(html, id));
+
         return node;
     }
 
@@ -186,21 +188,16 @@ define(function (require) {
         var customNode = createCustomNode(html, customTag);
         var itemNode = document.createElement('div');
         itemNode.setAttribute('mip-custom-item', len);
-        // XXX work around: 由于需要在template渲染后把渲染结果插入到itemNode，container里面，
-        // 只能把这些参数绑定在 customNode 里传给render.then中，通过res.element.itemNode获取
-        customNode.itemNode = itemNode;
-        customNode.container = container;
+        itemNode.appendChild(customNode);
+        container.appendChild(itemNode);
 
         if (customNode.hasAttribute('mip-fixed')) {
+
             moveToFixedLayer(element, customNode, container);
         }
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
             res.element.innerHTML = res.html;
-            // 先获取到渲染结果，再把custom element插入到页面
-            // 防止先插入页面后触发firstInviewCallback方法但内容只有带渲染的template
-            res.element.itemNode.appendChild(res.element);
-            res.element.container.appendChild(res.element.itemNode);
 
             if (res.element.hasAttribute('mip-fixed')
                 && res.element.parentNode.getAttribute('type') === 'bottom') {

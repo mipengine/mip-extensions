@@ -198,6 +198,105 @@ mip-story-layer[template=thirds] {
     height: 100%;
 }
 
+mip-story-layer[template=magazine] {
+    padding-right: 0 !important;
+    overflow: hidden;
+}
+
+[flex-area=magazine-img] {
+    position: relative;
+    overflow: hidden;
+    height: 70%;
+    max-height: 450px;
+    margin-top: 10px;
+}
+
+[flex-area=magazine-content] {
+    padding-right: 32px !important;
+    height: 34%;
+    overflow: hidden;
+    display:         flex !important;
+    display: -webkit-flex !important;
+    display: -webkit-box;
+    flex-direction:column;
+    justify-content:center;
+    min-height: 100px;
+    text-align: left;
+}
+
+mip-story-layer[template=magazine] > h1 {
+    font-size: 28px;
+}
+
+[flex-area=magazine-content] > h1 {
+    font-size: 28px;
+    text-align: left;
+}
+[flex-area=magazine-content] > h2 {
+    font-size: 20px;
+    text-align: left;
+}
+[flex-area=magazine-content] > p {
+    font-size: 100%;
+    line-height: 200%;
+    margin-top: 11px;
+}
+
+mip-story-layer[template=center],
+mip-story-layer[template=under-center],
+mip-story-layer[template=under-left],
+mip-story-layer[template=under-right],
+mip-story-layer[template=up-left],
+mip-story-layer[template=up-center],
+mip-story-layer[template=up-right] {
+    display:         flex !important;
+    display: -webkit-flex !important;
+    flex-direction: column;
+    // font-size: 150%;
+}
+
+mip-story-layer[template=under-left] > h1 ,
+mip-story-layer[template=up-left] > h1 {
+    text-align: left;
+}
+
+mip-story-layer[template=under-right] > h1 ,
+mip-story-layer[template=up-right] > h1 {
+    text-align: right;
+}
+
+mip-story-layer[template=under-center],
+mip-story-layer[template=under-left],
+mip-story-layer[template=under-right] {
+    justify-content: flex-end;
+}
+
+mip-story-layer[template=up-center],
+mip-story-layer[template=up-left],
+mip-story-layer[template=up-right] {
+    justify-content: flex-start;
+}
+
+mip-story-layer[template=center] {
+    justify-content: center;
+    align-items: center;
+}
+
+mip-story-layer[template=up-center],
+mip-story-layer[template=under-center] {
+    align-items: center;
+}
+
+mip-story-layer[template=up-left],
+mip-story-layer[template=under-left] {
+    align-items: flex-start;
+}
+
+mip-story-layer[template=up-right],
+mip-story-layer[template=under-right] {
+    align-items: flex-end;
+}
+
 mip-story-layer[template=fill] > :first-child,
 mip-story-layer[template=cover] > :first-child {
     position: absolute;

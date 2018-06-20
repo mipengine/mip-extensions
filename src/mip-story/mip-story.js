@@ -30,6 +30,8 @@ define(function (require) {
     var Service = require('./mip-story-service');
     var service;
 
+    var regSubjectColor = /^#([a-fA-F\d]{3}|[a-fA-F\d]{6})$/;
+
     function MIPStory(element) {
         this.element = element;
         this.win = window;
@@ -108,11 +110,20 @@ define(function (require) {
         this.progress.updateProgress(0, 1);
     };
 
+    MIPStory.prototype.setSubjectColor = function () {
+        var subjectColor =  this.element.getAttribute('backgroundColor') || '';
+        if (subjectColor && regSubjectColor.test(subjectColor)) {
+            this.element.style.backgroundColor = subjectColor;
+        }
+    }
+
     // story组件的初始化
     MIPStory.prototype.init = function () {
         var element = this.element;
         var html = this.win.document.documentElement;
         var mipStoryConfigData = this.getConfigData();
+        // 设置小故事的主题色
+        this.setSubjectColor();
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
         // 初始化音频
         this.initAudio();

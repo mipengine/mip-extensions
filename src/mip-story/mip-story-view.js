@@ -14,7 +14,7 @@ define(function (require) {
     var AnimationManager = require('./animation').AnimationManager;
     var hasAnimations = require('./animation').hasAnimations;
     var css = require('util').css;
-    var isCssCplor = require('./mip-story-util').isCssCplor;
+    var isCssColor = require('./mip-story-util').isCssColor;
 
     customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
@@ -229,8 +229,10 @@ define(function (require) {
     customElement.prototype.setSubjectColor = function () {
         var subjectColor =  this.element.getAttribute('background') || '';
         var storyLayer = this.element.getElementsByTagName('mip-story-layer') || '';
-        if (storyLayer && storyLayer[0] && subjectColor && isCssCplor(subjectColor)) {
-            css(storyLayer[0], {backgroundColor: subjectColor});
+        if (storyLayer && storyLayer[0] && subjectColor && isCssColor(subjectColor)) {
+            var newLayer = document.createElement('mip-story-layer');
+            this.element.insertBefore(newLayer, storyLayer[0]);
+            css(this.element.firstElementChild, {backgroundColor: subjectColor});
         }
     }
 

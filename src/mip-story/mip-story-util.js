@@ -6,12 +6,12 @@ define(function(require) {
 
     var regSubjectColor = /^#([a-fA-F\d]{3}|[a-fA-F\d]{6})$/;
 
-    function isCssCplor (color) {
+    function isCssColor (color) {
         return regSubjectColor.test(color);
     }
 
     return {
-        isCssCplor: isCssCplor
+        isCssColor: isCssColor
     }
 
 });

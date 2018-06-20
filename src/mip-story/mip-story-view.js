@@ -14,7 +14,7 @@ define(function (require) {
     var AnimationManager = require('./animation').AnimationManager;
     var hasAnimations = require('./animation').hasAnimations;
     var css = require('util').css;
-    var regSubjectColor = /^#([a-fA-F\d]{3}|[a-fA-F\d]{6})$/;
+    var isCssCplor = require('./mip-story-util').isCssCplor;
 
     customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
@@ -227,9 +227,9 @@ define(function (require) {
 
     // 设置view的主题色
     customElement.prototype.setSubjectColor = function () {
-        var subjectColor =  this.element.getAttribute('backgroundColor') || '';
+        var subjectColor =  this.element.getAttribute('background') || '';
         var storyLayer = this.element.getElementsByTagName('mip-story-layer') || '';
-        if (storyLayer && storyLayer[0] && subjectColor && regSubjectColor.test(subjectColor)) {
+        if (storyLayer && storyLayer[0] && subjectColor && isCssCplor(subjectColor)) {
             css(storyLayer[0], {backgroundColor: subjectColor});
         }
     }

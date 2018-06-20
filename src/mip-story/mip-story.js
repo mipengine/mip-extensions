@@ -29,8 +29,7 @@ define(function (require) {
     var SWITCHPAGE_THRESHOLD_Height = viewport.getHeight() * 0.4;
     var Service = require('./mip-story-service');
     var service;
-
-    var regSubjectColor = /^#([a-fA-F\d]{3}|[a-fA-F\d]{6})$/;
+    var isCssCplor = require('./mip-story-util').isCssCplor;
 
     function MIPStory(element) {
         this.element = element;
@@ -111,8 +110,8 @@ define(function (require) {
     };
 
     MIPStory.prototype.setSubjectColor = function () {
-        var subjectColor =  this.element.getAttribute('backgroundColor') || '';
-        if (subjectColor && regSubjectColor.test(subjectColor)) {
+        var subjectColor =  this.element.getAttribute('background') || '';
+        if (subjectColor && isCssCplor(subjectColor)) {
             this.element.style.backgroundColor = subjectColor;
         }
     }

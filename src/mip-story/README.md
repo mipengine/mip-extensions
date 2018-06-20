@@ -23,9 +23,6 @@
         color: #fff;
         padding: 0 !important;
     }
-    mip-story-layer {
-        padding: 0 !important;
-    }
     h1 {
         text-align: center;
     }

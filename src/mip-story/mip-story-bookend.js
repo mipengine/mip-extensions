@@ -92,12 +92,13 @@ define(function (require) {
 
     /**
      *
-     * 由于分享在手百下有域名限制，源站不能分享，所以如果是源站并且手百下，隐藏分享
+     * 由于分享在手百下有域名限制，除去百度域的源站不能分享，所以如果是源站并且手百下，隐藏分享
      *
      * @return {boolean} 是否展示分享按钮
      */
     MIPStoryBackEnd.prototype.showShareBtn = function () {
-        if (!viewer.isIframed && platform.isBaiduApp()) {
+        var hostName = util.parseCacheUrl(location.hostname);
+        if (platform.isBaiduApp() && !viewer.isIframed && hostName.indexOf('baidu.com') === -1) {
             return false;
         }
         return true;

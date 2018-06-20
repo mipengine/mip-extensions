@@ -19,9 +19,6 @@
 ## 示例
 ```html
 <style mip-custom>
-    /* p {
-        display: none;
-    } */
     mip-story-view {
         color: #fff;
         padding: 0 !important;
@@ -36,7 +33,7 @@
         display: none;
     }
 </style>
-<mip-story standalone backgroundColor="#FF0000">
+<mip-story standalone>
     <script type="application/json">
     {
         "share": {
@@ -67,45 +64,6 @@
         }
     }
     </script>
-    <mip-story-view backgroundColor="#000000">
-        <mip-story-layer template="magazine">
-            <div flex-area="magazine-img">
-                <mip-img  width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
-            </div>
-            <div flex-area="magazine-content" animate-in="fade-in-right">
-                <h2>Title</h2>
-                <p>Ti用 MIP 来讲述你的故事!!!!!!!用 MIP 来讲述你的故事!!!!!!!用 MIP 来讲述你的故事!!!!!!!用 MIP 来讲述你的故事!!!!!!!用 MIP 来讲述你的故事!!!!!!!tle</p>
-            </div>
-        </mip-story-layer>
-    </mip-story-view>
-    <mip-story-view>
-        <mip-story-layer template="magazine">
-            <div flex-area="magazine-img">
-                <mip-img  width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
-            </div>
-            <div flex-area="magazine-content" animate-in="fade-in-right">
-                <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事!!!!!!!</h1>
-            </div>
-        </mip-story-layer>
-    </mip-story-view>
-    <mip-story-view>
-        <mip-story-layer template="fill">
-            <mip-img  width="480" height="720" layout="responsive" class="fade-in-scale" src="https://www.mipengine.org/static/img/sample_01.jpg"></mip-img>
-        </mip-story-layer>
-        <mip-story-layer template="up-center">
-            <h1 animate-in="fade-in-left">小故事是什么？</h1>
-            <p animate-in="fade-in-right">快用 MIP 小故事开发很多丰富的交互效果吧！</p>
-            <a href="https://www.baidu.com">普通跳转链接</a>
-        </mip-story-layer>
-    </mip-story-view>
-    <mip-story-view auto-advancement-after="3s" background-audio="http://mipstatic.baidu.com/static/mip-static/mip-story/story-film/videos/CliffRichardDevilWoman.mp3">
-        <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
-        </mip-story-layer>
-        <mip-story-layer>
-            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
-        </mip-story-layer>
-    </mip-story-view>
     <mip-story-view auto-advancement-after="3s">
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
             <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>

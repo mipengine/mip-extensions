@@ -147,6 +147,9 @@ define(function (require) {
     };
 
     MIPProgress.prototype.setXzhInfo = function () {
+        if (!this.storyConfig.xzh_info.appid) {
+          return '';
+        }
         var hostName = util.parseCacheUrl(location.href);
         var url = MSITEAPI + this.storyConfig.xzh_info.appid + '&url=' + hostName;
 

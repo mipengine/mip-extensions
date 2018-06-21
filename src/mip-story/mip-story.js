@@ -109,7 +109,7 @@ define(function (require) {
         this.progress.updateProgress(0, 1);
         var sys = this.element.querySelector('.mip-story-system-layer');
 
-        if (!viewer.isIframed || !this.getConfigData().xzh_info.appid){
+        if (!viewer.isIframed || !this.getConfigData().xzh_info){
             return;
         }
         // 加载icon

@@ -56,15 +56,11 @@ mip-custom {
 			margin-bottom: 8px;
 			background: #f3f3f3;
 			transform-origin: left;
-/*			&.text1 {
-				-webkit-animation: loading-text-ani1 .6s infinite alternate;
-				animation: loading-text-ani1 .6s infinite alternate;
-			}*/
+			-webkit-transform-origin: left;
 			&.text2 {
 				transform: scaleX(0.8);
-/*				-webkit-animation: loading-text-ani2 .6s infinite alternate;
-				animation: loading-text-ani2 .6s infinite alternate;
-*/			}
+				-webkit-transform: scaleX(0.8);
+			}
 			&.text3 {
 				width: 70px;
 				margin-top: 12px;
@@ -74,30 +70,17 @@ mip-custom {
 		}
 	}
 }
-/*@-webkit-keyframes loading-text-ani1 {
-	from {
-		transform: scaleX(1);
-	}
-	to {
-		transform: scaleX(0.9);
-	}
-}
-@-webkit-keyframes loading-text-ani2 {
-	from {
-		transform: scaleX(0.4);
-	}
-	to {
-		transform: scaleX(0.7);
-	}
-}*/
 
 .mip-custom {
 	&-transit {
 		&-from-bottom {
+			-webkit-transform: translate3d(0, 100%, 0);
+			-webkit-transition: -webkit-transform .3s;
 			transform: translate3d(0, 100%, 0);
 			transition: transform .3s;
 		}
 		&-end {
+			-webkit-transform: translate3d(0, 0%, 0);
 			transform: translate3d(0, 0%, 0);
 		}
 	}

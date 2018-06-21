@@ -4,22 +4,9 @@
  */
 define(function (require) {
 
-    /**
-     * [util 引入工具类]
-     * @type {Object}
-     */
     var util = require('util');
-
-    /**
-     * [templates 模板库]
-     * @type {Object}
-     */
+    var viewport = require('viewport');
     var templates = require('templates');
-
-    /**
-     * [fixedElement 引入 fixed 元素类]
-     * @type {Object}
-     */
     var fixedElement = require('fixed-element');
 
     var log = require('mip-custom/log');
@@ -81,7 +68,7 @@ define(function (require) {
                 fixedParent.classList.add('mip-custom-transit-end');
             }, 0);
         }
-        
+
         // 结果页打开, 移动到 fixed layer
         if (fixedElement._fixedLayer) {
             fixedElement.setFixedElement([fixedParent], true);
@@ -102,7 +89,6 @@ define(function (require) {
      * @param {DOM} container style/script 节点的容器
      */
     function renderStyleOrScript(str, reg, tag, attr, container) {
-
         var node = container.querySelector(tag + '[' + attr + ']') || document.createElement(tag);
         node.setAttribute(attr, '');
         var substrs = str.match(reg);
@@ -115,7 +101,6 @@ define(function (require) {
                 node.innerHTML += innerhtml;
             }
         });
-
         container.appendChild(node);
     }
 
@@ -146,7 +131,6 @@ define(function (require) {
      * @return {DOM}    node      定制化组件节点
      */
     function createCustomNode(html, customTag) {
-
         var node = document.createElement(customTag);
         var tagandAttrs = dataProcessor.subStr(html, regexs.tagandAttr).split(' ');
 
@@ -171,11 +155,11 @@ define(function (require) {
      * @param  {DOM}     element   mip-custom 节点
      * @param  {string}  str       返回的 tpl 字符串
      * @param  {integer} len       模块中第几个组件
-     * @param  {Object}  result    渲染mustache模板的数据
+     * @param  {Object}  data    渲染mustache模板的数据
      * @param  {DOM}     container 装载定制化组件节点的容器
      * @return {string}  customTag 定制化组件标签
      */
-    function renderHtml(element, str, len, result, container) {
+    function renderHtml(element, str, len, data, container) {
         var html = str.replace(regexs.script, '').replace(regexs.style, '');
         var customTag = (new RegExp(regexs.tag, 'g')).exec(html);
         customTag = customTag && customTag[1] ? customTag[1] : null;
@@ -192,26 +176,31 @@ define(function (require) {
         container.appendChild(itemNode);
 
         if (customNode.hasAttribute('mip-fixed')) {
-
             moveToFixedLayer(element, customNode, container);
         }
-        // 模板渲染
-        templates.render(customNode, result, true).then(function (res) {
+        templates.render(customNode, data, true).then(function (res) {
+            // 将渲染后的html片段插入外层组件模板
             res.element.innerHTML = res.html;
+            if (res.element.getAttribute('mip-position') === 'top') {
+                // 头部广告作为第一个元素插入在body顶部
+                // data.ratio: 数据中用于表示banner宽高比的
+                var height = viewport.getWidth() / parseInt(data.ratio);
+                insertTopAd({"element": res.element, "height": height});
+            }
+            else {
+                // 渲染底部悬浮按钮
+                if (res.element.hasAttribute('mip-fixed')
+                    && res.element.parentNode.getAttribute('type') === 'bottom') {
+                    fixedElement.setPlaceholder();
+                    var zIndex = getCss(res.element.parentNode, 'z-index');
 
-            if (res.element.hasAttribute('mip-fixed')
-                && res.element.parentNode.getAttribute('type') === 'bottom') {
-                fixedElement.setPlaceholder();
-                var zIndex = getCss(res.element.parentNode, 'z-index');
-
-                if (zIndex >= maxzIndex) {
-                    maxzIndex = zIndex;
-                    // alert(getCss(res.element, 'height') - 10)
-                    fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
+                    if (zIndex >= maxzIndex) {
+                        maxzIndex = zIndex;
+                        fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
+                    }
                 }
             }
         });
-
         return customTag;
     }
 
@@ -291,7 +280,6 @@ define(function (require) {
         });
     }
 
-
     /**
      * [getConfigScriptElement 获取页面配置的content内容]
      * 不在此做解析
@@ -301,7 +289,7 @@ define(function (require) {
      */
     function getConfigScriptElement(elem) {
         if (!elem) {
-            return;  
+            return;
         }
         return elem.querySelector('script[type="application/json"]');
     }
@@ -329,14 +317,43 @@ define(function (require) {
         var me = this;
         this.placeholder.classList.add('fadeout');
         // 占位符增加淡出效果
-        this.placeholder.addEventListener("transitionend", function() {
+        this.placeholder.addEventListener('transitionend', function () {
             me.placeholder.remove();
         }, false);
-        this.placeholder.addEventListener("webkitTransitionend", function() {
+        this.placeholder.addEventListener('webkitTransitionend', function () {
             me.placeholder.remove();
         }, false);
     }
 
+    // 插入头部广告位。
+    // 当用户未滚动时，滑动插入到页面顶部，将页面其他内容顶下来。
+    // 当用户已经滚动页面时，为不打扰用户，静默插入页面顶部，并保持页面区域内容稳定。
+    function insertTopAd(opt) {
+        // 广告插入头部位置, 由于高度未知，布局需要手动写
+        util.css(opt.element, {
+            height: opt.height + 'px',
+            display: 'block',
+            overflow: 'hidden'
+        });
+        document.body.prepend(opt.element);
+        // 页面当前滚动距离
+        var scrollDistance = viewport.getScrollTop();
+        if (scrollDistance > 0) {
+            // 用户已经滚动页面时，为不打扰用户，静默插入页面顶部，并保持页面区域内容稳定。
+            viewport.setScrollTop(scrollDistance + opt.height);
+        }
+        else {
+            // 用户未滚动时，滑动插入到页面顶部，将页面其他内容顶下来。
+            var currentPaddingTop = getComputedStyle(document.body).paddingTop.replace('px', '');
+            util.css(document.body, {
+                'padding-top': currentPaddingTop + opt.height + 'px',
+                'transition': 'padding-top .3s'
+            });
+            util.css(opt.element, {
+                'margin-top': '-' + opt.height + 'px'
+            });
+        }
+    }
 
     return {
         render: render,

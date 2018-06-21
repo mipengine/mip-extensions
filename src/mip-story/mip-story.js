@@ -29,6 +29,7 @@ define(function (require) {
     var SWITCHPAGE_THRESHOLD_Height = viewport.getHeight() * 0.4;
     var Service = require('./mip-story-service');
     var service;
+    var isCssColor = require('./mip-story-util').isCssColor;
 
     function MIPStory(element) {
         this.element = element;
@@ -108,11 +109,20 @@ define(function (require) {
         this.progress.updateProgress(0, 1);
     };
 
+    MIPStory.prototype.setSubjectColor = function () {
+        var subjectColor =  this.element.getAttribute('background') || '';
+        if (subjectColor && isCssColor(subjectColor)) {
+            this.element.style.backgroundColor = subjectColor;
+        }
+    }
+
     // story组件的初始化
     MIPStory.prototype.init = function () {
         var element = this.element;
         var html = this.win.document.documentElement;
         var mipStoryConfigData = this.getConfigData();
+        // 设置小故事的主题色
+        this.setSubjectColor();
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
         // 初始化音频
         this.initAudio();

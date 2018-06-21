@@ -14,6 +14,8 @@ define(function (require) {
     var AnimationManager = require('./animation').AnimationManager;
     var hasAnimations = require('./animation').hasAnimations;
     var css = require('util').css;
+    var isCssColor = require('./mip-story-util').isCssColor;
+
     customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
         self.whenAllMediaElements(function (ele) {
@@ -223,6 +225,17 @@ define(function (require) {
         }
     };
 
+    // 设置view的主题色
+    customElement.prototype.setSubjectColor = function () {
+        var subjectColor =  this.element.getAttribute('background') || '';
+        var storyLayer = this.element.getElementsByTagName('mip-story-layer') || '';
+        if (storyLayer && storyLayer[0] && subjectColor && isCssColor(subjectColor)) {
+            var newLayer = document.createElement('mip-story-layer');
+            this.element.insertBefore(newLayer, storyLayer[0]);
+            css(this.element.firstElementChild, {backgroundColor: subjectColor});
+        }
+    }
+
     customElement.prototype.initView = function () {
 
         this.audio = new Audio();
@@ -231,6 +244,8 @@ define(function (require) {
         var node = this.element.parentNode;
 
         this.animationElements = [];
+        // 设置view的主题色
+        this.setSubjectColor();
         if (!node.hasAttribute(BACKGROUND_AUDIO)) {
             var audioSrc = this.element.getAttribute(BACKGROUND_AUDIO);
             this.audio.build(this.element, audioSrc);

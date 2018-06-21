@@ -24,6 +24,7 @@ define(function (require) {
     var storyViews = [];
     var storyContain = [];
     var viewport = require('viewport');
+    var viewer = require('viewer');
     var $ = require('zepto');
     var SWITCHPAGE_THRESHOLD = viewport.getWidth() * 0.15;
     var SWITCHPAGE_THRESHOLD_Height = viewport.getHeight() * 0.4;
@@ -97,16 +98,26 @@ define(function (require) {
         service.build();
     };
 
-    MIPStory.prototype.initProgress = function () {
+    MIPStory.prototype.initProgress = function (storyConfig) {
         if (this.progress) {
             return;
         }
 
         var audioHide = this.element.hasAttribute('audio-hide');
-        this.progress = new Progress(this.element, this.storyViews, audioHide);
+        this.progress = new Progress(this.element, this.storyViews, audioHide, storyConfig);
         var html = dm.create(this.progress.build());
         this.element.appendChild(html);
         this.progress.updateProgress(0, 1);
+        var sys = this.element.querySelector('.mip-story-system-layer');
+
+        if (!viewer.isIframed || !this.getConfigData().xzh_info.appid){
+            return;
+        }
+        // 加载icon
+        this.progress.setXzhInfo().then(function(data) {
+            var icon = dm.create(data);
+            sys.appendChild(icon);
+        });
     };
 
     MIPStory.prototype.setSubjectColor = function () {
@@ -137,7 +148,7 @@ define(function (require) {
         // 初始化分享页面
         this.initShare(mipStoryConfigData, element);
         // 初始化导航
-        this.initProgress();
+        this.initProgress(mipStoryConfigData);
         // 初始化story的Slider
         this.initService();
     };

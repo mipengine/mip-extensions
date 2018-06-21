@@ -10,17 +10,22 @@ define(function (require) {
     var VISITED = 'mip-story-page-progress-bar-visited';
     var css = require('util').css;
     var timeStrFormat = require('./animation-util').timeStrFormat;
+    var fetchJsonp = require('fetch-jsonp');
+    var util = require('util');
+    var MSITEAPI = 'https://msite.baidu.com/home/bar?office_id=';
     /**
      * [MIPProgress 头部导航进度条]
      * @param {Element} root    mip-story根节点
      * @param {[type]} elements  mip-story-view 节点数组
      * @param {[type]} audioHide 是否隐藏音频
+     * @param {[type]} storyConfig 小故事配置
      */
-    function MIPProgress(root, elements, audioHide) {
+  function MIPProgress (root, elements, audioHide, storyConfig) {
 
         this.root = root;
         this.elements = elements;
         this.audioHide = audioHide;
+        this.storyConfig = storyConfig
         this.win = window;
         this.items = {};
         this.oldEle;
@@ -34,17 +39,18 @@ define(function (require) {
             })
         );
         var content = '<aside class="mip-story-system-layer">';
-        if (history.length > 1) {
-            content += '<span class="mip-story-close" data-stats-baidu-obj="' + closeStats + '"></span>';
-        }
+
         content += '<ol class="mip-story-progress-bar">';
         for (var i = 0; i < this.elements.length; i++) {
             content += '<li class="mip-story-page-progress-bar">'
-                    +       '<div class="mip-story-page-progress-value"></div>'
-                    + '</li>';
+                +       '<div class="mip-story-page-progress-value"></div>'
+                + '</li>';
         }
-        content += '</ol>';
+        content += '</ol><div class="control">';
 
+        if (history.length > 1) {
+            content += '<span class="mip-story-close" data-stats-baidu-obj="' + closeStats + '"></span>';
+        }
         var muteStats = encodeURIComponent(
             JSON.stringify({
                 type: 'click',
@@ -53,7 +59,8 @@ define(function (require) {
         );
         content += this.showAudio()
             ? '<span class="mip-stoy-audio" data-stats-baidu-obj="'
-            + muteStats + '"></span></aside>' : '';
+            + muteStats + '"></span></div></aside>' : '';
+
         return content;
     };
 
@@ -139,6 +146,25 @@ define(function (require) {
         });
     };
 
+    MIPProgress.prototype.setXzhInfo = function () {
+        var hostName = util.parseCacheUrl(location.href);
+        var url = MSITEAPI + this.storyConfig.xzh_info.appid + '&url=' + hostName;
+
+        return fetchJsonp(url, {
+            jsonpCallback: 'callback',
+            timeout: 2000
+        }).then(function (res) {
+            return res.json();
+        }).then(function (data) {
+            var content = '';
+            if (data.data.avatar && data.data.name) {
+              var content = '<div class="icon-wrap"><div class="icon"><img src="' + data.data.avatar + '" alt=""></div><div class="icon-name">' + data.data.name + '</div><div class="icon-type">熊掌号</div></div>';
+            }
+            return content;
+        },function (err) {
+            console.log(err)
+        });
+    };
 
     return MIPProgress;
 });

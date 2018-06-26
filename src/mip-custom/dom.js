@@ -81,11 +81,10 @@ define(function (require) {
                 fixedParent.classList.add('mip-custom-transit-end');
             }, 0);
         }
-        
+
         // 结果页打开, 移动到 fixed layer
         if (fixedElement._fixedLayer) {
             fixedElement.setFixedElement([fixedParent], true);
-
             // 为悬浮节点添加代理事件
             proxyLink(customNode, fixedElement._fixedLayer);
         }
@@ -192,13 +191,11 @@ define(function (require) {
         container.appendChild(itemNode);
 
         if (customNode.hasAttribute('mip-fixed')) {
-
             moveToFixedLayer(element, customNode, container);
         }
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
             res.element.innerHTML = res.html;
-
             if (res.element.hasAttribute('mip-fixed')
                 && res.element.parentNode.getAttribute('type') === 'bottom') {
                 fixedElement.setPlaceholder();
@@ -206,7 +203,6 @@ define(function (require) {
 
                 if (zIndex >= maxzIndex) {
                     maxzIndex = zIndex;
-                    // alert(getCss(res.element, 'height') - 10)
                     fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
                 }
             }

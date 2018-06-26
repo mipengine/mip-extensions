@@ -54,11 +54,13 @@ define(function () {
     customElement.prototype.initCustom = function () {
         var me = this;
 
-        // 参数初始化
-        me.position = me.element.getAttribute('position') || '';
-        me.sourceType = me.element.getAttribute('source-type') || '';
-        // 判断是否在mip-shell中，决定请求传递参数
-        me.commonUrl = url.get(me.element);
+        // 初始化
+        me.initBuild();
+
+        // 异常情况下不展示定制化MIP
+        if (!me.isShowCustom()) {
+            return;
+        }
 
         // 监听代理 a 标签点击事件
         dom.proxyLink(me.element);
@@ -92,6 +94,44 @@ define(function () {
         // 曝光日志
         logData.params.t = +new Date();
         log.sendLog(logData.host, util.fn.extend(logData.exposure, logData.params));
+    };
+
+    /**
+     * 初始化参数
+     *
+     */
+    customElement.prototype.initBuild = function () {
+        var me = this;
+        me.regexs = dataProcessor.regexs;
+        me.position = me.element.getAttribute('position') || '';
+        me.sourceType = me.element.getAttribute('source-type') || '';
+        me.commonUrl = url.get(me.element);
+    };
+
+    /**
+     * 判断是否展示定制化MIP
+     *
+     * @return {boolean} isShowCustom 是否展示定制化MIP
+     */
+    customElement.prototype.isShowCustom = function () {
+        var me = this;
+        var isShowCustom = true;
+        // 非结果页进入不展现定制化内容
+        if (!viewer.isIframed) {
+            me.element.remove();
+            isShowCustom = false;
+        }
+        // 非百度、cache不展现定制化内容
+        if (!(me.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
+            me.element.remove();
+            isShowCustom = false;
+        }
+        // 无异步url不展现定制化内容
+        if (!me.commonUrl) {
+            me.element.remove();
+            isShowCustom = false;
+        }
+        return isShowCustom;
     };
 
     /**
@@ -151,6 +191,7 @@ define(function () {
         }
 
         for (var i = 0; i < template.length; i++) {
+
             var tplData = template[i];
             var container = document.createElement('div');
 

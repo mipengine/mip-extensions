@@ -8,7 +8,6 @@ define(function (require) {
      * @type {Object}
      */
     var util = require('util');
-    var viewer = require('viewer');
     var dom = require('mip-custom/dom');
     var data = require('mip-custom/data');
 
@@ -111,7 +110,6 @@ define(function (require) {
             return;
         }
 
-
         for (var key in urlParams) {
             if (urlParams.hasOwnProperty(key)) {
                 url += (!firstKey ? '&' : '') + key + '=' + urlParams[key];
@@ -125,14 +123,9 @@ define(function (require) {
                 url += '&sourceId=' + encodeURIComponent(sourceId);
             }
         }
-        // 非mip-shell增加noshell参数
-        var mipShell = inMipShell(element);
-        if (!mipShell) {
-            url += '&from=noshell';
-        }
+
         return url;
     }
-
     function getSourceId() {
         var customs = document.querySelectorAll('mip-custom[position=top]');
         var sourceIdArr = [];
@@ -146,25 +139,6 @@ define(function (require) {
         }
         return sourceIdArr.join(',');
     }
-
-        /**
-     * 判断是否在特定广告环境中
-     *
-     * @return {boolean} inMipShell 是否在mip-shell中
-     */
-    function inMipShell(element) {
-        var inMipShell = true;
-        // 非结果页进入，不是mip-shell
-        if (!viewer.isIframed) {
-            inMipShell = false;
-        }
-        // 非百度、cache不在mip-shell中
-        if (!(data.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
-            inMipShell = false;
-        }
-        return inMipShell;
-    };
-
 
     return {
         get: getUrl

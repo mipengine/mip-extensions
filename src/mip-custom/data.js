@@ -30,7 +30,9 @@ define(function (require) {
         logid: '',
         query: '',
         title: '',
-        originalUrl: getSubString(location.pathname, regexs.regHttps) || getSubString(location.pathname, regexs.regHttp)
+        originalUrl: getSubString(location.pathname, regexs.regHttps)
+            || getSubString(location.pathname, regexs.regHttp)
+            || location.href
     };
 
     var logData = {

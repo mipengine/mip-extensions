@@ -81,11 +81,10 @@ define(function (require) {
                 fixedParent.classList.add('mip-custom-transit-end');
             }, 0);
         }
-        
+
         // 结果页打开, 移动到 fixed layer
         if (fixedElement._fixedLayer) {
             fixedElement.setFixedElement([fixedParent], true);
-
             // 为悬浮节点添加代理事件
             proxyLink(customNode, fixedElement._fixedLayer);
         }
@@ -194,22 +193,29 @@ define(function (require) {
         if (customNode.hasAttribute('mip-fixed')) {
             moveToFixedLayer(element, customNode, container);
         }
+
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
             res.element.innerHTML = res.html;
+            console.log(res.element.tagName);
+            // debugger;
             // 先获取到渲染结果，再把custom element插入到页面
             // 防止先插入页面后触发firstInviewCallback方法但内容只有带渲染的template
             res.element.itemNode.appendChild(res.element);
             res.element.container.appendChild(res.element.itemNode);
 
+            if(res.element.tagName == 'MIP-CUSTOM-MEDICINE-BUTTON') {
+                // debugger;
+            }
             if (res.element.hasAttribute('mip-fixed')
-                && res.element.parentNode.getAttribute('type') === 'bottom') {
+                && res.element.getAttribute('mip-fixed') === 'bottom') {
+                // moveToFixedLayer(element, customNode, container);
+                debugger;
                 fixedElement.setPlaceholder();
                 var zIndex = getCss(res.element.parentNode, 'z-index');
 
                 if (zIndex >= maxzIndex) {
                     maxzIndex = zIndex;
-                    // alert(getCss(res.element, 'height') - 10)
                     fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
                 }
             }

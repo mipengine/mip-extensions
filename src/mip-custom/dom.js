@@ -197,20 +197,15 @@ define(function (require) {
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
             res.element.innerHTML = res.html;
-            console.log(res.element.tagName);
-            // debugger;
-            // 先获取到渲染结果，再把custom element插入到页面
-            // 防止先插入页面后触发firstInviewCallback方法但内容只有带渲染的template
+            // XXX: 在模板渲染resolve后把custom element插入到页面
+            // 防止组件先插入页面后触发firstInviewCallback方法，但内容只有待渲染的template，
+            // 此时在组件中获取不到渲染后dom，无法绑定事件
             res.element.itemNode.appendChild(res.element);
             res.element.container.appendChild(res.element.itemNode);
 
-            if(res.element.tagName == 'MIP-CUSTOM-MEDICINE-BUTTON') {
-                // debugger;
-            }
             if (res.element.hasAttribute('mip-fixed')
                 && res.element.getAttribute('mip-fixed') === 'bottom') {
-                // moveToFixedLayer(element, customNode, container);
-                debugger;
+                moveToFixedLayer(element, customNode, container);
                 fixedElement.setPlaceholder();
                 var zIndex = getCss(res.element.parentNode, 'z-index');
 

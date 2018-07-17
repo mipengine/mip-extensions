@@ -126,11 +126,12 @@ define(function (require) {
      * @return {DOM}     tpl  template 子节点
      */
     function createTemplateNode(html, id) {
-
         var tpl = document.createElement('template');
 
         tpl.setAttribute('type', 'mip-mustache');
-        tpl.id = id;
+        if (id) {
+            tpl.id = id;
+        }
         tpl.innerHTML = dataProcessor.subStr(html, regexs.innerHtml);
 
         return tpl;
@@ -157,10 +158,7 @@ define(function (require) {
             }
         }
 
-        var id = customTag + '-' + Math.random().toString(36).slice(2);
-        node.setAttribute('template', id);
-        node.appendChild(createTemplateNode(html, id));
-
+        node.appendChild(createTemplateNode(html));
         return node;
     }
 
@@ -187,17 +185,27 @@ define(function (require) {
         var customNode = createCustomNode(html, customTag);
         var itemNode = document.createElement('div');
         itemNode.setAttribute('mip-custom-item', len);
-        itemNode.appendChild(customNode);
-        container.appendChild(itemNode);
+        // XXX work around: 由于需要在template渲染后把渲染结果插入到itemNode，container里面，
+        // 只能把这些参数绑定在 customNode 里传给render.then中，通过res.element.itemNode获取
+        customNode.itemNode = itemNode;
+        customNode.container = container;
 
         if (customNode.hasAttribute('mip-fixed')) {
             moveToFixedLayer(element, customNode, container);
         }
+
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
             res.element.innerHTML = res.html;
+            // XXX: 在模板渲染resolve后把custom element插入到页面
+            // 防止组件先插入页面后触发firstInviewCallback方法，但内容只有待渲染的template，
+            // 此时在组件中获取不到渲染后dom，无法绑定事件
+            res.element.itemNode.appendChild(res.element);
+            res.element.container.appendChild(res.element.itemNode);
+
             if (res.element.hasAttribute('mip-fixed')
-                && res.element.parentNode.getAttribute('type') === 'bottom') {
+                && res.element.getAttribute('mip-fixed') === 'bottom') {
+                moveToFixedLayer(element, customNode, container);
                 fixedElement.setPlaceholder();
                 var zIndex = getCss(res.element.parentNode, 'z-index');
 

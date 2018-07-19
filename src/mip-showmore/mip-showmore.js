@@ -239,6 +239,7 @@ define(function (require) {
             ? matchOriginTarget(this.ele.id.trim(), event.target)
             : null;
         var opt = {};
+        event.preventDefault();
         opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {
             // 高度限制

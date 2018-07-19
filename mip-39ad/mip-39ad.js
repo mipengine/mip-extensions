@@ -2,11 +2,11 @@
  * @file 39net添加广告
  * @author www.39.net技术部
  */
+// 定义广告的全局变量	
+var MIP39GlobNode = {};
 // 定义了广告的通用模块
 define(function (require) {
     // var customElem = require('customElement');
-    // 定义广告的全局变量
-    window.MIP39GlobNode = {};
     var customElem = require('customElement').create();
     var ks = function (asid) {
         var g;

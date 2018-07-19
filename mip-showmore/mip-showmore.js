@@ -206,6 +206,7 @@ define(function (require) {
         var classList = this.ele.classList;
         var clickBtn = event ? event.target : null;
         var opt = {};
+        event.preventDefault();
         opt.aniTime = this.animateTime;
         if (this.showType === this.heightType[2]) {
             // 高度限制

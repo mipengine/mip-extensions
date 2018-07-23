@@ -1,0 +1,8 @@
+{
+    "name": "mip-widget-full-height",
+    "version": "0.0.1",
+    "description": "全高页面组件",
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

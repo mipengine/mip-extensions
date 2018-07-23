@@ -34,7 +34,38 @@ define(function () {
     customElement.prototype.build = function () {
         var me = this;
         dom.addPlaceholder.apply(this);
+        this.initElement(dom)
+        if (window.MIP.viewer.page) {
+            // 监听外层播放的广告事件
+            window.addEventListener('showAdvertising', e => {
+                var detailData = e && e.detail && e.detail[0] && e.detail[0] || {};
+                me.customId = detailData.customId;
+                me.novelData = detailData.novelData;
+                if (detailData.fromSearch) {
+                    me.fromSearch = detailData.fromSearch;
+                }
+                if (me.customId === window.MIP.viewer.page.pageId && me.novelData) {
+                    me.initElement(dom)
+                }
+            })
+            // 告知shell该custom已经准备好了
+            setTimeout(() => {
+                window.MIP.viewer.page.emitCustomEvent(window.MIP.viewer.page.isRootPage ? window : window.parent, false, {
+                    name: 'mip-custom-element-ready',
+                    data: {
+                    customId: window.MIP.viewer.page.pageId
+                    }
+                })
+            }, 200);
+        }
+    };
 
+    /**
+     * 发出请求+渲染页面
+     *
+     */
+    customElement.prototype.initElement = function (dom) {
+        var me = this;
         var checkElement = function () {
             if (dom.getConfigScriptElement(me.element)) {
                 me.initCustom();
@@ -224,6 +255,14 @@ define(function () {
         // 性能日志
         var performance = {};
         performance.fetchStart = new Date() - 0;
+        var paramUrl = url
+        if (me.novelData) {
+            var novelData = encodeURIComponent(JSON.stringify(me.novelData))
+            paramUrl = paramUrl + '&novelData=' + novelData
+        }
+        if (me.fromSearch) {
+            paramUrl = paramUrl + '&fromSearch=' + me.fromSearch
+        }
         // fetch
         fetch(url, {
             credentials: 'include'

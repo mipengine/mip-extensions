@@ -34,29 +34,22 @@ define(function () {
     customElement.prototype.build = function () {
         var me = this;
         dom.addPlaceholder.apply(this);
-        this.initElement(dom)
         if (window.MIP.viewer.page) {
             // 监听外层播放的广告事件
-            window.addEventListener('showAdvertising', e => {
+            window.addEventListener('showAdvertising', function (e) {
                 var detailData = e && e.detail && e.detail[0] && e.detail[0] || {};
                 me.customId = detailData.customId;
                 me.novelData = detailData.novelData;
                 if (detailData.fromSearch) {
                     me.fromSearch = detailData.fromSearch;
                 }
-                if (me.customId === window.MIP.viewer.page.pageId && me.novelData) {
+                if (me.customId === window.MIP.viewer.page.pageId) {
                     me.initElement(dom)
                 }
             })
-            // 告知shell该custom已经准备好了
-            setTimeout(() => {
-                window.MIP.viewer.page.emitCustomEvent(window.MIP.viewer.page.isRootPage ? window : window.parent, false, {
-                    name: 'mip-custom-element-ready',
-                    data: {
-                    customId: window.MIP.viewer.page.pageId
-                    }
-                })
-            }, 200);
+        }
+        else {
+            this.initElement(dom)
         }
     };
 

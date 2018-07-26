@@ -257,7 +257,7 @@ define(function () {
             paramUrl = paramUrl + '&fromSearch=' + me.fromSearch
         }
         // fetch
-        fetch(url, {
+        fetch(paramUrl, {
             credentials: 'include'
         }).then(function (res) {
             // 性能日志：duration-网络请求时间

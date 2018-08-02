@@ -17,6 +17,7 @@ define(function (require) {
     var BookEnd = require('./mip-story-bookend');
     var animatePreset = require('./animate-preset');
     var util = require('util');
+    var platform = util.platform;
     var dm = util.dom;
     var EventEmitter = util.EventEmitter;
     var Gesture = util.Gesture;
@@ -38,6 +39,13 @@ define(function (require) {
         this.storyViews = [];
         this.storyContain = [];
     }
+
+    function loadScript (url) {
+        var d = document;
+        var s = d.createElement('script');
+        s.src = url;
+        (d.body || d.documentElement).appendChild(s)
+    };
 
     MIPStory.prototype.getConfigData = function () {
 
@@ -127,11 +135,47 @@ define(function (require) {
         }
     }
 
+    MIPStory.prototype.insertScript = function () {
+        loadScript('https://c.mipcdn.com/static/v1/mip-fixed/mip-fixed.js')
+    }
+
+    // 处理滑动
+    MIPStory.prototype.resolveSwipe = function () {
+        // 禁止橡皮筋效果
+        for(var i = 0; i < this.storyViews.length; i++) {
+            this.storyViews[i].addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, {
+                passive: false
+            });
+        }
+        var isSimpleSearch = navigator.userAgent.toLowerCase().indexOf('searchcraft');
+        // 手百下外层容器不能设置阻挡默认事件
+        if (!platform.isBaiduApp() && !platform.isQQApp() && !isSimpleSearch) {
+            var backOuter = this.element.querySelector('.mip-backend')
+            backOuter.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, {
+                passive: false
+            });
+        }
+        var recommendWrap = this.element.querySelector('.recommend-wrap')
+        recommendWrap.addEventListener('touchmove', function (e) {
+            e.stopPropagation();
+        }, {
+            passive: true
+        });
+    }
+
+    
+    
     // story组件的初始化
     MIPStory.prototype.init = function () {
         var element = this.element;
         var html = this.win.document.documentElement;
         var mipStoryConfigData = this.getConfigData();
+        // 引入js
+        this.insertScript()
         // 设置小故事的主题色
         this.setSubjectColor();
         html.setAttribute('id', MIP_I_STORY_STANDALONE);
@@ -151,6 +195,8 @@ define(function (require) {
         this.initProgress(mipStoryConfigData);
         // 初始化story的Slider
         this.initService();
+        // 处理滑动问题
+        this.resolveSwipe();
     };
 
     /**

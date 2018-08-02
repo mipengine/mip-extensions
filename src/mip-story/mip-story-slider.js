@@ -107,8 +107,7 @@ define(function (require) {
             if (switchPageType == SWITCHTYPES.slideX) {
                 ele.style.transform = 'translate(' + changemove + 'px, 0)';
                 ele.style.webkitTransform = 'translate(' + changemove + 'px, 0)';
-            }
-            else {
+            } else {
                 ele.style.transform = 'translate(0, ' + changemove + 'px)';
                 ele.style.webkitTransform = 'translate(0, ' + changemove + 'px)';
             }
@@ -118,8 +117,7 @@ define(function (require) {
             if (switchPageType == SWITCHTYPES.slideX) {
                 ele.style.transform = 'translate(' + width + 'px, 0)';
                 ele.style.webkitTransform = 'translate(' + width + 'px, 0)';
-            }
-            else {
+            } else {
                 ele.style.webkitTransform = 'translate(0, ' + height + 'px)';
             }
         }
@@ -131,12 +129,6 @@ define(function (require) {
     }
 
     MIPStorySlider.prototype.build = function () {
-        // 禁止橡皮筋效果
-        document.addEventListener('touchmove', function (e) {
-            e.preventDefault();
-        }, {
-            passive: false
-        });
         // 初始化段落布局
         this.initViewForSlider();
         this.bindEvent();
@@ -231,8 +223,7 @@ define(function (require) {
             if (self.touchendX == self.touchstartX && self.touchendY == self.touchstartY) {
                 self.moveFlag = false;
                 return;
-            }
-            else {
+            } else {
                 // 关闭其他滑动事件
                 self.moveFlag = true;
                 // 翻页
@@ -395,8 +386,9 @@ define(function (require) {
 
         currentEle.removeAttribute('style');
         if (this.currentIndex === storyContain.length - 1) {
-            enableScroll(storyInstanceEle.querySelector('.mip-backend-outer'));
-            enableScroll(storyInstanceEle.getElementsByTagName('mip-scrollbox'));
+            // 安卓下 有问题，这段逻辑去掉了
+            // enableScroll(storyInstanceEle.querySelector('.mip-backend-outer'));
+            // enableScroll(storyInstanceEle.getElementsByTagName('mip-scrollbox'));
         }
 
     };
@@ -495,8 +487,7 @@ define(function (require) {
             if (i === this.currentIndex) {
                 // 设置当前页面为current状态
                 this.setViewStatus(true, CURRENT, storyContain[i]);
-            }
-            else {
+            } else {
                 // 清除非当前页的current状态，确保只有一个current页
                 this.setViewStatus(false, CURRENT, storyContain[i]);
             }
@@ -530,8 +521,7 @@ define(function (require) {
         if (viewEle && viewStatue) {
             if (isSetStatus) {
                 viewEle.setAttribute(viewStatue, '');
-            }
-            else {
+            } else {
                 viewEle.removeAttribute(viewStatue);
             }
         }

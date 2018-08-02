@@ -81,28 +81,30 @@
 说明：获取微信动态签名接口  
 必选项：否  
 类型：字符串  
-取值范围：URL
+取值范围：URL (不能带有`http://`,`https://`，示例：`//xx.yy.com/getToken`)
 
 ## 注意事项
     
 分享到微信好友和微信朋友圈，在手机百度和 QQ 浏览器上显示是因为 `<mip-share>` 组件调用浏览器的 API，在其他浏览器上没有可用 API，所以分享按钮不显示或显示不全。
 
 ## 获取微信动态签名接口返回数据格式参考
+接口必须返回`jsonp`格式
 ```js
-{
-    "errno": 0,
-    "errmsg": "SUCCESS",
-    "data": {
-        "debug": false, // 非必须，默认false， 值为true时开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        "appId": 'aaa', // 必须，公众号的唯一标识
-        "timestamp": 123, // 必须，生成签名的时间戳
-        "nonceStr": 'bbb', // 必须，生成签名的随机串
-        "signature": 'ccc',// 必须，签名
-        "jsApiList": [] // 必须，需要使用的JS接口列表，默认含['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
-    },
-    "time": 1527676437,
-    "hasFlush": true,
-    "format": "jsonp"
-}
+_box_jsonp1532926508317(
+    {
+        "errno":0,
+        "errmsg":"SUCCESS",
+        "data":{
+            "appId":"wxadc1a0c6b9096e89",
+            "nonceStr":"UFZnVMBn2DmVYE52",
+            "timestamp":1532926508,
+            "url":"https://mipstatic-baidu-com.mipcdn.com/c/s/mipstatic.baidu.com/static/mip-static/mip-story/story-cherry/cherry.html",
+            "signature":"437f53a8242a492e5f5e7c0d3dde72e1e103fb8d"
+        },
+        "time":1532926508,
+        "hasFlush":true,
+        "format":"jsonp"
+    }
+)
 ```
 其中，动态签名**必须**包含在`data`下

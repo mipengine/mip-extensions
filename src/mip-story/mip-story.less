@@ -488,50 +488,33 @@ mip-story-layer[template=thirds] {
     top: 0;
     left: 0;
     display: none !important;
-    display: -webkit-box;
     width: 100%;
     height: 100%;
     text-align: center;
-    // display: flex !important;
-    // display: -webkit-flex !important;
-    // justify-content: center !important;
-    // -webkit-justify-content: center !important;
-    // align-items: center !important;
-    // -webkit-align-items: center !important;
-    // -webkit-transform: translate(1000%);
-    // transform: translateY(1000%);
     color: #fff;
     background: rgba(0, 0, 0, .9);
-
-    -webkit-box-align: center;
-       -moz-box-align: center;
-    -webkit-box-pack: center;
-       -moz-box-pack: center;
 }
 .mip-backend[active] {
-    display:         flex !important;
-    display: -webkit-flex !important;
-
-    -webkit-align-items: center !important;
-            align-items: center !important;
-    -webkit-justify-content: center !important;
-            justify-content: center !important;
+    display: block!important;
 }
 
 .mip-backend[current] {
-    display:         flex !important;
-    display: -webkit-flex !important;
-
-    -webkit-align-items: center !important;
-            align-items: center !important;
-    -webkit-justify-content: center !important;
-            justify-content: center !important;
+    display: block!important;
 }
 
 .mip-backend-outer {
     overflow-y: scroll;
     width: 100%;
     height: 100%;
+    padding-top: 86px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    background-size: cover;
+    -webkit-overflow-scrolling: touch;
+            overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .mip-story-middle {
@@ -549,26 +532,6 @@ mip-story-layer[template=thirds] {
 
 .mip-story-middle .mip-backend-preview {
     margin-top: 0;
-}
-
-.mip-backend-preview {
-    position: relative;
-    display:         flex !important;
-    display: -webkit-flex !important;
-    display: -webkit-box;
-    width: 121px;
-    height: 121px;
-    margin: 0 auto;
-    margin-top: 92px;
-
-    -webkit-align-items: center !important;
-            align-items: center !important;
-    -webkit-box-align: center;
-       -moz-box-align: center;
-    -webkit-box-pack: center;
-       -moz-box-pack: center;
-    -webkit-justify-content: center !important;
-            justify-content: center !important;
 }
 
 .mip-backend-preview-mask {
@@ -592,70 +555,8 @@ mip-story-layer[template=thirds] {
 .mip-backend-preview-replay-btn {
     width: 24px;
     height: 24px;
-    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-replay.png);
+    background: url('data:image/png;base64,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');
     background-size: cover;
-}
-
-.mip-backend-preview-share-btn {
-    display: block;
-    width: 25px;
-    height: 25px;
-    margin: 0 auto;
-    background: url(https://www.mipengine.org/static/img/mip-story/mip-story-share.png);
-    background-size: cover;
-}
-
-.mip-backend-preview-thumbnail span {
-    display: block;
-    margin-top: 8px !important;
-    font-size: 13px;
-    line-height: 13px;
-    color: #e8eaea;
-}
-
-.mip-backend-description {
-    display: block;
-    margin-top: 16px;
-    font-size: 16px;
-    line-height: 16px;
-}
-
-.mip-backend-info {
-    display: block;
-    margin-top: 10px;
-    font-size: 13px;
-    line-height: 13px;
-    opacity: .6;
-    color: #bababa;
-}
-
-.mip-backend-info a {
-    text-decoration: none;
-    color: #fff;
-}
-
-.mip-backend-info > :nth-child(2) {
-    margin-left: 10px;
-}
-
-.mip-backend-share {
-    display: block;
-    width: 121px;
-    margin: 0 auto;
-    margin-top: 66px;
-    overflow: hidden;
-    opacity: 1;
-}
-
-.mip-backend-share:active {
-    opacity: .6;
-}
-
-.mip-backend-share-btn {
-    display: block;
-    margin-top: 8px;
-    font-size: 13px;
-    color: #fff;
 }
 
 .mip-backend-close {
@@ -956,57 +857,123 @@ mip-story-layer[template=thirds] {
     background: #fff;
 }
 // 更多小故事推荐
-.recommend {
-    margin: 34px 17px 10px 17px;
+.recommend-wrap {
     text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 2px;
+    margin: 42px 17px 0 17px;
+
+    .readmore {
+        font-size: 18px;
+        line-height: 3;
+        color: #ffffff;
+    }
+
 }
 
-.recommend > :first-child {
-    display: block;
-    padding: 20px 0 15px 0;
-    border-top: 1px solid rgba(255, 255, 255, .3);
-    font-size: 16px;
-    line-height: 16px;
-    color: #fff;
+.mip-backend-control {
+    width: 100%;
+    height: 44px;
+    padding: 10px 17px 0 17px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    margin-bottom: 42px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+    .mip-story-close {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 24px 24px;
+        float: right;
+        left: 0;
+        top: 0;
+        margin-left: 25px;
+    }
+    .mip-backend-share{
+        float: right;
+        &:active {
+            opacity: .6;
+        }
+    }
+    .mip-backend-preview-share-btn {
+        display: block;
+        width: 24px;
+        height: 24px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 24px 24px;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAolBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8ELnaCAAAANXRSTlMAgPj8BfLTaC8MA+sQCOeze3gi3ttFNcvHuplgTkEe48Cin1s9GMStp4VyVks6KhSrlG5Qjc71RbUAAAKGSURBVFjDpZbnmqpADIYjIEUFVOwFu2tfy+b+b+08JDtSBlbO8P5jeOabkC+ZAJ/on7ZQhRUiPgxQpo8RwxBU6SDR7IMiNWT0trKAwG+pC5ik0LOVBZw7KWhTVQGAk04SE0NVALYeKYxCVQHY7YWfigJgPBT8dO0DCTDn+n/5aXf8QEdCLN169BiU8HO+9jAGBM5XKT8dy8QUyd747GfDamISLVimYvM+9Od1GG8dTqzrN2TYjYr95BAZ72fQAIkPfookoX64GFDMpsjP1m/4S/uTxb3c/nR4v1ei6Vp5frpc7WMpsL+SlUzEhFa+ynbsnN3uxpmh53UDynKlDWfx2KXMTqA0fY7gnUfKiulCWdqcg0NqgGg2lKTlI3F8fzG1zxNKMghoe30GghnVD5TE0mi/2YU3VAJzKIW7RmLlJkKiG7egd8L0eO+aXIQWZGtoBmkat1dntV/oiJDgxY20GKQOiSw10+dYfh0FCdEjEmO6JtIpTITkTEf5V9puKdyT/0Jw905Sm8+WBbaecC+Dl0zhZoFZgDnpknvMLdGX1zh4ze9cwngyOXfJPcEzWr9Rjn7E7vr97KRG260n3JOJpAM6xEemt3Ezs3ETuycTcFeJEkHPMjLD1XjE7sm0olcdgCs3uF5zstM5HCXck5lH7/pgc5DeVh7vTeFePhZVQcjuLXcgCwj3CjhGZzgmD80GyALCvSLW0cFjvlJz/1TZvWKivRpfcA05QZJ7Mj38xTfy42P3itGQCfJH0vY0gz/5RkYbgBo2Mk9QZI7EGFS58Ad0QZUXCdRAmQ31rwvKTHlIq8K9NIQKnBDxAhVoI+6hCjUKoFIEJlTiiVOoxDkwoBKtAVTiH/QZqL/ije01AAAAAElFTkSuQmCC');
+    }
 }
 
 .recommend-item {
-    display:         flex !important;
-    display: -webkit-flex !important;
-    display: -webkit-box;
-            flex-direction: column !important;
-    width: 186px;
-    height: 277px;
-    margin-right: 8px;
-    text-align: center;
-    word-wrap: break-word;
-    word-break: break-word;
-
-    -webkit-box-orient: vertical;
-    -webkit-box-pack: end;
-    -webkit-flex-direction: column !important;
-    -webkit-justify-content: flex-end !important;
-            justify-content: flex-end !important;
-}
-
-.recommend-item > span {
-    display: -webkit-box;
-    overflow: hidden;
-    padding: 0 2px;
-    text-overflow: ellipsis;
+    display: block;
+    height: 88px;
+    margin-bottom: 20px;
     color: #fff;
-
+    position: relative;
+    &.recommend-now {
+        padding-left: 17px;
+        margin-bottom: 0;
+        .mip-backend-preview {
+            left: 17px;
+            top: 0;
+        }
+    }
+    .mip-backend-preview {
+        position: absolute;
+        left: 0px;
+        top: 0;
+        width: 122px;
+        height: 88px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        .mip-backend-preview-thumbnail {
+            width: 122px;
+            height: 88px;
+            span {
+                display: block;
+                width: 24px;
+                height: 24px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+.recommend-detail {
+    height: 100%;
+    padding-left: 130px;
+    padding-right: 36px;
+    text-align: left;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-
-.recommend-item > :first-child {
-    font-size: 16px;
-}
-
-.recommend-item > :nth-child(2) {
-    margin-top: 13px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    line-height: 13px;
+    -webkit-box-pack: center;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+    span {
+        font-size: 18px;
+        line-height: 1.5;
+        &:nth-child(2) {
+            font-size: 10px;
+            opacity: .6;
+            padding-top: 2px;
+        }
+        a {
+            color: #fff;
+        }
+    }
 }

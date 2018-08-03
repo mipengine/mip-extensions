@@ -37,7 +37,7 @@ define(function () {
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
             // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
-            window.MIP.viewer.page.emitCustomEvent(window.parent, true, {
+            window.MIP.viewer.page.emitCustomEvent(window, true, {
                 name: 'customReady',
                 data: {
                     customPageId: window.MIP.viewer.page.pageId

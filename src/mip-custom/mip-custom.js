@@ -19,7 +19,23 @@ define(function () {
     var customElement = require('customElement').create();
     var logData = dataProcessor.logData;
     var performanceData = dataProcessor.performanceData;
+    var globalCustomElementInstance;
 
+    function handler(e) {
+        var me = globalCustomElementInstance;
+        var detailData = e && e.detail && e.detail[0] || {};
+        me.customId = detailData.customId;
+        me.novelData = detailData.novelData;
+        if (detailData.fromSearch) {
+            me.fromSearch = detailData.fromSearch;
+        }
+        // XXX:解决window实例和组件实例的诡异的问题。。。。。。
+        if (me.customId === window.MIP.viewer.page.currentPageId
+            && me.element.querySelector('.mip-custom-placeholder')) {
+            me.initElement(dom)
+            window.removeEventListener('showAdvertising', handler)
+        }
+    }
     /**
      * prerenderAllowed钩子,优先加载
      */
@@ -32,27 +48,18 @@ define(function () {
      *
      */
     customElement.prototype.build = function () {
-        var me = this;
+        globalCustomElementInstance = this;
         dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
+            // 监听小说shell播放的广告请求的事件
+            window.addEventListener('showAdvertising', handler);
             // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
-            window.MIP.viewer.page.emitCustomEvent(window, true, {
+            var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
+            window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
                 name: 'customReady',
                 data: {
-                    customPageId: window.MIP.viewer.page.pageId
-                }
-            })
-            // 监听小说shell播放的广告请求的事件
-            window.addEventListener('showAdvertising', function (e) {
-                var detailData = e && e.detail && e.detail[0] && e.detail[0] || {};
-                me.customId = detailData.customId;
-                me.novelData = detailData.novelData;
-                if (detailData.fromSearch) {
-                    me.fromSearch = detailData.fromSearch;
-                }
-                if (me.customId === window.MIP.viewer.page.pageId) {
-                    me.initElement(dom)
+                    customPageId: window.MIP.viewer.page.currentPageId
                 }
             })
         }

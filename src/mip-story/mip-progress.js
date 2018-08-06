@@ -154,18 +154,20 @@ define(function (require) {
         var url = MSITEAPI + this.storyConfig.xzh_info.appid + '&url=' + encodeURIComponent(hostName);
 
         return fetchJsonp(url, {
-            jsonpCallback: 'callback',
-            timeout: 5000
+            jsonpCallback: 'callback'
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
             var content = '';
-            if (data.data.avatar && data.data.name) {
-                var content = '<div class="icon-wrap"><div class="icon"><img src="'
-                    + data.data.avatar
+            var siteData = data.data;
+            if (siteData.avatar && siteData.name && siteData.homepage) {
+                var content = '<div class="icon-wrap" data-href="'
+                    + siteData.homepage
+                    + '"><div class="icon"><img src="'
+                    + siteData.avatar
                     + '" alt=""></div><div class="icon-name">'
-                    + data.data.name
-                    + '</div><div class="icon-type">熊掌号</div></div>';
+                    + siteData.name
+                    + '</div><div class="icon-type">熊掌号</div></i></div>';
             }
             return content;
         }, function (err) {

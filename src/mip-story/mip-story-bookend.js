@@ -8,6 +8,8 @@ define(function (require) {
 
     var util = require('util');
     var viewer = require('viewer');
+    var constConfig = require('./mip-story-config');
+    var sharePage = constConfig.PAGE_ROLE.sharePage;
     var platform = util.platform;
     var naboo = util.naboo;
 
@@ -80,6 +82,24 @@ define(function (require) {
                 data: ['_trackEvent', '小故事分享', '点击', window.location.href]
             })
         );
+        var closeStatsInBackEnd = encodeURIComponent(
+            JSON.stringify({
+                type: 'click',
+                data: ['_trackEvent', '小故事关闭按钮_分享页', '点击', window.location.href]
+            })
+        );
+        var recommendStats = encodeURIComponent(
+            JSON.stringify({
+                type: 'click',
+                data: ['_trackEvent', '更多推荐', '点击', window.location.href]
+            })
+        );
+        var infoStats = encodeURIComponent(
+            JSON.stringify({
+                type: 'click',
+                data: ['_trackEvent', '来源外链', '点击', window.location.href]
+            })
+        );
         var share = data.share;
         var recommend = data.recommend;
         var items = recommend && recommend.items ? recommend.items : [];
@@ -91,12 +111,12 @@ define(function (require) {
                 var item = items[i];
                 innerTpl += ''
                     +    '<a href="' + item.url
-                    +       '" class="recommend-item">'
+                    +       '" class="recommend-item" data-stats-baidu-obj="' + recommendStats + '">'
                     +       '<div class="mip-backend-preview" style="background-image:url('
                     +       (item.cover || '') + ');"></div>'
                     +       '<div class="recommend-detail">'
                     +           '<span>' + (item.title || '') + '</span>'
-                    +           '<span data-src="' + item.fromUrl + '">' + (item.from || '') + '</span>'
+                    +           '<span class="item-from" data-src="' + item.fromUrl + '">' + (item.from || '') + '</span>'
                     +        '</div>'
                     +    '</a>';
             }
@@ -112,14 +132,18 @@ define(function (require) {
                 + '<span class="mip-backend-share" data-stats-baidu-obj="' + shareStats + '">'
                 +   '<span class="mip-backend-preview-share-btn"></span>'
                 + '</span>' : '';
-        var historyTpl = history.length > 1 ? '<span class="mip-story-close mip-backend-close"></span>' : '';
+        var historyTpl = history.length > 1 
+                        ? '<span class="mip-story-close mip-backend-close" data-stats-baidu-obj="'
+                            + closeStatsInBackEnd
+                            + '"></span>'
+                        : '';
         var html = ''
-                + '<aside class="mip-backend">'
+                + '<aside class="mip-backend" page-role="' + sharePage + '">'
                 +     '<mip-fixed type="top" class="mip-backend-control">'
                 +         historyTpl
                 +         shareTpl
                 +     '</mip-fixed>'
-                + '<div class="mip-backend-outer "style="background-image: url(' + share.background + ')">'
+                +     '<div class="mip-backend-outer "style="background-image: url(' + share.background + ')">'
                 +         '<div class="recommend-item recommend-now">'
                 +            '<div class="mip-backend-preview"'
                 +             'style="background-position:center;background-size:cover;background-image:url('
@@ -131,13 +155,13 @@ define(function (require) {
                 +           '</div>'
                 +            '<div class="recommend-detail">'
                 +             '<span class="mip-backend-description">' + share.title + '</span>'
-                +             '<span class="mip-backend-info">'
+                +             '<span class="mip-backend-info" data-stats-baidu-obj="' + infoStats + '">'
                 +                 '<a href="' + share.fromUrl + '">' + share.from + '</a>'
                 +             '</span>'
                 +           '</div>'
                 +         '</div>'
                 +        recTpl
-                +    '</div>'
+                +     '</div>'
                 + '</aside>';
         return html;
     };

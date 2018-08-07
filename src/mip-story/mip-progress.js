@@ -12,7 +12,9 @@ define(function (require) {
     var timeStrFormat = require('./animation-util').timeStrFormat;
     var fetchJsonp = require('fetch-jsonp');
     var util = require('util');
-    var MSITEAPI = 'https://msite.baidu.com/home/bar?office_id=';
+    var constConfig = require('./mip-story-config');
+    var MSITEAPI = constConfig.MSITEAPI;
+
     /**
      * [MIPProgress 头部导航进度条]
      * @param {Element} root    mip-story根节点
@@ -59,7 +61,8 @@ define(function (require) {
         );
         content += this.showAudio()
             ? '<span class="mip-stoy-audio" data-stats-baidu-obj="'
-            + muteStats + '"></span></div></aside>' : '';
+            + muteStats
+            + '"></span></div></aside>' : '';
 
         return content;
     };

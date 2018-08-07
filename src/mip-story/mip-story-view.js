@@ -9,12 +9,12 @@ define(function (require) {
     var customElement = require('customElement').create();
     var Audio = require('./audio');
     require('./mip-story-video');
-    var BACKGROUND_AUDIO = 'background-audio';
     var timeStrFormat = require('./animation-util').timeStrFormat;
     var AnimationManager = require('./animation').AnimationManager;
     var hasAnimations = require('./animation').hasAnimations;
     var css = require('util').css;
     var isCssColor = require('./mip-story-util').isCssColor;
+    var constConfig = require('./mip-story-config');
 
     customElement.prototype.resumeAllMedia = function (load) {
         var self = this;
@@ -236,6 +236,11 @@ define(function (require) {
         }
     }
 
+    // 设置view的类型
+    customElement.prototype.setPageRole = function () {
+        this.element.setAttribute('page-role', constConfig.PAGE_ROLE.contentPage);
+    }
+
     customElement.prototype.initView = function () {
 
         this.audio = new Audio();
@@ -246,8 +251,8 @@ define(function (require) {
         this.animationElements = [];
         // 设置view的主题色
         this.setSubjectColor();
-        if (!node.hasAttribute(BACKGROUND_AUDIO)) {
-            var audioSrc = this.element.getAttribute(BACKGROUND_AUDIO);
+        if (!node.hasAttribute(constConfig.BACKGROUND_AUDIO)) {
+            var audioSrc = this.element.getAttribute(constConfig.BACKGROUND_AUDIO);
             this.audio.build(this.element, audioSrc);
         }
     };
@@ -255,6 +260,7 @@ define(function (require) {
     customElement.prototype.firstInviewCallback = function () {
         this.initView();
         this.pauseAllMedia();
+        this.setPageRole();
     };
 
     /* eslint-disable */

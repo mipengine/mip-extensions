@@ -27,8 +27,6 @@ define(function (require) {
     var viewport = require('viewport');
     var viewer = require('viewer');
     var $ = require('zepto');
-    var SWITCHPAGE_THRESHOLD = viewport.getWidth() * 0.15;
-    var SWITCHPAGE_THRESHOLD_Height = viewport.getHeight() * 0.4;
     var Service = require('./mip-story-service');
     var service;
     var isCssColor = require('./mip-story-util').isCssColor;

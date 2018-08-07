@@ -9,15 +9,15 @@ define(function (require) {
     var storyContain = [];
     var emitter;
     var viewport = require('viewport');
-    var CURRENT = 'current';
-    var ACTIVE = 'active';
+    var constConfig = require('./mip-story-config');
+    var PAGE_ROLE = constConfig.PAGE_ROLE;
+    var DIRECTIONMAP = constConfig.DIRECTIONMAP;
+    var SWITCHPAGE_THRESHOLD = constConfig.SWITCHPAGE_THRESHOLD;
+    var CURRENT = constConfig.PAGE_STATE.current;
+    var ACTIVE = constConfig.PAGE_STATE.active;
     var STYLE = 'style';
     var screenWidth = viewport.getWidth();
     var screenHeight = viewport.getHeight();
-    // 左右翻页的阀值
-    var SWITCHPAGE_THRESHOLD = viewport.getWidth() * 0.15;
-    // 上下翻页的阀值
-    var SWITCHPAGE_THRESHOLD_HEIGHT = viewport.getHeight() * 0.1;
     var SWITCHTYPES = {};
     var switchPageType = '';
     var initViewForSwitchCB;
@@ -35,14 +35,26 @@ define(function (require) {
     var reboundTime = 80;
     var recommend;
 
-    var DIRECTIONMAP = {
-        back: 'back',
-        goto: 'goto'
+    // 翻页埋点 
+    var pageViewed = [0];
+    var isPageOneViewed = false;
+    var pageViewedData = {
+        'category': '_trackEvent',
+        'action': '翻页进度',
+        'optLabel': '滑动',
+        'optValue': '翻了1页'
     };
-    var directionMap = {
-        back: 'back',
-        goto: 'goto'
+
+    // 分享页展示次数  这里以后可能会改成推荐小故事的展示量
+    var sharePageIndex = 1;
+    var isSharePageViewed = false;
+    var sharePagedData = {
+        'category': '_trackEvent',
+        'action': '翻页进度',
+        'optLabel': '滑动',
+        'optValue': '翻到了分享页'
     };
+
 
     function MIPStorySlider(param) {
         // story的实例
@@ -57,6 +69,7 @@ define(function (require) {
         storyInstanceEle = storyInstance.element;
         // story中每个页面包括分享页
         storyContain = storyInstance.storyContain;
+        sharePageIndex = storyContain.length - 1;
         // story的自定义事件监控器
         emitter = storyInstance.emitter;
         // 翻页的交互类型
@@ -447,12 +460,12 @@ define(function (require) {
         var move = moveX;
         var preActiveMove = -screenWidth + moveX;
         var nextActiveMove = screenWidth + moveX;
-        var threshold = SWITCHPAGE_THRESHOLD;
+        var threshold = SWITCHPAGE_THRESHOLD.horizontal;
         if (switchPageType === SWITCHTYPES.slideY) {
             move = moveY;
             preActiveMove = -screenHeight + moveY;
             nextActiveMove = screenHeight + moveY;
-            threshold = SWITCHPAGE_THRESHOLD_HEIGHT;
+            threshold = SWITCHPAGE_THRESHOLD.vertical;
         }
 
         var data = {
@@ -484,20 +497,74 @@ define(function (require) {
 
     MIPStorySlider.prototype.setCurrentPage = function (status) {
         for (var i = 0; i < storyContain.length; i++) {
+            let currentPage = storyContain[i];
             if (i === this.currentIndex) {
+                if (window._hmt && pageViewed.indexOf(i) === -1) {
+                    var pageRole = currentPage.getAttribute('page-role');
+                    this.triggerStats(i, pageRole);
+                }
                 // 设置当前页面为current状态
-                this.setViewStatus(true, CURRENT, storyContain[i]);
+                this.setViewStatus(true, CURRENT, currentPage);
             } else {
                 // 清除非当前页的current状态，确保只有一个current页
-                this.setViewStatus(false, CURRENT, storyContain[i]);
+                this.setViewStatus(false, CURRENT, currentPage);
             }
             // 如果当前页面原先为active状态则清除
-            if (this.hasStatus(ACTIVE, storyContain[i])) {
-                this.setViewStatus(false, ACTIVE, storyContain[i]);
+            if (this.hasStatus(ACTIVE, currentPage)) {
+                this.setViewStatus(false, ACTIVE, currentPage);
             }
 
         }
     };
+
+    /**
+     * 处理翻页统计逻辑
+     *
+     * @param {Number} pageIndex 页数下标
+     */
+    MIPStorySlider.prototype.triggerStats = function (pageIndex, role) {
+        // 分享页单独统计
+        if (role === PAGE_ROLE.sharePage && !isSharePageViewed) {
+            isSharePageViewed = true;
+            return this.trackEvent(sharePagedData);
+        }
+
+        // 这里主要是 保证第一页发送的时机
+        if (!isPageOneViewed) {
+            isPageOneViewed = true;
+            this.trackEvent(pageViewedData);
+        }
+
+        // 分享页不计入翻页
+        if (role === PAGE_ROLE.sharePage) {
+            return;
+        }
+        pageViewed.push(pageIndex);
+        var pageViewedInfo = '翻了' + (+pageViewed[pageIndex] + 1) + '页';
+        pageViewedData.optValue = pageViewedInfo;
+        this.trackEvent(pageViewedData);
+    }
+
+    /**
+     * 判断当前也是否为分享页
+     *
+     * @param {Number} pageIndex 页数下标
+     * @return {boolean} 是否为分享页 
+     */
+    MIPStorySlider.prototype.isSharePage = function (pageIndex) {
+      return pageIndex === sharePageIndex ? true : false
+    }
+
+    /**
+     * 百度统计 自定义事件
+     *
+     * @param {Object} obj  统计事件对象
+     */
+    MIPStorySlider.prototype.trackEvent = function (obj) {
+        var label = obj.optLabel || '';
+        var value = obj.optValue || '';
+        window._hmt.push([obj.category, obj.action, label, value]);
+    }
 
     MIPStorySlider.prototype.clearStyle = function () {
         for (var i = 0; i < storyContain.length; i++) {
@@ -505,7 +572,6 @@ define(function (require) {
                 this.setViewStatus(false, STYLE, storyContain[i]);
                 storyContain[i].removeAttribute(STYLE);
             }
-
         }
     };
 

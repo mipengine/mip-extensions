@@ -21,6 +21,8 @@ define(function () {
     var performanceData = dataProcessor.performanceData;
     var globalCustomElementInstance;
 
+    var UA = navigator.userAgent.toLowerCase();
+
     function handler(e) {
         var me = globalCustomElementInstance;
         var detailData = e && e.detail && e.detail[0] || {};
@@ -36,6 +38,13 @@ define(function () {
             window.removeEventListener('showAdvertising', handler)
         }
     }
+
+    /**
+     * 获取是否是百度spider抓取
+     */
+    function isBaiduSpider() {
+        return UA.indexOf('Baiduspider-render/') > -1;
+    }
     /**
      * prerenderAllowed钩子,优先加载
      */
@@ -43,11 +52,16 @@ define(function () {
         return true;
     };
 
+
     /**
      * build钩子，触发渲染
      *
      */
     customElement.prototype.build = function () {
+        // 如果是百度spider抓取，禁止任何事件
+        if (isBaiduSpider()) {
+            return
+        }
         globalCustomElementInstance = this;
         dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
@@ -309,7 +323,8 @@ define(function () {
                 var mipCustomContainer = mipCustomContainers[i];
                 mipCustomContainer.classList.add('fadein');
             }
-
+            var adMonitorData = me.getAdMonitorData(url);
+            me.adMonitorFetch(adMonitorData)
             // 性能日志：按照流量 1/500 发送日志
             var random500 = Math.random() * 500;
             if (random500 < 1) {
@@ -335,6 +350,8 @@ define(function () {
                 // 加入默认统计参数
                 performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
                 log.sendLog(performanceData.host, performanceData.params);
+                // A区监控给后端发请求
+                // TODO:
             }
 
             dom.removePlaceholder.apply(me);
@@ -347,6 +364,49 @@ define(function () {
             console.warn(evt);
         });
     };
+
+    customElement.prototype.adMonitorFetch = function (param) {
+        var adMonitorUrl = 'https://mipengine.baidu.com/amonitor';
+        fetch(adMonitorUrl, {
+            credentials: 'include',
+            method: 'post',
+            body: JSON.stringify(param),
+            headers: new Headers({
+            'Content-Type': 'application/json'
+            })
+        }).then(function (res) {
+            console.error(res);
+        }).then(function (text) {
+            console.error(text);
+        });
+    }
+
+    customElement.prototype.getAdMonitorData = function (url) {
+        var adList = document.querySelectorAll('a');
+        var queryList = url.split('&');
+        var monitorParam = {}
+        var monitorData = [];
+        adList.forEach(function (item) {
+            if (item.href) {
+                var adData = {
+                    word: item.innerText.substring(0, 30),
+                    targetUrl: item.href
+                };
+                monitorData.push(adData)
+            }
+        });
+        util.fn.extend(monitorParam, {monitorData: monitorData});
+        queryList.forEach(function (item) {
+            var pair = item.split('=');
+            if (pair[0] === 'title') {
+                util.fn.extend(monitorParam, {title: pair[1]});
+            }
+            if (pair[0] === 'originalUrl') {
+                util.fn.extend(monitorParam, {originalUrl: pair[1]});
+            }
+        });
+        return monitorParam;
+    }
 
     /**
      * 缓存异步数据

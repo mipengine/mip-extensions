@@ -148,23 +148,29 @@ define(function (require) {
 
     MIPProgress.prototype.setXzhInfo = function () {
         if (!this.storyConfig.xzh_info.appid) {
-          return '';
+            return '';
         }
-        var hostName = util.parseCacheUrl(location.href);
-        var url = MSITEAPI + this.storyConfig.xzh_info.appid + '&url=' + hostName;
+        var hostName = util.getOriginalUrl(location.href).split('?')[0].split('#')[0];
+        var url = MSITEAPI + this.storyConfig.xzh_info.appid + '&url=' + encodeURIComponent(hostName);
 
         return fetchJsonp(url, {
-            jsonpCallback: 'callback',
-            timeout: 2000
+            jsonpCallback: 'callback'
         }).then(function (res) {
             return res.json();
         }).then(function (data) {
             var content = '';
-            if (data.data.avatar && data.data.name) {
-              var content = '<div class="icon-wrap"><div class="icon"><img src="' + data.data.avatar + '" alt=""></div><div class="icon-name">' + data.data.name + '</div><div class="icon-type">熊掌号</div></div>';
+            var siteData = data.data;
+            if (siteData.avatar && siteData.name && siteData.homepage) {
+                var content = '<div class="icon-wrap" data-href="'
+                    + siteData.homepage
+                    + '"><div class="icon"><img src="'
+                    + siteData.avatar
+                    + '" alt=""></div><div class="icon-name">'
+                    + siteData.name
+                    + '</div><div class="icon-type">熊掌号</div></i></div>';
             }
             return content;
-        },function (err) {
+        }, function (err) {
             console.log(err)
         });
     };

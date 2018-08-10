@@ -497,7 +497,7 @@ define(function (require) {
 
     MIPStorySlider.prototype.setCurrentPage = function (status) {
         for (var i = 0; i < storyContain.length; i++) {
-            let currentPage = storyContain[i];
+            var currentPage = storyContain[i];
             if (i === this.currentIndex) {
                 if (window._hmt && pageViewed.indexOf(i) === -1) {
                     var pageRole = currentPage.getAttribute('page-role');

@@ -6,11 +6,11 @@
 define(function (require) {
     'use strict';
 
-    var MIP_I_STORY_STANDALONE = 'mip-i-story-standalone';
-
     var customElement = require('customElement').create();
     require('./mip-story-view');
     require('./mip-story-layer');
+    var constConfig = require('./mip-story-config');
+    var MIP_I_STORY_STANDALONE = constConfig.MIP_I_STORY_STANDALONE;
     var Audio = require('./audio');
     var ShareLayer = require('./mip-story-share');
     var HintLayer = require('./mip-story-hint');

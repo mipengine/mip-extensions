@@ -8,8 +8,8 @@ define(function (require) {
 
     var util = require('util');
     var viewer = require('viewer');
-    var constConfig = require('./mip-story-config');
-    var sharePage = constConfig.PAGE_ROLE.sharePage;
+    var constConfig = require('./mip-story-config').PAGE_ROLE;
+    var sharePage = constConfig.sharePage;
     var platform = util.platform;
     var naboo = util.naboo;
 

@@ -6,6 +6,9 @@
 define(function (require) {
     var viewport = require('viewport');
 
+    // 小故事标识
+    var MIP_I_STORY_STANDALONE = 'mip-i-story-standalone';
+
     // 小故事页面类型
     var PAGE_ROLE = {
         contentPage: 'contentPage',
@@ -21,10 +24,10 @@ define(function (require) {
     // 背景音乐配置属性
     var BACKGROUND_AUDIO = 'background-audio';
 
-    // 翻页阀值 
+    // 翻页阈值 
     var SWITCHPAGE_THRESHOLD = {
-        horizontal: viewport.getWidth() * 0.15, // 水平翻页阀值
-        vertical: viewport.getHeight() * 0.1 // 垂直翻页阀值
+        horizontal: viewport.getWidth() * 0.15, // 水平翻页阈值
+        vertical: viewport.getHeight() * 0.1 // 垂直翻页阈值
     };
 
     // 翻页走向
@@ -43,6 +46,7 @@ define(function (require) {
     var MSITEAPI = 'https://msite.baidu.com/home/bar?office_id=';
     
     return {
+        MIP_I_STORY_STANDALONE: MIP_I_STORY_STANDALONE,
         PAGE_ROLE: PAGE_ROLE,
         PROGRESS_STATE: PROGRESS_STATE,
         BACKGROUND_AUDIO: BACKGROUND_AUDIO,

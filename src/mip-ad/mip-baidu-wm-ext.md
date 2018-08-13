@@ -18,8 +18,8 @@
 <mip-ad 
     type="baidu-wm-ext" 
     domain="dup.lovedword.com" 
-    token="3a1ec097f7cbf63edb0e7f98eff238f950e6ca0b29e67fe1103c">
-	<div id="3a1ec097f7cbf63edb0e7f98eff238f950e6ca0b29e67fe1103c"></div>
+    token="ezrwfrowb">
+	<div id="ezrwfrowb"></div>
 </mip-ad>
 ```
 ## 属性
@@ -58,6 +58,6 @@
 
 ## 注意事项
 
-- union 平台获取投放代码样例如下 &lt;script type="text/javascript" src="http://<font color="yellowgreen">dup.media.com</font>/<font color="red">3e34c098f4cff73cdb1f23c5adf722f740e7855275e13eef</font>.js"&gt;&lt;/script &gt;，绿色区域对应 MIP 投放代码 domain，红色区域对应 MIP 投放代码 `token` 和 `<div>` `id`。
+- union 平台获取投放代码样例如下 &lt;script type="text/javascript" src="http://<font color="yellowgreen">dup.media.com</font>/site/js/jy1c5t.js?<font color="red">ezrwf=rowb</font>"&gt;&lt;/script &gt;，绿色区域对应 MIP 投放代码 domain，红色区域<font color="red">去掉“=”</font>的结果（ezrwfrowb）为 MIP 投放代码 `token` 和 `<div>` `id`。
 
 - 联盟反屏蔽接入要求反屏蔽域名支持 HTTPS，可参见[接入说明文档](http://yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=4&classId=13484&knowledgeId=15198)。

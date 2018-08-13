@@ -1,6 +1,7 @@
 define(function () {
     var fn = function() {};
     var inter;
+    var viewer = require('viewer');
     var _init = function(opt) {
             var _this = this,
                 $panel = $(_this.panel);
@@ -186,6 +187,17 @@ define(function () {
 
         // init
         panel && _init.call(this, options);
+
+        //添加hasShowMore参数，没有hasShowMore就不走下面的流程
+        this.hasShowMore = false;
+        if(!!options.element.querySelectorAll('mip-showmore')) {
+            this.hasShowMore = true;
+            for(var iConts=0;iConts<this.conts.length;iConts++) {
+                if(this.conts[iConts].querySelectorAll('mip-showmore').length>0) {
+                this.conts[iConts].hasShowMore = true
+                }        
+            }
+        }
     };
 
     $.extend(Tabs.prototype, {
@@ -193,6 +205,16 @@ define(function () {
             var cont=this.conts[i];
             if(cont){
                 $(this.conts[i]).show();
+
+                //判断当前tabitem下面是否含有showmore组件，如果有，让下面的showmore走refresh事件。
+                if(!!cont.hasShowMore) {
+                    for(var showNum = 0;showNum<cont.querySelectorAll('mip-showmore').length;showNum++) {
+                    viewer.eventAction.execute('tap', cont.querySelectorAll('mip-showmore')[showNum], 'refresh');
+                    }
+                    //重置了一次就关闭，避免多次重置
+                    cont.hasShowMore = false;
+                }
+                
             }
         },
         hideContent : function(i){

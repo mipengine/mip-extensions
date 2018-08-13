@@ -123,7 +123,8 @@ define(function (require) {
             logClass: 'mip-vd-tabs-log',
             toggleClass: TOGGLE_CLS,
             layerClass: 'mip-vd-tabs-nav-layer',
-            layerUlClass: 'mip-vd-tabs-nav-layer-ul'
+            layerUlClass: 'mip-vd-tabs-nav-layer-ul',
+            element: this.element
         });
     }
 

@@ -589,6 +589,12 @@ define(function (require) {
         window.addEventListener('orientationchange', function() {
             showmoreObj.init();
         }, false);
+
+        //添加重置事件，当该组件没有正常加载则发起请求重新加载
+        this.addEventAction('refresh', function(event) {
+            showmoreObj.init();
+        });
+
     };
 
     // when remove node, clear timeout

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html mip>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title><!-- 标题 --></title>
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    <link rel="canonical" href="对应的原页面地址">
+    <style mip-custom>
+    /* 自定义样式 */
+    </style>
+</head>
+<body>
+<!-- 正文 -->
+<h3>tab和showmore合用，bug已修复，第一页是bug例子，第二页是修复例子。第三页是默认页不会出错。</h3>
+<mip-vd-tabs current="2" id="tab01">
+    <section>
+        <li>第一页</li>
+        <li>第二页</li>
+        <li>第三页</li>
+        <li>第四页</li>
+    </section>
+
+    <div>
+      <mip-showmore maxheight='40' animatetime='.3'>
+          <div>第一页的showmore | 第一页的showmore | 第一页的showmore | 第一页的showmore | 第一页的showmore | 第一页的showmore | 第一页的showmore | </div>
+      </mip-showmore>
+      <div on="click:showmore02.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
+    </div>
+
+    <div>
+      <mip-showmore maxheight='40' animatetime='.3' id="showmore03" on="tap:showmore03.refresh">
+          <div>第二页的showmore | 第二页的showmore | 第二页的showmore | 第二页的showmore | 第二页的showmore | 第二页的showmore | 第二页的showmore | </div>
+      </mip-showmore>
+      <div on="tap:showmore03.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
+    </div>
+
+    <div>
+      <mip-showmore maxheight='40' animatetime='.3' id="showmore04">
+          <div>第三页的showmore | 第三页的showmore | 第三页的showmore | 第三页的showmore | 第三页的showmore | 第三页的showmore | 第三页的showmore | </div>
+      </mip-showmore>
+      <div on="tap:showmore04.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
+    </div>
+
+    <div>这是内容4</div>
+</mip-vd-tabs>
+<h3>showmore单独使用</h3>
+<mip-showmore maxheight='40' animatetime='.3' id="showmore01">
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+</mip-showmore>
+<div on="tap:showmore01.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
+
+<h3>showmore单独使用2</h3>
+<mip-showmore bufferheight="40" maxheight='screen:0.5' animatetime='.3' id="showmore05">
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+</mip-showmore>
+<div on="tap:showmore05.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
+
+<h3>showmore单独使用3</h3>
+<mip-showmore maxheight='40' animatetime='.3' id="showmore06">
+    【外层元素】MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。
+    <mip-showmore maxheight='40' animatetime='.3' id="showmore07">
+        【内层元素】MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。MIP是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。
+    </mip-showmore>
+    <div on="tap:showmore07.toggle" data-closetext="收起内层内容" class="mip-showmore-btn">点击显示内层</div>
+</mip-showmore>
+<div on="tap:showmore06.toggle" data-closetext="收起外层内容" class="mip-showmore-btn">点击显示外层</div>
+
+<h3>showmore单独使用4</h3>
+<mip-showmore maxlen='20' id="showmore08">
+    MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
+</mip-showmore>
+<div on="tap:showmore08.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
+
+<h3>showmore单独使用5</h3>
+<mip-showmore bottomshadow='1' maxheight='100' id="showmore09">
+    MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。MIP HTML 基于HTML中的基础标签制定了全新的规范，通过对一部分基础标签的使用限制或功能扩展，使HTML能够展现更加丰富的内容；MIP JS 可以保证 MIP HTML 页面的快速渲染；MIP Cache 用于实现MIP页面的高速缓存，从而进一步提高页面性能。
+</mip-showmore>
+<div on="tap:showmore09.toggle" data-closetext="收起内容" class="mip-showmore-btn">点击显示</div>
+
+<h3>showmore单独使用6</h3>
+<style>
+.mip-showmore-btn-hide{
+    display: none!important
+}
+</style>
+<mip-showmore maxheight='40' animatetime='.3' id="showmore10">
+    <div>MIP （Mobile Instant Pages - 移动网页加速器）, 是一套应用于移动网页的开放性技术标准。通过提供MIP-HTML规范、MIP-JS运行环境以及MIP-Cache页面缓存系统，实现移动网页加速。</div>
+</mip-showmore>
+
+<h3>tab单独使用1</h3>
+<mip-vd-tabs>
+    <section>
+        <li>第一页</li>
+        <li>第二页</li>
+        <li>第三页</li>
+        <li>第四页</li>
+    </section>
+    <div>内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+    <div>内容4</div>
+</mip-vd-tabs>
+
+<h3>tab单独使用2</h3>
+<mip-vd-tabs allow-scroll>
+    <section>
+        <li>第一季</li>
+        <li>第二季</li>
+        <li>第三季</li>
+        <li>第四季</li>
+        <li>第五季</li>
+        <li>第六季更新至09</li>
+    </section>
+    <div>内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+    <div>内容4</div>
+    <div>内容5</div>
+    <div>内容6</div>
+</mip-vd-tabs>
+
+<h3>tab单独使用3</h3>
+<mip-vd-tabs allow-scroll toggle-more toggle-label="自定义文字">
+    <section>
+        <li>第一季</li>
+        <li>第二季</li>
+        <li>第三季</li>
+        <li>第四季更新至09</li>
+    </section>
+    <div>内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+    <div>内容4</div>
+</mip-vd-tabs>
+
+<h3>tab单独使用4</h3>
+<mip-vd-tabs allow-scroll type="bottom" current="3">
+    <div>内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+    <div>内容4</div>
+    <section>
+        <li>第一季</li>
+        <li>第二季</li>
+        <li>第三季</li>
+        <li>第四季更新至09</li>
+    </section>
+</mip-vd-tabs>
+
+<h3>tab单独使用5</h3>
+<mip-vd-tabs
+    type="episode"
+    toggle-more
+    toggle-label="老九门剧情选集"
+    allow-scroll
+    total="23"
+    current="11"
+    text-tpl="看第{{x}}集"
+    link-tpl="https://www.baidu.com/s?wd=老九门第{{x}}集">
+</mip-vd-tabs>
+
+<!--当 '点击显示' 按钮处于展开状态，按钮会存在 'mip-showmore-btn-hide' 类-->
+<div on="tap:showmore10.toggle" data-closetext="收起" class="mip-showmore-btn">点击显示</div>
+<script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+<script src="https://c.mipcdn.com/static/v1/mip-own/mip-vd-tabs.js"></script>
+<script src="https://c.mipcdn.com/static/v1/mip-own/mip-showmore.js"></script>
+
+</body>
+</html>

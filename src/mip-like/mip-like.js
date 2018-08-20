@@ -19,7 +19,6 @@ define(function (require) {
         this.addEventAction('toggle', function (event) {
             fetchBox()
         });
-
         // 数据请求处理
         function fetchBox(){
 	        fetch(url,{
@@ -27,7 +26,11 @@ define(function (require) {
 	        }).then(function (res) {
 	        	res.json().then(function(data){
 	        		if(data.status==200){
-	        			$(element).addClass('mip-active');
+	        			if($(element).hasClass('mip-active')){
+                            $(element).removeClass('mip-active');
+                        }else{
+                            $(element).addClass('mip-active');
+                        }
 	        		}
 	        		alert(data.message)
 	        	})
@@ -35,7 +38,6 @@ define(function (require) {
 	            alert('网络出错！')
 	        });
         }
-        
     };
     return customElement;
 });

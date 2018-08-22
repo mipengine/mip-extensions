@@ -1,0 +1,14 @@
+{
+    "name": "mip-258-form",
+    "version": "1.0.0",
+    "description": "258表单提交",
+    "contributors": [
+        {
+            "name": "teemor",
+            "email": "232957726@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

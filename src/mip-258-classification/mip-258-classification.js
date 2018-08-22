@@ -13,13 +13,18 @@ define(function (require) {
     customElement.prototype.build = function () {
         // TODO
         // 
-        var form = document.getElementById('test_form');
-        var element = $(this.element);
-        var url = element.attr('url');
-        var form = $('#'+element.attr('id')+' form');
-        $('.select select').change(function(){
+        var element = $(this.element),
+            url  = element.attr('url'),
+            form = $('#'+element.attr('id')+' form'),
+            all  = element.find('.all'),
+            select = element.find('select');
+
+        select.change(function(){
             form.submit();
         });
+        all.click(function(){
+            window.location.href=window.location.host+window.location.pathname;
+        })
     };
     return customElement;
 });

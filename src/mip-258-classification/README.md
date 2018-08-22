@@ -12,12 +12,13 @@ mip-258-classification 筛选组件
 ```html
 <mip-258-classification url="http://m.v2.258.com/testapi" id="forms">
     <form >
+        <input type="reset" style="display:none;" />
         <ul>
-            <li>综合</li>
+            <li class="all">综合</li>
             <li class="select">
                 <select name="price">
                     <option value="0">价格不限</option>
-                    <option value="1">价格降序</option>
+                    <option value="1" selected="selected">价格降序</option>
                     <option value="2">价格升序</option>
                 </select>
             </li>

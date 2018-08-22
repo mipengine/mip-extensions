@@ -24,7 +24,11 @@ define(function (require) {
         });
         all.click(function(){
             var urlBox = 'https://m.beta.258.com'+window.location.host+window.location.pathname
-            window.location.href= urlBox
+            console.log(urlBox)
+            setTimeout(function(){
+                window.location.href= urlBox
+            },5000)
+            
         })
     };
     return customElement;

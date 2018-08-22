@@ -23,7 +23,7 @@ define(function (require) {
             form.submit();
         });
         all.click(function(){
-            var urlBox = 'https://m.beta.258.com'+window.location.host+window.location.pathname
+            var urlBox = 'https://'+window.location.host+window.location.pathname
             console.log(urlBox)
             setTimeout(function(){
                 window.location.href= urlBox

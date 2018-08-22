@@ -3,10 +3,11 @@
  */
 mip-258-classification{position: relative; width: 100%;background: #fff;color: #666;
 	ul{display: -webkit-flex;display: flex;flex-wrap:wrap;}
-	li{ line-height: 40px; -webkit-box-flex: 1.0;-moz-flex-grow: 1;-webkit-flex-grow: 1;flex-grow: 1;flex: 1; list-style-type:none;text-align: center;
-		&.select{ position: relative;
-			&:after{ content: '';display: inline-block; width: 5px;height: 5px;background: #000; }
+	li{ line-height: 40px;border-bottom: 1px solid #eee; -webkit-box-flex: 1.0;-moz-flex-grow: 1;-webkit-flex-grow: 1;flex-grow: 1;flex: 1; list-style-type:none;text-align: center;
+		&.mip-select{ position: relative;
+			&:after{ content: '';display: inline-block;vertical-align: 3px; width: 5px;height: 5px;border:1px solid #666;border-width: 0 1px 1px 0;-webkit-transform: rotate(45deg);}
 			select{width: auto;}
 		}
+		&.mip-active{ border-color:#3089e7;color: #3089e7;}
 	}
 }

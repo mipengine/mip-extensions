@@ -23,12 +23,9 @@ define(function (require) {
             form.submit();
         });
         all.click(function(){
-            var urlBox = 'https://'+window.location.host+window.location.pathname
+            var urlBox = 'http://'+window.location.host+window.location.pathname
             console.log(urlBox)
-            setTimeout(function(){
-                window.location.href= urlBox
-            },5000)
-            
+            window.location.href= urlBox
         })
     };
     return customElement;

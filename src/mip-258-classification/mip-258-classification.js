@@ -23,7 +23,8 @@ define(function (require) {
             form.submit();
         });
         all.click(function(){
-            window.location.href=window.location.host+window.location.pathname;
+            console.log(window.location.protocol+window.location.host+window.location.pathname)
+            window.location.href=window.location.protocol+window.location.host+window.location.pathname
         })
     };
     return customElement;

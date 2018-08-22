@@ -11,7 +11,7 @@ mip-like 组件说明
 ## 示例
 
 ### 基本用法
-你可以使用事件 `toggle` 以控制 `mip-like` 。
+
 ```html
 <mip-like width="50" height="50" id="like" on="tap:like.toggle" data-method="get" fetch-url="http://gl.beta.data.258.com/web/get_token">
     <div class="iconfont icon-like"></div>

@@ -23,8 +23,8 @@ define(function (require) {
             form.submit();
         });
         all.click(function(){
-            console.log(window.location.protocol+window.location.host+window.location.pathname)
-            window.location.href=window.location.protocol+window.location.host+window.location.pathname
+            var urlBox = 'https://m.beta.258.com'+window.location.host+window.location.pathname
+            window.location.href= urlBox
         })
     };
     return customElement;

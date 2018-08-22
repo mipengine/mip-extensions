@@ -16,7 +16,7 @@ define(function (require) {
         var element = $(this.element),
             url  = element.attr('url'),
             form = $('#'+element.attr('id')+' form'),
-            all  = element.find('.all'),
+            all  = element.find('.mip-all'),
             select = element.find('select');
 
         select.change(function(){

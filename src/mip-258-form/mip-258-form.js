@@ -5,17 +5,16 @@
 
 define(function (require) {
     var customElement = require('customElement').create();
-    var util = require('util');
     var $ = require('zepto');
 
     customElement.prototype.build = function () {
         var element = this.element;
 
-        //获取验证码
+        //获取验证码事件
         //
         $(element).find('.btnCode').click(function () {
-            let url = $(this).attr('btn-url');
-            let mobile = $('#inquiryMobile').val();
+            var url = $(this).attr('btn-url');
+            var mobile = $('#inquiryMobile').val();
             getInquiryMobileCode(mobile,60,url)
         })
         //获取询价手机验证码

@@ -17,6 +17,7 @@ define(function (require) {
         var method = $(element).attr('method');
 
         var button = $(element).find('button');
+        var reload = $(element).attr('reload');
 
         var redirect = $(element).attr('redirect');
 
@@ -37,10 +38,13 @@ define(function (require) {
                     if(data.status == 1)
                     {
                         $(element).find('span.success').text(data.msg).show();
-                        // if(redirect){
-                        //     window.location.;
-                        // }
-                        window.location.reload();
+                        if(redirect){
+                            window.location.href= redirect;
+                        }
+                        if(reload === 'true'){
+                             window.location.reload();
+                        }
+                       
                     }else{
                         $(element).find('span.error').text(data.msg).show();
                     }

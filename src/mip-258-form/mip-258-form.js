@@ -9,11 +9,6 @@ define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
 
-    // var form = require('./mip-258-form-fn');
-
-    /**
-     * [build build函数]
-     */
     customElement.prototype.build = function () {
         var element = this.element;
         var addClearBtn = element.hasAttribute('clear');

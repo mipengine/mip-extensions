@@ -11,7 +11,7 @@ define(function (require) {
 
     customElement.prototype.build = function () {
         var element = this.element;
-        var url = element.attr('fetch-url');
+        var url = $(element).attr('fetch-url');
 
         //获取验证码事件
         $(element).find('.btnCode').click(function () {
@@ -19,13 +19,6 @@ define(function (require) {
             var mobile = $('#inquiryMobile').val();
             getInquiryMobileCode(mobile,60,url)
         })
-
-        // $(element).find('.submit').click(function () {
-        // })
-
-        $(element).find("form :input").blur(function () {
-            alert(3213123)
-        });
         //获取询价手机验证码
         function getInquiryMobileCode(mobile,second,url){
             if(mobile==''||isNaN(mobile)){
@@ -60,7 +53,6 @@ define(function (require) {
                 getInquiryMobileCode(mobile,second)
             },1000);
         };
-
 
         form.createDom(element);
         form.initMessageEvents(element);

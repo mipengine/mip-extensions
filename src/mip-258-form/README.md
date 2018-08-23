@@ -16,9 +16,9 @@ mip-258-form 表单组件
     <input type="number" name="mobile" validatetarget="mobile" validatetype="phone" placeholder="电话号码" id="inquiryMobile">
     <div class="btnCode" id="getInquiryCode" btn-url="http://m.258.com/Common/sendMobileCode">获取验证码</div>
     <div class="" id='waitInquiryCode' style="display:none;"><span id='waitInquiry'>59</span>秒后重新获取</div>
-    <div class="error" target="mobile">姓名不能为空</div>
+    <div class="error" target="mobile">电话不能为空</div>
 
-    <input type="number" name="age" placeholder="年龄">
+    <input type="number" validatetarget="age" validatetype="idcar" name="age" placeholder="年龄">
     <div class="error" target="age">年龄不能为空</div>
     <input type="submit" class="submit" value="提交">
 </mip-258-form>

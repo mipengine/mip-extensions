@@ -1,6 +1,9 @@
 mip-258-form {
     position: relative;
-    .btnCode{ display: block;color: #666; }
+    .btnCode {
+        display: block;
+        color: #666;
+    }
     #mip-form-cross {
         position: absolute;
         display: block;
@@ -8,14 +11,16 @@ mip-258-form {
         width: 20px;
         height: 20px;
         right: 0;
-        background: url(//m.baidu.com/static/search/clear.png) no-repeat center;
+        background: url('//m.baidu.com/static/search/clear.png') no-repeat center;
         z-index: 100;
         background-size: 100% 100%;
         background-origin: content-box;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4);
         tap-highlight-color: rgba(0, 0, 0, 0.4)
     }
-    input, textarea, select {
+    input, 
+    textarea, 
+    select {
         border: 1px solid #f1f1f1;
         padding: 6px;
         display: block;
@@ -32,7 +37,6 @@ mip-258-form {
     input[type='tel'],
     input[type='url'] {
         padding-right: 30px;
-
     }
     form {
         position: relative;
@@ -57,9 +61,10 @@ mip-258-form {
         border: 1px solid #f1f1f1;
         border-radius: 5px;
         color: #333;
-        background-color: #d8d7d7
+        background: #d8d7d7;
     }
-    [submit-success], [submit-error] {
+    [submit-success], 
+    [submit-error] {
         display: none;
     }
 }

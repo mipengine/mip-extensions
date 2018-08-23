@@ -25,6 +25,7 @@ define(function (require) {
             let mobile = $('#inquiryMobile').val();
             getInquiryMobileCode(mobile,60,url)
         })
+        
         //获取询价手机验证码
         function getInquiryMobileCode(mobile,second,url){
             if(mobile==''||isNaN(mobile)){

@@ -41,7 +41,6 @@ define(function (require) {
             // 数据请求处理
             fetch(url, fetchData).then(function (res) {
                 if (res.ok) {
-                    console.log(res)
                     me.submitSuccessHandle();
                     res.json().then(function (data) {
                         util.css(me.successEle, {display: 'block'});

@@ -1,14 +1,52 @@
-/**
- * @file mip-like样式文件
- */
-mip-258-classification{position: relative; width: 100%;background: #fff;color: #666;
-	ul{display: -webkit-flex;display: flex;flex-wrap:wrap;}
-	li{width: 28.33%; line-height: 40px;border-bottom: 1px solid #eee;padding:0 15px 0 10px;overflow:hidden; list-style-type:none;text-align: center;overflow: hidden;box-sizing: border-box;
-		&.mip-select{ position: relative;
-			&:after{ content: '';position: absolute;right: 5px;top: 50%;margin-top: -3px; display:block;vertical-align: 3px; width: 5px;height: 5px;border:1px solid #666;border-width: 0 1px 1px 0;-webkit-transform: rotate(45deg);}
-			select{max-width:100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-		}
-		&.mip-all{ width: 15% }
-		&.mip-active{ border-color:#3089e7;color: #3089e7;}
-	}
+mip-258-classification {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    color: #666;
+    ul {
+        display: -webkit-flex;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    li {
+        width: 28.33%;
+        line-height: 40px;
+        border-bottom: 1px solid #eee;
+        padding: 0 15px 0 10px;
+        overflow: hidden;
+        list-style-type: none;
+        text-align: center;
+        overflow: hidden;
+        box-sizing: border-box;
+        &.mip-select {
+            position: relative;
+            &:after {
+                content: '';
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                margin-top: -3px;
+                display: block;
+                vertical-align: 3px;
+                width: 5px;
+                height: 5px;
+                border: 1px solid #666;
+                border-width: 0 1px 1px 0;
+                -webkit-transform: rotate(45deg);
+            }
+            select {
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+        &.mip-all {
+            width: 15%
+        }
+        &.mip-active {
+            border-color: #3089e7;
+            color: #3089e7;
+        }
+    }
 }

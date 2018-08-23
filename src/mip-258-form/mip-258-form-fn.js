@@ -18,9 +18,9 @@ define(function (require) {
     return {
         convert_FormData_to_json: function (formData) {
             var objData = {};
-            for (var entry of formData.entries()){
-                objData[entry[0]] = entry[1];
-            }
+            // for (var entry of formData.entries()){
+            //     objData[entry[0]] = entry[1];
+            // }
             return JSON.stringify(objData);
         },
         /**

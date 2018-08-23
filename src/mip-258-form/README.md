@@ -12,7 +12,7 @@ mip-258-form 表单组件
 ### 基本使用
 
 ```html
-<mip-258-form method="post" fetch-url="http://m.v2.258.com/producte" pid="d" cid="c">
+<mip-258-form method="post" fetch-url="http://m.v2.258.com/producte" >
     <input type="number" name="mobile" validatetarget="mobile" validatetype="phone" placeholder="电话号码" id="inquiryMobile" value="13950186826">
     <div class="btnCode" id="getInquiryCode" btn-url="http://m.258.com/Common/sendMobileCode">获取验证码</div>
     <div class="" id='waitInquiryCode' style="display:none;"><span id='waitInquiry'>59</span>秒后重新获取</div>

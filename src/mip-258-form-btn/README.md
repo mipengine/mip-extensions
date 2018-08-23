@@ -11,7 +11,7 @@ ajax请求
 ### 基本使用
 
 ```html
-<mip-258-form-btn method="post" url="http://laravel51.com/postData" redirect="">
+<mip-258-form-btn method="post" url="http://laravel51.com/postData" redirect="" reload="false">
 	<form>
 		<input type="text" name="user_id" value="1111">
 		<span class="success" style="display: none;">请求成功,一秒后跳转</span>
@@ -34,6 +34,11 @@ ajax请求
 ### redirect
 
 说明：必须是 HTTP(S) 或 // 开头的地址   
+必选项: 否  
+
+### reload
+
+说明：boolean值 默认false, 请求成功后是否页面刷新
 必选项: 否  
 
 

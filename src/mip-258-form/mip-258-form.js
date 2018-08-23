@@ -5,18 +5,27 @@
 
 define(function (require) {
     var customElement = require('customElement').create();
+    var util = require('util');
+    var form = require('./mip-258-form-fn');
     var $ = require('zepto');
 
     customElement.prototype.build = function () {
         var element = this.element;
+        var url = element.attr('fetch-url');
 
         //获取验证码事件
-        //
         $(element).find('.btnCode').click(function () {
             var url = $(this).attr('btn-url');
             var mobile = $('#inquiryMobile').val();
             getInquiryMobileCode(mobile,60,url)
         })
+
+        // $(element).find('.submit').click(function () {
+        // })
+
+        $(element).find("form :input").blur(function () {
+            alert(3213123)
+        });
         //获取询价手机验证码
         function getInquiryMobileCode(mobile,second,url){
             if(mobile==''||isNaN(mobile)){
@@ -39,7 +48,7 @@ define(function (require) {
                     data: 'mobile='+mobile,
                     async:true,
                     success: function(data) {
-                        show(data.info);
+                        alert(data.info)
                     }
                 });
                 $("#getInquiryCode").hide();
@@ -51,6 +60,10 @@ define(function (require) {
                 getInquiryMobileCode(mobile,second)
             },1000);
         };
+
+
+        form.createDom(element);
+        form.initMessageEvents(element);
     };
     return customElement;
 });

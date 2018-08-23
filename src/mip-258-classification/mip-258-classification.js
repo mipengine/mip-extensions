@@ -22,7 +22,7 @@ define(function (require) {
         });
         all.click(function () {
             var urlBox = 'http://' + window.location.host + window.location.pathname;
-            window.location.href = urlBox;
+            window.top.location.href = urlBox;
         });
     };
     return customElement;

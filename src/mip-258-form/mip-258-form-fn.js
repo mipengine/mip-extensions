@@ -9,6 +9,7 @@ define(function (require) {
     var util = require('util');
     var viewer = require('viewer');
     var windowInIframe = viewer.isIframed;
+    var $ = require('zepto');
     var evt;
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
@@ -16,7 +17,13 @@ define(function (require) {
         IDCAR: /^\d{15}|\d{18}$/
     };
     return {
-
+        convert_FormData_to_json: function (formData) {
+            var objData = {};
+            for (var entry of formData.entries()){
+                objData[entry[0]] = entry[1];
+            }
+            return JSON.stringify(objData);
+        },
         /**
          * 处理fetch请求逻辑
          *
@@ -31,9 +38,10 @@ define(function (require) {
             };
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');
+
                 if (formD) {
                     fetchData = util.fn.extend({}, fetchData, {
-                        body: new FormData(formD)
+                        body: me.convert_FormData_to_json(new FormData(formD))
                     });
                 }
             }
@@ -131,7 +139,7 @@ define(function (require) {
             // 部分浏览器回车不触发submit,
             element.addEventListener('keydown', function (event) {
                 if (event.keyCode === 13) {
-                    
+
                     // 为了使余下浏览器不多次触发submit, 使用prevent
                     evt = event;
                     event.preventDefault();

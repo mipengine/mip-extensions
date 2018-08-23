@@ -6,6 +6,7 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
+    var $ = require('zepto');
 
     customElement.prototype.build = function () {
         var element = this.element;

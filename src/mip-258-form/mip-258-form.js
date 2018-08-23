@@ -6,6 +6,7 @@
 define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
+    var form = require('./mip-258-form-fn');
     var $ = require('zepto');
 
     customElement.prototype.build = function () {
@@ -52,6 +53,9 @@ define(function (require) {
                 getInquiryMobileCode(mobile,second)
             },1000);
         };
+
+        form.createDom(element);
+        form.initMessageEvents(element);
     };
     return customElement;
 });

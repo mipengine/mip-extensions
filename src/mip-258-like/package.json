@@ -1,0 +1,14 @@
+{
+    "name": "mip-258-like",
+    "version": "1.0.0",
+    "description": "组件介绍",
+    "contributors": [
+        {
+            "name": "teemor",
+            "email": "232957726@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

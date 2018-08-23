@@ -15,10 +15,9 @@ define(function (require) {
         //
 
         $(element).find('.btnCode').click(function () {
-            alert(123)
-            // var url = $(this).attr('btn-url');
-            // var mobile = $('#inquiryMobile').val();
-            // getInquiryMobileCode(mobile,60,url)
+            var url = $(this).attr('btn-url');
+            var mobile = $('#inquiryMobile').val();
+            getInquiryMobileCode(mobile,60,url)
         })
         //获取询价手机验证码
         function getInquiryMobileCode(mobile,second,url){

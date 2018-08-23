@@ -8,6 +8,7 @@ define(function (require) {
     var templates = require('templates');
     var util = require('util');
     var viewer = require('viewer');
+    var $ = require('zepto');
     var windowInIframe = viewer.isIframed;
     var evt;
     var REGS = {
@@ -16,11 +17,11 @@ define(function (require) {
         IDCAR: /^\d{15}|\d{18}$/
     };
     return {
-        convert_FormData_to_json: function (formData) {
+        Form_to_json: function (formData) {
             var objData = {};
-            // for (var entry of formData.entries()){
-            //     objData[entry[0]] = entry[1];
-            // }
+            formData.forEach(function(item){
+                objData[item.name] = item.value;
+            })
             return JSON.stringify(objData);
         },
         /**
@@ -37,10 +38,10 @@ define(function (require) {
             };
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');
-
+                var data = $(formD).serializeArray();
                 if (formD) {
                     fetchData = util.fn.extend({}, fetchData, {
-                        body: new FormData(formD)
+                        body: me.Form_to_json(data)
                     });
                 }
             }

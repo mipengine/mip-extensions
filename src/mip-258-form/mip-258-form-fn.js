@@ -9,7 +9,6 @@ define(function (require) {
     var util = require('util');
     var viewer = require('viewer');
     var windowInIframe = viewer.isIframed;
-    var $ = require('zepto');
     var evt;
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,

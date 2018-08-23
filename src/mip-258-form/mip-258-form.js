@@ -13,10 +13,9 @@ define(function (require) {
 
         //获取验证码
         //
-
         $(element).find('.btnCode').click(function () {
-            var url = $(this).attr('btn-url');
-            var mobile = $('#inquiryMobile').val();
+            let url = $(this).attr('btn-url');
+            let mobile = $('#inquiryMobile').val();
             getInquiryMobileCode(mobile,60,url)
         })
         //获取询价手机验证码

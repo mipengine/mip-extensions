@@ -16,13 +16,13 @@ define(function (require) {
         IDCAR: /^\d{15}|\d{18}$/
     };
     return {
-        // convert_FormData_to_json: function (formData) {
-        //     var objData = {};
-        //     for (var entry of formData.entries()){
-        //         objData[entry[0]] = entry[1];
-        //     }
-        //     return JSON.stringify(objData);
-        // },
+        convert_FormData_to_json: function (formData) {
+            var objData = {};
+            for (var entry of formData.entries()){
+                objData[entry[0]] = entry[1];
+            }
+            return JSON.stringify(objData);
+        },
         /**
          * 处理fetch请求逻辑
          *

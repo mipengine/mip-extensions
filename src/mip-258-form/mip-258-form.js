@@ -10,8 +10,14 @@ define(function (require) {
 
     customElement.prototype.build = function () {
         var element = this.element;
+
         //获取验证码
-      
+        $(element).find('.btnCode').click(function(){
+            let url = $(this).attr('btn-url');
+            let mobile = $('#inquiryMobile').val();
+            // getInquiryMobileCode(mobile,60,url)
+        })
+        
         //获取询价手机验证码
         function getInquiryMobileCode(mobile,second,url){
             if(mobile==''||isNaN(mobile)){

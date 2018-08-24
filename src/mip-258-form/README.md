@@ -14,7 +14,7 @@ mip-258-form 表单组件
 ```html
 <mip-258-form method="post" fetch-url="http://m.v2.258.com/testapi" from="pinglun">
     <input type="number" name="mobile" validatetarget="mobile" validatetype="phone" placeholder="电话号码" class="inquiryMobile" value="13950186826">
-    <div class="btnCode" class="getInquiryCode" btn-url="http://m.258.com/Common/sendMobileCode">获取验证码</div>
+    <div class="btnCode getInquiryCode" btn-url="http://m.258.com/Common/sendMobileCode">获取验证码</div>
     <div class='waitInquiryCode' style="display:none;"><span class='waitInquiry'>59</span>秒后重新获取</div>
     <div class="error" target="mobile">请输入正确的电话</div>
 

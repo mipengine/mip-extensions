@@ -17,6 +17,7 @@ define(function (require) {
         $(element).find('.btnCode').click(function () {
             var url = $(this).attr('btn-url');
             var mobile = $(element).find('.inquiryMobile').val();
+            console.log(mobile,111)
             getInquiryMobileCode(mobile,60,url)
         })
         //获取询价手机验证码
@@ -28,6 +29,7 @@ define(function (require) {
                 alert('请输入正确的手机号码');
                 return false;
             }
+            $(element).find('.btnCode').hide();
             if(second<=1){
                 $(element).find(".waitInquiry").html(59);
                 $(element).find(".getInquiryCode").show();

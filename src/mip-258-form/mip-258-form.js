@@ -3,7 +3,7 @@
  * @author
  */
 
-define(function (require) {
+ define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
     var form = require('./mip-258-form-fn');
@@ -18,7 +18,7 @@ define(function (require) {
             var url = $(this).attr('btn-url');
             var mobile = $(element).find('.inquiryMobile').val();
             console.log(mobile,111)
-            getInquiryMobileCode(mobile,60,url)
+            getInquiryMobileCode(mobile,5,url)
         })
         //获取询价手机验证码
         function getInquiryMobileCode(mobile,second,url){
@@ -34,6 +34,7 @@ define(function (require) {
                 $(element).find(".waitInquiry").html(59);
                 $(element).find(".getInquiryCode").show();
                 $(element).find(".waitInquiryCode").hide();
+                $(element).find('.btnCode').show();
                 return true;
             }
             if(second >= 60){

@@ -13,7 +13,7 @@
     var evt;
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-        PHONE: /^1\d{10}$/,
+        PHONE: /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/,
         IDCAR: /^\d{15}|\d{18}$/
     };
     return {
@@ -33,8 +33,8 @@
             var me = this;
             util.css([me.successEle, me.errorEle], {display: 'none'});
             var fetchData = {
-                method: me.method,
-                credentials: 'include'
+                method: me.method
+                // credentials: 'include'
             };
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');
@@ -50,15 +50,21 @@
                 if (res.ok) {
                     me.submitSuccessHandle();
                     res.json().then(function (data) {
-                        util.css(me.successEle, {display: 'block'});
-                        me.renderTpl(me.successEle, data);
+                        if(data.status === 1) {
+                            util.css(me.successEle, {display: 'block'});
+                            me.renderTpl(me.successEle, data.info);
+                            me.action(me.ele);
+                        }else{
+                            me.submitErrorHandle();
+                            me.fetchReject(data.info);
+                        }
                     }).catch(function (err) {
                         me.fetchReject(err);
                     });
                 }
                 else {
                     me.submitErrorHandle();
-                    me.fetchReject({});
+                    me.fetchReject(data.info);
                 }
             }).catch(function (err) {
                 me.submitErrorHandle();
@@ -73,11 +79,25 @@
          */
          fetchReject: function (err) {
             var me = this;
-
             util.css(me.errorEle, {display: 'block'});
             me.renderTpl(me.errorEle, err);
         },
 
+        /**
+         * fetch成功动作处理
+         *
+         * @param {Object} 
+         */
+        action: function (dom) {
+            var from = $(dom).attr('from');
+            var actionDom = $(dom).attr('controlId');
+            if(from==='comment'){
+                setTimeout(function () {
+                    window.top.location.href = window.location.href;
+                },2000)
+            }
+            $(actionDom).addClass('mip-active');
+        },
         /**
          * 处理模板渲染
          *
@@ -86,12 +106,11 @@
          */
          renderTpl: function (ele, data) {
             var me = this;
-            console.log(ele, data)
+            alert(data)
             templates.render(ele, data).then(function (html) {
                 var tempTarget = me.tempHTML(ele);
                 tempTarget.innerHTML = html;
             });
-
         },
 
         /**

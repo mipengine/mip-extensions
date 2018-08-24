@@ -15,11 +15,11 @@ mip-258-form 表单组件
 <mip-258-form method="post" fetch-url="http://m.v2.258.com/testapi" from="comment" controlId="popTip">
     <input type="number" name="mobile" validatetarget="mobile" validatetype="phone" placeholder="电话号码" class="inquiryMobile" value="13950186826">
     <div class="btnCode getInquiryCode" btn-url="http://m.258.com/Common/sendMobileCode">获取验证码</div>
-    <div class='waitInquiryCode' style="display:none;"><span class='waitInquiry'>59</span>秒后重新获取</div>
+    <div class='waitInquiryCode hide'><span class='waitInquiry'>59</span>秒后重新获取</div>
     <div class="error" target="mobile">请输入正确的电话</div>
     <input type="number" validatetarget="age" validatetype="must" name="age" placeholder="年龄" value="123">
     <div class="error" target="age">年龄不能为空</div>
-    
+
     <div submit-success>
         <template type="mip-mustache">
             Success! Thanks for trying the mip demo.

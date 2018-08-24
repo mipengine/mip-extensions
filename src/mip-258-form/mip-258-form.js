@@ -16,7 +16,7 @@ define(function (require) {
         //获取验证码事件
         $(element).find('.btnCode').click(function () {
             var url = $(this).attr('btn-url');
-            var mobile = $('#inquiryMobile').val();
+            var mobile = $(element).find('.inquiryMobile').val();
             getInquiryMobileCode(mobile,60,url)
         })
         //获取询价手机验证码
@@ -29,9 +29,9 @@ define(function (require) {
                 return false;
             }
             if(second<=1){
-                $("#waitInquiry").html(59);
-                $("#getInquiryCode").show();
-                $("#waitInquiryCode").hide();
+                $(element).find(".waitInquiry").html(59);
+                $(element).find(".getInquiryCode").show();
+                $(element).find(".waitInquiryCode").hide();
                 return true;
             }
             if(second >= 60){
@@ -44,11 +44,11 @@ define(function (require) {
                         alert(data.info)
                     }
                 });
-                $("#getInquiryCode").hide();
-                $("#waitInquiryCode").show();
+                $(element).find(".getInquiryCode").hide();
+                $(element).find(".waitInquiryCode").show();
             }
             second--;
-            $("#waitInquiry").html(second);
+            $(element).find(".waitInquiry").html(second);
             setTimeout(function() {
                 getInquiryMobileCode(mobile,second)
             },1000);

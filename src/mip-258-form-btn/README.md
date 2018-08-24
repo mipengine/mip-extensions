@@ -12,12 +12,10 @@ ajax请求
 
 ```html
 <mip-258-form-btn method="post" url="http://laravel51.com/postData" redirect="" reload="false">
-	<form>
-		<input type="text" name="user_id" value="1111">
-		<span class="success" style="display: none;">请求成功,一秒后跳转</span>
-		<span class="error" style="display: none;">字段格式不正确</span>
-		<button type="button">确定</button>
-	</form>
+	<input type="text" name="user_id" value="1111">
+	<span class="success" style="display: none;">请求成功,一秒后跳转</span>
+	<span class="error" style="display: none;">字段格式不正确</span>
+	<button type="button">确定</button>
 </mip-258-form-btn>
 
 ```
@@ -38,9 +36,8 @@ ajax请求
 
 ### reload
 
-说明：string 默认false, 请求成功后,是否页面刷新
+说明：boolean值 默认false, 请求成功后是否页面刷新
 必选项: 否  
-
 
 
 

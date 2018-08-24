@@ -4,7 +4,7 @@
  * @author miper
  */
 
-define(function (require) {
+ define(function (require) {
     var templates = require('templates');
     var util = require('util');
     var viewer = require('viewer');
@@ -29,7 +29,7 @@ define(function (require) {
          *
          * @param {string} url 请求url
          */
-        fetchUrl: function (url) {
+         fetchUrl: function (url) {
             var me = this;
             util.css([me.successEle, me.errorEle], {display: 'none'});
             var fetchData = {
@@ -71,8 +71,9 @@ define(function (require) {
          *
          * @param {Object} err 错误对象
          */
-        fetchReject: function (err) {
+         fetchReject: function (err) {
             var me = this;
+
             util.css(me.errorEle, {display: 'block'});
             me.renderTpl(me.errorEle, err);
         },
@@ -83,12 +84,14 @@ define(function (require) {
          * @param {HTMLElement} ele 模板父节点
          * @param {Object} data 模板渲染数据
          */
-        renderTpl: function (ele, data) {
+         renderTpl: function (ele, data) {
             var me = this;
+            console.log(ele, data)
             templates.render(ele, data).then(function (html) {
                 var tempTarget = me.tempHTML(ele);
                 tempTarget.innerHTML = html;
             });
+
         },
 
         /**
@@ -98,7 +101,7 @@ define(function (require) {
          * @return {HTMLElement} target 新建DOM节点
          */
 
-        tempHTML: function (ele) {
+         tempHTML: function (ele) {
             ele = ele || document;
             var target = ele.querySelector('[mip-mustache-rendered]');
             if (!target) {
@@ -113,7 +116,7 @@ define(function (require) {
          *
          * @param {HTMLElement} element 组件节点
          */
-        createDom: function (element) {
+         createDom: function (element) {
             var me = this;
             var url = element.getAttribute('url');
             var target = element.getAttribute('target');
@@ -154,7 +157,7 @@ define(function (require) {
          * @description 在 input focus 或 blur 时向iframe外层文档发送数据，iframe外层文档返回设置预览头部为 absolute
          * @param  {Object} event 事件对象
          */
-        sendFormMessage: function (event) {
+         sendFormMessage: function (event) {
             if (windowInIframe) {
                 // mip_video_jump 为写在外层的承接方法
                 viewer.sendMessage('input-' + event, {});
@@ -167,7 +170,7 @@ define(function (require) {
          * @description 给 input 绑定事件，向 SF 发送数据，为了解决 ios 的 UC 浏览器在iframe外层文档悬浮头部 fixed 位置混乱问题
          * @param  {HTMLElement} element mip 组件标签
          */
-        initMessageEvents: function (element) {
+         initMessageEvents: function (element) {
             var me = this;
             var inputAll = element.querySelectorAll('input');
             Array.prototype.forEach.call(inputAll, function (item, index) {
@@ -188,7 +191,7 @@ define(function (require) {
          * @param  {string} value 需要验证的文案
          * @return {boolean} 是否符合自定义校验
          */
-        verification: function (type, value) {
+         verification: function (type, value) {
             return (type === 'must') ? !(value === '') : REGS[type.toUpperCase()].test(value);
         },
 
@@ -197,7 +200,7 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        onSubmit: function (element) {
+         onSubmit: function (element) {
             var me = this;
             var preventSubmit = false;
             var inputs = element.querySelectorAll('input, textarea, select');
@@ -281,7 +284,7 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        submitHandle: function () {
+         submitHandle: function () {
             viewer.eventAction.execute('submit', evt.target, evt);
         },
 
@@ -290,7 +293,7 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        submitSuccessHandle: function () {
+         submitSuccessHandle: function () {
             if (!evt) {return};
             viewer.eventAction.execute('submitSuccess', evt.target, evt);
         },
@@ -300,7 +303,7 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        submitErrorHandle: function () {
+         submitErrorHandle: function () {
             if (!evt) {return};
             viewer.eventAction.execute('submitError', evt.target, evt);
         }

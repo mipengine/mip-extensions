@@ -27,23 +27,22 @@ define(function (require) {
             var me = this;
             util.css([me.successEle, me.failElem, me.errorEle], {display: 'none'});
             var formD = me.ele.querySelector('form');
-            var data = {};
+            var data = [];
             for (var i = 0; i < formD.elements.length; i++) {
                 var item = formD.elements[i];
                 // 获取表单数据类型元素
                 if (['INPUT', 'SELECT', 'TEXTAREA'].indexOf(item.tagName) !== -1) {
-                    var key = me.trim(item.name);
-                    var val = me.trim(item.value);
-                    data[key] = val;
+                    var segment = me.trim(item.name) + '=' + me.trim(item.value);
+                    data.push(segment);
                 }
             }
-
+            data = data.join('&');
             var options = {
                 method: 'POST',
-                body: JSON.stringify(data),
+                body: data,
                 // 使用Accept，用来判断异步
                 headers: {
-                    'content-type': 'application/json;charset=UTF-8',
+                    'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
                     'Accept': 'application/json'
                 }
             };

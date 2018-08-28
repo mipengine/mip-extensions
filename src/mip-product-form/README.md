@@ -14,7 +14,7 @@ fetch请求
 <script type="text/javascript" src="https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 "></script>
 <button type="button" on="tap:quoteForm.reload(500)">测试</button>
-<mip-product-form method="post" id="quoteForm" fetch-url="http://laravel51.com/postData" on="success:quoteForm.reload(500)">
+<mip-product-form method="post" id="quoteForm" fetch-url="http://laravel51.com/postData">
     <ul>
         <input type="hidden" name="purchase_id" value="321" id="q_purchase_id">
         <input type="hidden" name="login_uid" value="2222" id="q_login_uid">

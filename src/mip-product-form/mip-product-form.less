@@ -14,24 +14,8 @@ mip-product-form {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4);
         tap-highlight-color: rgba(0, 0, 0, 0.4)
     }
-    input {
-        border: 1px solid #f1f1f1;
-        padding: 6px;
-        display: block;
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        resize: none;
-        font-size: 16px;
-    }
-    textarea {
-        border: 1px solid #f1f1f1;
-        padding: 6px;
-        display: block;
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        resize: none;
-        font-size: 16px;
-    }
+    input,
+    textarea,
     select {
         border: 1px solid #f1f1f1;
         padding: 6px;
@@ -76,12 +60,8 @@ mip-product-form {
         color: #333;
         background-color: #d8d7d7
     }
-    [submit-success] {
-        display: none;
-    } 
-    [submit-fail] {
-        display: none;
-    } 
+    [submit-success], 
+    [submit-fail], 
     [submit-error] {
         display: none;
     }

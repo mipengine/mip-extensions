@@ -1,7 +1,7 @@
 /**
  * @file mip-form-fn.js
  * @description mip-form函数
- * @author miper
+ * @author chen
  */
 
 define(function (require) {

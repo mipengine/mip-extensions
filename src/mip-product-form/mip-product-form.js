@@ -1,6 +1,6 @@
 
 /**
- * @file mip-ajax-button 组件
+ * @file mip-button-form 组件
  *
  * @author chen
  * @time 2018.8.21
@@ -16,11 +16,11 @@ define(function (require) {
         form.initMessageEvents(element);
     };
     customElement.prototype.firstInviewCallback = function () {
-        this.addEventAction('reload', function(event, str) {
+        this.addEventAction('reload', function (event, str) {
             // 页面刷新操作
-            srt = str ? 500 : praseInt(str);
+            str = str ? 500 : parseInt(str, 10);
             setTimeout(function () {
-            	window.top.location.reload();
+                window.top.location.reload();
             }, str);
         });
     };

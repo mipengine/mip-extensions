@@ -13,7 +13,8 @@ fetch请求
 ```html
 <script type="text/javascript" src="https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
 "></script>
-<mip-product-form method="post" id="quoteForm" fetch-url="http://laravel51.com/postData" >
+<button type="button" on="tap:quoteForm.reload(500)">测试</button>
+<mip-product-form method="post" id="quoteForm" fetch-url="http://laravel51.com/postData" on="success:quoteForm.reload(500)">
     <ul>
         <input type="hidden" name="purchase_id" value="321" id="q_purchase_id">
         <input type="hidden" name="login_uid" value="2222" id="q_login_uid">
@@ -44,23 +45,23 @@ fetch请求
 说明：必须是 HTTP(S) 或 // 开头的地址   
 必选项: 是  
 
-### method 
-说明：请求方法  ,默认post
-必选项: 无
+### method
+说明：请求方法  ,默认post  
+必选项: 无  
 
 ### on 
 
-说明：可以被触发的事件
-必选项: 否
-服务端返回的数据格式 : 
-{
-    status: 1,
-    msg: '',
-    data: [],
-}
-status -1  代表服务器响应成功,但处理结果为失败。可以触发使用fail事件
-status 1 代表服务器响应成功,处理结果为成功。可以触发使用success事件
-若服务器异常，则触发error事件
+说明：可以被触发的事件  
+必选项: 否  
+服务端返回的数据格式 :  
+{  
+    status: 1,  
+    msg: '',  
+    data: [],  
+}  
+status -1  代表服务器响应成功,但处理结果为失败。可以触发使用fail事件  
+status 1 代表服务器响应成功,处理结果为成功。可以触发使用success事件  
+若服务器异常，则触发error事件  
 
 
 

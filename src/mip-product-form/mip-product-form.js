@@ -15,5 +15,14 @@ define(function (require) {
 
         form.initMessageEvents(element);
     };
+    customElement.prototype.firstInviewCallback = function () {
+        this.addEventAction('reload', function(event, str) {
+            // 页面刷新操作
+            srt = str ? 500 : praseInt(str);
+            setTimeout(function () {
+            	window.top.location.reload();
+            }, str);
+        });
+    };
     return customElement;
 });

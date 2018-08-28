@@ -128,8 +128,8 @@
 <mip-story>
     <mip-story-view>
         <mip-story-layer template="vertical">
-              <h1>fade-in</h1>
-              <div animate-in="fade-in" class="box"></div>
+              <h1>fly-in-top</h1>
+              <div animate-in="fly-in-top" class="box"></div>
         </mip-story-layer>
     </mip-story-view>
 </mip-story>

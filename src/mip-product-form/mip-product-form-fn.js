@@ -5,12 +5,12 @@
  */
 
 define(function (require) {
-    var templates = require('templates');
-    var util = require('util');
-    var viewer = require('viewer');
-    var windowInIframe = viewer.isIframed;
-    var evt;
-    var REGS = {
+    let templates = require('templates');
+    let util = require('util');
+    let viewer = require('viewer');
+    let windowInIframe = viewer.isIframed;
+    let evt;
+    let REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
         PHONE: /^1\d{10}$/,
         IDCAR: /^\d{15}|\d{18}$/
@@ -23,13 +23,18 @@ define(function (require) {
          *
          * @param {string} url 请求url
          */
-        fetchUrl: function (url) {
-            var me = this;
+        fetchUrl(url) {
+            let me = this;
             util.css([me.successEle, me.failElem, me.errorEle], {display: 'none'});
-            var formD = me.ele.querySelector('form');
-            var options = {
+            let formD = me.ele.querySelector('form');
+            let formData = new FormData(formD);
+            let data = {};
+            for (let item of formData.entries()) {
+                data[item[0]] = item[1];
+            }
+            let options = {
                 method: 'POST',
-                body: new FormData(formD),
+                body: JSON.stringify(data),
                 // 使用Accept，用来判断异步
                 headers: {
                     'content-type': 'application/json',
@@ -37,7 +42,7 @@ define(function (require) {
                 }
             };
             // 判断域名，是否跨域.测试使用
-            var localhost = location.host;
+            let localhost = location.host;
             if (url.indexOf(localhost) === -1) {
                 options.mode = 'cors';
                 options.credentials = 'omit';
@@ -74,8 +79,8 @@ define(function (require) {
          *
          * @param {Object} err 错误对象
          */
-        fetchReject: function (err) {
-            var me = this;
+        fetchReject(err) {
+            let me = this;
             util.css(me.errorEle, {display: 'block'});
             me.renderTpl(me.errorEle, err);
         },
@@ -86,10 +91,10 @@ define(function (require) {
          * @param {HTMLElement} ele 模板父节点
          * @param {Object} data 模板渲染数据
          */
-        renderTpl: function (ele, data) {
-            var me = this;
+        renderTpl(ele, data) {
+            let me = this;
             templates.render(ele, data).then(function (html) {
-                var tempTarget = me.tempHTML(ele);
+                let tempTarget = me.tempHTML(ele);
                 tempTarget.innerHTML = html;
             });
         },
@@ -101,9 +106,9 @@ define(function (require) {
          * @return {HTMLElement} target 新建DOM节点
          */
 
-        tempHTML: function (ele) {
+        tempHTML(ele) {
             ele = ele || document;
-            var target = ele.querySelector('[mip-mustache-rendered]');
+            let target = ele.querySelector('[mip-mustache-rendered]');
             if (!target) {
                 target = util.dom.create('<div mip-mustache-rendered></div>');
                 ele.appendChild(target);
@@ -116,12 +121,12 @@ define(function (require) {
          *
          * @param {HTMLElement} element 组件节点
          */
-        createDom: function (element) {
-            var me = this;
-            var url = element.getAttribute('url');
-            var target = element.getAttribute('target');
-            var form = document.createElement('form');
-            var method = (element.getAttribute('method') || 'GET').toUpperCase();
+        createDom(element) {
+            let me = this;
+            let url = element.getAttribute('url');
+            let target = element.getAttribute('target');
+            let form = document.createElement('form');
+            let method = (element.getAttribute('method') || 'GET').toUpperCase();
             form.action = url;
             form.method = method;
             target = target ? target : '_blank';
@@ -130,7 +135,7 @@ define(function (require) {
             util.dom.insert(form, element.children);
 
             // 按钮提交
-            var curEles = element.querySelectorAll('form');
+            let curEles = element.querySelectorAll('form');
             Array.prototype.forEach.call(curEles, function (item) {
                 item.addEventListener('submit', function (event) {
                     event.preventDefault();
@@ -156,7 +161,7 @@ define(function (require) {
          * @description 在 input focus 或 blur 时向iframe外层文档发送数据，iframe外层文档返回设置预览头部为 absolute
          * @param  {Object} event 事件对象
          */
-        sendFormMessage: function (event) {
+        sendFormMessage(event) {
             if (windowInIframe) {
                 // mip_video_jump 为写在外层的承接方法
                 viewer.sendMessage('input-' + event, {});
@@ -169,9 +174,9 @@ define(function (require) {
          * @description 给 input 绑定事件，向 SF 发送数据，为了解决 ios 的 UC 浏览器在iframe外层文档悬浮头部 fixed 位置混乱问题
          * @param  {HTMLElement} element mip 组件标签
          */
-        initMessageEvents: function (element) {
-            var me = this;
-            var inputAll = element.querySelectorAll('input');
+        initMessageEvents(element) {
+            let me = this;
+            let inputAll = element.querySelectorAll('input');
             Array.prototype.forEach.call(inputAll, function (item, index) {
                 item.addEventListener('focus', function () {
                     me.sendFormMessage('focus');
@@ -190,7 +195,7 @@ define(function (require) {
          * @param  {string} value 需要验证的文案
          * @return {boolean} 是否符合自定义校验
          */
-        verification: function (type, value) {
+        verification(type, value) {
             return (type === 'must') ? !(value === '') : REGS[type.toUpperCase()].test(value);
         },
 
@@ -199,17 +204,17 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        onSubmit: function (element) {
-            var me = this;
-            var preventSubmit = false;
-            var inputs = element.querySelectorAll('input, textarea, select');
-            var url = element.getAttribute('url') || '';
-            var getUrl = url.toLowerCase();
-            var isHttp = getUrl.match('http://');
-            var valueJson = '';
-            var hasFetch = element.getAttribute('fetch-url') || '';
+        onSubmit(element) {
+            let me = this;
+            let preventSubmit = false;
+            let inputs = element.querySelectorAll('input, textarea, select');
+            let url = element.getAttribute('url') || '';
+            let getUrl = url.toLowerCase();
+            let isHttp = getUrl.match('http://');
+            let valueJson = '';
+            let hasFetch = element.getAttribute('fetch-url') || '';
             me.method = (element.getAttribute('method') || 'GET').toUpperCase();
-            var isGet = me.method === 'GET';
+            let isGet = me.method === 'GET';
             this.ele = element;
             this.successEle = element.querySelector('[submit-success]');
             this.failEle = element.querySelector('[submit-fail]');
@@ -218,11 +223,11 @@ define(function (require) {
             me.submitHandle();
             // 校验输入内容是否合法
             Array.prototype.forEach.call(inputs, function (item) {
-                var type = item.getAttribute('validatetype');
-                var target = item.getAttribute('validatetarget');
-                var regval = item.getAttribute('validatereg');
-                var value = item.value;
-                var reg;
+                let type = item.getAttribute('validatetype');
+                let target = item.getAttribute('validatetarget');
+                let regval = item.getAttribute('validatereg');
+                let value = item.value;
+                let reg;
 
                 if (item.type === 'submit') {
                     return;
@@ -251,7 +256,7 @@ define(function (require) {
 
             // 在iframe下使用mibm-jumplink，跳转显示手百框。 http-GET请求交给外层跳转
             if (window.parent !== window && isHttp && isGet) {
-                var messageUrl = '';
+                let messageUrl = '';
                 if (getUrl.match('\\?')) {
                     // eg. getUrl == 'http://www.mipengine.org?we=123'
                     messageUrl = getUrl + valueJson;
@@ -261,7 +266,7 @@ define(function (require) {
                     valueJson = valueJson.substring(1);
                     messageUrl = getUrl + '?' + valueJson;
                 }
-                var message = {
+                let message = {
                     event: 'mibm-jumplink',
                     data: {
                         url: messageUrl
@@ -283,7 +288,7 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        submitHandle: function () {
+        submitHandle() {
             viewer.eventAction.execute('submit', evt.target, evt);
         },
 
@@ -292,7 +297,7 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        successHandle: function () {
+        successHandle() {
             if (!evt) {
                 return;
             }
@@ -304,7 +309,7 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        failHandle: function () {
+        failHandle() {
             if (!evt) {
                 return;
             }
@@ -317,7 +322,7 @@ define(function (require) {
          *
          * @param  {HTMLElement} element form节点
          */
-        errorHandle: function () {
+        errorHandle() {
             if (!evt) {
                 return;
             }

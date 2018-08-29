@@ -1,0 +1,12 @@
+{
+    "name": "mip-258-back",
+    "version": "1.0.0",
+    "description":"返回上一页",
+    "author": {
+        "name": "chen",
+        "email": "chenweilin@258c.com"
+    },
+    "engines": {
+        "mip": ">=1.0.0"
+    }
+}

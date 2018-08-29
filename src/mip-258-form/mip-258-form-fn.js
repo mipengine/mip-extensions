@@ -4,7 +4,7 @@
  * @author miper
  */
 
- define(function (require) {
+define(function (require) {
     var templates = require('templates');
     var util = require('util');
     var viewer = require('viewer');
@@ -17,23 +17,25 @@
         IDCAR: /^\d{15}|\d{18}$/
     };
     return {
-        Form_to_json: function (formData) {
+        formToJson: function (formData) {
             var objData = {};
-            formData.forEach(function(item){
+            formData.forEach(function (item) {
                 objData[item.name] = item.value;
-            })
+            });
             return JSON.stringify(objData);
         },
+
         /**
          * 处理fetch请求逻辑
          *
          * @param {string} url 请求url
          */
-         fetchUrl: function (url) {
+        fetchUrl: function (url) {
             var me = this;
             util.css([me.successEle, me.errorEle], {display: 'none'});
             var fetchData = {
                 method: me.method
+
                 // credentials: 'include'
             };
             if (me.method === 'POST') {
@@ -41,20 +43,22 @@
                 var data = $(formD).serializeArray();
                 if (formD) {
                     fetchData = util.fn.extend({}, fetchData, {
-                        body: me.Form_to_json(data)
+                        body: me.formToJson(data)
                     });
                 }
             }
+
             // 数据请求处理
             fetch(url, fetchData).then(function (res) {
                 if (res.ok) {
                     me.submitSuccessHandle();
                     res.json().then(function (data) {
-                        if(data.status === 1) {
+                        if (data.status === 1) {
                             util.css(me.successEle, {display: 'block'});
                             me.renderTpl(me.successEle, data.info);
                             me.action(me.ele);
-                        }else{
+                        }
+                        else {
                             me.submitErrorHandle();
                             me.fetchReject(data.info);
                         }
@@ -77,7 +81,7 @@
          *
          * @param {Object} err 错误对象
          */
-         fetchReject: function (err) {
+        fetchReject: function (err) {
             var me = this;
             util.css(me.errorEle, {display: 'block'});
             me.renderTpl(me.errorEle, err);
@@ -86,27 +90,28 @@
         /**
          * fetch成功动作处理
          *
-         * @param {Object} 
+         * @param {Object} dom 结构
          */
         action: function (dom) {
             var from = $(dom).attr('from');
             var actionDom = $(dom).attr('controlId');
-            if(from==='comment'){
+            if (from === 'comment') {
                 setTimeout(function () {
                     window.top.location.href = window.location.href;
-                },2000)
+                }, 2000);
             }
             $(actionDom).addClass('mip-active');
         },
+
         /**
          * 处理模板渲染
          *
          * @param {HTMLElement} ele 模板父节点
          * @param {Object} data 模板渲染数据
          */
-         renderTpl: function (ele, data) {
+        renderTpl: function (ele, data) {
             var me = this;
-            alert(data)
+            alert(data);
             templates.render(ele, data).then(function (html) {
                 var tempTarget = me.tempHTML(ele);
                 tempTarget.innerHTML = html;
@@ -119,8 +124,7 @@
          * @param {HTMLElement} ele 渲染后模板父节点
          * @return {HTMLElement} target 新建DOM节点
          */
-
-         tempHTML: function (ele) {
+        tempHTML: function (ele) {
             ele = ele || document;
             var target = ele.querySelector('[mip-mustache-rendered]');
             if (!target) {
@@ -135,7 +139,7 @@
          *
          * @param {HTMLElement} element 组件节点
          */
-         createDom: function (element) {
+        createDom: function (element) {
             var me = this;
             var url = element.getAttribute('url');
             var target = element.getAttribute('target');
@@ -176,7 +180,7 @@
          * @description 在 input focus 或 blur 时向iframe外层文档发送数据，iframe外层文档返回设置预览头部为 absolute
          * @param  {Object} event 事件对象
          */
-         sendFormMessage: function (event) {
+        sendFormMessage: function (event) {
             if (windowInIframe) {
                 // mip_video_jump 为写在外层的承接方法
                 viewer.sendMessage('input-' + event, {});
@@ -189,7 +193,7 @@
          * @description 给 input 绑定事件，向 SF 发送数据，为了解决 ios 的 UC 浏览器在iframe外层文档悬浮头部 fixed 位置混乱问题
          * @param  {HTMLElement} element mip 组件标签
          */
-         initMessageEvents: function (element) {
+        initMessageEvents: function (element) {
             var me = this;
             var inputAll = element.querySelectorAll('input');
             Array.prototype.forEach.call(inputAll, function (item, index) {
@@ -210,7 +214,7 @@
          * @param  {string} value 需要验证的文案
          * @return {boolean} 是否符合自定义校验
          */
-         verification: function (type, value) {
+        verification: function (type, value) {
             return (type === 'must') ? !(value === '') : REGS[type.toUpperCase()].test(value);
         },
 
@@ -219,7 +223,7 @@
          *
          * @param  {HTMLElement} element form节点
          */
-         onSubmit: function (element) {
+        onSubmit: function (element) {
             var me = this;
             var preventSubmit = false;
             var inputs = element.querySelectorAll('input, textarea, select');
@@ -303,7 +307,7 @@
          *
          * @param  {HTMLElement} element form节点
          */
-         submitHandle: function () {
+        submitHandle: function () {
             viewer.eventAction.execute('submit', evt.target, evt);
         },
 
@@ -312,8 +316,10 @@
          *
          * @param  {HTMLElement} element form节点
          */
-         submitSuccessHandle: function () {
-            if (!evt) {return};
+        submitSuccessHandle: function () {
+            if (!evt) {
+                return;
+            };
             viewer.eventAction.execute('submitSuccess', evt.target, evt);
         },
 
@@ -322,8 +328,10 @@
          *
          * @param  {HTMLElement} element form节点
          */
-         submitErrorHandle: function () {
-            if (!evt) {return};
+        submitErrorHandle: function () {
+            if (!evt) {
+                return;
+            };
             viewer.eventAction.execute('submitError', evt.target, evt);
         }
     };

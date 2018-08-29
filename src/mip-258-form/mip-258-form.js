@@ -3,7 +3,7 @@
  * @author
  */
 
- define(function (require) {
+define(function (require) {
     var customElement = require('customElement').create();
     var util = require('util');
     var form = require('./mip-258-form-fn');
@@ -13,49 +13,51 @@
         var element = this.element;
         var url = $(element).attr('fetch-url');
 
-        //获取验证码事件
+        /**
+         * 获取验证码事件
+         */
         $(element).find('.btnCode').click(function () {
             var url = $(this).attr('btn-url');
             var mobile = $(element).find('.inquiryMobile').val();
-            getInquiryMobileCode(mobile,60,url)
-        })
-        //获取询价手机验证码
-        function getInquiryMobileCode(mobile,second,url){
-            if(mobile==''||isNaN(mobile)){
+            getInquiryMobileCode(mobile, 60, url);
+        });
+
+        function getInquiryMobileCode(mobile, second, url) {
+            if (mobile === '' || isNaN(mobile)) {
                 alert('请输入手机号码');
                 return false;
-            }else if(mobile.length!=11){
+            }
+            else if (mobile.length !== 11) {
                 alert('请输入正确的手机号码');
                 return false;
             }
             $(element).find('.btnCode').hide();
-            if(second<=1){
-                $(element).find(".waitInquiry").html(59);
-                $(element).find(".getInquiryCode").show();
-                $(element).find(".waitInquiryCode").addClass('hide');
+            if (second <= 1) {
+                $(element).find('.waitInquiry').html(59);
+                $(element).find('.getInquiryCode').show();
+                $(element).find('.waitInquiryCode').addClass('hide');
                 $(element).find('.btnCode').show();
                 return true;
             }
-            if(second >= 60){
+            if (second >= 60) {
                 $.ajax({
-                    type: "POST",
+                    type: 'POST',
                     url: url,
-                    data: 'mobile='+mobile,
-                    async:true,
-                    success: function(data) {
-                        alert(data.info)
+                    data: 'mobile=' + mobile,
+                    async: true,
+                    success: function (data) {
+                        alert(data.info);
                     }
                 });
-                $(element).find(".getInquiryCode").hide();
-                $(element).find(".waitInquiryCode").removeClass('hide');
+                $(element).find('.getInquiryCode').hide();
+                $(element).find('.waitInquiryCode').removeClass('hide');
             }
             second--;
-            $(element).find(".waitInquiry").html(second);
-            setTimeout(function() {
-                getInquiryMobileCode(mobile,second)
-            },1000);
-        };
-
+            $(element).find('.waitInquiry').html(second);
+            setTimeout(function () {
+                getInquiryMobileCode(mobile, second);
+            }, 1000);
+        }
         form.createDom(element);
         form.initMessageEvents(element);
     };

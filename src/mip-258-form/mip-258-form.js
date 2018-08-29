@@ -17,6 +17,7 @@ define(function (require) {
          * 获取验证码事件
          */
         $(element).find('.btnCode').click(function () {
+            alert(123)
             var url = $(this).attr('btn-url');
             var mobile = $(element).find('.inquiryMobile').val();
             getInquiryMobileCode(mobile, 60, url);

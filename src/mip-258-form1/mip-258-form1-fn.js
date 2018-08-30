@@ -229,7 +229,7 @@ define(function (require) {
 
             this.ele = element;
             this.successEle = element.querySelector('[submit-success]');
-            this.successEle = element.querySelector('[submit-fail]');
+            this.failEle = element.querySelector('[submit-fail]');
             this.errorEle = element.querySelector('[submit-error]');
             // 执行提交句柄
             me.submitHandle();

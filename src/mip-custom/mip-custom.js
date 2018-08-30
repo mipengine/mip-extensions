@@ -323,8 +323,6 @@ define(function () {
                 var mipCustomContainer = mipCustomContainers[i];
                 mipCustomContainer.classList.add('fadein');
             }
-            var adMonitorData = me.getAdMonitorData(url);
-            me.adMonitorFetch(adMonitorData)
             // 性能日志：按照流量 1/500 发送日志
             var random500 = Math.random() * 500;
             if (random500 < 1) {
@@ -364,49 +362,6 @@ define(function () {
             console.warn(evt);
         });
     };
-
-    customElement.prototype.adMonitorFetch = function (param) {
-        var adMonitorUrl = 'https://mipengine.baidu.com/amonitor';
-        fetch(adMonitorUrl, {
-            credentials: 'include',
-            method: 'post',
-            body: JSON.stringify(param),
-            headers: new Headers({
-            'Content-Type': 'application/json'
-            })
-        }).then(function (res) {
-            console.error(res);
-        }).then(function (text) {
-            console.error(text);
-        });
-    }
-
-    customElement.prototype.getAdMonitorData = function (url) {
-        var adList = document.querySelectorAll('a');
-        var queryList = url.split('&');
-        var monitorParam = {}
-        var monitorData = [];
-        adList.forEach(function (item) {
-            if (item.href) {
-                var adData = {
-                    word: item.innerText.substring(0, 30),
-                    targetUrl: item.href
-                };
-                monitorData.push(adData)
-            }
-        });
-        util.fn.extend(monitorParam, {monitorData: monitorData});
-        queryList.forEach(function (item) {
-            var pair = item.split('=');
-            if (pair[0] === 'title') {
-                util.fn.extend(monitorParam, {title: pair[1]});
-            }
-            if (pair[0] === 'originalUrl') {
-                util.fn.extend(monitorParam, {originalUrl: pair[1]});
-            }
-        });
-        return monitorParam;
-    }
 
     /**
      * 缓存异步数据

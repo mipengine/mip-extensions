@@ -11,6 +11,7 @@ ajax请求
 ### 基本使用
 
 ```html
+<button type="button" on="tap:258-tool.alert(1233)">测试</button>
 <mip-258-tool id="258-tool"></mip-258-tool>
 ```
 ### on

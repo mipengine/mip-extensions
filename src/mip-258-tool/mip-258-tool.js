@@ -22,7 +22,7 @@ define(function (require) {
         });
         // 添加alert提示事件
         this.addEventAction('alert', function (event, str) {
-            alert(str);
+            window.top.alert(str);
         });
         this.addEventAction('goback', function (event, str) {
             if (window.top.history.length === 0) {

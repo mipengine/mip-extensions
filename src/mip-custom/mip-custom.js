@@ -52,7 +52,6 @@ define(function () {
         return true;
     };
 
-
     /**
      * build钩子，触发渲染
      *
@@ -323,6 +322,7 @@ define(function () {
                 var mipCustomContainer = mipCustomContainers[i];
                 mipCustomContainer.classList.add('fadein');
             }
+
             // 性能日志：按照流量 1/500 发送日志
             var random500 = Math.random() * 500;
             if (random500 < 1) {
@@ -348,8 +348,6 @@ define(function () {
                 // 加入默认统计参数
                 performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
                 log.sendLog(performanceData.host, performanceData.params);
-                // A区监控给后端发请求
-                // TODO:
             }
 
             dom.removePlaceholder.apply(me);

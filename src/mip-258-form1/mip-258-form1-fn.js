@@ -43,12 +43,11 @@ define(function (require) {
             // 数据请求处理
             fetch(url, fetchData).then(function (res) {
                 if (res.ok) {
-                    me.submitSuccessHandle();
                     res.json().then(function (data) {
                         if (data.status === 1) {
                             util.css(me.successEle, {display: 'block'});
                             me.renderTpl(me.successEle, {successmsg: data.msg});
-                            // me.action(me.ele);
+                            me.submitSuccessHandle();
                         }
                         if (data.status === -1) {
                             util.css(me.failEle, {display: 'block'});

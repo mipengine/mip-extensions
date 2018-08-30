@@ -55,7 +55,7 @@ define(function (require) {
                 }
                 if (response.status === -1) {
                     util.css(me.failEle, {display: 'block'});
-                    me.renderTpl(me.failEle, {failmsg: response.msg});
+                    me.renderTpl(me.failEle, {failinfo: response.info});
                     me.failHandle();
                 }
                 // 表单验证不通过

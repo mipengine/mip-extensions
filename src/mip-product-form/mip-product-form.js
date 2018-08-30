@@ -23,6 +23,11 @@ define(function (require) {
                 window.top.location.reload();
             }, str);
         });
+
+        this.addEventAction('reset', function (event, str) {
+            // 页面刷新操作
+            event.target.reset();
+        });
     };
     return customElement;
 });

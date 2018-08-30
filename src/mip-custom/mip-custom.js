@@ -21,7 +21,7 @@ define(function () {
     var performanceData = dataProcessor.performanceData;
     var globalCustomElementInstance;
 
-    var UA = navigator.userAgent.toLowerCase();
+    var UA = navigator.userAgent;
 
     function handler(e) {
         var me = globalCustomElementInstance;
@@ -43,7 +43,7 @@ define(function () {
      * 获取是否是百度spider抓取
      */
     function isBaiduSpider() {
-        return UA.indexOf('Baiduspider-render/') > -1;
+        return UA.indexOf('Baiduspider') > -1;
     }
     /**
      * prerenderAllowed钩子,优先加载
@@ -57,7 +57,7 @@ define(function () {
      *
      */
     customElement.prototype.build = function () {
-        // 如果是百度spider抓取，禁止任何事件
+        // 如果是百度spider抓取，如果是百度spider抓取则不执行接下来的逻辑
         if (isBaiduSpider()) {
             return
         }

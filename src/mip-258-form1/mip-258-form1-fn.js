@@ -35,7 +35,7 @@ define(function (require) {
                 var data = $(formD).serializeArray();
                 if (formD) {
                     fetchData = util.fn.extend({}, fetchData, {
-                        body: me.formToJson(data)
+                        body: new FormData(formD)
                     });
                 }
             }

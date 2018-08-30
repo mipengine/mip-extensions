@@ -47,12 +47,12 @@ define(function (require) {
                     res.json().then(function (data) {
                         if (data.status === 1) {
                             util.css(me.successEle, {display: 'block'});
-                            me.renderTpl(me.successEle, data.msg);
-                            me.action(me.ele);
+                            me.renderTpl(me.successEle, {successmsg: data.msg});
+                            // me.action(me.ele);
                         }
                         if (data.status === -1) {
                             util.css(me.failEle, {display: 'block'});
-                            me.renderTpl(me.failEle, data.msg);
+                            me.renderTpl(me.failEle, {failmsg: data.msg});
                             me.submitFailHandle();
                         }
                     }).catch(function (err) {
@@ -61,7 +61,7 @@ define(function (require) {
                 }
                 else {
                     me.submitErrorHandle();
-                    me.fetchReject(data.msg);
+                    me.fetchReject({});
                 }
             }).catch(function (err) {
                 me.submitErrorHandle();
@@ -104,7 +104,6 @@ define(function (require) {
          */
         renderTpl: function (ele, data) {
             var me = this;
-            alert(data);
             templates.render(ele, data).then(function (html) {
                 var tempTarget = me.tempHTML(ele);
                 tempTarget.innerHTML = html;

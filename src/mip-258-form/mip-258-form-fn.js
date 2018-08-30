@@ -34,9 +34,8 @@ define(function (require) {
             var me = this;
             util.css([me.successEle, me.errorEle], {display: 'none'});
             var fetchData = {
-                method: me.method
-
-                // credentials: 'include'
+                method: me.method,
+                credentials: 'include'
             };
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');

@@ -1,4 +1,4 @@
-# mip-258-test ajax请求
+# mip-258-tool
 
 ajax请求
 
@@ -11,14 +11,16 @@ ajax请求
 ### 基本使用
 
 ```html
-<button type="button" on="tap:258-tool.goback(100)">测试</button>
 <mip-258-tool id="258-tool"></mip-258-tool>
-
 ```
 ### on
 
-说明：添加reload、alert、history.back事件 ,分别对应reload,alert,goback事件
-必选项: 否
+说明：goback事件对应window.history.back()事件  
+reload(100)事件对应window.reload()事件，传入毫秒数，用于刷新等待  
+alert()事件对应window.alert()事件  
+必选项: 否  
+
+
 
 
 

@@ -46,12 +46,12 @@ define(function (require) {
                     res.json().then(function (data) {
                         if (data.status === 1) {
                             util.css(me.successEle, {display: 'block'});
-                            me.renderTpl(me.successEle, {successmsg: data.msg});
+                            me.renderTpl(me.successEle, {successinfo: data.info});
                             me.submitSuccessHandle();
                         }
                         if (data.status === -1) {
                             util.css(me.failEle, {display: 'block'});
-                            me.renderTpl(me.failEle, {failmsg: data.msg});
+                            me.renderTpl(me.failEle, {failinfo: data.info});
                             me.submitFailHandle();
                         }
                     }).catch(function (err) {

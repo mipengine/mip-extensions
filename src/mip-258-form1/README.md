@@ -12,7 +12,7 @@ mip-258-form1 表单组件
 ### 基本使用
 
 ```html
-<mip-258-form1 method="post" fetch-url="http://m.v2.258.com/testapi" from="comment" controlId="popTip" >
+<mip-258-form1 method="get" fetch-url="http://laravel51.com/postData" from="comment" id="test" >
     <input type="number" name="mobile" validatetarget="mobile" validatetype="phone" placeholder="电话号码" class="inquiryMobile" value="13950186826">
     <div class="btnCode getInquiryCode" btn-url="http://m.258.com/Common/sendMobileCode">获取验证码</div>
     <div class='waitInquiryCode hide'><span class='waitInquiry'>59</span>秒后重新获取</div>
@@ -21,7 +21,12 @@ mip-258-form1 表单组件
     <div class="error" target="age">年龄不能为空</div>
     <div submit-success>
         <template type="mip-mustache">
-            Success! Thanks for trying the mip demo.
+            {{aaa}}
+        </template>
+    </div>
+    <div submit-fail class="error">
+        <template type="mip-mustache">
+            {{failinfo}}
         </template>
     </div>
     <div submit-error>

@@ -61,5 +61,19 @@ define(function (require) {
         form.createDom(element);
         form.initMessageEvents(element);
     };
+    customElement.prototype.firstInviewCallback = function () {
+        this.addEventAction('reload', function (event, str) {
+            // 页面刷新操作
+            str = str ? 500 : parseInt(str, 10);
+            setTimeout(function () {
+                window.top.location.reload();
+            }, str);
+        });
+
+        this.addEventAction('reset', function (event, str) {
+            // 页面刷新操作
+            event.target.reset();
+        });
+    };
     return customElement;
 });

@@ -21,6 +21,8 @@ define(function () {
     var performanceData = dataProcessor.performanceData;
     var globalCustomElementInstance;
 
+    var UA = navigator.userAgent;
+
     function handler(e) {
         var me = globalCustomElementInstance;
         var detailData = e && e.detail && e.detail[0] || {};
@@ -36,6 +38,13 @@ define(function () {
             window.removeEventListener('showAdvertising', handler)
         }
     }
+
+    /**
+     * 获取是否是百度spider抓取
+     */
+    function isBaiduSpider() {
+        return UA.indexOf('Baiduspider') > -1;
+    }
     /**
      * prerenderAllowed钩子,优先加载
      */
@@ -48,6 +57,10 @@ define(function () {
      *
      */
     customElement.prototype.build = function () {
+        // 如果是百度spider抓取，如果是百度spider抓取则不执行接下来的逻辑
+        if (isBaiduSpider()) {
+            return
+        }
         globalCustomElementInstance = this;
         dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送

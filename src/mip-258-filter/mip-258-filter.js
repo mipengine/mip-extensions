@@ -23,6 +23,7 @@
             other.eq(0).val(data)
         });
 
+        
         /**
          * 重置按钮事件
          * @param {HTMLElement} mip-reset 组件节点

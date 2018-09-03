@@ -13,28 +13,29 @@ mip-258-filter 返回组件
 
 ```html
 <mip-258-filter fetch-url="http://m.v2.258.com/testapi" method="post">
-<div class="mip-filter-box">
-<div class="mip-cityBox">
-<p class="mip-small">人们公司</p>
-<div class="bgfff p10 mip-cityA">
-<input type="hidden" name="city" value="0">
-<span class="mip-btn" data-num="0">全部</span>
-<span class="mip-btn" data-num="1">厦门</span>
-<span class="mip-btn" data-num="2">厦门</span>
-</div>
-<p class="mip-small">热门城市</p>
-<div class="bgfff p10 mip-cityA">
-<input type="hidden" name="city" value="0">
-<span class="mip-btn" data-num="0">全部</span>
-<span class="mip-btn" data-num="1">厦门</span>
-<span class="mip-btn" data-num="2">厦门</span>
-</div>
-</div>
-<div class="mip-filter-btn flex">
-<div class="mip-btn flexLi mip-reset">重置</div>
-<button type="sumbit" class="mip-btn Themebg flexLi">确认</button>
-</div>
-</div>
+    <div class="mip-filter-box">
+        <div class="mip-cityBox">
+        <p class="mip-small">人们公司</p>
+        <div class="bgfff p10 mip-cityA">
+        <input type="hidden" name="city" validatetarget="username" validatetype="must" value="">
+        <span class="mip-btn" data-num="0">全部</span>
+        <span class="mip-btn" data-num="1">厦门</span>
+        <span class="mip-btn" data-num="2">厦门</span>
+        <div class="error red" target="username">姓名不能为空</div>
+        </div>
+        <p class="mip-small">热门城市</p>
+        <div class="bgfff p10 mip-cityA">
+        <input type="hidden" name="city" value="0">
+        <span class="mip-btn" data-num="0">全部</span>
+        <span class="mip-btn" data-num="1">厦门</span>
+        <span class="mip-btn" data-num="2">厦门</span>
+        </div>
+        </div>
+        <div class="mip-filter-btn flex">
+        <div class="mip-btn flexLi mip-reset">重置</div>
+        <button type="sumbit" class="mip-btn Themebg flexLi">确认</button>
+        </div>
+    </div>
 </mip-258-filter>
 ```
 ## 属性

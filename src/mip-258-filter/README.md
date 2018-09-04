@@ -12,7 +12,7 @@ mip-258-filter 返回组件
 ### 基本使用
 
 ```html
-<mip-258-filter fetch-url="http://m.v2.258.com/testapi" method="post">
+<mip-258-filter>
     <div class="mip-filter-box">
         <div class="mip-cityBox">
         <p class="mip-small">人们公司</p>
@@ -39,9 +39,4 @@ mip-258-filter 返回组件
 </mip-258-filter>
 ```
 ## 属性
-
-### method
-
-说明：表单提交方法  
-必选项：是 
 

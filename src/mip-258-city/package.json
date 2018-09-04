@@ -1,0 +1,12 @@
+{
+    "name": "mip-258-city",
+    "version": "1.0.0",
+    "description":"城市选择",
+    "author": {
+        "name": "jiangnan",
+        "email": "232957726@qq.com"
+    },
+    "engines": {
+        "mip": ">=1.0.0"
+    }
+}

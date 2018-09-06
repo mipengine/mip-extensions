@@ -11,6 +11,7 @@ define(function (require) {
     var $ = require('zepto');
     var windowInIframe = viewer.isIframed;
     var evt;
+    var formEle;
     var REGS = {
         EMAIL: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
         PHONE: /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/,
@@ -115,6 +116,7 @@ define(function (require) {
          * @param {HTMLElement} element 组件节点
          */
         createDom: function (element) {
+            formEle = element;
             var me = this;
             var url = element.getAttribute('url');
             var target = element.getAttribute('target');
@@ -239,8 +241,15 @@ define(function (require) {
                     else {
                         reg = me.verification(type, value);
                     }
-                    util.css(element.querySelectorAll('div[target="' + target + '"]'),
-                        {display: (!reg ? 'block' : 'none')});
+
+                    // 显示表单错误信息
+                    if (reg) {
+                        me.validHandle(target);
+                    } 
+                    else {
+                        me.invalidHandle(target);
+                    }
+
                     preventSubmit = !reg ? true : preventSubmit;
                 }
             });
@@ -277,6 +286,35 @@ define(function (require) {
                 element.getElementsByTagName('form')[0].submit();
             }
         },
+
+        /**
+         * 显示对应字段的错误信息
+         * 
+         * @param  {string} 表单name对应的字段名 节点
+         */
+        invalidHandle: function (target) {
+            var targetEle = formEle.querySelectorAll('div[target="' + target + '"]');
+            if (!targetEle) {
+                console.log('验证对象target不存在');
+                returnl
+            }
+            util.css(targetEle, {display: 'block'});
+        },
+
+        /**
+         * 显示对应字段的错误信息
+         *
+         * @param  {string} 表单name对应的字段名
+         */
+        validHandle: function (target) {
+            var targetEle = formEle.querySelectorAll('div[target="' + target + '"]');
+            if (!targetEle) {
+                console.log('验证对象target不存在');
+                returnl
+            }
+            util.css(targetEle, {display: 'none'});
+        },
+
 
         /**
          * 提交时的事件

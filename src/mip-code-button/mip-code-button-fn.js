@@ -148,8 +148,8 @@ define(function (require) {
             var submitBtn = element.querySelector('[fetch-button]');
             // 添加点击事件监听
             submitBtn.addEventListener('click', function (event) {
-                me.onSubmit(element);
                 evt = event;
+                me.onSubmit(element);
             });
         },
 
@@ -227,6 +227,7 @@ define(function (require) {
          * @param {HTMLElement} element form节点
          */
         invalidHandle: function () {
+
             viewer.eventAction.execute('invalid', evt.target, evt);
         },
 
@@ -234,7 +235,7 @@ define(function (require) {
          * 隐藏表单错误信息
          * @param {HTMLElement} element form节点
          */
-        invalidHandle: function () {
+        validHandle: function () {
             viewer.eventAction.execute('valid', evt.target, evt);
         },
 

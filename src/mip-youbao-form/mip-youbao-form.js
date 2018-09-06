@@ -28,12 +28,12 @@ define(function (require) {
         });
 
         //验证错误事件
-        this.addEventAction('invalid', function (event, target) {
+        this.addEventAction('invalidTag', function (event, target) {
             
             form.invalidHandle(target);
         });
 
-        this.addEventAction('valid', function (event, target) {
+        this.addEventAction('validTag', function (event, target) {
             
             form.validHandle(target);
         });

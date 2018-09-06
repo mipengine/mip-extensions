@@ -13,7 +13,7 @@ mip-youbao-form 表单组件
 
 ```html
 <mip-youbao-form method="get" fetch-url="http://laravel51.com/postData" from="comment" id="test" >
-    <input type="number" name="mobile" validatetarget="mobile" validatetype="phone" placeholder="电话号码" class="inquiryMobile" value="1395018682">
+    <input type="number" name="mobile" validatetarget="mobile" validatetype="phone" placeholder="电话号码"  value="1395018682">
     <div class="error" target="mobile">请输入正确的电话</div>
     <input type="number" validatetarget="age" validatetype="must" name="age" placeholder="年龄" value="123">
     <div class="error" target="age">年龄不能为空</div>
@@ -81,7 +81,7 @@ mip-youbao-form 表单组件
 ### on
 
 说明: 添加事件清空表单
-参数使用: reload事件，传入数值控制页面刷新等待事件， reset表单数据重置事件
+参数使用: reload事件，传入数值控制页面刷新等待事件， reset表单数据重置事件 tagInvalid(target)目标对象字段验证不通过  tagValid(target)目标对象字段验证通过
 必选项: 否
 
 

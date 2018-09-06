@@ -227,7 +227,7 @@ define(function (require) {
          * @param {HTMLElement} element form节点
          */
         invalidHandle: function () {
-
+            console.log('mobile字段格式不正确');
             viewer.eventAction.execute('invalid', evt.target, evt);
         },
 
@@ -236,6 +236,7 @@ define(function (require) {
          * @param {HTMLElement} element form节点
          */
         validHandle: function () {
+            console.log('mobile字段格式验证通过');
             viewer.eventAction.execute('valid', evt.target, evt);
         },
 

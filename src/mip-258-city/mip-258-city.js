@@ -13,66 +13,60 @@ define(function (require) {
      */
     customElement.prototype.firstInviewCallback = function () {
         var element = $(this.element);
-        var provinceTag = element.find("#province");
-        var cityTag = element.find("#city");
-        var areaTag = element.find("#area");
-        //保存省
-        var provinceArray = new Array();
-        //保存市
-        var cityArray = new Array();
+        var provinceTag = element.find('#province');
+        var cityTag = element.find('#city');
+        var areaTag = element.find('#area');
+        var provinceArray = [];
+        var cityArray = [];
         var cityList;
-         
-        for(var i=0; i<provinceList.length; i++){
+        for (var i = 0; i < provinceList.length; i++) {
             var province = provinceList[i];
             var provinceName = province.name;
-            provinceArray[i]=provinceName;
-            provinceTag.append(new Option(provinceName,i));
+            provinceArray[i] = provinceName;
+            provinceTag.append(new Option(provinceName, province.id));
         };
-       //选择省
-        provinceTag.change(function() {
+        provinceTag.change(function () {
             var th = this;
             var index = th.selectedIndex - 1;
             var provinceName = provinceArray[index];
             for (var n = 0; n < provinceList.length; n++) {
                 var provice = provinceList[n];
-                if (provice.name == provinceName) {
+                if (provice.name === provinceName) {
                     cityList = provice.cityList;
                     cityTag.html('');
-                    areaTag.html('');
                     for (var c = 0; c < cityList.length; c++) {
                         var city = cityList[c];
                         var cityName = city.name;
                         cityArray[c] = cityName;
-                        cityTag.append(new Option(cityName, c));
+                        cityTag.append(new Option(cityName, city.id));
                     }
                 }
-            }
+            };
             var cityName = cityArray[0];
             var city1 = cityList[0];
             var areaList = city1.areaList;
             areaTag.html('');
             for (var a = 0; a < areaList.length; a++) {
                 var area = areaList[a];
-                areaTag.append(new Option(area, a));
+                areaTag.append(new Option(area.name, area.id));
             }
-        })
-        //选择市
-        cityTag.change(function(tag) {
+        });
+        cityTag.change(function () {
+            var tag = this;
             var index2 = tag.selectedIndex;
             var cityName = cityArray[index2];
             for (var m = 0; m < cityList.length; m++) {
                 var city1 = cityList[m];
-                if (city1.name == cityName) {
+                if (city1.name === cityName) {
                     var areaList = city1.areaList;
                     areaTag.html('');
                     for (var a = 0; a < areaList.length; a++) {
                         var area = areaList[a];
-                        areaTag.add(new Option(area, a));
+                        areaTag.append(new Option(area.name, area.id));
                     }
                 }
             }
-        })
-
-     };
-     return customElement;
- });
+        });
+    };
+    return customElement;
+});

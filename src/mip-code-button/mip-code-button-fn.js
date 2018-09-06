@@ -228,7 +228,7 @@ define(function (require) {
          */
         invalidHandle: function () {
             viewer.eventAction.execute('invalid', evt.target, evt);
-        }
+        },
 
         /**
          * 隐藏表单错误信息
@@ -236,7 +236,7 @@ define(function (require) {
          */
         invalidHandle: function () {
             viewer.eventAction.execute('valid', evt.target, evt);
-        }
+        },
 
 
         /**

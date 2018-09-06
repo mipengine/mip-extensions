@@ -1,6 +1,4 @@
-# mip-code-button ajax请求
-
-ajax请求
+# mip-code-button
 
 标题|内容
 ----|----
@@ -11,16 +9,12 @@ ajax请求
 ### 基本使用
 
 ```html
-<meta name="csrf-token" content="123">
-<input name="code" on="change:myCodeBtn.bind(mobile)" value="13333333333">
-<input name="name" on="change:myCodeBtn.bind(name)" value="wodege">
 <mip-code-button id="myCodeBtn" url="http://laravel51.com/postData" timeout="60">
     <div class="codeBoxBtn Themebg">
         <button  type="button" fetch-button>获取验证码</button>
         <div time-count><span></span>秒后重新获取</div>
     </div>
 </mip-code-button>
-
 ```
 ### url
 

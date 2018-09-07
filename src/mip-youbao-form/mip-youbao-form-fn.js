@@ -8,7 +8,6 @@ define(function (require) {
     var templates = require('templates');
     var util = require('util');
     var viewer = require('viewer');
-    var $ = require('zepto');
     var windowInIframe = viewer.isIframed;
     var evt;
     var formEle;
@@ -33,7 +32,6 @@ define(function (require) {
             };
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');
-                var data = $(formD).serializeArray();
                 if (formD) {
                     fetchData = util.fn.extend({}, fetchData, {
                         body: new FormData(formD)
@@ -189,9 +187,20 @@ define(function (require) {
          *
          * @param  {string} type 验证类型
          * @param  {string} value 需要验证的文案
+         * @param  {HTMLElement} target dom元素
          * @return {boolean} 是否符合自定义校验
          */
-        verification: function (type, value) {
+        verification: function (type, value, target) {
+            if (target.type === 'radio') {
+                var sameRadio = this.ele.querySelectorAll('input[type="radio"][name="' + target.name + '"]');
+                var checked = false;
+                for (var i in sameRadio) {
+                    if (sameRadio[i].checked) {
+                        checked = true;
+                    }
+                }
+                return checked;
+            }
             return (type === 'must') ? !(value === '') : REGS[type.toUpperCase()].test(value);
         },
 
@@ -239,13 +248,13 @@ define(function (require) {
                         reg = value === '' ? false : (new RegExp(regval)).test(value);
                     }
                     else {
-                        reg = me.verification(type, value);
+                        reg = me.verification(type, value, item);
                     }
 
                     // 显示表单错误信息
                     if (reg) {
                         me.validHandle(target);
-                    } 
+                    }
                     else {
                         me.invalidHandle(target);
                     }
@@ -289,14 +298,15 @@ define(function (require) {
 
         /**
          * 显示对应字段的错误信息
-         * 
-         * @param  {string} 表单name对应的字段名 节点
+         *
+         * @param  {string} target 表单验证目标
+         * @return {void} 无返回值
          */
         invalidHandle: function (target) {
             var targetEle = formEle.querySelectorAll('div[target="' + target + '"]');
             if (!targetEle) {
                 console.log('验证对象target不存在');
-                returnl
+                return;
             }
             util.css(targetEle, {display: 'block'});
         },
@@ -304,13 +314,14 @@ define(function (require) {
         /**
          * 显示对应字段的错误信息
          *
-         * @param  {string} 表单name对应的字段名
+         * @param  {string} target 表单验证目标
+         * @return {void} 无返回值
          */
         validHandle: function (target) {
             var targetEle = formEle.querySelectorAll('div[target="' + target + '"]');
             if (!targetEle) {
                 console.log('验证对象target不存在');
-                returnl
+                return;
             }
             util.css(targetEle, {display: 'none'});
         },

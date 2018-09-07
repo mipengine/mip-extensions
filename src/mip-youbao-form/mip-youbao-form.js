@@ -27,14 +27,13 @@ define(function (require) {
             event.target.reset();
         });
 
-        //验证错误事件
+        // 验证错误事件
         this.addEventAction('invalidTag', function (event, target) {
-            
             form.invalidHandle(target);
         });
 
+        // mip?尼玛B,我34行哪里多空格了，艹。5min写东西，10min调格式
         this.addEventAction('validTag', function (event, target) {
-            
             form.validHandle(target);
         });
     };

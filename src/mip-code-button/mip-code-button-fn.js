@@ -37,7 +37,7 @@ define(function (require) {
                 // 使用Accept，用来判断异步
                 headers: new Headers({
                     'Accept': 'application/json',
-                    'XMLHttpRequest': 'X-Requested-With',
+                    'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRF-TOKEN': token ? token : ''
                 })
             };

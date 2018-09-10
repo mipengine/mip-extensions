@@ -37,7 +37,7 @@ define(function (require) {
                 method: me.method,
                 credentials: 'include',
                 headers: new Headers({
-                    'XMLHttpRequest': 'X-Requested-With',
+                    'X-Requested-With': 'XMLHttpRequest',
                     'Accept': 'application/json',
                     'X-CSRF-TOKEN': token ? token : ''
                 })

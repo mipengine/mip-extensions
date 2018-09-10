@@ -26,9 +26,21 @@ define(function (require) {
         fetchUrl: function (url) {
             var me = this;
             util.css([me.successEle, me.failEle, me.errorEle], {display: 'none'});
+
+            // 获取CSRF-TOKEN
+            var tokenDom = document.querySelector('meta[name="csrf-token"]');
+            if (tokenDom) {
+                var token = tokenDom.getAttribute('content');
+            }
+
             var fetchData = {
                 method: me.method,
-                credentials: 'include'
+                credentials: 'include',
+                headers: new Headers({
+                    'XMLHttpRequest': 'X-Requested-With',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': token ? token : ''
+                })
             };
             if (me.method === 'POST') {
                 var formD = me.ele.querySelector('form');

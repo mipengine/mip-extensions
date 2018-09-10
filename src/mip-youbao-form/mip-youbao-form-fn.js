@@ -203,11 +203,11 @@ define(function (require) {
          * @return {boolean} 是否符合自定义校验
          */
         verification: function (type, value, target) {
-            if (target.type === 'radio') {
-                var sameRadio = this.ele.querySelectorAll('input[type="radio"][name="' + target.name + '"]');
+            if (target.type === 'radio' || target.type === 'checkbox') {
+                var sameEle = this.ele.querySelectorAll('input[type="' + target.type + '"][name="' + target.name + '"]');
                 var checked = false;
-                for (var i in sameRadio) {
-                    if (sameRadio[i].checked) {
+                for (var i in sameEle) {
+                    if (sameEle[i].checked) {
                         checked = true;
                     }
                 }

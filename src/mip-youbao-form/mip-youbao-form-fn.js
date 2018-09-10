@@ -204,7 +204,8 @@ define(function (require) {
          */
         verification: function (type, value, target) {
             if (target.type === 'radio' || target.type === 'checkbox') {
-                var sameEle = this.ele.querySelectorAll('input[type="' + target.type + '"][name="' + target.name + '"]');
+                var selector = 'input[type="' + target.type + '"][name="' + target.name + '"]';
+                var sameEle = this.ele.querySelectorAll(selector);
                 var checked = false;
                 for (var i in sameEle) {
                     if (sameEle[i].checked) {

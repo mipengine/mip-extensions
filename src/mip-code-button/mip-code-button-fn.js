@@ -33,6 +33,7 @@ define(function (require) {
 
             var options = {
                 method: 'POST',
+                credentials: 'include',
                 body: data,
                 // 使用Accept，用来判断异步
                 headers: new Headers({

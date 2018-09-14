@@ -61,13 +61,7 @@ define(function (require) {
                     me.successHandle();
                 } else {
                     // 处理错误提示
-                    if (me.failInfoId) {
-                        var failInfoEl = document.getElementById(me.failInfoId);
-                        if (failInfoEl) {
-                            failInfoEl.innerHTML = response.info;
-                        }
-                    }
-                    
+                    me.showFailInfo(response.info);
                     me.failHandle();
                 }
 
@@ -76,6 +70,23 @@ define(function (require) {
                 me.errorHandle();
                 // me.fetchReject(err);
             });
+        },
+        hideFailInfo: function () {
+            if (me.failInfoId) {
+                var failInfoEl = document.getElementById(me.failInfoId);
+                if (failInfoEl) {
+                    util.css(failInfoEl, {display: 'none'});
+                }
+            }
+        },
+        showFailInfo: function (info) {
+            if (me.failInfoId) {
+                var failInfoEl = document.getElementById(me.failInfoId);
+                if (failInfoEl) {
+                    failInfoEl.innerHTML = info;
+                    util.css(failInfoEl, {display: 'block'});
+                }
+            }
         },
         setFetchData: function (key, val) {
             if (!this.fetchData) {
@@ -139,6 +150,7 @@ define(function (require) {
             me.method = (element.getAttribute('method') || 'GET').toUpperCase();
 
             me.failInfoId =  element.getAttribute('fail-info-id');
+            me.hideFailInfo();
             var submitBtn = element.querySelector('[fetch-button]');
             // 添加点击事件监听
             submitBtn.addEventListener('click', function (event) {
@@ -154,6 +166,7 @@ define(function (require) {
          * @param  {HTMLElement} element form节点
          */
         onSubmit: function (element) {
+            me.hideFailInfo();
             var me = this;
             // 定时器已存在不允许再次触发点击
             if (me.timer) {

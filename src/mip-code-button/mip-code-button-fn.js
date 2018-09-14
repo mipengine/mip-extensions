@@ -149,7 +149,7 @@ define(function (require) {
 
             me.method = (element.getAttribute('method') || 'GET').toUpperCase();
 
-            me.failInfoId =  element.getAttribute('fail-info-id');
+            me.failInfoId = element.getAttribute('fail-info-id');
             me.hideFailInfo();
             var submitBtn = element.querySelector('[fetch-button]');
             // 添加点击事件监听
@@ -220,6 +220,7 @@ define(function (require) {
         clearTimer: function () {
 
             if (this.timer) {
+                clearInterval(this.timer);
                 util.css(this.submitBtn, {display: 'block'});
                 util.css(this.timeEle, {display: 'none'});
                 this.timer = null;

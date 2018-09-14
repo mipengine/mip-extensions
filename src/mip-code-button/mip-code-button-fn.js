@@ -60,8 +60,14 @@ define(function (require) {
 
                     me.successHandle();
                 } else {
-                    // 设置错误信息绑定，字段名定死为fail_tip_info
-                    MIP.setData({fail_tip_info: response.info});
+                    // 处理错误提示
+                    if (me.failInfoId) {
+                        var failInfoEl = document.getElementById(me.failInfoId);
+                        if (failInfoEl) {
+                            failInfoEl.innerHTML = response.info;
+                        }
+                    }
+                    
                     me.failHandle();
                 }
 
@@ -132,6 +138,7 @@ define(function (require) {
 
             me.method = (element.getAttribute('method') || 'GET').toUpperCase();
 
+            me.failInfoId =  element.getAttribute('fail-info-id');
             var submitBtn = element.querySelector('[fetch-button]');
             // 添加点击事件监听
             submitBtn.addEventListener('click', function (event) {
@@ -200,8 +207,6 @@ define(function (require) {
         clearTimer: function () {
 
             if (this.timer) {
-                console.dir(this);
-                clearInterval(this.timer);
                 util.css(this.submitBtn, {display: 'block'});
                 util.css(this.timeEle, {display: 'none'});
                 this.timer = null;

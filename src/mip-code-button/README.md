@@ -9,7 +9,7 @@
 ### 基本使用
 
 ```html
-<mip-code-button id="myCodeBtn" url="http://laravel51.com/postData" timeout="60">
+<mip-code-button id="myCodeBtn" url="http://laravel51.com/postData" timeout="60" fail-info-id="fail-info-id">
     <div class="codeBoxBtn Themebg">
         <button type="button" fetch-button>获取验证码</button>
         <div time-count><span></span>秒后重新获取</div>
@@ -34,6 +34,10 @@
 ### timeout
 说明 ： 倒计时超时时间
 默认值: 60
+必选项: 否
+
+### fail-info-id
+说明 ： 获取失败错误信息提示元素
 必选项: 否
 
 

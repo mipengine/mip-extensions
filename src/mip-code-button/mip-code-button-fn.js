@@ -199,6 +199,7 @@ define(function (require) {
         clearTimer: function () {
 
             if (this.timer) {
+                console.dir(this);
                 clearInterval(this.timer);
                 util.css(this.submitBtn, {display: 'block'});
                 util.css(this.timeEle, {display: 'none'});

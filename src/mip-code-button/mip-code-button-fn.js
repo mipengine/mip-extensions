@@ -59,11 +59,12 @@ define(function (require) {
                 if (status === 1) {
 
                     me.successHandle();
-                }
-                if (status === -1) {
-
+                } else {
+                    // 设置错误信息绑定，字段名定死为fail_tip_info
+                    MIP.setData({fail_tip_info: response.info});
                     me.failHandle();
                 }
+
             }).catch(function (err) {
 
                 me.errorHandle();
@@ -253,7 +254,7 @@ define(function (require) {
          * @param  {HTMLElement} element form节点
          */
         failHandle: function () {
-            console.log('fail');
+
             if (!evt) {
                 return;
             }

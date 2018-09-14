@@ -9,7 +9,6 @@
 ### 基本使用
 
 ```html
-<input value="1367872123" on="change:myCodeBtn.bind(mobile)">
 <mip-code-button id="myCodeBtn" url="http://laravel51.com/postData" timeout="60">
     <div class="codeBoxBtn Themebg">
         <button type="button" fetch-button>获取验证码</button>

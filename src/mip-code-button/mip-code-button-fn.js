@@ -182,8 +182,6 @@ define(function (require) {
                 me.timeEle.firstElementChild.innerHTML = timeout--;
                 if (timeout <= 0) {
                     me.clearTimer();
-                    util.css(me.submitBtn, {display: 'block'});
-                    util.css(me.timeEle, {display: 'none'});
                 }
             }, 1000);
 
@@ -199,8 +197,11 @@ define(function (require) {
          * @param  {HTMLElement} element form节点
          */
         clearTimer: function () {
+
             if (this.timer) {
                 clearInterval(this.timer);
+                util.css(this.submitBtn, {display: 'block'});
+                util.css(this.timeEle, {display: 'none'});
                 this.timer = null;
             }
         },
@@ -254,6 +255,7 @@ define(function (require) {
             if (!evt) {
                 return;
             }
+            this.clearTimer();
             viewer.eventAction.execute('fail', evt.target, evt);
         },
 

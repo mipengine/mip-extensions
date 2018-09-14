@@ -55,13 +55,12 @@ define(function (require) {
                     return res.json();
                 }
             }).then(function (response) {
-                console.log(response.status);
-                console.log(response.status === -1);
-                if (response.status === 1) {
+                var status = parseInt(response.status, 10);
+                if (status === 1) {
 
                     me.successHandle();
                 }
-                if (response.status === -1) {
+                if (status === -1) {
 
                     me.failHandle();
                 }

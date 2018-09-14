@@ -72,16 +72,16 @@ define(function (require) {
             });
         },
         hideFailInfo: function () {
-            if (me.failInfoId) {
-                var failInfoEl = document.getElementById(me.failInfoId);
+            if (this.failInfoId) {
+                var failInfoEl = document.getElementById(this.failInfoId);
                 if (failInfoEl) {
                     util.css(failInfoEl, {display: 'none'});
                 }
             }
         },
         showFailInfo: function (info) {
-            if (me.failInfoId) {
-                var failInfoEl = document.getElementById(me.failInfoId);
+            if (this.failInfoId) {
+                var failInfoEl = document.getElementById(this.failInfoId);
                 if (failInfoEl) {
                     failInfoEl.innerHTML = info;
                     util.css(failInfoEl, {display: 'block'});
@@ -166,8 +166,8 @@ define(function (require) {
          * @param  {HTMLElement} element form节点
          */
         onSubmit: function (element) {
-            me.hideFailInfo();
             var me = this;
+            me.hideFailInfo();
             // 定时器已存在不允许再次触发点击
             if (me.timer) {
                 return;

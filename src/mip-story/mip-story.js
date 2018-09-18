@@ -11,6 +11,7 @@ define(function (require) {
     require('./mip-story-layer');
     var constConfig = require('./mip-story-config');
     var MIP_I_STORY_STANDALONE = constConfig.MIP_I_STORY_STANDALONE;
+    var preloadPages = constConfig.PRELOAD_PAGES;
     var Audio = require('./audio');
     var ShareLayer = require('./mip-story-share');
     var HintLayer = require('./mip-story-hint');
@@ -76,6 +77,9 @@ define(function (require) {
 
     MIPStory.prototype.initStoryViews = function () {
         this.storyViews = this.element.querySelectorAll('mip-story-view');
+
+        // 初始化预加载
+        this.initPreload()
     };
 
     MIPStory.prototype.initStoryContain = function () {
@@ -165,7 +169,13 @@ define(function (require) {
         });
     }
 
-    
+    // 预加载相关
+    MIPStory.prototype.initPreload = function () {
+        var storyViewData = this.storyViews;
+        for (var i = 0; i <= preloadPages; i++) {
+            storyViewData[i].setAttribute('preload','')
+        }
+    };
     
     // story组件的初始化
     MIPStory.prototype.init = function () {

@@ -9,6 +9,7 @@ define(function (require) {
     var customElement = require('customElement').create();
     var Audio = require('./audio');
     require('./mip-story-video');
+    require('./mip-story-img');
     var timeStrFormat = require('./animation-util').timeStrFormat;
     var AnimationManager = require('./animation').AnimationManager;
     var hasAnimations = require('./animation').hasAnimations;
@@ -257,8 +258,19 @@ define(function (require) {
         }
     };
 
-    customElement.prototype.firstInviewCallback = function () {
+    // 有preload属性时, 自动为所包含的静态元素添加preload属性
+    customElement.prototype.attributeChangedCallback = function () {
+        if (this.element.hasAttribute('preload')) {
+            var storyImgs = this.element.querySelectorAll('mip-story-img')
+            for ( var i = 0; i< storyImgs.length; i++) {
+                storyImgs[i].setAttribute('preload', '');
+            }
+        }
         this.initView();
+    };
+
+    customElement.prototype.firstInviewCallback = function () {
+        
         this.pauseAllMedia();
         this.setPageRole();
     };

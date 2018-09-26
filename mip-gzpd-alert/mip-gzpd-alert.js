@@ -102,12 +102,6 @@ define(function(require) {
             },1500);
         }
 
-        document.getElementsByClassName("copy-txt-btn")[0].addEventListener("click", function() {
-            var copyText = document.querySelector("#kefu-name-input");
-            copyText.select();
-            document.execCommand("copy");
-        })
-
         $(document).on('click', '.mip-gzpd-alert-cservice-marks .claos', function(){
             $('.mip-gzpd-alert-cservice-marks').css('display', 'none');
         });

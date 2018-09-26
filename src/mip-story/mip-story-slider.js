@@ -55,6 +55,90 @@ define(function (require) {
         'optValue': '翻到了分享页'
     };
 
+    // 兼容 touch 、 mouse 事件
+    var dragStartBind = null;
+    var dragMoveBind = null;
+    var dragEndBind = null;
+    var hasTouch = 'ontouchstart' in window;
+
+    /**
+     * 拖动开始
+     *
+     * @param {Event} e 事件对象 
+     */
+    function dragStart(e) {
+        // 如果正处于翻页状态跳出
+        if (this.moveFlag) {
+            return;
+        }
+        var touch = hasTouch ? e.targetTouches[0] || e.changedTouches[0] : e;
+        this.touchstartX = touch.pageX;
+        this.touchstartY = touch.pageY;
+        sliderStartCB(e);
+
+        // 绑定事件
+        storyInstanceEle.addEventListener('mousemove', dragMoveBind);
+        storyInstanceEle.addEventListener('mouseup', dragEndBind);
+        storyInstanceEle.addEventListener('mouseout', dragEndBind);
+    }
+
+    /**
+     * 拖动中
+     *
+     * @param {Event} e 事件对象 
+     */
+    function dragMove(e) {
+        // 特殊处理，分享页更多小故事滚动，禁止翻页滚动
+        if (dm.contains(recommend, e.target)) {
+            return;
+        }
+
+        // 如果正处于翻页状态跳出
+        if (self.moveFlag) {
+            return;
+        }
+
+        this.slideMoving(e);
+    }
+
+    /**
+     * 拖动结束
+     *
+     * @param {Event} e 事件对象 
+     */
+    function dragEnd(e) {
+        // 解绑事件
+        storyInstanceEle.removeEventListener('mousemove', dragMoveBind)
+        storyInstanceEle.removeEventListener('mouseup', dragEndBind);
+        storyInstanceEle.removeEventListener('mouseout', dragEndBind);
+
+        // 特殊处理，分享页更多小故事滚动，禁止翻页滚动
+        if (dm.contains(recommend, e.target)) {
+            return;
+        }
+
+        // 如果正处于翻页状态跳出
+        if (this.moveFlag) {
+            return;
+        }
+
+        var touch = hasTouch ? e.targetTouches[0] || e.changedTouches[0] : e;
+        this.touchendX = touch.pageX;
+        this.touchendY = touch.pageY;
+
+        // 只是点击当前页面的内容
+        if (this.touchendX == this.touchstartX && this.touchendY == this.touchstartY) {
+            this.moveFlag = false;
+            return;
+        }
+
+        // 关闭其他滑动事件
+        this.moveFlag = true;
+        // 翻页
+        this.setMovingEnd(e);
+        // 还原state
+        this.touchstartX = this.touchendX = 0;
+    }
 
     function MIPStorySlider(param) {
         // story的实例
@@ -148,6 +232,11 @@ define(function (require) {
         recommend = storyInstanceEle.querySelector('.recommend');
     };
     MIPStorySlider.prototype.bindEvent = function () {
+        // 绑定this对象
+        dragStartBind = dragStart.bind(this);
+        dragMoveBind = dragMove.bind(this);
+        dragEndBind = dragEnd.bind(this);
+
         // 开始滑动
         this.sliderStart();
         // 滑动中
@@ -185,67 +274,26 @@ define(function (require) {
         var self = this;
         var currentEle = storyContain[this.currentIndex];
         // 对story进行手势的监控
-        storyInstanceEle.addEventListener('touchstart', function (e) {
-            // 如果正处于翻页状态跳出
-            if (self.moveFlag) {
-                return;
-            }
-            var touch = e.targetTouches[0];
-            self.touchstartX = touch.pageX;
-            self.touchstartY = touch.pageY;
-            sliderStartCB(e);
-        });
+        if (hasTouch) {
+            storyInstanceEle.addEventListener('touchstart', dragStartBind);
+        } else {
+            storyInstanceEle.classList.add('mip-story-pc');
+            storyInstanceEle.addEventListener('mousedown', dragStartBind);
+        }
     };
 
     MIPStorySlider.prototype.sliding = function () {
         var self = this;
         // 对story进行手势的监控
-        storyInstanceEle.addEventListener('touchmove', function (e) {
-            // 特殊处理，分享页更多小故事滚动，禁止翻页滚动
-            if (dm.contains(recommend, e.target)) {
-                return;
-            }
-
-            // 如果正处于翻页状态跳出
-            if (self.moveFlag) {
-                return;
-            }
-
-            self.slideMoving(e);
-        });
+        storyInstanceEle.addEventListener('touchmove', dragMoveBind);
     };
 
     MIPStorySlider.prototype.sliderEnd = function () {
         var self = this;
         // 对story进行手势的监控
-        storyInstanceEle.addEventListener('touchend', function (e) {
-            // 特殊处理，分享页更多小故事滚动，禁止翻页滚动
-            if (dm.contains(recommend, e.target)) {
-                return;
-            }
-
-            // 如果正处于翻页状态跳出
-            if (self.moveFlag) {
-                return;
-            }
-
-            var touch = e.changedTouches[0];
-            self.touchendX = touch.pageX;
-            self.touchendY = touch.pageY;
-            // 只是点击当前页面的内容
-            if (self.touchendX == self.touchstartX && self.touchendY == self.touchstartY) {
-                self.moveFlag = false;
-                return;
-            } else {
-                // 关闭其他滑动事件
-                self.moveFlag = true;
-                // 翻页
-                self.setMovingEnd(e);
-                // 还原state
-                self.touchstartX = self.touchendX = 0;
-            }
-        });
+        storyInstanceEle.addEventListener('touchend', dragEndBind);
     };
+
     MIPStorySlider.prototype.setMovingEnd = function (e) {
         var data = this.getMoveData(e);
         var move = data.move;
@@ -454,7 +502,8 @@ define(function (require) {
     };
 
     MIPStorySlider.prototype.getMoveData = function (e) {
-        var touch = e.targetTouches[0] || e.changedTouches[0];
+        var touch = hasTouch ? e.targetTouches[0] || e.changedTouches[0] : e;
+
         var moveX = touch.pageX - this.touchstartX;
         var moveY = touch.pageY - this.touchstartY;
         var move = moveX;
@@ -474,6 +523,7 @@ define(function (require) {
             nextActiveMove: nextActiveMove,
             threshold: threshold
         };
+
         return data;
     };
 

@@ -45,14 +45,13 @@ define(function(require) {
         '    <div class="claos"></div>' +
         '    <div class="phone-pic">' +
         '        <h1 class="kefu-name">客服微信号: '+alt.kefu+'</h1>' +
-        '        <span class="copy-txt-btn">复制微信号</span>' +
-        '        <span class="open-wechat"><a href="weixin://">打开微信</a></span>' +
+        '        <span class="copy-txt-btn"><a href="weixin://">打开微信</a></span>' +
         '    </div>' +
         '    <div class="phone-art">' +
         '        <span style="color:#ff6600;">付费成功后，若无法使用请联系客服</span>' +
         '        <span>在线时间：周一至周五</span>' +
         '        <span>8:30~12:30 14:00~18:00</span>' +
-        '        <input type="text" value="kefu-8002" id="kefu-name-input" style="width: 1px;height: 1px;border: 0px;color:rgba(255, 255, 255, 0);background-color: rgba(255, 255, 255, 0);">' +
+        '        <input type="text" value="'+alt.kefu+'" id="kefu-name-input" style="width: 1px;height: 1px;border: 0px;color:rgba(255, 255, 255, 0);background-color: rgba(255, 255, 255, 0);">' +
         '    </div>' +
         '</div>' +
         '</div>';

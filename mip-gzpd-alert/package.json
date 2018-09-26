@@ -1,0 +1,8 @@
+{
+    "name": "mip-gzpd-alert",
+    "version": "1.0.0",
+    "description": "提示功能",
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

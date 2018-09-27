@@ -1,8 +1,12 @@
 {
-    "name": "mip-gzpd-alert",
-    "version": "1.0.0",
-    "description": "提示功能",
-    "engines": {
-        "mip": ">=1.1.0"
-    }
+  "name": "mip-gzpd-alert",
+  "version": "1.0.0",
+  "description": "提示功能",
+  "author": {
+    "name": "jfdsies",
+    "email": "jfdsies@gmail.com"
+  },
+  "engines": {
+    "mip": ">=1.1.0"
+  }
 }

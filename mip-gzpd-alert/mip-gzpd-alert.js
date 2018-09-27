@@ -12,7 +12,7 @@ define(function (require) {
     var customElem = require('customElement').create();
     var alt = JSON.parse($('#mip-gzpd-alert-data').html());
 
-    var payUrl = 'https://my.yjbys.com/company/wxpay/native_middle.php?id=' + alt.id + '&rd=' + encodeURI(window.location.href.split('?')[0]);
+    var payUrl = 'https://my.yjbys.com/company/wxpay/native_middle.php?mip&id=' + alt.id + '&rd=' + encodeURI(window.location.href.split('?')[0]);
     var zhezhao = '<div class="mip-gzpd-alert-marks">'
         + '<div class="paybox mip-gzpd-alert-bounceIn">'
         + '    <div class="claos"></div>'

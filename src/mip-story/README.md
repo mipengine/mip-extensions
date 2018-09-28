@@ -14,8 +14,7 @@
 | ---- | ---------------------------------------- |
 | 类型   | 通用                                       |
 | 支持布局 | responsive,fixed-height,fill,container,fixed |
-
-| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
+| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js
 ## 示例
 ```html
 <style mip-custom>
@@ -30,7 +29,7 @@
         display: none;
     }
 </style>
-<mip-story standalone background-audio="https://mipstatic.baidu.com/static/mip-static/mip-story/story-cherry/img/bgm.mp3" >
+<mip-story standalone>
     <script type="application/json">
     {
         "xzh_info": {
@@ -64,176 +63,22 @@
         }
     }
     </script>
-    <mip-story-view >
+    <mip-story-view auto-advancement-after="3s">
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
-            <mip-story-img preload width="480" class="fade-in-scale" 
-   height="720" src="https://www.mipengine.org/static/img/sample_02.jpg">
-   </mip-story-img>
+            <mip-story-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-story-img>
         </mip-story-layer>
-
+        <mip-story-layer>
+            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
+        </mip-story-layer>
     </mip-story-view>
-    
     <mip-story-view>
-            <mip-story-layer template="fill">
-                <mip-story-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/mip-story/p1.png"></mip-story-img>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="page1-wrap">
-                    <span>第90届奥斯卡</span>
-                    <span>The 90th Oscar</span>
-                    <span class="line"></span>
-                    <span>颁奖典礼回顾</span>
-                </div>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="mask"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="fill">
-                <mip-story-img width="480" height="720" src="https://www.mipengine.org/static/img/mip-story/p2.gif"></mip-story-img>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="common-wrap1">
-                    <span></span>
-                    <span>最佳影片</span>
-                    <span>水形物语</span>
-                    <span></span>
-                    <span>最佳导演</span>
-                    <span>吉尔莫·德尔·托罗</span>
-                </div>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="mask"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="fill">
-                <mip-story-img width="480" height="720" src="https://www.mipengine.org/static/img/mip-story/p4.gif"></mip-story-img>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="common-wrap2">
-                    <span></span>
-                    <span>最佳女主角</span>
-                    <span>弗兰西斯·麦克多蒙德</span>
-                    <span>主演</span>
-                    <span>三块广告牌</span>
-                </div>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="mask"></div>
-            </mip-story-layer>
-
-            <mip-story-video width="355" height="644">
-                <source src="https://jenkey2011.github.io/mip-case/static/video/story_video_dog.mp4" type="video/mp4">
-                <source src="https://jenkey2011.github.io/mip-case/static/video/story_video_dog.ts" type="video/ts">
-            </mip-story-video>
-            
-        </mip-story-view>
-        <mip-story-view background-audio="https://mms-secr.cdn.bcebos.com/secr_activities/Family%20Values.mp3">
-            <mip-story-layer template="fill">
-                <mip-story-img width="480" height="720" class="fade-in-scale" src="https://www.mipengine.org/static/img/mip-story/p5.png"></mip-story-img>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="common-wrap2">
-                    <span></span>
-                    <span>最佳男配角</span>
-                    <span>山姆·洛克威尔</span>
-                    <span>主演</span>
-                    <span>三块广告牌</span>
-                </div>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="mask"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="fill">
-                <mip-story-img width="480" height="720" class="fade-in-scale" src="https://www.mipengine.org/static/img/mip-story/p6.png"></mip-story-img>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="common-wrap2">
-                    <span></span>
-                    <span>最佳女配角</span>
-                    <span>艾莉森·珍妮</span>
-                    <span>主演</span>
-                    <span>我，花样女王</span>
-                </div>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="mask"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="fill">
-                <mip-story-img width="480" height="720" class="fade-in-scale" src="https://www.mipengine.org/static/img/mip-story/p7.png"></mip-story-img>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="common-wrap1">
-                    <span></span>
-                    <span>最佳动画短片</span>
-                    <span>亲爱的篮球</span>
-                    <span></span>
-                    <span>最佳动画长片</span>
-                    <span>寻梦环游记</span>
-                </div>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="mask"></div>
-            </mip-story-layer>
-            
-        </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="fill">
-                <mip-story-img class="fade-in" src="https://www.mipengine.org/static/img/mip-story/p8.png"></mip-story-img>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="common-wrap3">
-                    <span></span>
-                    <span>其他奖项</span>
-                    <div>
-                        <div class="role">
-                            <span>最佳改编剧本</span>
-                            <span>请以你的名字呼唤我</span>
-                        </div>
-                        <div class="role">
-                            <span>最佳原创剧本</span>
-                            <span>逃出绝命镇</span>
-                        </div>
-                        <div class="role">
-                            <span>最佳外语片</span>
-                            <span>普通女人</span>
-                        </div>
-                        <div class="role">
-                            <span>最佳纪录长片</span>
-                            <span class="noBottom">伊卡洛斯</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="role">
-                            <span>最佳纪录短片</span>
-                            <span>天堂堵塞</span>
-                        </div>
-                        <div class="role">
-                            <span>最佳真人短片</span>
-                            <span>沉默的孩子</span>
-                        </div>
-                        <div class="role">
-                            <span>最佳原创配乐</span>
-                            <span>水形物语</span>
-                        </div>
-                        <div class="role">
-                            <span>最佳原创歌曲</span>
-                            <span class="noBottom">寻梦环游记 / Remember Me</span>
-                        </div>
-                    </div>
-                </div>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="mask"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        
+        <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
+            <mip-story-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-story-img>
+        </mip-story-layer>
+        <mip-story-layer>
+            <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
+        </mip-story-layer>
+    </mip-story-view>
 </mip-story>
 ```
 

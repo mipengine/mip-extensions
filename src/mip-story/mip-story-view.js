@@ -242,8 +242,7 @@ define(function (require) {
         this.element.setAttribute('page-role', constConfig.PAGE_ROLE.contentPage);
     }
 
-    customElement.prototype.initView = function () {
-
+    customElement.prototype.initMedia = function () {
         this.audio = new Audio();
         this.canvasVideo = this.element.querySelectorAll('mip-story-video');
         this.hasStoryVideo = !!this.canvasVideo.length;
@@ -258,20 +257,29 @@ define(function (require) {
         }
     };
 
+    customElement.prototype.initStoryStatic = function () {
+        var storyStatic = this.element.querySelectorAll('mip-story-img, mip-story-video');
+        for (var i = 0; i < storyStatic.length; i++) {
+            storyStatic[i].setAttribute('preload', '');
+        }
+    }
+
     // 有preload属性时, 自动为所包含的静态元素添加preload属性
     customElement.prototype.attributeChangedCallback = function () {
-        if (this.element.hasAttribute('preload')) {
-            var storyImgs = this.element.querySelectorAll('mip-story-img')
-            for ( var i = 0; i< storyImgs.length; i++) {
-                storyImgs[i].setAttribute('preload', '');
-            }
+        if (this.isPreload) {
+            return;
         }
-        this.initView();
+
+        if (this.element.hasAttribute('preload')) {
+            this.isPreload = true;
+            this.initStoryStatic();
+            this.initMedia();
+            this.pauseAllMedia();
+        }
     };
 
     customElement.prototype.firstInviewCallback = function () {
-        
-        this.pauseAllMedia();
+        this.isPreload = false;
         this.setPageRole();
     };
 

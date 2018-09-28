@@ -19,10 +19,25 @@ mip-story {
     width: 100% !important;
     height: 100% !important;
     background: #000;
-
-            overflow-scrolling: touch;
+    overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
-            tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+    &.mip-story-pc {
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        cursor: default;
+        mip-story-view::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
 }
 
 mip-story,

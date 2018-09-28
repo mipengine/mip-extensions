@@ -110,7 +110,7 @@ define(function (require) {
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 innerTpl += ''
-                    +    '<a href="' + item.url
+                    +    '<a ondragstart="return false;" ondrop="return false;" href="' + item.url
                     +       '" class="recommend-item" data-stats-baidu-obj="' + recommendStats + '">'
                     +       '<div class="mip-backend-preview"> <mip-story-img src='
                     +           (item.cover || " ")

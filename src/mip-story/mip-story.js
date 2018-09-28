@@ -126,7 +126,9 @@ define(function (require) {
         // 加载icon
         this.progress.setXzhInfo().then(function(data) {
             var icon = dm.create(data);
-            sys.appendChild(icon);
+            try {
+                sys.appendChild(icon);
+            }catch(err){}
         });
     };
 

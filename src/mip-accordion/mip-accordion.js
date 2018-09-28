@@ -117,16 +117,25 @@ define(function (require) {
     // 设置session storage
     function setSession(element, obj, expand) {
         var sessionsKey = 'MIP-' + element.getAttribute('sessions-key') + '-' + localurl;
-
-        var objsession = getSession(sessionsKey);
-        objsession[obj] = expand;
-        sessionStorage[sessionsKey] = JSON.stringify(objsession);
+        try {
+            var objsession = getSession(sessionsKey);
+            objsession[obj] = expand;
+            sessionStorage[sessionsKey] = JSON.stringify(objsession);
+        } catch (e) {
+          console.warn('用户无痕模式不支持 session');
+        }
     }
 
     // 获取sission
     function getSession(sessionsKey) {
-        var data = sessionStorage[sessionsKey];
-        return data ? JSON.parse(data) : {};
+        try {
+            var data = sessionStorage[sessionsKey];
+            return data ? JSON.parse(data) : {};
+        } catch (e) {
+
+            console.warn('用户无痕模式不支持 session');
+            return {};
+        }
     }
 
     /**

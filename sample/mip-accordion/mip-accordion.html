@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html mip>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>mip-accordion测试用例</title>
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    <link rel="canonical">
+    <style mip-custom>
+        h4 {
+            padding: 5px 10px;
+            background: #1dcdcd;
+        }
+
+        p {
+            padding: 0 10px;
+        }
+
+        mip-accordion .mip-accordion-content {
+            display: none !important;
+            overflow: hidden
+        }
+
+        mip-accordion .mip-accordion-content[aria-expanded="open"] {
+            display: block !important
+        }
+
+        mip-accordion section[expanded=open] .show-more {
+            display: none !important
+        }
+
+        mip-accordion section .show-more {
+            display: block
+        }
+
+        mip-accordion section .show-less {
+            display: none
+        }
+
+        mip-accordion section[expanded=open] .show-less {
+            display: block
+        }
+
+        /* 自定义样式 */
+    </style>
+</head>
+<body>
+<!-- 正文 -->
+<br>
+<h1>内容标题 + 手动</h1>
+<mip-accordion sessions-key="mip_2" type="manual" animatetime='0.24'>
+    <section>
+        <h4>下拉第一个</h4>
+        <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
+    </section>
+    <section expanded="open">
+        <h4>下拉第二个</h4>
+        <p>细雨点洒在花前。那轻，那娉婷，你是，鲜妍百花的冠冕你戴着，你是天真，庄严，你是夜夜的月圆。</p>
+    </section>
+    <section>
+        <h4>下拉第三个</h4>
+        <mip-img layout="responsive" width="400" height="200" src="https://www.mipengine.org/static/img/sample_01.jpg"
+                 class="mip-accordion-content"></mip-img>
+    </section>
+</mip-accordion>
+<br>
+<br>
+<h1>内容标题</h1>
+<mip-accordion sessions-key="mip_1" animatetime='0.24'>
+    <section>
+        <h4>下拉第一个</h4>
+        <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
+    </section>
+    <section expanded="open">
+        <h4>下拉第二个</h4>
+        <p>细雨点洒在花前。那轻，那娉婷，你是，鲜妍百花的冠冕你戴着，你是天真，庄严，你是夜夜的月圆。</p>
+    </section>
+    <section>
+        <h4>下拉第三个</h4>
+        <mip-img layout="responsive" width="400" height="200" src="https://www.mipengine.org/static/img/sample_01.jpg"
+                 class="mip-accordion-content"></mip-img>
+    </section>
+</mip-accordion>
+
+<br>
+<br>
+<h1>只展开一个</h1>
+<mip-accordion sessions-key="mip_4" expaned-limit>
+    <section>
+        <h4>下拉第一个</h4>
+        <p class="mip-accordion-content">我说你是人间的四月天；笑声点亮了四面风；轻灵在春的光艳中交舞着变。你是四月早天里的云烟，黄昏吹着风的软，星子在无意中闪，</p>
+    </section>
+    <section expanded>
+        <h4>下拉第二个</h4>
+        <p>细雨点洒在花前。那轻，那娉婷，你是，鲜妍百花的冠冕你戴着，你是天真，庄严，你是夜夜的月圆。</p>
+    </section>
+    <section>
+        <h4>下拉第三个</h4>
+        <mip-img
+            layout="responsive"
+            width="400"
+            height="200"
+            src="https://www.mipengine.org/static/img/sample_01.jpg" class="mip-accordion-content">
+        </mip-img>
+    </section>
+</mip-accordion>
+
+<script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+<script src="https://c.mipcdn.com/static/v1/mip-accordion/mip-accordion.js"></script>
+</body>
+</html>

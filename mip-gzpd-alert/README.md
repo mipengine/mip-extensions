@@ -20,11 +20,21 @@
     {
         "id": 105,
         "kefu": "kefu-8002",
+        "cookieKey": "scan_ok",
+        "cookieTtl": 86400,
+        "showBox": [true, false],
         "alert": {
             "title": "用户服务",
             "art": "登陆并支付后使用",
             "detail": ["", ""],
-            "btn": "跳转查看"
+            "btn": "跳转查看",
+            "service": "联系客服"
+        },
+        "alertFree": {
+            "title": "",
+            "detail": [""],
+            "placeholder": "",
+            "btn": "确认"
         },
         "alertWx": {
             "title": "付费提醒",

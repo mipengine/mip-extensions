@@ -1,4 +1,5 @@
 mip-gzpd-alert {
+
     div.mip-gzpd-alert-marks .claos,
     div.mip-gzpd-alert-cservice-marks .claos {
         position: absolute;
@@ -25,50 +26,53 @@ mip-gzpd-alert {
         top: 0;
         background: rgba(19, 19, 19, 0.6);
     }
-    div.mip-gzpd-alert-marks .paybox {
-        text-align: center;
-        background: #fff;
-        width: 75%;
-        margin: auto;
-        margin-top: 40%;
-        padding: 6% 0;
-        border-radius: 6px;
+    div.mip-gzpd-alert-marks .alert-box {
+        width: 85%;
         position: relative;
+        margin: auto;
+        margin-top: 20%;
+        border-radius: 6px;
+        background: #fff;
+        text-align: center;
     }
-    div.mip-gzpd-alert-marks .paybox-title {
-        color: #44b549;
-        font-size: 30px;
+    div.mip-gzpd-alert-marks .alert-box .paybox {
+        width: 100%;
+        padding: 6% 0;
+        border-bottom: 1px solid #ccc;
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-title {
+        color: #3c3c3c;
+        font-size: 22px;
         display: inline-block;
         font-weight: 700;
-        line-height: 40px;
-        height: 40px;
+        line-height: 30px;
+        height: 30px;
         width: 100%;
+        margin-bottom: 5px;
     }
-    div.mip-gzpd-alert-marks .paybox-img {
+    div.mip-gzpd-alert-marks .paybox .paybox-img {
         width: 100px;
         display: inline-block;
-        margin: 10% 0 0;
     }
-    div.mip-gzpd-alert-marks .paybox-img .qrimg {
+    div.mip-gzpd-alert-marks .paybox .paybox-img .qrimg {
         width: 100%
     }
-    div.mip-gzpd-alert-marks .paybox-money {
-        height: 60px;
-        line-height: 60px;
+    div.mip-gzpd-alert-marks .paybox .paybox-money {
+        height: 30px;
+        line-height: 30px;
     }
-    div.mip-gzpd-alert-marks .paybox-money h2 {
+    div.mip-gzpd-alert-marks .paybox .paybox-money span:first-child {
         color: #ff6600;
         font-size: 16px;
-        display: inline-block;
-        font-weight: 700;
+        font-weight: 400;
     }
-    div.mip-gzpd-alert-marks .paybox-money span {
+    div.mip-gzpd-alert-marks .paybox .paybox-money span:last-child {
         text-decoration: line-through;
         color: #949494;
         margin-left: 10px;
         font-size: 14px;
     }
-    div.mip-gzpd-alert-marks .paybox-bottom {
+    div.mip-gzpd-alert-marks .paybox .paybox-bottom {
         cursor: pointer;
         background: #44b549;
         height: 45px;
@@ -77,22 +81,72 @@ mip-gzpd-alert {
         margin: 6px auto;
         width: 230px;
     }
-    div.mip-gzpd-alert-marks .paybox-bottom-a {
+    div.mip-gzpd-alert-marks .paybox .paybox-bottom-a {
         font-size: 18px;
         color: #fff;
         font-weight: 700;
     }
-    div.mip-gzpd-alert-marks .paybox-art {
-        color: #a0a0a0;
-        font-size: 18px;
-        line-height: 50px;
-        height: 50px;
-        float: left;
+
+    div.mip-gzpd-alert-marks .alert-box .freebox {
         width: 100%;
+        padding: 6% 0;
     }
-    div.mip-gzpd-alert-marks .paybox-cservice {
+    div.mip-gzpd-alert-marks .freebox .freebox-description {
+        text-align: left;
+        color: #3c3c3c;
+        margin: 0 3%;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-title {
+        color: #3c3c3c;
+        font-size: 22px;
+        display: inline-block;
+        font-weight: 700;
+        line-height: 30px;
+        height: 30px;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-description p {
+        margin: 10px;
         font-size: 14px;
-        margin-top: 10px;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-description p .text-focus {
+        color: #FF5722;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-code {
+        display: inline-block;
+        margin-top: 7px;
+        width: 80%;
+        border: 1px solid #44b549;
+        height: 32px;
+        line-height: 30px;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-code .freebox-input {
+        line-height: 32px;
+        width: 78%;
+        font-size: 14px;
+        float: left;
+        border: none;
+        color: #bdbdbd;
+        padding-left: 3%;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-code .freebox-btn {
+        line-height: 32px;
+        width: 19%;
+        background: #44b549;
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        border: 0 none;
+        cursor: pointer;
+        float: right;
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+
+    div.mip-gzpd-alert-marks .alert-box .paybox-cservice {
+        font-size: 14px;
+        padding-bottom: 10px;
         cursor: pointer;
         color: #a2a2a2;
     }

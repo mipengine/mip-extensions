@@ -13,33 +13,34 @@ define(function (require) {
     var buyInterval;
     var copyTimeout;
 
-    var hashCode = function (str) {
-        var hash = 0;
-        var len = str.length;
-        var i = 0;
-        if (len > 0) {
-            while (i < len) {
-                hash = (hash << 5) - hash + str.charCodeAt(i++) | 0;
-            }
-        }
-        return hash;
-    };
     var marksHtml = function (config) {
         var payUrl = 'https://my.yjbys.com/company/wxpay/native_middle.php?mip&id=' + config.id + '&rd=' + encodeURI(window.location.href.split('?')[0]);
+        var freeboxDetail = config.alertFree.detail.map(function (item) {
+            return '<p>' + item + '</p>';
+        }).join('');
         return '<div class="mip-gzpd-alert-marks">'
-            + '<div class="paybox mip-gzpd-alert-bounceIn">'
-            + '    <div class="claos"></div>'
+            + '<div class="alert-box mip-gzpd-alert-bounceIn">'
+            + '<div class="claos"></div>'
+            + '<div class="paybox"' + (!config.showBox[0] ? ' style="display:none"' : '') + '>'
             + '    <div class="paybox-title">' + config.alert.title + '</div>'
-            + '    <div class="paybox-art">' + config.alert.art + '</div>'
             + '    <div class="paybox-img">'
             + '        <a href="' + payUrl + '">'
             + '            <mip-img class="qrimg" src="//static.yjbys.com/qrcode/pay.jpg"></mip-img></a></div>'
             + '    <div class="paybox-money">'
-            + '        <h2>' + config.alert.detail[0] + '</h2>'
+            + '        <span>' + config.alert.detail[0] + '</span>'
             + '        <span>' + config.alert.detail[1] + '</span></div>'
             + '    <a class="paybox-bottom-a" href="' + payUrl + '">'
             + '        <div class="paybox-bottom">' + config.alert.btn + '</div></a>'
-            + '    <div class="paybox-cservice">联系客服</div>'
+            + '</div>'
+            + '<div class="freebox"' + (!config.showBox[1] ? ' style="display:none"' : '') + '>'
+            + '    <div class="freebox-title">' + config.alertFree.title + '</div>'
+            + '    <div class="freebox-description">' + freeboxDetail + '</div>'
+            + '    <div class="freebox-code">'
+            + '        <input type="text" placeholder="' + config.alertFree.placeholder + '" class="freebox-input">'
+            + '        <input type="button" value="' + config.alertFree.btn + '" class="freebox-btn">'
+            + '    </div>'
+            + '</div>'
+            + '<div class="paybox-cservice">' + config.alert.service + '</div>'
             + '</div></div>';
     };
     var payAlertHtml = function (config) {
@@ -104,11 +105,8 @@ define(function (require) {
     };
 
     // build 方法，元素插入到文档时执行，仅会执行一次
-    customElem.prototype.build = function () {
+    customElem.prototype.firstInviewCallback = function () {
         var ele = this.element;
-
-        var pathname = window.location.pathname;
-        var cookieKey = hashCode(pathname.substr(pathname.lastIndexOf('/') + 1)).toString();
 
         var configEle = ele.querySelectorAll('#mip-gzpd-alert-data')[0];
         var config = JSON.parse($(configEle).html());
@@ -131,8 +129,11 @@ define(function (require) {
         var alertWxpay = ele.querySelectorAll('.mip-gzpd-alert-marks-wxpay')[0];
         var alertWxpaySuccessBtn = alertWxpay.querySelectorAll('.payqr_success_text .btn')[0];
 
+        var freeboxBtn = ele.querySelectorAll('.freebox-btn')[0];
+        var freeboxInput = ele.querySelectorAll('.freebox-input')[0];
+
         document.addEventListener('copy', function (e) {
-            if (!storage.get(cookieKey)) {
+            if (!storage.get(config.cookieKey)) {
                 if ($(alertMarks).css('display') !== 'block') {
                     e.clipboardData.setData('text/plain', '');
                     e.preventDefault();
@@ -163,7 +164,7 @@ define(function (require) {
                         $(payBox).css('display', 'none');
                         $(payBoxSuccess).css('display', 'block');
                         $(wxTopSpan).text('支付成功');
-                        storage.set(cookieKey, 1, 7 * 86400 * 1000);
+                        storage.set(config.cookieKey, 1, config.cookieTtl * 1000);
                         window.clearInterval(buyInterval);
                     }
                 });
@@ -182,8 +183,20 @@ define(function (require) {
             $(cserviceMarks).css('display', 'block');
         });
 
+        $(freeboxBtn).click(function () {
+            var userInput = parseInt($(freeboxInput).val(), 10);
+            if (userInput < 1000) {
+                alert('输入不正确!');
+            }
+
+            if (userInput > 8000 && userInput < 9999) {
+                storage.set(config.cookieKey, 1, config.cookieTtl * 1000);
+                $(alertMarks).css('display', 'none');
+            }
+        });
+
         $(alertWxpaySuccessBtn).click(function () {
-            window.location.href = window.location.href.split('?')[0];
+            window.top.location.href = window.location.href.split('?')[0];
         });
     };
 

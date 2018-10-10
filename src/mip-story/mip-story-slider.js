@@ -15,6 +15,7 @@ define(function (require) {
     var SWITCHPAGE_THRESHOLD = constConfig.SWITCHPAGE_THRESHOLD;
     var CURRENT = constConfig.PAGE_STATE.current;
     var ACTIVE = constConfig.PAGE_STATE.active;
+    var preloadPages = constConfig.PRELOAD_PAGES;
     var STYLE = 'style';
     var screenWidth = viewport.getWidth();
     var screenHeight = viewport.getHeight();
@@ -54,6 +55,9 @@ define(function (require) {
         'optLabel': '滑动',
         'optValue': '翻到了分享页'
     };
+
+    // 预加载
+    var hasPreload = preloadPages;
 
     // 兼容 touch 、 mouse 事件
     var dragStartBind = null;
@@ -546,13 +550,28 @@ define(function (require) {
     };
 
     MIPStorySlider.prototype.setCurrentPage = function (status) {
-        for (var i = 0; i < storyContain.length; i++) {
+        var storyContainLength = storyContain.length;
+        for (var i = 0; i < storyContainLength; i++) {
             var currentPage = storyContain[i];
             if (i === this.currentIndex) {
+                // 埋点
                 if (window._hmt && pageViewed.indexOf(i) === -1) {
                     var pageRole = currentPage.getAttribute('page-role');
                     this.triggerStats(i, pageRole);
                 }
+
+                // 预加载
+                if (hasPreload - i <= preloadPages && i < storyContainLength - preloadPages) {
+                    storyContain[i + preloadPages].setAttribute('preload', '');
+                    hasPreload++;
+                    if (hasPreload == storyContainLength) {
+                        var storyImgs = storyContain[hasPreload -1].querySelectorAll('mip-story-img')
+                        for (var i = 0; i < storyImgs.length; i++) {
+                            storyImgs[i].setAttribute('preload', '')
+                        }
+                    }
+                }
+
                 // 设置当前页面为current状态
                 this.setViewStatus(true, CURRENT, currentPage);
             } else {
@@ -563,7 +582,7 @@ define(function (require) {
             if (this.hasStatus(ACTIVE, currentPage)) {
                 this.setViewStatus(false, ACTIVE, currentPage);
             }
-
+            
         }
     };
 

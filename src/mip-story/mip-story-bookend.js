@@ -67,7 +67,7 @@ define(function (require) {
             "fromUrl": ""
         }
     ]
-    
+
     MIPStoryBackEnd.prototype.build = function () {
         var data = this.storyConfig;
         var replayStats = encodeURIComponent(
@@ -112,8 +112,9 @@ define(function (require) {
                 innerTpl += ''
                     +    '<a ondragstart="return false;" ondrop="return false;" href="' + item.url
                     +       '" class="recommend-item" data-stats-baidu-obj="' + recommendStats + '">'
-                    +       '<div class="mip-backend-preview" style="background-image:url('
-                    +       (item.cover || '') + ');"></div>'
+                    +       '<div class="mip-backend-preview"> <mip-story-img src='
+                    +           (item.cover || " ")
+                    +       '></mip-story-img></div>'
                     +       '<div class="recommend-detail">'
                     +           '<span>' + (item.title || '') + '</span>'
                     +           '<span class="item-from" data-src="' + item.fromUrl + '">' + (item.from || '') + '</span>'

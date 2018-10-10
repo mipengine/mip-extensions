@@ -45,6 +45,9 @@ define(function (require) {
     // 熊掌号api
     var MSITEAPI = 'https://msite.baidu.com/home/bar?office_id=';
     
+    // 预加载页数
+    var PRELOAD_PAGES = 2;
+
     return {
         MIP_I_STORY_STANDALONE: MIP_I_STORY_STANDALONE,
         PAGE_ROLE: PAGE_ROLE,
@@ -53,6 +56,7 @@ define(function (require) {
         SWITCHPAGE_THRESHOLD: SWITCHPAGE_THRESHOLD,
         DIRECTIONMAP: DIRECTIONMAP,
         PAGE_STATE: PAGE_STATE,
-        MSITEAPI: MSITEAPI
+        MSITEAPI: MSITEAPI,
+        PRELOAD_PAGES: PRELOAD_PAGES
     }
 });

@@ -8,14 +8,13 @@
 
 - 每个小故事可以包含多个段落（view），每个段落充满屏幕。用户操作翻页后，会看到下一个段落。
 - 每个段落又可以包含多个层（layer），单个层可以设置布局模式，如多行布局，左右布局，图片拉伸布局等。
-- 元素（element）是资源素材，如背景图，主标题，详细描述等。在 `<h1>`、`<p>`、`<mip-img>` 等标签中声明。
+- 元素（element）是资源素材，如背景图，主标题，详细描述等。在 `<h1>`、`<p>`、`<mip-story-img>` 等标签中声明。
 
 | 标题   | 内容                                       |
 | ---- | ---------------------------------------- |
 | 类型   | 通用                                       |
 | 支持布局 | responsive,fixed-height,fill,container,fixed |
-
-| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
+| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js
 ## 示例
 ```html
 <style mip-custom>
@@ -66,7 +65,7 @@
     </script>
     <mip-story-view auto-advancement-after="3s">
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+            <mip-story-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-story-img>
         </mip-story-layer>
         <mip-story-layer>
             <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
@@ -74,7 +73,7 @@
     </mip-story-view>
     <mip-story-view>
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+            <mip-story-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-story-img>
         </mip-story-layer>
         <mip-story-layer>
             <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>

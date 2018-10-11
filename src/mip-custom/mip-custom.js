@@ -86,8 +86,8 @@ define(function () {
      *
      */
     function getCurrentWindow () {
-        let pageId = window.MIP.viewer.page.currentPageId
-        let pageInfo = window.MIP.viewer.page.getPageById(pageId)
+        var pageId = window.MIP.viewer.page.currentPageId;
+        var pageInfo = window.MIP.viewer.page.getPageById(pageId);
         return pageInfo.targetWindow
     }
 
@@ -287,6 +287,8 @@ define(function () {
         var performance = {};
         performance.fetchStart = new Date() - 0;
         var paramUrl = url
+
+        // 小说的特殊参数——novelData和fromSearch
         if (me.novelData) {
             var novelData = encodeURIComponent(JSON.stringify(me.novelData))
             paramUrl = paramUrl + '&novelData=' + novelData

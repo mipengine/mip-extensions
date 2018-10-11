@@ -65,21 +65,31 @@ define(function () {
         dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
-            // 监听小说shell播放的广告请求的事件
-            window.addEventListener('showAdvertising', handler);
-            // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
-            var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
-            window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
-                name: 'customReady',
-                data: {
-                    customPageId: window.MIP.viewer.page.currentPageId
-                }
-            })
+            var currentWindow = getCurrentWindow();
+            var isRootPage = currentWindow.MIP.viewer.page.isRootPage;
+            var rootWindow = isRootPage ? window : window.parent;
+            if (rootWindow.MIP.mipshellXiaoshuo != null) {
+                // 监听小说shell播放的广告请求的事件
+                window.addEventListener('showAdvertising', handler);
+            }
+            else {
+                this.initElement(dom)
+            }
         }
         else {
             this.initElement(dom)
         }
     };
+
+    /**
+     * 在MIP2的小说中会涉及不到不同的window，需要获取当前页的window
+     *
+     */
+    function getCurrentWindow () {
+        let pageId = window.MIP.viewer.page.currentPageId
+        let pageInfo = window.MIP.viewer.page.getPageById(pageId)
+        return pageInfo.targetWindow
+    }
 
     /**
      * 发出请求+渲染页面

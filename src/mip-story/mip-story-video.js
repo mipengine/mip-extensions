@@ -132,9 +132,14 @@ define(function (require) {
         }
     };
 
+    customElement.prototype.attributeChangedCallback = function () {
+        if (this.element.hasAttribute('preload')) {
+            this.initStoryVideoElement();
+        }
+    };
 
     customElement.prototype.firstInviewCallback = function () {
-        this.initStoryVideoElement();
+        // this.initStoryVideoElement();
     };
 
     function getAttributeSet(attributes) {

@@ -175,7 +175,10 @@ define(function (require) {
     MIPStory.prototype.initPreload = function () {
         var storyViewData = this.storyViews;
         for (var i = 0; i <= preloadPages; i++) {
-            storyViewData[i].setAttribute('preload','')
+            if (!storyViewData[i]) {
+                return;
+            }
+            storyViewData[i].setAttribute('preload','');
         }
     };
     

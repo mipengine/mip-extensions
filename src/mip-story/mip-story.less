@@ -37,6 +37,9 @@ mip-story {
             left: 0;
             top: 0;
         }
+        .mip-story-close {
+            display: none;
+        }
     }
 }
 
@@ -507,7 +510,7 @@ mip-story-layer[template=thirds] {
     height: 100%;
     text-align: center;
     color: #fff;
-    background: rgba(0, 0, 0, .9);
+    background: #000;
 }
 .mip-backend[active] {
     display: block!important;
@@ -529,6 +532,17 @@ mip-story-layer[template=thirds] {
             overflow-scrolling: touch;
     &::-webkit-scrollbar {
         display: none;
+    }
+    .mip-backend-background {
+        background-size: cover;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+        opacity: 0.3;
     }
 }
 
@@ -876,7 +890,7 @@ mip-story-layer[template=thirds] {
     text-align: left;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     padding-top: 2px;
-    margin: 42px 17px 0 17px;
+    margin: 30px 17px 0 17px;
 
     .readmore {
         font-size: 18px;
@@ -990,6 +1004,32 @@ mip-story-layer[template=thirds] {
         }
         a {
             color: #fff;
+        }
+    }
+}
+
+// 尾页字号
+@media only screen and (min-width: 320px) {
+    .recommend-detail {
+        padding-right: 30px;
+        span {
+            font-size: 14px;
+        }
+    }
+}
+@media only screen and (min-width: 375px) {
+    .recommend-detail {
+        padding-right: 32px;
+        span {
+            font-size: 16px;
+        }
+    }
+}
+@media only screen and (min-width: 414px) {
+    .recommend-detail {
+        padding-right: 34px;
+        span {
+            font-size: 18px;
         }
     }
 }

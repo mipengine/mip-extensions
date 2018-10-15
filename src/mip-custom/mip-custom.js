@@ -63,9 +63,11 @@ define(function () {
         }
         globalCustomElementInstance = this;
         dom.addPlaceholder.apply(this);
+        debugger
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
             // 监听小说shell播放的广告请求的事件
+            debugger
             window.addEventListener('showAdvertising', handler);
             // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
             var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
@@ -212,6 +214,14 @@ define(function () {
             // dom 渲染
             dom.render(element, tplData, container);
         }
+        // 广告插入页面时，增加渐显效果
+        var mipCustomContainers = document.querySelectorAll('[mip-custom-container]');
+        for (var i = mipCustomContainers.length - 1; i >= 0; i--) {
+            var mipCustomContainer = mipCustomContainers[i];
+            mipCustomContainer.classList.add('fadein');
+        }
+        // 移除广告占位符号
+        dom.removePlaceholder.apply(this);
     };
 
     /**
@@ -316,41 +326,7 @@ define(function () {
             }
 
             callback && callback(data.data, element);
-            // 广告插入页面时，增加渐显效果
-            var mipCustomContainers = document.querySelectorAll('[mip-custom-container]');
-            for (var i = mipCustomContainers.length - 1; i >= 0; i--) {
-                var mipCustomContainer = mipCustomContainers[i];
-                mipCustomContainer.classList.add('fadein');
-            }
-
-            // 性能日志：按照流量 1/500 发送日志
-            var random500 = Math.random() * 500;
-            if (random500 < 1) {
-                // 性能日志：emptyTime-广告未显示时间
-                performance.renderEnd = new Date() - 0; // 渲染结束时间戳
-                performance.emptyTime = performance.renderEnd - performance.fetchStart; // 页面空白毫秒数
-                performance.frontendRender = performance.renderEnd - performance.responseEnd;
-
-                // 前端打点时间
-                var frontendData = {
-                    duration: performance.duration,
-                    emptyTime: performance.emptyTime,
-                    frontendRender: performance.frontendRender
-                };
-                // 加入后端打点时间
-                var frontAndServerData;
-                if (data.data.responseTime) {
-                    frontAndServerData = util.fn.extend(frontendData, data.data.responseTime);
-                }
-                else {
-                    frontAndServerData = frontendData;
-                }
-                // 加入默认统计参数
-                performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
-                log.sendLog(performanceData.host, performanceData.params);
-            }
-
-            dom.removePlaceholder.apply(me);
+            me.setPerformanceLogs(performance);
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();
@@ -359,6 +335,38 @@ define(function () {
         }).catch(function (evt) {
             console.warn(evt);
         });
+    };
+
+    /**
+     * 性能日志：按照流量 1/500 发送日志
+     *
+     * @param {Object} performance 性能参数
+     */
+    customElement.prototype.setPerformanceLogs = function (performance) {
+        var random500 = Math.random() * 500;
+        if (random500 < 1) {
+            // 性能日志：emptyTime-广告未显示时间
+            performance.renderEnd = new Date() - 0; // 渲染结束时间戳
+            performance.emptyTime = performance.renderEnd - performance.fetchStart; // 页面空白毫秒数
+            performance.frontendRender = performance.renderEnd - performance.responseEnd;
+             // 前端打点时间
+            var frontendData = {
+                duration: performance.duration,
+                emptyTime: performance.emptyTime,
+                frontendRender: performance.frontendRender
+            };
+            // 加入后端打点时间
+            var frontAndServerData;
+            if (data.data.responseTime) {
+                frontAndServerData = util.fn.extend(frontendData, data.data.responseTime);
+            }
+            else {
+                frontAndServerData = frontendData;
+            }
+            // 加入默认统计参数
+            performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
+            log.sendLog(performanceData.host, performanceData.params);
+        }
     };
 
     /**

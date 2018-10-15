@@ -63,11 +63,9 @@ define(function () {
         }
         globalCustomElementInstance = this;
         dom.addPlaceholder.apply(this);
-        debugger
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
             // 监听小说shell播放的广告请求的事件
-            debugger
             window.addEventListener('showAdvertising', handler);
             // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
             var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
@@ -214,6 +212,7 @@ define(function () {
             // dom 渲染
             dom.render(element, tplData, container);
         }
+
         // 广告插入页面时，增加渐显效果
         var mipCustomContainers = document.querySelectorAll('[mip-custom-container]');
         for (var i = mipCustomContainers.length - 1; i >= 0; i--) {
@@ -287,6 +286,8 @@ define(function () {
         var performance = {};
         performance.fetchStart = new Date() - 0;
         var paramUrl = url
+
+        // 小说的特殊参数——novelData和fromSearch
         if (me.novelData) {
             var novelData = encodeURIComponent(JSON.stringify(me.novelData))
             paramUrl = paramUrl + '&novelData=' + novelData
@@ -324,8 +325,9 @@ define(function () {
                 me.element.remove();
                 return;
             }
-
+            // 模板的前端渲染
             callback && callback(data.data, element);
+            // 性能日志：按照流量 1/500 发送日志
             me.setPerformanceLogs(performance);
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
@@ -349,7 +351,8 @@ define(function () {
             performance.renderEnd = new Date() - 0; // 渲染结束时间戳
             performance.emptyTime = performance.renderEnd - performance.fetchStart; // 页面空白毫秒数
             performance.frontendRender = performance.renderEnd - performance.responseEnd;
-             // 前端打点时间
+
+            // 前端打点时间
             var frontendData = {
                 duration: performance.duration,
                 emptyTime: performance.emptyTime,

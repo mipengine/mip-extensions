@@ -23,22 +23,6 @@ define(function () {
 
     var UA = navigator.userAgent;
 
-    function handler(e) {
-        var me = globalCustomElementInstance;
-        var detailData = e && e.detail && e.detail[0] || {};
-        me.customId = detailData.customId;
-        me.novelData = detailData.novelData;
-        if (detailData.fromSearch) {
-            me.fromSearch = detailData.fromSearch;
-        }
-        // XXX:解决window实例和组件实例的诡异的问题。。。。。。
-        if (me.customId === window.MIP.viewer.page.currentPageId
-            && me.element.querySelector('.mip-custom-placeholder')) {
-            me.initElement(dom)
-            window.removeEventListener('showAdvertising', handler)
-        }
-    }
-
     /**
      * 获取是否是百度spider抓取
      */
@@ -61,18 +45,24 @@ define(function () {
         if (isBaiduSpider()) {
             return
         }
+        var me = this;
         globalCustomElementInstance = this;
         dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
+            me.noCommonFetch = true
             // 监听小说shell播放的广告请求的事件
-            window.addEventListener('showAdvertising', handler);
-            // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
-            var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
-            window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
-                name: 'customReady',
-                data: {
-                    customPageId: window.MIP.viewer.page.currentPageId
+            MIP.watch('novelData', novelData => {
+                if (
+                    JSON.stringify(novelData) !== "{}"
+                    && novelData.customId === window.MIP.viewer.page.pageId
+                    && me.element.querySelector('.mip-custom-placeholder')
+                    && me.noCommonFetch
+                ) {
+                    me.noCommonFetch = false
+                    me.customId = novelData.customId;
+                    me.novelData = novelData.novelData;
+                    me.initElement(dom)
                 }
             })
         }

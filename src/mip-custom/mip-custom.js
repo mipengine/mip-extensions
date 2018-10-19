@@ -50,24 +50,24 @@ define(function () {
         dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
-            me.noCommonFetch = true
+            me.noCommonFetch = true;
             // 监听小说shell播放的广告请求的事件
-            MIP.watch('novelData', novelData => {
+            MIP.watch('novelData', function (novelData) {
                 if (
                     JSON.stringify(novelData) !== "{}"
                     && novelData.customId === window.MIP.viewer.page.pageId
                     && me.element.querySelector('.mip-custom-placeholder')
                     && me.noCommonFetch
                 ) {
-                    me.noCommonFetch = false
+                    me.noCommonFetch = false;
                     me.customId = novelData.customId;
                     me.novelData = novelData.novelData;
-                    me.initElement(dom)
+                    me.initElement(dom);
                 }
-            })
+            });
         }
         else {
-            this.initElement(dom)
+            this.initElement(dom);
         }
     };
 

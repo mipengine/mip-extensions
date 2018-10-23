@@ -61,6 +61,25 @@ define(function (require) {
         this.nextEle = storyViews[this.nextIndex].customElement;
     }
 
+    /**
+     * 找到指定为某标签的父元素
+     *
+     * @param {Dom} el 
+     * @param {String} tagName 
+     * @returns {Dom}
+     */
+    function findParent(el, tagName) {
+        tagName = tagName.toLowerCase();
+
+        while (el && el.parentNode) {
+            el = el.parentNode;
+            if (el.tagName && el.tagName.toLowerCase() === tagName) {
+                return el;
+            }
+        }
+        return null;
+    }
+
     MIPStoryService.prototype.build = function () {
         // 初始化滑动组件
         var self = this;
@@ -245,19 +264,21 @@ define(function (require) {
 
         // 推荐
         if (dm.contains(recommend, e.target)) {
-            var ele = storyEle.querySelector('.item-from');
-            var src = e.target.getAttribute('data-src');
-            if (e.target.nodeName.toLocaleLowerCase() === 'a' && ele != e.target) {
-                var href = e.target.getAttribute('href');
-                e.preventDefault();
+            var target = e.target;
+            var eleParent = findParent(target, 'a');
+            e.preventDefault();
+            // 推荐链接
+            if (target.nodeName.toLocaleLowerCase() !== 'span') {
+                var href = eleParent.getAttribute('href');
                 window.top.location.href = href;
                 return;
             }
-            if (ele === e.target && src) {
-                e.preventDefault();
-                window.top.location.href = src;
+            // 来源链接
+            var src = target.getAttribute('data-src');
+            if (!src) {
+                return;
             }
-            return;
+            window.top.location.href = src;
         }
 
         // 返回上一页

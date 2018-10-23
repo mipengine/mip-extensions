@@ -58,8 +58,9 @@ var para = {"type":"click","data":["track", 'click_button',{button_name:'导航'
 ## 实际案例方法
 
 ```html
-
+// 这个代码必须放在首屏，不然不会触发
 <mip-stats-sa setconfig="%7B%22sdk_url%22%3A%22http%3A%2F%2Fstatic.sensorsdata.cn%2Fsdk%2F1.10.1%2Fsensorsdata.min.js%22%2C%22heatmap_url%22%3A%22http%3A%2F%2Fstatic.sensorsdata.cn%2Fsdk%2F1.10.1%2Fheatmap.min.js%22%2C%22name%22%3A%22sa%22%2C%22server_url%22%3A%22http%3A%2F%2Ftest-syg.cloud.sensorsdata.cn%3A8006%2Fsa%3Ftoken%3D27f1e21b78daf376%22%7D"></mip-stats-sa>
+
 
 <div data-stats-sa-obj="%7B%22type%22%3A%22load%22%2C%22data%22%3A%5B%22quick%22%2C%22autoTrack%22%5D%7D"></div>
 

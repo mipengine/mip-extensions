@@ -994,9 +994,11 @@ mip-story-layer[template=thirds] {
         flex-direction: column;
     -ms-flex-pack: center;
         justify-content: center;
-    span {
+    span, p {
         font-size: 18px;
         line-height: 1.5;
+        color: #fff;
+        padding: 0;
         &:nth-child(2) {
             font-size: 10px;
             opacity: .6;
@@ -1012,7 +1014,7 @@ mip-story-layer[template=thirds] {
 @media only screen and (min-width: 320px) {
     .recommend-detail {
         padding-right: 30px;
-        span {
+        p {
             font-size: 14px;
         }
     }
@@ -1020,7 +1022,7 @@ mip-story-layer[template=thirds] {
 @media only screen and (min-width: 375px) {
     .recommend-detail {
         padding-right: 32px;
-        span {
+        p {
             font-size: 16px;
         }
     }
@@ -1028,7 +1030,7 @@ mip-story-layer[template=thirds] {
 @media only screen and (min-width: 414px) {
     .recommend-detail {
         padding-right: 34px;
-        span {
+        p {
             font-size: 18px;
         }
     }

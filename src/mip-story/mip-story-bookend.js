@@ -118,7 +118,7 @@ define(function (require) {
                     +           (item.cover || " ")
                     +       '></mip-story-img></div>'
                     +       '<div class="recommend-detail">'
-                    +           '<span>' + (item.title || '') + '</span>'
+                    +           '<p>' + (item.title || '') + '</p>'
                     +           '<span class="item-from" data-src="' + item.fromUrl + '">' + (item.from || '') + '</span>'
                     +        '</div>'
                     +    '</a>';
@@ -159,7 +159,7 @@ define(function (require) {
                 +               '</div>'
                 +           '</div>'
                 +            '<div class="recommend-detail">'
-                +             '<span class="mip-backend-description">' + share.title + '</span>'
+                +             '<p class="mip-backend-description">' + share.title + '</p>'
                 +             '<span class="mip-backend-info" data-stats-baidu-obj="' + infoStats + '">'
                 +                 '<a href="' + share.fromUrl + '">' + share.from + '</a>'
                 +             '</span>'

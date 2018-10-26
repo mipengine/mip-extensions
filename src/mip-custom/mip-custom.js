@@ -34,6 +34,8 @@ define(function () {
         // XXX:解决window实例和组件实例的诡异的问题。。。。。。
         if (me.customId === window.MIP.viewer.page.currentPageId
             && me.element.querySelector('.mip-custom-placeholder')) {
+            //  common 请求成功
+                window.MIP.setedCommenFetch = true
             me.initElement(dom)
             window.removeEventListener('showAdvertising', handler)
         }

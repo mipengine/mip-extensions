@@ -35,7 +35,7 @@ define(function () {
         if (me.customId === window.MIP.viewer.page.currentPageId
             && me.element.querySelector('.mip-custom-placeholder')) {
             //  common 请求成功
-                window.MIP.setedCommenFetch = true
+            window.MIP.setedCommenFetch = true
             me.initElement(dom)
             window.removeEventListener('showAdvertising', handler)
         }

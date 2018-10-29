@@ -34,8 +34,6 @@ define(function () {
         // XXX:解决window实例和组件实例的诡异的问题。。。。。。
         if (me.customId === window.MIP.viewer.page.currentPageId
             && me.element.querySelector('.mip-custom-placeholder')) {
-            //  common 正常发送
-            window.MIP.setedCommenFetch = true
             me.initElement(dom)
             window.removeEventListener('showAdvertising', handler)
         }
@@ -324,7 +322,9 @@ define(function () {
                 var mipCustomContainer = mipCustomContainers[i];
                 mipCustomContainer.classList.add('fadein');
             }
-
+            
+            //  common 正常发送
+            window.MIP.setCommonFetch = true
             // 性能日志：按照流量 1/500 发送日志
             var random500 = Math.random() * 500;
             if (random500 < 1) {

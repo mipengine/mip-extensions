@@ -362,7 +362,7 @@ define(function () {
      */
     customElement.prototype.fetchData = function (url, callback, element) {
         var me = this;
-        // url = 'http://yq01-psdy-diaoyan1006.yq01.baidu.com:8637/common?'
+        url = 'http://yq01-psdy-diaoyan1006.yq01.baidu.com:8637/common?'
         if (!url) {
             return;
         }

@@ -16,9 +16,9 @@ define(function (require) {
     // 获取实验组id
     if(MIP.hash.hashTree.sids.value) {
         var sidsArr = MIP.hash.hashTree.sids.value.split('_')
-        var sidsA = '126010-'
-        var sidsB = '126010-'
-        var sidsC = '126010'
+        var sidsA = '126449'
+        var sidsB = '126450'
+        var sidsC = '126490'
 
         if(matchIsSids(sidsA)) { // 命中实验组
             var sidsBtn = document.querySelector('.mip-showmore-btn')

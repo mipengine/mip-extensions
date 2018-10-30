@@ -13,6 +13,50 @@ define(function (require) {
 
     var ShowmoreInstance = {};
 
+    // 获取实验组id
+    if(MIP.hash.hashTree.sids.value) {
+        var sidsArr = MIP.hash.hashTree.sids.value.split('_')
+        var sidsA = '126010-'
+        var sidsB = '126010-'
+        var sidsC = '126010'
+
+        if(matchIsSids(sidsA)) { // 命中实验组
+            var sidsBtn = document.querySelector('.mip-showmore-btn')
+            sidsBtn.innerHTML = '展开全部'
+            sidsBtn.classList.add('mip-showmore-btn-sidsA')
+            var iconChildElement = document.createElement('span')
+            iconChildElement.classList.add('down-icon')
+            sidsBtn.appendChild(iconChildElement)
+        }
+        if(matchIsSids(sidsB)) { // 命中实验组
+            var sidsBtn = document.querySelector('.mip-showmore-btn')
+            sidsBtn.innerHTML = '展开全部'
+            sidsBtn.classList.add('mip-showmore-btn-sidsB')
+            document.querySelector('.wrap-showmore-btn').style.cssText = 'width:'+ document.documentElement.clientWidth +'px;display: inline-block; cursor: pointer;background: #f8f8f8!important'
+            document.querySelector('mip-showmore').classList.add('sidsB')
+            var iconChildElement = document.createElement('span')
+            iconChildElement.classList.add('down-icon')
+            sidsBtn.appendChild(iconChildElement)
+        }
+    }
+
+    /**
+     * 匹配实验组数据是否命中
+     * 
+     * @param {string} sids 
+     * @returns {boolean} 是否匹配到实验组id
+     */
+    function matchIsSids(sids) {
+        var oSwitch = false
+        for(var sidNum=0,sidsLen=sidsArr.length; sidNum<sidsLen; sidNum++) {
+            if(sidsArr[sidNum] === sids) {
+                oSwitch = true
+                return oSwitch
+            }
+        }
+        return oSwitch
+    }
+
     // 匹配节点是否在按钮中
     function matchOriginTarget (id, node) {
         while (node.parentNode) {
@@ -325,7 +369,11 @@ define(function (require) {
                     clickBtn.classList.remove(closeclass);
                 }
                 else {
-                    clickBtn.innerText = clickBtn.dataset.opentext;
+                    if(MIP.hash.hashTree.sids.value && (matchIsSids(sidsA) || matchIsSids(sidsB))) {
+                        clickBtn.innerHTML = clickBtn.dataset.opentext + '<span class="down-icon"></span>';
+                    } else {
+                        clickBtn.innerHTML = clickBtn.dataset.opentext;
+                    }
                 }
             }
             // v1.0.0 显示“展开”按钮
@@ -343,8 +391,8 @@ define(function (require) {
                 }
                 else {
                     var opentext = clickBtn.innerText;
-                    clickBtn.innerText = clickBtn.dataset.closetext || '收起';
                     clickBtn.dataset.opentext = opentext;
+                    clickBtn.innerHTML = clickBtn.dataset.closetext || '收起';
                 }
             }
             // v1.0.0 显示“收起”按钮
@@ -573,6 +621,9 @@ define(function (require) {
     customElement.prototype.build = function () {
         var me = this;
         var ele = this.element;
+        if(MIP.hash.hashTree.sids.value && matchIsSids(sidsC)) { // 命中实验组
+            ele.setAttribute('maxheight', '99999')
+        }
         var showmoreObj = new Showmore(ele);
         showmoreObj.analysisDep();
 
@@ -581,7 +632,6 @@ define(function (require) {
         }
 
         showmoreObj._bindClick();
-
         this.addEventAction('toggle', function (event) {
             showmoreObj.toggle(event);
         });
@@ -589,6 +639,10 @@ define(function (require) {
         window.addEventListener('orientationchange', function() {
             showmoreObj.init();
         }, false);
+        if(MIP.hash.hashTree.sids.value && matchIsSids(sidsC)) { // 命中实验组
+            var sidsBtn = document.querySelector('.wrap-showmore-btn')
+            sidsBtn.style.cssText = 'display: none!important'
+        }
     };
 
     // when remove node, clear timeout

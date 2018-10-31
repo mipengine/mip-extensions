@@ -367,7 +367,7 @@ define(function (require) {
                     clickBtn.classList.remove(closeclass);
                 }
                 else {
-                    if(MIP.hash.hashTree.sids && (matchIsSids(sidsA) || matchIsSids(sidsB))) {
+                    if (MIP.hash.hashTree.sids && (matchIsSids(sidsA) || matchIsSids(sidsB))) {
                         clickBtn.innerHTML = clickBtn.dataset.opentext + '<span class="down-icon"></span>';
                     } else {
                         clickBtn.innerHTML = clickBtn.dataset.opentext;

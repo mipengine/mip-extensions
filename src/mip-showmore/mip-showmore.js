@@ -14,7 +14,7 @@ define(function (require) {
     var ShowmoreInstance = {};
 
     // 获取实验组id
-    if(MIP.hash.hashTree.sids.value) {
+    if(MIP.hash.hashTree.sids) {
         var sidsArr = MIP.hash.hashTree.sids.value.split('_')
         var sidsA = '126449'
         var sidsB = '126450'
@@ -39,22 +39,20 @@ define(function (require) {
             sidsBtn.appendChild(iconChildElement)
         }
     }
-
+    
     /**
-     * 匹配实验组数据是否命中
+     * 匹配实验组sids是否命中
      * 
      * @param {string} sids 
      * @returns {boolean} 是否匹配到实验组id
      */
     function matchIsSids(sids) {
-        var oSwitch = false
         for(var sidNum=0,sidsLen=sidsArr.length; sidNum<sidsLen; sidNum++) {
             if(sidsArr[sidNum] === sids) {
-                oSwitch = true
-                return oSwitch
+                return true
             }
         }
-        return oSwitch
+        return false
     }
 
     // 匹配节点是否在按钮中
@@ -369,7 +367,7 @@ define(function (require) {
                     clickBtn.classList.remove(closeclass);
                 }
                 else {
-                    if(MIP.hash.hashTree.sids.value && (matchIsSids(sidsA) || matchIsSids(sidsB))) {
+                    if(MIP.hash.hashTree.sids && (matchIsSids(sidsA) || matchIsSids(sidsB))) {
                         clickBtn.innerHTML = clickBtn.dataset.opentext + '<span class="down-icon"></span>';
                     } else {
                         clickBtn.innerHTML = clickBtn.dataset.opentext;
@@ -621,7 +619,7 @@ define(function (require) {
     customElement.prototype.build = function () {
         var me = this;
         var ele = this.element;
-        if(MIP.hash.hashTree.sids.value && matchIsSids(sidsC)) { // 命中实验组
+        if(MIP.hash.hashTree.sids && matchIsSids(sidsC)) { // 命中实验组
             ele.setAttribute('maxheight', '99999')
         }
         var showmoreObj = new Showmore(ele);
@@ -639,7 +637,7 @@ define(function (require) {
         window.addEventListener('orientationchange', function() {
             showmoreObj.init();
         }, false);
-        if(MIP.hash.hashTree.sids.value && matchIsSids(sidsC)) { // 命中实验组
+        if(MIP.hash.hashTree.sids && matchIsSids(sidsC)) { // 命中实验组
             var sidsBtn = document.querySelector('.wrap-showmore-btn')
             sidsBtn.style.cssText = 'display: none!important'
         }

@@ -35,8 +35,9 @@ define(function () {
         if (me.customId === window.MIP.viewer.page.currentPageId
             && me.element.querySelector('.mip-custom-placeholder')) {
             // 广告合并的策略
-            var novelInstance = window.MIP.viewer.page.isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance
-            var adsCache = novelInstance.adsCache || {}
+            var novelInstance = window.MIP.viewer.page.isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance;
+            novelInstance = novelInstance || {};
+            var adsCache = novelInstance.adsCache || {};
             if (!adsCache.isNeedAds && adsCache.directRender && adsCache.adStategyCacheData) {
                 me.render(adsCache.adStategyCacheData, me.element)
             }
@@ -299,29 +300,38 @@ define(function () {
     }
 
     /**
-     * 获取当前定制化页面的window——小说垂类
+     * 渲染小说shell的计算的cache的广告
      *
      * @param {Object} data fetch返回的数据
      * @param {handle} callback 回调
      * @param {HTMLElement} element 数据返回后需要渲染的element
-     * @return {window} 当前iframe的window
      */
-    customElement.prototype.novelShellCacheAdData = function (data, callback, element) {
+    customElement.prototype.renderNovelCacheAdData = function (data, callback, element) {
         var currentWindow = getCurrentWindow();
         var isRootPage = currentWindow.MIP.viewer.page.isRootPage;
-        var me = this;
-        window.addEventListener('showAdStategyCache', function (e) {
-            var adData = e && e.detail && e.detail[0] || {};
-            // 模板的前端渲染
-            callback && callback(adData, element);
-        });
-        window.MIP.viewer.page.emitCustomEvent(isRootPage ? window : window.parent, false, {
-            name: 'adDataReady',
-            data: {
-                pageId: window.MIP.viewer.page.currentPageId,
-                adData: data.data
-            }
-        })
+        var novelInstance = isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance
+        var adsCache = novelInstance.adsCache || {};
+        if (JSON.stringify(adsCache) === "{}") {
+            // 当请求走的是小流量的广告合并时，需要走新的逻辑，用schema字段来区分，需要修改data.data
+            var adTime = +new Date()
+            data.data.adTime = adTime
+            window.addEventListener('showAdStategyCache', function (e) {
+                var adData = e && e.detail && e.detail[0] || {};
+                // 模板的前端渲染
+                callback && callback(adData, element);
+            });
+            window.MIP.viewer.page.emitCustomEvent(isRootPage ? window : window.parent, false, {
+                name: 'adDataReady',
+                data: {
+                    pageId: window.MIP.viewer.page.currentPageId,
+                    adData: data.data
+                }
+            })
+        }
+        else if (!adsCache.directRender) {
+            // 当渲染cache广告的时候缺少tpl的时候，依赖于请求返回的tpl
+            this.renderCacheDataByTpl(data, callback, element)
+        }
     }
 
     /**
@@ -342,12 +352,12 @@ define(function () {
         if (novelAds) {
             novelAds.map(function (value) {
                 value.map(function (ad) {
-                    if (ad.tpl == null && data.data.templates[ad.tplName]) {
-                        ad.tpl = data.data.templates[ad.tplName]
+                    if (ad.tpl == null && data.data.template[ad.tplName]) {
+                        ad.tpl = data.data.template[ad.tplName]
                     }
                 })
             })
-            util.fn.extend(adsCache.fetchedData.adData.templates, data.data.templates);
+            util.fn.extend(adsCache.fetchedData.adData.template, data.data.template);
         }
         // 模板的前端渲染
         callback && callback(adsCache.adStategyCacheData, element);
@@ -362,7 +372,8 @@ define(function () {
      */
     customElement.prototype.fetchData = function (url, callback, element) {
         var me = this;
-        url = 'http://yq01-psdy-diaoyan1006.yq01.baidu.com:8637/common?'
+        // url = 'http://yq01-psdy-diaoyan1006.yq01.baidu.com:8637/common?'
+        // url = 'http://localhost:8080/mock/novelMock?'
         if (!url) {
             return;
         }
@@ -410,27 +421,13 @@ define(function () {
                 me.element.remove();
                 return;
             }
-            var renderData = data.data
-            var novelInstance = window.MIP.viewer.page.isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance
-            var adsCache = novelInstance.adsCache || {};
+            // 当命中小流量
             if (window.MIP.version && +window.MIP.version === 2 && data.data.schema) {
-                if (JSON.stringify(adsCache) === "{}") {
-                    // 当请求走的是小流量的广告合并时，需要走新的逻辑，用schema字段来区分，需要修改data.data
-                    var adTime = +new Date()
-                    data.data.adTime = adTime
-                    me.novelShellCacheAdData(data, callback, element);
-                }
-                else if (adsCache.directRender || adsCache.noAdsRender) {
-                    // 只是请求，不渲染广告
-                }
-                else if (!adsCache.directRender) {
-                    // 当渲染cache广告的时候缺少tpl的时候，依赖于请求返回的tpl
-                    me.renderCacheDataByTpl(data, callback, element)
-                }
+                me.renderNovelCacheAdData(data, callback, element);
             }
             else {
                 // 模板的前端渲染
-                callback && callback(renderData, element);
+                callback && callback(data.data, element);
             }
             // 性能日志：按照流量 1/500 发送日志
             me.setPerformanceLogs(performance);

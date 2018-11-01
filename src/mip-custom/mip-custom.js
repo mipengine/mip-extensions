@@ -220,7 +220,6 @@ define(function () {
         if (data.template) {
             template = data.template;
         }
-
         for (var i = 0; i < template.length; i++) {
             var tplData = template[i];
             var container = document.createElement('div');
@@ -311,6 +310,7 @@ define(function () {
         var isRootPage = currentWindow.MIP.viewer.page.isRootPage;
         var novelInstance = isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance
         var adsCache = novelInstance.adsCache || {};
+        var rendered = false
         if (JSON.stringify(adsCache) === "{}") {
             // 当请求走的是小流量的广告合并时，需要走新的逻辑，用schema字段来区分，需要修改data.data
             var adTime = +new Date()
@@ -318,6 +318,9 @@ define(function () {
             window.addEventListener('showAdStategyCache', function (e) {
                 var adData = e && e.detail && e.detail[0] || {};
                 // 模板的前端渲染
+                console.log('custom: ')
+                console.log(adData)
+                rendered = true
                 callback && callback(adData, element);
             });
             window.MIP.viewer.page.emitCustomEvent(isRootPage ? window : window.parent, false, {
@@ -328,7 +331,7 @@ define(function () {
                 }
             })
         }
-        else if (!adsCache.directRender) {
+        if (!rendered && adsCache.directRender != null && adsCache.directRender == false) {
             // 当渲染cache广告的时候缺少tpl的时候，依赖于请求返回的tpl
             this.renderCacheDataByTpl(data, callback, element)
         }

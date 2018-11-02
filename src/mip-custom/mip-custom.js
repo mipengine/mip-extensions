@@ -77,7 +77,7 @@ define(function () {
         dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
-            window.addEventListener('controlCustomFetch', function (e) {
+            window.addEventListener('ignoreSendLogFetch', function (e) {
                 var detailData = e && e.detail && e.detail[0] || {};
                 me.customId = detailData.customId;
                 me.novelData = detailData.novelData;
@@ -94,6 +94,17 @@ define(function () {
                     customPageId: window.MIP.viewer.page.currentPageId
                 }
             })
+            // 定制化再加确认事件事件防止
+            if (window.MIP.viewer.page.isRootPage) {
+                window.addEventListener('customReadyConfirm', function () {
+                    window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
+                        name: 'customReady',
+                        data: {
+                            customPageId: window.MIP.viewer.page.currentPageId
+                        }
+                    })
+                })
+            }
         }
         else {
             this.initElement(dom)

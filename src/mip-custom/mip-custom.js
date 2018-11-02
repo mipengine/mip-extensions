@@ -329,8 +329,7 @@ define(function () {
             window.addEventListener('showAdStategyCache', function (e) {
                 var adData = e && e.detail && e.detail[0] || {};
                 // 模板的前端渲染
-                console.log('custom: ')
-                console.log(adData)
+                console
                 rendered = true
                 callback && callback(adData, element);
             });

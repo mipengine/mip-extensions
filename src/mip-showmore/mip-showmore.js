@@ -27,12 +27,15 @@ define(function (require) {
             var iconChildElement = document.createElement('span')
             iconChildElement.classList.add('down-icon')
             sidsBtn.appendChild(iconChildElement)
+            if (!document.querySelector('mip-showmore').getAttribute('bottomshadow')) {
+                document.querySelector('mip-showmore').setAttribute('bottomshadow', 1)
+            }
         }
         if (matchIsSids(sidsB)) { // 命中实验组
             var sidsBtn = document.querySelector('.mip-showmore-btn')
             sidsBtn.innerHTML = '展开全部'
             sidsBtn.classList.add('mip-showmore-btn-sidsB')
-            document.querySelector('.wrap-showmore-btn').style.cssText = 'width:' + document.documentElement.clientWidth + 'px;display: inline-block; cursor: pointer;background: #f8f8f8!important'
+            document.querySelector('.mip-showmore-btn').style.cssText = 'width:' + document.documentElement.clientWidth + 'px;display: inline-block; cursor: pointer;background: #f8f8f8!important'
             document.querySelector('mip-showmore').classList.add('sidsB')
             var iconChildElement = document.createElement('span')
             iconChildElement.classList.add('down-icon')

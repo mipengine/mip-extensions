@@ -64,6 +64,41 @@ define(function () {
     };
 
     /**
+     * 添加小说相关的事件监听
+     */
+    customElement.prototype.addNovelListener = function () {
+        var me = this;
+        window.addEventListener('ignoreSendLogFetch', function (e) {
+            var detailData = e && e.detail && e.detail[0] || {};
+            me.customId = detailData.customId;
+            me.novelData = detailData.novelData;
+            me.initElement(dom)
+        });
+        console.log('daili')
+        // 监听小说shell播放的广告请求的事件
+        window.addEventListener('showAdvertising', handler);
+        // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
+        var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
+        window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
+            name: 'customReady',
+            data: {
+                customPageId: window.MIP.viewer.page.currentPageId
+            }
+        })
+        // 定制化再加确认事件事件防止
+        if (window.MIP.viewer.page.isRootPage) {
+            window.addEventListener('customReadyConfirm', function () {
+                window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
+                    name: 'customReady',
+                    data: {
+                        customPageId: window.MIP.viewer.page.currentPageId
+                    }
+                })
+            })
+        }
+    };
+
+    /**
      * build钩子，触发渲染
      *
      */
@@ -77,34 +112,7 @@ define(function () {
         dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
         if (window.MIP.version && +window.MIP.version === 2) {
-            window.addEventListener('ignoreSendLogFetch', function (e) {
-                var detailData = e && e.detail && e.detail[0] || {};
-                me.customId = detailData.customId;
-                me.novelData = detailData.novelData;
-                me.initElement(dom)
-            });
-            console.log('daili')
-            // 监听小说shell播放的广告请求的事件
-            window.addEventListener('showAdvertising', handler);
-            // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
-            var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
-            window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
-                name: 'customReady',
-                data: {
-                    customPageId: window.MIP.viewer.page.currentPageId
-                }
-            })
-            // 定制化再加确认事件事件防止
-            if (window.MIP.viewer.page.isRootPage) {
-                window.addEventListener('customReadyConfirm', function () {
-                    window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
-                        name: 'customReady',
-                        data: {
-                            customPageId: window.MIP.viewer.page.currentPageId
-                        }
-                    })
-                })
-            }
+            this.addNovelListener();
         }
         else {
             this.initElement(dom)
@@ -329,7 +337,8 @@ define(function () {
             window.addEventListener('showAdStategyCache', function (e) {
                 var adData = e && e.detail && e.detail[0] || {};
                 // 模板的前端渲染
-                console
+                console.log('广告组件已经接到广告，渲染的数据为: ')
+                console.log(adData)
                 rendered = true
                 callback && callback(adData, element);
             });

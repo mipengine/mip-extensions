@@ -35,12 +35,14 @@ define(function (require) {
     }
 
     customElement.prototype.attributeChangedCallback = function () {
-        if (this.element.hasAttribute('preload')) {
+        if (this.element.hasAttribute('preload') && !this.loaded) {
             this.initStoryImg();
+            this.loaded = true;
         }
     };
 
     customElement.prototype.firstInviewCallback = function () {
+        this.loaded = false;
     };
 
     /* eslint-disable */

@@ -133,12 +133,14 @@ define(function (require) {
     };
 
     customElement.prototype.attributeChangedCallback = function () {
-        if (this.element.hasAttribute('preload')) {
+        if (this.element.hasAttribute('preload') && !this.loaded) {
             this.initStoryVideoElement();
+            this.loaded = true;
         }
     };
 
     customElement.prototype.firstInviewCallback = function () {
+        this.loaded = false;
         // this.initStoryVideoElement();
     };
 

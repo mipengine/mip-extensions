@@ -28,7 +28,7 @@ define(function (require) {
      */
     var params = {
         logid: '',
-        query: '元尊111',
+        query: '',
         title: '',
         originalUrl: getSubString(location.pathname, regexs.regHttps)
             || getSubString(location.pathname, regexs.regHttp)

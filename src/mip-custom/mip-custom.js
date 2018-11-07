@@ -74,28 +74,25 @@ define(function () {
             me.novelData = detailData.novelData;
             me.initElement(dom)
         });
-        console.log('daili')
         // 监听小说shell播放的广告请求的事件
         window.addEventListener('showAdvertising', handler);
         // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
         var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
+        // 定制化再加确认事件事件防止
+        window.addEventListener('customReadyConfirm', function () {
+            window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
+                name: 'customReady',
+                data: {
+                    customPageId: window.MIP.viewer.page.currentPageId
+                }
+            })
+        })
         window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
             name: 'customReady',
             data: {
                 customPageId: window.MIP.viewer.page.currentPageId
             }
         })
-        // 定制化再加确认事件事件防止
-        if (window.MIP.viewer.page.isRootPage) {
-            window.addEventListener('customReadyConfirm', function () {
-                window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
-                    name: 'customReady',
-                    data: {
-                        customPageId: window.MIP.viewer.page.currentPageId
-                    }
-                })
-            })
-        }
     };
 
     /**
@@ -337,8 +334,6 @@ define(function () {
             window.addEventListener('showAdStategyCache', function (e) {
                 var adData = e && e.detail && e.detail[0] || {};
                 // 模板的前端渲染
-                console.log('广告组件已经接到广告，渲染的数据为: ')
-                console.log(adData)
                 rendered = true
                 callback && callback(adData, element);
             });
@@ -353,6 +348,9 @@ define(function () {
         if (!rendered && adsCache.directRender != null && adsCache.directRender == false) {
             // 当渲染cache广告的时候缺少tpl的时候，依赖于请求返回的tpl
             this.renderCacheDataByTpl(data, callback, element)
+        }
+        if (!rendered && adsCache.noAdsRender != null && adsCache.noAdsRender) {
+            this.renderCacheDataByTpl({data: {data: {}}}, callback, element)
         }
     }
 
@@ -395,7 +393,7 @@ define(function () {
     customElement.prototype.fetchData = function (url, callback, element) {
         var me = this;
         // url = 'http://yq01-psdy-diaoyan1006.yq01.baidu.com:8637/common?'
-        // url = 'http://localhost:8080/mock/novelMock?'
+        url = 'http://localhost:8080/mock/novelMock?'
         if (!url) {
             return;
         }

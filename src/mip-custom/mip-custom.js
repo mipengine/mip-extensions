@@ -34,7 +34,7 @@ define(function () {
         // XXX:解决window实例和组件实例的诡异的问题。。。。。。
         if (me.customId === window.MIP.viewer.page.currentPageId
             && me.element.querySelector('.mip-custom-placeholder')) {
-            //  common 正常发送
+            //   common 正常发送
             window.MIP.setCommonFetch = true
             me.initElement(dom)
             window.removeEventListener('showAdvertising', handler)
@@ -113,6 +113,7 @@ define(function () {
         me.sourceType = me.element.getAttribute('source-type') || '';
         // 判断是否在mip-shell中，决定请求传递参数
         me.commonUrl = url.get(me.element);
+
         // 监听代理 a 标签点击事件
         dom.proxyLink(me.element);
 
@@ -323,7 +324,7 @@ define(function () {
                 var mipCustomContainer = mipCustomContainers[i];
                 mipCustomContainer.classList.add('fadein');
             }
-            
+
             // 性能日志：按照流量 1/500 发送日志
             var random500 = Math.random() * 500;
             if (random500 < 1) {

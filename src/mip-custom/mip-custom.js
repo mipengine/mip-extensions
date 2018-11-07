@@ -368,14 +368,16 @@ define(function () {
         var novelInstance = isRootPage ? currentWindow.MIP.novelInstance : currentWindow.parent.MIP.novelInstance
         var adsCache = novelInstance.adsCache || {}
         var me = this;
-        var novelAds = adsCache.adStategyCacheData.template;
+        var novelAds = adsCache.adStategyCacheData && adsCache.adStategyCacheData.template || [];
         if (novelAds) {
             novelAds.map(function (value) {
-                value.map(function (ad) {
-                    if (ad.tpl == null && data.data.template[ad.tplName]) {
-                        ad.tpl = data.data.template[ad.tplName]
-                    }
-                })
+                if (Array.isArray(value)) {
+                    value.map(function (ad) {
+                        if (ad.tpl == null && data.data.template[ad.tplName]) {
+                            ad.tpl = data.data.template[ad.tplName]
+                        }
+                    })
+                }
             })
             util.fn.extend(adsCache.fetchedData.adData.template, data.data.template);
         }

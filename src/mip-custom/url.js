@@ -147,7 +147,7 @@ define(function (require) {
         return sourceIdArr.join(',');
     }
 
-        /**
+    /**
      * 判断是否在特定广告环境中
      *
      * @return {boolean} inMipShell 是否在mip-shell中

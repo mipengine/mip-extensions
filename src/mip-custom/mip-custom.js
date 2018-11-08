@@ -41,6 +41,8 @@ define(function () {
             if (!adsCache.isNeedAds && adsCache.directRender && adsCache.adStategyCacheData) {
                 me.render(adsCache.adStategyCacheData, me.element)
             }
+            //   common 正常发送
+            window.MIP.setCommonFetch = true
             me.initElement(dom)
             window.removeEventListener('showAdvertising', handler)
         }

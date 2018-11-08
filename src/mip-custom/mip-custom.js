@@ -48,6 +48,7 @@ define(function () {
             me.initElement(dom);
             window.removeEventListener('showAdvertising', handler);
         }
+        // 当广告合并后首次请求后需要告知RD该页展现的广告，额外多一次广告请求，但是本次请求忽略
         if (me.customId === window.MIP.viewer.page.currentPageId
             && adsCache.ignoreSendLog) {
             me.initElement(dom);
@@ -313,7 +314,7 @@ define(function () {
      * @return {window} 当前iframe的window
      */
     function getCurrentWindow() {
-        var pageId = window.MIP.viewer.page.currentPageId;
+        var pageId = window.MIP.viewer.page.currentPageId || '';
         var pageInfo = window.MIP.viewer.page.getPageById(pageId);
         return pageInfo.targetWindow;
     }
@@ -369,12 +370,15 @@ define(function () {
     customElement.prototype.renderCacheDataByTpl = function (data, callback, element) {
         var currentWindow = getCurrentWindow();
         var isRootPage = currentWindow.MIP.viewer.page.isRootPage;
-        var novelInstance = isRootPage ? currentWindow.MIP.novelInstance : currentWindow.parent.MIP.novelInstance;
+        var novelInstance = isRootPage
+            ? currentWindow.MIP.novelInstance
+            : currentWindow.parent.MIP.novelInstance;
         var adsCache = novelInstance.adsCache || {};
-        var me = this;
         var novelAds = adsCache.adStrategyCacheData && adsCache.adStrategyCacheData.template || [];
+        // 对小说传入的广告数据中的template进行遍历，把请求回来的tpl拼入
         if (novelAds) {
             novelAds.map(function (value) {
+                // 由于template的结构是数组嵌套数组
                 if (Array.isArray(value)) {
                     value.map(function (ad) {
                         if (ad.tpl == null && data.data.template[ad.tplName]) {
@@ -398,7 +402,6 @@ define(function () {
      */
     customElement.prototype.fetchData = function (url, callback, element) {
         var me = this;
-        url = 'http://localhost:8080/mock/novelMock?'
         if (!url) {
             return;
         }
@@ -446,7 +449,7 @@ define(function () {
                 me.element.remove();
                 return;
             }
-            // 当命中小流量
+            // 小说内命中小流量
             if (window.MIP.version && +window.MIP.version === 2 && data.data.schema) {
                 me.renderNovelCacheAdData(data, callback, element);
             }
@@ -475,8 +478,10 @@ define(function () {
         var random500 = Math.random() * 500;
         if (random500 < 1) {
             // 性能日志：emptyTime-广告未显示时间
-            performance.renderEnd = new Date() - 0; // 渲染结束时间戳
-            performance.emptyTime = performance.renderEnd - performance.fetchStart; // 页面空白毫秒数
+            // 渲染结束时间戳
+            performance.renderEnd = new Date() - 0;
+            // 页面空白毫秒数
+            performance.emptyTime = performance.renderEnd - performance.fetchStart;
             performance.frontendRender = performance.renderEnd - performance.responseEnd;
 
             // 前端打点时间

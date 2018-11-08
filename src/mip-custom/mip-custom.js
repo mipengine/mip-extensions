@@ -35,20 +35,22 @@ define(function () {
         if (me.customId === window.MIP.viewer.page.currentPageId
             && me.element.querySelector('.mip-custom-placeholder')) {
             // 广告合并的策略
-            var novelInstance = window.MIP.viewer.page.isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance;
+            var novelInstance = window.MIP.viewer.page.isRootPage
+                ? window.MIP.novelInstance
+                : window.parent.MIP.novelInstance;
             novelInstance = novelInstance || {};
             var adsCache = novelInstance.adsCache || {};
-            if (!adsCache.isNeedAds && adsCache.directRender && adsCache.adStategyCacheData) {
-                me.render(adsCache.adStategyCacheData, me.element)
+            if (!adsCache.isNeedAds && adsCache.directRender && adsCache.adStrategyCacheData) {
+                me.render(adsCache.adStrategyCacheData, me.element);
             }
             //   common 正常发送
-            window.MIP.setCommonFetch = true
-            me.initElement(dom)
-            window.removeEventListener('showAdvertising', handler)
+            window.MIP.setCommonFetch = true;
+            me.initElement(dom);
+            window.removeEventListener('showAdvertising', handler);
         }
         if (me.customId === window.MIP.viewer.page.currentPageId
             && adsCache.ignoreSendLog) {
-            me.initElement(dom)
+            me.initElement(dom);
         }
     }
 
@@ -74,7 +76,7 @@ define(function () {
             var detailData = e && e.detail && e.detail[0] || {};
             me.customId = detailData.customId;
             me.novelData = detailData.novelData;
-            me.initElement(dom)
+            me.initElement(dom);
         });
         // 监听小说shell播放的广告请求的事件
         window.addEventListener('showAdvertising', handler);
@@ -87,14 +89,14 @@ define(function () {
                 data: {
                     customPageId: window.MIP.viewer.page.currentPageId
                 }
-            })
-        })
+            });
+        });
         window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
             name: 'customReady',
             data: {
                 customPageId: window.MIP.viewer.page.currentPageId
             }
-        })
+        });
     };
 
     /**
@@ -104,7 +106,7 @@ define(function () {
     customElement.prototype.build = function () {
         // 如果是百度spider抓取，如果是百度spider抓取则不执行接下来的逻辑
         if (isBaiduSpider()) {
-            return
+            return;
         }
         var me = this;
         globalCustomElementInstance = this;
@@ -114,7 +116,7 @@ define(function () {
             this.addNovelListener();
         }
         else {
-            this.initElement(dom)
+            this.initElement(dom);
         }
     };
 
@@ -311,9 +313,9 @@ define(function () {
      * @return {window} 当前iframe的window
      */
     function getCurrentWindow() {
-        var pageId = window.MIP.viewer.page.currentPageId
-        var pageInfo = window.MIP.viewer.page.getPageById(pageId)
-        return pageInfo.targetWindow
+        var pageId = window.MIP.viewer.page.currentPageId;
+        var pageInfo = window.MIP.viewer.page.getPageById(pageId);
+        return pageInfo.targetWindow;
     }
 
     /**
@@ -326,17 +328,17 @@ define(function () {
     customElement.prototype.renderNovelCacheAdData = function (data, callback, element) {
         var currentWindow = getCurrentWindow();
         var isRootPage = currentWindow.MIP.viewer.page.isRootPage;
-        var novelInstance = isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance
+        var novelInstance = isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance;
         var adsCache = novelInstance.adsCache || {};
-        var rendered = false
+        var rendered = false;
         if (JSON.stringify(adsCache) === "{}") {
             // 当请求走的是小流量的广告合并时，需要走新的逻辑，用schema字段来区分，需要修改data.data
-            var adTime = +new Date()
-            data.data.adTime = adTime
-            window.addEventListener('showAdStategyCache', function (e) {
+            var adTime = +new Date();
+            data.data.adTime = adTime;
+            window.addEventListener('showAdStrategyCache', function (e) {
                 var adData = e && e.detail && e.detail[0] || {};
                 // 模板的前端渲染
-                rendered = true
+                rendered = true;
                 callback && callback(adData, element);
             });
             window.MIP.viewer.page.emitCustomEvent(isRootPage ? window : window.parent, false, {
@@ -345,14 +347,14 @@ define(function () {
                     pageId: window.MIP.viewer.page.currentPageId,
                     adData: data.data
                 }
-            })
+            });
         }
         if (!rendered && adsCache.directRender != null && adsCache.directRender == false) {
             // 当渲染cache广告的时候缺少tpl的时候，依赖于请求返回的tpl
-            this.renderCacheDataByTpl(data, callback, element)
+            this.renderCacheDataByTpl(data, callback, element);
         }
         if (!rendered && adsCache.noAdsRender != null && adsCache.noAdsRender) {
-            this.renderCacheDataByTpl({data: {data: {}}}, callback, element)
+            this.renderCacheDataByTpl({data: {data: {}}}, callback, element);
         }
     }
 
@@ -367,24 +369,24 @@ define(function () {
     customElement.prototype.renderCacheDataByTpl = function (data, callback, element) {
         var currentWindow = getCurrentWindow();
         var isRootPage = currentWindow.MIP.viewer.page.isRootPage;
-        var novelInstance = isRootPage ? currentWindow.MIP.novelInstance : currentWindow.parent.MIP.novelInstance
-        var adsCache = novelInstance.adsCache || {}
+        var novelInstance = isRootPage ? currentWindow.MIP.novelInstance : currentWindow.parent.MIP.novelInstance;
+        var adsCache = novelInstance.adsCache || {};
         var me = this;
-        var novelAds = adsCache.adStategyCacheData && adsCache.adStategyCacheData.template || [];
+        var novelAds = adsCache.adStrategyCacheData && adsCache.adStrategyCacheData.template || [];
         if (novelAds) {
             novelAds.map(function (value) {
                 if (Array.isArray(value)) {
                     value.map(function (ad) {
                         if (ad.tpl == null && data.data.template[ad.tplName]) {
-                            ad.tpl = data.data.template[ad.tplName]
+                            ad.tpl = data.data.template[ad.tplName];
                         }
-                    })
+                    });
                 }
-            })
+            });
             util.fn.extend(adsCache.fetchedData.adData.template, data.data.template);
         }
         // 模板的前端渲染
-        callback && callback(adsCache.adStategyCacheData, element);
+        callback && callback(adsCache.adStrategyCacheData, element);
     }
 
     /**
@@ -396,6 +398,7 @@ define(function () {
      */
     customElement.prototype.fetchData = function (url, callback, element) {
         var me = this;
+        url = 'http://localhost:8080/mock/novelMock?'
         if (!url) {
             return;
         }
@@ -403,15 +406,15 @@ define(function () {
         // 性能日志
         var performance = {};
         performance.fetchStart = new Date() - 0;
-        var paramUrl = url
+        var paramUrl = url;
 
         // 小说的特殊参数——novelData和fromSearch
         if (me.novelData) {
-            var novelData = encodeURIComponent(JSON.stringify(me.novelData))
-            paramUrl = paramUrl + '&novelData=' + novelData
+            var novelData = encodeURIComponent(JSON.stringify(me.novelData));
+            paramUrl = paramUrl + '&novelData=' + novelData;
         }
         if (me.fromSearch) {
-            paramUrl = paramUrl + '&fromSearch=' + me.fromSearch
+            paramUrl = paramUrl + '&fromSearch=' + me.fromSearch;
         }
         // fetch
         fetch(paramUrl, {

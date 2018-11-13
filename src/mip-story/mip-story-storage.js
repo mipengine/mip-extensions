@@ -10,8 +10,9 @@ define(function (require) {
 
     var get = function (key) {
         var prefixKey = prefix + key;
-        var localValue = storage.getItem(prefixKey);
+        var localValue = {};
         try {
+            localValue = storage.getItem(prefixKey);
             return JSON.parse(localValue);
         } catch (e) {
             return localValue;
@@ -23,10 +24,10 @@ define(function (require) {
         var localValue;
         try {
             localValue = JSON.stringify(value);
+            storage.setItem(prefixKey, localValue);
         } catch (e) {
             localValue = value;
         }
-        storage.setItem(prefixKey, localValue);
     };
 
     var remove = function (key) {

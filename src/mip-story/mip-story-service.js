@@ -350,16 +350,17 @@ define(function (require) {
     MIPStoryService.prototype.replay = function () {
         var self = this;
         if (switchPageType == SWITCHTYPES.click) {
+            console.log(99999)
             clickSwitch = null;
             this.clickSwitch();
             clickSwitch.closeBookEnd();
             this.share.hideShareLayer();
             return;
         }
-
-        slider.initViewForSlider(function (preIndex, currentIndex, nextIndex) {
-            self.initfirstViewStatus(preIndex, currentIndex, nextIndex);
-        });
+        slider.initViewForSlider('reset');
+        // slider.initViewForSlider(function (preIndex, currentIndex, nextIndex) {
+        //     self.initfirstViewStatus(preIndex, currentIndex, nextIndex);
+        // });
         this.replayBookEnd();
     };
 

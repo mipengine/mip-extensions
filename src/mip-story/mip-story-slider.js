@@ -260,10 +260,21 @@ define(function (require) {
     };
 
     // 初始化view的最初排布
-    MIPStorySlider.prototype.initViewForSlider = function () {
-        var preEle = storyContain[this.preIndex];
-        var currentEle = storyContain[this.currentIndex];
-        var nextEle = storyContain[this.nextIndex];
+    MIPStorySlider.prototype.initViewForSlider = function (type) {
+        var preEle = null;
+        var currentEle = null;
+        var nextEle = null;
+
+        if (type === 'reset') {
+            preEle = currentEle = nextEle = storyContain[0];
+            this.preIndex = this.currentIndex = 0;
+            this.nextIndex = 1;
+            storyState.setState(0);
+        } else {
+           preEle = storyContain[this.preIndex];
+           currentEle = storyContain[this.currentIndex];
+           nextEle = storyContain[this.nextIndex];
+        }
         // 添加current状态
         this.setCurrentPage();
         // 清除当前所有view已有的样式
@@ -274,9 +285,10 @@ define(function (require) {
             this.setViewStatus(true, ACTIVE, nextEle);
             this.setViewStatus(true, ACTIVE, preEle);
             // 初始化下一页的位置
-            setSliderPosition(nextEle, false);
+            if(this.nextIndex !== this.viewLength - 1) {
+                setSliderPosition(nextEle, false);
+            }
         }
-
         initViewForSwitchCB({
             preIndex: this.preIndex,
             currentIndex: this.currentIndex,

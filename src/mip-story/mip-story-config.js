@@ -48,6 +48,9 @@ define(function (require) {
     // 预加载页数
     var PRELOAD_PAGES = 2;
 
+    // 浏览状态
+    var STORY_PREFIX = 'MIP_STORY_';
+
     return {
         MIP_I_STORY_STANDALONE: MIP_I_STORY_STANDALONE,
         PAGE_ROLE: PAGE_ROLE,
@@ -57,6 +60,7 @@ define(function (require) {
         DIRECTIONMAP: DIRECTIONMAP,
         PAGE_STATE: PAGE_STATE,
         MSITEAPI: MSITEAPI,
-        PRELOAD_PAGES: PRELOAD_PAGES
+        PRELOAD_PAGES: PRELOAD_PAGES,
+        STORY_PREFIX: STORY_PREFIX
     }
 });

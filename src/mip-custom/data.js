@@ -86,17 +86,16 @@ define(function (require) {
     }
 
     function addPaths(config) {
-        if (config.paths) {
-            for (var key in config.paths) {
-                if (config.paths.hasOwnProperty(key)) {
-                    // 防止config中带的地址有多余的domain域名前缀
-                    config.paths[key] = config.paths[key].replace(config.domain, '');
-                    config.paths[key] = config.domain + config.paths[key];
+        var customConfig = JSON.parse(JSON.stringify(config))
+        if (customConfig.paths) {
+            for (var key in customConfig.paths) {
+                if (customConfig.paths.hasOwnProperty(key)) {
+                    customConfig.paths[key] = customConfig.domain + customConfig.paths[key];
                 }
             }
         }
 
-        return config;
+        return customConfig;
     }
 
     /**

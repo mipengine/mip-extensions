@@ -402,6 +402,7 @@ define(function () {
      */
     customElement.prototype.fetchData = function (url, callback, element) {
         var me = this;
+        url = 'http://localhost:8080/mock/novelMock?'
         if (!url) {
             return;
         }

@@ -16,6 +16,9 @@ define(function () {
     var log = require('mip-custom/log');
     var dataProcessor = require('mip-custom/data');
 
+    // require novel feature
+    var novel = require('mip-custom/novelFeature');
+
     // creat钩子
     var customElement = require('customElement').create();
     var logData = dataProcessor.logData;
@@ -23,38 +26,6 @@ define(function () {
     var globalCustomElementInstance;
 
     var UA = navigator.userAgent;
-
-    function handler(e) {
-        var me = globalCustomElementInstance;
-        var detailData = e && e.detail && e.detail[0] || {};
-        me.customId = detailData.customId;
-        me.novelData = detailData.novelData;
-        if (detailData.fromSearch) {
-            me.fromSearch = detailData.fromSearch;
-        }
-        // XXX:解决window实例和组件实例的诡异的问题。。。。。。
-        if (me.customId === window.MIP.viewer.page.currentPageId
-            && me.element.querySelector('.mip-custom-placeholder')) {
-            // 广告合并的策略
-            var novelInstance = window.MIP.viewer.page.isRootPage
-                ? window.MIP.novelInstance
-                : window.parent.MIP.novelInstance;
-            novelInstance = novelInstance || {};
-            var adsCache = novelInstance.adsCache || {};
-            if (!adsCache.isNeedAds && adsCache.directRender && adsCache.adStrategyCacheData) {
-                me.render(adsCache.adStrategyCacheData, me.element);
-            }
-            //   common 正常发送
-            window.MIP.setCommonFetch = true;
-            me.initElement(dom);
-            window.removeEventListener('showAdvertising', handler);
-        }
-        // 当广告合并后首次请求后需要告知RD该页展现的广告，额外多一次广告请求，但是本次请求忽略
-        if (me.customId === window.MIP.viewer.page.currentPageId
-            && adsCache.ignoreSendLog) {
-            me.initElement(dom);
-        }
-    }
 
     /**
      * 获取是否是百度spider抓取
@@ -70,38 +41,6 @@ define(function () {
     };
 
     /**
-     * 添加小说相关的事件监听
-     */
-    customElement.prototype.addNovelListener = function () {
-        var me = this;
-        window.addEventListener('ignoreSendLogFetch', function (e) {
-            var detailData = e && e.detail && e.detail[0] || {};
-            me.customId = detailData.customId;
-            me.novelData = detailData.novelData;
-            me.initElement(dom);
-        });
-        // 监听小说shell播放的广告请求的事件
-        window.addEventListener('showAdvertising', handler);
-        // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
-        var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
-        // 定制化再加确认事件事件防止
-        window.addEventListener('customReadyConfirm', function () {
-            window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
-                name: 'customReady',
-                data: {
-                    customPageId: window.MIP.viewer.page.currentPageId
-                }
-            });
-        });
-        window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
-            name: 'customReady',
-            data: {
-                customPageId: window.MIP.viewer.page.currentPageId
-            }
-        });
-    };
-
-    /**
      * build钩子，触发渲染
      *
      */
@@ -112,12 +51,13 @@ define(function () {
         }
         var me = this;
         globalCustomElementInstance = this;
-        dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
-        if (window.MIP.version && +window.MIP.version === 2) {
-            this.addNovelListener();
+        var novelShell = document.querySelector('mip-shell-xiaoshuo');
+        if (window.MIP.version && +window.MIP.version === 2 && novelShell) {
+            novel.addNovelListener.apply(this, [this.initElement]);
         }
         else {
+            dom.addPlaceholder.apply(this);
             this.initElement(dom);
         }
     };
@@ -313,91 +253,6 @@ define(function () {
     };
 
     /**
-     * 获取当前定制化页面的window——小说垂类
-     *
-     * @return {window} 当前iframe的window
-     */
-    function getCurrentWindow() {
-        var pageId = window.MIP.viewer.page.currentPageId || '';
-        var pageInfo = window.MIP.viewer.page.getPageById(pageId);
-        return pageInfo.targetWindow;
-    }
-
-    /**
-     * 渲染小说shell的计算的cache的广告
-     *
-     * @param {Object} data fetch返回的数据
-     * @param {handle} callback 回调
-     * @param {HTMLElement} element 数据返回后需要渲染的element
-     */
-    customElement.prototype.renderNovelCacheAdData = function (data, callback, element) {
-        var currentWindow = getCurrentWindow();
-        var isRootPage = currentWindow.MIP.viewer.page.isRootPage;
-        var novelInstance = isRootPage ? window.MIP.novelInstance : window.parent.MIP.novelInstance;
-        var adsCache = novelInstance.adsCache || {};
-        var rendered = false;
-        if (JSON.stringify(adsCache) === "{}") {
-            // 当请求走的是小流量的广告合并时，需要走新的逻辑，用schema字段来区分，需要修改data.data
-            var adTime = +new Date();
-            data.data.adTime = adTime;
-            window.addEventListener('showAdStrategyCache', function (e) {
-                var adData = e && e.detail && e.detail[0] || {};
-                // 模板的前端渲染
-                rendered = true;
-                callback && callback(adData, element);
-            });
-            window.MIP.viewer.page.emitCustomEvent(isRootPage ? window : window.parent, false, {
-                name: 'adDataReady',
-                data: {
-                    pageId: window.MIP.viewer.page.currentPageId,
-                    adData: data.data
-                }
-            });
-        }
-        if (!rendered && adsCache.directRender != null && adsCache.directRender == false) {
-            // 当渲染cache广告的时候缺少tpl的时候，依赖于请求返回的tpl
-            this.renderCacheDataByTpl(data, callback, element);
-        }
-        if (!rendered && adsCache.noAdsRender != null && adsCache.noAdsRender) {
-            this.renderCacheDataByTpl({data: {data: {}}}, callback, element);
-        }
-    }
-
-    /**
-     * 获取当前定制化页面的window——小说垂类
-     *
-     * @param {Object} data fetch返回的数据
-     * @param {handle} callback 回调
-     * @param {HTMLElement} element 数据返回后需要渲染的element
-     * @return {window} 当前iframe的window
-     */
-    customElement.prototype.renderCacheDataByTpl = function (data, callback, element) {
-        var currentWindow = getCurrentWindow();
-        var isRootPage = currentWindow.MIP.viewer.page.isRootPage;
-        var novelInstance = isRootPage
-            ? currentWindow.MIP.novelInstance
-            : currentWindow.parent.MIP.novelInstance;
-        var adsCache = novelInstance.adsCache || {};
-        var novelAds = adsCache.adStrategyCacheData && adsCache.adStrategyCacheData.template || [];
-        // 对小说传入的广告数据中的template进行遍历，把请求回来的tpl拼入
-        if (novelAds) {
-            novelAds.map(function (value) {
-                // 由于template的结构是数组嵌套数组
-                if (Array.isArray(value)) {
-                    value.map(function (ad) {
-                        if (ad.tpl == null && data.data.template[ad.tplName]) {
-                            ad.tpl = data.data.template[ad.tplName];
-                        }
-                    });
-                }
-            });
-            util.fn.extend(adsCache.fetchedData.adData.template, data.data.template);
-        }
-        // 模板的前端渲染
-        callback && callback(adsCache.adStrategyCacheData, element);
-    }
-
-    /**
      * 异步获取数据
      *
      * @param {string} url 异步请求接口
@@ -413,16 +268,12 @@ define(function () {
         // 性能日志
         var performance = {};
         performance.fetchStart = new Date() - 0;
-        var paramUrl = url;
+
+        var paramUrl = url
 
         // 小说的特殊参数——novelData和fromSearch
-        if (me.novelData) {
-            var novelData = encodeURIComponent(JSON.stringify(me.novelData));
-            paramUrl = paramUrl + '&novelData=' + novelData;
-        }
-        if (me.fromSearch) {
-            paramUrl = paramUrl + '&fromSearch=' + me.fromSearch;
-        }
+        paramUrl = novel.addNovelDate.apply(this, [url]);
+
         // fetch
         fetch(paramUrl, {
             credentials: 'include'
@@ -455,14 +306,21 @@ define(function () {
             }
             // 小说内命中小流量
             if (window.MIP.version && +window.MIP.version === 2 && data.data.schema) {
-                me.renderNovelCacheAdData(data, callback, element);
+                new Promise(function (resolve) {
+                    novel.renderNovelCacheAdData.apply(this, [data, me.element, resolve]);
+                }).then(function (result) {
+                    // 模板的前端渲染
+                    callback && callback.apply(this, [result, me.element]);
+                }).catch(function (reason) {
+                    console.log('失败：' + reason);
+                });
             }
             else {
                 // 模板的前端渲染
                 callback && callback(data.data, element);
             }
             // 性能日志：按照流量 1/500 发送日志
-            me.setPerformanceLogs(performance);
+            me.setPerformanceLogs(performance, data);
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();
@@ -478,7 +336,7 @@ define(function () {
      *
      * @param {Object} performance 性能参数
      */
-    customElement.prototype.setPerformanceLogs = function (performance) {
+    customElement.prototype.setPerformanceLogs = function (performance, data) {
         var random500 = Math.random() * 500;
         if (random500 < 1) {
             // 性能日志：emptyTime-广告未显示时间

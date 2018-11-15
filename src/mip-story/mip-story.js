@@ -11,7 +11,6 @@ define(function (require) {
     require('./mip-story-layer');
     var constConfig = require('./mip-story-config');
     var MIP_I_STORY_STANDALONE = constConfig.MIP_I_STORY_STANDALONE;
-    var preloadPages = constConfig.PRELOAD_PAGES;
     var Audio = require('./audio');
     var ShareLayer = require('./mip-story-share');
     var HintLayer = require('./mip-story-hint');
@@ -77,9 +76,6 @@ define(function (require) {
 
     MIPStory.prototype.initStoryViews = function () {
         this.storyViews = this.element.querySelectorAll('mip-story-view');
-
-        // 初始化预加载
-        this.initPreload()
     };
 
     MIPStory.prototype.initStoryContain = function () {
@@ -117,7 +113,19 @@ define(function (require) {
         this.progress = new Progress(this.element, this.storyViews, audioHide, storyConfig);
         var html = dm.create(this.progress.build());
         this.element.appendChild(html);
-        this.progress.updateProgress(0, 1);
+
+        // 状态保持
+        var storyState = require('./mip-story-state');
+        var currentPageIndex = storyState.currentPageIndex;
+        this.pageStateIndex = storyState.getPageStateIndex(this.storyViews.length);
+        this.preloadPages = storyState.getPreloadIndex(this.storyViews.length)
+        // 初始化预加载
+        this.initPreload();
+
+        for (var p = 0; p < currentPageIndex; p++) {
+            this.progress.updateProgress(p, 1);
+        }
+
         var sys = this.element.querySelector('.mip-story-system-layer');
 
         if (!viewer.isIframed || !this.getConfigData().xzh_info){
@@ -174,11 +182,10 @@ define(function (require) {
     // 预加载相关
     MIPStory.prototype.initPreload = function () {
         var storyViewData = this.storyViews;
-        for (var i = 0; i <= preloadPages; i++) {
-            if (!storyViewData[i]) {
-                return;
-            }
-            storyViewData[i].setAttribute('preload','');
+        var pages = this.preloadPages;
+        for (var i = 0; i < pages.length; i++) {
+            var loadIndex = pages[i];
+            storyViewData[loadIndex].setAttribute('preload','');
         }
     };
     

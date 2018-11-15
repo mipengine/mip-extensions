@@ -162,6 +162,9 @@ define(function (require) {
             return res.json();
         }).then(function (data) {
             var content = '';
+            if (!data.data) {
+                return content;
+            }
             var siteData = data.data;
             if (siteData.avatar && siteData.name && siteData.homepage) {
                 var content = '<div class="icon-wrap" data-href="'

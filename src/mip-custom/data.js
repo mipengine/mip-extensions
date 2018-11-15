@@ -89,6 +89,7 @@ define(function (require) {
         if (config.paths) {
             for (var key in config.paths) {
                 if (config.paths.hasOwnProperty(key)) {
+                    // 防止config中带的地址有多余的domain域名前缀
                     config.paths[key] = config.paths[key].replace(config.domain, '');
                     config.paths[key] = config.domain + config.paths[key];
                 }

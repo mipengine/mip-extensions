@@ -89,7 +89,6 @@ define(function (require) {
         if (config.paths) {
             for (var key in config.paths) {
                 if (config.paths.hasOwnProperty(key)) {
-
                     config.paths[key] = config.paths[key].replace(config.domain, '');
                     config.paths[key] = config.domain + config.paths[key];
                 }

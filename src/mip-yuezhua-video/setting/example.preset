@@ -1,0 +1,24 @@
+<style mip-custom>
+mip-lightbox {
+	padding: 10px;
+}
+#btn-open, .lightbox-close {
+    border: 1px solid #f1f1f1;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    background: #fff;
+    display: block;
+    box-sizing: border-box;
+}
+
+.lightbox {
+	padding: 10px;
+	background: white;
+}
+.lightbox p {
+	margin: 80px 0;
+	display: block;
+}
+</style>

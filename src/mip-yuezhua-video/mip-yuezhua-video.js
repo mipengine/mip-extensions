@@ -144,7 +144,7 @@ define(function (require) {
      */
     function close(event) {
         var self = this;
-        var videoBox = self.element.querySelector('.video');
+        var videoBox = self.element.querySelector('video');
 
         if (!self.open) {
             return;

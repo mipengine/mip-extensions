@@ -244,8 +244,6 @@ define(function (require) {
 
     customElement.prototype.initMedia = function () {
         this.audio = new Audio();
-        this.canvasVideo = this.element.querySelectorAll('mip-story-video');
-        this.hasStoryVideo = !!this.canvasVideo.length;
         var node = this.element.parentNode;
 
         this.animationElements = [];
@@ -279,6 +277,8 @@ define(function (require) {
     };
 
     customElement.prototype.firstInviewCallback = function () {
+        this.canvasVideo = this.element.querySelectorAll('mip-story-video');
+        this.hasStoryVideo = !!this.canvasVideo.length;
         this.isPreload = false;
         this.setPageRole();
     };

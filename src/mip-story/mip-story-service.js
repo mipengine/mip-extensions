@@ -350,7 +350,6 @@ define(function (require) {
     MIPStoryService.prototype.replay = function () {
         var self = this;
         if (switchPageType == SWITCHTYPES.click) {
-            console.log(99999)
             clickSwitch = null;
             this.clickSwitch();
             clickSwitch.closeBookEnd();

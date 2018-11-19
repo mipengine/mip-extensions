@@ -69,13 +69,13 @@
 
 ### 点击加载更多
 
-[info]有 `has-more` 属性时，`<mip-list>` 标签必须要有 `id` 属性，同时需要有点击按钮的 DOM 节点，并且此节点有 `on` 属性，属性值为：`tap:对应mip-list的id.more`, class属性值等于`mip-list的id`属性值
+[info]有 `has-more` 属性时，`<mip-list>` 标签必须要有 `id` 属性，同时需要有点击按钮的 DOM 节点，并且此节点有 `on` 属性，属性值为：`tap:对应mip-list的id.more`
 
 ```html
 <mip-list 
     template="mip-template-id"
     src="http://xxx?a=a&b=b"
-    id="mip-list-demo"
+    id="mip-list"
     has-more
     pnName="pageNum"
     pn=2
@@ -87,7 +87,7 @@
         </div>
     </template>
 </mip-list>
-<div class="mip-list-demo" on="tap:mip-list-demo.more"> 点击查看更多 </div>
+<div on="tap:mip-list.more"> 点击查看更多 </div>
 ```
 
 

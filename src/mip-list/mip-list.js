@@ -38,7 +38,6 @@ define(function (require) {
             var node = document.createElement('div');
             node.innerHTML = html;
             node.setAttribute('role', 'listitem');
-
             fragment.appendChild(node);            
         });
         self.container.appendChild(fragment);
@@ -56,7 +55,6 @@ define(function (require) {
             return;
         }
 
-        self.button = document.querySelector('.' + self.id);
         self.button.innerHTML = '加载中...';
 
         var url = getUrl(src, self.pnName, self.pn++);
@@ -146,11 +144,10 @@ define(function (require) {
 
         // fetch-jsonp timeout 请求时长
         self.timeout = element.getAttribute('timeout') || 5000;
-        self.id = element.getAttribute('id') || ''
-
         // 有查看更多属性的情况
         if (element.hasAttribute('has-more')) {
             self.addEventAction('more', function () {
+                self.button = arguments[0].target
                 pushResult.call(self, src);
             });
         }

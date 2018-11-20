@@ -146,8 +146,8 @@ define(function (require) {
         self.timeout = element.getAttribute('timeout') || 5000;
         // 有查看更多属性的情况
         if (element.hasAttribute('has-more')) {
-            self.addEventAction('more', function () {
-                self.button = arguments[0].target
+            self.addEventAction('more', function (e) {
+                self.button = e.target;
                 pushResult.call(self, src);
             });
         }

@@ -269,7 +269,7 @@ define(function () {
         var performance = {};
         performance.fetchStart = new Date() - 0;
 
-        var paramUrl = url
+        var paramUrl = url;
 
         // 小说的特殊参数——novelData和fromSearch
         paramUrl = novel.addNovelDate.apply(this, [url]);

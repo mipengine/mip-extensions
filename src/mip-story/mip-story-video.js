@@ -46,7 +46,16 @@ define(function (require) {
         var height =  this.attributes.height;
         var width  =  this.attributes.width;
         var sourceHTML = this.element.innerHTML;
-        var html = '<mip-video layout="responsive" loop autoplay height="' + height +'" width="' + width + '" poster="' + poster + '">'
+        var loop = '';
+        var isLoop = this.attributes.loop;
+        if (isLoop !== '' && (!isLoop || isLoop === 'false')) {
+            loop = '';
+        } else {
+            loop = 'loop';
+        }
+        var html = '<mip-video layout="responsive" '
+                + loop + ' class="mip-fill-content mip-replaced-content" autoplay height="'
+                + height +'" width="' + width + '" poster="' + poster + '">'
                 + sourceHTML
                 + '</mip-video>';
         var videoElement = dm.create(html);

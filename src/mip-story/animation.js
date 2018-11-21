@@ -21,6 +21,9 @@ define(function (require) {
     // @class
     function AnimationManager(page) {
         this.page = page;
+        var style = window.getComputedStyle(page);
+        var matrix = new WebKitCSSMatrix(style.webkitTransform);
+        this.offsetX = matrix.m41;
         // [
         //     {
         //         id: xxx,
@@ -36,10 +39,10 @@ define(function (require) {
         var EventEmitter = util.EventEmitter;
         var currentEle = this.page;
         var $animate = currentEle.querySelectorAll(MIP_STORY_ANIMATE_IN_SELECROR);
-
+        
         this.emitter = new EventEmitter();
         [].slice.call($animate).forEach(function (el) {
-            var runner = buildRuner(el);
+            var runner = buildRuner(el, self.offsetX);
             var player = {
                 runner: runner
             };
@@ -130,7 +133,7 @@ define(function (require) {
 
     }
 
-    function createAnimationDef(el) {
+    function createAnimationDef(el, offsetX) {
         var keyframes;
         var easing;
 
@@ -142,7 +145,7 @@ define(function (require) {
 
         offset.pageHeight = window.innerHeight;
         offset.pageWidth = window.innerWidth;
-
+        offset.realLeft = offset.left - offsetX;
         // 处理动画的keyframes
         if (animationDef && animationDef.keyframes) {
             if (typeof animationDef.keyframes === 'function') {
@@ -177,9 +180,9 @@ define(function (require) {
         return animationDef;
     }
 
-    function buildRuner(el) {
+    function buildRuner(el, offsetX) {
         var runner;
-        var animationDef = createAnimationDef(el);
+        var animationDef = createAnimationDef(el, offsetX);
         runner = new AnimationRunner(el, animationDef);
         return runner;
     }

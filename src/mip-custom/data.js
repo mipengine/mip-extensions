@@ -87,7 +87,7 @@ define(function (require) {
     }
 
     function addPaths(config) {
-        var conf = JSON.parse(JSON.stringify(config))
+        var conf = JSON.parse(JSON.stringify(config));
         if (conf.paths) {
             for (var key in conf.paths) {
                 if (conf.paths.hasOwnProperty(key)) {

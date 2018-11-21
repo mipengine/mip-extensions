@@ -7,6 +7,7 @@ define(function (require) {
   var globalCustomElementInstance;
   var initElement;
   var dom = require('mip-custom/dom');
+  var util = require('util');
 
   /**
    * [addNovelListener 添加小说相关的事件监听]

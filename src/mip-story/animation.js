@@ -22,7 +22,8 @@ define(function (require) {
     function AnimationManager(page) {
         this.page = page;
         var style = window.getComputedStyle(page);
-        var matrix = new WebKitCSSMatrix(style.webkitTransform);
+        var DOMMatrix = DOMMatrix || WebKitCSSMatrix;
+        var matrix = new DOMMatrix(style.webkitTransform);
         this.offsetX = matrix.m41;
         // [
         //     {

@@ -57,7 +57,7 @@ define(function (require) {
             delay: 0,
             easing: 'ease-in',
             keyframes: function (offset) {
-                var offsetX = -(offset.left + offset.width);
+                var offsetX = -(offset.realLeft + offset.width);
                 return [
                     {
                         transform: 'translate3d(' + offsetX + 'px, 0, 0)'
@@ -73,7 +73,7 @@ define(function (require) {
             delay: 0,
             easing: 'ease-in',
             keyframes: function (offset) {
-                var offsetX = offset.pageWidth - offset.left;
+                var offsetX = offset.pageWidth - offset.realLeft;
                 return [
                     {
                         transform: 'translate3d(' + offsetX + 'px, 0, 0)'
@@ -193,7 +193,7 @@ define(function (require) {
             delay: 0,
             easing: 'ease-in',
             keyframes: function (offset) {
-                var offsetX = -(offset.left + offset.width);
+                var offsetX = -(offset.realLeft + offset.width);
                 return [
                     {
                         opacity: 0,
@@ -211,7 +211,7 @@ define(function (require) {
             delay: 0,
             easing: 'ease-in',
             keyframes: function (offset) {
-                var offsetX = offset.left + offset.width;
+                var offsetX = offset.realLeft + offset.width;
 
                 return [
                     {
@@ -230,7 +230,7 @@ define(function (require) {
             easing: 'ease-in',
             delay: 0,
             keyframes: function(offset) {
-                var offsetX = -(offset.left + offset.width);
+                var offsetX = -(offset.realLeft + offset.width);
                 return [
                     {
                         transform: 'translate3d(' + offsetX + 'px, 0, 0) rotate(-360deg)'
@@ -246,7 +246,7 @@ define(function (require) {
             easing: 'ease-in',
             delay: 0,
             keyframes: function (offset) {
-                var offsetX = offset.left + offset.width;
+                var offsetX = offset.realLeft + offset.width;
 
                 return [
                     {

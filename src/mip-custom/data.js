@@ -3,6 +3,7 @@
  * @author pearl
  */
 define(function (require) {
+    var util = require('util');
 
     /**
      * [regexs 正则表达式]
@@ -86,15 +87,16 @@ define(function (require) {
     }
 
     function addPaths(config) {
-        if (config.paths) {
-            for (var key in config.paths) {
-                if (config.paths.hasOwnProperty(key)) {
-                    config.paths[key] = config.domain + config.paths[key];
+        var conf = JSON.parse(JSON.stringify(config));
+        if (conf.paths) {
+            for (var key in conf.paths) {
+                if (conf.paths.hasOwnProperty(key)) {
+                    conf.paths[key] = conf.domain + conf.paths[key];
                 }
             }
         }
 
-        return config;
+        return conf;
     }
 
     /**

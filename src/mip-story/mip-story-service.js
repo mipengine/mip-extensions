@@ -194,11 +194,17 @@ define(function (require) {
         this.nextIndex = index.nextIndex;
         // 重新更新当前活跃的页面
         this.resetViewEle();
+
         // 激活当前页的的多媒体
         this.currentEle.setAllMedia(true, this.viewMuted, reload, this.emitter);
         this.currentEle.setCssMedia(true, this.viewMuted, this.emitter);
-        // 初始化下一页的动画效果
-        this.nextEle.setPreActive(this.emitter);
+        // 在重设view状态时，如果下一页与当前页的不是同一页并且下一页不是封底页，需要进行状态修改
+        if (this.nextIndex != this.currentIndex && this.nextIndex <= storyViews.length - 1) {
+            // 初始化下一页的动画效果
+            this.nextEle.setPreActive(this.emitter);
+            this.preEle.setPreActive(this.emitter);
+        }
+
         // 清除其余所有页面的动画
         this.clearCssMedia();
     };
@@ -351,10 +357,10 @@ define(function (require) {
             this.share.hideShareLayer();
             return;
         }
-
-        slider.initViewForSlider(function (preIndex, currentIndex, nextIndex) {
-            self.initfirstViewStatus(preIndex, currentIndex, nextIndex);
-        });
+        slider.initViewForSlider('reset');
+        // slider.initViewForSlider(function (preIndex, currentIndex, nextIndex) {
+        //     self.initfirstViewStatus(preIndex, currentIndex, nextIndex);
+        // });
         this.replayBookEnd();
     };
 

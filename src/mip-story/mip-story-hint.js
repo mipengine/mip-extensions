@@ -16,7 +16,8 @@ define(function (require) {
 
     var util = require('util');
 
-    function MIPStoryHint() {
+    function MIPStoryHint(root) {
+        this.rootEl = root;
     }
 
     MIPStoryHint.prototype.build = function () {
@@ -55,7 +56,7 @@ define(function (require) {
 
     MIPStoryHint.prototype.showDamping = function () {
         var self = this;
-        var ele = document.querySelector(MIP_STORY_HINT_CLASS);
+        var ele = this.rootEl.querySelector(MIP_STORY_HINT_CLASS);
         util.css(ele, {display: 'block'});
         ele.classList.remove(MIP_STORY_HINT_DAMPING_HIDE);
         setTimeout(function () {
@@ -64,29 +65,25 @@ define(function (require) {
     };
 
     MIPStoryHint.prototype.hideDamping = function () {
-        var ele = document.querySelector(MIP_STORY_HINT_CLASS);
+        var ele = this.rootEl.querySelector(MIP_STORY_HINT_CLASS);
         util.css(ele, {display: 'none'});
         ele.classList.add(MIP_STORY_HINT_DAMPING_HIDE);
     };
 
     MIPStoryHint.prototype.showSystemLater = function () {
-        var hasShown = localStorage.getItem(HASSHOWMIPSTORYHINT);
-        if (!hasShown) {
-            var ele = document.querySelector(MIP_STORY_HINT_CLASS);
-            util.css(ele, {display: 'block'});
-            ele.classList.add(MIP_STORY_SYSTEM_SHOW);
-            localStorage.setItem('has-show-mip-story-hint', '1');
-        }
+        var ele = this.rootEl.querySelector(MIP_STORY_HINT_CLASS);
+        util.css(ele, {display: 'block'});
+        ele.classList.add(MIP_STORY_SYSTEM_SHOW);
     };
 
     MIPStoryHint.prototype.hideSystemLater = function () {
-        var ele = document.querySelector(MIP_STORY_HINT_CLASS);
+        var ele = this.rootEl.querySelector(MIP_STORY_HINT_CLASS);
         util.css(ele, {display: 'none'});
         ele.classList.remove(MIP_STORY_SYSTEM_SHOW);
     };
 
     MIPStoryHint.prototype.toggleSystemLater = function () {
-        var ele = document.querySelector(MIP_STORY_HINT_CLASS);
+        var ele = this.rootEl.querySelector(MIP_STORY_HINT_CLASS);
         var display = ele.style.display;
         if (display === 'block') {
             this.hideSystemLater();
@@ -97,7 +94,7 @@ define(function (require) {
     };
 
     MIPStoryHint.prototype.showPageSwitchLayer = function () {
-        var hint = document.querySelector(MIP_STORY_HINT_CLASS);
+        var hint = this.rootEl.querySelector(MIP_STORY_HINT_CLASS);
         hint.classList.add(MIP_STORY_PAGE_SWITCH_RIGHT_CLASS);
         setTimeout(function () {
             hint.classList.remove(MIP_STORY_PAGE_SWITCH_RIGHT_CLASS);
@@ -105,7 +102,7 @@ define(function (require) {
     };
 
     MIPStoryHint.prototype.hidePageSwitchLayer = function () {
-        var hint = document.querySelector(MIP_STORY_HINT_CLASS);
+        var hint = this.rootEl.querySelector(MIP_STORY_HINT_CLASS);
         hint.classList.add(MIP_STORY_PAGE_SWITCH_LEFT_CLASS);
         setTimeout(function () {
             hint.classList.remove(MIP_STORY_PAGE_SWITCH_LEFT_CLASS);

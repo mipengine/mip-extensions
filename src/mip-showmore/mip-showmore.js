@@ -9,12 +9,61 @@ define(function (require) {
     var util = require('util');
     var viewport = require('viewport');
     var timeoutArray = [];
+    var increaseId = 0;
+
+    var ShowmoreInstance = {};
+
+    // 获取实验组id
+    if (MIP.hash.hashTree.sids) {
+        var sidsArr = MIP.hash.hashTree.sids.value.split('_')
+        var sidsA = '126449'
+        var sidsB = '126450'
+        var sidsC = '126490'
+
+        if (matchIsSids(sidsA)) { // 命中实验组
+            var sidsBtn = document.querySelector('.mip-showmore-btn')
+            sidsBtn.innerHTML = '展开全部'
+            sidsBtn.classList.add('mip-showmore-btn-sidsA')
+            var iconChildElement = document.createElement('span')
+            iconChildElement.classList.add('down-icon')
+            sidsBtn.appendChild(iconChildElement)
+            if (!document.querySelector('mip-showmore').getAttribute('bottomshadow')) {
+                document.querySelector('mip-showmore').setAttribute('bottomshadow', 1)
+            }
+        }
+        if (matchIsSids(sidsB)) { // 命中实验组
+            var sidsBtn = document.querySelector('.mip-showmore-btn')
+            sidsBtn.innerHTML = '展开全部'
+            sidsBtn.classList.add('mip-showmore-btn-sidsB')
+            document.querySelector('.mip-showmore-btn').style.cssText = 'width:' + document.documentElement.clientWidth + 'px;display: inline-block; cursor: pointer;background: #f8f8f8!important'
+            document.querySelector('mip-showmore').classList.add('sidsB')
+            var iconChildElement = document.createElement('span')
+            iconChildElement.classList.add('down-icon')
+            sidsBtn.appendChild(iconChildElement)
+        }
+    }
+
+    /**
+     * 匹配实验组sids是否命中
+     * 
+     * @param {string} sids 
+     * @returns {boolean} 是否匹配到实验组id
+     */
+    function matchIsSids (sids) {
+        for (var sidNum = 0, sidsLen = sidsArr.length; sidNum < sidsLen; sidNum++) {
+            if (sidsArr[sidNum] === sids) {
+                return true
+            }
+        }
+        return false
+    }
 
     // 匹配节点是否在按钮中
     function matchOriginTarget (id, node) {
         while (node.parentNode) {
             var attr = node.getAttribute('on');
-            if (attr && attr.indexOf('tap:' + id) === 0) {
+            // 兼容click
+            if (attr && new RegExp('^(tap|click):' + id).test(attr)) {
                 return node;
             }
             node = node.parentNode;
@@ -43,27 +92,38 @@ define(function (require) {
         }
         // 折叠高度类型
         this.heightType = ['HEIGHTSCREEN', 'HEIGHT', 'LENGTH'];
-        // 对应的收起按钮
-        this.btn = document.querySelector('div[on="tap:' + this.ele.id +  '.toggle"]');
+        // 对应的收起按钮，因收起按钮可能不在 showmore组件中，故使用 document.querySelector 全局选择
+        this.btn = document.querySelector('div[on="tap:' + this.ele.id + '.toggle"]') || document.querySelector('div[on="click:' + this.ele.id + '.toggle"]');
         this.eleid = ele.id;
+
+        // 是否含有mip-showmore子元素
+        this.containSMChild = false;
+
+        // 是否初使化
+        this.initialized = false;
+
         // 获取内容显示框，v1.1.0 方法
         if (!this.showBox) {
             this.showBox = this.ele;
         }
     };
 
-    Showmore.prototype.init = function () {
+    Showmore.prototype.init = function (deps) {
         // 如果动画不是数字
         if (isNaN(this.animateTime)) {
             return;
         }
 
+        // console.log(this.ele.id)
         // 获取高度阈值
         this.maxHeight = this.ele.getAttribute('maxheight');
         // 获取字数阈值
         this.maxLen = this.ele.getAttribute('maxlen');
         // 获取是否需要bottom渐变
         this.bottomShadow = this.ele.getAttribute('bottomshadow') === '1';
+        // 弹性高度，判断高度阈值时会增加此弹性
+        this.bufferHeight = this.ele.getAttribute('bufferheight');
+        this.bufferHeight = +this.bufferHeight ? +this.bufferHeight : 0;
         // 渐变className
         this.bottomShadowClassName = 'linear-gradient';
         // 处理阈值高度(高度优先于字体长度,不允许两个同时存在)
@@ -103,14 +163,20 @@ define(function (require) {
             this._initHeight();
         }
 
+
+
         // 避免初始加载闪现
         util.css(this.ele, {
             visibility: 'visible'
         });
+        this.runInitShowMore();
+
+        this.initialized = true;
 
         // 保存点击按钮当前display状态，兼容v1.0.0和v1.1.0
         var display = this.clickBtnSpan && getComputedStyle(this.clickBtnSpan).display;
         var displayNew = this.btn && getComputedStyle(this.btn).display
+        this.btn && this.btn.style && (this.btn.style.cursor = 'pointer');
         this.btnDisplay = displayNew || display;
     };
 
@@ -145,7 +211,7 @@ define(function (require) {
             height = util.rect.getElementOffset(this.showBox).height;
         }
         // 如果高度大于阈值
-        if (height > this.maxHeight) {
+        if (height > (+this.maxHeight) + this.bufferHeight) {
             util.css(this.showBox, {
                 'height': this.maxHeight + 'px',
                 'overflow': 'hidden'
@@ -161,7 +227,7 @@ define(function (require) {
     // 字数控制
     Showmore.prototype._initTextLength = function () {
         // 防止重复初始化
-        if(this.oriDiv) {
+        if (this.oriDiv) {
             return
         }
         // 存储原始html文字 & NODE
@@ -304,15 +370,19 @@ define(function (require) {
                     clickBtn.classList.remove(closeclass);
                 }
                 else {
-                    clickBtn.innerText = clickBtn.dataset.opentext;
+                    if (MIP.hash.hashTree.sids && (matchIsSids(sidsA) || matchIsSids(sidsB))) {
+                        clickBtn.innerHTML = clickBtn.dataset.opentext + '<span class="down-icon"></span>';
+                    } else {
+                        clickBtn.innerHTML = clickBtn.dataset.opentext;
+                    }
                 }
             }
             // v1.0.0 显示“展开”按钮
             this._changeBtnText({
                 display: this.btnDisplay
             }, {
-                display: 'none'
-            });
+                    display: 'none'
+                });
         }
         else {
             // v1.1.0显示“收起”按钮
@@ -322,16 +392,16 @@ define(function (require) {
                 }
                 else {
                     var opentext = clickBtn.innerText;
-                    clickBtn.innerText = clickBtn.dataset.closetext || '收起';
                     clickBtn.dataset.opentext = opentext;
+                    clickBtn.innerHTML = clickBtn.dataset.closetext || '收起';
                 }
             }
             // v1.0.0 显示“收起”按钮
             this._changeBtnText({
                 display: 'none'
             }, {
-                display: this.btnDisplay
-            });
+                    display: this.btnDisplay
+                });
         }
     };
 
@@ -383,23 +453,67 @@ define(function (require) {
         util.css(obj, cssObj);
     };
 
-     /**
-         * Make height transiton for element that has unknown height.
-         * height transiton from 0px/40px to whatever height element will be.
-         *
-         * author&maintainer liangjiaying<jiaojiaomao220@163.com>
-         *
-         * @param  {Object} opt options
-         * @example
-         * {
-         *     "ele": document.getElementById('id1'), // target DOM
-         *     "type": "fold",                  // "fold" or "unfold"
-         *     "transitionTime": "0.3",         // seconds, animation time
-         *     "tarHeight": "140px",            // DOM height when animation ends
-         *     "oriHeight": "20px",             // DOM height when animation begins
-         *     "cbFun": function() {}.bind()    //callback, exec after animation
-         * }
-     */
+    Showmore.prototype.getId = function (showmore) {
+        if (!showmore.dataset.showmoreId) {
+            showmore.dataset.showmoreId = '__showmoreincreaseId__' + (++increaseId);
+        }
+        return showmore.dataset.showmoreId;
+    }
+
+    // 分析组件嵌套关系
+    Showmore.prototype.analysisDep = function () {
+        var childMipShowmore = this.ele.querySelectorAll('mip-showmore');
+        var self = this;
+        if (!childMipShowmore.length) {
+            return
+        }
+        var parentId = this.getId(this.ele)
+
+        ShowmoreInstance[parentId] = ShowmoreInstance[parentId] || { deps: [] };
+        ShowmoreInstance[parentId].instance = this;
+
+        var currendParentNode = childMipShowmore[0];
+        Array.prototype.slice.call(childMipShowmore).forEach(function (child) {
+            if (currendParentNode !== child && currendParentNode.contains(child)) {
+                return;
+            }
+
+            var id = self.getId(child);
+            var childIns = ShowmoreInstance[id] || {};
+            childIns.deps = (childIns.deps || []).concat([parentId])
+            ShowmoreInstance[id] = childIns
+
+            currendParentNode = child;
+        });
+        this.containSMChild = true;
+    };
+
+    // 运行嵌套的showmore组件实例
+    Showmore.prototype.runInitShowMore = function () {
+        var depIds = ShowmoreInstance[this.getId(this.ele)];
+        depIds && depIds.deps.forEach(function (depid) {
+            var instan = ShowmoreInstance[depid];
+            instan && instan.instance && !instan.instance.initialized && instan.instance.init()
+        })
+    };
+
+    /**
+        * Make height transiton for element that has unknown height.
+        * height transiton from 0px/40px to whatever height element will be.
+        *
+        * author&maintainer liangjiaying<jiaojiaomao220@163.com>
+        *
+        * @param  {Object} opt options
+        * @example
+        * {
+        *     "ele": document.getElementById('id1'), // target DOM
+        *     "type": "fold",                  // "fold" or "unfold"
+        *     "transitionTime": "0.3",         // seconds, animation time
+        *     "tarHeight": "140px",            // DOM height when animation ends
+        *     "oriHeight": "20px",             // DOM height when animation begins
+        *     "cbFun": function() {}.bind()    //callback, exec after animation
+        * }
+    */
     function heightAni(opt) {
         var element = opt.ele;
         var type = opt.type;
@@ -422,7 +536,7 @@ define(function (require) {
         // use ?: to make sure oriHeight won't be rewrite when opt.oriHeight is set to 0
         var oriHeight = (opt.oriHeight !== undefined ? opt.oriHeight : getComputedStyle(element).height);
         var tarHeight;
-        var cbFun = opt.cbFun || function () {};
+        var cbFun = opt.cbFun || function () { };
 
         if (type === 'unfold') {
 
@@ -453,10 +567,14 @@ define(function (require) {
         }
 
         element.style.height = oriHeight;
+        element.style.transition = 'height ' + transitionTime + 's';
+
         // now start the animation
-        var timeout2 = setTimeout(function () {
-            element.style.transition = 'height ' + transitionTime + 's';
+
+        var timeout2 = requestAnimationFrame ? (requestAnimationFrame)(function () {
             // XXX: in setTimeout, or there won't be any animation
+            element.style.height = tarHeight;
+        }) : setTimeout(function () {
             element.style.height = tarHeight;
         }, 10);
         // after transition, exec callback functions
@@ -476,7 +594,7 @@ define(function (require) {
      * @param  {Object} dom some dom
      * @return {number}     height
      */
-    function getHeightUnfold (dom) {
+    function getHeightUnfold(dom) {
         var fakeNode = document.createElement('div');
         var style = getComputedStyle(dom);
         fakeNode.innerHTML = dom.innerHTML;
@@ -497,23 +615,35 @@ define(function (require) {
         return height;
     }
 
+
     /**
      * 构造元素，只会运行一次
      */
     customElement.prototype.build = function () {
         var me = this;
         var ele = this.element;
+        if (MIP.hash.hashTree.sids && matchIsSids(sidsC)) { // 命中实验组
+            ele.setAttribute('maxheight', '99999')
+        }
         var showmoreObj = new Showmore(ele);
-        showmoreObj.init();
-        showmoreObj._bindClick();
+        showmoreObj.analysisDep();
 
+        if (!showmoreObj.containSMChild) {
+            showmoreObj.init();
+        }
+
+        showmoreObj._bindClick();
         this.addEventAction('toggle', function (event) {
             showmoreObj.toggle(event);
         });
 
-        window.addEventListener('orientationchange', function() {
+        window.addEventListener('orientationchange', function () {
             showmoreObj.init();
         }, false);
+        if (MIP.hash.hashTree.sids && matchIsSids(sidsC)) { // 命中实验组
+            var sidsBtn = document.querySelector('.wrap-showmore-btn')
+            sidsBtn.style.cssText = 'display: none!important'
+        }
     };
 
     // when remove node, clear timeout

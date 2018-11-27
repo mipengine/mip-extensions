@@ -31,8 +31,8 @@ define(function (require) {
 
     /**
      * [getCss 获取样式]
-     * 由于目前只需要取 height 和 paddig-bottom，
-     * 所以对util.css结果进行处理，返回整数
+     * 由于目前只需要取 height 和 paddig-bottom,
+     * 所以对util.css结果进行处理, 返回整数
      *
      * @param  {DOM} elem     dom 节点
      * @param  {string} style 获取样式
@@ -62,7 +62,7 @@ define(function (require) {
             excr = 10;
         }
 
-        // 存在悬浮时，设置距离 top/bottom 的距离
+        // 存在悬浮时, 设置距离 top/bottom 的距离
         if (customNode.hasAttribute('top') && top) {
             util.css(fixedParent, {top: top});
         }
@@ -73,10 +73,18 @@ define(function (require) {
         fixedParent.appendChild(customNode);
         element.appendChild(fixedParent);
 
-        // 结果页打开，移动到 fixed layer
+        // 初始化底部fixed元素一开始在页面外部, 动画滑入页面
+        // 预先增加下移样式，当元素被插入页面后（setTimeout执行），动画执行。
+        if (type === 'bottom') {
+            fixedParent.classList.add('mip-custom-transit-from-bottom');
+            setTimeout(function () {
+                fixedParent.classList.add('mip-custom-transit-end');
+            }, 0);
+        }
+
+        // 结果页打开, 移动到 fixed layer
         if (fixedElement._fixedLayer) {
             fixedElement.setFixedElement([fixedParent], true);
-
             // 为悬浮节点添加代理事件
             proxyLink(customNode, fixedElement._fixedLayer);
         }
@@ -118,11 +126,12 @@ define(function (require) {
      * @return {DOM}     tpl  template 子节点
      */
     function createTemplateNode(html, id) {
-
         var tpl = document.createElement('template');
 
         tpl.setAttribute('type', 'mip-mustache');
-        tpl.id = id;
+        if (id) {
+            tpl.id = id;
+        }
         tpl.innerHTML = dataProcessor.subStr(html, regexs.innerHtml);
 
         return tpl;
@@ -149,10 +158,7 @@ define(function (require) {
             }
         }
 
-        var id = customTag + '-' + Math.random().toString(36).slice(2);
-        node.setAttribute('template', id);
-        node.appendChild(createTemplateNode(html, id));
-
+        node.appendChild(createTemplateNode(html));
         return node;
     }
 
@@ -164,10 +170,9 @@ define(function (require) {
      * @param  {integer} len       模块中第几个组件
      * @param  {Object}  result    渲染mustache模板的数据
      * @param  {DOM}     container 装载定制化组件节点的容器
-     * @param  {function} callback 短期追查问题-2018330
      * @return {string}  customTag 定制化组件标签
      */
-    function renderHtml(element, str, len, result, container, callback) {
+    function renderHtml(element, str, len, result, container) {
         var html = str.replace(regexs.script, '').replace(regexs.style, '');
         var customTag = (new RegExp(regexs.tag, 'g')).exec(html);
         customTag = customTag && customTag[1] ? customTag[1] : null;
@@ -180,8 +185,10 @@ define(function (require) {
         var customNode = createCustomNode(html, customTag);
         var itemNode = document.createElement('div');
         itemNode.setAttribute('mip-custom-item', len);
-        itemNode.appendChild(customNode);
-        container.appendChild(itemNode);
+        // XXX work around: 由于需要在template渲染后把渲染结果插入到itemNode，container里面，
+        // 只能把这些参数绑定在 customNode 里传给render.then中，通过res.element.itemNode获取
+        customNode.itemNode = itemNode;
+        customNode.container = container;
 
         if (customNode.hasAttribute('mip-fixed')) {
             moveToFixedLayer(element, customNode, container);
@@ -190,21 +197,23 @@ define(function (require) {
         // 模板渲染
         templates.render(customNode, result, true).then(function (res) {
             res.element.innerHTML = res.html;
+            // XXX: 在模板渲染resolve后把custom element插入到页面
+            // 防止组件先插入页面后触发firstInviewCallback方法，但内容只有待渲染的template，
+            // 此时在组件中获取不到渲染后dom，无法绑定事件
+            res.element.itemNode.appendChild(res.element);
+            res.element.container.appendChild(res.element.itemNode);
 
             if (res.element.hasAttribute('mip-fixed')
-                && res.element.parentNode.getAttribute('type') === 'bottom') {
-
+                && res.element.getAttribute('mip-fixed') === 'bottom') {
+                moveToFixedLayer(element, customNode, container);
                 fixedElement.setPlaceholder();
                 var zIndex = getCss(res.element.parentNode, 'z-index');
 
                 if (zIndex >= maxzIndex) {
                     maxzIndex = zIndex;
-                    // alert(getCss(res.element, 'height') - 10)
                     fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
                 }
             }
-            /*callback 短期追查问题-2018330*/
-            callback && callback(res.html, '{{img_left.img_src}}');
         });
 
         return customTag;
@@ -216,10 +225,8 @@ define(function (require) {
      * @param  {DOM}   element   mip-custom 节点
      * @param  {Array} tplData   渲染mustache模板的数据数组
      * @param  {DOM}   container 装载定制化组件节点的容器
-     * @param  {function} callback 短期追查问题-2018330
      */
-    function render(element, tplData, container, callback) {
-
+    function render(element, tplData, container) {
         for (var len = 0; len < tplData.length; len++) {
 
             // 某条结果为空时不渲染此条结果
@@ -239,8 +246,7 @@ define(function (require) {
             renderStyleOrScript(str, regexs.style, 'style', 'mip-custom-css', document.head);
 
             // html 处理
-            // callback 短期追查问题-2018330
-            var customTag = renderHtml(element, str, len, result, container, callback);
+            var customTag = renderHtml(element, str, len, result, container);
 
             if (!customTag) {
                 continue;
@@ -255,7 +261,7 @@ define(function (require) {
     /**
      * [proxyLink a 标签事件代理]
      *
-     * @param  {DOM} element    mip-custom，只监听当前组件下的 a 标签
+     * @param  {DOM} element    mip-custom, 只监听当前组件下的 a 标签
      * @param  {DOM} fixedLayer fixed body
      */
     function proxyLink(element, fixedLayer) {
@@ -304,11 +310,44 @@ define(function (require) {
         return elem.querySelector('script[type="application/json"]');
     }
 
+    // 广告加载前loading效果
+    function addPlaceholder() {
+        var placeholder = document.createElement('div');
+        this.placeholder = placeholder;
+        placeholder.classList.add('mip-custom-placeholder');
+        placeholder.setAttribute('mip-custom-container', '');
+        placeholder.innerHTML = ''
+            + '<span class="mip-custom-placeholder-title"></span>'
+            + '<span class="mip-custom-placeholder-text text1"></span>'
+            + '<span class="mip-custom-placeholder-text text2"></span>'
+            + '<span class="mip-custom-placeholder-text text3"></span>'
+            + '<span class="mip-custom-placeholder-space"></span>'
+            + '<span class="mip-custom-placeholder-title"></span>'
+            + '<span class="mip-custom-placeholder-text text1"></span>'
+            + '<span class="mip-custom-placeholder-text text2"></span>'
+            + '<span class="mip-custom-placeholder-text text3"></span>';
+        this.element.appendChild(placeholder);
+    }
+    // 移除 广告占位
+    function removePlaceholder() {
+        var me = this;
+        this.placeholder.classList.add('fadeout');
+        // 占位符增加淡出效果
+        this.placeholder.addEventListener("transitionend", function() {
+            me.placeholder.remove();
+        }, false);
+        this.placeholder.addEventListener("webkitTransitionend", function() {
+            me.placeholder.remove();
+        }, false);
+    }
+
 
     return {
         render: render,
         proxyLink: proxyLink,
-        getConfigScriptElement: getConfigScriptElement
+        getConfigScriptElement: getConfigScriptElement,
+        addPlaceholder: addPlaceholder,
+        removePlaceholder: removePlaceholder
     };
 
 });

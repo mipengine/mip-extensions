@@ -3,6 +3,7 @@
  * @author pearl
  */
 define(function (require) {
+    var util = require('util');
 
     /**
      * [regexs 正则表达式]
@@ -30,7 +31,9 @@ define(function (require) {
         logid: '',
         query: '',
         title: '',
-        originalUrl: getSubString(location.pathname, regexs.regHttps) || getSubString(location.pathname, regexs.regHttp)
+        originalUrl: getSubString(location.pathname, regexs.regHttps)
+            || getSubString(location.pathname, regexs.regHttp)
+            || location.href
     };
 
     var logData = {
@@ -51,23 +54,24 @@ define(function (require) {
             en: 'mip_async_err'
         }
     };
-
-    /* errorLogData       */
-    var errorLogData = {
+    var performanceData = {
         host: 'https://sp1.baidu.com/5b1ZeDe5KgQFm2e88IuM_a/mwb2.gif',
         params: {
-            type: 'et_js',
             pid: '1_4',
-            lid: getHashData('lid')
+            type: 'pf_comm',
+            lid: getHashData('lid'),
+            info: {},
+            group: 'common',
+            ts: new Date() - 0
         }
     };
-
     var config = {
         domain: 'https://mipengine.baidu.com/',
         paths: {
             'js/nav': 'static/js/nav',
             'js/util': 'static/js/util',
-            'js/mip-ecom/ck': 'static/js/mip-ecom/ck'
+            'js/mip-ecom/ck': 'static/js/mip-ecom/ck',
+            'js/mip-ecom/mip-ecom-phoneDail':'static/js/mip-ecom/phoneDail'
         }
     };
 
@@ -83,15 +87,16 @@ define(function (require) {
     }
 
     function addPaths(config) {
-        if (config.paths) {
-            for (var key in config.paths) {
-                if (config.paths.hasOwnProperty(key)) {
-                    config.paths[key] = config.domain + config.paths[key];
+        var conf = JSON.parse(JSON.stringify(config));
+        if (conf.paths) {
+            for (var key in conf.paths) {
+                if (conf.paths.hasOwnProperty(key)) {
+                    conf.paths[key] = conf.domain + conf.paths[key];
                 }
             }
         }
 
-        return config;
+        return conf;
     }
 
     /**
@@ -108,7 +113,7 @@ define(function (require) {
         return res;
     }
 
-    /* errorLogData 短期追查问题-2018330 */
+
     return {
         domain: 'https://mipengine.baidu.com/',
         ajaxUrl: 'https://mipengine.baidu.com/common?',
@@ -119,7 +124,7 @@ define(function (require) {
         addPaths: addPaths,
         subStr: getSubString,
         logData: logData,
-        errorLogData: errorLogData,
+        performanceData: performanceData,
         getHashData: getHashData
     };
 

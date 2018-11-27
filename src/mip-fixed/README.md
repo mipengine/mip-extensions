@@ -18,6 +18,35 @@
 </mip-fixed>
 ```
 
+### 顶部悬浮 - 向下滑动隐藏
+
+```html
+<mip-fixed type="top" data-slide>
+    顶部悬浮 - 向下滑动隐藏
+</mip-fixed>
+```
+
+### 顶部悬浮 - 自动隐藏距离
+
+```html
+<!-- 以下代码只是示例 -->
+<style>
+    /*元素顶部距离*/
+    .mip-fixed-top {
+        top: 300px !important;
+    }
+    /*自定义元素隐藏时动画*/
+    .mip-fixed-test-top {
+        -webkit-transform: translate3d(0, -400px, 0);
+                transform: translate3d(0, -400px, 0);
+    }
+</style>
+
+<mip-fixed type="top" data-slide="mip-fixed-test-top" class="mip-fixed-top">
+    顶部悬浮 - 自动隐藏距离
+</mip-fixed>
+```
+
 ### 底部悬浮
 
 ```html
@@ -90,6 +119,12 @@
 必选项: 否  
 取值范围：数值+单位，例如：`50(px|em|rem|vh|vw|vmin|vmax|cm|mm|q|in|pc|pt)`  
 默认值：`auto`
+
+### data-slide
+
+说明：屏幕向下滑动时元素添加 `class` 名称去隐藏元素，元素已经添加 `transition: transform .5s` ，只需要向对应的类添加 `transform` 即可，只支持 `type="top"` 和 `type="bottom"`  
+必须项：否  
+默认值：`type="top"` 时默认取值 `mip-fixed-hide-top`（`translate3d(0, -200%, 0)`） ，`type="bottom"` 时默认取值 `mip-fixed-hide-bottom`（`translate3d(0, 200%, 0)`）  
 
 
 ## 注意事项

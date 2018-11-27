@@ -8,22 +8,33 @@ define(function () {
     // rquire tools
     var util = require('util');
     var viewer = require('viewer');
-
+    // 添加广告展示PV判断字段，待广告渲染完成 window.MIP.ad.show 为 true
+    window.MIP.ad = {};
     // require modules
     var url = require('mip-custom/url');
     var dom = require('mip-custom/dom');
     var log = require('mip-custom/log');
     var dataProcessor = require('mip-custom/data');
 
+    // require novel feature
+    var novel = require('mip-custom/novelFeature');
+
     // creat钩子
     var customElement = require('customElement').create();
     var logData = dataProcessor.logData;
-    // errorLogData 短期追查问题-2018330
-    var errorLogData = dataProcessor.errorLogData;
+    var performanceData = dataProcessor.performanceData;
+    var globalCustomElementInstance;
+
+    var UA = navigator.userAgent;
 
     /**
+     * 获取是否是百度spider抓取
+     */
+    function isBaiduSpider() {
+        return UA.indexOf('Baiduspider') > -1;
+    }
+    /**
      * prerenderAllowed钩子,优先加载
-     *
      */
     customElement.prototype.prerenderAllowed = function () {
         return true;
@@ -34,6 +45,28 @@ define(function () {
      *
      */
     customElement.prototype.build = function () {
+        // 如果是百度spider抓取，如果是百度spider抓取则不执行接下来的逻辑
+        if (isBaiduSpider()) {
+            return;
+        }
+        var me = this;
+        globalCustomElementInstance = this;
+        // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
+        var novelShell = document.querySelector('mip-shell-xiaoshuo');
+        if (window.MIP.version && +window.MIP.version === 2 && novelShell) {
+            novel.addNovelListener.apply(this, [this.initElement]);
+        }
+        else {
+            dom.addPlaceholder.apply(this);
+            this.initElement(dom);
+        }
+    };
+
+    /**
+     * 发出请求+渲染页面
+     *
+     */
+    customElement.prototype.initElement = function (dom) {
         var me = this;
         var checkElement = function () {
             if (dom.getConfigScriptElement(me.element)) {
@@ -42,7 +75,6 @@ define(function () {
             }
             return false;
         };
-
         if (!checkElement()) {
             window.requestAnimationFrame(checkElement);
         }
@@ -55,13 +87,11 @@ define(function () {
     customElement.prototype.initCustom = function () {
         var me = this;
 
-        // 初始化
-        me.initBuild();
-
-        // 异常情况下不展示定制化MIP
-        if (!me.isShowCustom()) {
-            return;
-        }
+        // 参数初始化
+        me.position = me.element.getAttribute('position') || '';
+        me.sourceType = me.element.getAttribute('source-type') || '';
+        // 判断是否在mip-shell中，决定请求传递参数
+        me.commonUrl = url.get(me.element);
 
         // 监听代理 a 标签点击事件
         dom.proxyLink(me.element);
@@ -98,44 +128,6 @@ define(function () {
     };
 
     /**
-     * 初始化参数
-     *
-     */
-    customElement.prototype.initBuild = function () {
-        var me = this;
-        me.regexs = dataProcessor.regexs;
-        me.position = me.element.getAttribute('position') || '';
-        me.sourceType = me.element.getAttribute('source-type') || '';
-        me.commonUrl = url.get(me.element);
-    };
-
-    /**
-     * 判断是否展示定制化MIP
-     *
-     * @return {boolean} isShowCustom 是否展示定制化MIP
-     */
-    customElement.prototype.isShowCustom = function () {
-        var me = this;
-        var isShowCustom = true;
-        // 非结果页进入不展现定制化内容
-        if (!viewer.isIframed) {
-            me.element.remove();
-            isShowCustom = false;
-        }
-        // 非百度、cache不展现定制化内容
-        if (!(me.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
-            me.element.remove();
-            isShowCustom = false;
-        }
-        // 无异步url不展现定制化内容
-        if (!me.commonUrl) {
-            me.element.remove();
-           isShowCustom = false;
-        }
-        return isShowCustom;
-    };
-
-    /**
      * 获取标签所在的位置
      *
      * @return {Object} position 标签位置
@@ -169,7 +161,6 @@ define(function () {
     customElement.prototype.render = function (data, element) {
         var commonData = {};
         var template = {};
-        var me = this;
         if (!data || !element) {
             return;
         }
@@ -193,18 +184,26 @@ define(function () {
         }
 
         for (var i = 0; i < template.length; i++) {
-
             var tplData = template[i];
             var container = document.createElement('div');
-
             container.setAttribute('mip-custom-container', i);
             element.appendChild(container);
 
             // dom 渲染
-            // dom.render(element, tplData, container);
-            // 短期追查问题-2018330
-            dom.render(element, tplData, container, me.errMoniter);
+            dom.render(element, tplData, container);
         }
+
+        // 广告插入页面时，增加渐显效果
+        var mipCustomContainers = document.querySelectorAll('[mip-custom-container]');
+        for (var i = mipCustomContainers.length - 1; i >= 0; i--) {
+            var mipCustomContainer = mipCustomContainers[i];
+            mipCustomContainer.classList.add('fadein');
+        }
+
+        // 广告渲染完成
+        window.MIP.ad.show = true
+        // 移除广告占位符号
+        dom.removePlaceholder.apply(this);
     };
 
     /**
@@ -247,7 +246,6 @@ define(function () {
                     matchTempData.template.push(singleTempData);
                     break;
                 }
-                
             }
         }
 
@@ -267,11 +265,22 @@ define(function () {
             return;
         }
         var errorData = {};
+        // 性能日志
+        var performance = {};
+        performance.fetchStart = new Date() - 0;
+
+        var paramUrl = url;
+
+        // 小说的特殊参数——novelData和fromSearch
+        paramUrl = novel.addNovelDate.apply(this, [url]);
 
         // fetch
-        fetch(url, {
+        fetch(paramUrl, {
             credentials: 'include'
         }).then(function (res) {
+            // 性能日志：duration-网络请求时间
+            performance.responseEnd = new Date() - 0;
+            performance.duration = performance.responseEnd - performance.fetchStart;
             errorData = {
                 st: res.status,
                 info: res.statusText,
@@ -284,7 +293,6 @@ define(function () {
         }).then(function (data) {
             // 返回数据问题
             if (data && data.errno) {
-
                 // send error log
                 errorData = {
                     info: data.errmsg,
@@ -292,11 +300,27 @@ define(function () {
                 };
                 log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
 
-                console.error(data.errmsg);
+                console.warn(data.errmsg);
                 me.element.remove();
                 return;
             }
-            callback && callback(data.data, element);
+            // 小说内命中小流量
+            if (window.MIP.version && +window.MIP.version === 2 && data.data.schema) {
+                new Promise(function (resolve) {
+                    novel.renderNovelCacheAdData.apply(this, [data, me.element, resolve]);
+                }).then(function (result) {
+                    // 模板的前端渲染
+                    callback && callback.apply(this, [result, me.element]);
+                }).catch(function (reason) {
+                    console.log('失败：' + reason);
+                });
+            }
+            else {
+                // 模板的前端渲染
+                callback && callback(data.data, element);
+            }
+            // 性能日志：按照流量 1/500 发送日志
+            me.setPerformanceLogs(performance, data);
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();
@@ -305,6 +329,41 @@ define(function () {
         }).catch(function (evt) {
             console.warn(evt);
         });
+    };
+
+    /**
+     * 性能日志：按照流量 1/500 发送日志
+     *
+     * @param {Object} performance 性能参数
+     */
+    customElement.prototype.setPerformanceLogs = function (performance, data) {
+        var random500 = Math.random() * 500;
+        if (random500 < 1) {
+            // 性能日志：emptyTime-广告未显示时间
+            // 渲染结束时间戳
+            performance.renderEnd = new Date() - 0;
+            // 页面空白毫秒数
+            performance.emptyTime = performance.renderEnd - performance.fetchStart;
+            performance.frontendRender = performance.renderEnd - performance.responseEnd;
+
+            // 前端打点时间
+            var frontendData = {
+                duration: performance.duration,
+                emptyTime: performance.emptyTime,
+                frontendRender: performance.frontendRender
+            };
+            // 加入后端打点时间
+            var frontAndServerData;
+            if (data.data.responseTime) {
+                frontAndServerData = util.fn.extend(frontendData, data.data.responseTime);
+            }
+            else {
+                frontAndServerData = frontendData;
+            }
+            // 加入默认统计参数
+            performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
+            log.sendLog(performanceData.host, performanceData.params);
+        }
     };
 
     /**
@@ -382,34 +441,6 @@ define(function () {
             }
         }
         me.storeData(data);
-    };
-
-    /**
-     * 错误日志监控 2018330
-     * @param {string} htmlStr 要被截取的地址
-     * @param {string} str 关键字
-     */
-    customElement.prototype.errMoniter = function (htmlStr, str) {
-        if (!htmlStr) {
-            return;
-        }
-        var me = this;
-        var idx = htmlStr.indexOf(str);
-        if (idx !== -1) {
-            var params = errorLogData.params;
-            params.ts = new Date().getTime();
-            var start = idx - 200;
-            var end = idx + 200;
-            if (start < 0) {
-                start = 0;
-            }
-            if (idx + 200 >= htmlStr.length) {
-                end = htmlStr.length - 1;
-            }
-            params.info = encodeURIComponent(htmlStr.substring(start, end) + '|'
-                + document.referrer + '|' + me.commonUrl);
-            log.sendLog(errorLogData.host, params);
-        }
     };
 
     return customElement;

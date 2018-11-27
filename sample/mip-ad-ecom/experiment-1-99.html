@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html mip lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>mip-ecom-ad分流量测试页面</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="stylesheet" href="https://c.mipcdn.com/static/v1/mip.css">
+    <link rel="canonical" href="https://www.mipengine.org/">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <style mip-custom>
+        body {
+            background: #eee;
+        }
+        h1, h2 {
+            margin: 10px 0;
+            padding: 10px 17px;
+            background: white;
+        }
+        p {
+            padding: 10px 17px;
+            margin-top: -10px;
+            background: white;
+        }
+        mip-ad-ecom {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>按照流量抽样分组</h1>
+    <p>1%渲染组件mip-ad, 99%渲染组件mip-ad-ecom</p>
+
+    <mip-experiment class="mip-hidden">
+        <script type="application/json" for="mip-experiment">
+            {
+                "ad-experiment": {
+                    "sticky": false,
+                    "descri": "按照流量抽样分组，50%渲染组件mip-ad, 50%渲染组件mip-ad-ecom",
+                    "type": "tag-abtest",
+                    "variants": {
+                        "mip-ad-group": 1,
+                        "mip-ad-ecom-group": 99
+                    }
+                }
+            }
+        </script>
+        <!--由于template模板渲染存在一次标签清洗，script标签需要写在外面。for对应标签id-->
+        <script type="application/json" for="mip-ad-ecom">
+            {
+                "accid": "e2217bab684fbb898dccf04b",
+                "title": "%E8%BF%99%E9%87%8C%E6%98%AF%E6%A0%87%E9%A2%98"
+            }
+        </script>
+        <div for="ad-experiment">
+            <template type="mip-mustache">
+                {{#mip-ad-group}}
+                    <h1>实验组A: 渲染网盟广告</h1>
+                    <mip-ad
+                        type="ad-baidu" 
+                        cproid="u2697398">
+                    </mip-ad>
+                {{/mip-ad-group}}
+                {{#mip-ad-ecom-group}}
+                    <h1>实验组B: 渲染凤巢广告</h1>
+                    <mip-ad-ecom layout="fixed-height" height="343" id="mip-ad-ecom">
+                    </mip-ad-ecom>
+                {{/mip-ad-ecom-group}}
+            </template>
+        </div>
+    </mip-experiment>
+     <h2>然后是正文内容</h2>
+    <h2>然后是正文内容</h2>
+    <h2>然后是正文内容</h2>
+    <h2>然后是正文内容</h2>
+    <h2>然后是正文内容</h2>
+
+    <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-mustache/mip-mustache.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-ad-ecom/mip-ad-ecom.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-ad/mip-ad.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v1/mip-experiment/mip-experiment.js"></script>
+</body>
+</html>

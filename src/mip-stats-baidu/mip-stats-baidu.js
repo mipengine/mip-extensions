@@ -28,9 +28,9 @@ define(function (require) {
                 token
             ]);
 
-            // XXX: 解决来自百度搜索，内外域名不一致问题
+            // 如果是在iframe内部，则单独处理referrer，因为referrer统计不对
             if (viewer.isIframed) {
-                bdSearchCase();
+                setReferrer();
             }
             if (config && Array.isArray(config.conf) && config.conf.length) {
                 var conf = config.conf;
@@ -224,29 +224,40 @@ define(function (require) {
     }
 
     /**
-     * 解决来自百度搜索，内外域名不一致问题
-     */
-    function bdSearchCase() {
+     * 通过百度统计API设置新的referrer
+     * 因为在iframe中，统计到的referrer不对，所以需要转换referrer
+     * 
+    */
+    function setReferrer() {
         var originUrl = '';
-        var hashObj = {};
+        var params = {};
 
         var hashWord = MIP.hash.get('word') || '';
         var hashEqid = MIP.hash.get('eqid') || '';
+        var hashQuery = MIP.hash.get('q') || '';
         var from = MIP.hash.get('from') || '';
 
+
         if (isMatch(from, 'result')) {
-            if ((hashWord || hashEqid) && document.referrer) {
-                hashObj.url = '';
-                hashObj.eqid = hashEqid;
-                hashObj.word = hashWord;
+            // 百度搜索查询参数
+            if(hashWord || hashEqid) {
+                params.eqid = hashEqid;
+                params.word = hashWord;
+            }
+            // 神马搜索查询参数
+            if(hashQuery) {
+                params.q = hashQuery
+            }
+            if (document.referrer) {
+                params.url = '';
                 originUrl = document.referrer;
             }
         }
         else {
-            hashObj.url = '';
+            params.url = '';
             originUrl = location.origin + location.pathname + location.search;
         }
-        window._hmt.push(['_setReferrerOverride', makeReferrer(originUrl, hashObj)]);
+        window._hmt.push(['_setReferrerOverride', buildReferrer(originUrl, params)]);
     }
 
     /**
@@ -267,15 +278,16 @@ define(function (require) {
      * 生成百度统计_setReferrerOverride对应的referrer
      *
      * @param  {string} url       需要被添加参数的 url
-     * @param  {Object} hashObj   参数对象
+     * @param  {Object} params   参数对象
      * @return {string}           拼装后的 url
      */
-    function makeReferrer(url, hashObj) {
+    function buildReferrer(url, params) {
         var referrer = '';
+        var params = params;
         var conjMark = url.indexOf('?') < 0 ? '?' : '&';
         var urlData = '';
-        for (var key in hashObj) {
-            urlData += '&' + key + '=' + hashObj[key];
+        for (var key in params) {
+            urlData += '&' + key + '=' + params[key];
         }
         urlData = urlData.slice(1);
         if (url.indexOf('#') < 0 && urlData) {

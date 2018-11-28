@@ -41,7 +41,7 @@ define(function (require) {
             }
         } else {
             // 官方包
-            if (options.asoTest === "Y") {
+            if (options.asoTest === 'Y') {
                 link = options.gameHref;
             }
             return link;

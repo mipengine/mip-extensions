@@ -27,7 +27,7 @@ define(function (require) {
 
         component.addEventListener('click', function () { // 点击跳转
             window.location.href = link;
-        }, false)
+        }, false);
 
         var unDownClass = component.classList.contains('btn-disabled');
 

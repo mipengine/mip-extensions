@@ -1,7 +1,7 @@
 {
     "name": "mip-qf-dlbtn",
     "version": "1.0.0",
-    "description": "根据下载路径处理下载逻辑",
+    "description": "七风-下载功能",
     "contributors": [
         {
             "name": "W_peach   ",

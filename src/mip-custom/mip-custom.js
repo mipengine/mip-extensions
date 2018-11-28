@@ -8,8 +8,6 @@ define(function () {
     // rquire tools
     var util = require('util');
     var viewer = require('viewer');
-    // 添加广告展示PV判断字段，待广告渲染完成 window.MIP.ad.show 为 true
-    window.MIP.ad = {};
     // require modules
     var url = require('mip-custom/url');
     var dom = require('mip-custom/dom');
@@ -199,9 +197,8 @@ define(function () {
             var mipCustomContainer = mipCustomContainers[i];
             mipCustomContainer.classList.add('fadein');
         }
-
         // 广告渲染完成
-        window.MIP.ad.show = true
+        window.MIP.adShow = true
         // 移除广告占位符号
         dom.removePlaceholder.apply(this);
     };

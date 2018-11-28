@@ -39,6 +39,12 @@ define(function (require) {
             } else {
                 link = '/guide/usInstruction.shtml?link=';
             }
+        } else {
+            // 官方包
+            if (options.asoTest === "Y") {
+                link = options.gameHref;
+            }
+            return link;
         }
 
         return link;

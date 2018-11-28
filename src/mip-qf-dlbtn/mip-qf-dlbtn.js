@@ -15,7 +15,6 @@ define(function (require) {
 
     customElement.prototype.firstInviewCallback = function () {
         var component = this.element; // 组件元素
-        var a = component.querySelector('a');
 
         if (util.platform.isWechatApp()) { // 微信浏览器
             return component.addEventListener('click', function (e) {
@@ -26,12 +25,14 @@ define(function (require) {
 
         var link = getLink(getParams(component));
 
-        a.setAttribute('href', link);
+        component.addEventListener('click', function () { // 点击跳转
+            window.location.href = link;
+        }, false)
 
         var unDownClass = component.classList.contains('btn-disabled');
 
-        if (unDownClass && (link === 'javascript:void(0)' || !link)) {
-            a.classList.add(unDownClass);
+        if (unDownClass && (link === 'javascript:void(0)' || !link)) { // 无包或者不能跳转时，class值加上btn-disabled
+            component.classList.add(unDownClass);
         }
     };
 
@@ -60,6 +61,8 @@ function wechatMask() {
 function getParams(el) {
     return {
         isBp: el.getAttribute('data-isbp') ? el.getAttribute('data-isbp') : '',
-        href: el.getAttribute('data-href') ? el.getAttribute('data-href') : ''
+        href: el.getAttribute('data-href') ? el.getAttribute('data-href') : '',
+        asoTest: el.getAttribute('data-asoTest') ? el.getAttribute('data-asoTest') : '',
+        gameHref: el.getAttribute('game-href') ? el.getAttribute('game-href') : ''
     };
 }

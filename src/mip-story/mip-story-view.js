@@ -107,11 +107,15 @@ define(function (require) {
 
     function toggleDisplay(obj, disp) {
         if (disp) {
-            obj.setAttribute('style', 'display: ' + obj.getAttribute("originDisplay"));
+            css(obj, {
+                'display': obj.getAttribute("originDisplay")
+            })
         } else {
             var originDisplay = document.defaultView.getComputedStyle(obj)['display'];
             obj.setAttribute('originDisplay', originDisplay);
-            obj.setAttribute('style', 'display: none');
+            css(obj, {
+                'display':'none'
+            })
         }
     }
 

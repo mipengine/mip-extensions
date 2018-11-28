@@ -25,7 +25,8 @@ define(function (require) {
 
         var link = getLink(getParams(component));
 
-        component.addEventListener('click', function () { // 点击跳转
+        component.addEventListener('click', function (e) { // 点击跳转
+            e.preventDefault();
             window.location.href = link;
         }, false);
 

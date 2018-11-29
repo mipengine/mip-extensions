@@ -12,38 +12,30 @@ define(function (require) {
      * @return {string} 下载链接
      */
     function getLink(options) {
-        if (Object.getOwnPropertyNames(options).length === 0) {
-            return 'javascript: void(0)';
-        }
+        var link;
 
         // 默认路径
-        var link = options.href;
+        link = options.apkHref;
 
-        if (options.isBp === '1') {
-            // 越狱包
-            if (util.platform.isBaidu()) {
-                // 百度浏览器
-                var str = '';
-                var arr = [];
-                var dlStat;
-                var reg = new RegExp('(^| )DOWNLOAD=([^;]*)(;|$)');
+        if (util.platform.isIos()) {
 
-                if (arr = document.cookie.match(reg)) {
-                    str = unescape(arr[2]);
+            link = options.ipaHref;
+
+            if (options.isBp === '1') {
+                // 越狱包
+                if (util.platform.isBaidu()) {
+                    // 百度浏览器
+                    link = options.ipaPrefixMb;
+                } else {
+                    link = options.ipaPrefixNomb;
                 }
-                dlStat += '&bdboxapp=1&vs=' + str;
-                link = '/guide/mbInstruction.shtml?link=' + dlStat;
-                setTimeout(function () {
-                    link = '/guide/mbInstruction.shtml?link=' + dlStat;
-                }, 0);
-            } else {
-                link = '/guide/usInstruction.shtml?link=';
             }
-        } else {
+
             // 官方包
             if (options.asoTest === 'Y') {
                 link = options.gameHref;
             }
+            
             return link;
         }
 

@@ -8,7 +8,6 @@ define(function (require) {
     var getLink = require('./getLink');
     var util = require('util');
     var customElement = require('customElement').create();
-    var guideReg = /^[guide]/i
 
     /**
      * 第一次进入可视区回调，只会执行一次

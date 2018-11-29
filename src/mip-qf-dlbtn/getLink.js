@@ -35,7 +35,7 @@ define(function (require) {
             if (options.asoTest === 'Y') {
                 link = options.gameHref;
             }
-            
+
             return link;
         }
 

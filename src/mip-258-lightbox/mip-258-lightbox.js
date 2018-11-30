@@ -1,8 +1,8 @@
 /**
- * @file: mip-yuezhua-video.js
+ * @file: mip-258-lightbox.js
  *
  * @author: wangpei07@baidu.com
- * @date: 2018-11-18
+ * @date: 2016-11-02
  */
 
 define(function (require) {
@@ -21,21 +21,34 @@ define(function (require) {
      *
      */
     function render() {
-
         var self = this;
         self.open = false;
         self.id = this.element.id;
         self.scroll = this.element.hasAttribute('content-scroll');
-        // bottom 不能为0，不然会覆盖遮盖曾，导致无法关闭lightbox
-        util.css(self.element, {
-            'position': 'fixed',
-            'z-index': 10001,
-            'top': 0,
-            'right': 0,
-            'left': 0,
-            'transition': 'opacity 0.1s ease-in'
-        });
-
+        let showBox = this.element.hasAttribute('show');
+        if (showBox) {
+            util.css(self.element, {
+                'position': 'fixed',
+                'z-index': 10001,
+                'top': 0,
+                'right': 0,
+                'left': 0,
+                'display': 'block',
+                'transition': 'opacity 0.1s ease-in'
+            });
+            openMask.call(self);
+            self.open = true;
+        } else {
+            // bottom 不能为0，不然会覆盖遮盖曾，导致无法关闭lightbox
+            util.css(self.element, {
+                'position': 'fixed',
+                'z-index': 10001,
+                'top': 0,
+                'right': 0,
+                'left': 0,
+                'transition': 'opacity 0.1s ease-in'
+            });
+        }
 
         changeParentNode.call(self);
 
@@ -51,7 +64,7 @@ define(function (require) {
         });
 
     }
-     // 自动关闭弹层
+    // 自动关闭弹层
     function autoClose() {
         var self = this;
         var count = self.element.getAttribute('autoclosetime');
@@ -144,7 +157,7 @@ define(function (require) {
      */
     function close(event) {
         var self = this;
-        var videoBox = self.element.querySelector('video');
+
         if (!self.open) {
             return;
         }
@@ -167,9 +180,6 @@ define(function (require) {
         if (typeof (document.documentElement.scrollTo) === 'function') {
             // 先判断存在，因为safari浏览器没有document.documentElement.scrollTo方法
             document.documentElement.scrollTo(0, scrollTop.documentElement);
-        }
-        if (videoBox) {
-            videoBox.pause();
         }
         window.scrollTo(0, scrollTop.offset);
     }

@@ -15,6 +15,7 @@ define(function (require) {
         documentElement: 0,
         offset: 0
     };
+
     /**
      * render
      *
@@ -24,7 +25,7 @@ define(function (require) {
         self.open = false;
         self.id = this.element.id;
         self.scroll = this.element.hasAttribute('content-scroll');
-        let showBox = this.element.hasAttribute('show');
+        var showBox = this.element.hasAttribute('show');
         if (showBox) {
             util.css(self.element, {
                 'position': 'fixed',
@@ -136,7 +137,7 @@ define(function (require) {
         }
 
         self.open = true;
-        util.css(self.element, { display: 'block' });
+        util.css(self.element, {display: 'block'});
         // 保存页面当前滚动状态，因为设置overflow:hidden后页面会滚动到顶部
         scrollTop.body = document.body.scrollTop;
         scrollTop.documentElement = document.documentElement.scrollTop;
@@ -168,7 +169,7 @@ define(function (require) {
         self.open = false;
 
         closeMask.call(self);
-        util.css(self.element, { display: 'none' });
+        util.css(self.element, {display: 'none'});
         document.documentElement.classList.remove('mip-no-scroll');
 
         // 恢复页面滚动状态到lightbox打开之前
@@ -222,7 +223,7 @@ define(function (require) {
         }
 
         // 样式设置
-        util.css(self.maskElement, { display: 'block' });
+        util.css(self.maskElement, {display: 'block'});
 
     }
 
@@ -232,7 +233,7 @@ define(function (require) {
      */
     function closeMask() {
         if (this.maskElement) {
-            util.css(this.maskElement, { display: 'none' });
+            util.css(this.maskElement, {display: 'none'});
             clearInterval(this.interval);
         }
     }

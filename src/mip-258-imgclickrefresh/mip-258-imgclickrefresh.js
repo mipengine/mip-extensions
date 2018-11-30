@@ -9,15 +9,15 @@ define(function (require) {
     var util = require('util');
     var $ = require('zepto');
     var obj = $('#mip-img');
-    obj.click(function () {
-        if (obj) {
-            var src = obj.attr('src');
-            obj.attr('src', '');
-            obj.attr('src', src);
-        }
-    });
+    console.log(util.dom, 22)
     customElement.prototype.firstInviewCallback = function () {
-
+        obj.click(function () {
+            if (obj) {
+                var src = obj.attr('src');
+                obj.attr('src', '');
+                obj.attr('src', src);
+            }
+        });
     };
     return customElement;
 });

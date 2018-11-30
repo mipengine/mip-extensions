@@ -21,12 +21,12 @@ define(function (require) {
         var androidImg = androidTip.getAttribute('tip-android-img'); // 获取android提示图片
         var flag = 1;
 
-            document.addEventListener('touchmove', function() {
-                if (flag === 1) {
-                    tip();
-                    flag = 0;
-                }
-            });
+        window.addEventListener('touchmove', function () {
+            if (flag === 1) {
+                tip();
+                flag = 0;
+            }
+        });
 
 
         /** 提示框逻辑 **/
@@ -41,7 +41,6 @@ define(function (require) {
             $('.ios-tip').delay(3000).fadeOut();
             $('.android-tip').delay(3000).fadeOut();
         }
-        
     };
 
     return customElement;

@@ -15,7 +15,6 @@ define(function (require) {
         documentElement: 0,
         offset: 0
     };
-    console.log(1111)
     /**
      * render
      *
@@ -26,7 +25,6 @@ define(function (require) {
         self.id = this.element.id;
         self.scroll = this.element.hasAttribute('content-scroll');
         let showBox = this.element.hasAttribute('show');
-        console.log(showBox, 232323)
         if (showBox) {
             util.css(self.element, {
                 'position': 'fixed',

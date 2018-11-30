@@ -1,0 +1,14 @@
+{
+    "name": "mip-258-imgclickrefresh",
+    "version": "1.0.1",
+    "description": "mip-258-imgclickrefresh 点击验证码图片刷新",
+    "contributors": [
+        {
+            "name": "hongzequan",
+            "email": "hongzeuqan@258.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

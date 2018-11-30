@@ -202,9 +202,10 @@ define(function (require) {
         if (this.nextIndex != this.currentIndex && this.nextIndex <= storyViews.length - 1) {
             // 初始化下一页的动画效果
             this.nextEle.setPreActive(this.emitter);
+        }
+        if (this.preIndex !== this.currentIndex) {
             this.preEle.setPreActive(this.emitter);
         }
-
         // 清除其余所有页面的动画
         this.clearCssMedia();
     };

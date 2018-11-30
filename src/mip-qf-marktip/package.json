@@ -1,0 +1,14 @@
+{
+    "name": "mip-qf-marktip",
+    "version": "1.0.0",
+    "description": "119手游网排行榜收藏提示窗口",
+    "contributors": [
+        {
+            "name": "W_peach",
+            "email": "www.wtiroo@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

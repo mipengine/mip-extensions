@@ -15,7 +15,7 @@ define(function (require) {
         documentElement: 0,
         offset: 0
     };
-
+    console.log(1111)
     /**
      * render
      *

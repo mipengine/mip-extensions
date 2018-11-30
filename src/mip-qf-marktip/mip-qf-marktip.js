@@ -21,7 +21,7 @@ define(function (require) {
         var androidImg = androidTip.getAttribute('tip-android-img'); // 获取android提示图片
         var flag = 1;
 
-        window.addEventListener('touchmove', function () {
+        window.addEventListener('touchstart', function () {
             if (flag === 1) {
                 tip();
                 flag = 0;

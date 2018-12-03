@@ -1,0 +1,14 @@
+{
+    "name": "mip-qf-loadingscroll",
+    "version": "1.0.0",
+    "description": "湖南七风119手游网滚动加载逻辑",
+    "contributors": [
+        {
+            "name": "W_peach",
+            "email": "wtiroo@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

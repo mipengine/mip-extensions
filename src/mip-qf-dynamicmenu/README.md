@@ -12,7 +12,6 @@ mip-qf-dynamicmenu 点击刷新页面，选中元素自动居中(注意必须使
 
 ### 基本用法
 ```html
-<nav class="nav-top">
 <mip-qf-dynamicmenu>
     <ul class="list-scroll" style="margin-left: 0rem;">
     <li><a href="">热门</a></li>
@@ -36,7 +35,6 @@ mip-qf-dynamicmenu 点击刷新页面，选中元素自动居中(注意必须使
     <li><a href="">推荐</a></li>
     </ul>
 </mip-qf-dynamicmenu>
-</nav>
 ```
 
 ## 属性

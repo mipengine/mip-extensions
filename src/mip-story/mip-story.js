@@ -122,7 +122,7 @@ define(function (require) {
         // 初始化预加载
         this.initPreload();
 
-        for (var p = 0; p < currentPageIndex; p++) {
+        for (var p = 0; p <= currentPageIndex; p++) {
             this.progress.updateProgress(p, 1);
         }
 

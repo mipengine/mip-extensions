@@ -165,14 +165,6 @@ define(function (require) {
         this.currentIndex = pageState[1];
         this.nextIndex = pageState[2];
 
-        var index = {
-            preIndex: this.preIndex,
-            currentIndex: this.currentIndex,
-            nextIndex: this.nextIndex,
-            direction: this.direction === DIRECTIONMAP.back ? 0 : 1
-        };
-        resetSlideEndViewCB(index);
-
         this.touchstartX = this.touchendX = 0;
         this.moveFlag = false;
     }
@@ -278,17 +270,22 @@ define(function (require) {
         // 添加current状态
         this.setCurrentPage();
         // 清除当前所有view已有的样式
-        this.clearStyle();
-        if (storyContain.length >= 2) {
-            nextEle = storyContain[this.nextIndex];
-            preEle = storyContain[this.preIndex];
-            this.setViewStatus(true, ACTIVE, nextEle);
-            this.setViewStatus(true, ACTIVE, preEle);
-            // 初始化下一页的位置
-            if(this.nextIndex !== this.viewLength - 1) {
-                setSliderPosition(nextEle, false);
-            }
+        this.clearStyle(); 
+        nextEle = storyContain[this.nextIndex];
+        preEle = storyContain[this.preIndex];
+        this.setViewStatus(true, ACTIVE, nextEle);
+        this.setViewStatus(true, ACTIVE, preEle);
+
+        // 初始化上一页、下一页的位置
+        if (this.currentIndex !== this.viewLength - 1) {
+            setSliderPosition(nextEle, false);
         }
+
+        if (this.currentIndex !== 0) {
+            setSliderPosition(preEle, true);
+        }
+        
+
         initViewForSwitchCB({
             preIndex: this.preIndex,
             currentIndex: this.currentIndex,
@@ -576,7 +573,6 @@ define(function (require) {
         for (var i = 0; i < storyContainLength; i++) {
             var currentPage = storyContain[i];
             if (i === this.currentIndex) {
-                storyState.setState(i);
                 // 埋点
                 if (window._hmt && pageViewed.indexOf(i) === -1) {
                     var pageRole = currentPage.getAttribute('page-role');
@@ -602,7 +598,8 @@ define(function (require) {
         var loaded = this.hasPreload;
         var maxIndex = loaded[loaded.length - 1];
         var minIndex = loaded[0];
-
+        var stateIndex = index >= maxIndex ? maxIndex : index;
+        storyState.setState(stateIndex);
         if (maxIndex >= this.viewLength - 2) {
             var storyImgs = storyContain[this.viewLength].querySelectorAll('mip-story-img');
             for (var index = 0; index < storyImgs.length; index++) {

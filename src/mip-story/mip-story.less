@@ -1,6 +1,7 @@
 /**
  * @file mip-story样式文件
  */
+@import  "./animate";
 
 html#mip-i-story-standalone,
 html#mip-i-story-standalone body {
@@ -91,6 +92,7 @@ mip-story-layer * {
 
 // progress
 .mip-story-system-layer {
+    display: block!important;
     position: absolute;
     z-index: 100000;
     top: 0;
@@ -1008,6 +1010,10 @@ mip-story-layer[template=thirds] {
             color: #fff;
         }
     }
+}
+
+.mip-story-hidden {
+    visibility: hidden!important;
 }
 
 // 尾页字号

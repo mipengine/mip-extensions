@@ -107,11 +107,15 @@ define(function (require) {
 
     function toggleDisplay(obj, disp) {
         if (disp) {
-            obj.setAttribute('style', 'display: ' + obj.getAttribute("originDisplay"));
+            css(obj, {
+                'display': obj.getAttribute("originDisplay")
+            })
         } else {
             var originDisplay = document.defaultView.getComputedStyle(obj)['display'];
             obj.setAttribute('originDisplay', originDisplay);
-            obj.setAttribute('style', 'display: none');
+            css(obj, {
+                'display':'none'
+            })
         }
     }
 
@@ -244,8 +248,6 @@ define(function (require) {
 
     customElement.prototype.initMedia = function () {
         this.audio = new Audio();
-        this.canvasVideo = this.element.querySelectorAll('mip-story-video');
-        this.hasStoryVideo = !!this.canvasVideo.length;
         var node = this.element.parentNode;
 
         this.animationElements = [];
@@ -279,6 +281,8 @@ define(function (require) {
     };
 
     customElement.prototype.firstInviewCallback = function () {
+        this.canvasVideo = this.element.querySelectorAll('mip-story-video');
+        this.hasStoryVideo = !!this.canvasVideo.length;
         this.isPreload = false;
         this.setPageRole();
     };

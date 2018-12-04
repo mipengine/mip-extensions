@@ -21,7 +21,7 @@ define(function (require) {
 
             link = options.ipaHref;
 
-            if (options.isBp === '1') {
+            if (options.isBp === 'Y') {
                 // 越狱包
                 if (util.platform.isBaidu()) {
                     // 百度浏览器

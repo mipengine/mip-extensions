@@ -126,18 +126,6 @@ define(function (require) {
             this.progress.updateProgress(p, 1);
         }
 
-        var sys = this.element.querySelector('.mip-story-system-layer');
-
-        if (!viewer.isIframed || !this.getConfigData().xzh_info){
-            return;
-        }
-        // 加载icon
-        this.progress.setXzhInfo().then(function(data) {
-            var icon = dm.create(data);
-            try {
-                sys.appendChild(icon);
-            }catch(err){}
-        });
     };
 
     MIPStory.prototype.setSubjectColor = function () {

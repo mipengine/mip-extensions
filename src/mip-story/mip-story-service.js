@@ -256,18 +256,11 @@ define(function (require) {
         var audio = storyEle.querySelector('.mip-stoy-audio');
         var recommend = storyEle.querySelector('.recommend-wrap');
         var shareAreaShow = storyEle.querySelector('.mip-story-share-show');
-        var xzhSite = storyEle.querySelector('.icon-wrap');
         if (!dm.contains(shareArea, e.target) && shareAreaShow) {
             this.share.hideShareLayer();
             return;
         }
 
-        // 跳转站点熊掌号
-        if (dm.contains(xzhSite, e.target)) {
-          var href = xzhSite.getAttribute('data-href');
-          window.top.location.href = href;
-          return;
-        }
 
         // 推荐
         if (dm.contains(recommend, e.target)) {

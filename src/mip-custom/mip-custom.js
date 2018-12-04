@@ -357,6 +357,7 @@ define(function () {
             else {
                 frontAndServerData = frontendData;
             }
+
             // 加入默认统计参数
             performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
 

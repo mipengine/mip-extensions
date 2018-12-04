@@ -6,9 +6,21 @@ mip-qf-loadingscroll 当用户滚动到页面底部时，异步加载更多数�
 ----|----
 类型|通用
 支持布局|responsive,fixed-height,fill,container,fixed
-所需脚本|https://c.mipcdn.com/static/v1/mip-qf-loadingscroll/mip-qf-loadingscroll.js,https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js
+所需脚本|
+https://c.mipcdn.com/static/v1/mip-mustache/mip-mustache.js<br/>
+https://c.mipcdn.com/static/v1/mip-qf-loadingscroll/mip-qf-loadingscroll.js<br/>
 
 ## 示例
+
+获取排行榜数据，初始化下载按钮相关逻辑，节点插入页面。
+
+- `data-url` jsonp 请求 url。
+- `gap` (可选)触发滚动回调的距离，单位px。
+- `timeout` (可选) jsonp 超时时间。
+- `txt-completed` (可选) 加载完毕按钮文本。
+- `txt-failed` (可选) 加载失败按钮文本。
+- `txt-loading` (可选) 正在加载按钮文本。
+
 ```html
 <mip-qf-loadingscroll data-url="https://mtest.119you.com/fgame/game/ranking" gap="200" timeout="5">
     <script type="application/json">
@@ -16,7 +28,7 @@ mip-qf-loadingscroll 当用户滚动到页面底部时，异步加载更多数�
             "columns": "downloadlink,name",
             "pageSize": 10,
             "siteId": 124,
-            "type": 3
+            "type": 1
         }
     </script>
     <template type="mip-mustache">
@@ -29,57 +41,14 @@ mip-qf-loadingscroll 当用户滚动到页面底部时，异步加载更多数�
     </template>
     <ul>
         <li>
-            <span>第一个元素节点为 li，itemNum 计数'li'标签</span><br>
+            <span>第一个节点元素为lili， itemNum 计数‘li’标签<span>
         </li>
-        <p>p 标签:itemnum 不计数</p>
+        <p>与第一个节点非同名元素标签：itemNum 不计数</p>
     </ul>
     <div class="mip-qf-loadingscroll-buffer"></div>
     <button class="mip-qf-loadingscroll-btn" txt-completed="已加载全部" txt-failed="加载失败，点击重新加载" txt-loading="努力加载中...">加载更多</button>
 </mip-qf-loadingscroll>
 ```
-## 属性
-
-### data-url
-
-说明：请求接口地址
-必选项： 是
-类型：String
-默认值：无
-
-### gap
-
-说明：触发滚动回调的距离
-必选项：否
-类型：Number
-单位：px
-
-### timeout
-
-说明：jsonp超时时间
-必选项：否
-类型：Number
-单位：ms
-
-### txt-completed
-
-说明：加载完毕按钮文案
-必选项： 否
-类型：String
-默认值：已加载全部
-
-### txt-failed
-
-说明：加载失败按钮文案
-必选项：否
-类型：String
-默认值：加载失败，点击重新加载
-
-### txt-loading
-
-说明：正在加载按钮文案
-必选项：否
-类型：String
-默认值：努力加载中...
 
 ## 参数
 

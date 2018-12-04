@@ -94,7 +94,7 @@ define(function (require) {
 
                 // 序号
                 if (!data[i].itemnum) {
-                    data[i].itemnum = ++itemNum - 1;
+                    data[i].itemnum = ++itemNum;
                 }
             }
 
@@ -170,10 +170,10 @@ define(function (require) {
         }
 
         mustache.render(component.element, {})
-        .then(function (rs) {
+        .then(function () {
             var el = document.createElement('ul');
-
-            el.innerHTML = rs;
+            
+            el.innerHTML = ul.innerHTML;
 
             // 以首个元素节点标签名为参照
             var nName = el.children[0].nodeName.toLowerCase();

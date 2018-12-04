@@ -1,6 +1,6 @@
 {
     "name": "mip-qf-loadingscroll",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "description": "湖南七风119手游网滚动加载逻辑",
     "contributors": [
         {
@@ -9,6 +9,6 @@
         }
     ],
     "engines": {
-        "mip": ">=1.1.0"
+        "mip": ">=1.0.0"
     }
 }

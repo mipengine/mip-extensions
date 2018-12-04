@@ -25,10 +25,10 @@ https://c.mipcdn.com/static/v1/mip-qf-loadingscroll/mip-qf-loadingscroll.js<br/>
 <mip-qf-loadingscroll data-url="https://mtest.119you.com/fgame/game/ranking" gap="200" timeout="5">
     <script type="application/json">
         {
-            "columns": "downloadlink,name",
+            "columns": "downloadlink,name,logofile",
             "pageSize": 10,
-            "siteId": 124,
-            "type": 1
+            "siteId": 125,
+            "type": 2
         }
     </script>
     <template type="mip-mustache">
@@ -36,7 +36,7 @@ https://c.mipcdn.com/static/v1/mip-qf-loadingscroll/mip-qf-loadingscroll.js<br/>
             <span>{{itemnum}} {{name}}</span><br>
             <span>apk：{{apkHref}}</span><br>
             <span>ipa: {{ipaHref}}</span>
-            <mip-img src="https://mip.119you.com/upload/resources/image/2018/09/10/369221_120x120.jpg?1536573125000"></mip-img>
+            <mip-img src="https://m.119you.com/{{logofile}}"></mip-img>
         </li>
     </template>
     <ul>

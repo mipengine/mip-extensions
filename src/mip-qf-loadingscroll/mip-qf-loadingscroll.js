@@ -172,7 +172,6 @@ define(function (require) {
         mustache.render(component.element, {})
         .then(function () {
             var el = document.createElement('ul');
-            
             el.innerHTML = ul.innerHTML;
 
             // 以首个元素节点标签名为参照

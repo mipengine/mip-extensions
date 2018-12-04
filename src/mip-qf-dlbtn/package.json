@@ -1,10 +1,10 @@
 {
     "name": "mip-qf-dlbtn",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "description": "七风-下载功能",
     "contributors": [
         {
-            "name": "W_peach   ",
+            "name": "W_peach",
             "email": "www.wtiroo@163.com"
         }
     ],

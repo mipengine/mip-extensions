@@ -31,6 +31,7 @@ define(function (require) {
         logid: '',
         query: '',
         title: '',
+        frsrcid: getHashData('srcid'),
         originalUrl: getSubString(location.pathname, regexs.regHttps)
             || getSubString(location.pathname, regexs.regHttp)
             || location.href

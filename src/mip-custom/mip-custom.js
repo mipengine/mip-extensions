@@ -357,8 +357,15 @@ define(function () {
             else {
                 frontAndServerData = frontendData;
             }
+
             // 加入默认统计参数
             performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
+
+            // 添加小说的特殊逻辑字段
+            var novelShell = document.querySelector('mip-shell-xiaoshuo');
+            if (window.MIP.version && +window.MIP.version === 2 && novelShell) {
+                performanceData.params.dim = {pd: 'novel'}
+            }
             log.sendLog(performanceData.host, performanceData.params);
         }
     };

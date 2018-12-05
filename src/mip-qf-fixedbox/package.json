@@ -1,0 +1,14 @@
+{
+    "name": "mip-qf-fixedbox",
+    "version": "1.0.0",
+    "description": "页面滚动固定距离出现悬浮框",
+    "contributors": [
+        {
+            "name": "W_peach",
+            "email": "wtiroo@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

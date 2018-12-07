@@ -10,6 +10,7 @@ define(function (require) {
     var storyViews = [];
     var emitter;
     var viewport = require('viewport');
+    var tcLog = require('./mip-story-log');
     var CURRENT = 'current';
     var ACTIVE = 'active';
     var STYLE = 'style';
@@ -267,28 +268,58 @@ define(function (require) {
             var target = e.target;
             var eleParent = findParent(target, 'a');
             e.preventDefault();
+
+            var recTitle = eleParent.querySelector('p').innerHTML;
+            var recUrl = eleParent.getAttribute('href');
+            var recImg = eleParent.querySelector('img').getAttribute('src');
+            var fromUrl = eleParent.querySelector('.item-from').getAttribute('data-src');
+            var formTile = eleParent.querySelector('.item-from').innerHTML;
+
+            // tclog 推荐链接基本数据 包括推荐链接、标题、图片，推荐来源链接、来源标题
+            // 这里 undefined 是字符串没错……
+            var recData = {};
+            recData.title = recTitle === 'undefined' ? "NOT_SET_REC_TITLE" : recTitle;
+            recData.url = recUrl === 'undefined' ? "NOT_SET_REC_URL" : encodeURIComponent(recUrl);
+            recData.img = recImg === 'undefined' ? "NOT_SET_REC_IMG" : encodeURIComponent(recImg);
+            recData.fromUrl = fromUrl === 'undefined' ? "NOT_SET_FROM_URL" : encodeURIComponent(fromUrl);
+            recData.fromTilte = formTile === 'undefined' ? "NOT_SET_FROM_TITLE" : formTile;
+
             // 推荐链接
-            if (target.nodeName.toLocaleLowerCase() !== 'span') {
-                var href = eleParent.getAttribute('href');
-                window.top.location.href = href;
+            if (target.nodeName.toLocaleLowerCase() !== 'span' && recData.url !== 'NOT_SET_REC_URL') {
+                // tclog 推荐链接
+                tcLog(3, recData);
+                window.top.location.href = decodeURIComponent(recData.url);
                 return;
+            } else {
+                console.warn('没有设置推荐链接！！')
             }
+
             // 来源链接
-            var src = target.getAttribute('data-src');
-            if (!src) {
+            if (recData.url !== 'NOT_SET_FROM_URL') {
+                // tclog 推荐来源
+                tcLog(4, recData);
+
+                window.top.location.href = decodeURIComponent(recData.fromUrl);
                 return;
+            } else {
+                console.warn('没有设置来源链接！！')
             }
-            window.top.location.href = src;
         }
 
         // 返回上一页
         if (this.hasClass(e, back)) {
-            history.back();
+            // tclog 关闭小故事
+            tcLog(0, {});
+
+            // history.back();
             return;
         }
 
         // 静音控制
         if (e.target === audio) {
+            // tclog 关闭音频播放
+            tcLog(1, {});
+
             var enabled = audio.hasAttribute('muted');
             enabled ? this.emitter.trigger(UNMUTE, e)
                 : this.emitter.trigger(MUTE, e);
@@ -296,6 +327,9 @@ define(function (require) {
         }
         // 重头开始播放
         if (dm.contains(replay, e.target)) {
+            // tclog 重新播放
+            tcLog(2, {});
+
             this.emitter.trigger(REPLAY);
             this.progress.updateProgress(0, 1);
             return;
@@ -304,6 +338,9 @@ define(function (require) {
         else if (dm.contains(backend, e.target)) {
             // 弹出分享
             if (dm.contains(shareBtn, e.target)) {
+                // tclog 点击分享
+                tcLog(5, {});
+
                 this.share.showShareLayer();
             }
             // 关闭结尾页-只有点击交互的时候触发

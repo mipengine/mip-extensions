@@ -1,0 +1,35 @@
+/**
+ * @file mip-qf-scaleimg样式文件
+ */
+
+mip-qf-scaleimg {
+    .origin-img-box {
+        display: inline-block;
+    }
+}
+
+/* 查看大图遮罩 */
+.shade-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+}
+
+.shade-box .scale-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    width:0;
+    height:0;
+    opacity: 0;
+}

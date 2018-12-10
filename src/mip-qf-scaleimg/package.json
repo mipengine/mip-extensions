@@ -1,0 +1,14 @@
+{
+    "name": "mip-qf-scaleimg",
+    "version": "1.1.0",
+    "description": "点击查看大图组件",
+    "contributors": [
+        {
+            "name": "W_peach",
+            "email": "www.wtiroo@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

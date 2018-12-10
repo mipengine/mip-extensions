@@ -22,7 +22,7 @@ define(function (require) {
                 return false;
             }
 
-            window.location.href = href;
+            window.top.location.href = href;
         });
     };
 

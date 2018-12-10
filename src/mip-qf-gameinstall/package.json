@@ -1,7 +1,7 @@
 {
-    "name": "mip-qf-historyback",
-    "version": "1.1.0",
-    "description": "湖南七风网络119手游网返回上一页",
+    "name": "mip-qf-gameinstall",
+    "version": "1.0.0",
+    "description": "湖南七风119游戏主页游戏安装组件",
     "contributors": [
         {
             "name": "W_peach",

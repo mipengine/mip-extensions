@@ -1,0 +1,126 @@
+/**
+ * @file mip-qf-share样式文件
+ */
+
+mip-qf-share {
+    width: 50px;
+    height: 40px;
+    background: rgba(0, 0, 0, .2);
+    position: relative;
+    top: 5px;
+    text-align: center;
+    font-size: 16px;
+    color: #FB7D38;
+}
+
+/* 分享盒子和微信分享向导样式 */
+
+.m-share-list-box {
+    display:none;
+    width: 100%;
+    text-align: center;
+    z-index: 999;
+    position: absolute;
+    top: 1rem;
+    height: 2.12rem;
+    background-color: rgba(255,255,255,0.9);
+}
+
+.m-share-list-box .m-share-item {
+    display: inline-block;
+    margin: .45rem .8rem 0;
+    text-align: center;
+}
+
+.m-share-list-box .m-share-item i {
+    display: inline-block;
+}
+
+.m-share-list-box .m-share-item-qq i {
+    width: .8rem;
+    height: .8rem;
+    background: url(https://m.119you.com/images/v2/icons/ic-qq-2.png) no-repeat center;
+    background-size: .7rem .8rem;
+}
+
+.m-share-list-box .m-share-item-wechat i {
+    width: .8rem;
+    height: .8rem;
+    background: url(https://m.119you.com/images/v2/icons/ic-wechat.png) no-repeat center;
+    background-size: .8rem .7rem;
+}
+
+.m-share-list-box .m-share-item .u-text {
+    display: block;
+    margin-top: .15rem;
+    text-align: center;
+    font-size: .24rem;
+    color: #777777;
+}
+
+.m-share-wechat-box {
+    position: fixed;
+    display: none;
+    left: 0;
+    right: 0;
+    top: 3rem;
+    margin: 0 auto;
+    z-index: 999;
+    width: 6.2rem;
+    padding: .4rem;
+    background: #FFFFFF;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.20);
+    border-radius: .2rem;
+}
+
+.m-share-wechat-box .m-title-box {
+    overflow: hidden;
+    margin-bottom: .4rem;
+}
+
+.m-share-wechat-box .m-title-box .u-title {
+    font-size: .36rem;
+    color: #444444;
+}
+
+.m-share-wechat-box .m-title-box .icon-close {
+    float: right;
+    width: .4rem;
+    height: .4rem;
+    border: none;
+    background-color: transparent;
+    background-image: url(https://m.119you.com/images/v2/icons/ic-close.png);
+    background-size: cover;
+}
+
+.m-share-wechat-box .u-method {
+    font-size: .28rem;
+    color: #444444;
+    margin-bottom: .1rem;
+}
+
+.m-share-wechat-box .u-method-tip {
+    font-size: .26rem;
+    color: #444444;
+    margin-bottom: .35rem;
+}
+
+.m-share-wechat-box .u-url-box {
+    width: 5.4rem;
+    height: 1.4rem;
+    background: #F0F0F0;
+    font-size: .26rem;
+    padding: .2rem;
+    color: #444444;
+    margin-bottom: .25rem;
+    resize: none;
+    border: none;
+}
+
+.m-share-wechat-box .m-qrcode-box {
+    text-align: center;
+}
+
+.m-share-wechat-box .m-qrcode-box img {
+    width: 3.6rem;
+}

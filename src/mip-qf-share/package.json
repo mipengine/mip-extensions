@@ -1,0 +1,14 @@
+{
+    "name": "mip-qf-share",
+    "version": "1.2.0",
+    "description": "湖南七风119手游网游戏分享组件",
+    "contributors": [
+        {
+            "name": "W_peach",
+            "email": "wtiroo@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

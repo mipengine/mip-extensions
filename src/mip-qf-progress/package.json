@@ -1,0 +1,14 @@
+{
+    "name": "mip-qf-progress",
+    "version": "1.0.0",
+    "description": "湖南七风119游进度条组件",
+    "contributors": [
+        {
+            "name": "W_peach",
+            "email": "wtiroo@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

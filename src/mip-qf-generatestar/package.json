@@ -1,0 +1,14 @@
+{
+    "name": "mip-qf-generatestar",
+    "version": "1.0.0",
+    "description": "湖南七风119游戏评分星星组件",
+    "contributors": [
+        {
+            "name": "W_peach",
+            "email": "wtiroo@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

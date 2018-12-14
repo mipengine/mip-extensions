@@ -166,8 +166,11 @@ define(function (require) {
         this.currentIndex = pageState[1];
         this.nextIndex = pageState[2];
 
+        this.touchstartX = this.touchendX = 0;
+        this.moveFlag = false;
+
         // 进入页面 自动发送当前页信息
-        if(!isPageOneViewed) return;
+        if(isPageOneViewed) return;
         pageViewed = [this.currentIndex];
         var pageViewedInfo = '看了第' + (parseInt(this.currentIndex, 10) + 1) + '页';
         pageViewedData.optValue = pageViewedInfo;
@@ -175,10 +178,10 @@ define(function (require) {
 
         // tclog 看了第几页
         tcLog(8, {viewingPage: this.currentIndex + 1});
+        // tclog pv
+        tcLog(9, {});
+
         isPageOneViewed = true;
-        
-        this.touchstartX = this.touchendX = 0;
-        this.moveFlag = true;
     }
 
     function enableScroll(ele) {

@@ -58,6 +58,11 @@ define(function (require) {
             index: 8,
             evtName: 'VIEWED_PAGE',
             desc: '浏览页面'
+        },
+        {
+            index: 9,
+            evtName: 'VIEWED_PV',
+            desc: 'pv'
         }
     ];
 

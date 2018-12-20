@@ -103,16 +103,17 @@ define(function (require) {
             
             if(url)
             {
-                fetchJsonp(url, {jsonpCallback: 'callback',timeout: self.timeout})
+                fetch(url,{method:"GET",credentials: 'include'})
                 .then(function(res){ 
                     return res.ok ? res.json() : console.error("数据获取失败"); 
                 })
                 .then(function(data){
-                    if(data)
-                    {
+                    if(data){
+                        
                         self.add = true,renderTemplate.call(self,data);
 
-                    }else{ console.log("响应数据为空"); }   
+                    }else{ console.log("响应数据为空"); }
+                   
                 })
 
             }else{ console.error('请求分类url不能为空'); }

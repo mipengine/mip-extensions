@@ -42,8 +42,7 @@ define(function (require) {
             fragment.appendChild(node);            
         });
 
-        if(self.add)
-        {
+        if(self.add){
             var element = document.createElement("div");
 
             element.appendChild(fragment); delete self.add;
@@ -109,14 +108,17 @@ define(function (require) {
                 })
                 .then(function(data){
                     if(data){
-                        
                         self.add = true,renderTemplate.call(self,data);
-
-                    }else{ console.log("响应数据为空"); }
+                    }
+                    else{ 
+                        console.log("响应数据为空"); 
+                    }
                    
                 })
-
-            }else{ console.error('请求分类url不能为空'); }
+            }
+            else{
+                 console.error('请求分类url不能为空'); 
+            }
         })
     }
 
@@ -164,7 +166,9 @@ define(function (require) {
             self.container.setAttribute('role', 'list');
         }
 
-        if(element.hasAttribute("has-class")){ addClassList.call(self); }
+        if(element.hasAttribute("has-class")) { 
+            addClassList.call(self); 
+        }
 
         // 同步配置数据
         if (element.hasAttribute('synchronous-data')) {

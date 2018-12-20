@@ -89,7 +89,43 @@
 </mip-list>
 <div on="tap:mip-list.more"> 点击查看更多 </div>
 ```
+### 绑定分类
 
+[info]有 `has-class` 属性时，`<mip-list>` 标签必须要有 `id` 属性，同时需要有点击按钮的 DOM 节点，并且此节点有 `on` 属性和`[class-url]`属性，属性值为：`tap:对应mip-list的id.class`和`[class-url]=请求分类的url`
+
+```html
+<mip-list 
+    template="mip-template-id"
+    id="mip-list"
+    has-class
+    synchronous-data>
+    <mip-data>
+        <script type="application/json">
+            {
+                "items": [
+                    {
+                        "name": "lee",
+                        "alias": "xialong"
+                    }, {
+                        "name": "ruige",
+                        "alias": "ruimm"
+                    }, {
+                        "name": "langbo",
+                        "alias": "bobo"
+                    }
+                ]
+            }
+        </script>
+    </mip-data>
+    <template type="mip-mustache" id="mip-template-id">
+        <div>
+            <li>name: {{name}}</li>
+            <li>alias: {{alias}}</li>
+        </div>
+    </template>
+</mip-list>
+<button on="tap:mip-list.class" [class-url] = "http://xxx?a=a&b=b"> 分类 </button>
+```
 
 ## 属性
 
@@ -176,4 +212,12 @@
         isEnd: 1 
     }
 }  
-```    
+``` 
+### has-class
+
+说明：是否给列表绑定分类  
+必选项：否    
+类型：字符串    
+取值范围：无    
+单位：无    
+默认值：无   

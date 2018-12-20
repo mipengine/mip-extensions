@@ -34,12 +34,23 @@ define(function (require) {
     function render(htmls) {
         var self = this;
         var fragment = document.createDocumentFragment();
+
         htmls.map(function (html) {
             var node = document.createElement('div');
             node.innerHTML = html;
             node.setAttribute('role', 'listitem');
             fragment.appendChild(node);            
         });
+
+        if(self.add)
+        {
+            var element = document.createElement("div");
+
+            element.appendChild(fragment); delete self.add;
+
+            return  self.container.innerHTML = element.innerHTML;  
+        }
+
         self.container.appendChild(fragment);
     }
 
@@ -78,6 +89,34 @@ define(function (require) {
                 self.button.innerHTML = '加载失败';
             }
         });
+    }
+
+    /**
+     * [addClassList add分类列表内容函数]
+     * 
+     */
+    function addClassList(){
+        var self = this;
+
+        self.addEventAction("class",function(e){
+            var url = e.target.getAttribute("[class-url]") || "";
+            
+            if(url)
+            {
+                fetchJsonp(url, {jsonpCallback: 'callback',timeout: self.timeout})
+                .then(function(res){ 
+                    return res.ok ? res.json() : console.error("数据获取失败"); 
+                })
+                .then(function(data){
+                    if(data)
+                    {
+                        self.add = true,renderTemplate.call(self,data);
+
+                    }else{ console.log("响应数据为空"); }   
+                })
+
+            }else{ console.error('请求分类url不能为空'); }
+        })
     }
 
     /**
@@ -123,6 +162,8 @@ define(function (require) {
         if (!self.container.hasAttribute('role')) {
             self.container.setAttribute('role', 'list');
         }
+
+        if(element.hasAttribute("has-class")){ addClassList.call(self); }
 
         // 同步配置数据
         if (element.hasAttribute('synchronous-data')) {

@@ -20,13 +20,13 @@ mip-qf-dynamicmenu 点击刷新页面，选中元素自动居中(注意必须使
     <li><a href="">好玩</a></li>
     <li><a href="">安卓</a></li>
     <li><a href="">苹果</a></li>
-    <li><a href="">仙侠</a></li>
+    <li class="active"><a href="">仙侠</a></li>
     <li><a href="">传奇</a></li>
     <li><a href="">前十名</a></li>
     <li><a href="">RPG</a></li>
     <li><a href="">策略</a></li>
     <li><a href="">回合</a></li>
-    <li class="active"><a href="">卡牌</a></li>
+    <li><a href="">卡牌</a></li>
     <li><a href="">三国</a></li>
     <li><a href="">动作</a></li>
     <li><a href="">3D</a></li>
@@ -39,9 +39,9 @@ mip-qf-dynamicmenu 点击刷新页面，选中元素自动居中(注意必须使
 
 ## 属性
 
-### {属性名}
+### style
 
-说明：style
+说明：初始位置，在代码中替换掉行内样式即可
 必选项：必填
 类型：字符串
 单位：{rem}

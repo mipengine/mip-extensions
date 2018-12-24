@@ -1,0 +1,14 @@
+{
+    "name": "mip-qf-like",
+    "version": "1.2.0",
+    "description": "湖南七风119游评论点赞组件",
+    "contributors": [
+        {
+            "name": "W_peach",
+            "email": "wtiroo@163.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

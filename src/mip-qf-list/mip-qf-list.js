@@ -89,8 +89,7 @@ define(function (require) {
         var self = this;
 
         self.button.innerHTML = '加载中...';
-        var pn = Number(self.pn) + 1;
-        var url = getUrl(src, self.pnName, pn, self.relaid, self.columns, self.pageSize, self.element);
+        var url = getUrl(src, self.pnName, self.pn, self.relaid, self.columns, self.pageSize, self.element);
 
         fetch(url, {
             jsonpCallback: 'callback',
@@ -101,7 +100,8 @@ define(function (require) {
             if (data._Status && data.data) {
                 renderTemplate.call(self, data);
                 self.button.innerHTML = '点击查看更多';
-                if (data.total === 0) {
+                console.log(self.pn, self.pageSize, data.total);
+                if (data.total < self.pn * self.pageSize) {
                     self.total = data.total;
                     self.button.innerHTML = '已经加载完毕';
                     self.button.removeAttribute('on');
@@ -207,6 +207,7 @@ define(function (require) {
             // 点击查看更多触发
             self.addEventAction('more', function (e) {
                 self.button = e.target;
+                self.pn++;
                 pushResult.call(self, src);
             });
         }

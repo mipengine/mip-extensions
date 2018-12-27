@@ -5,6 +5,7 @@
  * From: mip-stats-baidu
  */
 /* global MIP */
+/* eslint-disable no-console */
 define(function (require) {
     var viewer = require('viewer');
     var util = require('util');
@@ -43,7 +44,6 @@ define(function (require) {
 
             var hm = document.createElement('script');
             hm.src = 'https://hm.baidu.com/hm.js?' + token;
-
 
             elem.appendChild(hm);
         }
@@ -105,17 +105,33 @@ define(function (require) {
 
     // 绑定事件追踪
     function bindEle() {
+        var now = Date.now();
+        var intervalTimer = setInterval(function () {
+            // 获取所有需要触发的dom
+            bindEleHandler(document.querySelectorAll('*[data-stats-baidu-obj]'));
+            // 由于存在异步渲染
+            if (Date.now() - now >= 8000) {
+                clearInterval(intervalTimer);
+            }
+        }, 100);
+    }
 
-        // 获取所有需要触发的dom
-        var tagBox = document.querySelectorAll('*[data-stats-baidu-obj]');
-
+    /**
+     * 处理点击统计的 dom 列表
+     *
+     * @param {Array<HTMLElement>} tagBox 需要记录点击统计的 dom 元素列表
+     */
+    function bindEleHandler(tagBox) {
         for (var index = 0; index < tagBox.length; index++) {
-            var statusData = tagBox[index].getAttribute('data-stats-baidu-obj');
+            var tag = tagBox[index];
+            var DATA_STATS_FALG = 'data-stats-flag';
+            var statusData = tag.getAttribute('data-stats-baidu-obj');
+            var hasBindFlag = tag.hasAttribute(DATA_STATS_FALG);
 
             /**
              * 检测statusData是否存在
              */
-            if (!statusData) {
+            if (!statusData || hasBindFlag) {
                 continue;
             }
 
@@ -144,11 +160,11 @@ define(function (require) {
                 continue;
             }
 
-            if (tagBox[index].classList.contains('mip-stats-eventload')) {
+            if (tag.classList.contains('mip-stats-eventload')) {
                 continue;
             }
 
-            tagBox[index].classList.add('mip-stats-eventload');
+            tag.classList.add('mip-stats-eventload');
 
             if (eventType === 'load') {
                 window._hmt.push(data);
@@ -156,15 +172,17 @@ define(function (require) {
             // 解决on=tap: 和click冲突短线方案
             // TODO 这个为短线方案
             else if (eventType === 'click'
-                && tagBox[index].hasAttribute('on')
-                && tagBox[index].getAttribute('on').match('tap:')
+                && tag.hasAttribute('on')
+                && tag.getAttribute('on').match('tap:')
                 && fn.hasTouch()) {
-                var gesture = new Gesture(tagBox[index]);
+                var gesture = new Gesture(tag);
                 gesture.on('tap', eventHandler);
             }
             else {
-                tagBox[index].addEventListener(eventType, eventHandler, false);
+                tag.addEventListener(eventType, eventHandler, false);
             }
+
+            tag.setAttribute(DATA_STATS_FALG, '1');
         }
     }
 
@@ -226,8 +244,7 @@ define(function (require) {
     /**
      * 通过百度统计API设置新的referrer
      * 因为在iframe中，统计到的referrer不对，所以需要转换referrer
-     * 
-    */
+     */
     function setReferrer() {
         var originUrl = '';
         var params = {};
@@ -240,13 +257,13 @@ define(function (require) {
 
         if (isMatch(from, 'result')) {
             // 百度搜索查询参数
-            if(hashWord || hashEqid) {
+            if (hashWord || hashEqid) {
                 params.eqid = hashEqid;
                 params.word = hashWord;
             }
             // 神马搜索查询参数
-            if(hashQuery) {
-                params.q = hashQuery
+            if (hashQuery) {
+                params.q = hashQuery;
             }
             if (document.referrer) {
                 params.url = '';
@@ -283,11 +300,12 @@ define(function (require) {
      */
     function buildReferrer(url, params) {
         var referrer = '';
-        var params = params;
         var conjMark = url.indexOf('?') < 0 ? '?' : '&';
         var urlData = '';
         for (var key in params) {
-            urlData += '&' + key + '=' + params[key];
+            if (params.hasOwnProperty(key)) {
+                urlData += '&' + key + '=' + params[key];
+            }
         }
         urlData = urlData.slice(1);
         if (url.indexOf('#') < 0 && urlData) {

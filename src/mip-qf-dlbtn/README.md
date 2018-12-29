@@ -11,7 +11,7 @@ mip-qf-dlbtn 湖南七风网络119手游网下载逻辑
 ## 示例
 
 ```html
-<mip-qf-dlbtn  prefix="https://m.119you.com/" ipa-href="fgame/dlstat?gid=160294&type=ipa&cp=112&jailbreak=N&source=m_rank_indextop3" apk-href="fgame/dlstat?gid=163183&type=apk&cp=7&jailbreak=N&source=m_rank_indextop3" data-isbp="N" game-href="api/aaa/redirect?advid=1033" ipa-prefix-mb="guide/mbInstruction.shtml?link=/" ipa-prefix-nomb="guide/usInstruction.shtml?link=/" data-asoTest="N">下载</mip-qf-dlbtn>
+<mip-qf-dlbtn prefix="https://m.119you.com/" ipa-href="fgame/dlstat?gid=160294&type=ipa&cp=112&jailbreak=N&source=m_rank_indextop3" apk-href="fgame/dlstat?gid=163183&type=apk&cp=7&jailbreak=N&source=m_rank_indextop3" data-isbp="N" game-href="api/aaa/redirect?advid=1033" ipa-prefix-mb="guide/mbInstruction.shtml?link=/" ipa-prefix-nomb="guide/usInstruction.shtml?link=/" data-asoTest="N">下载</mip-qf-dlbtn>
 ```
 ## 属性
 

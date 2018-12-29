@@ -29,6 +29,7 @@ define(function (require) {
         component.addEventListener('click', function (e) { // 点击跳转
             e.preventDefault();
             window.location.href = link === '' ? 'javascript:void(0)' : (prefix + link);
+            return false;
         }, false);
 
         if (link === '') { // 无包或时添加无包样式

@@ -211,7 +211,14 @@ define(function (require) {
 
                 if (zIndex >= maxzIndex) {
                     maxzIndex = zIndex;
-                    fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
+                    var now = Date.now();
+                    var timer = setInterval(function () {
+                        var height = getCss(res.element, 'height');
+                        if (height > 0 || Date.now() - now > 8000) {
+                            clearInterval(timer);
+                        }
+                        fixedElement.setPlaceholder(height - excr);
+                    }, 16);
                 }
             }
         });
@@ -305,7 +312,7 @@ define(function (require) {
      */
     function getConfigScriptElement(elem) {
         if (!elem) {
-            return;  
+            return;
         }
         return elem.querySelector('script[type="application/json"]');
     }
@@ -333,10 +340,10 @@ define(function (require) {
         var me = this;
         this.placeholder.classList.add('fadeout');
         // 占位符增加淡出效果
-        this.placeholder.addEventListener("transitionend", function() {
+        this.placeholder.addEventListener('transitionend', function () {
             me.placeholder.remove();
         }, false);
-        this.placeholder.addEventListener("webkitTransitionend", function() {
+        this.placeholder.addEventListener('webkitTransitionend', function () {
             me.placeholder.remove();
         }, false);
     }

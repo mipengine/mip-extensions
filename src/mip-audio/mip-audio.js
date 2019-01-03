@@ -114,7 +114,7 @@ define(function (require) {
             }
 
             window.addEventListener(CUSTOM_EVENT_SHOW_PAGE, () => this.audioElement.load())
-            window.addEventListener(CUSTOM_EVENT_HIDE_PAGE, () => this.audioElement.pause())
+            window.addEventListener(CUSTOM_EVENT_HIDE_PAGE, () => this._playOrPause('pause'))
 
             // 事件绑定：获取总播放时长，更新DOM
             // FIXME: 由于ios10手机百度不执行loadedmetadata函数，

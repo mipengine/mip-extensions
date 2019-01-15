@@ -1,0 +1,12 @@
+{
+  "name": "mip-258-jump",
+  "version": "1.0.0",
+  "description": "自动跳转",
+  "author": {
+    "name": "teemor",
+    "email": "232957726@258c.com"
+  },
+  "engines": {
+    "mip": ">=1.0.0"
+  }
+}

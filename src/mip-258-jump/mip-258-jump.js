@@ -31,7 +31,7 @@ define(function (require) {
             }
             return flag;
         }
-        console.log(ispc())
+        console.log(123123123,ispc())
         if (ispc()) {
             // pc端
             if (window.top.location.href.indexOf('//m.') !== -1) {

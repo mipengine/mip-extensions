@@ -32,8 +32,14 @@ define(function (require) {
             return flag;
         }
         if (ispc()) {
-            if (location.href.indexOf('//m.') !== -1) {
+            // pc端
+            if (window.top.location.href.indexOf('//m.') !== -1) {
                 window.top.location.href = window.top.location.href.replace('m.', 'www.');
+            }
+        }else{
+            //手机端
+            if (window.top.location.href.indexOf('//www.') !== -1) {
+                window.top.location.href = window.top.location.href.replace('www.', 'm.');
             }
         }
     };

@@ -8,9 +8,9 @@ define(function (require) {
     var $ = require('zepto');
 
     /**
-    * 第一次进入可视区回调，只会执行一次
+    * 元素挂载到 DOM 上之后执行
     */
-    customElement.prototype.firstInviewCallback = function () {
+    customElement.prototype.connectedCallback = function () {
         console.log(123123123)
         // TODO
         function ispc() {

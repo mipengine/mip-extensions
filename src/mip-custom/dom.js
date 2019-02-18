@@ -185,6 +185,11 @@ define(function (require) {
         var customNode = createCustomNode(html, customTag);
         var itemNode = document.createElement('div');
         itemNode.setAttribute('mip-custom-item', len);
+        // 如果定制化组件属性有 no-padding 则把它的容器设置为 no-padding
+        // 组件属性 no-padding 必须设置一个值，哪怕是""，不然会被remove
+        if (customNode.hasAttribute('no-padding')) {
+            itemNode.classList.add('no-padding');
+        }
         // XXX work around: 由于需要在template渲染后把渲染结果插入到itemNode，container里面，
         // 只能把这些参数绑定在 customNode 里传给render.then中，通过res.element.itemNode获取
         customNode.itemNode = itemNode;

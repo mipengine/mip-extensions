@@ -169,9 +169,6 @@ define(function (require) {
             adData: data.data
         }
     });
-    setTimeout(function (){
-        renderCacheDataByTpl (data, element, resolve)
-    }, 1000);
   }
   /**
    * 获取当前定制化页面的window——小说垂类

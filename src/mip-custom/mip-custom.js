@@ -334,11 +334,36 @@ define(function () {
      * @param {Object} performance 性能参数
      */
     customElement.prototype.setPerformanceLogs = function (performance, data) {
+        // 性能日志：emptyTime-广告未显示时间
+        // 渲染结束时间戳
+        performance.renderEnd = new Date() - 0;
+
+        // 给到SF
+        // 合作页业务性能监控需要两个主要指标
+        // 1. 从搜索点出开始到mip页主体内容展现
+        // 2. 从搜索点出开始到mip页面整体展现 （除了主体内容，可能存在mip-custom等异步加载的内容）
+        // 在mip页内，将整体展现完成时间 和 mip页属于哪个产品类型 传给SF，SF统一上报
+        // 同时支持拓展其他指标
+        var mainData = data.data;
+        // mainData.common.product = 'medicine';
+        if (mainData && mainData.common && mainData.common.product && mainData.responseTime) {
+            // 在search-sfr-services仓库的mipService里监听它
+            window.MIP.viewer.sendMessage('product-baseperf-log', {
+                fullLoadTime: performance.renderEnd,
+                otherDurations: {
+                    // 后端渲染时间
+                    mipServerAllTime: mainData.responseTime.mipServerAllTime || 0,
+                    // 钱的渲染时间
+                    frontendRender: performance.renderEnd - performance.responseEnd
+                },
+                product: mainData.common.product
+            });
+        }
+
+        // 这是在加上发送mip-product-baseperf-log事件统计之前的日志逻辑
+        // 不清楚用途，继续保留
         var random500 = Math.random() * 500;
         if (random500 < 1) {
-            // 性能日志：emptyTime-广告未显示时间
-            // 渲染结束时间戳
-            performance.renderEnd = new Date() - 0;
             // 页面空白毫秒数
             performance.emptyTime = performance.renderEnd - performance.fetchStart;
             performance.frontendRender = performance.renderEnd - performance.responseEnd;
@@ -415,7 +440,7 @@ define(function () {
     /**
      * 获取模板队列和缓存数据状态
      *
-     * @return {} 
+     * @return {}
      */
     customElement.prototype.getQueue = function () {
         return window.MIP && MIP.custom && {

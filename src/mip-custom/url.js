@@ -38,6 +38,9 @@ define(function (require) {
             }
         }
 
+        // pc标识字段
+        params.fromSite = data.getHashData('fromSite');
+
         return params;
     }
 

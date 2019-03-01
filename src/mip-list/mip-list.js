@@ -8,7 +8,9 @@ define(function (require) {
     var customElement = require('customElement').create();
     var templates = require('templates');
     var fetchJsonp = require('fetch-jsonp');
-
+    var bind = null;
+    // 禁止提前依赖
+    var _require = require;
     /**
      * [renderTemplate 获取模板]
      *
@@ -33,13 +35,22 @@ define(function (require) {
      */
     function render(htmls) {
         var self = this;
+
         var fragment = document.createDocumentFragment();
+        if (!bind) {
+            bind = window.m ? _require('mip-bind') : null;
+        }
+
         htmls.map(function (html) {
             var node = document.createElement('div');
             node.innerHTML = html;
             node.setAttribute('role', 'listitem');
             fragment.appendChild(node);            
         });
+
+        if (bind) {
+            bind && bind.reBindDom(fragment);
+        }
         self.container.appendChild(fragment);
     }
 

@@ -62,7 +62,7 @@ define(function (require) {
         'u'
     ];
 
-    var WHITELISTED_ATTR_PREFIX_REGEX = /^data-/i;
+    var WHITELISTED_ATTR_PREFIX_REGEX = /^((data-)|(m-))/i;
 
     var  BLACKLISTED_ATTR_VALUES = [
       'javascript:',

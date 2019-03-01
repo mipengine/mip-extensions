@@ -59,6 +59,18 @@ define(function (require) {
         }
     };
 
+
+    /**
+     * rebind dom
+     *
+     */
+    Bind.prototype.reBindDom = function(dom){
+        var oriDom = this._compile._el;;
+        this._compile._el = dom || oriDom;
+        this._compile.start(this._win.m);
+        this._compile._el = oriDom;
+    }
+
     /**
      * Bind event for post message when fetch data returned, then compile dom again
      *
@@ -88,6 +100,7 @@ define(function (require) {
             m: window.m ? window.m : {}
         };
         MIP.$set(this._dataSource.m);
+        return this;
     };
 
     /**
@@ -119,6 +132,7 @@ define(function (require) {
             }
         });
     };
-
-    return new Bind().start();
+    var bindInstance = new Bind().start();
+    window.reBindDom = bindInstance.reBindDom.bind(bindInstance);
+    return bindInstance;
 });

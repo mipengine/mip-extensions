@@ -1,0 +1,12 @@
+{
+    "name": "mip-258-form-btn",
+    "version": "1.0.0",
+    "description":"按钮ajax请求。",
+    "author": {
+        "name": "chen",
+        "email": "chenweilin@258c.com"
+    },
+    "engines": {
+        "mip": ">=1.0.0"
+    }
+}

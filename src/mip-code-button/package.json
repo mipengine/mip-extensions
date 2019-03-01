@@ -1,0 +1,12 @@
+{
+    "name": "mip-code-button",
+    "version": "1.0.0",
+    "description":"验证码获取。",
+    "author": {
+        "name": "chen",
+        "email": "chenweilin@258c.com"
+    },
+    "engines": {
+        "mip": ">=1.0.0"
+    }
+}

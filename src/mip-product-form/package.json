@@ -1,0 +1,12 @@
+{
+    "name": "mip-product-form",
+    "version": "1.0.2",
+    "description":"自定义表单",
+    "author": {
+        "name": "chen",
+        "email": "chenweilin@258.com"
+    },
+    "engines": {
+        "mip": ">=1.0.0"
+    }
+}

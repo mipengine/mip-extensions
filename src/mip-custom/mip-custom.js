@@ -353,7 +353,7 @@ define(function () {
                 otherDurations: {
                     // 后端渲染时间
                     mipServerAllTime: mainData.responseTime.mipServerAllTime || 0,
-                    // 钱的渲染时间
+                    // 前端渲染时间
                     frontendRender: performance.renderEnd - performance.responseEnd
                 },
                 product: mainData.common.product

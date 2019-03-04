@@ -163,14 +163,11 @@ define(function (require) {
             inMipShell[1] = 'notIframed';
         }
         // 非百度、cache不在mip-shell中
-        if (!data.regexs.domain.test(window.document.referrer)) {
+        if (!(data.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
             inMipShell[0] = false;
-            inMipShell[1] = 'notBaiduDomain';
+            inMipShell[1] = 'notDomainOrCacheUrl';
         }
-        if (!util.fn.isCacheUrl(location.href)) {
-            inMipShell[0] = false;
-            inMipShell[1] = 'notCacheUrl';
-        }
+        
         return inMipShell;
     };
 

@@ -131,7 +131,7 @@ define(function (require) {
         // 非mip-shell增加noshell参数
         var mipShell = inMipShell(element);
         if (!mipShell[0]) {
-            url = url + '&from=noshell&noshelltype=' + mipShell[1];
+            url = url + '&from=noshell&noshelltype=' + mipShell[1] + '&fromreferrer=' + mipShell[2];
         }
         return url;
     }
@@ -161,11 +161,15 @@ define(function (require) {
         if (!viewer.isIframed) {
             inMipShell[0] = false;
             inMipShell[1] = 'notIframed';
+            inMipShell[2] = document.referrer;
+            return inMipShell;
         }
         // 非百度、cache不在mip-shell中
         if (!(data.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
             inMipShell[0] = false;
             inMipShell[1] = 'notDomainOrCacheUrl';
+            inMipShell[2] = document.referrer;
+            return inMipShell;
         }
         
         return inMipShell;

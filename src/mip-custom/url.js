@@ -163,16 +163,16 @@ define(function (require) {
         if (!viewer.isIframed) {
             inMipShell[0] = false;
             inMipShell[1] = 'notIframed';
-            inMipShell[2] = document.referrer;
-            inMipShell[3] = location.href;
+            inMipShell[2] = encodeURIComponent(document.referrer);
+            inMipShell[3] = encodeURIComponent(location.href);
             return inMipShell;
         }
         // 非百度、cache不在mip-shell中
         if (!(data.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
             inMipShell[0] = false;
             inMipShell[1] = 'notDomainOrCacheUrl';
-            inMipShell[2] = document.referrer;
-            inMipShell[3] = location.href;
+            inMipShell[2] = encodeURIComponent(document.referrer);
+            inMipShell[3] = encodeURIComponent(location.href);
             return inMipShell;
         }
         

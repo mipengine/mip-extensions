@@ -171,9 +171,39 @@ define(function () {
             require.config(config);
         }
 
+
         // common 数据缓存
         if (data.common) {
             commonData = data.common;
+        }
+
+        // 医疗屏蔽A区跳转
+        if (commonData.product === 'medicine') {
+            var specialLink = [
+                // 寻医问药
+                'mip.imask.xywy.com',
+                // 宝宝知道
+                'baobao.baidu.com',
+                // 柠檬爱美
+                'lemon.baidu.com',
+                // 春雨医生
+                'm.chunyuyisheng.com',
+                // 好大夫
+                'mip.haodf.com',
+                // 百科名医
+                'm.baikemy.com'
+            ];
+            specialLink = specialLink.join(',');
+             // 特殊网站 绕过屏蔽,
+            if (commonData.originalUrl && commonData.originalUrl.indexOf(specialLink) < 0) {
+                var alink = document.querySelectorAll('a');
+
+                for (var i = 0; i < alink.length; i++) {
+                    if (alink[i].href.indexOf('author.baidu.com') < 0) {
+                        alink[i].href = 'javascript:void(0)';
+                    }
+                }
+            }
         }
 
         // 模板数据缓存
@@ -186,7 +216,6 @@ define(function () {
             var container = document.createElement('div');
             container.setAttribute('mip-custom-container', i);
             element.appendChild(container);
-
             // dom 渲染
             dom.render(element, tplData, container);
         }
@@ -201,6 +230,7 @@ define(function () {
         window.MIP.adShow = true
         // 移除广告占位符号
         dom.removePlaceholder.apply(this);
+
     };
 
     /**
@@ -334,11 +364,36 @@ define(function () {
      * @param {Object} performance 性能参数
      */
     customElement.prototype.setPerformanceLogs = function (performance, data) {
+        // 性能日志：emptyTime-广告未显示时间
+        // 渲染结束时间戳
+        performance.renderEnd = new Date() - 0;
+
+        // 给到SF
+        // 合作页业务性能监控需要两个主要指标
+        // 1. 从搜索点出开始到mip页主体内容展现
+        // 2. 从搜索点出开始到mip页面整体展现 （除了主体内容，可能存在mip-custom等异步加载的内容）
+        // 在mip页内，将整体展现完成时间 和 mip页属于哪个产品类型 传给SF，SF统一上报
+        // 同时支持拓展其他指标
+        var mainData = data.data;
+        // mainData.common.product = 'medicine';
+        if (mainData && mainData.common && mainData.common.product && mainData.responseTime) {
+            // 在search-sfr-services仓库的mipService里监听它
+            window.MIP.viewer.sendMessage('product-baseperf-log', {
+                fullLoadTime: performance.renderEnd,
+                otherDurations: {
+                    // 后端渲染时间
+                    mipServerAllTime: mainData.responseTime.mipServerAllTime || 0,
+                    // 前端渲染时间
+                    frontendRender: performance.renderEnd - performance.responseEnd
+                },
+                product: mainData.common.product
+            });
+        }
+
+        // 这是在加上发送mip-product-baseperf-log事件统计之前的日志逻辑
+        // 不清楚用途，继续保留
         var random500 = Math.random() * 500;
         if (random500 < 1) {
-            // 性能日志：emptyTime-广告未显示时间
-            // 渲染结束时间戳
-            performance.renderEnd = new Date() - 0;
             // 页面空白毫秒数
             performance.emptyTime = performance.renderEnd - performance.fetchStart;
             performance.frontendRender = performance.renderEnd - performance.responseEnd;
@@ -415,7 +470,7 @@ define(function () {
     /**
      * 获取模板队列和缓存数据状态
      *
-     * @return {} 
+     * @return {}
      */
     customElement.prototype.getQueue = function () {
         return window.MIP && MIP.custom && {

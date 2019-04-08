@@ -176,7 +176,7 @@ define(function () {
         if (data.common) {
             commonData = data.common;
         }
-
+        var isForbidden = true;
         // 医疗屏蔽A区跳转
         if (commonData.product === 'medicine') {
             var specialLink = [
@@ -193,9 +193,14 @@ define(function () {
                 // 百科名医
                 'm.baikemy.com'
             ];
-            specialLink = specialLink.join(',');
-             // 特殊网站 绕过屏蔽,
-            if (commonData.originalUrl && commonData.originalUrl.indexOf(specialLink) < 0) {
+            for (var i = 0; i < specialLink.length; i++) {
+                if (commonData.originalUrl && commonData.originalUrl.indexOf(specialLink[i]) > -1) {
+                    isForbidden = false;
+                    break;
+                }
+            }
+
+            if (isForbidden) {
                 var alink = document.querySelectorAll('a');
 
                 for (var i = 0; i < alink.length; i++) {
@@ -204,6 +209,7 @@ define(function () {
                     }
                 }
             }
+
         }
 
         // 模板数据缓存

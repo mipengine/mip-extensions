@@ -189,9 +189,9 @@ define(function () {
                 // 春雨医生
                 'm.chunyuyisheng.com',
                 // 好大夫
-                'mip.haodf.com',
+                'mip.haodf.com'
                 // 百科名医
-                'm.baikemy.com'
+                // 'm.baikemy.com'
             ];
             for (var i = 0; i < specialLink.length; i++) {
                 if (commonData.originalUrl && commonData.originalUrl.indexOf(specialLink[i]) > -1) {

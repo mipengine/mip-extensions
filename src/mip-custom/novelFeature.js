@@ -30,9 +30,6 @@ define(function (require) {
             : window.parent.MIP.novelInstance;
         novelInstance = novelInstance || {};
         var adsCache = novelInstance.adsCache || {};
-        if (!adsCache.isNeedAds && adsCache.directRender && adsCache.adStrategyCacheData) {
-            me.render(adsCache.adStrategyCacheData, me.element);
-        }
         //   common 正常发送
         window.MIP.setCommonFetch = true;
         initElement.apply(me, [dom]);
@@ -141,15 +138,38 @@ define(function (require) {
             }
         });
     }
-    if (!rendered && adsCache.directRender != null && adsCache.directRender == false) {
-        // 当渲染cache广告的时候缺少tpl的时候，依赖于请求返回的tpl
-        renderCacheDataByTpl(data, element, resolve);
+    // 将各种情况统一，这里需谨慎
+    if ((!rendered && adsCache.directRender != null && !adsCache.ignoreSendLog) ||
+        (!rendered && adsCache.noAdsRender != null && adsCache.noAdsRender)
+    ) {
+        renderWithNoCache(data, element, resolve);
     }
-    if (!rendered && adsCache.noAdsRender != null && adsCache.noAdsRender) {
-        renderCacheDataByTpl({data: {data: {}}}, element, resolve);
-    }
+    
   }
-
+  /**
+   * 给 renderCacheDataByTpl 套一层事件，让 mip-custom 等待小说的 nocache 返回的数据
+   *
+   * @param {Object} data common 返回数据
+   * @param {HTMLElement} element 数据返回后需要渲染的element
+   * @param {resolve} resolve promise
+   */
+  function renderWithNoCache (data, element, resolve) {
+    var win = getCurrentWindow();
+    var isRootPage = win.MIP.viewer.page.isRootPage;
+    // 自测的时候发现不知道为啥会调用多次
+    var once = true;
+    win.addEventListener('addNoCacheAds', function () {
+        once && (renderCacheDataByTpl (data, element, resolve));
+        once = false;
+    });
+    win.MIP.viewer.page.emitCustomEvent(isRootPage ? win : win.parent, false, {
+        name: 'noCacheAdDataReady',
+        data: {
+            pageId: win.MIP.viewer.page.currentPageId,
+            adData: data.data
+        }
+    });
+  }
   /**
    * 获取当前定制化页面的window——小说垂类
    *

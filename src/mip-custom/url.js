@@ -127,9 +127,9 @@ define(function (require) {
         }
         // 非mip-shell增加noshell参数
         var mipShell = inMipShell(element);
-        if (!mipShell) {
-            url += '&from=noshell';
-        }
+        // if (!mipShell) {
+        //     url += '&from=noshell';
+        // }
         return url;
     }
 

@@ -7,7 +7,7 @@ define(function (require) {
     'use strict';
 
     var customElement = require('customElement').create();
-    var JSMpeg = require('./jsmpeg/jsmpeg');
+    var JSMpeg = require('./lib/jsmpeg');
     var util = require('util');
     var Detector = require('./video-detector');
     var css = util.css;

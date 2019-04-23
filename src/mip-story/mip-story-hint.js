@@ -15,6 +15,7 @@ define(function (require) {
     var MIP_STORY_PAGE_SWITCH_RIGHT_CLASS = 'mip-story-page-switch-rt';
 
     var util = require('util');
+    var QRCode = require('./lib/qrcode');
 
     function MIPStoryHint(root) {
         this.rootEl = root;
@@ -39,6 +40,7 @@ define(function (require) {
             +   '<div class="mip-story-hint-rotate">'
             +       '<mip-img src="https://www.mipengine.org/static/img/mip-story/mip-story-rotate.png"></mip-img>'
             +       '<p>为了更好的体验，请将手机横过来</p>'
+            +       '<div class="mip-story-qrcode"></div>'
             +   '</div>'
             +   '<div class="mip-story-page-switch">'
             +      '<span class="mip-story-page-switch-left">'
@@ -53,6 +55,19 @@ define(function (require) {
             + '</aside>';
         return html;
     };
+
+    MIPStoryHint.prototype.generateQRCode = function () {
+        var ele = this.rootEl.querySelector('.mip-story-qrcode')
+        new QRCode(ele, {
+            text: window.location.href,
+	        width: 96,
+            height: 96,
+            border: 2,
+	        colorDark : "#000000",
+	        colorLight : "#ffffff",
+	        correctLevel : QRCode.CorrectLevel.H
+        })
+    }
 
     MIPStoryHint.prototype.showDamping = function () {
         var self = this;

@@ -57,7 +57,7 @@ define(function (require) {
     };
 
     MIPStoryHint.prototype.generateQRCode = function () {
-        var ele = this.rootEl.querySelector('.mip-story-qrcode')
+        var ele = this.rootEl.querySelector('.mip-story-qrcode');
         new QRCode(ele, {
             text: window.location.href,
             width: 96,
@@ -66,7 +66,7 @@ define(function (require) {
             colorDark : "#000000",
             colorLight : "#ffffff",
             correctLevel : QRCode.CorrectLevel.H
-        })
+        });
     }
 
     MIPStoryHint.prototype.showDamping = function () {

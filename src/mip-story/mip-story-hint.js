@@ -60,12 +60,12 @@ define(function (require) {
         var ele = this.rootEl.querySelector('.mip-story-qrcode')
         new QRCode(ele, {
             text: window.location.href,
-	        width: 96,
+            width: 96,
             height: 96,
             border: 2,
-	        colorDark : "#000000",
-	        colorLight : "#ffffff",
-	        correctLevel : QRCode.CorrectLevel.H
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
         })
     }
 

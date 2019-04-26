@@ -212,6 +212,21 @@ define(function () {
 
         }
 
+        // 医疗屏蔽A区跳转
+        if (commonData.product === 'medicine') {
+            var isForbidden = commonData.isForbidden;
+            if (isForbidden) {
+                var alink = document.querySelectorAll('a');
+
+                for (var i = 0; i < alink.length; i++) {
+                    if (alink[i].href.indexOf('author.baidu.com') < 0) {
+                        alink[i].href = 'javascript:void(0)';
+                    }
+                }
+            }
+
+        }
+
         // 模板数据缓存
         if (data.template) {
             template = data.template;

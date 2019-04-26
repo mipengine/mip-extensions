@@ -90,6 +90,7 @@ define(function (require) {
         this.hint = new HintLayer(element);
         var html = dm.create(this.hint.build());
         this.element.appendChild(html);
+        this.hint.generateQRCode();
     };
 
     MIPStory.prototype.initShare = function (storyConfig, element) {

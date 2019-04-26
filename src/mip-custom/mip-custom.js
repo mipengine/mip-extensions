@@ -176,42 +176,6 @@ define(function () {
         if (data.common) {
             commonData = data.common;
         }
-        var isForbidden = true;
-        // 医疗屏蔽A区跳转
-        if (commonData.product === 'medicine') {
-            var specialLink = [
-                // 寻医问药
-                'mip.imask.xywy.com',
-                // 宝宝知道
-                'baobao.baidu.com',
-                // 柠檬爱美
-                'lemon.baidu.com',
-                // 春雨医生
-                'm.chunyuyisheng.com',
-                // 好大夫
-                'mip.haodf.com',
-                // 百科名医
-                'm.baikemy.com'
-            ];
-            for (var i = 0; i < specialLink.length; i++) {
-                if (commonData.originalUrl && commonData.originalUrl.indexOf(specialLink[i]) > -1) {
-                    isForbidden = false;
-                    break;
-                }
-            }
-
-            if (isForbidden) {
-                var alink = document.querySelectorAll('a');
-
-                for (var i = 0; i < alink.length; i++) {
-                    if (alink[i].href.indexOf('author.baidu.com') < 0) {
-                        alink[i].href = 'javascript:void(0)';
-                    }
-                }
-            }
-
-        }
-
         // 医疗屏蔽A区跳转
         if (commonData.product === 'medicine') {
             var isForbidden = commonData.isForbidden;

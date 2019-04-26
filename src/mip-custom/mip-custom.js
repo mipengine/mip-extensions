@@ -179,7 +179,7 @@ define(function () {
 
         // 医疗屏蔽A区跳转
         if (commonData.product === 'medicine') {
-            var isForbidden = commonData.isForbidden;
+            var isForbidden = commonData.isForbidden || '';
             if (isForbidden) {
                 var alink = document.querySelectorAll('a');
 

@@ -1,5 +1,7 @@
 # MIP 组件
 
+注意：**停止维护，请使用 [MIP2 官方组件](https://github.com/mipengine/mip2-extensions)，查看最新[官方文档](https://www.mipengine.org/v2/components/index.html)**
+
 MIP 组件包括官方组件和开发者自定义组件，是用于定制站点页面功能的利器。
 
 ## 组件编译

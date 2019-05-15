@@ -61,6 +61,25 @@ define(function (require) {
         this.nextEle = storyViews[this.nextIndex].customElement;
     }
 
+    /**
+     * 找到指定为某标签的父元素
+     *
+     * @param {Dom} el 
+     * @param {String} tagName 
+     * @returns {Dom}
+     */
+    function findParent(el, tagName) {
+        tagName = tagName.toLowerCase();
+
+        while (el && el.parentNode) {
+            el = el.parentNode;
+            if (el.tagName && el.tagName.toLowerCase() === tagName) {
+                return el;
+            }
+        }
+        return null;
+    }
+
     MIPStoryService.prototype.build = function () {
         // 初始化滑动组件
         var self = this;
@@ -175,11 +194,18 @@ define(function (require) {
         this.nextIndex = index.nextIndex;
         // 重新更新当前活跃的页面
         this.resetViewEle();
+
         // 激活当前页的的多媒体
         this.currentEle.setAllMedia(true, this.viewMuted, reload, this.emitter);
         this.currentEle.setCssMedia(true, this.viewMuted, this.emitter);
-        // 初始化下一页的动画效果
-        this.nextEle.setPreActive(this.emitter);
+        // 在重设view状态时，如果下一页与当前页的不是同一页并且下一页不是封底页，需要进行状态修改
+        if (this.nextIndex != this.currentIndex && this.nextIndex <= storyViews.length - 1) {
+            // 初始化下一页的动画效果
+            this.nextEle.setPreActive(this.emitter);
+        }
+        if (this.preIndex !== this.currentIndex) {
+            this.preEle.setPreActive(this.emitter);
+        }
         // 清除其余所有页面的动画
         this.clearCssMedia();
     };
@@ -230,34 +256,29 @@ define(function (require) {
         var audio = storyEle.querySelector('.mip-stoy-audio');
         var recommend = storyEle.querySelector('.recommend-wrap');
         var shareAreaShow = storyEle.querySelector('.mip-story-share-show');
-        var xzhSite = storyEle.querySelector('.icon-wrap');
         if (!dm.contains(shareArea, e.target) && shareAreaShow) {
             this.share.hideShareLayer();
             return;
         }
 
-        // 跳转站点熊掌号
-        if (dm.contains(xzhSite, e.target)) {
-          var href = xzhSite.getAttribute('data-href');
-          window.top.location.href = href;
-          return;
-        }
 
         // 推荐
         if (dm.contains(recommend, e.target)) {
-            var ele = storyEle.querySelector('.item-from');
-            var src = e.target.getAttribute('data-src');
-            if (e.target.nodeName.toLocaleLowerCase() === 'a' && ele != e.target) {
-                var href = e.target.getAttribute('href');
-                e.preventDefault();
+            var target = e.target;
+            var eleParent = findParent(target, 'a');
+            e.preventDefault();
+            // 推荐链接
+            if (target.nodeName.toLocaleLowerCase() !== 'span') {
+                var href = eleParent.getAttribute('href');
                 window.top.location.href = href;
                 return;
             }
-            if (ele === e.target && src) {
-                e.preventDefault();
-                window.top.location.href = src;
+            // 来源链接
+            var src = target.getAttribute('data-src');
+            if (!src) {
+                return;
             }
-            return;
+            window.top.location.href = src;
         }
 
         // 返回上一页
@@ -330,10 +351,10 @@ define(function (require) {
             this.share.hideShareLayer();
             return;
         }
-
-        slider.initViewForSlider(function (preIndex, currentIndex, nextIndex) {
-            self.initfirstViewStatus(preIndex, currentIndex, nextIndex);
-        });
+        slider.initViewForSlider('reset');
+        // slider.initViewForSlider(function (preIndex, currentIndex, nextIndex) {
+        //     self.initfirstViewStatus(preIndex, currentIndex, nextIndex);
+        // });
         this.replayBookEnd();
     };
 

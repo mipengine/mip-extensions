@@ -67,7 +67,7 @@ define(function (require) {
             "fromUrl": ""
         }
     ]
-    
+
     MIPStoryBackEnd.prototype.build = function () {
         var data = this.storyConfig;
         var replayStats = encodeURIComponent(
@@ -88,12 +88,14 @@ define(function (require) {
                 data: ['_trackEvent', '小故事关闭按钮_分享页', '点击', window.location.href]
             })
         );
-        var recommendStats = encodeURIComponent(
-            JSON.stringify({
-                type: 'click',
-                data: ['_trackEvent', '更多推荐', '点击', window.location.href]
-            })
-        );
+        var recommendStats = function (url) {
+            return encodeURIComponent(
+                JSON.stringify({
+                    type: 'click',
+                    data: ['_trackEvent', '更多推荐', '点击', url]
+                })
+            );
+        };
         var infoStats = encodeURIComponent(
             JSON.stringify({
                 type: 'click',
@@ -110,12 +112,13 @@ define(function (require) {
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 innerTpl += ''
-                    +    '<a href="' + item.url
-                    +       '" class="recommend-item" data-stats-baidu-obj="' + recommendStats + '">'
-                    +       '<div class="mip-backend-preview" style="background-image:url('
-                    +       (item.cover || '') + ');"></div>'
+                    +    '<a ondragstart="return false;" ondrop="return false;" href="' + item.url
+                    +       '" class="recommend-item" data-stats-baidu-obj="' + recommendStats(item.url) + '">'
+                    +       '<div class="mip-backend-preview"> <mip-story-img src='
+                    +           (item.cover || " ")
+                    +       '></mip-story-img></div>'
                     +       '<div class="recommend-detail">'
-                    +           '<span>' + (item.title || '') + '</span>'
+                    +           '<p>' + (item.title || '') + '</p>'
                     +           '<span class="item-from" data-src="' + item.fromUrl + '">' + (item.from || '') + '</span>'
                     +        '</div>'
                     +    '</a>';
@@ -143,7 +146,9 @@ define(function (require) {
                 +         historyTpl
                 +         shareTpl
                 +     '</mip-fixed>'
-                +     '<div class="mip-backend-outer "style="background-image: url(' + share.background + ')">'
+                +     '<div class="mip-backend-outer "style="">'
+                +         '<div class="mip-backend-background" style="background-image: url(' + share.background + ')">'
+                +         '</div>'
                 +         '<div class="recommend-item recommend-now">'
                 +            '<div class="mip-backend-preview"'
                 +             'style="background-position:center;background-size:cover;background-image:url('
@@ -154,7 +159,7 @@ define(function (require) {
                 +               '</div>'
                 +           '</div>'
                 +            '<div class="recommend-detail">'
-                +             '<span class="mip-backend-description">' + share.title + '</span>'
+                +             '<p class="mip-backend-description">' + share.title + '</p>'
                 +             '<span class="mip-backend-info" data-stats-baidu-obj="' + infoStats + '">'
                 +                 '<a href="' + share.fromUrl + '">' + share.from + '</a>'
                 +             '</span>'

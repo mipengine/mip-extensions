@@ -8,14 +8,13 @@
 
 - 每个小故事可以包含多个段落（view），每个段落充满屏幕。用户操作翻页后，会看到下一个段落。
 - 每个段落又可以包含多个层（layer），单个层可以设置布局模式，如多行布局，左右布局，图片拉伸布局等。
-- 元素（element）是资源素材，如背景图，主标题，详细描述等。在 `<h1>`、`<p>`、`<mip-img>` 等标签中声明。
+- 元素（element）是资源素材，如背景图，主标题，详细描述等。在 `<h1>`、`<p>`、`<mip-story-img>` 等标签中声明。
 
 | 标题   | 内容                                       |
 | ---- | ---------------------------------------- |
 | 类型   | 通用                                       |
 | 支持布局 | responsive,fixed-height,fill,container,fixed |
-
-| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js<br>https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js
+| 所需脚本|https://c.mipcdn.com/static/v1/mip-story/mip-story.js<br>https://c.mipcdn.com/static/v1/mip-share/mip-share.js<br>https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js
 ## 示例
 ```html
 <style mip-custom>
@@ -33,9 +32,6 @@
 <mip-story standalone>
     <script type="application/json">
     {
-        "xzh_info": {
-          "appid": 12344567890
-        },
         "share": {
             "thumbnail": "https://mip-extensions.bj.bcebos.com/oscar/cover.jpg",
             "background": "https://mip-extensions.bj.bcebos.com/oscar/p8.png",
@@ -66,7 +62,7 @@
     </script>
     <mip-story-view auto-advancement-after="3s">
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+            <mip-story-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-story-img>
         </mip-story-layer>
         <mip-story-layer>
             <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
@@ -74,7 +70,7 @@
     </mip-story-view>
     <mip-story-view>
         <mip-story-layer template="fill" animate-in="scale-in" animate-in-duration="3s">
-            <mip-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-img>
+            <mip-story-img width="480" class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/sample_02.jpg"></mip-story-img>
         </mip-story-layer>
         <mip-story-layer>
             <h1 animate-in="fade-in-right">用 MIP 来讲述你的故事！</h1>
@@ -86,8 +82,6 @@
 ## 数据配置
 为提供给用户更多信息和传播渠道，在 `<mip-story>` 段落最后提供了专门用于展示分享及小故事更多相关信息的页面。当用户在最后一个段落继续向后点击时候，即会出现。其中该页面内容需要通过开发者进行配置，具体配置参数如下：
 
-- xzh_info 选填，显示熊掌号信息
-    - appid: 熊掌号id，必须与预留地址相对应
 - share: share 字段下包含的是分享相关的数据。
 - share.thumbnail: 预览小故事的缩略图地址。
 - share.background: 结尾页背景图片地址。
@@ -128,8 +122,8 @@
 <mip-story>
     <mip-story-view>
         <mip-story-layer template="vertical">
-              <h1>fade-in</h1>
-              <div animate-in="fade-in" class="box"></div>
+              <h1>fly-in-top</h1>
+              <div animate-in="fly-in-top" class="box"></div>
         </mip-story-layer>
     </mip-story-view>
 </mip-story>

@@ -8,12 +8,14 @@ define(function () {
     // rquire tools
     var util = require('util');
     var viewer = require('viewer');
-
     // require modules
     var url = require('mip-custom/url');
     var dom = require('mip-custom/dom');
     var log = require('mip-custom/log');
     var dataProcessor = require('mip-custom/data');
+
+    // require novel feature
+    var novel = require('mip-custom/novelFeature');
 
     // creat钩子
     var customElement = require('customElement').create();
@@ -21,20 +23,13 @@ define(function () {
     var performanceData = dataProcessor.performanceData;
     var globalCustomElementInstance;
 
-    function handler(e) {
-        var me = globalCustomElementInstance;
-        var detailData = e && e.detail && e.detail[0] || {};
-        me.customId = detailData.customId;
-        me.novelData = detailData.novelData;
-        if (detailData.fromSearch) {
-            me.fromSearch = detailData.fromSearch;
-        }
-        // XXX:解决window实例和组件实例的诡异的问题。。。。。。
-        if (me.customId === window.MIP.viewer.page.currentPageId
-            && me.element.querySelector('.mip-custom-placeholder')) {
-            me.initElement(dom)
-            window.removeEventListener('showAdvertising', handler)
-        }
+    var UA = navigator.userAgent;
+
+    /**
+     * 获取是否是百度spider抓取
+     */
+    function isBaiduSpider() {
+        return UA.indexOf('Baiduspider') > -1;
     }
     /**
      * prerenderAllowed钩子,优先加载
@@ -48,23 +43,20 @@ define(function () {
      *
      */
     customElement.prototype.build = function () {
+        // 如果是百度spider抓取，如果是百度spider抓取则不执行接下来的逻辑
+        if (isBaiduSpider()) {
+            return;
+        }
+        var me = this;
         globalCustomElementInstance = this;
-        dom.addPlaceholder.apply(this);
         // 判断是否是MIP2的环境，配合小说shell，由小说shell去控制custom的请求是否发送
-        if (window.MIP.version && +window.MIP.version === 2) {
-            // 监听小说shell播放的广告请求的事件
-            window.addEventListener('showAdvertising', handler);
-            // 当小说shell优先加载时——向小说shell发送custom已经ready的状态以方便后续事件的执行
-            var shellWindow = window.MIP.viewer.page.isRootPage ? window : window.parent;
-            window.MIP.viewer.page.emitCustomEvent(shellWindow, false, {
-                name: 'customReady',
-                data: {
-                    customPageId: window.MIP.viewer.page.currentPageId
-                }
-            })
+        var novelShell = document.querySelector('mip-shell-xiaoshuo');
+        if (window.MIP.version && +window.MIP.version === 2 && novelShell) {
+            novel.addNovelListener.apply(this, [this.initElement]);
         }
         else {
-            this.initElement(dom)
+            dom.addPlaceholder.apply(this);
+            this.initElement(dom);
         }
     };
 
@@ -179,9 +171,25 @@ define(function () {
             require.config(config);
         }
 
+
         // common 数据缓存
         if (data.common) {
             commonData = data.common;
+        }
+
+        // 医疗屏蔽A区跳转
+        if (commonData.product === 'medicine') {
+            var isForbidden = commonData.isForbidden || '';
+            if (isForbidden) {
+                var alink = document.querySelectorAll('a');
+
+                for (var i = 0; i < alink.length; i++) {
+                    if (alink[i].href.indexOf('author.baidu.com') < 0) {
+                        alink[i].href = 'javascript:void(0)';
+                    }
+                }
+            }
+
         }
 
         // 模板数据缓存
@@ -192,13 +200,23 @@ define(function () {
         for (var i = 0; i < template.length; i++) {
             var tplData = template[i];
             var container = document.createElement('div');
-
             container.setAttribute('mip-custom-container', i);
             element.appendChild(container);
-
             // dom 渲染
             dom.render(element, tplData, container);
         }
+
+        // 广告插入页面时，增加渐显效果
+        var mipCustomContainers = document.querySelectorAll('[mip-custom-container]');
+        for (var i = mipCustomContainers.length - 1; i >= 0; i--) {
+            var mipCustomContainer = mipCustomContainers[i];
+            mipCustomContainer.classList.add('fadein');
+        }
+        // 广告渲染完成
+        window.MIP.adShow = true
+        // 移除广告占位符号
+        dom.removePlaceholder.apply(this);
+
     };
 
     /**
@@ -263,14 +281,12 @@ define(function () {
         // 性能日志
         var performance = {};
         performance.fetchStart = new Date() - 0;
-        var paramUrl = url
-        if (me.novelData) {
-            var novelData = encodeURIComponent(JSON.stringify(me.novelData))
-            paramUrl = paramUrl + '&novelData=' + novelData
-        }
-        if (me.fromSearch) {
-            paramUrl = paramUrl + '&fromSearch=' + me.fromSearch
-        }
+
+        var paramUrl = url;
+
+        // 小说的特殊参数——novelData和fromSearch
+        paramUrl = novel.addNovelDate.apply(this, [url]);
+
         // fetch
         fetch(paramUrl, {
             credentials: 'include'
@@ -297,47 +313,27 @@ define(function () {
                 };
                 log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
 
-                console.error(data.errmsg);
+                console.warn(data.errmsg);
                 me.element.remove();
                 return;
             }
-
-            callback && callback(data.data, element);
-            // 广告插入页面时，增加渐显效果
-            var mipCustomContainers = document.querySelectorAll('[mip-custom-container]');
-            for (var i = mipCustomContainers.length - 1; i >= 0; i--) {
-                var mipCustomContainer = mipCustomContainers[i];
-                mipCustomContainer.classList.add('fadein');
+            // 小说内命中小流量
+            if (window.MIP.version && +window.MIP.version === 2 && data.data.schema) {
+                new Promise(function (resolve) {
+                    novel.renderNovelCacheAdData.apply(this, [data, me.element, resolve]);
+                }).then(function (result) {
+                    // 模板的前端渲染
+                    callback && callback.apply(this, [result, me.element]);
+                }).catch(function (reason) {
+                    console.log('失败：' + reason);
+                });
             }
-
+            else {
+                // 模板的前端渲染
+                callback && callback(data.data, element);
+            }
             // 性能日志：按照流量 1/500 发送日志
-            var random500 = Math.random() * 500;
-            if (random500 < 1) {
-                // 性能日志：emptyTime-广告未显示时间
-                performance.renderEnd = new Date() - 0; // 渲染结束时间戳
-                performance.emptyTime = performance.renderEnd - performance.fetchStart; // 页面空白毫秒数
-                performance.frontendRender = performance.renderEnd - performance.responseEnd;
-
-                // 前端打点时间
-                var frontendData = {
-                    duration: performance.duration,
-                    emptyTime: performance.emptyTime,
-                    frontendRender: performance.frontendRender
-                };
-                // 加入后端打点时间
-                var frontAndServerData;
-                if (data.data.responseTime) {
-                    frontAndServerData = util.fn.extend(frontendData, data.data.responseTime);
-                }
-                else {
-                    frontAndServerData = frontendData;
-                }
-                // 加入默认统计参数
-                performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
-                log.sendLog(performanceData.host, performanceData.params);
-            }
-
-            dom.removePlaceholder.apply(me);
+            me.setPerformanceLogs(performance, data);
         }, function (error) {
             log.sendLog(logData.host, util.fn.extend(logData.error, logData.params, errorData));
             me.element.remove();
@@ -346,6 +342,73 @@ define(function () {
         }).catch(function (evt) {
             console.warn(evt);
         });
+    };
+
+    /**
+     * 性能日志：按照流量 1/500 发送日志
+     *
+     * @param {Object} performance 性能参数
+     */
+    customElement.prototype.setPerformanceLogs = function (performance, data) {
+        // 性能日志：emptyTime-广告未显示时间
+        // 渲染结束时间戳
+        performance.renderEnd = new Date() - 0;
+
+        // 给到SF
+        // 合作页业务性能监控需要两个主要指标
+        // 1. 从搜索点出开始到mip页主体内容展现
+        // 2. 从搜索点出开始到mip页面整体展现 （除了主体内容，可能存在mip-custom等异步加载的内容）
+        // 在mip页内，将整体展现完成时间 和 mip页属于哪个产品类型 传给SF，SF统一上报
+        // 同时支持拓展其他指标
+        var mainData = data.data;
+        // mainData.common.product = 'medicine';
+        if (mainData && mainData.common && mainData.common.product && mainData.responseTime) {
+            // 在search-sfr-services仓库的mipService里监听它
+            window.MIP.viewer.sendMessage('product-baseperf-log', {
+                fullLoadTime: performance.renderEnd,
+                otherDurations: {
+                    // 后端渲染时间
+                    mipServerAllTime: mainData.responseTime.mipServerAllTime || 0,
+                    // 前端渲染时间
+                    frontendRender: performance.renderEnd - performance.responseEnd
+                },
+                product: mainData.common.product
+            });
+        }
+
+        // 这是在加上发送mip-product-baseperf-log事件统计之前的日志逻辑
+        // 不清楚用途，继续保留
+        var random500 = Math.random() * 500;
+        if (random500 < 1) {
+            // 页面空白毫秒数
+            performance.emptyTime = performance.renderEnd - performance.fetchStart;
+            performance.frontendRender = performance.renderEnd - performance.responseEnd;
+
+            // 前端打点时间
+            var frontendData = {
+                duration: performance.duration,
+                emptyTime: performance.emptyTime,
+                frontendRender: performance.frontendRender
+            };
+            // 加入后端打点时间
+            var frontAndServerData;
+            if (data.data.responseTime) {
+                frontAndServerData = util.fn.extend(frontendData, data.data.responseTime);
+            }
+            else {
+                frontAndServerData = frontendData;
+            }
+
+            // 加入默认统计参数
+            performanceData.params.info = JSON.stringify(util.fn.extend(performanceData.params.info, frontAndServerData, 1));
+
+            // 添加小说的特殊逻辑字段
+            var novelShell = document.querySelector('mip-shell-xiaoshuo');
+            if (window.MIP.version && +window.MIP.version === 2 && novelShell) {
+                performanceData.params.dim = {pd: 'novel'}
+            }
+            log.sendLog(performanceData.host, performanceData.params);
+        }
     };
 
     /**
@@ -393,7 +456,7 @@ define(function () {
     /**
      * 获取模板队列和缓存数据状态
      *
-     * @return {} 
+     * @return {}
      */
     customElement.prototype.getQueue = function () {
         return window.MIP && MIP.custom && {

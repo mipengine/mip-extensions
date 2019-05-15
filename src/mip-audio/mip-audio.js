@@ -21,6 +21,9 @@ define(function (require) {
         'volume'
     ];
 
+    var CUSTOM_EVENT_SHOW_PAGE = 'show-page'
+    var CUSTOM_EVENT_HIDE_PAGE = 'hide-page'
+
     customElement.prototype.firstInviewCallback = function () {
         var ele = this.element;
         // 防止重复渲染
@@ -109,6 +112,9 @@ define(function (require) {
                 // 将用户自定义controller挪出audio
                 this.container.appendChild(this.customControls);
             }
+
+            window.addEventListener(CUSTOM_EVENT_SHOW_PAGE, this.audioElement.load.bind(this.audioElement))
+            window.addEventListener(CUSTOM_EVENT_HIDE_PAGE, this._playOrPause.bind(this, 'pause'))
 
             // 事件绑定：获取总播放时长，更新DOM
             // FIXME: 由于ios10手机百度不执行loadedmetadata函数，

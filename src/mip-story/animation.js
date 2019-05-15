@@ -21,6 +21,10 @@ define(function (require) {
     // @class
     function AnimationManager(page) {
         this.page = page;
+        var style = window.getComputedStyle(page);
+        var DOMMatrix = DOMMatrix || WebKitCSSMatrix;
+        var matrix = new DOMMatrix(style.webkitTransform);
+        this.offsetX = matrix.m41;
         // [
         //     {
         //         id: xxx,
@@ -36,10 +40,10 @@ define(function (require) {
         var EventEmitter = util.EventEmitter;
         var currentEle = this.page;
         var $animate = currentEle.querySelectorAll(MIP_STORY_ANIMATE_IN_SELECROR);
-
+        
         this.emitter = new EventEmitter();
         [].slice.call($animate).forEach(function (el) {
-            var runner = buildRuner(el);
+            var runner = buildRuner(el, self.offsetX);
             var player = {
                 runner: runner
             };
@@ -67,7 +71,12 @@ define(function (require) {
 
     AnimationManager.prototype.paintFirstFrame = function () {
         this.sequence.forEach(function (player) {
-            css(player.runner.el, player.runner.animationDef.keyframes[0]);
+            // 动画名词可能不存在或拼写错误
+            try {
+                css(player.runner.el, player.runner.animationDef.keyframes[0]);
+            } catch (error) {
+                // console.log(error);
+            }
         });
     };
 
@@ -130,18 +139,31 @@ define(function (require) {
 
     }
 
-    function createAnimationDef(el) {
+    function createAnimationDef(el, offsetX) {
         var keyframes;
         var easing;
-
         var offset = el.getBoundingClientRect();
         var animationDef = getPreset(el);
         var duration = timeStrFormat(el.getAttribute(MIP_STORY_ANIMATE_IN_DURATION_ATTR));
         var delay = timeStrFormat(el.getAttribute(MIP_STORY_ANIMATE_IN_DELAY_ATTR));
         var after = el.getAttribute(MIP_STORY_ANIMATE_IN_AFTER_ATTR);
+        
+        animationDef.delay = delay || 0;
+
+        if (after) {
+            animationDef.startAfterId = after;
+        }
+
+        // 如果是animate.css的动画
+        if (animationDef.animationName) {
+            animationDef.duration = duration;
+            animationDef.animationType = 'CSS_ANIMATION';
+            return animationDef;
+        }
 
         offset.pageHeight = window.innerHeight;
         offset.pageWidth = window.innerWidth;
+        offset.realLeft = offset.left - offsetX;
 
         // 处理动画的keyframes
         if (animationDef && animationDef.keyframes) {
@@ -157,15 +179,10 @@ define(function (require) {
             'easing': animationDef.easing || 'ease'
         };
 
-        if (+delay) {
-            animationDef.delay = delay;
-        }
         animationDef.easing = easing;
         animationDef.keyframes = keyframes;
-
-        if (after) {
-            animationDef.startAfterId = after;
-        }
+        animationDef.animationType = 'JS_ANIMATION';
+        animationDef.animationName = 'preSet';
 
         return animationDef;
     }
@@ -173,13 +190,18 @@ define(function (require) {
     function getPreset(el) {
         var animationDef = {};
         var name = (String(el.getAttribute(MIP_STORY_ANIMATE_IN_ATTR)).split(/\s+/))[0];
+        if (!animatePreset[name]) {
+          return {
+              animationName: name
+          };
+        }
         extend(animationDef, animatePreset[name]);
         return animationDef;
     }
 
-    function buildRuner(el) {
+    function buildRuner(el, offsetX) {
         var runner;
-        var animationDef = createAnimationDef(el);
+        var animationDef = createAnimationDef(el, offsetX);
         runner = new AnimationRunner(el, animationDef);
         return runner;
     }

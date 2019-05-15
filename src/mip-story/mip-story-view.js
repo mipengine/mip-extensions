@@ -9,6 +9,7 @@ define(function (require) {
     var customElement = require('customElement').create();
     var Audio = require('./audio');
     require('./mip-story-video');
+    require('./mip-story-img');
     var timeStrFormat = require('./animation-util').timeStrFormat;
     var AnimationManager = require('./animation').AnimationManager;
     var hasAnimations = require('./animation').hasAnimations;
@@ -106,11 +107,15 @@ define(function (require) {
 
     function toggleDisplay(obj, disp) {
         if (disp) {
-            obj.setAttribute('style', 'display: ' + obj.getAttribute("originDisplay"));
+            css(obj, {
+                'display': obj.getAttribute("originDisplay")
+            })
         } else {
             var originDisplay = document.defaultView.getComputedStyle(obj)['display'];
             obj.setAttribute('originDisplay', originDisplay);
-            obj.setAttribute('style', 'display: none');
+            css(obj, {
+                'display':'none'
+            })
         }
     }
 
@@ -241,11 +246,8 @@ define(function (require) {
         this.element.setAttribute('page-role', constConfig.PAGE_ROLE.contentPage);
     }
 
-    customElement.prototype.initView = function () {
-
+    customElement.prototype.initMedia = function () {
         this.audio = new Audio();
-        this.canvasVideo = this.element.querySelectorAll('mip-story-video');
-        this.hasStoryVideo = !!this.canvasVideo.length;
         var node = this.element.parentNode;
 
         this.animationElements = [];
@@ -257,9 +259,31 @@ define(function (require) {
         }
     };
 
+    customElement.prototype.initStoryStatic = function () {
+        var storyStatic = this.element.querySelectorAll('mip-story-img, mip-story-video');
+        for (var i = 0; i < storyStatic.length; i++) {
+            storyStatic[i].setAttribute('preload', '');
+        }
+    }
+
+    // 有preload属性时, 自动为所包含的静态元素添加preload属性
+    customElement.prototype.attributeChangedCallback = function () {
+        if (this.isPreload) {
+            return;
+        }
+
+        if (this.element.hasAttribute('preload')) {
+            this.isPreload = true;
+            this.initStoryStatic();
+            this.initMedia();
+            this.pauseAllMedia();
+        }
+    };
+
     customElement.prototype.firstInviewCallback = function () {
-        this.initView();
-        this.pauseAllMedia();
+        this.canvasVideo = this.element.querySelectorAll('mip-story-video');
+        this.hasStoryVideo = !!this.canvasVideo.length;
+        this.isPreload = false;
         this.setPageRole();
     };
 

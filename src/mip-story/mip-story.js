@@ -90,6 +90,7 @@ define(function (require) {
         this.hint = new HintLayer(element);
         var html = dm.create(this.hint.build());
         this.element.appendChild(html);
+        this.hint.generateQRCode();
     };
 
     MIPStory.prototype.initShare = function (storyConfig, element) {
@@ -113,17 +114,19 @@ define(function (require) {
         this.progress = new Progress(this.element, this.storyViews, audioHide, storyConfig);
         var html = dm.create(this.progress.build());
         this.element.appendChild(html);
-        this.progress.updateProgress(0, 1);
-        var sys = this.element.querySelector('.mip-story-system-layer');
 
-        if (!viewer.isIframed || !this.getConfigData().xzh_info){
-            return;
+        // 状态保持
+        var storyState = require('./mip-story-state');
+        var currentPageIndex = storyState.currentPageIndex;
+        this.pageStateIndex = storyState.getPageStateIndex(this.storyViews.length);
+        this.preloadPages = storyState.getPreloadIndex(this.storyViews.length)
+        // 初始化预加载
+        this.initPreload();
+
+        for (var p = 0; p <= currentPageIndex; p++) {
+            this.progress.updateProgress(p, 1);
         }
-        // 加载icon
-        this.progress.setXzhInfo().then(function(data) {
-            var icon = dm.create(data);
-            sys.appendChild(icon);
-        });
+
     };
 
     MIPStory.prototype.setSubjectColor = function () {
@@ -165,7 +168,15 @@ define(function (require) {
         });
     }
 
-    
+    // 预加载相关
+    MIPStory.prototype.initPreload = function () {
+        var storyViewData = this.storyViews;
+        var pages = this.preloadPages;
+        for (var i = 0; i < pages.length; i++) {
+            var loadIndex = pages[i];
+            storyViewData[loadIndex].setAttribute('preload','');
+        }
+    };
     
     // story组件的初始化
     MIPStory.prototype.init = function () {

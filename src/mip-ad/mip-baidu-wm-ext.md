@@ -58,6 +58,6 @@
 
 ## 注意事项
 
-- union 平台和百青藤平台，获取反屏蔽投放代码，样例如下 &lt;script type="text/javascript" src="http://<font color="yellowgreen">dup.media.com</font>/production/ezr/static/wf/source/ro/openjs/w_b.js"&gt;&lt;/script &gt;，绿色区域对应 MIP 投放代码 domain，脚本下方"MIP反屏蔽token：<font color="red">ezrwfrowb</font>"为 MIP 投放代码 `token` 和 `<div>` `id`。
+- union 平台获取投放代码样例如下 &lt;script type="text/javascript" src="http://<font color="yellowgreen">dup.media.com</font>/site/js/jy1c5t.js?<font color="red">ezrwf=rowb</font>"&gt;&lt;/script &gt;，绿色区域对应 MIP 投放代码 domain，红色区域<font color="red">去掉“=”</font>的结果（ezrwfrowb）为 MIP 投放代码 `token` 和 `<div>` `id`。
 
 - 联盟反屏蔽接入要求反屏蔽域名支持 HTTPS，可参见[接入说明文档](http://yingxiao.baidu.com/new/home/help/details/id/15198?ly=search&castk=445abcj782bd95da5d845)。

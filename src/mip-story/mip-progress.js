@@ -10,10 +10,6 @@ define(function (require) {
     var VISITED = 'mip-story-page-progress-bar-visited';
     var css = require('util').css;
     var timeStrFormat = require('./animation-util').timeStrFormat;
-    var fetchJsonp = require('fetch-jsonp');
-    var util = require('util');
-    var constConfig = require('./mip-story-config');
-    var MSITEAPI = constConfig.MSITEAPI;
 
     /**
      * [MIPProgress 头部导航进度条]
@@ -149,34 +145,6 @@ define(function (require) {
         });
     };
 
-    MIPProgress.prototype.setXzhInfo = function () {
-        if (!this.storyConfig.xzh_info.appid) {
-            return '';
-        }
-        var hostName = util.getOriginalUrl(location.href).split('?')[0].split('#')[0];
-        var url = MSITEAPI + this.storyConfig.xzh_info.appid + '&url=' + encodeURIComponent(hostName);
-
-        return fetchJsonp(url, {
-            jsonpCallback: 'callback'
-        }).then(function (res) {
-            return res.json();
-        }).then(function (data) {
-            var content = '';
-            var siteData = data.data;
-            if (siteData.avatar && siteData.name && siteData.homepage) {
-                var content = '<div class="icon-wrap" data-href="'
-                    + siteData.homepage
-                    + '"><div class="icon"><img src="'
-                    + siteData.avatar
-                    + '" alt=""></div><div class="icon-name">'
-                    + siteData.name
-                    + '</div><div class="icon-type">熊掌号</div></i></div>';
-            }
-            return content;
-        }, function (err) {
-            console.log(err)
-        });
-    };
 
     return MIPProgress;
 });

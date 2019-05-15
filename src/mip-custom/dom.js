@@ -185,6 +185,11 @@ define(function (require) {
         var customNode = createCustomNode(html, customTag);
         var itemNode = document.createElement('div');
         itemNode.setAttribute('mip-custom-item', len);
+        // 如果定制化组件属性有 no-padding 则把它的容器设置为 no-padding
+        // 组件属性 no-padding 必须设置一个值，哪怕是""，不然会被remove
+        if (customNode.hasAttribute('no-padding')) {
+            itemNode.classList.add('no-padding');
+        }
         // XXX work around: 由于需要在template渲染后把渲染结果插入到itemNode，container里面，
         // 只能把这些参数绑定在 customNode 里传给render.then中，通过res.element.itemNode获取
         customNode.itemNode = itemNode;
@@ -211,7 +216,14 @@ define(function (require) {
 
                 if (zIndex >= maxzIndex) {
                     maxzIndex = zIndex;
-                    fixedElement.setPlaceholder(getCss(res.element, 'height') - excr);
+                    var now = Date.now();
+                    var timer = setInterval(function () {
+                        var height = getCss(res.element, 'height');
+                        if (height > 0 || Date.now() - now > 8000) {
+                            clearInterval(timer);
+                        }
+                        fixedElement.setPlaceholder(height - excr);
+                    }, 16);
                 }
             }
         });
@@ -305,7 +317,7 @@ define(function (require) {
      */
     function getConfigScriptElement(elem) {
         if (!elem) {
-            return;  
+            return;
         }
         return elem.querySelector('script[type="application/json"]');
     }
@@ -333,10 +345,10 @@ define(function (require) {
         var me = this;
         this.placeholder.classList.add('fadeout');
         // 占位符增加淡出效果
-        this.placeholder.addEventListener("transitionend", function() {
+        this.placeholder.addEventListener('transitionend', function () {
             me.placeholder.remove();
         }, false);
-        this.placeholder.addEventListener("webkitTransitionend", function() {
+        this.placeholder.addEventListener('webkitTransitionend', function () {
             me.placeholder.remove();
         }, false);
     }

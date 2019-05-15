@@ -7,7 +7,7 @@ define(function (require) {
     'use strict';
 
     var customElement = require('customElement').create();
-    var JSMpeg = require('./jsmpeg/jsmpeg');
+    var JSMpeg = require('./lib/jsmpeg');
     var util = require('util');
     var Detector = require('./video-detector');
     var css = util.css;
@@ -46,7 +46,16 @@ define(function (require) {
         var height =  this.attributes.height;
         var width  =  this.attributes.width;
         var sourceHTML = this.element.innerHTML;
-        var html = '<mip-video layout="responsive" loop autoplay height="' + height +'" width="' + width + '" poster="' + poster + '">'
+        var loop = '';
+        var isLoop = this.attributes.loop;
+        if (isLoop !== '' && (!isLoop || isLoop === 'false')) {
+            loop = '';
+        } else {
+            loop = 'loop';
+        }
+        var html = '<mip-video layout="responsive" '
+                + loop + ' class="mip-fill-content mip-replaced-content" autoplay height="'
+                + height +'" width="' + width + '" poster="' + poster + '">'
                 + sourceHTML
                 + '</mip-video>';
         var videoElement = dm.create(html);
@@ -64,7 +73,8 @@ define(function (require) {
 
         var posterEl = document.createElement('div');
         var canvas = document.createElement('canvas');
-        css(canvas, {position: 'absolute', opacity: '0'});
+        canvas.className = 'mip-fill-content mip-replaced-content';
+        css(canvas, {opacity: '0'});
 
         var tsUrl = this.sourceList['video/ts'];
 
@@ -77,10 +87,8 @@ define(function (require) {
         if (this.attributes.poster) {
 
             posterEl.style.backgroundImage = 'url(' + this.attributes.poster + ')';
-            posterEl.style.backgroundSize = 'cover';
-            posterEl.style.height = '100%';
-            posterEl.style.width = '100%';
-            posterEl.style.position = 'absolute';
+            posterEl.style.backgroundSize = '100% 100%';
+            posterEl.className = 'mip-fill-content mip-replaced-content';
 
             this.element.appendChild(posterEl);
         }
@@ -88,7 +96,15 @@ define(function (require) {
 
         this.attributes.canvas = canvas;
         this.element.appendChild(canvas);
-        this.player = new JSMpeg.Player(tsUrl, this.attributes);
+        this.option = this.attributes;
+        // // 配置上，只需要对loop做处理
+        var isLoop = this.option.loop;
+        if (isLoop !== '' && (!isLoop || isLoop === 'false')) {
+            this.option.loop = false;
+        } else {
+            this.option.loop = true;
+        }
+        this.player = new JSMpeg.Player(tsUrl, this.option);
         this.player.on('playing', function () {
             var event = new Event('playing');
             // 开始播放时展示canvas
@@ -111,8 +127,11 @@ define(function (require) {
 
     customElement.prototype.play = function () {
         if (!this.isVideo) {
-            this.player.play();
-            this.unlockAudio();
+            var self = this;
+            setTimeout(function () {
+                self.player.play();
+                self.unlockAudio();
+            }, 0);
         }
     };
 
@@ -132,9 +151,16 @@ define(function (require) {
         }
     };
 
+    customElement.prototype.attributeChangedCallback = function () {
+        if (this.element.hasAttribute('preload') && !this.loaded) {
+            this.initStoryVideoElement();
+            this.loaded = true;
+        }
+    };
 
     customElement.prototype.firstInviewCallback = function () {
-        this.initStoryVideoElement();
+        this.loaded = false;
+        // this.initStoryVideoElement();
     };
 
     function getAttributeSet(attributes) {

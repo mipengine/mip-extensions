@@ -41,6 +41,15 @@ define(function (require) {
         // pc标识字段
         params.fromSite = data.getHashData('fromSite');
 
+        // 结果页透传字段
+        var RESULT_PARMAS_HASH = ['searchFrom', 'fenlei', 'order'];
+        for (var i = 0; i < RESULT_PARMAS_HASH.length; i++) {
+            var currentKey = RESULT_PARMAS_HASH[i];
+            if (data.getHashData(currentKey)) {
+                params[currentKey] = data.getHashData(currentKey);
+            }
+        }
+
         return params;
     }
 

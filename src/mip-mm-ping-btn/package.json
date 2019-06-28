@@ -1,0 +1,14 @@
+{
+    "name": "mip-mm-ping-btn",
+    "version": "1.0.0",
+    "description": "点击按钮的打点功能",
+    "contributors": [
+        {
+            "name": "jxintang",
+            "email": "jxintang@gmail.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

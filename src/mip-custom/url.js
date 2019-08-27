@@ -161,13 +161,6 @@ define(function (require) {
         return sourceIdArr.join(',');
     }
 
-    function isStandalone() {
-        if (!viewer.isIframed || typeof window.top.MIP !== undefined) {
-            return true
-        }
-        return false
-    }
-
     /**
      * 判断是否在特定广告环境中
      *
@@ -191,14 +184,16 @@ define(function (require) {
         //     inMipShell[3] = encodeURIComponent(location.href);
         //     return inMipShell;
         // }
-        if (isStandalone()) {
+
+        // 这里直接用 mip2 核心的 standalone 判断，和 mip2 mip-custom 保持一致
+        if (MIP.viewer.page.standalone) {
             inMipShell[0] = false;
-            inMipShell[1] = 'standalone';
+            inMipShell[1] = 'notIframed';
             inMipShell[2] = encodeURIComponent(document.referrer);
             inMipShell[3] = encodeURIComponent(location.href);
             return inMipShell;
         }
-        
+
         return inMipShell;
     };
 

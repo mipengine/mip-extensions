@@ -169,22 +169,31 @@ define(function (require) {
     function inMipShell(element) {
         var inMipShell = [true];
         // 非结果页进入，不是mip-shell
-        if (!viewer.isIframed) {
+        // if (!viewer.isIframed) {
+        //     inMipShell[0] = false;
+        //     inMipShell[1] = 'notIframed';
+        //     inMipShell[2] = encodeURIComponent(document.referrer);
+        //     inMipShell[3] = encodeURIComponent(location.href);
+        //     return inMipShell;
+        // }
+        // 非百度、cache不在mip-shell中
+        // if (!(data.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
+        //     inMipShell[0] = false;
+        //     inMipShell[1] = 'notDomainOrCacheUrl';
+        //     inMipShell[2] = encodeURIComponent(document.referrer);
+        //     inMipShell[3] = encodeURIComponent(location.href);
+        //     return inMipShell;
+        // }
+
+        // 这里直接用 mip2 核心的 standalone 判断，和 mip2 mip-custom 保持一致
+        if (MIP.standalone) {
             inMipShell[0] = false;
             inMipShell[1] = 'notIframed';
             inMipShell[2] = encodeURIComponent(document.referrer);
             inMipShell[3] = encodeURIComponent(location.href);
             return inMipShell;
         }
-        // 非百度、cache不在mip-shell中
-        if (!(data.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
-            inMipShell[0] = false;
-            inMipShell[1] = 'notDomainOrCacheUrl';
-            inMipShell[2] = encodeURIComponent(document.referrer);
-            inMipShell[3] = encodeURIComponent(location.href);
-            return inMipShell;
-        }
-        
+
         return inMipShell;
     };
 

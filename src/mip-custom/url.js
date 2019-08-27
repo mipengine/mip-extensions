@@ -161,6 +161,13 @@ define(function (require) {
         return sourceIdArr.join(',');
     }
 
+    function isStandalone() {
+        if (!viewer.isIframed || typeof window.top.MIP !== undefined) {
+            return true
+        }
+        return false
+    }
+
     /**
      * 判断是否在特定广告环境中
      *
@@ -169,17 +176,24 @@ define(function (require) {
     function inMipShell(element) {
         var inMipShell = [true];
         // 非结果页进入，不是mip-shell
-        if (!viewer.isIframed) {
-            inMipShell[0] = false;
-            inMipShell[1] = 'notIframed';
-            inMipShell[2] = encodeURIComponent(document.referrer);
-            inMipShell[3] = encodeURIComponent(location.href);
-            return inMipShell;
-        }
+        // if (!viewer.isIframed) {
+        //     inMipShell[0] = false;
+        //     inMipShell[1] = 'notIframed';
+        //     inMipShell[2] = encodeURIComponent(document.referrer);
+        //     inMipShell[3] = encodeURIComponent(location.href);
+        //     return inMipShell;
+        // }
         // 非百度、cache不在mip-shell中
-        if (!(data.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
+        // if (!(data.regexs.domain.test(window.document.referrer) || util.fn.isCacheUrl(location.href))) {
+        //     inMipShell[0] = false;
+        //     inMipShell[1] = 'notDomainOrCacheUrl';
+        //     inMipShell[2] = encodeURIComponent(document.referrer);
+        //     inMipShell[3] = encodeURIComponent(location.href);
+        //     return inMipShell;
+        // }
+        if (isStandalone()) {
             inMipShell[0] = false;
-            inMipShell[1] = 'notDomainOrCacheUrl';
+            inMipShell[1] = 'standalone';
             inMipShell[2] = encodeURIComponent(document.referrer);
             inMipShell[3] = encodeURIComponent(location.href);
             return inMipShell;

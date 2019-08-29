@@ -186,7 +186,7 @@ define(function (require) {
         // }
 
         // 这里直接用 mip2 核心的 standalone 判断，和 mip2 mip-custom 保持一致
-        if (MIP.standalone) {
+        if (MIP.standalone && !MIP.util.isCacheUrl(location.href)) {
             inMipShell[0] = false;
             inMipShell[1] = 'notIframed';
             inMipShell[2] = encodeURIComponent(document.referrer);

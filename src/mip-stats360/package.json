@@ -1,0 +1,8 @@
+{
+    "name": "mip-stats360",
+    "version": "1.0.0",
+    "description":"mip-stats360 用于添加360统计到mip页面中",
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "mip-gzpd-alert",
+  "version": "1.0.0",
+  "description": "用户服务登陆并支付后使用提示功能",
+  "author": {
+    "name": "jfdsies",
+    "email": "jfdsies@gmail.com"
+  },
+  "engines": {
+    "mip": ">=1.1.0"
+  }
+}

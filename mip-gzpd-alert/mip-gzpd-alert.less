@@ -1,0 +1,418 @@
+mip-gzpd-alert {
+
+    div.mip-gzpd-alert-marks .claos,
+    div.mip-gzpd-alert-cservice-marks .claos {
+        position: absolute;
+        right: -10px;
+        background: url(https://static.yjbys.com/img/company/pay/zhifu_icon.2.png) no-repeat -149px -31px;
+        width: 30px;
+        height: 30px;
+        text-indent: -9999px;
+        top: -10px;
+        cursor: pointer;
+    }
+    div.mip-gzpd-alert-marks .claos:hover,
+    div.mip-gzpd-alert-cservice-marks .claos:hover {
+        background: url(https://static.yjbys.com/img/company/pay/zhifu_icon.2.png) no-repeat -180px -31px;
+    }
+
+    div.mip-gzpd-alert-marks {
+        float: left;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        display: none;
+        position: fixed;
+        top: 0;
+        background: rgba(19, 19, 19, 0.6);
+    }
+    div.mip-gzpd-alert-marks .alert-box {
+        width: 85%;
+        position: relative;
+        margin: auto;
+        margin-top: 20%;
+        border-radius: 6px;
+        background: #fff;
+        text-align: center;
+    }
+    div.mip-gzpd-alert-marks .alert-box .paybox {
+        width: 100%;
+        padding: 6% 0;
+        border-bottom: 1px solid #ccc;
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-title {
+        color: #3c3c3c;
+        font-size: 22px;
+        display: inline-block;
+        font-weight: 700;
+        line-height: 30px;
+        height: 30px;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-img {
+        width: 100px;
+        display: inline-block;
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-img .qrimg {
+        width: 100%
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-money {
+        height: 30px;
+        line-height: 30px;
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-money span:first-child {
+        color: #ff6600;
+        font-size: 16px;
+        font-weight: 400;
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-money span:last-child {
+        text-decoration: line-through;
+        color: #949494;
+        margin-left: 10px;
+        font-size: 14px;
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-bottom {
+        cursor: pointer;
+        background: #44b549;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 6px;
+        margin: 6px auto;
+        width: 230px;
+    }
+    div.mip-gzpd-alert-marks .paybox .paybox-bottom-a {
+        font-size: 18px;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    div.mip-gzpd-alert-marks .alert-box .freebox {
+        width: 100%;
+        padding: 6% 0;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-description {
+        text-align: left;
+        color: #3c3c3c;
+        margin: 0 3%;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-title {
+        color: #3c3c3c;
+        font-size: 22px;
+        display: inline-block;
+        font-weight: 700;
+        line-height: 30px;
+        height: 30px;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-description p {
+        margin: 10px;
+        font-size: 14px;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-description p .text-focus {
+        color: #FF5722;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-code {
+        display: inline-block;
+        margin-top: 7px;
+        width: 80%;
+        border: 1px solid #44b549;
+        height: 32px;
+        line-height: 30px;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-code .freebox-input {
+        line-height: 32px;
+        width: 78%;
+        font-size: 14px;
+        float: left;
+        border: none;
+        color: #bdbdbd;
+        padding-left: 3%;
+    }
+    div.mip-gzpd-alert-marks .freebox .freebox-code .freebox-btn {
+        line-height: 32px;
+        width: 19%;
+        background: #44b549;
+        color: #fff;
+        text-align: center;
+        font-size: 16px;
+        border: 0 none;
+        cursor: pointer;
+        float: right;
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+
+    div.mip-gzpd-alert-marks .alert-box .paybox-cservice {
+        font-size: 14px;
+        padding-bottom: 10px;
+        cursor: pointer;
+        color: #a2a2a2;
+    }
+
+    div.mip-gzpd-alert-marks-wxpay {
+        display: none;
+        float: left;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        background: rgba(19, 19, 19, 0.6);
+    }
+    div.mip-gzpd-alert-marks-wxpay .block_ad_qr {
+        display: inline-block;
+        margin: 30px 50px;
+        font-size: 19px;
+        color: #ff0000;
+    }
+    div.mip-gzpd-alert-marks-wxpay .payqr_success_text .text {
+        display: block;
+        font-size: 30px;
+        color: #44b549;
+    }
+    div.mip-gzpd-alert-marks-wxpay .payqr_success_text .icon {
+        padding-top: 30px;
+        fill: #44b549;
+        width: 80px;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    div.mip-gzpd-alert-marks-wxpay .payqr_success_box {
+        display: none;
+    }
+    div.mip-gzpd-alert-marks-wxpay .payqr_success_box button.btn {
+        font-weight: 700;
+        background: #38ad3a;
+        border: none;
+        width: 230px;
+        height: 46px;
+        font-size: 18px;
+        color: #fff;
+        border-radius: 6px;
+        margin-top: 25px;
+        cursor: pointer;
+    }
+    div.mip-gzpd-alert-marks-wxpay .payqr_success_box .payqr_success_text span.text {
+        display: block;
+        font-size: 30px;
+        color: #44b549;
+        margin-bottom: 6px;
+    }
+    div.mip-gzpd-alert-marks-wxpay .payqr_success_box .payqr_success_text span.text.small {
+        color: #999;
+        font-size: 16px;
+    }
+
+    div.mip-gzpd-alert-marks-wxpay .my_wxpay {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        margin: auto;
+        background: rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+        visibility: visible;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    div.mip-gzpd-alert-marks-wxpay .my_wxpay .sm {
+        display: block;
+        margin-top: 8px;
+        font-size: 18px;
+        color: #6d6d6d;
+    }
+    div.mip-gzpd-alert-marks-wxpay .my_wxpay .sm span {
+        color: #FF7800;
+        padding: 6px 11px;
+        font-weight: 700;
+    }
+    div.mip-gzpd-alert-marks-wxpay .my_wxpay .claos {
+        position: absolute;
+        right: -10px;
+        background: url(https://static.yjbys.com/img/company/pay/zhifu_icon.2.png) no-repeat -149px -31px;
+        width: 30px;
+        height: 30px;
+        text-indent: -9999px;
+        top: -10px;
+        cursor: pointer;
+    }
+    div.mip-gzpd-alert-marks-wxpay .my_wxpay .claos:hover {
+        background: url(https://static.yjbys.com/img/company/pay/zhifu_icon.2.png) no-repeat -180px -31px;
+    }
+    div.mip-gzpd-alert-marks-wxpay .wx_pic_img {
+        text-align: center;
+        background: #fff;
+        z-index: 10;
+        border-radius: 6px;
+        width: 75%;
+        margin: auto;
+        margin-top: 40%;
+        height: 360px;
+    }
+    div.mip-gzpd-alert-marks-wxpay .my_wxpay .iconfont {
+        color: #FFFFFF;
+        font-size: 16px;
+        line-height: 28px;
+        background: #38ad3a;
+        width: 171px;
+        margin: auto;
+    }
+    div.mip-gzpd-alert-marks-wxpay .my_wxpay .iconfont span {
+        background: url(https://static.yjbys.com/img/company/pay/zhifu_icon.png) no-repeat 0 center;
+        padding-left: 28px;
+    }
+    div.mip-gzpd-alert-marks-wxpay .cg {
+        width: 300px;
+        margin: auto;
+        height: 250px;
+        display: none;
+    }
+    div.mip-gzpd-alert-marks-wxpay .cg .cg-img {
+        width: 176px;
+        margin-top: 50px;
+    }
+    div.mip-gzpd-alert-marks-wxpay .wx_top {
+        background: #38AD3A;
+        height: 60px;
+        border-radius: 6px 6px 0 0;
+        color: #fff;
+        font-size: 24px;
+        line-height: 60px;
+    }
+    div.mip-gzpd-alert-marks-wxpay .zhifu {
+        width: 100%;
+    }
+    div.mip-gzpd-alert-marks-wxpay .zhifu .sm {
+        display: block;
+        margin-top: 8px;
+        font-size: 18px;
+        color: #6d6d6d;
+    }
+    div.mip-gzpd-alert-marks-wxpay .zhifu .sm span {
+        color: #FF7800;
+        padding: 6px 11px;
+        font-weight: 700;
+    }
+    div.mip-gzpd-alert-marks-wxpay .hc {
+        margin-top: 10px;
+    }
+    div.mip-gzpd-alert-marks-wxpay .hc .hc-img {
+        width: 200px;
+        margin: auto;
+    }
+
+    div.mip-gzpd-alert-success {
+        display: none;
+    }
+    div.mip-gzpd-alert-success .icon {
+        width: 1.8em;
+        height: 2.5em;
+        vertical-align: middle;
+        fill: #00ba9b;
+        overflow: hidden;
+        margin-right: 6px;
+    }
+    div.mip-gzpd-alert-success {
+        border: 1px solid #d3d4d3;
+        padding: 4px;
+        margin: auto;
+        width: 33%;
+        text-align: center;
+        color: #333;
+        font-size: 16px;
+        background: #fff;
+    }
+    div.mip-gzpd-alert-bounceIn {
+        animation-name: mip-gzpd-alert-bounceIn;
+        animation-duration: .3s;
+    }
+
+    div.mip-gzpd-alert-cservice-marks {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        margin: auto;
+        background: rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        visibility: visible;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    div.mip-gzpd-alert-cservice-marks .phone-pic {
+        width: 90%;
+        display: inline-block;
+    }
+    div.mip-gzpd-alert-cservice-marks .mip-gzpd-alert-cservice {
+        text-align: center;
+        background: #fff;
+        width: 75%;
+        margin: auto;
+        margin-top: 40%;
+        padding: 6% 0;
+        border-radius: 6px;
+        position: relative;
+        height: 350px;
+    }
+    div.mip-gzpd-alert-cservice-marks .kefu-name {
+        color: #44b549;
+        font-size: 22px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+    div.mip-gzpd-alert-cservice-marks .copy-txt-btn {
+        display: inline-block;
+        background: #4c84da;
+        color: #fff;
+        padding: 12px 40px;
+        border-radius: 4px;
+        margin-top: 42px;
+    }
+    div.mip-gzpd-alert-cservice-marks .copy-txt-btn a {
+        color: #fff;
+        font-size: 16px;
+    }
+    div.mip-gzpd-alert-cservice-marks .open-wechat {
+        width: 100%;
+        float: left;
+        height: 60px;
+        line-height: 60px;
+        color: #215cb7;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    div.mip-gzpd-alert-cservice-marks .phone-art {
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        line-height: 30px;
+        margin-top: 40px;
+    }
+    div.mip-gzpd-alert-cservice-marks .phone-art span {
+        display: block;
+        margin-top: 3px;
+        color: #666;
+    }
+    div.mip-gzpd-alert-cservice-marks #kefu-name-input {
+        width: 1px;
+        height: 1px;
+        border: 0;
+        color: rgba(255, 255, 255, 0);
+        background-color: rgba(255, 255, 255, 0);
+    }
+
+    @-webkit-keyframes mip-gzpd-alert-bounceIn {
+        0% {
+            opacity: 0;
+            transform: scale(.5)
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1)
+        }
+    }
+}

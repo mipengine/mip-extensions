@@ -9,6 +9,7 @@ define(function (require) {
     var customElement = require('customElement').create();
     require('./mip-story-view');
     require('./mip-story-layer');
+    var TcLog = require('./mip-story-log');
     var constConfig = require('./mip-story-config');
     var MIP_I_STORY_STANDALONE = constConfig.MIP_I_STORY_STANDALONE;
     var Audio = require('./audio');
@@ -78,6 +79,15 @@ define(function (require) {
         this.storyViews = this.element.querySelectorAll('mip-story-view');
     };
 
+    MIPStory.prototype.initBaseTcData = function () {
+        var data = {};
+        data.pageLen = this.storyViews.length;
+        data.originUrl = util.getOriginalUrl(window.location.href).split('?')[0].split('#')[0];
+        data.reffer = encodeURIComponent(window.document.referrer);
+        var tcLog = new TcLog()
+        tcLog.initBaseData(data);
+    }
+    
     MIPStory.prototype.initStoryContain = function () {
         this.bookEndContainer = document.querySelector('.mip-backend');
         for (var index = 0; index < this.storyViews.length; index++) {
@@ -194,6 +204,8 @@ define(function (require) {
         this.initBookend(mipStoryConfigData);
         // 保存 story-views到storyViews中便于后期操作
         this.initStoryViews();
+        // 初始化打点基本数据
+        this.initBaseTcData();
         // 保存包括封底页面在内的所有结果页
         this.initStoryContain();
         // 初始化引导页

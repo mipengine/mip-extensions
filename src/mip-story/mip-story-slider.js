@@ -16,6 +16,7 @@ define(function (require) {
     var CURRENT = constConfig.PAGE_STATE.current;
     var ACTIVE = constConfig.PAGE_STATE.active;
     var storyState = require('./mip-story-state');
+    var tcLog = require('./mip-story-log');
     var STYLE = 'style';
     var screenWidth = viewport.getWidth();
     var screenHeight = viewport.getHeight();
@@ -36,13 +37,13 @@ define(function (require) {
     var recommend;
 
     // 翻页埋点 
-    var pageViewed = [0];
+    var pageViewed = [];
     var isPageOneViewed = false;
     var pageViewedData = {
         'category': '_trackEvent',
         'action': '翻页进度',
         'optLabel': '滑动',
-        'optValue': '翻了1页'
+        'optValue': '看了第1页'
     };
 
     // 分享页展示次数  这里以后可能会改成推荐小故事的展示量
@@ -167,6 +168,20 @@ define(function (require) {
 
         this.touchstartX = this.touchendX = 0;
         this.moveFlag = false;
+
+        // 进入页面 自动发送当前页信息
+        if(isPageOneViewed) return;
+        pageViewed = [this.currentIndex];
+        var pageViewedInfo = '看了第' + (parseInt(this.currentIndex, 10) + 1) + '页';
+        pageViewedData.optValue = pageViewedInfo;
+        this.trackEvent(pageViewedData);
+
+        // tclog 看了第几页
+        tcLog(8, {viewingPage: this.currentIndex + 1});
+        // tclog pv
+        tcLog(9, {});
+
+        isPageOneViewed = true;
     }
 
     function enableScroll(ele) {
@@ -574,7 +589,7 @@ define(function (require) {
             var currentPage = storyContain[i];
             if (i === this.currentIndex) {
                 // 埋点
-                if (window._hmt && pageViewed.indexOf(i) === -1) {
+                if (pageViewed.indexOf(i) === -1) {
                     var pageRole = currentPage.getAttribute('page-role');
                     this.triggerStats(i, pageRole);
                 }
@@ -640,21 +655,29 @@ define(function (require) {
         // 分享页单独统计
         if (role === PAGE_ROLE.sharePage && !isSharePageViewed) {
             isSharePageViewed = true;
-            return this.trackEvent(sharePagedData);
-        }
 
-        // 这里主要是 保证第一页发送的时机
-        if (!isPageOneViewed) {
-            isPageOneViewed = true;
-            this.trackEvent(pageViewedData);
+            // tclog 看了尾页
+            tcLog(7, {});
+
+            // tclog 推荐展现量，现按：到了分享页，认为所有的推荐链接都展现了
+            var count = storyContain[storyContain.length - 1].querySelectorAll('.recommend-item').length - 1;
+            tcLog(6, {count: count});
+
+            return this.trackEvent(sharePagedData);
         }
 
         // 分享页不计入翻页
         if (role === PAGE_ROLE.sharePage) {
             return;
         }
+
         pageViewed.push(pageIndex);
-        var pageViewedInfo = '翻了' + (+pageViewed[pageIndex] + 1) + '页';
+        var viewingPage = +pageViewed[pageViewed.length - 1] + 1;
+
+        // tclog 看了第几页
+        tcLog(8, {viewingPage: viewingPage});
+
+        var pageViewedInfo = '看了第' + viewingPage + '页';
         pageViewedData.optValue = pageViewedInfo;
         this.trackEvent(pageViewedData);
     }
@@ -675,9 +698,10 @@ define(function (require) {
      * @param {Object} obj  统计事件对象
      */
     MIPStorySlider.prototype.trackEvent = function (obj) {
+        // console.log(obj.optValue)
         var label = obj.optLabel || '';
         var value = obj.optValue || '';
-        window._hmt.push([obj.category, obj.action, label, value]);
+        window._hmt && window._hmt.push([obj.category, obj.action, label, value]);
     }
 
     MIPStorySlider.prototype.clearStyle = function () {

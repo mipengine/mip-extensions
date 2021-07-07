@@ -1,11 +1,15 @@
 .mip-nav-wrapper {
     height: 72px;
+    transition: height 0.3s;
     &.show {
         opacity: 1!important;
     }
     .hr-xs {
         display: none;
     }
+}
+.noscroll {
+    overflow-y: hidden !important;
 }
 mip-nav-slidedown{
     #bs-navbar {
@@ -73,6 +77,7 @@ mip-nav-slidedown{
 @media screen and (max-width: 767px) {
     .mip-nav-wrapper {
         height: 44px;
+        transition: height 0.3s;
         #bs-navbar {
             height: 0;
             transition: height 0.3s;

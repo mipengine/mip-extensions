@@ -125,7 +125,8 @@ define(function (require) {
             limitShowPn: 0,
             preLoadPn: 2,
             firstResult: [],
-            pushResult: self.pushResult
+            pushResult: self.pushResult,
+            ele: element
         });
     };
 
